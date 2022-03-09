@@ -11,7 +11,7 @@ __pycache__/
 env/
 build/
 develop-eggs/
-dist/
+# dist/ uncomment this later once client is public and published on Pypi
 downloads/
 eggs/
 .eggs/
