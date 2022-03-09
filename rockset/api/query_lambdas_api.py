@@ -51,7 +51,9 @@ class QueryLambdasApi(object):
         self.create_query_lambda_endpoint = _Endpoint(
             settings={
                 'response_type': (QueryLambdaVersionResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas'.split('#')[0],
                 'operation_id': 'create_query_lambda',
                 'http_method': 'POST',
@@ -106,7 +108,9 @@ class QueryLambdasApi(object):
         self.create_query_lambda_tag_endpoint = _Endpoint(
             settings={
                 'response_type': (QueryLambdaTagResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/tags'.split('#')[0],
                 'operation_id': 'create_query_lambda_tag',
                 'http_method': 'POST',
@@ -167,7 +171,9 @@ class QueryLambdasApi(object):
         self.delete_query_lambda_endpoint = _Endpoint(
             settings={
                 'response_type': (DeleteQueryLambdaResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}'.split('#')[0],
                 'operation_id': 'delete_query_lambda',
                 'http_method': 'DELETE',
@@ -222,7 +228,9 @@ class QueryLambdasApi(object):
         self.delete_query_lambda_tag_endpoint = _Endpoint(
             settings={
                 'response_type': (QueryLambdaTagResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/tags/{tag}'.split('#')[0],
                 'operation_id': 'delete_query_lambda_tag',
                 'http_method': 'DELETE',
@@ -283,7 +291,9 @@ class QueryLambdasApi(object):
         self.delete_query_lambda_version_endpoint = _Endpoint(
             settings={
                 'response_type': (QueryLambdaVersionResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/version/{version}'.split('#')[0],
                 'operation_id': 'delete_query_lambda_version',
                 'http_method': 'DELETE',
@@ -344,7 +354,9 @@ class QueryLambdasApi(object):
         self.execute_query_lambda_endpoint = _Endpoint(
             settings={
                 'response_type': (QueryResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/versions/{version}'.split('#')[0],
                 'operation_id': 'execute_query_lambda',
                 'http_method': 'POST',
@@ -411,7 +423,9 @@ class QueryLambdasApi(object):
         self.execute_query_lambda_by_tag_endpoint = _Endpoint(
             settings={
                 'response_type': (QueryResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/tags/{tag}'.split('#')[0],
                 'operation_id': 'execute_query_lambda_by_tag',
                 'http_method': 'POST',
@@ -478,7 +492,9 @@ class QueryLambdasApi(object):
         self.get_query_lambda_tag_version_endpoint = _Endpoint(
             settings={
                 'response_type': (QueryLambdaTagResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/tags/{tag}'.split('#')[0],
                 'operation_id': 'get_query_lambda_tag_version',
                 'http_method': 'GET',
@@ -539,7 +555,9 @@ class QueryLambdasApi(object):
         self.get_query_lambda_version_endpoint = _Endpoint(
             settings={
                 'response_type': (QueryLambdaVersionResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/versions/{version}'.split('#')[0],
                 'operation_id': 'get_query_lambda_version',
                 'http_method': 'GET',
@@ -600,7 +618,9 @@ class QueryLambdasApi(object):
         self.list_all_query_lambdas_endpoint = _Endpoint(
             settings={
                 'response_type': (ListQueryLambdasResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/lambdas'.split('#')[0],
                 'operation_id': 'list_all_query_lambdas',
                 'http_method': 'GET',
@@ -642,7 +662,9 @@ class QueryLambdasApi(object):
         self.list_query_lambda_tags_endpoint = _Endpoint(
             settings={
                 'response_type': (ListQueryLambdaTagsResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/tags'.split('#')[0],
                 'operation_id': 'list_query_lambda_tags',
                 'http_method': 'GET',
@@ -697,7 +719,9 @@ class QueryLambdasApi(object):
         self.list_query_lambda_versions_endpoint = _Endpoint(
             settings={
                 'response_type': (ListQueryLambdaVersionsResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/versions'.split('#')[0],
                 'operation_id': 'list_query_lambda_versions',
                 'http_method': 'GET',
@@ -752,7 +776,9 @@ class QueryLambdasApi(object):
         self.list_query_lambdas_in_workspace_endpoint = _Endpoint(
             settings={
                 'response_type': (ListQueryLambdasResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas'.split('#')[0],
                 'operation_id': 'list_query_lambdas_in_workspace',
                 'http_method': 'GET',
@@ -801,7 +827,9 @@ class QueryLambdasApi(object):
         self.update_query_lambda_endpoint = _Endpoint(
             settings={
                 'response_type': (QueryLambdaVersionResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/versions'.split('#')[0],
                 'operation_id': 'update_query_lambda',
                 'http_method': 'POST',

@@ -29,6 +29,7 @@ Create a Query Lambda in given workspace.
 
 ### Example
 
+* Api Key Authentication (apikey):
 
 ```python
 import time
@@ -44,9 +45,19 @@ configuration = rockset.Configuration(
     host = "https://api.rs2.usw2.rockset.com"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apikey
+configuration.api_key['apikey'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apikey'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with rockset.ApiClient() as api_client:
+with rockset.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = query_lambdas_api.QueryLambdasApi(api_client)
     create_query_lambda_request = CreateQueryLambdaRequest(
@@ -87,7 +98,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apikey](../README.md#apikey)
 
 ### HTTP request headers
 
@@ -125,6 +136,7 @@ Create a tag for a specific Query Lambda version, or update that tag if it alrea
 
 ### Example
 
+* Api Key Authentication (apikey):
 
 ```python
 import time
@@ -140,9 +152,19 @@ configuration = rockset.Configuration(
     host = "https://api.rs2.usw2.rockset.com"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apikey
+configuration.api_key['apikey'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apikey'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with rockset.ApiClient() as api_client:
+with rockset.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = query_lambdas_api.QueryLambdasApi(api_client)
     query_lambda = "queryLambda_example" # str | name of the Query Lambda
@@ -175,7 +197,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apikey](../README.md#apikey)
 
 ### HTTP request headers
 
@@ -213,6 +235,7 @@ Delete a Query Lambda.
 
 ### Example
 
+* Api Key Authentication (apikey):
 
 ```python
 import time
@@ -227,9 +250,19 @@ configuration = rockset.Configuration(
     host = "https://api.rs2.usw2.rockset.com"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apikey
+configuration.api_key['apikey'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apikey'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with rockset.ApiClient() as api_client:
+with rockset.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = query_lambdas_api.QueryLambdasApi(api_client)
     query_lambda = "queryLambda_example" # str | name of the Query Lambda
@@ -257,7 +290,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apikey](../README.md#apikey)
 
 ### HTTP request headers
 
@@ -295,6 +328,7 @@ Delete a tag for a specific Query Lambda
 
 ### Example
 
+* Api Key Authentication (apikey):
 
 ```python
 import time
@@ -309,9 +343,19 @@ configuration = rockset.Configuration(
     host = "https://api.rs2.usw2.rockset.com"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apikey
+configuration.api_key['apikey'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apikey'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with rockset.ApiClient() as api_client:
+with rockset.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = query_lambdas_api.QueryLambdasApi(api_client)
     query_lambda = "queryLambda_example" # str | name of the Query Lambda
@@ -341,7 +385,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apikey](../README.md#apikey)
 
 ### HTTP request headers
 
@@ -379,6 +423,7 @@ Delete a Query Lambda version.
 
 ### Example
 
+* Api Key Authentication (apikey):
 
 ```python
 import time
@@ -393,9 +438,19 @@ configuration = rockset.Configuration(
     host = "https://api.rs2.usw2.rockset.com"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apikey
+configuration.api_key['apikey'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apikey'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with rockset.ApiClient() as api_client:
+with rockset.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = query_lambdas_api.QueryLambdasApi(api_client)
     query_lambda = "queryLambda_example" # str | name of the Query Lambda
@@ -425,7 +480,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apikey](../README.md#apikey)
 
 ### HTTP request headers
 
@@ -463,6 +518,7 @@ Execute a particular version of a Query Lambda.
 
 ### Example
 
+* Api Key Authentication (apikey):
 
 ```python
 import time
@@ -478,9 +534,19 @@ configuration = rockset.Configuration(
     host = "https://api.rs2.usw2.rockset.com"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apikey
+configuration.api_key['apikey'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apikey'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with rockset.ApiClient() as api_client:
+with rockset.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = query_lambdas_api.QueryLambdasApi(api_client)
     query_lambda = "queryLambda_example" # str | name of the Query Lambda
@@ -533,7 +599,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apikey](../README.md#apikey)
 
 ### HTTP request headers
 
@@ -571,6 +637,7 @@ Execute the Query Lambda version associated with a given tag.
 
 ### Example
 
+* Api Key Authentication (apikey):
 
 ```python
 import time
@@ -586,9 +653,19 @@ configuration = rockset.Configuration(
     host = "https://api.rs2.usw2.rockset.com"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apikey
+configuration.api_key['apikey'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apikey'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with rockset.ApiClient() as api_client:
+with rockset.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = query_lambdas_api.QueryLambdasApi(api_client)
     query_lambda = "queryLambda_example" # str | name of the Query Lambda
@@ -641,7 +718,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apikey](../README.md#apikey)
 
 ### HTTP request headers
 
@@ -679,6 +756,7 @@ Retrieve the Query Lambda version associated with a given tag.
 
 ### Example
 
+* Api Key Authentication (apikey):
 
 ```python
 import time
@@ -693,9 +771,19 @@ configuration = rockset.Configuration(
     host = "https://api.rs2.usw2.rockset.com"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apikey
+configuration.api_key['apikey'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apikey'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with rockset.ApiClient() as api_client:
+with rockset.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = query_lambdas_api.QueryLambdasApi(api_client)
     query_lambda = "queryLambda_example" # str | name of the Query Lambda
@@ -725,7 +813,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apikey](../README.md#apikey)
 
 ### HTTP request headers
 
@@ -763,6 +851,7 @@ Retrieve details for a specified version of a Query Lambda.
 
 ### Example
 
+* Api Key Authentication (apikey):
 
 ```python
 import time
@@ -777,9 +866,19 @@ configuration = rockset.Configuration(
     host = "https://api.rs2.usw2.rockset.com"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apikey
+configuration.api_key['apikey'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apikey'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with rockset.ApiClient() as api_client:
+with rockset.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = query_lambdas_api.QueryLambdasApi(api_client)
     query_lambda = "queryLambda_example" # str | name of the Query Lambda
@@ -809,7 +908,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apikey](../README.md#apikey)
 
 ### HTTP request headers
 
@@ -847,6 +946,7 @@ List all Query Lambdas in an organization.
 
 ### Example
 
+* Api Key Authentication (apikey):
 
 ```python
 import time
@@ -861,9 +961,19 @@ configuration = rockset.Configuration(
     host = "https://api.rs2.usw2.rockset.com"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apikey
+configuration.api_key['apikey'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apikey'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with rockset.ApiClient() as api_client:
+with rockset.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = query_lambdas_api.QueryLambdasApi(api_client)
 
@@ -886,7 +996,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[apikey](../README.md#apikey)
 
 ### HTTP request headers
 
@@ -924,6 +1034,7 @@ List all tags associated with a Query Lambda
 
 ### Example
 
+* Api Key Authentication (apikey):
 
 ```python
 import time
@@ -938,9 +1049,19 @@ configuration = rockset.Configuration(
     host = "https://api.rs2.usw2.rockset.com"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apikey
+configuration.api_key['apikey'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apikey'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with rockset.ApiClient() as api_client:
+with rockset.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = query_lambdas_api.QueryLambdasApi(api_client)
     query_lambda = "queryLambda_example" # str | name of the Query Lambda
@@ -968,7 +1089,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apikey](../README.md#apikey)
 
 ### HTTP request headers
 
@@ -1006,6 +1127,7 @@ List all versions of a Query Lambda.
 
 ### Example
 
+* Api Key Authentication (apikey):
 
 ```python
 import time
@@ -1020,9 +1142,19 @@ configuration = rockset.Configuration(
     host = "https://api.rs2.usw2.rockset.com"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apikey
+configuration.api_key['apikey'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apikey'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with rockset.ApiClient() as api_client:
+with rockset.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = query_lambdas_api.QueryLambdasApi(api_client)
     query_lambda = "queryLambda_example" # str | name of the Query Lambda
@@ -1050,7 +1182,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apikey](../README.md#apikey)
 
 ### HTTP request headers
 
@@ -1088,6 +1220,7 @@ List all Query Lambdas under given workspace.
 
 ### Example
 
+* Api Key Authentication (apikey):
 
 ```python
 import time
@@ -1102,9 +1235,19 @@ configuration = rockset.Configuration(
     host = "https://api.rs2.usw2.rockset.com"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apikey
+configuration.api_key['apikey'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apikey'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with rockset.ApiClient() as api_client:
+with rockset.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = query_lambdas_api.QueryLambdasApi(api_client)
 
@@ -1130,7 +1273,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apikey](../README.md#apikey)
 
 ### HTTP request headers
 
@@ -1168,6 +1311,7 @@ Create a new version of a Query Lambda in given workspace.
 
 ### Example
 
+* Api Key Authentication (apikey):
 
 ```python
 import time
@@ -1183,9 +1327,19 @@ configuration = rockset.Configuration(
     host = "https://api.rs2.usw2.rockset.com"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apikey
+configuration.api_key['apikey'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apikey'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with rockset.ApiClient() as api_client:
+with rockset.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = query_lambdas_api.QueryLambdasApi(api_client)
     query_lambda = "queryLambda_example" # str | name of the Query Lambda
@@ -1238,7 +1392,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apikey](../README.md#apikey)
 
 ### HTTP request headers
 

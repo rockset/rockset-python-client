@@ -19,6 +19,7 @@ Create a role for your organization.
 
 ### Example
 
+* Api Key Authentication (apikey):
 
 ```python
 import time
@@ -34,9 +35,19 @@ configuration = rockset.Configuration(
     host = "https://api.rs2.usw2.rockset.com"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apikey
+configuration.api_key['apikey'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apikey'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with rockset.ApiClient() as api_client:
+with rockset.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = custom_roles__beta_api.CustomRolesBetaApi(api_client)
     create_role_request = CreateRoleRequest(
@@ -73,7 +84,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apikey](../README.md#apikey)
 
 ### HTTP request headers
 
@@ -111,6 +122,7 @@ Delete a role for your organization.
 
 ### Example
 
+* Api Key Authentication (apikey):
 
 ```python
 import time
@@ -125,9 +137,19 @@ configuration = rockset.Configuration(
     host = "https://api.rs2.usw2.rockset.com"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apikey
+configuration.api_key['apikey'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apikey'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with rockset.ApiClient() as api_client:
+with rockset.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = custom_roles__beta_api.CustomRolesBetaApi(api_client)
     role_name = "roleName_example" # str | 
@@ -154,7 +176,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apikey](../README.md#apikey)
 
 ### HTTP request headers
 
@@ -192,6 +214,7 @@ List all roles for your organization.
 
 ### Example
 
+* Api Key Authentication (apikey):
 
 ```python
 import time
@@ -206,9 +229,19 @@ configuration = rockset.Configuration(
     host = "https://api.rs2.usw2.rockset.com"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apikey
+configuration.api_key['apikey'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apikey'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with rockset.ApiClient() as api_client:
+with rockset.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = custom_roles__beta_api.CustomRolesBetaApi(api_client)
 
@@ -231,7 +264,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[apikey](../README.md#apikey)
 
 ### HTTP request headers
 
@@ -269,6 +302,7 @@ Update a role for your organization.
 
 ### Example
 
+* Api Key Authentication (apikey):
 
 ```python
 import time
@@ -284,9 +318,19 @@ configuration = rockset.Configuration(
     host = "https://api.rs2.usw2.rockset.com"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apikey
+configuration.api_key['apikey'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apikey'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with rockset.ApiClient() as api_client:
+with rockset.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = custom_roles__beta_api.CustomRolesBetaApi(api_client)
     role_name = "roleName_example" # str | 
@@ -324,7 +368,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apikey](../README.md#apikey)
 
 ### HTTP request headers
 

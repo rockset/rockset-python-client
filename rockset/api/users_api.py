@@ -48,7 +48,9 @@ class UsersApi(object):
         self.create_user_endpoint = _Endpoint(
             settings={
                 'response_type': (CreateUserResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/users'.split('#')[0],
                 'operation_id': 'create_user',
                 'http_method': 'POST',
@@ -97,7 +99,9 @@ class UsersApi(object):
         self.delete_user_endpoint = _Endpoint(
             settings={
                 'response_type': (DeleteUserResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/users/{user}'.split('#')[0],
                 'operation_id': 'delete_user',
                 'http_method': 'DELETE',
@@ -146,7 +150,9 @@ class UsersApi(object):
         self.get_current_user_endpoint = _Endpoint(
             settings={
                 'response_type': (User,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/users/self'.split('#')[0],
                 'operation_id': 'get_current_user',
                 'http_method': 'GET',
@@ -188,7 +194,9 @@ class UsersApi(object):
         self.get_user_endpoint = _Endpoint(
             settings={
                 'response_type': (User,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/users/{user}'.split('#')[0],
                 'operation_id': 'get_user',
                 'http_method': 'GET',
@@ -237,7 +245,9 @@ class UsersApi(object):
         self.list_unsubscribe_preferences_endpoint = _Endpoint(
             settings={
                 'response_type': (ListUnsubscribePreferencesResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/users/self/preferences'.split('#')[0],
                 'operation_id': 'list_unsubscribe_preferences',
                 'http_method': 'GET',
@@ -279,7 +289,9 @@ class UsersApi(object):
         self.list_users_endpoint = _Endpoint(
             settings={
                 'response_type': (ListUsersResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/users'.split('#')[0],
                 'operation_id': 'list_users',
                 'http_method': 'GET',
@@ -321,7 +333,9 @@ class UsersApi(object):
         self.update_unsubscribe_preferences_endpoint = _Endpoint(
             settings={
                 'response_type': (UpdateUnsubscribePreferencesResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/users/self/preferences'.split('#')[0],
                 'operation_id': 'update_unsubscribe_preferences',
                 'http_method': 'POST',

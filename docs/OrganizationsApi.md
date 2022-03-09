@@ -16,6 +16,7 @@ Retrieve information about current organization.
 
 ### Example
 
+* Api Key Authentication (apikey):
 
 ```python
 import time
@@ -30,9 +31,19 @@ configuration = rockset.Configuration(
     host = "https://api.rs2.usw2.rockset.com"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apikey
+configuration.api_key['apikey'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apikey'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with rockset.ApiClient() as api_client:
+with rockset.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = organizations_api.OrganizationsApi(api_client)
 
@@ -55,7 +66,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-No authorization required
+[apikey](../README.md#apikey)
 
 ### HTTP request headers
 

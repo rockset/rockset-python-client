@@ -20,6 +20,7 @@ Create a new API key for the authenticated user.
 
 ### Example
 
+* Api Key Authentication (apikey):
 
 ```python
 import time
@@ -35,9 +36,19 @@ configuration = rockset.Configuration(
     host = "https://api.rs2.usw2.rockset.com"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apikey
+configuration.api_key['apikey'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apikey'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with rockset.ApiClient() as api_client:
+with rockset.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = api_keys_api.APIKeysApi(api_client)
     create_api_key_request = CreateApiKeyRequest(
@@ -67,7 +78,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apikey](../README.md#apikey)
 
 ### HTTP request headers
 
@@ -105,6 +116,7 @@ Delete an API key for any user in your organization.
 
 ### Example
 
+* Api Key Authentication (apikey):
 
 ```python
 import time
@@ -119,9 +131,19 @@ configuration = rockset.Configuration(
     host = "https://api.rs2.usw2.rockset.com"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apikey
+configuration.api_key['apikey'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apikey'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with rockset.ApiClient() as api_client:
+with rockset.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = api_keys_api.APIKeysApi(api_client)
     name = "my-key" # str | Name of the API key.
@@ -150,7 +172,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apikey](../README.md#apikey)
 
 ### HTTP request headers
 
@@ -188,6 +210,7 @@ Retrieve a particular API key for any user in your organization.
 
 ### Example
 
+* Api Key Authentication (apikey):
 
 ```python
 import time
@@ -202,9 +225,19 @@ configuration = rockset.Configuration(
     host = "https://api.rs2.usw2.rockset.com"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apikey
+configuration.api_key['apikey'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apikey'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with rockset.ApiClient() as api_client:
+with rockset.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = api_keys_api.APIKeysApi(api_client)
     user = "admin@me.com" # str | Email of the API key owner. Use `self` to specify the currently authenticated user.
@@ -233,7 +266,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apikey](../README.md#apikey)
 
 ### HTTP request headers
 
@@ -271,6 +304,7 @@ List API key metadata for any user in your organization.
 
 ### Example
 
+* Api Key Authentication (apikey):
 
 ```python
 import time
@@ -285,9 +319,19 @@ configuration = rockset.Configuration(
     host = "https://api.rs2.usw2.rockset.com"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apikey
+configuration.api_key['apikey'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apikey'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with rockset.ApiClient() as api_client:
+with rockset.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = api_keys_api.APIKeysApi(api_client)
     user = "admin@me.com" # str | Email of the API key owner. Use `self` to specify the currently authenticated user.
@@ -314,7 +358,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apikey](../README.md#apikey)
 
 ### HTTP request headers
 
@@ -352,6 +396,7 @@ Update the state of an API key for any user in your organization.
 
 ### Example
 
+* Api Key Authentication (apikey):
 
 ```python
 import time
@@ -367,9 +412,19 @@ configuration = rockset.Configuration(
     host = "https://api.rs2.usw2.rockset.com"
 )
 
+# The client must configure the authentication and authorization parameters
+# in accordance with the API server security policy.
+# Examples for each auth method are provided below, use the example that
+# satisfies your auth use case.
+
+# Configure API key authorization: apikey
+configuration.api_key['apikey'] = 'YOUR_API_KEY'
+
+# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
+# configuration.api_key_prefix['apikey'] = 'Bearer'
 
 # Enter a context with an instance of the API client
-with rockset.ApiClient() as api_client:
+with rockset.ApiClient(configuration) as api_client:
     # Create an instance of the API class
     api_instance = api_keys_api.APIKeysApi(api_client)
     name = "my-key" # str | Name of the API key.
@@ -402,7 +457,7 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-No authorization required
+[apikey](../README.md#apikey)
 
 ### HTTP request headers
 

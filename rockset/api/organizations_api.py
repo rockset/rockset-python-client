@@ -41,7 +41,9 @@ class OrganizationsApi(object):
         self.get_organization_endpoint = _Endpoint(
             settings={
                 'response_type': (OrganizationResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self'.split('#')[0],
                 'operation_id': 'get_organization',
                 'http_method': 'GET',

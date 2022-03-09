@@ -44,7 +44,9 @@ class CustomRolesBetaApi(object):
         self.create_role_endpoint = _Endpoint(
             settings={
                 'response_type': (RoleResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/roles'.split('#')[0],
                 'operation_id': 'create_role',
                 'http_method': 'POST',
@@ -93,7 +95,9 @@ class CustomRolesBetaApi(object):
         self.delete_role_endpoint = _Endpoint(
             settings={
                 'response_type': (RoleResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/roles/{roleName}'.split('#')[0],
                 'operation_id': 'delete_role',
                 'http_method': 'DELETE',
@@ -142,7 +146,9 @@ class CustomRolesBetaApi(object):
         self.list_roles_endpoint = _Endpoint(
             settings={
                 'response_type': (ListRolesResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/roles'.split('#')[0],
                 'operation_id': 'list_roles',
                 'http_method': 'GET',
@@ -184,7 +190,9 @@ class CustomRolesBetaApi(object):
         self.update_role_endpoint = _Endpoint(
             settings={
                 'response_type': (RoleResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/roles/{roleName}'.split('#')[0],
                 'operation_id': 'update_role',
                 'http_method': 'POST',

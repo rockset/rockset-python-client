@@ -46,7 +46,9 @@ class CollectionsApi(object):
         self.create_azure_blob_collection_endpoint = _Endpoint(
             settings={
                 'response_type': (CreateCollectionResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections#AzureBlob'.split('#')[0],
                 'operation_id': 'create_azure_blob_collection',
                 'http_method': 'POST',
@@ -101,7 +103,9 @@ class CollectionsApi(object):
         self.create_gcs_collection_endpoint = _Endpoint(
             settings={
                 'response_type': (CreateCollectionResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections#Gcs'.split('#')[0],
                 'operation_id': 'create_gcs_collection',
                 'http_method': 'POST',
@@ -156,7 +160,9 @@ class CollectionsApi(object):
         self.delete_collection_endpoint = _Endpoint(
             settings={
                 'response_type': (DeleteCollectionResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}'.split('#')[0],
                 'operation_id': 'delete_collection',
                 'http_method': 'DELETE',
@@ -211,7 +217,9 @@ class CollectionsApi(object):
         self.get_collection_endpoint = _Endpoint(
             settings={
                 'response_type': (GetCollectionResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}'.split('#')[0],
                 'operation_id': 'get_collection',
                 'http_method': 'GET',
@@ -266,7 +274,9 @@ class CollectionsApi(object):
         self.list_collections_endpoint = _Endpoint(
             settings={
                 'response_type': (ListCollectionsResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/collections'.split('#')[0],
                 'operation_id': 'list_collections',
                 'http_method': 'GET',
@@ -308,7 +318,9 @@ class CollectionsApi(object):
         self.workspace_collections_endpoint = _Endpoint(
             settings={
                 'response_type': (ListCollectionsResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections'.split('#')[0],
                 'operation_id': 'workspace_collections',
                 'http_method': 'GET',

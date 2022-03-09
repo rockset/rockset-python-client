@@ -47,7 +47,9 @@ class APIKeysApi(object):
         self.create_api_key_endpoint = _Endpoint(
             settings={
                 'response_type': (CreateApiKeyResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/users/self/apikeys'.split('#')[0],
                 'operation_id': 'create_api_key',
                 'http_method': 'POST',
@@ -96,7 +98,9 @@ class APIKeysApi(object):
         self.delete_api_key_endpoint = _Endpoint(
             settings={
                 'response_type': (DeleteApiKeyResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/users/{user}/apikeys/{name}'.split('#')[0],
                 'operation_id': 'delete_api_key',
                 'http_method': 'DELETE',
@@ -151,7 +155,9 @@ class APIKeysApi(object):
         self.get_api_key_endpoint = _Endpoint(
             settings={
                 'response_type': (GetApiKeyResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/users/{user}/apikeys/{name}'.split('#')[0],
                 'operation_id': 'get_api_key',
                 'http_method': 'GET',
@@ -206,7 +212,9 @@ class APIKeysApi(object):
         self.list_api_keys_endpoint = _Endpoint(
             settings={
                 'response_type': (ListApiKeysResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/users/{user}/apikeys'.split('#')[0],
                 'operation_id': 'list_api_keys',
                 'http_method': 'GET',
@@ -255,7 +263,9 @@ class APIKeysApi(object):
         self.update_api_key_endpoint = _Endpoint(
             settings={
                 'response_type': (UpdateApiKeyResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/users/{user}/apikeys/{name}'.split('#')[0],
                 'operation_id': 'update_api_key',
                 'http_method': 'POST',

@@ -1,4 +1,10 @@
-# openapi-client
+Things that are currently being worked on:
+- Query and write API
+- Docstrings and docs
+- Removal and replacement of ThreadPool (python codegen and openapi both use it by default so an alternative will have to be written)
+- Additional convenience features
+
+# rockset
 Rockset's REST API allows for creating and managing all resources in Rockset. Each supported endpoint is documented below.
 
 All requests must be authorized with a Rockset API key, which can be created in the [Rockset console](https://console.rockset.com). The API key must be provided as `ApiKey <api_key>` in the `Authorization` request header. For example:
@@ -23,16 +29,9 @@ Python >=3.6
 ## Installation & Usage
 ### pip install
 
-If the python package is hosted on a repository, you can install directly using:
-
+Until the library is actually published in Pypi, you can install this client by running:
 ```sh
-pip install git+https://github.com/GIT_USER_ID/GIT_REPO_ID.git
-```
-(you may need to run `pip` with root permission: `sudo pip install git+https://github.com/GIT_USER_ID/GIT_REPO_ID.git`)
-
-Then import the package:
-```python
-import openapi_client
+pip install ./dist/rockset-1.0.0-py3-none-any.whl
 ```
 
 ### Setuptools
@@ -46,7 +45,7 @@ python setup.py install --user
 
 Then import the package:
 ```python
-import openapi_client
+import rockset
 ```
 
 ## Getting Started
@@ -56,40 +55,25 @@ Please follow the [installation procedure](#installation--usage) and then run th
 ```python
 
 import time
-import openapi_client
+import rockset
 from pprint import pprint
-from openapi_client.api import api_keys_api
-from openapi_client.model.create_api_key_request import CreateApiKeyRequest
-from openapi_client.model.create_api_key_response import CreateApiKeyResponse
-from openapi_client.model.delete_api_key_response import DeleteApiKeyResponse
-from openapi_client.model.error_model import ErrorModel
-from openapi_client.model.get_api_key_response import GetApiKeyResponse
-from openapi_client.model.list_api_keys_response import ListApiKeysResponse
-from openapi_client.model.update_api_key_request import UpdateApiKeyRequest
-from openapi_client.model.update_api_key_response import UpdateApiKeyResponse
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = openapi_client.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
-
-
+from rockset.api import api_keys_api
+from rockset.model.create_api_key_request import CreateApiKeyRequest
+from rockset.model.create_api_key_response import CreateApiKeyResponse
+from rockset.model.delete_api_key_response import DeleteApiKeyResponse
+from rockset.model.error_model import ErrorModel
+from rockset.model.get_api_key_response import GetApiKeyResponse
+from rockset.model.list_api_keys_response import ListApiKeysResponse
+from rockset.model.update_api_key_request import UpdateApiKeyRequest
+from rockset.model.update_api_key_response import UpdateApiKeyResponse
 
 # Enter a context with an instance of the API client
-with openapi_client.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = api_keys_api.APIKeysApi(api_client)
-    create_api_key_request = CreateApiKeyRequest(
-        name="my-app",
-        role="role_example",
-    ) # CreateApiKeyRequest | JSON object
-
+# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
+with rockset.RocksetClient(host="https://api.rs2.usw2.rockset.com", apikey="APIKEY") as rs:
     try:
-        # Create API Key
-        api_response = api_instance.create_api_key(create_api_key_request)
-        pprint(api_response)
-    except openapi_client.ApiException as e:
-        print("Exception when calling APIKeysApi->create_api_key: %s\n" % e)
+        rs.ApiKey.create_api_key(name="api-key-name", role="member")
+    except rockset.ApiException as e:
+        print("Exception when calling ApiKey->create_api_key: %s\n" % e)
 ```
 
 ## Documentation for API Endpoints
@@ -122,7 +106,8 @@ Class | Method | HTTP request | Description
 *DocumentsApi* | [**add_documents**](docs/DocumentsApi.md#add_documents) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/docs | Add Documents
 *DocumentsApi* | [**delete_documents**](docs/DocumentsApi.md#delete_documents) | **DELETE** /v1/orgs/self/ws/{workspace}/collections/{collection}/docs | Delete Documents
 *DocumentsApi* | [**patch_documents**](docs/DocumentsApi.md#patch_documents) | **PATCH** /v1/orgs/self/ws/{workspace}/collections/{collection}/docs | Patch Documents
-*IntegrationsApi* | [**create_integration**](docs/IntegrationsApi.md#create_integration) | **POST** /v1/orgs/self/integrations | Create Integration
+*IntegrationsApi* | [**create_azure_blob_integration**](docs/IntegrationsApi.md#create_azure_blob_integration) | **POST** /v1/orgs/self/integrations#AzureBlob | Create azure blob integration
+*IntegrationsApi* | [**create_gcs_integration**](docs/IntegrationsApi.md#create_gcs_integration) | **POST** /v1/orgs/self/integrations#Gcs | Create gcs integration
 *IntegrationsApi* | [**delete_integration**](docs/IntegrationsApi.md#delete_integration) | **DELETE** /v1/orgs/self/integrations/{integration} | Delete Integration
 *IntegrationsApi* | [**get_integration**](docs/IntegrationsApi.md#get_integration) | **GET** /v1/orgs/self/integrations/{integration} | Retrieve Integration
 *IntegrationsApi* | [**list_integrations**](docs/IntegrationsApi.md#list_integrations) | **GET** /v1/orgs/self/integrations | List Integrations
@@ -177,7 +162,7 @@ Class | Method | HTTP request | Description
  - [AzEventHubIntegration](docs/AzEventHubIntegration.md)
  - [AzServiceBusIntegration](docs/AzServiceBusIntegration.md)
  - [AzureBlobCollectionCreationRequest](docs/AzureBlobCollectionCreationRequest.md)
- - [AzureBlobCollectionCreationRequestAllOf](docs/AzureBlobCollectionCreationRequestAllOf.md)
+ - [AzureBlobIntegrationCreationRequest](docs/AzureBlobIntegrationCreationRequest.md)
  - [AzureBlobStorageIntegration](docs/AzureBlobStorageIntegration.md)
  - [AzureBlobStorageSourceWrapper](docs/AzureBlobStorageSourceWrapper.md)
  - [Cluster](docs/Cluster.md)
@@ -227,8 +212,8 @@ Class | Method | HTTP request | Description
  - [FormatParams](docs/FormatParams.md)
  - [GcpServiceAccount](docs/GcpServiceAccount.md)
  - [GcsCollectionCreationRequest](docs/GcsCollectionCreationRequest.md)
- - [GcsCollectionCreationRequestAllOf](docs/GcsCollectionCreationRequestAllOf.md)
  - [GcsIntegration](docs/GcsIntegration.md)
+ - [GcsIntegrationCreationRequest](docs/GcsIntegrationCreationRequest.md)
  - [GcsSourceWrapper](docs/GcsSourceWrapper.md)
  - [GetAliasResponse](docs/GetAliasResponse.md)
  - [GetApiKeyResponse](docs/GetApiKeyResponse.md)
@@ -329,29 +314,28 @@ Class | Method | HTTP request | Description
 
 ## Documentation For Authorization
 
- All endpoints do not require authorization.
+The RocksetClient object must be instantiated with an apikey. You can create your first apikey in the [Rockset console](https://console.rockset.com/apikeys). The provided apikey will be used for all requests that are made using the instance of the client.
 
 ## Author
 
-
-
+Rockset
 
 ## Notes for Large OpenAPI documents
-If the OpenAPI document is large, imports in openapi_client.apis and openapi_client.models may fail with a
+If the OpenAPI document is large, imports in rockset.apis and rockset.models may fail with a
 RecursionError indicating the maximum recursion limit has been exceeded. In that case, there are a couple of solutions:
 
 Solution 1:
 Use specific imports for apis and models like:
-- `from openapi_client.api.default_api import DefaultApi`
-- `from openapi_client.model.pet import Pet`
+- `from rockset.api.default_api import DefaultApi`
+- `from rockset.model.pet import Pet`
 
 Solution 2:
 Before importing the package, adjust the maximum recursion limit as shown below:
 ```
 import sys
 sys.setrecursionlimit(1500)
-import openapi_client
-from openapi_client.apis import *
-from openapi_client.models import *
+import rockset
+from rockset.apis import *
+from rockset.models import *
 ```
 

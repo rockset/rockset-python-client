@@ -47,7 +47,9 @@ class ViewsApi(object):
         self.create_view_endpoint = _Endpoint(
             settings={
                 'response_type': (CreateViewResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/views'.split('#')[0],
                 'operation_id': 'create_view',
                 'http_method': 'POST',
@@ -102,7 +104,9 @@ class ViewsApi(object):
         self.delete_view_endpoint = _Endpoint(
             settings={
                 'response_type': (DeleteViewResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/views/{view}'.split('#')[0],
                 'operation_id': 'delete_view',
                 'http_method': 'DELETE',
@@ -157,7 +161,9 @@ class ViewsApi(object):
         self.get_view_endpoint = _Endpoint(
             settings={
                 'response_type': (GetViewResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/views/{view}'.split('#')[0],
                 'operation_id': 'get_view',
                 'http_method': 'GET',
@@ -212,7 +218,9 @@ class ViewsApi(object):
         self.list_views_endpoint = _Endpoint(
             settings={
                 'response_type': (ListViewsResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/views'.split('#')[0],
                 'operation_id': 'list_views',
                 'http_method': 'GET',
@@ -254,7 +262,9 @@ class ViewsApi(object):
         self.update_view_endpoint = _Endpoint(
             settings={
                 'response_type': (UpdateViewResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/views/{view}'.split('#')[0],
                 'operation_id': 'update_view',
                 'http_method': 'POST',
@@ -315,7 +325,9 @@ class ViewsApi(object):
         self.workspace_views_endpoint = _Endpoint(
             settings={
                 'response_type': (ListViewsResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/views'.split('#')[0],
                 'operation_id': 'workspace_views',
                 'http_method': 'GET',

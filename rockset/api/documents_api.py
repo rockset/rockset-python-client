@@ -46,7 +46,9 @@ class DocumentsApi(object):
         self.add_documents_endpoint = _Endpoint(
             settings={
                 'response_type': (AddDocumentsResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}/docs'.split('#')[0],
                 'operation_id': 'add_documents',
                 'http_method': 'POST',
@@ -107,7 +109,9 @@ class DocumentsApi(object):
         self.delete_documents_endpoint = _Endpoint(
             settings={
                 'response_type': (DeleteDocumentsResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}/docs'.split('#')[0],
                 'operation_id': 'delete_documents',
                 'http_method': 'DELETE',
@@ -168,7 +172,9 @@ class DocumentsApi(object):
         self.patch_documents_endpoint = _Endpoint(
             settings={
                 'response_type': (PatchDocumentsResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}/docs'.split('#')[0],
                 'operation_id': 'patch_documents',
                 'http_method': 'PATCH',

@@ -46,7 +46,9 @@ class IntegrationsApi(object):
         self.create_azure_blob_integration_endpoint = _Endpoint(
             settings={
                 'response_type': (CreateIntegrationResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/integrations#AzureBlob'.split('#')[0],
                 'operation_id': 'create_azure_blob_integration',
                 'http_method': 'POST',
@@ -95,7 +97,9 @@ class IntegrationsApi(object):
         self.create_gcs_integration_endpoint = _Endpoint(
             settings={
                 'response_type': (CreateIntegrationResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/integrations#Gcs'.split('#')[0],
                 'operation_id': 'create_gcs_integration',
                 'http_method': 'POST',
@@ -144,7 +148,9 @@ class IntegrationsApi(object):
         self.delete_integration_endpoint = _Endpoint(
             settings={
                 'response_type': (DeleteIntegrationResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/integrations/{integration}'.split('#')[0],
                 'operation_id': 'delete_integration',
                 'http_method': 'DELETE',
@@ -193,7 +199,9 @@ class IntegrationsApi(object):
         self.get_integration_endpoint = _Endpoint(
             settings={
                 'response_type': (GetIntegrationResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/integrations/{integration}'.split('#')[0],
                 'operation_id': 'get_integration',
                 'http_method': 'GET',
@@ -242,7 +250,9 @@ class IntegrationsApi(object):
         self.list_integrations_endpoint = _Endpoint(
             settings={
                 'response_type': (ListIntegrationsResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/integrations'.split('#')[0],
                 'operation_id': 'list_integrations',
                 'http_method': 'GET',

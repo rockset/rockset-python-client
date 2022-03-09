@@ -44,7 +44,9 @@ class VirtualInstancesApi(object):
         self.get_virtual_instance_endpoint = _Endpoint(
             settings={
                 'response_type': (GetVirtualInstanceResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/virtualinstances/{virtualInstanceId}'.split('#')[0],
                 'operation_id': 'get_virtual_instance',
                 'http_method': 'GET',
@@ -93,7 +95,9 @@ class VirtualInstancesApi(object):
         self.list_virtual_instances_endpoint = _Endpoint(
             settings={
                 'response_type': (ListVirtualInstancesResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/virtualinstances'.split('#')[0],
                 'operation_id': 'list_virtual_instances',
                 'http_method': 'GET',
@@ -135,7 +139,9 @@ class VirtualInstancesApi(object):
         self.set_virtual_instance_endpoint = _Endpoint(
             settings={
                 'response_type': (UpdateVirtualInstanceResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/virtualinstances/{virtualInstanceId}'.split('#')[0],
                 'operation_id': 'set_virtual_instance',
                 'http_method': 'POST',

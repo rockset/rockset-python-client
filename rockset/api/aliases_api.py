@@ -46,7 +46,9 @@ class AliasesApi(object):
         self.create_alias_endpoint = _Endpoint(
             settings={
                 'response_type': (CreateAliasResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/aliases'.split('#')[0],
                 'operation_id': 'create_alias',
                 'http_method': 'POST',
@@ -101,7 +103,9 @@ class AliasesApi(object):
         self.delete_alias_endpoint = _Endpoint(
             settings={
                 'response_type': (DeleteAliasResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/aliases/{alias}'.split('#')[0],
                 'operation_id': 'delete_alias',
                 'http_method': 'DELETE',
@@ -156,7 +160,9 @@ class AliasesApi(object):
         self.get_alias_endpoint = _Endpoint(
             settings={
                 'response_type': (GetAliasResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/aliases/{alias}'.split('#')[0],
                 'operation_id': 'get_alias',
                 'http_method': 'GET',
@@ -211,7 +217,9 @@ class AliasesApi(object):
         self.list_aliases_endpoint = _Endpoint(
             settings={
                 'response_type': (ListAliasesResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/aliases'.split('#')[0],
                 'operation_id': 'list_aliases',
                 'http_method': 'GET',
@@ -253,7 +261,9 @@ class AliasesApi(object):
         self.update_alias_endpoint = _Endpoint(
             settings={
                 'response_type': (GetAliasResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/aliases/{alias}'.split('#')[0],
                 'operation_id': 'update_alias',
                 'http_method': 'POST',
@@ -314,7 +324,9 @@ class AliasesApi(object):
         self.workspace_aliases_endpoint = _Endpoint(
             settings={
                 'response_type': (ListAliasesResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/aliases'.split('#')[0],
                 'operation_id': 'workspace_aliases',
                 'http_method': 'GET',

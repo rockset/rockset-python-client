@@ -43,7 +43,9 @@ class QueriesApi(object):
         self.query_endpoint = _Endpoint(
             settings={
                 'response_type': (QueryResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/queries'.split('#')[0],
                 'operation_id': 'query',
                 'http_method': 'POST',
@@ -92,7 +94,9 @@ class QueriesApi(object):
         self.validate_endpoint = _Endpoint(
             settings={
                 'response_type': (ValidateQueryResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/queries/validations'.split('#')[0],
                 'operation_id': 'validate',
                 'http_method': 'POST',

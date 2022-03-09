@@ -45,7 +45,9 @@ class WorkspacesApi(object):
         self.child_workspaces_endpoint = _Endpoint(
             settings={
                 'response_type': (ListWorkspacesResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/ws'.split('#')[0],
                 'operation_id': 'child_workspaces',
                 'http_method': 'GET',
@@ -94,7 +96,9 @@ class WorkspacesApi(object):
         self.create_workspace_endpoint = _Endpoint(
             settings={
                 'response_type': (CreateWorkspaceResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws'.split('#')[0],
                 'operation_id': 'create_workspace',
                 'http_method': 'POST',
@@ -143,7 +147,9 @@ class WorkspacesApi(object):
         self.delete_workspace_endpoint = _Endpoint(
             settings={
                 'response_type': (DeleteWorkspaceResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}'.split('#')[0],
                 'operation_id': 'delete_workspace',
                 'http_method': 'DELETE',
@@ -192,7 +198,9 @@ class WorkspacesApi(object):
         self.get_workspace_endpoint = _Endpoint(
             settings={
                 'response_type': (GetWorkspaceResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}'.split('#')[0],
                 'operation_id': 'get_workspace',
                 'http_method': 'GET',
@@ -241,7 +249,9 @@ class WorkspacesApi(object):
         self.list_workspaces_endpoint = _Endpoint(
             settings={
                 'response_type': (ListWorkspacesResponse,),
-                'auth': [],
+                'auth': [
+                    'apikey'
+                ],
                 'endpoint_path': '/v1/orgs/self/ws'.split('#')[0],
                 'operation_id': 'list_workspaces',
                 'http_method': 'GET',
