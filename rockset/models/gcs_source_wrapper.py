@@ -36,42 +36,30 @@ class GcsSourceWrapper(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "format_params": "FormatParams",
-        "integration_name": "str",
-        "status": "Status",
-        "bucket": "str",
-        "object_bytes_total": "int",
-        "object_count_downloaded": "int",
-        "object_count_total": "int",
-        "pattern": "str",
-        "prefix": "str",
+        'format_params': 'FormatParams',
+        'integration_name': 'str',
+        'status': 'Status',
+        'bucket': 'str',
+        'object_bytes_total': 'int',
+        'object_count_downloaded': 'int',
+        'object_count_total': 'int',
+        'pattern': 'str',
+        'prefix': 'str'
     }
 
     attribute_map = {
-        "format_params": "format_params",
-        "integration_name": "integration_name",
-        "status": "status",
-        "bucket": "bucket",
-        "object_bytes_total": "object_bytes_total",
-        "object_count_downloaded": "object_count_downloaded",
-        "object_count_total": "object_count_total",
-        "pattern": "pattern",
-        "prefix": "prefix",
+        'format_params': 'format_params',
+        'integration_name': 'integration_name',
+        'status': 'status',
+        'bucket': 'bucket',
+        'object_bytes_total': 'object_bytes_total',
+        'object_count_downloaded': 'object_count_downloaded',
+        'object_count_total': 'object_count_total',
+        'pattern': 'pattern',
+        'prefix': 'prefix'
     }
 
-    def __init__(
-        self,
-        format_params=None,
-        integration_name=None,
-        status=None,
-        bucket=None,
-        object_bytes_total=None,
-        object_count_downloaded=None,
-        object_count_total=None,
-        pattern=None,
-        prefix=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, format_params=None, integration_name=None, status=None, bucket=None, object_bytes_total=None, object_count_downloaded=None, object_count_total=None, pattern=None, prefix=None, local_vars_configuration=None):  # noqa: E501
         """GcsSourceWrapper - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -147,13 +135,8 @@ class GcsSourceWrapper(object):
         :param integration_name: The integration_name of this GcsSourceWrapper.  # noqa: E501
         :type integration_name: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation
-            and integration_name is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `integration_name`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and integration_name is None:  # noqa: E501
+            raise ValueError("Invalid value for `integration_name`, must not be `None`")  # noqa: E501
 
         self._integration_name = integration_name
 
@@ -328,11 +311,15 @@ class GcsSourceWrapper(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

@@ -36,30 +36,22 @@ class ExecuteQueryLambdaRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "default_row_limit": "int",
-        "generate_warnings": "bool",
-        "initial_paginate_response_doc_count": "int",
-        "paginate": "bool",
-        "parameters": "list[QueryParameter]",
+        'default_row_limit': 'int',
+        'generate_warnings': 'bool',
+        'initial_paginate_response_doc_count': 'int',
+        'paginate': 'bool',
+        'parameters': 'list[QueryParameter]'
     }
 
     attribute_map = {
-        "default_row_limit": "default_row_limit",
-        "generate_warnings": "generate_warnings",
-        "initial_paginate_response_doc_count": "initial_paginate_response_doc_count",
-        "paginate": "paginate",
-        "parameters": "parameters",
+        'default_row_limit': 'default_row_limit',
+        'generate_warnings': 'generate_warnings',
+        'initial_paginate_response_doc_count': 'initial_paginate_response_doc_count',
+        'paginate': 'paginate',
+        'parameters': 'parameters'
     }
 
-    def __init__(
-        self,
-        default_row_limit=None,
-        generate_warnings=None,
-        initial_paginate_response_doc_count=None,
-        paginate=None,
-        parameters=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, default_row_limit=None, generate_warnings=None, initial_paginate_response_doc_count=None, paginate=None, parameters=None, local_vars_configuration=None):  # noqa: E501
         """ExecuteQueryLambdaRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -77,9 +69,7 @@ class ExecuteQueryLambdaRequest(object):
         if generate_warnings is not None:
             self.generate_warnings = generate_warnings
         if initial_paginate_response_doc_count is not None:
-            self.initial_paginate_response_doc_count = (
-                initial_paginate_response_doc_count
-            )
+            self.initial_paginate_response_doc_count = initial_paginate_response_doc_count
         if paginate is not None:
             self.paginate = paginate
         if parameters is not None:
@@ -218,11 +208,15 @@ class ExecuteQueryLambdaRequest(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

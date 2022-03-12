@@ -36,36 +36,26 @@ class KafkaIntegration(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "bootstrap_servers": "str",
-        "connection_string": "str",
-        "kafka_data_format": "str",
-        "kafka_topic_names": "list[str]",
-        "security_config": "KafkaV3SecurityConfig",
-        "source_status_by_topic": "dict(str, StatusKafka)",
-        "use_v3": "bool",
+        'bootstrap_servers': 'str',
+        'connection_string': 'str',
+        'kafka_data_format': 'str',
+        'kafka_topic_names': 'list[str]',
+        'security_config': 'KafkaV3SecurityConfig',
+        'source_status_by_topic': 'dict(str, StatusKafka)',
+        'use_v3': 'bool'
     }
 
     attribute_map = {
-        "bootstrap_servers": "bootstrap_servers",
-        "connection_string": "connection_string",
-        "kafka_data_format": "kafka_data_format",
-        "kafka_topic_names": "kafka_topic_names",
-        "security_config": "security_config",
-        "source_status_by_topic": "source_status_by_topic",
-        "use_v3": "use_v3",
+        'bootstrap_servers': 'bootstrap_servers',
+        'connection_string': 'connection_string',
+        'kafka_data_format': 'kafka_data_format',
+        'kafka_topic_names': 'kafka_topic_names',
+        'security_config': 'security_config',
+        'source_status_by_topic': 'source_status_by_topic',
+        'use_v3': 'use_v3'
     }
 
-    def __init__(
-        self,
-        bootstrap_servers=None,
-        connection_string=None,
-        kafka_data_format=None,
-        kafka_topic_names=None,
-        security_config=None,
-        source_status_by_topic=None,
-        use_v3=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, bootstrap_servers=None, connection_string=None, kafka_data_format=None, kafka_topic_names=None, security_config=None, source_status_by_topic=None, use_v3=None, local_vars_configuration=None):  # noqa: E501
         """KafkaIntegration - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -160,14 +150,10 @@ class KafkaIntegration(object):
         :type kafka_data_format: str
         """
         allowed_values = ["JSON", "AVRO"]  # noqa: E501
-        if (
-            self.local_vars_configuration.client_side_validation
-            and kafka_data_format not in allowed_values
-        ):  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and kafka_data_format not in allowed_values:  # noqa: E501
             raise ValueError(
-                "Invalid value for `kafka_data_format` ({0}), must be one of {1}".format(  # noqa: E501
-                    kafka_data_format, allowed_values
-                )
+                "Invalid value for `kafka_data_format` ({0}), must be one of {1}"  # noqa: E501
+                .format(kafka_data_format, allowed_values)
             )
 
         self._kafka_data_format = kafka_data_format
@@ -278,11 +264,15 @@ class KafkaIntegration(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

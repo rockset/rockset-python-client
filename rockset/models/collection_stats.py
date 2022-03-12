@@ -36,63 +36,44 @@ class CollectionStats(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "bulk_bytes_inserted": "int",
-        "bulk_bytes_overwritten": "int",
-        "bytes_inserted": "int",
-        "bytes_overwritten": "int",
-        "column_index_size": "int",
-        "doc_count": "int",
-        "fill_progress": "float",
-        "inverted_index_size": "int",
-        "last_queried_ms": "int",
-        "last_updated_ms": "int",
-        "purged_doc_count": "int",
-        "purged_doc_size": "int",
-        "range_index_size": "int",
-        "row_index_size": "int",
-        "total_index_size": "int",
-        "total_size": "int",
+        'bulk_bytes_inserted': 'int',
+        'bulk_bytes_overwritten': 'int',
+        'bytes_inserted': 'int',
+        'bytes_overwritten': 'int',
+        'column_index_size': 'int',
+        'doc_count': 'int',
+        'fill_progress': 'float',
+        'inverted_index_size': 'int',
+        'last_queried_ms': 'int',
+        'last_updated_ms': 'int',
+        'purged_doc_count': 'int',
+        'purged_doc_size': 'int',
+        'range_index_size': 'int',
+        'row_index_size': 'int',
+        'total_index_size': 'int',
+        'total_size': 'int'
     }
 
     attribute_map = {
-        "bulk_bytes_inserted": "bulk_bytes_inserted",
-        "bulk_bytes_overwritten": "bulk_bytes_overwritten",
-        "bytes_inserted": "bytes_inserted",
-        "bytes_overwritten": "bytes_overwritten",
-        "column_index_size": "column_index_size",
-        "doc_count": "doc_count",
-        "fill_progress": "fill_progress",
-        "inverted_index_size": "inverted_index_size",
-        "last_queried_ms": "last_queried_ms",
-        "last_updated_ms": "last_updated_ms",
-        "purged_doc_count": "purged_doc_count",
-        "purged_doc_size": "purged_doc_size",
-        "range_index_size": "range_index_size",
-        "row_index_size": "row_index_size",
-        "total_index_size": "total_index_size",
-        "total_size": "total_size",
+        'bulk_bytes_inserted': 'bulk_bytes_inserted',
+        'bulk_bytes_overwritten': 'bulk_bytes_overwritten',
+        'bytes_inserted': 'bytes_inserted',
+        'bytes_overwritten': 'bytes_overwritten',
+        'column_index_size': 'column_index_size',
+        'doc_count': 'doc_count',
+        'fill_progress': 'fill_progress',
+        'inverted_index_size': 'inverted_index_size',
+        'last_queried_ms': 'last_queried_ms',
+        'last_updated_ms': 'last_updated_ms',
+        'purged_doc_count': 'purged_doc_count',
+        'purged_doc_size': 'purged_doc_size',
+        'range_index_size': 'range_index_size',
+        'row_index_size': 'row_index_size',
+        'total_index_size': 'total_index_size',
+        'total_size': 'total_size'
     }
 
-    def __init__(
-        self,
-        bulk_bytes_inserted=None,
-        bulk_bytes_overwritten=None,
-        bytes_inserted=None,
-        bytes_overwritten=None,
-        column_index_size=None,
-        doc_count=None,
-        fill_progress=None,
-        inverted_index_size=None,
-        last_queried_ms=None,
-        last_updated_ms=None,
-        purged_doc_count=None,
-        purged_doc_size=None,
-        range_index_size=None,
-        row_index_size=None,
-        total_index_size=None,
-        total_size=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, bulk_bytes_inserted=None, bulk_bytes_overwritten=None, bytes_inserted=None, bytes_overwritten=None, column_index_size=None, doc_count=None, fill_progress=None, inverted_index_size=None, last_queried_ms=None, last_updated_ms=None, purged_doc_count=None, purged_doc_size=None, range_index_size=None, row_index_size=None, total_index_size=None, total_size=None, local_vars_configuration=None):  # noqa: E501
         """CollectionStats - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -535,11 +516,15 @@ class CollectionStats(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

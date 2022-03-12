@@ -36,33 +36,24 @@ class Cluster(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "apiserver_url": "str",
-        "aws_region": "str",
-        "cluster_type": "str",
-        "domain": "str",
-        "id": "str",
-        "top_level_domain": "str",
+        'apiserver_url': 'str',
+        'aws_region': 'str',
+        'cluster_type': 'str',
+        'domain': 'str',
+        'id': 'str',
+        'top_level_domain': 'str'
     }
 
     attribute_map = {
-        "apiserver_url": "apiserver_url",
-        "aws_region": "aws_region",
-        "cluster_type": "cluster_type",
-        "domain": "domain",
-        "id": "id",
-        "top_level_domain": "top_level_domain",
+        'apiserver_url': 'apiserver_url',
+        'aws_region': 'aws_region',
+        'cluster_type': 'cluster_type',
+        'domain': 'domain',
+        'id': 'id',
+        'top_level_domain': 'top_level_domain'
     }
 
-    def __init__(
-        self,
-        apiserver_url=None,
-        aws_region=None,
-        cluster_type=None,
-        domain=None,
-        id=None,
-        top_level_domain=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, apiserver_url=None, aws_region=None, cluster_type=None, domain=None, id=None, top_level_domain=None, local_vars_configuration=None):  # noqa: E501
         """Cluster - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -156,14 +147,10 @@ class Cluster(object):
         :type cluster_type: str
         """
         allowed_values = ["PUBLIC", "PRIVATE"]  # noqa: E501
-        if (
-            self.local_vars_configuration.client_side_validation
-            and cluster_type not in allowed_values
-        ):  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and cluster_type not in allowed_values:  # noqa: E501
             raise ValueError(
-                "Invalid value for `cluster_type` ({0}), must be one of {1}".format(  # noqa: E501
-                    cluster_type, allowed_values
-                )
+                "Invalid value for `cluster_type` ({0}), must be one of {1}"  # noqa: E501
+                .format(cluster_type, allowed_values)
             )
 
         self._cluster_type = cluster_type
@@ -255,11 +242,15 @@ class Cluster(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

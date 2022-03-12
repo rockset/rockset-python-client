@@ -36,30 +36,22 @@ class DocumentStatus(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "collection": "str",
-        "id": "str",
-        "error": "ErrorModel",
-        "patch_id": "str",
-        "status": "str",
+        'collection': 'str',
+        'id': 'str',
+        'error': 'ErrorModel',
+        'patch_id': 'str',
+        'status': 'str'
     }
 
     attribute_map = {
-        "collection": "_collection",
-        "id": "_id",
-        "error": "error",
-        "patch_id": "patch_id",
-        "status": "status",
+        'collection': '_collection',
+        'id': '_id',
+        'error': 'error',
+        'patch_id': 'patch_id',
+        'status': 'status'
     }
 
-    def __init__(
-        self,
-        collection=None,
-        id=None,
-        error=None,
-        patch_id=None,
-        status=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, collection=None, id=None, error=None, patch_id=None, status=None, local_vars_configuration=None):  # noqa: E501
         """DocumentStatus - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -193,21 +185,11 @@ class DocumentStatus(object):
         :param status: The status of this DocumentStatus.  # noqa: E501
         :type status: str
         """
-        allowed_values = [
-            "ADDED",
-            "REPLACED",
-            "DELETED",
-            "PATCHED",
-            "ERROR",
-        ]  # noqa: E501
-        if (
-            self.local_vars_configuration.client_side_validation
-            and status not in allowed_values
-        ):  # noqa: E501
+        allowed_values = ["ADDED", "REPLACED", "DELETED", "PATCHED", "ERROR"]  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and status not in allowed_values:  # noqa: E501
             raise ValueError(
-                "Invalid value for `status` ({0}), must be one of {1}".format(  # noqa: E501
-                    status, allowed_values
-                )
+                "Invalid value for `status` ({0}), must be one of {1}"  # noqa: E501
+                .format(status, allowed_values)
             )
 
         self._status = status
@@ -230,11 +212,15 @@ class DocumentStatus(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

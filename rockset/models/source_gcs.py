@@ -36,33 +36,24 @@ class SourceGcs(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "bucket": "str",
-        "object_bytes_total": "int",
-        "object_count_downloaded": "int",
-        "object_count_total": "int",
-        "pattern": "str",
-        "prefix": "str",
+        'bucket': 'str',
+        'object_bytes_total': 'int',
+        'object_count_downloaded': 'int',
+        'object_count_total': 'int',
+        'pattern': 'str',
+        'prefix': 'str'
     }
 
     attribute_map = {
-        "bucket": "bucket",
-        "object_bytes_total": "object_bytes_total",
-        "object_count_downloaded": "object_count_downloaded",
-        "object_count_total": "object_count_total",
-        "pattern": "pattern",
-        "prefix": "prefix",
+        'bucket': 'bucket',
+        'object_bytes_total': 'object_bytes_total',
+        'object_count_downloaded': 'object_count_downloaded',
+        'object_count_total': 'object_count_total',
+        'pattern': 'pattern',
+        'prefix': 'prefix'
     }
 
-    def __init__(
-        self,
-        bucket=None,
-        object_bytes_total=None,
-        object_count_downloaded=None,
-        object_count_total=None,
-        pattern=None,
-        prefix=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, bucket=None, object_bytes_total=None, object_count_downloaded=None, object_count_total=None, pattern=None, prefix=None, local_vars_configuration=None):  # noqa: E501
         """SourceGcs - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -239,11 +230,15 @@ class SourceGcs(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

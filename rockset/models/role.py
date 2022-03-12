@@ -36,33 +36,24 @@ class Role(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "created_at": "str",
-        "created_by": "str",
-        "description": "str",
-        "owner_email": "str",
-        "privileges": "list[Privilege]",
-        "role_name": "str",
+        'created_at': 'str',
+        'created_by': 'str',
+        'description': 'str',
+        'owner_email': 'str',
+        'privileges': 'list[Privilege]',
+        'role_name': 'str'
     }
 
     attribute_map = {
-        "created_at": "created_at",
-        "created_by": "created_by",
-        "description": "description",
-        "owner_email": "owner_email",
-        "privileges": "privileges",
-        "role_name": "role_name",
+        'created_at': 'created_at',
+        'created_by': 'created_by',
+        'description': 'description',
+        'owner_email': 'owner_email',
+        'privileges': 'privileges',
+        'role_name': 'role_name'
     }
 
-    def __init__(
-        self,
-        created_at=None,
-        created_by=None,
-        description=None,
-        owner_email=None,
-        privileges=None,
-        role_name=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, created_at=None, created_by=None, description=None, owner_email=None, privileges=None, role_name=None, local_vars_configuration=None):  # noqa: E501
         """Role - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -245,11 +236,15 @@ class Role(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

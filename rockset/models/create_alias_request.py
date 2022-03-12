@@ -35,21 +35,19 @@ class CreateAliasRequest(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
-    openapi_types = {"collections": "list[str]", "description": "str", "name": "str"}
-
-    attribute_map = {
-        "collections": "collections",
-        "description": "description",
-        "name": "name",
+    openapi_types = {
+        'collections': 'list[str]',
+        'description': 'str',
+        'name': 'str'
     }
 
-    def __init__(
-        self,
-        collections=None,
-        description=None,
-        name=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    attribute_map = {
+        'collections': 'collections',
+        'description': 'description',
+        'name': 'name'
+    }
+
+    def __init__(self, collections=None, description=None, name=None, local_vars_configuration=None):  # noqa: E501
         """CreateAliasRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -85,12 +83,8 @@ class CreateAliasRequest(object):
         :param collections: The collections of this CreateAliasRequest.  # noqa: E501
         :type collections: list[str]
         """
-        if (
-            self.local_vars_configuration.client_side_validation and collections is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `collections`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and collections is None:  # noqa: E501
+            raise ValueError("Invalid value for `collections`, must not be `None`")  # noqa: E501
 
         self._collections = collections
 
@@ -137,12 +131,8 @@ class CreateAliasRequest(object):
         :param name: The name of this CreateAliasRequest.  # noqa: E501
         :type name: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation and name is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `name`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
+            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -164,11 +154,15 @@ class CreateAliasRequest(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

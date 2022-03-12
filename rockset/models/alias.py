@@ -36,39 +36,28 @@ class Alias(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "collections": "list[str]",
-        "created_at": "str",
-        "creator_email": "str",
-        "description": "str",
-        "modified_at": "str",
-        "name": "str",
-        "state": "str",
-        "workspace": "str",
+        'collections': 'list[str]',
+        'created_at': 'str',
+        'creator_email': 'str',
+        'description': 'str',
+        'modified_at': 'str',
+        'name': 'str',
+        'state': 'str',
+        'workspace': 'str'
     }
 
     attribute_map = {
-        "collections": "collections",
-        "created_at": "created_at",
-        "creator_email": "creator_email",
-        "description": "description",
-        "modified_at": "modified_at",
-        "name": "name",
-        "state": "state",
-        "workspace": "workspace",
+        'collections': 'collections',
+        'created_at': 'created_at',
+        'creator_email': 'creator_email',
+        'description': 'description',
+        'modified_at': 'modified_at',
+        'name': 'name',
+        'state': 'state',
+        'workspace': 'workspace'
     }
 
-    def __init__(
-        self,
-        collections=None,
-        created_at=None,
-        creator_email=None,
-        description=None,
-        modified_at=None,
-        name=None,
-        state=None,
-        workspace=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, collections=None, created_at=None, creator_email=None, description=None, modified_at=None, name=None, state=None, workspace=None, local_vars_configuration=None):  # noqa: E501
         """Alias - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -260,14 +249,10 @@ class Alias(object):
         :type state: str
         """
         allowed_values = ["CREATED", "DELETED"]  # noqa: E501
-        if (
-            self.local_vars_configuration.client_side_validation
-            and state not in allowed_values
-        ):  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and state not in allowed_values:  # noqa: E501
             raise ValueError(
-                "Invalid value for `state` ({0}), must be one of {1}".format(  # noqa: E501
-                    state, allowed_values
-                )
+                "Invalid value for `state` ({0}), must be one of {1}"  # noqa: E501
+                .format(state, allowed_values)
             )
 
         self._state = state
@@ -313,11 +298,15 @@ class Alias(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

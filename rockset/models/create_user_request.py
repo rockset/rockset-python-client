@@ -35,13 +35,17 @@ class CreateUserRequest(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
-    openapi_types = {"email": "str", "roles": "list[str]"}
+    openapi_types = {
+        'email': 'str',
+        'roles': 'list[str]'
+    }
 
-    attribute_map = {"email": "email", "roles": "roles"}
+    attribute_map = {
+        'email': 'email',
+        'roles': 'roles'
+    }
 
-    def __init__(
-        self, email=None, roles=None, local_vars_configuration=None
-    ):  # noqa: E501
+    def __init__(self, email=None, roles=None, local_vars_configuration=None):  # noqa: E501
         """CreateUserRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -74,12 +78,8 @@ class CreateUserRequest(object):
         :param email: The email of this CreateUserRequest.  # noqa: E501
         :type email: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation and email is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `email`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and email is None:  # noqa: E501
+            raise ValueError("Invalid value for `email`, must not be `None`")  # noqa: E501
 
         self._email = email
 
@@ -103,12 +103,8 @@ class CreateUserRequest(object):
         :param roles: The roles of this CreateUserRequest.  # noqa: E501
         :type roles: list[str]
         """
-        if (
-            self.local_vars_configuration.client_side_validation and roles is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `roles`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and roles is None:  # noqa: E501
+            raise ValueError("Invalid value for `roles`, must not be `None`")  # noqa: E501
 
         self._roles = roles
 
@@ -130,11 +126,15 @@ class CreateUserRequest(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

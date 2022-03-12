@@ -36,27 +36,20 @@ class FieldMappingV2(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "input_fields": "list[InputField]",
-        "is_drop_all_fields": "bool",
-        "name": "str",
-        "output_field": "OutputField",
+        'input_fields': 'list[InputField]',
+        'is_drop_all_fields': 'bool',
+        'name': 'str',
+        'output_field': 'OutputField'
     }
 
     attribute_map = {
-        "input_fields": "input_fields",
-        "is_drop_all_fields": "is_drop_all_fields",
-        "name": "name",
-        "output_field": "output_field",
+        'input_fields': 'input_fields',
+        'is_drop_all_fields': 'is_drop_all_fields',
+        'name': 'name',
+        'output_field': 'output_field'
     }
 
-    def __init__(
-        self,
-        input_fields=None,
-        is_drop_all_fields=None,
-        name=None,
-        output_field=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, input_fields=None, is_drop_all_fields=None, name=None, output_field=None, local_vars_configuration=None):  # noqa: E501
         """FieldMappingV2 - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -185,11 +178,15 @@ class FieldMappingV2(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

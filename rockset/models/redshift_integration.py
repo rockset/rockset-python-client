@@ -36,33 +36,24 @@ class RedshiftIntegration(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "aws_access_key": "AwsAccessKey",
-        "host": "str",
-        "password": "str",
-        "port": "int",
-        "s3_bucket_path": "str",
-        "username": "str",
+        'aws_access_key': 'AwsAccessKey',
+        'host': 'str',
+        'password': 'str',
+        'port': 'int',
+        's3_bucket_path': 'str',
+        'username': 'str'
     }
 
     attribute_map = {
-        "aws_access_key": "aws_access_key",
-        "host": "host",
-        "password": "password",
-        "port": "port",
-        "s3_bucket_path": "s3_bucket_path",
-        "username": "username",
+        'aws_access_key': 'aws_access_key',
+        'host': 'host',
+        'password': 'password',
+        'port': 'port',
+        's3_bucket_path': 's3_bucket_path',
+        'username': 'username'
     }
 
-    def __init__(
-        self,
-        aws_access_key=None,
-        host=None,
-        password=None,
-        port=None,
-        s3_bucket_path=None,
-        username=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, aws_access_key=None, host=None, password=None, port=None, s3_bucket_path=None, username=None, local_vars_configuration=None):  # noqa: E501
         """RedshiftIntegration - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -125,12 +116,8 @@ class RedshiftIntegration(object):
         :param host: The host of this RedshiftIntegration.  # noqa: E501
         :type host: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation and host is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `host`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and host is None:  # noqa: E501
+            raise ValueError("Invalid value for `host`, must not be `None`")  # noqa: E501
 
         self._host = host
 
@@ -154,12 +141,8 @@ class RedshiftIntegration(object):
         :param password: The password of this RedshiftIntegration.  # noqa: E501
         :type password: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation and password is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `password`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and password is None:  # noqa: E501
+            raise ValueError("Invalid value for `password`, must not be `None`")  # noqa: E501
 
         self._password = password
 
@@ -183,12 +166,8 @@ class RedshiftIntegration(object):
         :param port: The port of this RedshiftIntegration.  # noqa: E501
         :type port: int
         """
-        if (
-            self.local_vars_configuration.client_side_validation and port is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `port`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and port is None:  # noqa: E501
+            raise ValueError("Invalid value for `port`, must not be `None`")  # noqa: E501
 
         self._port = port
 
@@ -212,13 +191,8 @@ class RedshiftIntegration(object):
         :param s3_bucket_path: The s3_bucket_path of this RedshiftIntegration.  # noqa: E501
         :type s3_bucket_path: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation
-            and s3_bucket_path is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `s3_bucket_path`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and s3_bucket_path is None:  # noqa: E501
+            raise ValueError("Invalid value for `s3_bucket_path`, must not be `None`")  # noqa: E501
 
         self._s3_bucket_path = s3_bucket_path
 
@@ -242,12 +216,8 @@ class RedshiftIntegration(object):
         :param username: The username of this RedshiftIntegration.  # noqa: E501
         :type username: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation and username is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `username`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and username is None:  # noqa: E501
+            raise ValueError("Invalid value for `username`, must not be `None`")  # noqa: E501
 
         self._username = username
 
@@ -269,11 +239,15 @@ class RedshiftIntegration(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

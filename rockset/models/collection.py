@@ -36,69 +36,48 @@ class Collection(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "aliases": "list[Alias]",
-        "clustering_key": "list[FieldPartition]",
-        "created_at": "str",
-        "created_by": "str",
-        "description": "str",
-        "enable_exactly_once_writes": "bool",
-        "field_partitions": "list[FieldPartition]",
-        "field_mapping_query": "FieldMappingQuery",
-        "field_mappings": "list[FieldMappingV2]",
-        "field_schemas": "list[FieldSchema]",
-        "insert_only": "bool",
-        "inverted_index_group_encoding_options": "InvertedIndexGroupEncodingOptions",
-        "name": "str",
-        "retention_secs": "int",
-        "sources": "list[Source]",
-        "stats": "CollectionStats",
-        "status": "str",
-        "workspace": "str",
+        'aliases': 'list[Alias]',
+        'clustering_key': 'list[FieldPartition]',
+        'created_at': 'str',
+        'created_by': 'str',
+        'description': 'str',
+        'enable_exactly_once_writes': 'bool',
+        'field_partitions': 'list[FieldPartition]',
+        'field_mapping_query': 'FieldMappingQuery',
+        'field_mappings': 'list[FieldMappingV2]',
+        'field_schemas': 'list[FieldSchema]',
+        'insert_only': 'bool',
+        'inverted_index_group_encoding_options': 'InvertedIndexGroupEncodingOptions',
+        'name': 'str',
+        'retention_secs': 'int',
+        'sources': 'list[Source]',
+        'stats': 'CollectionStats',
+        'status': 'str',
+        'workspace': 'str'
     }
 
     attribute_map = {
-        "aliases": "aliases",
-        "clustering_key": "clustering_key",
-        "created_at": "created_at",
-        "created_by": "created_by",
-        "description": "description",
-        "enable_exactly_once_writes": "enable_exactly_once_writes",
-        "field_partitions": "fieldPartitions",
-        "field_mapping_query": "field_mapping_query",
-        "field_mappings": "field_mappings",
-        "field_schemas": "field_schemas",
-        "insert_only": "insert_only",
-        "inverted_index_group_encoding_options": "inverted_index_group_encoding_options",
-        "name": "name",
-        "retention_secs": "retention_secs",
-        "sources": "sources",
-        "stats": "stats",
-        "status": "status",
-        "workspace": "workspace",
+        'aliases': 'aliases',
+        'clustering_key': 'clustering_key',
+        'created_at': 'created_at',
+        'created_by': 'created_by',
+        'description': 'description',
+        'enable_exactly_once_writes': 'enable_exactly_once_writes',
+        'field_partitions': 'fieldPartitions',
+        'field_mapping_query': 'field_mapping_query',
+        'field_mappings': 'field_mappings',
+        'field_schemas': 'field_schemas',
+        'insert_only': 'insert_only',
+        'inverted_index_group_encoding_options': 'inverted_index_group_encoding_options',
+        'name': 'name',
+        'retention_secs': 'retention_secs',
+        'sources': 'sources',
+        'stats': 'stats',
+        'status': 'status',
+        'workspace': 'workspace'
     }
 
-    def __init__(
-        self,
-        aliases=None,
-        clustering_key=None,
-        created_at=None,
-        created_by=None,
-        description=None,
-        enable_exactly_once_writes=None,
-        field_partitions=None,
-        field_mapping_query=None,
-        field_mappings=None,
-        field_schemas=None,
-        insert_only=None,
-        inverted_index_group_encoding_options=None,
-        name=None,
-        retention_secs=None,
-        sources=None,
-        stats=None,
-        status=None,
-        workspace=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, aliases=None, clustering_key=None, created_at=None, created_by=None, description=None, enable_exactly_once_writes=None, field_partitions=None, field_mapping_query=None, field_mappings=None, field_schemas=None, insert_only=None, inverted_index_group_encoding_options=None, name=None, retention_secs=None, sources=None, stats=None, status=None, workspace=None, local_vars_configuration=None):  # noqa: E501
         """Collection - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -147,9 +126,7 @@ class Collection(object):
         if insert_only is not None:
             self.insert_only = insert_only
         if inverted_index_group_encoding_options is not None:
-            self.inverted_index_group_encoding_options = (
-                inverted_index_group_encoding_options
-            )
+            self.inverted_index_group_encoding_options = inverted_index_group_encoding_options
         if name is not None:
             self.name = name
         if retention_secs is not None:
@@ -423,9 +400,7 @@ class Collection(object):
         return self._inverted_index_group_encoding_options
 
     @inverted_index_group_encoding_options.setter
-    def inverted_index_group_encoding_options(
-        self, inverted_index_group_encoding_options
-    ):
+    def inverted_index_group_encoding_options(self, inverted_index_group_encoding_options):
         """Sets the inverted_index_group_encoding_options of this Collection.
 
 
@@ -433,9 +408,7 @@ class Collection(object):
         :type inverted_index_group_encoding_options: InvertedIndexGroupEncodingOptions
         """
 
-        self._inverted_index_group_encoding_options = (
-            inverted_index_group_encoding_options
-        )
+        self._inverted_index_group_encoding_options = inverted_index_group_encoding_options
 
     @property
     def name(self):
@@ -457,14 +430,9 @@ class Collection(object):
         :param name: The name of this Collection.  # noqa: E501
         :type name: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation
-            and name is not None
-            and not re.search(r"^[A-Za-z0-9_\-.]+$", name)
-        ):  # noqa: E501
-            raise ValueError(
-                r"Invalid value for `name`, must be a follow pattern or equal to `/^[A-Za-z0-9_\-.]+$/`"
-            )  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                name is not None and not re.search(r'^[A-Za-z0-9_\-.]+$', name)):  # noqa: E501
+            raise ValueError(r"Invalid value for `name`, must be a follow pattern or equal to `/^[A-Za-z0-9_\-.]+$/`")  # noqa: E501
 
         self._name = name
 
@@ -555,27 +523,11 @@ class Collection(object):
         :param status: The status of this Collection.  # noqa: E501
         :type status: str
         """
-        allowed_values = [
-            "INITIALIZED",
-            "CREATED",
-            "READY",
-            "PAUSED",
-            "DELETED",
-            "PAUSING",
-            "RESUMING",
-            "PREPARING_BULK",
-            "BULK_INGEST_MODE",
-            "EXITING_BULK_INGEST_MODE",
-            "UNKNOWN",
-        ]  # noqa: E501
-        if (
-            self.local_vars_configuration.client_side_validation
-            and status not in allowed_values
-        ):  # noqa: E501
+        allowed_values = ["INITIALIZED", "CREATED", "READY", "PAUSED", "DELETED", "PAUSING", "RESUMING", "PREPARING_BULK", "BULK_INGEST_MODE", "EXITING_BULK_INGEST_MODE", "UNKNOWN"]  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and status not in allowed_values:  # noqa: E501
             raise ValueError(
-                "Invalid value for `status` ({0}), must be one of {1}".format(  # noqa: E501
-                    status, allowed_values
-                )
+                "Invalid value for `status` ({0}), must be one of {1}"  # noqa: E501
+                .format(status, allowed_values)
             )
 
         self._status = status
@@ -621,11 +573,15 @@ class Collection(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

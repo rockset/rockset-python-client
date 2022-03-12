@@ -36,36 +36,26 @@ class ApiKey(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "created_at": "str",
-        "created_by": "str",
-        "key": "str",
-        "last_access_time": "str",
-        "name": "str",
-        "role": "str",
-        "state": "str",
+        'created_at': 'str',
+        'created_by': 'str',
+        'key': 'str',
+        'last_access_time': 'str',
+        'name': 'str',
+        'role': 'str',
+        'state': 'str'
     }
 
     attribute_map = {
-        "created_at": "created_at",
-        "created_by": "created_by",
-        "key": "key",
-        "last_access_time": "last_access_time",
-        "name": "name",
-        "role": "role",
-        "state": "state",
+        'created_at': 'created_at',
+        'created_by': 'created_by',
+        'key': 'key',
+        'last_access_time': 'last_access_time',
+        'name': 'name',
+        'role': 'role',
+        'state': 'state'
     }
 
-    def __init__(
-        self,
-        created_at=None,
-        created_by=None,
-        key=None,
-        last_access_time=None,
-        name=None,
-        role=None,
-        state=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, created_at=None, created_by=None, key=None, last_access_time=None, name=None, role=None, state=None, local_vars_configuration=None):  # noqa: E501
         """ApiKey - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -159,12 +149,8 @@ class ApiKey(object):
         :param key: The key of this ApiKey.  # noqa: E501
         :type key: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation and key is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `key`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and key is None:  # noqa: E501
+            raise ValueError("Invalid value for `key`, must not be `None`")  # noqa: E501
 
         self._key = key
 
@@ -211,12 +197,8 @@ class ApiKey(object):
         :param name: The name of this ApiKey.  # noqa: E501
         :type name: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation and name is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `name`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
+            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -262,14 +244,10 @@ class ApiKey(object):
         :type state: str
         """
         allowed_values = ["ACTIVE", "SUSPENDED"]  # noqa: E501
-        if (
-            self.local_vars_configuration.client_side_validation
-            and state not in allowed_values
-        ):  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and state not in allowed_values:  # noqa: E501
             raise ValueError(
-                "Invalid value for `state` ({0}), must be one of {1}".format(  # noqa: E501
-                    state, allowed_values
-                )
+                "Invalid value for `state` ({0}), must be one of {1}"  # noqa: E501
+                .format(state, allowed_values)
             )
 
         self._state = state
@@ -292,11 +270,15 @@ class ApiKey(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

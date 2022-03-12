@@ -35,9 +35,13 @@ class ListIntegrationsResponse(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
-    openapi_types = {"data": "list[Integration]"}
+    openapi_types = {
+        'data': 'list[Integration]'
+    }
 
-    attribute_map = {"data": "data"}
+    attribute_map = {
+        'data': 'data'
+    }
 
     def __init__(self, data=None, local_vars_configuration=None):  # noqa: E501
         """ListIntegrationsResponse - a model defined in OpenAPI"""  # noqa: E501
@@ -92,11 +96,15 @@ class ListIntegrationsResponse(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

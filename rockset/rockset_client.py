@@ -103,8 +103,8 @@ class WorkspacesApiWrapper(WorkspacesApi, metaclass=ApiMetaclass):
 
 class RocksetClient:
     # todo: should user create Config object or pass in each config var as arguments?
-    def __init__(self, host: str = None, apikey: str = None):
-        self.api_client = ApiClient(Configuration(host=host))
+    def __init__(self, host: str = None, apikey: str = None, max_workers=4):
+        self.api_client = ApiClient(Configuration(host=host), max_workers=max_workers)
 
         if not apikey:
             raise InitializationException("an api key must be provided")

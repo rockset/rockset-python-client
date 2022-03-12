@@ -35,13 +35,21 @@ class PatchOperation(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
-    openapi_types = {"_from": "str", "op": "str", "path": "str", "value": "object"}
+    openapi_types = {
+        '_from': 'str',
+        'op': 'str',
+        'path': 'str',
+        'value': 'object'
+    }
 
-    attribute_map = {"_from": "from", "op": "op", "path": "path", "value": "value"}
+    attribute_map = {
+        '_from': 'from',
+        'op': 'op',
+        'path': 'path',
+        'value': 'value'
+    }
 
-    def __init__(
-        self, _from=None, op=None, path=None, value=None, local_vars_configuration=None
-    ):  # noqa: E501
+    def __init__(self, _from=None, op=None, path=None, value=None, local_vars_configuration=None):  # noqa: E501
         """PatchOperation - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -103,27 +111,13 @@ class PatchOperation(object):
         :param op: The op of this PatchOperation.  # noqa: E501
         :type op: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation and op is None
-        ):  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and op is None:  # noqa: E501
             raise ValueError("Invalid value for `op`, must not be `None`")  # noqa: E501
-        allowed_values = [
-            "ADD",
-            "REPLACE",
-            "REMOVE",
-            "COPY",
-            "MOVE",
-            "TEST",
-            "INCREMENT",
-        ]  # noqa: E501
-        if (
-            self.local_vars_configuration.client_side_validation
-            and op not in allowed_values
-        ):  # noqa: E501
+        allowed_values = ["ADD", "REPLACE", "REMOVE", "COPY", "MOVE", "TEST", "INCREMENT"]  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and op not in allowed_values:  # noqa: E501
             raise ValueError(
-                "Invalid value for `op` ({0}), must be one of {1}".format(  # noqa: E501
-                    op, allowed_values
-                )
+                "Invalid value for `op` ({0}), must be one of {1}"  # noqa: E501
+                .format(op, allowed_values)
             )
 
         self._op = op
@@ -148,12 +142,8 @@ class PatchOperation(object):
         :param path: The path of this PatchOperation.  # noqa: E501
         :type path: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation and path is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `path`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and path is None:  # noqa: E501
+            raise ValueError("Invalid value for `path`, must not be `None`")  # noqa: E501
 
         self._path = path
 
@@ -198,11 +188,15 @@ class PatchOperation(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

@@ -35,13 +35,15 @@ class GcpServiceAccount(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
-    openapi_types = {"service_account_key_file_json": "str"}
+    openapi_types = {
+        'service_account_key_file_json': 'str'
+    }
 
-    attribute_map = {"service_account_key_file_json": "service_account_key_file_json"}
+    attribute_map = {
+        'service_account_key_file_json': 'service_account_key_file_json'
+    }
 
-    def __init__(
-        self, service_account_key_file_json=None, local_vars_configuration=None
-    ):  # noqa: E501
+    def __init__(self, service_account_key_file_json=None, local_vars_configuration=None):  # noqa: E501
         """GcpServiceAccount - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -72,13 +74,8 @@ class GcpServiceAccount(object):
         :param service_account_key_file_json: The service_account_key_file_json of this GcpServiceAccount.  # noqa: E501
         :type service_account_key_file_json: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation
-            and service_account_key_file_json is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `service_account_key_file_json`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and service_account_key_file_json is None:  # noqa: E501
+            raise ValueError("Invalid value for `service_account_key_file_json`, must not be `None`")  # noqa: E501
 
         self._service_account_key_file_json = service_account_key_file_json
 
@@ -100,11 +97,15 @@ class GcpServiceAccount(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

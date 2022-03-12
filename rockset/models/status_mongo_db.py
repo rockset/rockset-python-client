@@ -36,48 +36,34 @@ class StatusMongoDb(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "scan_end_time": "str",
-        "scan_records_processed": "int",
-        "scan_start_time": "str",
-        "scan_total_records": "int",
-        "state": "str",
-        "stream_last_delete_processed_at": "str",
-        "stream_last_insert_processed_at": "str",
-        "stream_last_update_processed_at": "str",
-        "stream_records_deleted": "int",
-        "stream_records_inserted": "int",
-        "stream_records_updated": "int",
+        'scan_end_time': 'str',
+        'scan_records_processed': 'int',
+        'scan_start_time': 'str',
+        'scan_total_records': 'int',
+        'state': 'str',
+        'stream_last_delete_processed_at': 'str',
+        'stream_last_insert_processed_at': 'str',
+        'stream_last_update_processed_at': 'str',
+        'stream_records_deleted': 'int',
+        'stream_records_inserted': 'int',
+        'stream_records_updated': 'int'
     }
 
     attribute_map = {
-        "scan_end_time": "scan_end_time",
-        "scan_records_processed": "scan_records_processed",
-        "scan_start_time": "scan_start_time",
-        "scan_total_records": "scan_total_records",
-        "state": "state",
-        "stream_last_delete_processed_at": "stream_last_delete_processed_at",
-        "stream_last_insert_processed_at": "stream_last_insert_processed_at",
-        "stream_last_update_processed_at": "stream_last_update_processed_at",
-        "stream_records_deleted": "stream_records_deleted",
-        "stream_records_inserted": "stream_records_inserted",
-        "stream_records_updated": "stream_records_updated",
+        'scan_end_time': 'scan_end_time',
+        'scan_records_processed': 'scan_records_processed',
+        'scan_start_time': 'scan_start_time',
+        'scan_total_records': 'scan_total_records',
+        'state': 'state',
+        'stream_last_delete_processed_at': 'stream_last_delete_processed_at',
+        'stream_last_insert_processed_at': 'stream_last_insert_processed_at',
+        'stream_last_update_processed_at': 'stream_last_update_processed_at',
+        'stream_records_deleted': 'stream_records_deleted',
+        'stream_records_inserted': 'stream_records_inserted',
+        'stream_records_updated': 'stream_records_updated'
     }
 
-    def __init__(
-        self,
-        scan_end_time=None,
-        scan_records_processed=None,
-        scan_start_time=None,
-        scan_total_records=None,
-        state=None,
-        stream_last_delete_processed_at=None,
-        stream_last_insert_processed_at=None,
-        stream_last_update_processed_at=None,
-        stream_records_deleted=None,
-        stream_records_inserted=None,
-        stream_records_updated=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, scan_end_time=None, scan_records_processed=None, scan_start_time=None, scan_total_records=None, state=None, stream_last_delete_processed_at=None, stream_last_insert_processed_at=None, stream_last_update_processed_at=None, stream_records_deleted=None, stream_records_inserted=None, stream_records_updated=None, local_vars_configuration=None):  # noqa: E501
         """StatusMongoDb - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -231,19 +217,11 @@ class StatusMongoDb(object):
         :param state: The state of this StatusMongoDb.  # noqa: E501
         :type state: str
         """
-        allowed_values = [
-            "INITIALIZING",
-            "SCANNING_TABLE",
-            "PROCESSING_STREAM",
-        ]  # noqa: E501
-        if (
-            self.local_vars_configuration.client_side_validation
-            and state not in allowed_values
-        ):  # noqa: E501
+        allowed_values = ["INITIALIZING", "SCANNING_TABLE", "PROCESSING_STREAM"]  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and state not in allowed_values:  # noqa: E501
             raise ValueError(
-                "Invalid value for `state` ({0}), must be one of {1}".format(  # noqa: E501
-                    state, allowed_values
-                )
+                "Invalid value for `state` ({0}), must be one of {1}"  # noqa: E501
+                .format(state, allowed_values)
             )
 
         self._state = state
@@ -404,11 +382,15 @@ class StatusMongoDb(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

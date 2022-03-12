@@ -36,48 +36,34 @@ class QueryResponse(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "collections": "list[str]",
-        "column_fields": "list[QueryFieldType]",
-        "last_offset": "str",
-        "pagination": "PaginationInfo",
-        "query_errors": "list[QueryError]",
-        "query_id": "str",
-        "query_lambda_path": "str",
-        "results": "list[object]",
-        "results_total_doc_count": "int",
-        "stats": "QueryResponseStats",
-        "warnings": "list[str]",
+        'collections': 'list[str]',
+        'column_fields': 'list[QueryFieldType]',
+        'last_offset': 'str',
+        'pagination': 'PaginationInfo',
+        'query_errors': 'list[QueryError]',
+        'query_id': 'str',
+        'query_lambda_path': 'str',
+        'results': 'list[object]',
+        'results_total_doc_count': 'int',
+        'stats': 'QueryResponseStats',
+        'warnings': 'list[str]'
     }
 
     attribute_map = {
-        "collections": "collections",
-        "column_fields": "column_fields",
-        "last_offset": "last_offset",
-        "pagination": "pagination",
-        "query_errors": "query_errors",
-        "query_id": "query_id",
-        "query_lambda_path": "query_lambda_path",
-        "results": "results",
-        "results_total_doc_count": "results_total_doc_count",
-        "stats": "stats",
-        "warnings": "warnings",
+        'collections': 'collections',
+        'column_fields': 'column_fields',
+        'last_offset': 'last_offset',
+        'pagination': 'pagination',
+        'query_errors': 'query_errors',
+        'query_id': 'query_id',
+        'query_lambda_path': 'query_lambda_path',
+        'results': 'results',
+        'results_total_doc_count': 'results_total_doc_count',
+        'stats': 'stats',
+        'warnings': 'warnings'
     }
 
-    def __init__(
-        self,
-        collections=None,
-        column_fields=None,
-        last_offset=None,
-        pagination=None,
-        query_errors=None,
-        query_id=None,
-        query_lambda_path=None,
-        results=None,
-        results_total_doc_count=None,
-        stats=None,
-        warnings=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, collections=None, column_fields=None, last_offset=None, pagination=None, query_errors=None, query_id=None, query_lambda_path=None, results=None, results_total_doc_count=None, stats=None, warnings=None, local_vars_configuration=None):  # noqa: E501
         """QueryResponse - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -386,11 +372,15 @@ class QueryResponse(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

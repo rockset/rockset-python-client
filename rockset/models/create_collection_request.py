@@ -36,48 +36,34 @@ class CreateCollectionRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "clustering_key": "list[FieldPartition]",
-        "description": "str",
-        "event_time_info": "EventTimeInfo",
-        "field_mapping_query": "FieldMappingQuery",
-        "field_mappings": "list[FieldMappingV2]",
-        "field_schemas": "list[FieldSchema]",
-        "insert_only": "bool",
-        "inverted_index_group_encoding_options": "InvertedIndexGroupEncodingOptions",
-        "name": "str",
-        "retention_secs": "int",
-        "time_partition_resolution_secs": "int",
+        'clustering_key': 'list[FieldPartition]',
+        'description': 'str',
+        'event_time_info': 'EventTimeInfo',
+        'field_mapping_query': 'FieldMappingQuery',
+        'field_mappings': 'list[FieldMappingV2]',
+        'field_schemas': 'list[FieldSchema]',
+        'insert_only': 'bool',
+        'inverted_index_group_encoding_options': 'InvertedIndexGroupEncodingOptions',
+        'name': 'str',
+        'retention_secs': 'int',
+        'time_partition_resolution_secs': 'int'
     }
 
     attribute_map = {
-        "clustering_key": "clustering_key",
-        "description": "description",
-        "event_time_info": "event_time_info",
-        "field_mapping_query": "field_mapping_query",
-        "field_mappings": "field_mappings",
-        "field_schemas": "field_schemas",
-        "insert_only": "insert_only",
-        "inverted_index_group_encoding_options": "inverted_index_group_encoding_options",
-        "name": "name",
-        "retention_secs": "retention_secs",
-        "time_partition_resolution_secs": "time_partition_resolution_secs",
+        'clustering_key': 'clustering_key',
+        'description': 'description',
+        'event_time_info': 'event_time_info',
+        'field_mapping_query': 'field_mapping_query',
+        'field_mappings': 'field_mappings',
+        'field_schemas': 'field_schemas',
+        'insert_only': 'insert_only',
+        'inverted_index_group_encoding_options': 'inverted_index_group_encoding_options',
+        'name': 'name',
+        'retention_secs': 'retention_secs',
+        'time_partition_resolution_secs': 'time_partition_resolution_secs'
     }
 
-    def __init__(
-        self,
-        clustering_key=None,
-        description=None,
-        event_time_info=None,
-        field_mapping_query=None,
-        field_mappings=None,
-        field_schemas=None,
-        insert_only=None,
-        inverted_index_group_encoding_options=None,
-        name=None,
-        retention_secs=None,
-        time_partition_resolution_secs=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, clustering_key=None, description=None, event_time_info=None, field_mapping_query=None, field_mappings=None, field_schemas=None, insert_only=None, inverted_index_group_encoding_options=None, name=None, retention_secs=None, time_partition_resolution_secs=None, local_vars_configuration=None):  # noqa: E501
         """CreateCollectionRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -111,9 +97,7 @@ class CreateCollectionRequest(object):
         if insert_only is not None:
             self.insert_only = insert_only
         if inverted_index_group_encoding_options is not None:
-            self.inverted_index_group_encoding_options = (
-                inverted_index_group_encoding_options
-            )
+            self.inverted_index_group_encoding_options = inverted_index_group_encoding_options
         self.name = name
         if retention_secs is not None:
             self.retention_secs = retention_secs
@@ -288,9 +272,7 @@ class CreateCollectionRequest(object):
         return self._inverted_index_group_encoding_options
 
     @inverted_index_group_encoding_options.setter
-    def inverted_index_group_encoding_options(
-        self, inverted_index_group_encoding_options
-    ):
+    def inverted_index_group_encoding_options(self, inverted_index_group_encoding_options):
         """Sets the inverted_index_group_encoding_options of this CreateCollectionRequest.
 
 
@@ -298,9 +280,7 @@ class CreateCollectionRequest(object):
         :type inverted_index_group_encoding_options: InvertedIndexGroupEncodingOptions
         """
 
-        self._inverted_index_group_encoding_options = (
-            inverted_index_group_encoding_options
-        )
+        self._inverted_index_group_encoding_options = inverted_index_group_encoding_options
 
     @property
     def name(self):
@@ -322,12 +302,8 @@ class CreateCollectionRequest(object):
         :param name: The name of this CreateCollectionRequest.  # noqa: E501
         :type name: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation and name is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `name`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
+            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -395,11 +371,15 @@ class CreateCollectionRequest(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

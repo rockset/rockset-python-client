@@ -36,42 +36,30 @@ class AzureBlobStorageSourceWrapper(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "format_params": "FormatParams",
-        "integration_name": "str",
-        "status": "Status",
-        "blob_bytes_total": "int",
-        "blob_count_downloaded": "int",
-        "blob_count_total": "int",
-        "container": "str",
-        "pattern": "str",
-        "prefix": "str",
+        'format_params': 'FormatParams',
+        'integration_name': 'str',
+        'status': 'Status',
+        'blob_bytes_total': 'int',
+        'blob_count_downloaded': 'int',
+        'blob_count_total': 'int',
+        'container': 'str',
+        'pattern': 'str',
+        'prefix': 'str'
     }
 
     attribute_map = {
-        "format_params": "format_params",
-        "integration_name": "integration_name",
-        "status": "status",
-        "blob_bytes_total": "blob_bytes_total",
-        "blob_count_downloaded": "blob_count_downloaded",
-        "blob_count_total": "blob_count_total",
-        "container": "container",
-        "pattern": "pattern",
-        "prefix": "prefix",
+        'format_params': 'format_params',
+        'integration_name': 'integration_name',
+        'status': 'status',
+        'blob_bytes_total': 'blob_bytes_total',
+        'blob_count_downloaded': 'blob_count_downloaded',
+        'blob_count_total': 'blob_count_total',
+        'container': 'container',
+        'pattern': 'pattern',
+        'prefix': 'prefix'
     }
 
-    def __init__(
-        self,
-        format_params=None,
-        integration_name=None,
-        status=None,
-        blob_bytes_total=None,
-        blob_count_downloaded=None,
-        blob_count_total=None,
-        container=None,
-        pattern=None,
-        prefix=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, format_params=None, integration_name=None, status=None, blob_bytes_total=None, blob_count_downloaded=None, blob_count_total=None, container=None, pattern=None, prefix=None, local_vars_configuration=None):  # noqa: E501
         """AzureBlobStorageSourceWrapper - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -147,13 +135,8 @@ class AzureBlobStorageSourceWrapper(object):
         :param integration_name: The integration_name of this AzureBlobStorageSourceWrapper.  # noqa: E501
         :type integration_name: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation
-            and integration_name is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `integration_name`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and integration_name is None:  # noqa: E501
+            raise ValueError("Invalid value for `integration_name`, must not be `None`")  # noqa: E501
 
         self._integration_name = integration_name
 
@@ -328,11 +311,15 @@ class AzureBlobStorageSourceWrapper(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

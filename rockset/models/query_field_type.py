@@ -35,13 +35,17 @@ class QueryFieldType(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
-    openapi_types = {"name": "str", "type": "str"}
+    openapi_types = {
+        'name': 'str',
+        'type': 'str'
+    }
 
-    attribute_map = {"name": "name", "type": "type"}
+    attribute_map = {
+        'name': 'name',
+        'type': 'type'
+    }
 
-    def __init__(
-        self, name=None, type=None, local_vars_configuration=None
-    ):  # noqa: E501
+    def __init__(self, name=None, type=None, local_vars_configuration=None):  # noqa: E501
         """QueryFieldType - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -74,12 +78,8 @@ class QueryFieldType(object):
         :param name: The name of this QueryFieldType.  # noqa: E501
         :type name: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation and name is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `name`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
+            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -103,12 +103,8 @@ class QueryFieldType(object):
         :param type: The type of this QueryFieldType.  # noqa: E501
         :type type: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation and type is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `type`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and type is None:  # noqa: E501
+            raise ValueError("Invalid value for `type`, must not be `None`")  # noqa: E501
 
         self._type = type
 
@@ -130,11 +126,15 @@ class QueryFieldType(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

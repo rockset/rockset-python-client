@@ -35,13 +35,19 @@ class FieldPartition(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
-    openapi_types = {"field_name": "str", "keys": "list[str]", "type": "str"}
+    openapi_types = {
+        'field_name': 'str',
+        'keys': 'list[str]',
+        'type': 'str'
+    }
 
-    attribute_map = {"field_name": "field_name", "keys": "keys", "type": "type"}
+    attribute_map = {
+        'field_name': 'field_name',
+        'keys': 'keys',
+        'type': 'type'
+    }
 
-    def __init__(
-        self, field_name=None, keys=None, type=None, local_vars_configuration=None
-    ):  # noqa: E501
+    def __init__(self, field_name=None, keys=None, type=None, local_vars_configuration=None):  # noqa: E501
         """FieldPartition - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -126,14 +132,10 @@ class FieldPartition(object):
         :type type: str
         """
         allowed_values = ["AUTO"]  # noqa: E501
-        if (
-            self.local_vars_configuration.client_side_validation
-            and type not in allowed_values
-        ):  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and type not in allowed_values:  # noqa: E501
             raise ValueError(
-                "Invalid value for `type` ({0}), must be one of {1}".format(  # noqa: E501
-                    type, allowed_values
-                )
+                "Invalid value for `type` ({0}), must be one of {1}"  # noqa: E501
+                .format(type, allowed_values)
             )
 
         self._type = type
@@ -156,11 +158,15 @@ class FieldPartition(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

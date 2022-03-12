@@ -36,27 +36,20 @@ class QueryLambdaStats(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "last_executed": "str",
-        "last_executed_by": "str",
-        "last_execution_error": "str",
-        "last_execution_error_message": "str",
+        'last_executed': 'str',
+        'last_executed_by': 'str',
+        'last_execution_error': 'str',
+        'last_execution_error_message': 'str'
     }
 
     attribute_map = {
-        "last_executed": "last_executed",
-        "last_executed_by": "last_executed_by",
-        "last_execution_error": "last_execution_error",
-        "last_execution_error_message": "last_execution_error_message",
+        'last_executed': 'last_executed',
+        'last_executed_by': 'last_executed_by',
+        'last_execution_error': 'last_execution_error',
+        'last_execution_error_message': 'last_execution_error_message'
     }
 
-    def __init__(
-        self,
-        last_executed=None,
-        last_executed_by=None,
-        last_execution_error=None,
-        last_execution_error_message=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, last_executed=None, last_executed_by=None, last_execution_error=None, last_execution_error_message=None, local_vars_configuration=None):  # noqa: E501
         """QueryLambdaStats - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -187,11 +180,15 @@ class QueryLambdaStats(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

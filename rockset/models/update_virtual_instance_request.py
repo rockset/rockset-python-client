@@ -35,21 +35,19 @@ class UpdateVirtualInstanceRequest(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
-    openapi_types = {"monitoring_enabled": "bool", "new_size": "str", "new_type": "str"}
-
-    attribute_map = {
-        "monitoring_enabled": "monitoring_enabled",
-        "new_size": "new_size",
-        "new_type": "new_type",
+    openapi_types = {
+        'monitoring_enabled': 'bool',
+        'new_size': 'str',
+        'new_type': 'str'
     }
 
-    def __init__(
-        self,
-        monitoring_enabled=None,
-        new_size=None,
-        new_type=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    attribute_map = {
+        'monitoring_enabled': 'monitoring_enabled',
+        'new_size': 'new_size',
+        'new_type': 'new_type'
+    }
+
+    def __init__(self, monitoring_enabled=None, new_size=None, new_type=None, local_vars_configuration=None):  # noqa: E501
         """UpdateVirtualInstanceRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -108,26 +106,11 @@ class UpdateVirtualInstanceRequest(object):
         :param new_size: The new_size of this UpdateVirtualInstanceRequest.  # noqa: E501
         :type new_size: str
         """
-        allowed_values = [
-            "FREE",
-            "SHARED",
-            "SMALL",
-            "MEDIUM",
-            "LARGE",
-            "XLARGE",
-            "XLARGE2",
-            "XLARGE4",
-            "XLARGE8",
-            "XLARGE16",
-        ]  # noqa: E501
-        if (
-            self.local_vars_configuration.client_side_validation
-            and new_size not in allowed_values
-        ):  # noqa: E501
+        allowed_values = ["FREE", "SHARED", "SMALL", "MEDIUM", "LARGE", "XLARGE", "XLARGE2", "XLARGE4", "XLARGE8", "XLARGE16"]  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and new_size not in allowed_values:  # noqa: E501
             raise ValueError(
-                "Invalid value for `new_size` ({0}), must be one of {1}".format(  # noqa: E501
-                    new_size, allowed_values
-                )
+                "Invalid value for `new_size` ({0}), must be one of {1}"  # noqa: E501
+                .format(new_size, allowed_values)
             )
 
         self._new_size = new_size
@@ -150,26 +133,11 @@ class UpdateVirtualInstanceRequest(object):
         :param new_type: The new_type of this UpdateVirtualInstanceRequest.  # noqa: E501
         :type new_type: str
         """
-        allowed_values = [
-            "FREE",
-            "SHARED",
-            "SMALL",
-            "MEDIUM",
-            "LARGE",
-            "XLARGE",
-            "XLARGE2",
-            "XLARGE4",
-            "XLARGE8",
-            "XLARGE16",
-        ]  # noqa: E501
-        if (
-            self.local_vars_configuration.client_side_validation
-            and new_type not in allowed_values
-        ):  # noqa: E501
+        allowed_values = ["FREE", "SHARED", "SMALL", "MEDIUM", "LARGE", "XLARGE", "XLARGE2", "XLARGE4", "XLARGE8", "XLARGE16"]  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and new_type not in allowed_values:  # noqa: E501
             raise ValueError(
-                "Invalid value for `new_type` ({0}), must be one of {1}".format(  # noqa: E501
-                    new_type, allowed_values
-                )
+                "Invalid value for `new_type` ({0}), must be one of {1}"  # noqa: E501
+                .format(new_type, allowed_values)
             )
 
         self._new_type = new_type
@@ -192,11 +160,15 @@ class UpdateVirtualInstanceRequest(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

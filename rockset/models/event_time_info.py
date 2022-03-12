@@ -35,13 +35,19 @@ class EventTimeInfo(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
-    openapi_types = {"field": "str", "format": "str", "time_zone": "str"}
+    openapi_types = {
+        'field': 'str',
+        'format': 'str',
+        'time_zone': 'str'
+    }
 
-    attribute_map = {"field": "field", "format": "format", "time_zone": "time_zone"}
+    attribute_map = {
+        'field': 'field',
+        'format': 'format',
+        'time_zone': 'time_zone'
+    }
 
-    def __init__(
-        self, field=None, format=None, time_zone=None, local_vars_configuration=None
-    ):  # noqa: E501
+    def __init__(self, field=None, format=None, time_zone=None, local_vars_configuration=None):  # noqa: E501
         """EventTimeInfo - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -78,12 +84,8 @@ class EventTimeInfo(object):
         :param field: The field of this EventTimeInfo.  # noqa: E501
         :type field: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation and field is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `field`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and field is None:  # noqa: E501
+            raise ValueError("Invalid value for `field`, must not be `None`")  # noqa: E501
 
         self._field = field
 
@@ -151,11 +153,15 @@ class EventTimeInfo(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

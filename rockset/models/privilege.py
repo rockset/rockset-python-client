@@ -35,21 +35,19 @@ class Privilege(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
-    openapi_types = {"action": "str", "cluster": "str", "resource_name": "str"}
-
-    attribute_map = {
-        "action": "action",
-        "cluster": "cluster",
-        "resource_name": "resource_name",
+    openapi_types = {
+        'action': 'str',
+        'cluster': 'str',
+        'resource_name': 'str'
     }
 
-    def __init__(
-        self,
-        action=None,
-        cluster=None,
-        resource_name=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    attribute_map = {
+        'action': 'action',
+        'cluster': 'cluster',
+        'resource_name': 'resource_name'
+    }
+
+    def __init__(self, action=None, cluster=None, resource_name=None, local_vars_configuration=None):  # noqa: E501
         """Privilege - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -87,56 +85,11 @@ class Privilege(object):
         :param action: The action of this Privilege.  # noqa: E501
         :type action: str
         """
-        allowed_values = [
-            "ALL_GLOBAL_ACTIONS",
-            "GET_ORG_GLOBAL",
-            "GET_CURRENT_USER_GLOBAL",
-            "INVITE_USER_GLOBAL",
-            "DELETE_USER_GLOBAL",
-            "LIST_USERS_GLOBAL",
-            "GET_BILLING_GLOBAL",
-            "UPDATE_BILLING_GLOBAL",
-            "UPDATE_SETTINGS_GLOBAL",
-            "GET_METRICS_GLOBAL",
-            "UPDATE_VI_GLOBAL",
-            "LIST_VI_GLOBAL",
-            "CREATE_WS_GLOBAL",
-            "LIST_WS_GLOBAL",
-            "CREATE_INTEGRATION_GLOBAL",
-            "DELETE_INTEGRATION_GLOBAL",
-            "LIST_INTEGRATIONS_GLOBAL",
-            "UPDATE_RESOURCE_OWNER_GLOBAL",
-            "CREATE_API_KEY_GLOBAL",
-            "CREATE_ROLE_GLOBAL",
-            "UPDATE_ROLE_GLOBAL",
-            "DELETE_ROLE_GLOBAL",
-            "LIST_ROLES_GLOBAL",
-            "GRANT_REVOKE_ROLE_GLOBAL",
-            "ALL_INTEGRATION_ACTIONS",
-            "CREATE_COLLECTION_INTEGRATION",
-            "ALL_WORKSPACE_ACTIONS",
-            "DELETE_WS",
-            "QUERY_DATA_WS",
-            "WRITE_DATA_WS",
-            "CREATE_COLLECTION_WS",
-            "DELETE_COLLECTION_WS",
-            "CREATE_ALIAS_WS",
-            "DELETE_ALIAS_WS",
-            "LIST_RESOURCES_WS",
-            "CREATE_QUERY_LAMBDA_WS",
-            "DELETE_QUERY_LAMBDA_WS",
-            "EXECUTE_QUERY_LAMBDA_WS",
-            "CREATE_VIEW_WS",
-            "DELETE_VIEW_WS",
-        ]  # noqa: E501
-        if (
-            self.local_vars_configuration.client_side_validation
-            and action not in allowed_values
-        ):  # noqa: E501
+        allowed_values = ["ALL_GLOBAL_ACTIONS", "GET_ORG_GLOBAL", "GET_CURRENT_USER_GLOBAL", "INVITE_USER_GLOBAL", "DELETE_USER_GLOBAL", "LIST_USERS_GLOBAL", "GET_BILLING_GLOBAL", "UPDATE_BILLING_GLOBAL", "UPDATE_SETTINGS_GLOBAL", "GET_METRICS_GLOBAL", "UPDATE_VI_GLOBAL", "LIST_VI_GLOBAL", "CREATE_WS_GLOBAL", "LIST_WS_GLOBAL", "CREATE_INTEGRATION_GLOBAL", "DELETE_INTEGRATION_GLOBAL", "LIST_INTEGRATIONS_GLOBAL", "UPDATE_RESOURCE_OWNER_GLOBAL", "CREATE_API_KEY_GLOBAL", "CREATE_ROLE_GLOBAL", "UPDATE_ROLE_GLOBAL", "DELETE_ROLE_GLOBAL", "LIST_ROLES_GLOBAL", "GRANT_REVOKE_ROLE_GLOBAL", "ALL_INTEGRATION_ACTIONS", "CREATE_COLLECTION_INTEGRATION", "ALL_WORKSPACE_ACTIONS", "DELETE_WS", "QUERY_DATA_WS", "WRITE_DATA_WS", "CREATE_COLLECTION_WS", "DELETE_COLLECTION_WS", "CREATE_ALIAS_WS", "DELETE_ALIAS_WS", "LIST_RESOURCES_WS", "CREATE_QUERY_LAMBDA_WS", "DELETE_QUERY_LAMBDA_WS", "EXECUTE_QUERY_LAMBDA_WS", "CREATE_VIEW_WS", "DELETE_VIEW_WS"]  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and action not in allowed_values:  # noqa: E501
             raise ValueError(
-                "Invalid value for `action` ({0}), must be one of {1}".format(  # noqa: E501
-                    action, allowed_values
-                )
+                "Invalid value for `action` ({0}), must be one of {1}"  # noqa: E501
+                .format(action, allowed_values)
             )
 
         self._action = action
@@ -205,11 +158,15 @@ class Privilege(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

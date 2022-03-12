@@ -36,51 +36,36 @@ class SourceS3(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "access_key": "str",
-        "bucket": "str",
-        "format": "str",
-        "mappings": "list[FieldMask]",
-        "object_bytes_total": "int",
-        "object_count_downloaded": "int",
-        "object_count_total": "int",
-        "pattern": "str",
-        "prefix": "str",
-        "prefixes": "list[str]",
-        "region": "str",
-        "secret_access": "str",
+        'access_key': 'str',
+        'bucket': 'str',
+        'format': 'str',
+        'mappings': 'list[FieldMask]',
+        'object_bytes_total': 'int',
+        'object_count_downloaded': 'int',
+        'object_count_total': 'int',
+        'pattern': 'str',
+        'prefix': 'str',
+        'prefixes': 'list[str]',
+        'region': 'str',
+        'secret_access': 'str'
     }
 
     attribute_map = {
-        "access_key": "access_key",
-        "bucket": "bucket",
-        "format": "format",
-        "mappings": "mappings",
-        "object_bytes_total": "object_bytes_total",
-        "object_count_downloaded": "object_count_downloaded",
-        "object_count_total": "object_count_total",
-        "pattern": "pattern",
-        "prefix": "prefix",
-        "prefixes": "prefixes",
-        "region": "region",
-        "secret_access": "secret_access",
+        'access_key': 'access_key',
+        'bucket': 'bucket',
+        'format': 'format',
+        'mappings': 'mappings',
+        'object_bytes_total': 'object_bytes_total',
+        'object_count_downloaded': 'object_count_downloaded',
+        'object_count_total': 'object_count_total',
+        'pattern': 'pattern',
+        'prefix': 'prefix',
+        'prefixes': 'prefixes',
+        'region': 'region',
+        'secret_access': 'secret_access'
     }
 
-    def __init__(
-        self,
-        access_key=None,
-        bucket=None,
-        format=None,
-        mappings=None,
-        object_bytes_total=None,
-        object_count_downloaded=None,
-        object_count_total=None,
-        pattern=None,
-        prefix=None,
-        prefixes=None,
-        region=None,
-        secret_access=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, access_key=None, bucket=None, format=None, mappings=None, object_bytes_total=None, object_count_downloaded=None, object_count_total=None, pattern=None, prefix=None, prefixes=None, region=None, secret_access=None, local_vars_configuration=None):  # noqa: E501
         """SourceS3 - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -166,12 +151,8 @@ class SourceS3(object):
         :param bucket: The bucket of this SourceS3.  # noqa: E501
         :type bucket: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation and bucket is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `bucket`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and bucket is None:  # noqa: E501
+            raise ValueError("Invalid value for `bucket`, must not be `None`")  # noqa: E501
 
         self._bucket = bucket
 
@@ -196,14 +177,10 @@ class SourceS3(object):
         :type format: str
         """
         allowed_values = ["JSON"]  # noqa: E501
-        if (
-            self.local_vars_configuration.client_side_validation
-            and format not in allowed_values
-        ):  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and format not in allowed_values:  # noqa: E501
             raise ValueError(
-                "Invalid value for `format` ({0}), must be one of {1}".format(  # noqa: E501
-                    format, allowed_values
-                )
+                "Invalid value for `format` ({0}), must be one of {1}"  # noqa: E501
+                .format(format, allowed_values)
             )
 
         self._format = format
@@ -360,12 +337,8 @@ class SourceS3(object):
         :param prefixes: The prefixes of this SourceS3.  # noqa: E501
         :type prefixes: list[str]
         """
-        if (
-            self.local_vars_configuration.client_side_validation and prefixes is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `prefixes`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and prefixes is None:  # noqa: E501
+            raise ValueError("Invalid value for `prefixes`, must not be `None`")  # noqa: E501
 
         self._prefixes = prefixes
 
@@ -433,11 +406,15 @@ class SourceS3(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

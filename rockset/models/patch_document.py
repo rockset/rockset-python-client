@@ -35,13 +35,17 @@ class PatchDocument(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
-    openapi_types = {"id": "str", "patch": "list[PatchOperation]"}
+    openapi_types = {
+        'id': 'str',
+        'patch': 'list[PatchOperation]'
+    }
 
-    attribute_map = {"id": "_id", "patch": "patch"}
+    attribute_map = {
+        'id': '_id',
+        'patch': 'patch'
+    }
 
-    def __init__(
-        self, id=None, patch=None, local_vars_configuration=None
-    ):  # noqa: E501
+    def __init__(self, id=None, patch=None, local_vars_configuration=None):  # noqa: E501
         """PatchDocument - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -74,9 +78,7 @@ class PatchDocument(object):
         :param id: The id of this PatchDocument.  # noqa: E501
         :type id: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation and id is None
-        ):  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and id is None:  # noqa: E501
             raise ValueError("Invalid value for `id`, must not be `None`")  # noqa: E501
 
         self._id = id
@@ -101,12 +103,8 @@ class PatchDocument(object):
         :param patch: The patch of this PatchDocument.  # noqa: E501
         :type patch: list[PatchOperation]
         """
-        if (
-            self.local_vars_configuration.client_side_validation and patch is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `patch`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and patch is None:  # noqa: E501
+            raise ValueError("Invalid value for `patch`, must not be `None`")  # noqa: E501
 
         self._patch = patch
 
@@ -128,11 +126,15 @@ class PatchDocument(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

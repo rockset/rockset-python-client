@@ -35,13 +35,15 @@ class MongoDbIntegration(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
-    openapi_types = {"connection_uri": "str"}
+    openapi_types = {
+        'connection_uri': 'str'
+    }
 
-    attribute_map = {"connection_uri": "connection_uri"}
+    attribute_map = {
+        'connection_uri': 'connection_uri'
+    }
 
-    def __init__(
-        self, connection_uri=None, local_vars_configuration=None
-    ):  # noqa: E501
+    def __init__(self, connection_uri=None, local_vars_configuration=None):  # noqa: E501
         """MongoDbIntegration - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -72,13 +74,8 @@ class MongoDbIntegration(object):
         :param connection_uri: The connection_uri of this MongoDbIntegration.  # noqa: E501
         :type connection_uri: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation
-            and connection_uri is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `connection_uri`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and connection_uri is None:  # noqa: E501
+            raise ValueError("Invalid value for `connection_uri`, must not be `None`")  # noqa: E501
 
         self._connection_uri = connection_uri
 
@@ -100,11 +97,15 @@ class MongoDbIntegration(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

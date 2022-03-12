@@ -36,27 +36,20 @@ class PaginationInfo(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "current_page_doc_count": "int",
-        "next_cursor": "str",
-        "next_cursor_offset": "int",
-        "start_cursor": "str",
+        'current_page_doc_count': 'int',
+        'next_cursor': 'str',
+        'next_cursor_offset': 'int',
+        'start_cursor': 'str'
     }
 
     attribute_map = {
-        "current_page_doc_count": "current_page_doc_count",
-        "next_cursor": "next_cursor",
-        "next_cursor_offset": "next_cursor_offset",
-        "start_cursor": "start_cursor",
+        'current_page_doc_count': 'current_page_doc_count',
+        'next_cursor': 'next_cursor',
+        'next_cursor_offset': 'next_cursor_offset',
+        'start_cursor': 'start_cursor'
     }
 
-    def __init__(
-        self,
-        current_page_doc_count=None,
-        next_cursor=None,
-        next_cursor_offset=None,
-        start_cursor=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, current_page_doc_count=None, next_cursor=None, next_cursor_offset=None, start_cursor=None, local_vars_configuration=None):  # noqa: E501
         """PaginationInfo - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -187,11 +180,15 @@ class PaginationInfo(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

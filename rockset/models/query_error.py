@@ -35,13 +35,19 @@ class QueryError(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
-    openapi_types = {"message": "str", "status_code": "int", "type": "str"}
+    openapi_types = {
+        'message': 'str',
+        'status_code': 'int',
+        'type': 'str'
+    }
 
-    attribute_map = {"message": "message", "status_code": "status_code", "type": "type"}
+    attribute_map = {
+        'message': 'message',
+        'status_code': 'status_code',
+        'type': 'type'
+    }
 
-    def __init__(
-        self, message=None, status_code=None, type=None, local_vars_configuration=None
-    ):  # noqa: E501
+    def __init__(self, message=None, status_code=None, type=None, local_vars_configuration=None):  # noqa: E501
         """QueryError - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -146,11 +152,15 @@ class QueryError(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

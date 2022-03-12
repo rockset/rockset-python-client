@@ -36,24 +36,18 @@ class SourceMongoDb(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "collection_name": "str",
-        "database_name": "str",
-        "status": "StatusMongoDb",
+        'collection_name': 'str',
+        'database_name': 'str',
+        'status': 'StatusMongoDb'
     }
 
     attribute_map = {
-        "collection_name": "collection_name",
-        "database_name": "database_name",
-        "status": "status",
+        'collection_name': 'collection_name',
+        'database_name': 'database_name',
+        'status': 'status'
     }
 
-    def __init__(
-        self,
-        collection_name=None,
-        database_name=None,
-        status=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, collection_name=None, database_name=None, status=None, local_vars_configuration=None):  # noqa: E501
         """SourceMongoDb - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -89,13 +83,8 @@ class SourceMongoDb(object):
         :param collection_name: The collection_name of this SourceMongoDb.  # noqa: E501
         :type collection_name: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation
-            and collection_name is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `collection_name`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and collection_name is None:  # noqa: E501
+            raise ValueError("Invalid value for `collection_name`, must not be `None`")  # noqa: E501
 
         self._collection_name = collection_name
 
@@ -119,13 +108,8 @@ class SourceMongoDb(object):
         :param database_name: The database_name of this SourceMongoDb.  # noqa: E501
         :type database_name: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation
-            and database_name is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `database_name`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and database_name is None:  # noqa: E501
+            raise ValueError("Invalid value for `database_name`, must not be `None`")  # noqa: E501
 
         self._database_name = database_name
 
@@ -168,11 +152,15 @@ class SourceMongoDb(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

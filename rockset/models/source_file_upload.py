@@ -35,21 +35,19 @@ class SourceFileUpload(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
-    openapi_types = {"file_name": "str", "file_size": "int", "file_upload_time": "str"}
-
-    attribute_map = {
-        "file_name": "file_name",
-        "file_size": "file_size",
-        "file_upload_time": "file_upload_time",
+    openapi_types = {
+        'file_name': 'str',
+        'file_size': 'int',
+        'file_upload_time': 'str'
     }
 
-    def __init__(
-        self,
-        file_name=None,
-        file_size=None,
-        file_upload_time=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    attribute_map = {
+        'file_name': 'file_name',
+        'file_size': 'file_size',
+        'file_upload_time': 'file_upload_time'
+    }
+
+    def __init__(self, file_name=None, file_size=None, file_upload_time=None, local_vars_configuration=None):  # noqa: E501
         """SourceFileUpload - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -84,12 +82,8 @@ class SourceFileUpload(object):
         :param file_name: The file_name of this SourceFileUpload.  # noqa: E501
         :type file_name: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation and file_name is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `file_name`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and file_name is None:  # noqa: E501
+            raise ValueError("Invalid value for `file_name`, must not be `None`")  # noqa: E501
 
         self._file_name = file_name
 
@@ -113,12 +107,8 @@ class SourceFileUpload(object):
         :param file_size: The file_size of this SourceFileUpload.  # noqa: E501
         :type file_size: int
         """
-        if (
-            self.local_vars_configuration.client_side_validation and file_size is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `file_size`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and file_size is None:  # noqa: E501
+            raise ValueError("Invalid value for `file_size`, must not be `None`")  # noqa: E501
 
         self._file_size = file_size
 
@@ -142,13 +132,8 @@ class SourceFileUpload(object):
         :param file_upload_time: The file_upload_time of this SourceFileUpload.  # noqa: E501
         :type file_upload_time: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation
-            and file_upload_time is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `file_upload_time`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and file_upload_time is None:  # noqa: E501
+            raise ValueError("Invalid value for `file_upload_time`, must not be `None`")  # noqa: E501
 
         self._file_upload_time = file_upload_time
 
@@ -170,11 +155,15 @@ class SourceFileUpload(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

@@ -36,36 +36,26 @@ class ErrorModel(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "column": "int",
-        "error_id": "str",
-        "line": "int",
-        "message": "str",
-        "query_id": "str",
-        "trace_id": "str",
-        "type": "str",
+        'column': 'int',
+        'error_id': 'str',
+        'line': 'int',
+        'message': 'str',
+        'query_id': 'str',
+        'trace_id': 'str',
+        'type': 'str'
     }
 
     attribute_map = {
-        "column": "column",
-        "error_id": "error_id",
-        "line": "line",
-        "message": "message",
-        "query_id": "query_id",
-        "trace_id": "trace_id",
-        "type": "type",
+        'column': 'column',
+        'error_id': 'error_id',
+        'line': 'line',
+        'message': 'message',
+        'query_id': 'query_id',
+        'trace_id': 'trace_id',
+        'type': 'type'
     }
 
-    def __init__(
-        self,
-        column=None,
-        error_id=None,
-        line=None,
-        message=None,
-        query_id=None,
-        trace_id=None,
-        type=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, column=None, error_id=None, line=None, message=None, query_id=None, trace_id=None, type=None, local_vars_configuration=None):  # noqa: E501
         """ErrorModel - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -253,40 +243,11 @@ class ErrorModel(object):
         :param type: The type of this ErrorModel.  # noqa: E501
         :type type: str
         """
-        allowed_values = [
-            "AUTHEXCEPTION",
-            "VERSIONEXCEPTION",
-            "INTERNALERROR",
-            "INVALIDINPUT",
-            "NOTIMPLEMENTEDYET",
-            "RESOURCEEXCEEDED",
-            "ALREADYEXISTS",
-            "NOTALLOWED",
-            "NOTACCEPTABLE",
-            "NOTSUPPORTED",
-            "NOTFOUND",
-            "DEPENDENTRESOURCES",
-            "QUERY_ERROR",
-            "NOT_READY",
-            "FORBIDDEN",
-            "QUERY_TIMEOUT",
-            "ROLE_NOT_FOUND",
-            "CONNECTION_ERROR",
-            "CREATING",
-            "BADREQUEST",
-            "SERVICEUNAVAILABLE",
-            "RATELIMITEXCEEDED",
-            "QUERY_CANCELLED",
-            "CLIENT_CONNECTION_ERROR",
-        ]  # noqa: E501
-        if (
-            self.local_vars_configuration.client_side_validation
-            and type not in allowed_values
-        ):  # noqa: E501
+        allowed_values = ["AUTHEXCEPTION", "VERSIONEXCEPTION", "INTERNALERROR", "INVALIDINPUT", "NOTIMPLEMENTEDYET", "RESOURCEEXCEEDED", "ALREADYEXISTS", "NOTALLOWED", "NOTACCEPTABLE", "NOTSUPPORTED", "NOTFOUND", "DEPENDENTRESOURCES", "QUERY_ERROR", "NOT_READY", "FORBIDDEN", "QUERY_TIMEOUT", "ROLE_NOT_FOUND", "CONNECTION_ERROR", "CREATING", "BADREQUEST", "SERVICEUNAVAILABLE", "RATELIMITEXCEEDED", "QUERY_CANCELLED", "CLIENT_CONNECTION_ERROR"]  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and type not in allowed_values:  # noqa: E501
             raise ValueError(
-                "Invalid value for `type` ({0}), must be one of {1}".format(  # noqa: E501
-                    type, allowed_values
-                )
+                "Invalid value for `type` ({0}), must be one of {1}"  # noqa: E501
+                .format(type, allowed_values)
             )
 
         self._type = type
@@ -309,11 +270,15 @@ class ErrorModel(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

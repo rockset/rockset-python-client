@@ -36,33 +36,24 @@ class SourceDynamoDb(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "aws_region": "str",
-        "current_status": "StatusDynamoDbV2",
-        "rcu": "int",
-        "status": "StatusDynamoDb",
-        "table_name": "str",
-        "use_scan_api": "bool",
+        'aws_region': 'str',
+        'current_status': 'StatusDynamoDbV2',
+        'rcu': 'int',
+        'status': 'StatusDynamoDb',
+        'table_name': 'str',
+        'use_scan_api': 'bool'
     }
 
     attribute_map = {
-        "aws_region": "aws_region",
-        "current_status": "current_status",
-        "rcu": "rcu",
-        "status": "status",
-        "table_name": "table_name",
-        "use_scan_api": "use_scan_api",
+        'aws_region': 'aws_region',
+        'current_status': 'current_status',
+        'rcu': 'rcu',
+        'status': 'status',
+        'table_name': 'table_name',
+        'use_scan_api': 'use_scan_api'
     }
 
-    def __init__(
-        self,
-        aws_region=None,
-        current_status=None,
-        rcu=None,
-        status=None,
-        table_name=None,
-        use_scan_api=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, aws_region=None, current_status=None, rcu=None, status=None, table_name=None, use_scan_api=None, local_vars_configuration=None):  # noqa: E501
         """SourceDynamoDb - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -196,12 +187,8 @@ class SourceDynamoDb(object):
         :param table_name: The table_name of this SourceDynamoDb.  # noqa: E501
         :type table_name: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation and table_name is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `table_name`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and table_name is None:  # noqa: E501
+            raise ValueError("Invalid value for `table_name`, must not be `None`")  # noqa: E501
 
         self._table_name = table_name
 
@@ -246,11 +233,15 @@ class SourceDynamoDb(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

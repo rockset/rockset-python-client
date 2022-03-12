@@ -36,33 +36,24 @@ class SourceAzureBlobStorage(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "blob_bytes_total": "int",
-        "blob_count_downloaded": "int",
-        "blob_count_total": "int",
-        "container": "str",
-        "pattern": "str",
-        "prefix": "str",
+        'blob_bytes_total': 'int',
+        'blob_count_downloaded': 'int',
+        'blob_count_total': 'int',
+        'container': 'str',
+        'pattern': 'str',
+        'prefix': 'str'
     }
 
     attribute_map = {
-        "blob_bytes_total": "blob_bytes_total",
-        "blob_count_downloaded": "blob_count_downloaded",
-        "blob_count_total": "blob_count_total",
-        "container": "container",
-        "pattern": "pattern",
-        "prefix": "prefix",
+        'blob_bytes_total': 'blob_bytes_total',
+        'blob_count_downloaded': 'blob_count_downloaded',
+        'blob_count_total': 'blob_count_total',
+        'container': 'container',
+        'pattern': 'pattern',
+        'prefix': 'prefix'
     }
 
-    def __init__(
-        self,
-        blob_bytes_total=None,
-        blob_count_downloaded=None,
-        blob_count_total=None,
-        container=None,
-        pattern=None,
-        prefix=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, blob_bytes_total=None, blob_count_downloaded=None, blob_count_total=None, container=None, pattern=None, prefix=None, local_vars_configuration=None):  # noqa: E501
         """SourceAzureBlobStorage - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -239,11 +230,15 @@ class SourceAzureBlobStorage(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

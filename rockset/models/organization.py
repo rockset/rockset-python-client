@@ -36,36 +36,26 @@ class Organization(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "clusters": "list[Cluster]",
-        "created_at": "str",
-        "deletion_scheduled_at": "str",
-        "display_name": "str",
-        "external_id": "str",
-        "id": "str",
-        "rockset_user": "str",
+        'clusters': 'list[Cluster]',
+        'created_at': 'str',
+        'deletion_scheduled_at': 'str',
+        'display_name': 'str',
+        'external_id': 'str',
+        'id': 'str',
+        'rockset_user': 'str'
     }
 
     attribute_map = {
-        "clusters": "clusters",
-        "created_at": "created_at",
-        "deletion_scheduled_at": "deletionScheduledAt",
-        "display_name": "display_name",
-        "external_id": "external_id",
-        "id": "id",
-        "rockset_user": "rockset_user",
+        'clusters': 'clusters',
+        'created_at': 'created_at',
+        'deletion_scheduled_at': 'deletionScheduledAt',
+        'display_name': 'display_name',
+        'external_id': 'external_id',
+        'id': 'id',
+        'rockset_user': 'rockset_user'
     }
 
-    def __init__(
-        self,
-        clusters=None,
-        created_at=None,
-        deletion_scheduled_at=None,
-        display_name=None,
-        external_id=None,
-        id=None,
-        rockset_user=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, clusters=None, created_at=None, deletion_scheduled_at=None, display_name=None, external_id=None, id=None, rockset_user=None, local_vars_configuration=None):  # noqa: E501
         """Organization - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -272,11 +262,15 @@ class Organization(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

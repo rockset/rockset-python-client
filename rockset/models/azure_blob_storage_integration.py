@@ -35,13 +35,15 @@ class AzureBlobStorageIntegration(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
-    openapi_types = {"connection_string": "str"}
+    openapi_types = {
+        'connection_string': 'str'
+    }
 
-    attribute_map = {"connection_string": "connection_string"}
+    attribute_map = {
+        'connection_string': 'connection_string'
+    }
 
-    def __init__(
-        self, connection_string=None, local_vars_configuration=None
-    ):  # noqa: E501
+    def __init__(self, connection_string=None, local_vars_configuration=None):  # noqa: E501
         """AzureBlobStorageIntegration - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -72,13 +74,8 @@ class AzureBlobStorageIntegration(object):
         :param connection_string: The connection_string of this AzureBlobStorageIntegration.  # noqa: E501
         :type connection_string: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation
-            and connection_string is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `connection_string`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and connection_string is None:  # noqa: E501
+            raise ValueError("Invalid value for `connection_string`, must not be `None`")  # noqa: E501
 
         self._connection_string = connection_string
 
@@ -100,11 +97,15 @@ class AzureBlobStorageIntegration(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

@@ -35,9 +35,13 @@ class AwsRole(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
-    openapi_types = {"aws_role_arn": "str"}
+    openapi_types = {
+        'aws_role_arn': 'str'
+    }
 
-    attribute_map = {"aws_role_arn": "aws_role_arn"}
+    attribute_map = {
+        'aws_role_arn': 'aws_role_arn'
+    }
 
     def __init__(self, aws_role_arn=None, local_vars_configuration=None):  # noqa: E501
         """AwsRole - a model defined in OpenAPI"""  # noqa: E501
@@ -70,13 +74,8 @@ class AwsRole(object):
         :param aws_role_arn: The aws_role_arn of this AwsRole.  # noqa: E501
         :type aws_role_arn: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation
-            and aws_role_arn is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `aws_role_arn`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and aws_role_arn is None:  # noqa: E501
+            raise ValueError("Invalid value for `aws_role_arn`, must not be `None`")  # noqa: E501
 
         self._aws_role_arn = aws_role_arn
 
@@ -98,11 +97,15 @@ class AwsRole(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

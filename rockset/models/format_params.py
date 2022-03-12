@@ -36,30 +36,22 @@ class FormatParams(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "csv": "CsvParams",
-        "json": "bool",
-        "mysql_dms": "bool",
-        "postgres_dms": "bool",
-        "xml": "XmlParams",
+        'csv': 'CsvParams',
+        'json': 'bool',
+        'mysql_dms': 'bool',
+        'postgres_dms': 'bool',
+        'xml': 'XmlParams'
     }
 
     attribute_map = {
-        "csv": "csv",
-        "json": "json",
-        "mysql_dms": "mysql_dms",
-        "postgres_dms": "postgres_dms",
-        "xml": "xml",
+        'csv': 'csv',
+        'json': 'json',
+        'mysql_dms': 'mysql_dms',
+        'postgres_dms': 'postgres_dms',
+        'xml': 'xml'
     }
 
-    def __init__(
-        self,
-        csv=None,
-        json=None,
-        mysql_dms=None,
-        postgres_dms=None,
-        xml=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, csv=None, json=None, mysql_dms=None, postgres_dms=None, xml=None, local_vars_configuration=None):  # noqa: E501
         """FormatParams - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -208,11 +200,15 @@ class FormatParams(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

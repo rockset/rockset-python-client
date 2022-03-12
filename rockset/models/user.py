@@ -36,33 +36,24 @@ class User(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "created_at": "str",
-        "email": "str",
-        "first_name": "str",
-        "last_name": "str",
-        "roles": "list[str]",
-        "state": "str",
+        'created_at': 'str',
+        'email': 'str',
+        'first_name': 'str',
+        'last_name': 'str',
+        'roles': 'list[str]',
+        'state': 'str'
     }
 
     attribute_map = {
-        "created_at": "created_at",
-        "email": "email",
-        "first_name": "first_name",
-        "last_name": "last_name",
-        "roles": "roles",
-        "state": "state",
+        'created_at': 'created_at',
+        'email': 'email',
+        'first_name': 'first_name',
+        'last_name': 'last_name',
+        'roles': 'roles',
+        'state': 'state'
     }
 
-    def __init__(
-        self,
-        created_at=None,
-        email=None,
-        first_name=None,
-        last_name=None,
-        roles=None,
-        state=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, created_at=None, email=None, first_name=None, last_name=None, roles=None, state=None, local_vars_configuration=None):  # noqa: E501
         """User - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -131,12 +122,8 @@ class User(object):
         :param email: The email of this User.  # noqa: E501
         :type email: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation and email is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `email`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and email is None:  # noqa: E501
+            raise ValueError("Invalid value for `email`, must not be `None`")  # noqa: E501
 
         self._email = email
 
@@ -250,11 +237,15 @@ class User(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

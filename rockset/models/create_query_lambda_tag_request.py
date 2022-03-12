@@ -35,13 +35,17 @@ class CreateQueryLambdaTagRequest(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
-    openapi_types = {"tag_name": "str", "version": "str"}
+    openapi_types = {
+        'tag_name': 'str',
+        'version': 'str'
+    }
 
-    attribute_map = {"tag_name": "tag_name", "version": "version"}
+    attribute_map = {
+        'tag_name': 'tag_name',
+        'version': 'version'
+    }
 
-    def __init__(
-        self, tag_name=None, version=None, local_vars_configuration=None
-    ):  # noqa: E501
+    def __init__(self, tag_name=None, version=None, local_vars_configuration=None):  # noqa: E501
         """CreateQueryLambdaTagRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -74,12 +78,8 @@ class CreateQueryLambdaTagRequest(object):
         :param tag_name: The tag_name of this CreateQueryLambdaTagRequest.  # noqa: E501
         :type tag_name: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation and tag_name is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `tag_name`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and tag_name is None:  # noqa: E501
+            raise ValueError("Invalid value for `tag_name`, must not be `None`")  # noqa: E501
 
         self._tag_name = tag_name
 
@@ -103,12 +103,8 @@ class CreateQueryLambdaTagRequest(object):
         :param version: The version of this CreateQueryLambdaTagRequest.  # noqa: E501
         :type version: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation and version is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `version`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and version is None:  # noqa: E501
+            raise ValueError("Invalid value for `version`, must not be `None`")  # noqa: E501
 
         self._version = version
 
@@ -130,11 +126,15 @@ class CreateQueryLambdaTagRequest(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

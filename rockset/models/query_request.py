@@ -35,9 +35,13 @@ class QueryRequest(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
-    openapi_types = {"sql": "QueryRequestSql"}
+    openapi_types = {
+        'sql': 'QueryRequestSql'
+    }
 
-    attribute_map = {"sql": "sql"}
+    attribute_map = {
+        'sql': 'sql'
+    }
 
     def __init__(self, sql=None, local_vars_configuration=None):  # noqa: E501
         """QueryRequest - a model defined in OpenAPI"""  # noqa: E501
@@ -68,12 +72,8 @@ class QueryRequest(object):
         :param sql: The sql of this QueryRequest.  # noqa: E501
         :type sql: QueryRequestSql
         """
-        if (
-            self.local_vars_configuration.client_side_validation and sql is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `sql`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and sql is None:  # noqa: E501
+            raise ValueError("Invalid value for `sql`, must not be `None`")  # noqa: E501
 
         self._sql = sql
 
@@ -95,11 +95,15 @@ class QueryRequest(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

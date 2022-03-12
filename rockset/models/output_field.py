@@ -35,17 +35,19 @@ class OutputField(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
-    openapi_types = {"field_name": "str", "on_error": "str", "value": "SqlExpression"}
-
-    attribute_map = {
-        "field_name": "field_name",
-        "on_error": "on_error",
-        "value": "value",
+    openapi_types = {
+        'field_name': 'str',
+        'on_error': 'str',
+        'value': 'SqlExpression'
     }
 
-    def __init__(
-        self, field_name=None, on_error=None, value=None, local_vars_configuration=None
-    ):  # noqa: E501
+    attribute_map = {
+        'field_name': 'field_name',
+        'on_error': 'on_error',
+        'value': 'value'
+    }
+
+    def __init__(self, field_name=None, on_error=None, value=None, local_vars_configuration=None):  # noqa: E501
         """OutputField - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -107,14 +109,10 @@ class OutputField(object):
         :type on_error: str
         """
         allowed_values = ["SKIP", "FAIL"]  # noqa: E501
-        if (
-            self.local_vars_configuration.client_side_validation
-            and on_error not in allowed_values
-        ):  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and on_error not in allowed_values:  # noqa: E501
             raise ValueError(
-                "Invalid value for `on_error` ({0}), must be one of {1}".format(  # noqa: E501
-                    on_error, allowed_values
-                )
+                "Invalid value for `on_error` ({0}), must be one of {1}"  # noqa: E501
+                .format(on_error, allowed_values)
             )
 
         self._on_error = on_error
@@ -158,11 +156,15 @@ class OutputField(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

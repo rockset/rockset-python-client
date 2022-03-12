@@ -36,27 +36,20 @@ class FieldOptions(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "column_index_mode": "str",
-        "index_mode": "str",
-        "range_index_mode": "str",
-        "type_index_mode": "str",
+        'column_index_mode': 'str',
+        'index_mode': 'str',
+        'range_index_mode': 'str',
+        'type_index_mode': 'str'
     }
 
     attribute_map = {
-        "column_index_mode": "column_index_mode",
-        "index_mode": "index_mode",
-        "range_index_mode": "range_index_mode",
-        "type_index_mode": "type_index_mode",
+        'column_index_mode': 'column_index_mode',
+        'index_mode': 'index_mode',
+        'range_index_mode': 'range_index_mode',
+        'type_index_mode': 'type_index_mode'
     }
 
-    def __init__(
-        self,
-        column_index_mode=None,
-        index_mode=None,
-        range_index_mode=None,
-        type_index_mode=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, column_index_mode=None, index_mode=None, range_index_mode=None, type_index_mode=None, local_vars_configuration=None):  # noqa: E501
         """FieldOptions - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -187,11 +180,15 @@ class FieldOptions(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

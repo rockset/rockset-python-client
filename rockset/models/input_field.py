@@ -36,27 +36,20 @@ class InputField(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "field_name": "str",
-        "if_missing": "str",
-        "is_drop": "bool",
-        "param": "str",
+        'field_name': 'str',
+        'if_missing': 'str',
+        'is_drop': 'bool',
+        'param': 'str'
     }
 
     attribute_map = {
-        "field_name": "field_name",
-        "if_missing": "if_missing",
-        "is_drop": "is_drop",
-        "param": "param",
+        'field_name': 'field_name',
+        'if_missing': 'if_missing',
+        'is_drop': 'is_drop',
+        'param': 'param'
     }
 
-    def __init__(
-        self,
-        field_name=None,
-        if_missing=None,
-        is_drop=None,
-        param=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, field_name=None, if_missing=None, is_drop=None, param=None, local_vars_configuration=None):  # noqa: E501
         """InputField - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -121,14 +114,10 @@ class InputField(object):
         :type if_missing: str
         """
         allowed_values = ["SKIP", "PASS"]  # noqa: E501
-        if (
-            self.local_vars_configuration.client_side_validation
-            and if_missing not in allowed_values
-        ):  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and if_missing not in allowed_values:  # noqa: E501
             raise ValueError(
-                "Invalid value for `if_missing` ({0}), must be one of {1}".format(  # noqa: E501
-                    if_missing, allowed_values
-                )
+                "Invalid value for `if_missing` ({0}), must be one of {1}"  # noqa: E501
+                .format(if_missing, allowed_values)
             )
 
         self._if_missing = if_missing
@@ -197,11 +186,15 @@ class InputField(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

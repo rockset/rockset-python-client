@@ -36,48 +36,34 @@ class VirtualInstance(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "current_size": "str",
-        "current_type": "str",
-        "default_pod_count": "int",
-        "desired_size": "str",
-        "desired_type": "str",
-        "estimated_switch_duration_minutes": "int",
-        "id": "str",
-        "last_updated": "str",
-        "monitoring_enabled": "bool",
-        "scaled_pod_count": "int",
-        "state": "str",
+        'current_size': 'str',
+        'current_type': 'str',
+        'default_pod_count': 'int',
+        'desired_size': 'str',
+        'desired_type': 'str',
+        'estimated_switch_duration_minutes': 'int',
+        'id': 'str',
+        'last_updated': 'str',
+        'monitoring_enabled': 'bool',
+        'scaled_pod_count': 'int',
+        'state': 'str'
     }
 
     attribute_map = {
-        "current_size": "current_size",
-        "current_type": "current_type",
-        "default_pod_count": "default_pod_count",
-        "desired_size": "desired_size",
-        "desired_type": "desired_type",
-        "estimated_switch_duration_minutes": "estimated_switch_duration_minutes",
-        "id": "id",
-        "last_updated": "last_updated",
-        "monitoring_enabled": "monitoring_enabled",
-        "scaled_pod_count": "scaled_pod_count",
-        "state": "state",
+        'current_size': 'current_size',
+        'current_type': 'current_type',
+        'default_pod_count': 'default_pod_count',
+        'desired_size': 'desired_size',
+        'desired_type': 'desired_type',
+        'estimated_switch_duration_minutes': 'estimated_switch_duration_minutes',
+        'id': 'id',
+        'last_updated': 'last_updated',
+        'monitoring_enabled': 'monitoring_enabled',
+        'scaled_pod_count': 'scaled_pod_count',
+        'state': 'state'
     }
 
-    def __init__(
-        self,
-        current_size=None,
-        current_type=None,
-        default_pod_count=None,
-        desired_size=None,
-        desired_type=None,
-        estimated_switch_duration_minutes=None,
-        id=None,
-        last_updated=None,
-        monitoring_enabled=None,
-        scaled_pod_count=None,
-        state=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, current_size=None, current_type=None, default_pod_count=None, desired_size=None, desired_type=None, estimated_switch_duration_minutes=None, id=None, last_updated=None, monitoring_enabled=None, scaled_pod_count=None, state=None, local_vars_configuration=None):  # noqa: E501
         """VirtualInstance - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -139,26 +125,11 @@ class VirtualInstance(object):
         :param current_size: The current_size of this VirtualInstance.  # noqa: E501
         :type current_size: str
         """
-        allowed_values = [
-            "FREE",
-            "SHARED",
-            "SMALL",
-            "MEDIUM",
-            "LARGE",
-            "XLARGE",
-            "XLARGE2",
-            "XLARGE4",
-            "XLARGE8",
-            "XLARGE16",
-        ]  # noqa: E501
-        if (
-            self.local_vars_configuration.client_side_validation
-            and current_size not in allowed_values
-        ):  # noqa: E501
+        allowed_values = ["FREE", "SHARED", "SMALL", "MEDIUM", "LARGE", "XLARGE", "XLARGE2", "XLARGE4", "XLARGE8", "XLARGE16"]  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and current_size not in allowed_values:  # noqa: E501
             raise ValueError(
-                "Invalid value for `current_size` ({0}), must be one of {1}".format(  # noqa: E501
-                    current_size, allowed_values
-                )
+                "Invalid value for `current_size` ({0}), must be one of {1}"  # noqa: E501
+                .format(current_size, allowed_values)
             )
 
         self._current_size = current_size
@@ -181,26 +152,11 @@ class VirtualInstance(object):
         :param current_type: The current_type of this VirtualInstance.  # noqa: E501
         :type current_type: str
         """
-        allowed_values = [
-            "FREE",
-            "SHARED",
-            "SMALL",
-            "MEDIUM",
-            "LARGE",
-            "XLARGE",
-            "XLARGE2",
-            "XLARGE4",
-            "XLARGE8",
-            "XLARGE16",
-        ]  # noqa: E501
-        if (
-            self.local_vars_configuration.client_side_validation
-            and current_type not in allowed_values
-        ):  # noqa: E501
+        allowed_values = ["FREE", "SHARED", "SMALL", "MEDIUM", "LARGE", "XLARGE", "XLARGE2", "XLARGE4", "XLARGE8", "XLARGE16"]  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and current_type not in allowed_values:  # noqa: E501
             raise ValueError(
-                "Invalid value for `current_type` ({0}), must be one of {1}".format(  # noqa: E501
-                    current_type, allowed_values
-                )
+                "Invalid value for `current_type` ({0}), must be one of {1}"  # noqa: E501
+                .format(current_type, allowed_values)
             )
 
         self._current_type = current_type
@@ -246,26 +202,11 @@ class VirtualInstance(object):
         :param desired_size: The desired_size of this VirtualInstance.  # noqa: E501
         :type desired_size: str
         """
-        allowed_values = [
-            "FREE",
-            "SHARED",
-            "SMALL",
-            "MEDIUM",
-            "LARGE",
-            "XLARGE",
-            "XLARGE2",
-            "XLARGE4",
-            "XLARGE8",
-            "XLARGE16",
-        ]  # noqa: E501
-        if (
-            self.local_vars_configuration.client_side_validation
-            and desired_size not in allowed_values
-        ):  # noqa: E501
+        allowed_values = ["FREE", "SHARED", "SMALL", "MEDIUM", "LARGE", "XLARGE", "XLARGE2", "XLARGE4", "XLARGE8", "XLARGE16"]  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and desired_size not in allowed_values:  # noqa: E501
             raise ValueError(
-                "Invalid value for `desired_size` ({0}), must be one of {1}".format(  # noqa: E501
-                    desired_size, allowed_values
-                )
+                "Invalid value for `desired_size` ({0}), must be one of {1}"  # noqa: E501
+                .format(desired_size, allowed_values)
             )
 
         self._desired_size = desired_size
@@ -288,26 +229,11 @@ class VirtualInstance(object):
         :param desired_type: The desired_type of this VirtualInstance.  # noqa: E501
         :type desired_type: str
         """
-        allowed_values = [
-            "FREE",
-            "SHARED",
-            "SMALL",
-            "MEDIUM",
-            "LARGE",
-            "XLARGE",
-            "XLARGE2",
-            "XLARGE4",
-            "XLARGE8",
-            "XLARGE16",
-        ]  # noqa: E501
-        if (
-            self.local_vars_configuration.client_side_validation
-            and desired_type not in allowed_values
-        ):  # noqa: E501
+        allowed_values = ["FREE", "SHARED", "SMALL", "MEDIUM", "LARGE", "XLARGE", "XLARGE2", "XLARGE4", "XLARGE8", "XLARGE16"]  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and desired_type not in allowed_values:  # noqa: E501
             raise ValueError(
-                "Invalid value for `desired_type` ({0}), must be one of {1}".format(  # noqa: E501
-                    desired_type, allowed_values
-                )
+                "Invalid value for `desired_type` ({0}), must be one of {1}"  # noqa: E501
+                .format(desired_type, allowed_values)
             )
 
         self._desired_type = desired_type
@@ -443,20 +369,11 @@ class VirtualInstance(object):
         :param state: The state of this VirtualInstance.  # noqa: E501
         :type state: str
         """
-        allowed_values = [
-            "PROVISIONING_RESOURCES",
-            "REBALANCING_COLLECTIONS",
-            "ACTIVE",
-            "DELETED",
-        ]  # noqa: E501
-        if (
-            self.local_vars_configuration.client_side_validation
-            and state not in allowed_values
-        ):  # noqa: E501
+        allowed_values = ["PROVISIONING_RESOURCES", "REBALANCING_COLLECTIONS", "ACTIVE", "DELETED"]  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and state not in allowed_values:  # noqa: E501
             raise ValueError(
-                "Invalid value for `state` ({0}), must be one of {1}".format(  # noqa: E501
-                    state, allowed_values
-                )
+                "Invalid value for `state` ({0}), must be one of {1}"  # noqa: E501
+                .format(state, allowed_values)
             )
 
         self._state = state
@@ -479,11 +396,15 @@ class VirtualInstance(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

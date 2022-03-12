@@ -36,30 +36,22 @@ class InvertedIndexGroupEncodingOptions(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "doc_id_codec": "str",
-        "event_time_codec": "str",
-        "format_version": "int",
-        "group_size": "int",
-        "restart_length": "int",
+        'doc_id_codec': 'str',
+        'event_time_codec': 'str',
+        'format_version': 'int',
+        'group_size': 'int',
+        'restart_length': 'int'
     }
 
     attribute_map = {
-        "doc_id_codec": "doc_id_codec",
-        "event_time_codec": "event_time_codec",
-        "format_version": "format_version",
-        "group_size": "group_size",
-        "restart_length": "restart_length",
+        'doc_id_codec': 'doc_id_codec',
+        'event_time_codec': 'event_time_codec',
+        'format_version': 'format_version',
+        'group_size': 'group_size',
+        'restart_length': 'restart_length'
     }
 
-    def __init__(
-        self,
-        doc_id_codec=None,
-        event_time_codec=None,
-        format_version=None,
-        group_size=None,
-        restart_length=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, doc_id_codec=None, event_time_codec=None, format_version=None, group_size=None, restart_length=None, local_vars_configuration=None):  # noqa: E501
         """InvertedIndexGroupEncodingOptions - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -206,11 +198,15 @@ class InvertedIndexGroupEncodingOptions(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

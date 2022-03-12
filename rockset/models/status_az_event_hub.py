@@ -36,27 +36,20 @@ class StatusAzEventHub(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "last_consumed_time": "str",
-        "num_documents_processed": "int",
-        "partitions": "list[StatusAzEventHubPartition]",
-        "state": "str",
+        'last_consumed_time': 'str',
+        'num_documents_processed': 'int',
+        'partitions': 'list[StatusAzEventHubPartition]',
+        'state': 'str'
     }
 
     attribute_map = {
-        "last_consumed_time": "last_consumed_time",
-        "num_documents_processed": "num_documents_processed",
-        "partitions": "partitions",
-        "state": "state",
+        'last_consumed_time': 'last_consumed_time',
+        'num_documents_processed': 'num_documents_processed',
+        'partitions': 'partitions',
+        'state': 'state'
     }
 
-    def __init__(
-        self,
-        last_consumed_time=None,
-        num_documents_processed=None,
-        partitions=None,
-        state=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, last_consumed_time=None, num_documents_processed=None, partitions=None, state=None, local_vars_configuration=None):  # noqa: E501
         """StatusAzEventHub - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -167,14 +160,10 @@ class StatusAzEventHub(object):
         :type state: str
         """
         allowed_values = ["NO_DOCS_YET", "ACTIVE", "DORMANT"]  # noqa: E501
-        if (
-            self.local_vars_configuration.client_side_validation
-            and state not in allowed_values
-        ):  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and state not in allowed_values:  # noqa: E501
             raise ValueError(
-                "Invalid value for `state` ({0}), must be one of {1}".format(  # noqa: E501
-                    state, allowed_values
-                )
+                "Invalid value for `state` ({0}), must be one of {1}"  # noqa: E501
+                .format(state, allowed_values)
             )
 
         self._state = state
@@ -197,11 +186,15 @@ class StatusAzEventHub(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

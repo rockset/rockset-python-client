@@ -36,30 +36,22 @@ class XmlParams(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "attribute_prefix": "str",
-        "doc_tag": "str",
-        "encoding": "str",
-        "root_tag": "str",
-        "value_tag": "str",
+        'attribute_prefix': 'str',
+        'doc_tag': 'str',
+        'encoding': 'str',
+        'root_tag': 'str',
+        'value_tag': 'str'
     }
 
     attribute_map = {
-        "attribute_prefix": "attribute_prefix",
-        "doc_tag": "doc_tag",
-        "encoding": "encoding",
-        "root_tag": "root_tag",
-        "value_tag": "value_tag",
+        'attribute_prefix': 'attribute_prefix',
+        'doc_tag': 'doc_tag',
+        'encoding': 'encoding',
+        'root_tag': 'root_tag',
+        'value_tag': 'value_tag'
     }
 
-    def __init__(
-        self,
-        attribute_prefix=None,
-        doc_tag=None,
-        encoding=None,
-        root_tag=None,
-        value_tag=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, attribute_prefix=None, doc_tag=None, encoding=None, root_tag=None, value_tag=None, local_vars_configuration=None):  # noqa: E501
         """XmlParams - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -216,11 +208,15 @@ class XmlParams(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

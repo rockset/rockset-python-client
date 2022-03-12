@@ -36,24 +36,18 @@ class DynamodbIntegration(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "aws_access_key": "AwsAccessKey",
-        "aws_role": "AwsRole",
-        "s3_export_bucket_name": "str",
+        'aws_access_key': 'AwsAccessKey',
+        'aws_role': 'AwsRole',
+        's3_export_bucket_name': 'str'
     }
 
     attribute_map = {
-        "aws_access_key": "aws_access_key",
-        "aws_role": "aws_role",
-        "s3_export_bucket_name": "s3_export_bucket_name",
+        'aws_access_key': 'aws_access_key',
+        'aws_role': 'aws_role',
+        's3_export_bucket_name': 's3_export_bucket_name'
     }
 
-    def __init__(
-        self,
-        aws_access_key=None,
-        aws_role=None,
-        s3_export_bucket_name=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, aws_access_key=None, aws_role=None, s3_export_bucket_name=None, local_vars_configuration=None):  # noqa: E501
         """DynamodbIntegration - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -152,11 +146,15 @@ class DynamodbIntegration(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

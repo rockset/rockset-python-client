@@ -36,51 +36,36 @@ class CreateIntegrationRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "azure_blob_storage": "AzureBlobStorageIntegration",
-        "azure_event_hub": "AzEventHubIntegration",
-        "description": "str",
-        "dynamodb": "DynamodbIntegration",
-        "gcs": "GcsIntegration",
-        "kafka": "KafkaIntegration",
-        "kinesis": "KinesisIntegration",
-        "mongodb": "MongoDbIntegration",
-        "name": "str",
-        "redshift": "RedshiftIntegration",
-        "s3": "S3Integration",
-        "segment": "SegmentIntegration",
+        'azure_blob_storage': 'AzureBlobStorageIntegration',
+        'azure_event_hub': 'AzEventHubIntegration',
+        'description': 'str',
+        'dynamodb': 'DynamodbIntegration',
+        'gcs': 'GcsIntegration',
+        'kafka': 'KafkaIntegration',
+        'kinesis': 'KinesisIntegration',
+        'mongodb': 'MongoDbIntegration',
+        'name': 'str',
+        'redshift': 'RedshiftIntegration',
+        's3': 'S3Integration',
+        'segment': 'SegmentIntegration'
     }
 
     attribute_map = {
-        "azure_blob_storage": "azure_blob_storage",
-        "azure_event_hub": "azure_event_hub",
-        "description": "description",
-        "dynamodb": "dynamodb",
-        "gcs": "gcs",
-        "kafka": "kafka",
-        "kinesis": "kinesis",
-        "mongodb": "mongodb",
-        "name": "name",
-        "redshift": "redshift",
-        "s3": "s3",
-        "segment": "segment",
+        'azure_blob_storage': 'azure_blob_storage',
+        'azure_event_hub': 'azure_event_hub',
+        'description': 'description',
+        'dynamodb': 'dynamodb',
+        'gcs': 'gcs',
+        'kafka': 'kafka',
+        'kinesis': 'kinesis',
+        'mongodb': 'mongodb',
+        'name': 'name',
+        'redshift': 'redshift',
+        's3': 's3',
+        'segment': 'segment'
     }
 
-    def __init__(
-        self,
-        azure_blob_storage=None,
-        azure_event_hub=None,
-        description=None,
-        dynamodb=None,
-        gcs=None,
-        kafka=None,
-        kinesis=None,
-        mongodb=None,
-        name=None,
-        redshift=None,
-        s3=None,
-        segment=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, azure_blob_storage=None, azure_event_hub=None, description=None, dynamodb=None, gcs=None, kafka=None, kinesis=None, mongodb=None, name=None, redshift=None, s3=None, segment=None, local_vars_configuration=None):  # noqa: E501
         """CreateIntegrationRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -314,12 +299,8 @@ class CreateIntegrationRequest(object):
         :param name: The name of this CreateIntegrationRequest.  # noqa: E501
         :type name: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation and name is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `name`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
+            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -404,11 +385,15 @@ class CreateIntegrationRequest(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

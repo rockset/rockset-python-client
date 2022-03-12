@@ -36,27 +36,20 @@ class SourceKinesis(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "aws_region": "str",
-        "dms_primary_key": "list[str]",
-        "offset_reset_policy": "str",
-        "stream_name": "str",
+        'aws_region': 'str',
+        'dms_primary_key': 'list[str]',
+        'offset_reset_policy': 'str',
+        'stream_name': 'str'
     }
 
     attribute_map = {
-        "aws_region": "aws_region",
-        "dms_primary_key": "dms_primary_key",
-        "offset_reset_policy": "offset_reset_policy",
-        "stream_name": "stream_name",
+        'aws_region': 'aws_region',
+        'dms_primary_key': 'dms_primary_key',
+        'offset_reset_policy': 'offset_reset_policy',
+        'stream_name': 'stream_name'
     }
 
-    def __init__(
-        self,
-        aws_region=None,
-        dms_primary_key=None,
-        offset_reset_policy=None,
-        stream_name=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, aws_region=None, dms_primary_key=None, offset_reset_policy=None, stream_name=None, local_vars_configuration=None):  # noqa: E501
         """SourceKinesis - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -143,14 +136,10 @@ class SourceKinesis(object):
         :type offset_reset_policy: str
         """
         allowed_values = ["LATEST", "EARLIEST"]  # noqa: E501
-        if (
-            self.local_vars_configuration.client_side_validation
-            and offset_reset_policy not in allowed_values
-        ):  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and offset_reset_policy not in allowed_values:  # noqa: E501
             raise ValueError(
-                "Invalid value for `offset_reset_policy` ({0}), must be one of {1}".format(  # noqa: E501
-                    offset_reset_policy, allowed_values
-                )
+                "Invalid value for `offset_reset_policy` ({0}), must be one of {1}"  # noqa: E501
+                .format(offset_reset_policy, allowed_values)
             )
 
         self._offset_reset_policy = offset_reset_policy
@@ -175,12 +164,8 @@ class SourceKinesis(object):
         :param stream_name: The stream_name of this SourceKinesis.  # noqa: E501
         :type stream_name: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation and stream_name is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `stream_name`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and stream_name is None:  # noqa: E501
+            raise ValueError("Invalid value for `stream_name`, must not be `None`")  # noqa: E501
 
         self._stream_name = stream_name
 
@@ -202,11 +187,15 @@ class SourceKinesis(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

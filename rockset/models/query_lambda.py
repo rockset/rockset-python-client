@@ -36,36 +36,26 @@ class QueryLambda(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "collections": "list[str]",
-        "last_updated": "str",
-        "last_updated_by": "str",
-        "latest_version": "QueryLambdaVersion",
-        "name": "str",
-        "version_count": "int",
-        "workspace": "str",
+        'collections': 'list[str]',
+        'last_updated': 'str',
+        'last_updated_by': 'str',
+        'latest_version': 'QueryLambdaVersion',
+        'name': 'str',
+        'version_count': 'int',
+        'workspace': 'str'
     }
 
     attribute_map = {
-        "collections": "collections",
-        "last_updated": "last_updated",
-        "last_updated_by": "last_updated_by",
-        "latest_version": "latest_version",
-        "name": "name",
-        "version_count": "version_count",
-        "workspace": "workspace",
+        'collections': 'collections',
+        'last_updated': 'last_updated',
+        'last_updated_by': 'last_updated_by',
+        'latest_version': 'latest_version',
+        'name': 'name',
+        'version_count': 'version_count',
+        'workspace': 'workspace'
     }
 
-    def __init__(
-        self,
-        collections=None,
-        last_updated=None,
-        last_updated_by=None,
-        latest_version=None,
-        name=None,
-        version_count=None,
-        workspace=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, collections=None, last_updated=None, last_updated_by=None, latest_version=None, name=None, version_count=None, workspace=None, local_vars_configuration=None):  # noqa: E501
         """QueryLambda - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -272,11 +262,15 @@ class QueryLambda(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

@@ -36,30 +36,22 @@ class Status(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "last_processed_at": "str",
-        "last_processed_item": "str",
-        "message": "str",
-        "state": "str",
-        "total_processed_items": "int",
+        'last_processed_at': 'str',
+        'last_processed_item': 'str',
+        'message': 'str',
+        'state': 'str',
+        'total_processed_items': 'int'
     }
 
     attribute_map = {
-        "last_processed_at": "last_processed_at",
-        "last_processed_item": "last_processed_item",
-        "message": "message",
-        "state": "state",
-        "total_processed_items": "total_processed_items",
+        'last_processed_at': 'last_processed_at',
+        'last_processed_item': 'last_processed_item',
+        'message': 'message',
+        'state': 'state',
+        'total_processed_items': 'total_processed_items'
     }
 
-    def __init__(
-        self,
-        last_processed_at=None,
-        last_processed_item=None,
-        message=None,
-        state=None,
-        total_processed_items=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, last_processed_at=None, last_processed_item=None, message=None, state=None, total_processed_items=None, local_vars_configuration=None):  # noqa: E501
         """Status - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -172,21 +164,11 @@ class Status(object):
         :param state: The state of this Status.  # noqa: E501
         :type state: str
         """
-        allowed_values = [
-            "INITIALIZING",
-            "WATCHING",
-            "PROCESSING",
-            "COMPLETED",
-            "ERROR",
-        ]  # noqa: E501
-        if (
-            self.local_vars_configuration.client_side_validation
-            and state not in allowed_values
-        ):  # noqa: E501
+        allowed_values = ["INITIALIZING", "WATCHING", "PROCESSING", "COMPLETED", "ERROR"]  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and state not in allowed_values:  # noqa: E501
             raise ValueError(
-                "Invalid value for `state` ({0}), must be one of {1}".format(  # noqa: E501
-                    state, allowed_values
-                )
+                "Invalid value for `state` ({0}), must be one of {1}"  # noqa: E501
+                .format(state, allowed_values)
             )
 
         self._state = state
@@ -232,11 +214,15 @@ class Status(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

@@ -35,19 +35,17 @@ class AwsAccessKey(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
-    openapi_types = {"aws_access_key_id": "str", "aws_secret_access_key": "str"}
-
-    attribute_map = {
-        "aws_access_key_id": "aws_access_key_id",
-        "aws_secret_access_key": "aws_secret_access_key",
+    openapi_types = {
+        'aws_access_key_id': 'str',
+        'aws_secret_access_key': 'str'
     }
 
-    def __init__(
-        self,
-        aws_access_key_id=None,
-        aws_secret_access_key=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    attribute_map = {
+        'aws_access_key_id': 'aws_access_key_id',
+        'aws_secret_access_key': 'aws_secret_access_key'
+    }
+
+    def __init__(self, aws_access_key_id=None, aws_secret_access_key=None, local_vars_configuration=None):  # noqa: E501
         """AwsAccessKey - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -80,13 +78,8 @@ class AwsAccessKey(object):
         :param aws_access_key_id: The aws_access_key_id of this AwsAccessKey.  # noqa: E501
         :type aws_access_key_id: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation
-            and aws_access_key_id is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `aws_access_key_id`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and aws_access_key_id is None:  # noqa: E501
+            raise ValueError("Invalid value for `aws_access_key_id`, must not be `None`")  # noqa: E501
 
         self._aws_access_key_id = aws_access_key_id
 
@@ -110,13 +103,8 @@ class AwsAccessKey(object):
         :param aws_secret_access_key: The aws_secret_access_key of this AwsAccessKey.  # noqa: E501
         :type aws_secret_access_key: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation
-            and aws_secret_access_key is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `aws_secret_access_key`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and aws_secret_access_key is None:  # noqa: E501
+            raise ValueError("Invalid value for `aws_secret_access_key`, must not be `None`")  # noqa: E501
 
         self._aws_secret_access_key = aws_secret_access_key
 
@@ -138,11 +126,15 @@ class AwsAccessKey(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

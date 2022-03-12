@@ -35,9 +35,13 @@ class PatchDocumentsResponse(object):
       attribute_map (dict): The key is attribute name
                             and the value is json key in definition.
     """
-    openapi_types = {"data": "list[DocumentStatus]"}
+    openapi_types = {
+        'data': 'list[DocumentStatus]'
+    }
 
-    attribute_map = {"data": "data"}
+    attribute_map = {
+        'data': 'data'
+    }
 
     def __init__(self, data=None, local_vars_configuration=None):  # noqa: E501
         """PatchDocumentsResponse - a model defined in OpenAPI"""  # noqa: E501
@@ -68,12 +72,8 @@ class PatchDocumentsResponse(object):
         :param data: The data of this PatchDocumentsResponse.  # noqa: E501
         :type data: list[DocumentStatus]
         """
-        if (
-            self.local_vars_configuration.client_side_validation and data is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `data`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and data is None:  # noqa: E501
+            raise ValueError("Invalid value for `data`, must not be `None`")  # noqa: E501
 
         self._data = data
 
@@ -95,11 +95,15 @@ class PatchDocumentsResponse(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

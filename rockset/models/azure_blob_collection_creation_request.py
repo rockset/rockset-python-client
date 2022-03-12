@@ -36,51 +36,36 @@ class AzureBlobCollectionCreationRequest(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "clustering_key": "list[FieldPartition]",
-        "description": "str",
-        "event_time_info": "EventTimeInfo",
-        "field_mapping_query": "FieldMappingQuery",
-        "field_mappings": "list[FieldMappingV2]",
-        "field_schemas": "list[FieldSchema]",
-        "insert_only": "bool",
-        "inverted_index_group_encoding_options": "InvertedIndexGroupEncodingOptions",
-        "name": "str",
-        "retention_secs": "int",
-        "time_partition_resolution_secs": "int",
-        "sources": "list[AzureBlobStorageSourceWrapper]",
+        'clustering_key': 'list[FieldPartition]',
+        'description': 'str',
+        'event_time_info': 'EventTimeInfo',
+        'field_mapping_query': 'FieldMappingQuery',
+        'field_mappings': 'list[FieldMappingV2]',
+        'field_schemas': 'list[FieldSchema]',
+        'insert_only': 'bool',
+        'inverted_index_group_encoding_options': 'InvertedIndexGroupEncodingOptions',
+        'name': 'str',
+        'retention_secs': 'int',
+        'sources': 'list[AzureBlobStorageSourceWrapper]',
+        'time_partition_resolution_secs': 'int'
     }
 
     attribute_map = {
-        "clustering_key": "clustering_key",
-        "description": "description",
-        "event_time_info": "event_time_info",
-        "field_mapping_query": "field_mapping_query",
-        "field_mappings": "field_mappings",
-        "field_schemas": "field_schemas",
-        "insert_only": "insert_only",
-        "inverted_index_group_encoding_options": "inverted_index_group_encoding_options",
-        "name": "name",
-        "retention_secs": "retention_secs",
-        "time_partition_resolution_secs": "time_partition_resolution_secs",
-        "sources": "sources",
+        'clustering_key': 'clustering_key',
+        'description': 'description',
+        'event_time_info': 'event_time_info',
+        'field_mapping_query': 'field_mapping_query',
+        'field_mappings': 'field_mappings',
+        'field_schemas': 'field_schemas',
+        'insert_only': 'insert_only',
+        'inverted_index_group_encoding_options': 'inverted_index_group_encoding_options',
+        'name': 'name',
+        'retention_secs': 'retention_secs',
+        'sources': 'sources',
+        'time_partition_resolution_secs': 'time_partition_resolution_secs'
     }
 
-    def __init__(
-        self,
-        clustering_key=None,
-        description=None,
-        event_time_info=None,
-        field_mapping_query=None,
-        field_mappings=None,
-        field_schemas=None,
-        insert_only=None,
-        inverted_index_group_encoding_options=None,
-        name=None,
-        retention_secs=None,
-        time_partition_resolution_secs=None,
-        sources=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, clustering_key=None, description=None, event_time_info=None, field_mapping_query=None, field_mappings=None, field_schemas=None, insert_only=None, inverted_index_group_encoding_options=None, name=None, retention_secs=None, sources=None, time_partition_resolution_secs=None, local_vars_configuration=None):  # noqa: E501
         """AzureBlobCollectionCreationRequest - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -96,8 +81,8 @@ class AzureBlobCollectionCreationRequest(object):
         self._inverted_index_group_encoding_options = None
         self._name = None
         self._retention_secs = None
-        self._time_partition_resolution_secs = None
         self._sources = None
+        self._time_partition_resolution_secs = None
         self.discriminator = None
 
         if clustering_key is not None:
@@ -115,16 +100,14 @@ class AzureBlobCollectionCreationRequest(object):
         if insert_only is not None:
             self.insert_only = insert_only
         if inverted_index_group_encoding_options is not None:
-            self.inverted_index_group_encoding_options = (
-                inverted_index_group_encoding_options
-            )
+            self.inverted_index_group_encoding_options = inverted_index_group_encoding_options
         self.name = name
         if retention_secs is not None:
             self.retention_secs = retention_secs
-        if time_partition_resolution_secs is not None:
-            self.time_partition_resolution_secs = time_partition_resolution_secs
         if sources is not None:
             self.sources = sources
+        if time_partition_resolution_secs is not None:
+            self.time_partition_resolution_secs = time_partition_resolution_secs
 
     @property
     def clustering_key(self):
@@ -294,9 +277,7 @@ class AzureBlobCollectionCreationRequest(object):
         return self._inverted_index_group_encoding_options
 
     @inverted_index_group_encoding_options.setter
-    def inverted_index_group_encoding_options(
-        self, inverted_index_group_encoding_options
-    ):
+    def inverted_index_group_encoding_options(self, inverted_index_group_encoding_options):
         """Sets the inverted_index_group_encoding_options of this AzureBlobCollectionCreationRequest.
 
 
@@ -304,9 +285,7 @@ class AzureBlobCollectionCreationRequest(object):
         :type inverted_index_group_encoding_options: InvertedIndexGroupEncodingOptions
         """
 
-        self._inverted_index_group_encoding_options = (
-            inverted_index_group_encoding_options
-        )
+        self._inverted_index_group_encoding_options = inverted_index_group_encoding_options
 
     @property
     def name(self):
@@ -328,12 +307,8 @@ class AzureBlobCollectionCreationRequest(object):
         :param name: The name of this AzureBlobCollectionCreationRequest.  # noqa: E501
         :type name: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation and name is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `name`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and name is None:  # noqa: E501
+            raise ValueError("Invalid value for `name`, must not be `None`")  # noqa: E501
 
         self._name = name
 
@@ -361,29 +336,6 @@ class AzureBlobCollectionCreationRequest(object):
         self._retention_secs = retention_secs
 
     @property
-    def time_partition_resolution_secs(self):
-        """Gets the time_partition_resolution_secs of this AzureBlobCollectionCreationRequest.  # noqa: E501
-
-        If non-null, the collection will be time partitioned and each partition will be time_partition_resolution_secs wide.  # noqa: E501
-
-        :return: The time_partition_resolution_secs of this AzureBlobCollectionCreationRequest.  # noqa: E501
-        :rtype: int
-        """
-        return self._time_partition_resolution_secs
-
-    @time_partition_resolution_secs.setter
-    def time_partition_resolution_secs(self, time_partition_resolution_secs):
-        """Sets the time_partition_resolution_secs of this AzureBlobCollectionCreationRequest.
-
-        If non-null, the collection will be time partitioned and each partition will be time_partition_resolution_secs wide.  # noqa: E501
-
-        :param time_partition_resolution_secs: The time_partition_resolution_secs of this AzureBlobCollectionCreationRequest.  # noqa: E501
-        :type time_partition_resolution_secs: int
-        """
-
-        self._time_partition_resolution_secs = time_partition_resolution_secs
-
-    @property
     def sources(self):
         """Gets the sources of this AzureBlobCollectionCreationRequest.  # noqa: E501
 
@@ -406,6 +358,29 @@ class AzureBlobCollectionCreationRequest(object):
 
         self._sources = sources
 
+    @property
+    def time_partition_resolution_secs(self):
+        """Gets the time_partition_resolution_secs of this AzureBlobCollectionCreationRequest.  # noqa: E501
+
+        If non-null, the collection will be time partitioned and each partition will be time_partition_resolution_secs wide.  # noqa: E501
+
+        :return: The time_partition_resolution_secs of this AzureBlobCollectionCreationRequest.  # noqa: E501
+        :rtype: int
+        """
+        return self._time_partition_resolution_secs
+
+    @time_partition_resolution_secs.setter
+    def time_partition_resolution_secs(self, time_partition_resolution_secs):
+        """Sets the time_partition_resolution_secs of this AzureBlobCollectionCreationRequest.
+
+        If non-null, the collection will be time partitioned and each partition will be time_partition_resolution_secs wide.  # noqa: E501
+
+        :param time_partition_resolution_secs: The time_partition_resolution_secs of this AzureBlobCollectionCreationRequest.  # noqa: E501
+        :type time_partition_resolution_secs: int
+        """
+
+        self._time_partition_resolution_secs = time_partition_resolution_secs
+
     def to_dict(self, serialize=False):
         """Returns the model properties as a dict"""
         result = {}
@@ -424,11 +399,15 @@ class AzureBlobCollectionCreationRequest(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

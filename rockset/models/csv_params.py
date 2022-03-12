@@ -36,36 +36,26 @@ class CsvParams(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "column_names": "list[str]",
-        "column_types": "list[str]",
-        "encoding": "str",
-        "escape_char": "str",
-        "first_line_as_column_names": "bool",
-        "quote_char": "str",
-        "separator": "str",
+        'column_names': 'list[str]',
+        'column_types': 'list[str]',
+        'encoding': 'str',
+        'escape_char': 'str',
+        'first_line_as_column_names': 'bool',
+        'quote_char': 'str',
+        'separator': 'str'
     }
 
     attribute_map = {
-        "column_names": "columnNames",
-        "column_types": "columnTypes",
-        "encoding": "encoding",
-        "escape_char": "escapeChar",
-        "first_line_as_column_names": "firstLineAsColumnNames",
-        "quote_char": "quoteChar",
-        "separator": "separator",
+        'column_names': 'columnNames',
+        'column_types': 'columnTypes',
+        'encoding': 'encoding',
+        'escape_char': 'escapeChar',
+        'first_line_as_column_names': 'firstLineAsColumnNames',
+        'quote_char': 'quoteChar',
+        'separator': 'separator'
     }
 
-    def __init__(
-        self,
-        column_names=None,
-        column_types=None,
-        encoding=None,
-        escape_char=None,
-        first_line_as_column_names=None,
-        quote_char=None,
-        separator=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, column_names=None, column_types=None, encoding=None, escape_char=None, first_line_as_column_names=None, quote_char=None, separator=None, local_vars_configuration=None):  # noqa: E501
         """CsvParams - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -138,31 +128,13 @@ class CsvParams(object):
         :param column_types: The column_types of this CsvParams.  # noqa: E501
         :type column_types: list[str]
         """
-        allowed_values = [
-            "UNKNOWN",
-            "BOOLEAN",
-            "BOOL",
-            "INTEGER",
-            "INT",
-            "FLOAT",
-            "TIME",
-            "DATE",
-            "DATETIME",
-            "TIMESTAMP",
-            "STRING",
-        ]  # noqa: E501
-        if self.local_vars_configuration.client_side_validation and not set(
-            column_types
-        ).issubset(
-            set(allowed_values)
-        ):  # noqa: E501
+        allowed_values = ["UNKNOWN", "BOOLEAN", "BOOL", "INTEGER", "INT", "FLOAT", "TIME", "DATE", "DATETIME", "TIMESTAMP", "STRING"]  # noqa: E501
+        if (self.local_vars_configuration.client_side_validation and
+                not set(column_types).issubset(set(allowed_values))):  # noqa: E501
             raise ValueError(
-                "Invalid values for `column_types` [{0}], must be a subset of [{1}]".format(  # noqa: E501
-                    ", ".join(
-                        map(str, set(column_types) - set(allowed_values))
-                    ),  # noqa: E501
-                    ", ".join(map(str, allowed_values)),
-                )
+                "Invalid values for `column_types` [{0}], must be a subset of [{1}]"  # noqa: E501
+                .format(", ".join(map(str, set(column_types) - set(allowed_values))),  # noqa: E501
+                        ", ".join(map(str, allowed_values)))
             )
 
         self._column_types = column_types
@@ -300,11 +272,15 @@ class CsvParams(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 

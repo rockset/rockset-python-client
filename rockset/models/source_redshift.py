@@ -36,27 +36,20 @@ class SourceRedshift(object):
                             and the value is json key in definition.
     """
     openapi_types = {
-        "database": "str",
-        "incremental_field": "str",
-        "schema": "str",
-        "table_name": "str",
+        'database': 'str',
+        'incremental_field': 'str',
+        'schema': 'str',
+        'table_name': 'str'
     }
 
     attribute_map = {
-        "database": "database",
-        "incremental_field": "incremental_field",
-        "schema": "schema",
-        "table_name": "table_name",
+        'database': 'database',
+        'incremental_field': 'incremental_field',
+        'schema': 'schema',
+        'table_name': 'table_name'
     }
 
-    def __init__(
-        self,
-        database=None,
-        incremental_field=None,
-        schema=None,
-        table_name=None,
-        local_vars_configuration=None,
-    ):  # noqa: E501
+    def __init__(self, database=None, incremental_field=None, schema=None, table_name=None, local_vars_configuration=None):  # noqa: E501
         """SourceRedshift - a model defined in OpenAPI"""  # noqa: E501
         if local_vars_configuration is None:
             local_vars_configuration = Configuration.get_default_copy()
@@ -94,12 +87,8 @@ class SourceRedshift(object):
         :param database: The database of this SourceRedshift.  # noqa: E501
         :type database: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation and database is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `database`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and database is None:  # noqa: E501
+            raise ValueError("Invalid value for `database`, must not be `None`")  # noqa: E501
 
         self._database = database
 
@@ -146,12 +135,8 @@ class SourceRedshift(object):
         :param schema: The schema of this SourceRedshift.  # noqa: E501
         :type schema: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation and schema is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `schema`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and schema is None:  # noqa: E501
+            raise ValueError("Invalid value for `schema`, must not be `None`")  # noqa: E501
 
         self._schema = schema
 
@@ -175,12 +160,8 @@ class SourceRedshift(object):
         :param table_name: The table_name of this SourceRedshift.  # noqa: E501
         :type table_name: str
         """
-        if (
-            self.local_vars_configuration.client_side_validation and table_name is None
-        ):  # noqa: E501
-            raise ValueError(
-                "Invalid value for `table_name`, must not be `None`"
-            )  # noqa: E501
+        if self.local_vars_configuration.client_side_validation and table_name is None:  # noqa: E501
+            raise ValueError("Invalid value for `table_name`, must not be `None`")  # noqa: E501
 
         self._table_name = table_name
 
@@ -202,11 +183,15 @@ class SourceRedshift(object):
             value = getattr(self, attr)
             attr = self.attribute_map.get(attr, attr) if serialize else attr
             if isinstance(value, list):
-                result[attr] = list(map(lambda x: convert(x), value))
+                result[attr] = list(map(
+                    lambda x: convert(x),
+                    value
+                ))
             elif isinstance(value, dict):
-                result[attr] = dict(
-                    map(lambda item: (item[0], convert(item[1])), value.items())
-                )
+                result[attr] = dict(map(
+                    lambda item: (item[0], convert(item[1])),
+                    value.items()
+                ))
             else:
                 result[attr] = convert(value)
 
