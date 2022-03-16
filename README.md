@@ -1,9 +1,7 @@
 Things that are currently being worked on:
-- Query and write API
-- Docstrings and docs
-- Removal and replacement of ThreadPool (python codegen and openapi both use it by default so an alternative will have to be written)
-- Additional convenience features
-
+- Docs
+- Polishing
+- QA
 # rockset
 Rockset's REST API allows for creating and managing all resources in Rockset. Each supported endpoint is documented below.
 
