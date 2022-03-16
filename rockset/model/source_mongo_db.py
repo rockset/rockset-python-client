@@ -89,7 +89,7 @@ class SourceMongoDb(ModelNormal):
         return {
             'collection_name': (str,),  # noqa: E501
             'database_name': (str,),  # noqa: E501
-            'status': (StatusMongoDb,),  # noqa: E501
+            'status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -104,6 +104,7 @@ class SourceMongoDb(ModelNormal):
     }
 
     read_only_vars = {
+        'status',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -148,7 +149,7 @@ class SourceMongoDb(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            status (StatusMongoDb): [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -204,7 +205,6 @@ class SourceMongoDb(ModelNormal):
         Keyword Args:
             collection_name (str): MongoDB collection name
             database_name (str): MongoDB database name containing this collection
-            status (StatusMongoDb): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

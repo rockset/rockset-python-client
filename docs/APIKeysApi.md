@@ -7,8 +7,8 @@ Method | HTTP request | Description
 [**create_api_key**](APIKeysApi.md#create_api_key) | **POST** /v1/orgs/self/users/self/apikeys | Create API Key
 [**delete_api_key**](APIKeysApi.md#delete_api_key) | **DELETE** /v1/orgs/self/users/{user}/apikeys/{name} | Delete API Key
 [**get_api_key**](APIKeysApi.md#get_api_key) | **GET** /v1/orgs/self/users/{user}/apikeys/{name} | Retrieve API Key
-[**list_api_keys**](APIKeysApi.md#list_api_keys) | **GET** /v1/orgs/self/users/{user}/apikeys | List API Keys.
-[**update_api_key**](APIKeysApi.md#update_api_key) | **POST** /v1/orgs/self/users/{user}/apikeys/{name} | Update an API key&#39;s state
+[**list_api_keys**](APIKeysApi.md#list_api_keys) | **GET** /v1/orgs/self/users/{user}/apikeys | List API Keys
+[**update_api_key**](APIKeysApi.md#update_api_key) | **POST** /v1/orgs/self/users/{user}/apikeys/{name} | Update API Key State
 
 
 # **create_api_key**
@@ -25,44 +25,40 @@ Create a new API key for the authenticated user.
 ```python
 import time
 import rockset
-from rockset.api import api_keys_api
+from rockset import RocksetClient
 from rockset.model.create_api_key_request import CreateApiKeyRequest
 from rockset.model.error_model import ErrorModel
 from rockset.model.create_api_key_response import CreateApiKeyResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = api_keys_api.APIKeysApi(api_client)
-    create_api_key_request = CreateApiKeyRequest(
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Create API Key
+    api_response = rs.APIKeysApi.create_api_key(
         name="my-app",
-        role="role_example",
-    ) # CreateApiKeyRequest | JSON object
+        role="string_example",
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling APIKeysApi->create_api_key: %s\n" % e)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Create API Key
-        api_response = api_instance.create_api_key(create_api_key_request)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Create API Key
+    api_response = await rs.APIKeysApi.create_api_key(
+        name="my-app",
+        role="string_example",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling APIKeysApi->create_api_key: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -121,41 +117,39 @@ Delete an API key for any user in your organization.
 ```python
 import time
 import rockset
-from rockset.api import api_keys_api
+from rockset import RocksetClient
 from rockset.model.delete_api_key_response import DeleteApiKeyResponse
 from rockset.model.error_model import ErrorModel
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Delete API Key
+    api_response = rs.APIKeysApi.delete_api_key(
+        name="my-key",
+        user="admin@me.com",
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling APIKeysApi->delete_api_key: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = api_keys_api.APIKeysApi(api_client)
-    name = "my-key" # str | Name of the API key.
-    user = "admin@me.com" # str | Email of the API key owner. Use `self` to specify the currently authenticated user.
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Delete API Key
-        api_response = api_instance.delete_api_key(name, user)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Delete API Key
+    api_response = await rs.APIKeysApi.delete_api_key(
+        name="my-key",
+        user="admin@me.com",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling APIKeysApi->delete_api_key: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -215,41 +209,39 @@ Retrieve a particular API key for any user in your organization.
 ```python
 import time
 import rockset
-from rockset.api import api_keys_api
+from rockset import RocksetClient
 from rockset.model.error_model import ErrorModel
 from rockset.model.get_api_key_response import GetApiKeyResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Retrieve API Key
+    api_response = rs.APIKeysApi.get_api_key(
+        user="admin@me.com",
+        name="my-key",
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling APIKeysApi->get_api_key: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = api_keys_api.APIKeysApi(api_client)
-    user = "admin@me.com" # str | Email of the API key owner. Use `self` to specify the currently authenticated user.
-    name = "my-key" # str | Name of the API key.
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Retrieve API Key
-        api_response = api_instance.get_api_key(user, name)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Retrieve API Key
+    api_response = await rs.APIKeysApi.get_api_key(
+        user="admin@me.com",
+        name="my-key",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling APIKeysApi->get_api_key: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -298,7 +290,7 @@ Name | Type | Description  | Notes
 # **list_api_keys**
 > ListApiKeysResponse list_api_keys(user)
 
-List API Keys.
+List API Keys
 
 List API key metadata for any user in your organization.
 
@@ -309,40 +301,37 @@ List API key metadata for any user in your organization.
 ```python
 import time
 import rockset
-from rockset.api import api_keys_api
+from rockset import RocksetClient
 from rockset.model.list_api_keys_response import ListApiKeysResponse
 from rockset.model.error_model import ErrorModel
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # List API Keys
+    api_response = rs.APIKeysApi.list_api_keys(
+        user="admin@me.com",
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling APIKeysApi->list_api_keys: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = api_keys_api.APIKeysApi(api_client)
-    user = "admin@me.com" # str | Email of the API key owner. Use `self` to specify the currently authenticated user.
-
-    # example passing only required values which don't have defaults set
-    try:
-        # List API Keys.
-        api_response = api_instance.list_api_keys(user)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # List API Keys
+    api_response = await rs.APIKeysApi.list_api_keys(
+        user="admin@me.com",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling APIKeysApi->list_api_keys: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -390,7 +379,7 @@ Name | Type | Description  | Notes
 # **update_api_key**
 > UpdateApiKeyResponse update_api_key(name, user, update_api_key_request)
 
-Update an API key's state
+Update API Key State
 
 Update the state of an API key for any user in your organization.
 
@@ -401,45 +390,42 @@ Update the state of an API key for any user in your organization.
 ```python
 import time
 import rockset
-from rockset.api import api_keys_api
+from rockset import RocksetClient
 from rockset.model.error_model import ErrorModel
 from rockset.model.update_api_key_request import UpdateApiKeyRequest
 from rockset.model.update_api_key_response import UpdateApiKeyResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = api_keys_api.APIKeysApi(api_client)
-    name = "my-key" # str | Name of the API key.
-    user = "admin@me.com" # str | Email of the API key owner. Use `self` to specify the currently authenticated user.
-    update_api_key_request = UpdateApiKeyRequest(
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Update API Key State
+    api_response = rs.APIKeysApi.update_api_key(
+        name="my-key",
+        user="admin@me.com",
         state="ACTIVE",
-    ) # UpdateApiKeyRequest | JSON object
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling APIKeysApi->update_api_key: %s\n" % e)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Update an API key's state
-        api_response = api_instance.update_api_key(name, user, update_api_key_request)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Update API Key State
+    api_response = await rs.APIKeysApi.update_api_key(
+        name="my-key",
+        user="admin@me.com",
+        state="ACTIVE",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling APIKeysApi->update_api_key: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 

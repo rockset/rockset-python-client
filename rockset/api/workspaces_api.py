@@ -301,7 +301,7 @@ class WorkspacesApi(object):
     def child_workspaces(
         self,
         *,
-        workspace="commons",
+        workspace = "commons",
         **kwargs
     ) -> typing.Union[ListWorkspacesResponse, asyncio.Future]:
         """List Workspaces in Workspace  # noqa: E501
@@ -310,11 +310,13 @@ class WorkspacesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> rs = RocksetClient(apikey=APIKEY)
-        >>> future = rs.WorkspacesApi.child_workspaces(
-                async_req=True,
-            )
-        >>> result = await future
+```python
+rs = RocksetClient(apikey=APIKEY)
+future = rs.WorkspacesApi.child_workspaces(
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -381,7 +383,7 @@ class WorkspacesApi(object):
         self,
         *,
         name: str,
-        description: str=None,
+        description: str = None,
         **kwargs
     ) -> typing.Union[CreateWorkspaceResponse, asyncio.Future]:
         """Create Workspace  # noqa: E501
@@ -390,13 +392,15 @@ class WorkspacesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> rs = RocksetClient(apikey=APIKEY)
-        >>> future = rs.WorkspacesApi.create_workspace(
-                name=name,
-                description=description,
-                async_req=True,
-            )
-        >>> result = await future
+```python
+rs = RocksetClient(apikey=APIKEY)
+future = rs.WorkspacesApi.create_workspace(
+    description="Datasets of system logs for the ops team.",
+    name="event_logs",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             description (str): longer explanation for the workspace. [optional]
@@ -463,7 +467,7 @@ class WorkspacesApi(object):
     def delete_workspace(
         self,
         *,
-        workspace="commons",
+        workspace = "commons",
         **kwargs
     ) -> typing.Union[DeleteWorkspaceResponse, asyncio.Future]:
         """Delete Workspace  # noqa: E501
@@ -472,11 +476,13 @@ class WorkspacesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> rs = RocksetClient(apikey=APIKEY)
-        >>> future = rs.WorkspacesApi.delete_workspace(
-                async_req=True,
-            )
-        >>> result = await future
+```python
+rs = RocksetClient(apikey=APIKEY)
+future = rs.WorkspacesApi.delete_workspace(
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -542,7 +548,7 @@ class WorkspacesApi(object):
     def get_workspace(
         self,
         *,
-        workspace="commons",
+        workspace = "commons",
         **kwargs
     ) -> typing.Union[GetWorkspaceResponse, asyncio.Future]:
         """Retrieve Workspace  # noqa: E501
@@ -551,11 +557,13 @@ class WorkspacesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> rs = RocksetClient(apikey=APIKEY)
-        >>> future = rs.WorkspacesApi.get_workspace(
-                async_req=True,
-            )
-        >>> result = await future
+```python
+rs = RocksetClient(apikey=APIKEY)
+future = rs.WorkspacesApi.get_workspace(
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -621,7 +629,7 @@ class WorkspacesApi(object):
     def list_workspaces(
         self,
         *,
-        fetch_across_regions: bool=None,
+        fetch_across_regions: bool = None,
         **kwargs
     ) -> typing.Union[ListWorkspacesResponse, asyncio.Future]:
         """List Workspaces  # noqa: E501
@@ -630,11 +638,13 @@ class WorkspacesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> rs = RocksetClient(apikey=APIKEY)
-        >>> future = rs.WorkspacesApi.list_workspaces(
-                async_req=True,
-            )
-        >>> result = await future
+```python
+rs = RocksetClient(apikey=APIKEY)
+future = rs.WorkspacesApi.list_workspaces(
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             fetch_across_regions (bool): [optional]

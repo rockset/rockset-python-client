@@ -91,9 +91,9 @@ class SourceDynamoDb(ModelNormal):
         return {
             'table_name': (str,),  # noqa: E501
             'aws_region': (str,),  # noqa: E501
-            'current_status': (StatusDynamoDbV2,),  # noqa: E501
+            'current_status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
             'rcu': (int,),  # noqa: E501
-            'status': (StatusDynamoDb,),  # noqa: E501
+            'status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
             'use_scan_api': (bool,),  # noqa: E501
         }
 
@@ -112,6 +112,8 @@ class SourceDynamoDb(ModelNormal):
     }
 
     read_only_vars = {
+        'current_status',  # noqa: E501
+        'status',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -156,9 +158,9 @@ class SourceDynamoDb(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             aws_region (str): AWS region name of DynamoDB table, by default us-west-2 is used. [optional]  # noqa: E501
-            current_status (StatusDynamoDbV2): [optional]  # noqa: E501
+            current_status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
             rcu (int): Max RCU usage for scan. [optional]  # noqa: E501
-            status (StatusDynamoDb): [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
             use_scan_api (bool): Whether to use DynamoDB Scan API for the initial scan. [optional]  # noqa: E501
         """
 
@@ -214,9 +216,7 @@ class SourceDynamoDb(ModelNormal):
         Keyword Args:
             table_name (str): name of DynamoDB table containing data
             aws_region (str): AWS region name of DynamoDB table, by default us-west-2 is used. [optional]  # noqa: E501
-            current_status (StatusDynamoDbV2): [optional]  # noqa: E501
             rcu (int): Max RCU usage for scan. [optional]  # noqa: E501
-            status (StatusDynamoDb): [optional]  # noqa: E501
             use_scan_api (bool): Whether to use DynamoDB Scan API for the initial scan. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be

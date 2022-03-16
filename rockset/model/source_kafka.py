@@ -93,7 +93,7 @@ class SourceKafka(ModelNormal):
         return {
             'kafka_topic_name': (str,),  # noqa: E501
             'offset_reset_policy': (str,),  # noqa: E501
-            'status': (StatusKafka,),  # noqa: E501
+            'status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
             'use_v3': (bool,),  # noqa: E501
         }
 
@@ -110,6 +110,7 @@ class SourceKafka(ModelNormal):
     }
 
     read_only_vars = {
+        'status',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -154,7 +155,7 @@ class SourceKafka(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             offset_reset_policy (str): [optional]  # noqa: E501
-            status (StatusKafka): [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
             use_v3 (bool): [optional]  # noqa: E501
         """
 
@@ -210,7 +211,6 @@ class SourceKafka(ModelNormal):
         Keyword Args:
             kafka_topic_name (str): The Kafka topic to be tailed
             offset_reset_policy (str): [optional]  # noqa: E501
-            status (StatusKafka): [optional]  # noqa: E501
             use_v3 (bool): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be

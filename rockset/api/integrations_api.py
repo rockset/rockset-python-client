@@ -24,13 +24,21 @@ from rockset.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from rockset.model.azure_blob_integration_creation_request import AzureBlobIntegrationCreationRequest
+from rockset.model.azure_blob_storage_integration_creation_request import AzureBlobStorageIntegrationCreationRequest
+from rockset.model.azure_event_hubs_integration_creation_request import AzureEventHubsIntegrationCreationRequest
 from rockset.model.create_integration_response import CreateIntegrationResponse
 from rockset.model.delete_integration_response import DeleteIntegrationResponse
+from rockset.model.dynamodb_integration_creation_request import DynamodbIntegrationCreationRequest
 from rockset.model.error_model import ErrorModel
 from rockset.model.gcs_integration_creation_request import GcsIntegrationCreationRequest
 from rockset.model.get_integration_response import GetIntegrationResponse
+from rockset.model.kafka_integration_creation_request import KafkaIntegrationCreationRequest
+from rockset.model.kinesis_integration_creation_request import KinesisIntegrationCreationRequest
 from rockset.model.list_integrations_response import ListIntegrationsResponse
+from rockset.model.mongodb_integration_creation_request import MongodbIntegrationCreationRequest
+from rockset.model.redshift_integration_creation_request import RedshiftIntegrationCreationRequest
+from rockset.model.s3_integration_creation_request import S3IntegrationCreationRequest
+from rockset.model.segment_integration_creation_request import SegmentIntegrationCreationRequest
 from rockset.models import *
 
 
@@ -45,20 +53,20 @@ class IntegrationsApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-        self.create_azure_blob_integration_endpoint = _Endpoint(
+        self.create_azure_blob_storage_integration_endpoint = _Endpoint(
             settings={
                 'response_type': (CreateIntegrationResponse,),
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/integrations#AzureBlob'.split('#')[0],
-                'operation_id': 'create_azure_blob_integration',
+                'endpoint_path': '/v1/orgs/self/integrations#AzureBlobStorage'.split('#')[0],
+                'operation_id': 'create_azure_blob_storage_integration',
                 'http_method': 'POST',
                 'servers': None,
             },
             params_map={
                 'all': [
-                    'azure_blob_integration_creation_request',
+                    'azure_blob_storage_integration_creation_request',
                 ],
                 'required': [
                 ],
@@ -75,13 +83,115 @@ class IntegrationsApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'azure_blob_integration_creation_request':
-                        (AzureBlobIntegrationCreationRequest,),
+                    'azure_blob_storage_integration_creation_request':
+                        (AzureBlobStorageIntegrationCreationRequest,),
                 },
                 'attribute_map': {
                 },
                 'location_map': {
-                    'azure_blob_integration_creation_request': 'body',
+                    'azure_blob_storage_integration_creation_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.create_azure_event_hubs_integration_endpoint = _Endpoint(
+            settings={
+                'response_type': (CreateIntegrationResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/integrations#AzureEventHubs'.split('#')[0],
+                'operation_id': 'create_azure_event_hubs_integration',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'azure_event_hubs_integration_creation_request',
+                ],
+                'required': [
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'azure_event_hubs_integration_creation_request':
+                        (AzureEventHubsIntegrationCreationRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'azure_event_hubs_integration_creation_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.create_dynamodb_integration_endpoint = _Endpoint(
+            settings={
+                'response_type': (CreateIntegrationResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/integrations#Dynamodb'.split('#')[0],
+                'operation_id': 'create_dynamodb_integration',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'dynamodb_integration_creation_request',
+                ],
+                'required': [
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'dynamodb_integration_creation_request':
+                        (DynamodbIntegrationCreationRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'dynamodb_integration_creation_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -133,6 +243,312 @@ class IntegrationsApi(object):
                 },
                 'location_map': {
                     'gcs_integration_creation_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.create_kafka_integration_endpoint = _Endpoint(
+            settings={
+                'response_type': (CreateIntegrationResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/integrations#Kafka'.split('#')[0],
+                'operation_id': 'create_kafka_integration',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'kafka_integration_creation_request',
+                ],
+                'required': [
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'kafka_integration_creation_request':
+                        (KafkaIntegrationCreationRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'kafka_integration_creation_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.create_kinesis_integration_endpoint = _Endpoint(
+            settings={
+                'response_type': (CreateIntegrationResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/integrations#Kinesis'.split('#')[0],
+                'operation_id': 'create_kinesis_integration',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'kinesis_integration_creation_request',
+                ],
+                'required': [
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'kinesis_integration_creation_request':
+                        (KinesisIntegrationCreationRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'kinesis_integration_creation_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.create_mongodb_integration_endpoint = _Endpoint(
+            settings={
+                'response_type': (CreateIntegrationResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/integrations#Mongodb'.split('#')[0],
+                'operation_id': 'create_mongodb_integration',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'mongodb_integration_creation_request',
+                ],
+                'required': [
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'mongodb_integration_creation_request':
+                        (MongodbIntegrationCreationRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'mongodb_integration_creation_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.create_redshift_integration_endpoint = _Endpoint(
+            settings={
+                'response_type': (CreateIntegrationResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/integrations#Redshift'.split('#')[0],
+                'operation_id': 'create_redshift_integration',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'redshift_integration_creation_request',
+                ],
+                'required': [
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'redshift_integration_creation_request':
+                        (RedshiftIntegrationCreationRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'redshift_integration_creation_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.create_s3_integration_endpoint = _Endpoint(
+            settings={
+                'response_type': (CreateIntegrationResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/integrations#S3'.split('#')[0],
+                'operation_id': 'create_s3_integration',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    's3_integration_creation_request',
+                ],
+                'required': [
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    's3_integration_creation_request':
+                        (S3IntegrationCreationRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    's3_integration_creation_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.create_segment_integration_endpoint = _Endpoint(
+            settings={
+                'response_type': (CreateIntegrationResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/integrations#Segment'.split('#')[0],
+                'operation_id': 'create_segment_integration',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'segment_integration_creation_request',
+                ],
+                'required': [
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'segment_integration_creation_request':
+                        (SegmentIntegrationCreationRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'segment_integration_creation_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -294,28 +710,32 @@ class IntegrationsApi(object):
             api_client=api_client
         )
 
-    def create_azure_blob_integration(
+    def create_azure_blob_storage_integration(
         self,
         *,
         name: str,
-        azure_blob_storage: AzureBlobStorageIntegration=None,
-        description: str=None,
+        azure_blob_storage: AzureBlobStorageIntegration = None,
+        description: str = None,
         **kwargs
     ) -> typing.Union[CreateIntegrationResponse, asyncio.Future]:
-        """Create azure blob integration  # noqa: E501
+        """Create azure blob storage integration  # noqa: E501
 
         Create a new integration.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> rs = RocksetClient(apikey=APIKEY)
-        >>> future = rs.IntegrationsApi.create_azure_blob_integration(
-                name=name,
-                azure_blob_storage=azure_blob_storage,
-                description=description,
-                async_req=True,
-            )
-        >>> result = await future
+```python
+rs = RocksetClient(apikey=APIKEY)
+future = rs.IntegrationsApi.create_azure_blob_storage_integration(
+    azure_blob_storage=AzureBlobStorageIntegration(
+        connection_string="connection_string_example",
+    ),
+    description="AWS account with event data for the data science team.",
+    name="event-logs",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             azure_blob_storage (AzureBlobStorageIntegration): [optional]
@@ -376,16 +796,202 @@ class IntegrationsApi(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['azure_blob_integration_creation_request'] = \
-            kwargs['azure_blob_integration_creation_request']
-        return self.create_azure_blob_integration_endpoint.call_with_http_info(**kwargs)
+        kwargs['azure_blob_storage_integration_creation_request'] = \
+            kwargs['azure_blob_storage_integration_creation_request']
+        return self.create_azure_blob_storage_integration_endpoint.call_with_http_info(**kwargs)
+
+    def create_azure_event_hubs_integration(
+        self,
+        *,
+        name: str,
+        azure_event_hubs: AzureEventHubsIntegration = None,
+        description: str = None,
+        **kwargs
+    ) -> typing.Union[CreateIntegrationResponse, asyncio.Future]:
+        """Create azure event hubs integration  # noqa: E501
+
+        Create a new integration.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+```python
+rs = RocksetClient(apikey=APIKEY)
+future = rs.IntegrationsApi.create_azure_event_hubs_integration(
+    azure_event_hubs=AzureEventHubsIntegration(
+    ),
+    description="AWS account with event data for the data science team.",
+    name="event-logs",
+    async_req=True,
+)
+result = await future
+```
+
+        Keyword Args:
+            azure_event_hubs (AzureEventHubsIntegration): [optional]
+            description (str): longer explanation for the integration. [optional]
+            name (str): descriptive label. [required]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is False.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            CreateIntegrationResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', False
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['azure_event_hubs_integration_creation_request'] = \
+            kwargs['azure_event_hubs_integration_creation_request']
+        return self.create_azure_event_hubs_integration_endpoint.call_with_http_info(**kwargs)
+
+    def create_dynamodb_integration(
+        self,
+        *,
+        name: str,
+        description: str = None,
+        dynamodb: DynamodbIntegration = None,
+        **kwargs
+    ) -> typing.Union[CreateIntegrationResponse, asyncio.Future]:
+        """Create dynamodb integration  # noqa: E501
+
+        Create a new integration.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+```python
+rs = RocksetClient(apikey=APIKEY)
+future = rs.IntegrationsApi.create_dynamodb_integration(
+    description="AWS account with event data for the data science team.",
+    dynamodb=DynamodbIntegration(
+        aws_access_key=AwsAccessKey(
+            aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
+            aws_secret_access_key="wJal....",
+        ),
+        aws_role=AwsRole(
+            aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
+        ),
+        s3_export_bucket_name="s3_export_bucket_name_example",
+    ),
+    name="event-logs",
+    async_req=True,
+)
+result = await future
+```
+
+        Keyword Args:
+            description (str): longer explanation for the integration. [optional]
+            dynamodb (DynamodbIntegration): [optional]
+            name (str): descriptive label. [required]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is False.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            CreateIntegrationResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', False
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['dynamodb_integration_creation_request'] = \
+            kwargs['dynamodb_integration_creation_request']
+        return self.create_dynamodb_integration_endpoint.call_with_http_info(**kwargs)
 
     def create_gcs_integration(
         self,
         *,
         name: str,
-        description: str=None,
-        gcs: GcsIntegration=None,
+        description: str = None,
+        gcs: GcsIntegration = None,
         **kwargs
     ) -> typing.Union[CreateIntegrationResponse, asyncio.Future]:
         """Create gcs integration  # noqa: E501
@@ -394,14 +1000,20 @@ class IntegrationsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> rs = RocksetClient(apikey=APIKEY)
-        >>> future = rs.IntegrationsApi.create_gcs_integration(
-                name=name,
-                description=description,
-                gcs=gcs,
-                async_req=True,
-            )
-        >>> result = await future
+```python
+rs = RocksetClient(apikey=APIKEY)
+future = rs.IntegrationsApi.create_gcs_integration(
+    description="AWS account with event data for the data science team.",
+    gcs=GcsIntegration(
+        gcp_service_account=GcpServiceAccount(
+            service_account_key_file_json="service_account_key_file_json_example",
+        ),
+    ),
+    name="event-logs",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             description (str): longer explanation for the integration. [optional]
@@ -466,6 +1078,574 @@ class IntegrationsApi(object):
             kwargs['gcs_integration_creation_request']
         return self.create_gcs_integration_endpoint.call_with_http_info(**kwargs)
 
+    def create_kafka_integration(
+        self,
+        *,
+        name: str,
+        description: str = None,
+        kafka: KafkaIntegration = None,
+        **kwargs
+    ) -> typing.Union[CreateIntegrationResponse, asyncio.Future]:
+        """Create kafka integration  # noqa: E501
+
+        Create a new integration.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+```python
+rs = RocksetClient(apikey=APIKEY)
+future = rs.IntegrationsApi.create_kafka_integration(
+    description="AWS account with event data for the data science team.",
+    kafka=KafkaIntegration(
+        bootstrap_servers="bootstrap_servers_example",
+        kafka_data_format="json",
+        kafka_topic_names=[
+            "kafka_topic_names_example",
+        ],
+        security_config=KafkaV3SecurityConfig(
+            api_key="api_key_example",
+            secret="secret_example",
+        ),
+        use_v3=True,
+    ),
+    name="event-logs",
+    async_req=True,
+)
+result = await future
+```
+
+        Keyword Args:
+            description (str): longer explanation for the integration. [optional]
+            kafka (KafkaIntegration): [optional]
+            name (str): descriptive label. [required]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is False.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            CreateIntegrationResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', False
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['kafka_integration_creation_request'] = \
+            kwargs['kafka_integration_creation_request']
+        return self.create_kafka_integration_endpoint.call_with_http_info(**kwargs)
+
+    def create_kinesis_integration(
+        self,
+        *,
+        name: str,
+        description: str = None,
+        kinesis: KinesisIntegration = None,
+        **kwargs
+    ) -> typing.Union[CreateIntegrationResponse, asyncio.Future]:
+        """Create kinesis integration  # noqa: E501
+
+        Create a new integration.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+```python
+rs = RocksetClient(apikey=APIKEY)
+future = rs.IntegrationsApi.create_kinesis_integration(
+    description="AWS account with event data for the data science team.",
+    kinesis=KinesisIntegration(
+        aws_access_key=AwsAccessKey(
+            aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
+            aws_secret_access_key="wJal....",
+        ),
+        aws_role=AwsRole(
+            aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
+        ),
+    ),
+    name="event-logs",
+    async_req=True,
+)
+result = await future
+```
+
+        Keyword Args:
+            description (str): longer explanation for the integration. [optional]
+            kinesis (KinesisIntegration): [optional]
+            name (str): descriptive label. [required]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is False.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            CreateIntegrationResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', False
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['kinesis_integration_creation_request'] = \
+            kwargs['kinesis_integration_creation_request']
+        return self.create_kinesis_integration_endpoint.call_with_http_info(**kwargs)
+
+    def create_mongodb_integration(
+        self,
+        *,
+        name: str,
+        description: str = None,
+        mongodb: MongoDbIntegration = None,
+        **kwargs
+    ) -> typing.Union[CreateIntegrationResponse, asyncio.Future]:
+        """Create mongodb integration  # noqa: E501
+
+        Create a new integration.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+```python
+rs = RocksetClient(apikey=APIKEY)
+future = rs.IntegrationsApi.create_mongodb_integration(
+    description="AWS account with event data for the data science team.",
+    mongodb=MongoDbIntegration(
+        connection_uri="mongodb+srv://<username>:<password>@server.example.com/",
+    ),
+    name="event-logs",
+    async_req=True,
+)
+result = await future
+```
+
+        Keyword Args:
+            description (str): longer explanation for the integration. [optional]
+            mongodb (MongoDbIntegration): [optional]
+            name (str): descriptive label. [required]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is False.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            CreateIntegrationResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', False
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['mongodb_integration_creation_request'] = \
+            kwargs['mongodb_integration_creation_request']
+        return self.create_mongodb_integration_endpoint.call_with_http_info(**kwargs)
+
+    def create_redshift_integration(
+        self,
+        *,
+        name: str,
+        description: str = None,
+        redshift: RedshiftIntegration = None,
+        **kwargs
+    ) -> typing.Union[CreateIntegrationResponse, asyncio.Future]:
+        """Create redshift integration  # noqa: E501
+
+        Create a new integration.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+```python
+rs = RocksetClient(apikey=APIKEY)
+future = rs.IntegrationsApi.create_redshift_integration(
+    description="AWS account with event data for the data science team.",
+    name="event-logs",
+    redshift=RedshiftIntegration(
+        aws_access_key=AwsAccessKey(
+            aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
+            aws_secret_access_key="wJal....",
+        ),
+        host="test.yuyugt.us-west-2.redshift.amazonaws.com",
+        password="pswd....",
+        port=5439,
+        s3_bucket_path="s3://redshift-unload",
+        username="awsuser",
+    ),
+    async_req=True,
+)
+result = await future
+```
+
+        Keyword Args:
+            description (str): longer explanation for the integration. [optional]
+            name (str): descriptive label. [required]
+            redshift (RedshiftIntegration): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is False.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            CreateIntegrationResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', False
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['redshift_integration_creation_request'] = \
+            kwargs['redshift_integration_creation_request']
+        return self.create_redshift_integration_endpoint.call_with_http_info(**kwargs)
+
+    def create_s3_integration(
+        self,
+        *,
+        name: str,
+        description: str = None,
+        s3: S3Integration = None,
+        **kwargs
+    ) -> typing.Union[CreateIntegrationResponse, asyncio.Future]:
+        """Create s3 integration  # noqa: E501
+
+        Create a new integration.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+```python
+rs = RocksetClient(apikey=APIKEY)
+future = rs.IntegrationsApi.create_s3_integration(
+    description="AWS account with event data for the data science team.",
+    name="event-logs",
+    s3=S3Integration(
+        aws_access_key=AwsAccessKey(
+            aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
+            aws_secret_access_key="wJal....",
+        ),
+        aws_role=AwsRole(
+            aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
+        ),
+    ),
+    async_req=True,
+)
+result = await future
+```
+
+        Keyword Args:
+            description (str): longer explanation for the integration. [optional]
+            name (str): descriptive label. [required]
+            s3 (S3Integration): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is False.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            CreateIntegrationResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', False
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['s3_integration_creation_request'] = \
+            kwargs['s3_integration_creation_request']
+        return self.create_s3_integration_endpoint.call_with_http_info(**kwargs)
+
+    def create_segment_integration(
+        self,
+        *,
+        name: str,
+        description: str = None,
+        segment: SegmentIntegration = None,
+        **kwargs
+    ) -> typing.Union[CreateIntegrationResponse, asyncio.Future]:
+        """Create segment integration  # noqa: E501
+
+        Create a new integration.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+```python
+rs = RocksetClient(apikey=APIKEY)
+future = rs.IntegrationsApi.create_segment_integration(
+    description="AWS account with event data for the data science team.",
+    name="event-logs",
+    segment=SegmentIntegration(
+    ),
+    async_req=True,
+)
+result = await future
+```
+
+        Keyword Args:
+            description (str): longer explanation for the integration. [optional]
+            name (str): descriptive label. [required]
+            segment (SegmentIntegration): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is False.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            CreateIntegrationResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', False
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['segment_integration_creation_request'] = \
+            kwargs['segment_integration_creation_request']
+        return self.create_segment_integration_endpoint.call_with_http_info(**kwargs)
+
     def delete_integration(
         self,
         *,
@@ -478,12 +1658,14 @@ class IntegrationsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> rs = RocksetClient(apikey=APIKEY)
-        >>> future = rs.IntegrationsApi.delete_integration(
-                integration=integration,
-                async_req=True,
-            )
-        >>> result = await future
+```python
+rs = RocksetClient(apikey=APIKEY)
+future = rs.IntegrationsApi.delete_integration(
+    integration="integration_example",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             integration (str): name of the integration. [required]
@@ -558,12 +1740,14 @@ class IntegrationsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> rs = RocksetClient(apikey=APIKEY)
-        >>> future = rs.IntegrationsApi.get_integration(
-                integration=integration,
-                async_req=True,
-            )
-        >>> result = await future
+```python
+rs = RocksetClient(apikey=APIKEY)
+future = rs.IntegrationsApi.get_integration(
+    integration="integration_example",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             integration (str): name of the integration. [required]
@@ -636,11 +1820,13 @@ class IntegrationsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> rs = RocksetClient(apikey=APIKEY)
-        >>> future = rs.IntegrationsApi.list_integrations(
-                async_req=True,
-            )
-        >>> result = await future
+```python
+rs = RocksetClient(apikey=APIKEY)
+future = rs.IntegrationsApi.list_integrations(
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -703,7 +1889,23 @@ class IntegrationsApi(object):
 
     body_params_dict = dict()
     return_types_dict = dict()
-    body_params_dict['create_azure_blob_integration'] = 'azure_blob_integration_creation_request'
-    return_types_dict['create_azure_blob_integration'] = AzureBlobIntegrationCreationRequest
+    body_params_dict['create_azure_blob_storage_integration'] = 'azure_blob_storage_integration_creation_request'
+    return_types_dict['create_azure_blob_storage_integration'] = AzureBlobStorageIntegrationCreationRequest
+    body_params_dict['create_azure_event_hubs_integration'] = 'azure_event_hubs_integration_creation_request'
+    return_types_dict['create_azure_event_hubs_integration'] = AzureEventHubsIntegrationCreationRequest
+    body_params_dict['create_dynamodb_integration'] = 'dynamodb_integration_creation_request'
+    return_types_dict['create_dynamodb_integration'] = DynamodbIntegrationCreationRequest
     body_params_dict['create_gcs_integration'] = 'gcs_integration_creation_request'
     return_types_dict['create_gcs_integration'] = GcsIntegrationCreationRequest
+    body_params_dict['create_kafka_integration'] = 'kafka_integration_creation_request'
+    return_types_dict['create_kafka_integration'] = KafkaIntegrationCreationRequest
+    body_params_dict['create_kinesis_integration'] = 'kinesis_integration_creation_request'
+    return_types_dict['create_kinesis_integration'] = KinesisIntegrationCreationRequest
+    body_params_dict['create_mongodb_integration'] = 'mongodb_integration_creation_request'
+    return_types_dict['create_mongodb_integration'] = MongodbIntegrationCreationRequest
+    body_params_dict['create_redshift_integration'] = 'redshift_integration_creation_request'
+    return_types_dict['create_redshift_integration'] = RedshiftIntegrationCreationRequest
+    body_params_dict['create_s3_integration'] = 's3_integration_creation_request'
+    return_types_dict['create_s3_integration'] = S3IntegrationCreationRequest
+    body_params_dict['create_segment_integration'] = 'segment_integration_creation_request'
+    return_types_dict['create_segment_integration'] = SegmentIntegrationCreationRequest

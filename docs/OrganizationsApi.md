@@ -21,39 +21,35 @@ Retrieve information about current organization.
 ```python
 import time
 import rockset
-from rockset.api import organizations_api
+from rockset import RocksetClient
 from rockset.model.organization_response import OrganizationResponse
 from rockset.model.error_model import ErrorModel
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Get Organization
+    api_response = rs.OrganizationsApi.get_organization(
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling OrganizationsApi->get_organization: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = organizations_api.OrganizationsApi(api_client)
-
-    # example, this endpoint has no required or optional parameters
-    try:
-        # Get Organization
-        api_response = api_instance.get_organization()
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Get Organization
+    api_response = await rs.OrganizationsApi.get_organization(
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling OrganizationsApi->get_organization: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 

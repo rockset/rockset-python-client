@@ -6,9 +6,9 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **table_name** | **str** | name of DynamoDB table containing data | 
 **aws_region** | **str** | AWS region name of DynamoDB table, by default us-west-2 is used | [optional] 
-**current_status** | [**StatusDynamoDbV2**](StatusDynamoDbV2.md) |  | [optional] 
+**current_status** | **bool, date, datetime, dict, float, int, list, str, none_type** |  | [optional] [readonly] 
 **rcu** | **int** | Max RCU usage for scan | [optional] 
-**status** | [**StatusDynamoDb**](StatusDynamoDb.md) |  | [optional] 
+**status** | **bool, date, datetime, dict, float, int, list, str, none_type** |  | [optional] [readonly] 
 **use_scan_api** | **bool** | Whether to use DynamoDB Scan API for the initial scan | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 

@@ -18,7 +18,9 @@
 {{/isReadOnly}}
 {{/requiredVars}}
 {{#optionalVars}}
+{{^isReadOnly}}
             {{name}} ({{{dataType}}}):{{#description}} {{{.}}}.{{/description}} [optional]{{#defaultValue}} if omitted the server will use the default value of {{{.}}}{{/defaultValue}}  # noqa: E501
+{{/isReadOnly}}
 {{/optionalVars}}
 {{> model_templates/docstring_init_required_kwargs }}
         """

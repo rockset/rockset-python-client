@@ -24,51 +24,54 @@ Create a role for your organization.
 ```python
 import time
 import rockset
-from rockset.api import custom_roles__beta_api
+from rockset import RocksetClient
 from rockset.model.create_role_request import CreateRoleRequest
 from rockset.model.error_model import ErrorModel
 from rockset.model.role_response import RoleResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = custom_roles__beta_api.CustomRolesBetaApi(api_client)
-    create_role_request = CreateRoleRequest(
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Create a Role
+    api_response = rs.CustomRolesBetaApi.create_role(
         description="Role with read and write privileges to all collections.",
         privileges=[
-            Privilege(
-                action="Create collection",
-                cluster="*ALL*",
-                resource_name="commons",
-            ),
-        ],
+        Privilege(
+            action="Create collection",
+            cluster="*ALL*",
+            resource_name="commons",
+        ),
+    ],
         role_name="read_write",
-    ) # CreateRoleRequest | JSON Object
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling CustomRolesBetaApi->create_role: %s\n" % e)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Create a Role
-        api_response = api_instance.create_role(create_role_request)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Create a Role
+    api_response = await rs.CustomRolesBetaApi.create_role(
+        description="Role with read and write privileges to all collections.",
+        privileges=[
+        Privilege(
+            action="Create collection",
+            cluster="*ALL*",
+            resource_name="commons",
+        ),
+    ],
+        role_name="read_write",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling CustomRolesBetaApi->create_role: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -127,40 +130,37 @@ Delete a role for your organization.
 ```python
 import time
 import rockset
-from rockset.api import custom_roles__beta_api
+from rockset import RocksetClient
 from rockset.model.error_model import ErrorModel
 from rockset.model.role_response import RoleResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Delete a Role
+    api_response = rs.CustomRolesBetaApi.delete_role(
+        role_name="roleName_example",
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling CustomRolesBetaApi->delete_role: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = custom_roles__beta_api.CustomRolesBetaApi(api_client)
-    role_name = "roleName_example" # str | 
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Delete a Role
-        api_response = api_instance.delete_role(role_name)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Delete a Role
+    api_response = await rs.CustomRolesBetaApi.delete_role(
+        role_name="roleName_example",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling CustomRolesBetaApi->delete_role: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -219,39 +219,35 @@ List all roles for your organization.
 ```python
 import time
 import rockset
-from rockset.api import custom_roles__beta_api
+from rockset import RocksetClient
 from rockset.model.list_roles_response import ListRolesResponse
 from rockset.model.error_model import ErrorModel
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # List Roles
+    api_response = rs.CustomRolesBetaApi.list_roles(
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling CustomRolesBetaApi->list_roles: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = custom_roles__beta_api.CustomRolesBetaApi(api_client)
-
-    # example, this endpoint has no required or optional parameters
-    try:
-        # List Roles
-        api_response = api_instance.list_roles()
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # List Roles
+    api_response = await rs.CustomRolesBetaApi.list_roles(
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling CustomRolesBetaApi->list_roles: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -307,51 +303,54 @@ Update a role for your organization.
 ```python
 import time
 import rockset
-from rockset.api import custom_roles__beta_api
+from rockset import RocksetClient
 from rockset.model.error_model import ErrorModel
 from rockset.model.role_response import RoleResponse
 from rockset.model.update_role_request import UpdateRoleRequest
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = custom_roles__beta_api.CustomRolesBetaApi(api_client)
-    role_name = "roleName_example" # str | 
-    update_role_request = UpdateRoleRequest(
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Update a Role
+    api_response = rs.CustomRolesBetaApi.update_role(
+        role_name="roleName_example",
         description="Role with read and write privileges to all collections.",
         privileges=[
-            Privilege(
-                action="Create collection",
-                cluster="*ALL*",
-                resource_name="commons",
-            ),
-        ],
-    ) # UpdateRoleRequest | JSON Object
+        Privilege(
+            action="Create collection",
+            cluster="*ALL*",
+            resource_name="commons",
+        ),
+    ],
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling CustomRolesBetaApi->update_role: %s\n" % e)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Update a Role
-        api_response = api_instance.update_role(role_name, update_role_request)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Update a Role
+    api_response = await rs.CustomRolesBetaApi.update_role(
+        role_name="roleName_example",
+        description="Role with read and write privileges to all collections.",
+        privileges=[
+        Privilege(
+            action="Create collection",
+            cluster="*ALL*",
+            resource_name="commons",
+        ),
+    ],
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling CustomRolesBetaApi->update_role: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 

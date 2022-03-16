@@ -10,7 +10,6 @@ Name | Type | Description | Notes
 **created_at** | **str** | Date that API key was created (ISO-8601 format). | [optional] 
 **created_by** | **str** | Email of API key owner. | [optional] 
 **last_access_time** | **str** | Date that API key was most recently used (ISO-8601 format). | [optional] 
-**role** | **str** |  | [optional] 
 **state** | **str** | current state of this key | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 

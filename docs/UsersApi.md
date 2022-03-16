@@ -8,9 +8,9 @@ Method | HTTP request | Description
 [**delete_user**](UsersApi.md#delete_user) | **DELETE** /v1/orgs/self/users/{user} | Delete User
 [**get_current_user**](UsersApi.md#get_current_user) | **GET** /v1/orgs/self/users/self | Retrieve Current User
 [**get_user**](UsersApi.md#get_user) | **GET** /v1/orgs/self/users/{user} | Retrieve User
-[**list_unsubscribe_preferences**](UsersApi.md#list_unsubscribe_preferences) | **GET** /v1/orgs/self/users/self/preferences | Get all notification preferences
+[**list_unsubscribe_preferences**](UsersApi.md#list_unsubscribe_preferences) | **GET** /v1/orgs/self/users/self/preferences | Retrieve Notification Preferences
 [**list_users**](UsersApi.md#list_users) | **GET** /v1/orgs/self/users | List Users
-[**update_unsubscribe_preferences**](UsersApi.md#update_unsubscribe_preferences) | **POST** /v1/orgs/self/users/self/preferences | Update notification preferences
+[**update_unsubscribe_preferences**](UsersApi.md#update_unsubscribe_preferences) | **POST** /v1/orgs/self/users/self/preferences | Update Notification Preferences
 
 
 # **create_user**
@@ -27,46 +27,40 @@ Create a new user for an organization.
 ```python
 import time
 import rockset
-from rockset.api import users_api
+from rockset import RocksetClient
 from rockset.model.create_user_response import CreateUserResponse
 from rockset.model.error_model import ErrorModel
 from rockset.model.create_user_request import CreateUserRequest
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = users_api.UsersApi(api_client)
-    create_user_request = CreateUserRequest(
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Create User
+    api_response = rs.UsersApi.create_user(
         email="hello@rockset.com",
-        roles=[
-            "["admin", "member", "read-only"]",
-        ],
-    ) # CreateUserRequest | JSON object
+        roles=["admin","member","read-only"],
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling UsersApi->create_user: %s\n" % e)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Create User
-        api_response = api_instance.create_user(create_user_request)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Create User
+    api_response = await rs.UsersApi.create_user(
+        email="hello@rockset.com",
+        roles=["admin","member","read-only"],
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling UsersApi->create_user: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -125,40 +119,37 @@ Delete a user from an organization.
 ```python
 import time
 import rockset
-from rockset.api import users_api
+from rockset import RocksetClient
 from rockset.model.error_model import ErrorModel
 from rockset.model.delete_user_response import DeleteUserResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Delete User
+    api_response = rs.UsersApi.delete_user(
+        user="user_example",
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling UsersApi->delete_user: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = users_api.UsersApi(api_client)
-    user = "user_example" # str | user email
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Delete User
-        api_response = api_instance.delete_user(user)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Delete User
+    api_response = await rs.UsersApi.delete_user(
+        user="user_example",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling UsersApi->delete_user: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -217,39 +208,35 @@ Retrieve currently authenticated user.
 ```python
 import time
 import rockset
-from rockset.api import users_api
+from rockset import RocksetClient
 from rockset.model.error_model import ErrorModel
 from rockset.model.user import User
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Retrieve Current User
+    api_response = rs.UsersApi.get_current_user(
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling UsersApi->get_current_user: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = users_api.UsersApi(api_client)
-
-    # example, this endpoint has no required or optional parameters
-    try:
-        # Retrieve Current User
-        api_response = api_instance.get_current_user()
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Retrieve Current User
+    api_response = await rs.UsersApi.get_current_user(
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling UsersApi->get_current_user: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -305,40 +292,37 @@ Retrieve user by email.
 ```python
 import time
 import rockset
-from rockset.api import users_api
+from rockset import RocksetClient
 from rockset.model.error_model import ErrorModel
 from rockset.model.user import User
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Retrieve User
+    api_response = rs.UsersApi.get_user(
+        user="user_example",
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling UsersApi->get_user: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = users_api.UsersApi(api_client)
-    user = "user_example" # str | user email
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Retrieve User
-        api_response = api_instance.get_user(user)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Retrieve User
+    api_response = await rs.UsersApi.get_user(
+        user="user_example",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling UsersApi->get_user: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -386,7 +370,7 @@ Name | Type | Description  | Notes
 # **list_unsubscribe_preferences**
 > ListUnsubscribePreferencesResponse list_unsubscribe_preferences()
 
-Get all notification preferences
+Retrieve Notification Preferences
 
 Get all notification preferences.
 
@@ -397,39 +381,35 @@ Get all notification preferences.
 ```python
 import time
 import rockset
-from rockset.api import users_api
+from rockset import RocksetClient
 from rockset.model.list_unsubscribe_preferences_response import ListUnsubscribePreferencesResponse
 from rockset.model.error_model import ErrorModel
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Retrieve Notification Preferences
+    api_response = rs.UsersApi.list_unsubscribe_preferences(
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling UsersApi->list_unsubscribe_preferences: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = users_api.UsersApi(api_client)
-
-    # example, this endpoint has no required or optional parameters
-    try:
-        # Get all notification preferences
-        api_response = api_instance.list_unsubscribe_preferences()
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Retrieve Notification Preferences
+    api_response = await rs.UsersApi.list_unsubscribe_preferences(
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling UsersApi->list_unsubscribe_preferences: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -485,39 +465,35 @@ Retrieve all users for an organization.
 ```python
 import time
 import rockset
-from rockset.api import users_api
+from rockset import RocksetClient
 from rockset.model.error_model import ErrorModel
 from rockset.model.list_users_response import ListUsersResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # List Users
+    api_response = rs.UsersApi.list_users(
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling UsersApi->list_users: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = users_api.UsersApi(api_client)
-
-    # example, this endpoint has no required or optional parameters
-    try:
-        # List Users
-        api_response = api_instance.list_users()
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # List Users
+    api_response = await rs.UsersApi.list_users(
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling UsersApi->list_users: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -562,7 +538,7 @@ This endpoint does not need any parameter.
 # **update_unsubscribe_preferences**
 > UpdateUnsubscribePreferencesResponse update_unsubscribe_preferences(update_unsubscribe_preferences_request)
 
-Update notification preferences
+Update Notification Preferences
 
 Update notification preference.
 
@@ -573,47 +549,46 @@ Update notification preference.
 ```python
 import time
 import rockset
-from rockset.api import users_api
+from rockset import RocksetClient
 from rockset.model.error_model import ErrorModel
 from rockset.model.update_unsubscribe_preferences_request import UpdateUnsubscribePreferencesRequest
 from rockset.model.update_unsubscribe_preferences_response import UpdateUnsubscribePreferencesResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = users_api.UsersApi(api_client)
-    update_unsubscribe_preferences_request = UpdateUnsubscribePreferencesRequest(
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Update Notification Preferences
+    api_response = rs.UsersApi.update_unsubscribe_preferences(
         data=[
-            UnsubscribePreference(
-                notification_type="create_apikey",
-            ),
-        ],
-    ) # UpdateUnsubscribePreferencesRequest | JSON Object
+        UnsubscribePreference(
+            notification_type="create_apikey",
+        ),
+    ],
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling UsersApi->update_unsubscribe_preferences: %s\n" % e)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Update notification preferences
-        api_response = api_instance.update_unsubscribe_preferences(update_unsubscribe_preferences_request)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Update Notification Preferences
+    api_response = await rs.UsersApi.update_unsubscribe_preferences(
+        data=[
+        UnsubscribePreference(
+            notification_type="create_apikey",
+        ),
+    ],
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling UsersApi->update_unsubscribe_preferences: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 

@@ -91,7 +91,9 @@ class FormatParams(ModelNormal):
         return {
             'csv': (CsvParams,),  # noqa: E501
             'json': (bool,),  # noqa: E501
+            'mssql_dms': (bool,),  # noqa: E501
             'mysql_dms': (bool,),  # noqa: E501
+            'oracle_dms': (bool,),  # noqa: E501
             'postgres_dms': (bool,),  # noqa: E501
             'xml': (XmlParams,),  # noqa: E501
         }
@@ -104,7 +106,9 @@ class FormatParams(ModelNormal):
     attribute_map = {
         'csv': 'csv',  # noqa: E501
         'json': 'json',  # noqa: E501
+        'mssql_dms': 'mssql_dms',  # noqa: E501
         'mysql_dms': 'mysql_dms',  # noqa: E501
+        'oracle_dms': 'oracle_dms',  # noqa: E501
         'postgres_dms': 'postgres_dms',  # noqa: E501
         'xml': 'xml',  # noqa: E501
     }
@@ -152,7 +156,9 @@ class FormatParams(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             csv (CsvParams): [optional]  # noqa: E501
             json (bool): source data is in json format. [optional]  # noqa: E501
+            mssql_dms (bool): [optional]  # noqa: E501
             mysql_dms (bool): [optional]  # noqa: E501
+            oracle_dms (bool): [optional]  # noqa: E501
             postgres_dms (bool): [optional]  # noqa: E501
             xml (XmlParams): [optional]  # noqa: E501
         """
@@ -208,7 +214,9 @@ class FormatParams(ModelNormal):
         Keyword Args:
             csv (CsvParams): [optional]  # noqa: E501
             json (bool): source data is in json format. [optional]  # noqa: E501
+            mssql_dms (bool): [optional]  # noqa: E501
             mysql_dms (bool): [optional]  # noqa: E501
+            oracle_dms (bool): [optional]  # noqa: E501
             postgres_dms (bool): [optional]  # noqa: E501
             xml (XmlParams): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types

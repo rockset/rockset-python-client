@@ -208,12 +208,14 @@ class VirtualInstancesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> rs = RocksetClient(apikey=APIKEY)
-        >>> future = rs.VirtualInstancesApi.get_virtual_instance(
-                virtual_instance_id=virtual_instance_id,
-                async_req=True,
-            )
-        >>> result = await future
+```python
+rs = RocksetClient(apikey=APIKEY)
+future = rs.VirtualInstancesApi.get_virtual_instance(
+    virtual_instance_id="virtualInstanceId_example",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             virtual_instance_id (str): uuid of the virtual instance. [required]
@@ -286,11 +288,13 @@ class VirtualInstancesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> rs = RocksetClient(apikey=APIKEY)
-        >>> future = rs.VirtualInstancesApi.list_virtual_instances(
-                async_req=True,
-            )
-        >>> result = await future
+```python
+rs = RocksetClient(apikey=APIKEY)
+future = rs.VirtualInstancesApi.list_virtual_instances(
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -354,9 +358,9 @@ class VirtualInstancesApi(object):
         self,
         *,
         virtual_instance_id: str,
-        monitoring_enabled: bool=None,
-        new_size: str=None,
-        new_type: str=None,
+        monitoring_enabled: bool = None,
+        new_size: str = None,
+        new_type: str = None,
         **kwargs
     ) -> typing.Union[UpdateVirtualInstanceResponse, asyncio.Future]:
         """Update Virtual Instance  # noqa: E501
@@ -365,15 +369,17 @@ class VirtualInstancesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> rs = RocksetClient(apikey=APIKEY)
-        >>> future = rs.VirtualInstancesApi.set_virtual_instance(
-                virtual_instance_id=virtual_instance_id,
-                monitoring_enabled=monitoring_enabled,
-                new_size=new_size,
-                new_type=new_type,
-                async_req=True,
-            )
-        >>> result = await future
+```python
+rs = RocksetClient(apikey=APIKEY)
+future = rs.VirtualInstancesApi.set_virtual_instance(
+    virtual_instance_id="virtualInstanceId_example",
+    monitoring_enabled=True,
+    new_size="LARGE",
+    new_type="FREE",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             virtual_instance_id (str): uuid of the virtual instance. [required]

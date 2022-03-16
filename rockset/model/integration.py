@@ -30,9 +30,9 @@ from rockset.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from rockset.model.az_event_hub_integration import AzEventHubIntegration
-    from rockset.model.az_service_bus_integration import AzServiceBusIntegration
     from rockset.model.azure_blob_storage_integration import AzureBlobStorageIntegration
+    from rockset.model.azure_event_hubs_integration import AzureEventHubsIntegration
+    from rockset.model.azure_service_bus_integration import AzureServiceBusIntegration
     from rockset.model.collection import Collection
     from rockset.model.dynamodb_integration import DynamodbIntegration
     from rockset.model.gcs_integration import GcsIntegration
@@ -41,9 +41,9 @@ def lazy_import():
     from rockset.model.mongo_db_integration import MongoDbIntegration
     from rockset.model.s3_integration import S3Integration
     from rockset.model.segment_integration import SegmentIntegration
-    globals()['AzEventHubIntegration'] = AzEventHubIntegration
-    globals()['AzServiceBusIntegration'] = AzServiceBusIntegration
     globals()['AzureBlobStorageIntegration'] = AzureBlobStorageIntegration
+    globals()['AzureEventHubsIntegration'] = AzureEventHubsIntegration
+    globals()['AzureServiceBusIntegration'] = AzureServiceBusIntegration
     globals()['Collection'] = Collection
     globals()['DynamodbIntegration'] = DynamodbIntegration
     globals()['GcsIntegration'] = GcsIntegration
@@ -110,8 +110,8 @@ class Integration(ModelNormal):
             'created_by': (str,),  # noqa: E501
             'name': (str,),  # noqa: E501
             'azure_blob_storage': (AzureBlobStorageIntegration,),  # noqa: E501
-            'azure_event_hub': (AzEventHubIntegration,),  # noqa: E501
-            'azure_service_bus': (AzServiceBusIntegration,),  # noqa: E501
+            'azure_event_hubs': (AzureEventHubsIntegration,),  # noqa: E501
+            'azure_service_bus': (AzureServiceBusIntegration,),  # noqa: E501
             'collections': ([Collection],),  # noqa: E501
             'created_at': (str,),  # noqa: E501
             'description': (str,),  # noqa: E501
@@ -133,7 +133,7 @@ class Integration(ModelNormal):
         'created_by': 'created_by',  # noqa: E501
         'name': 'name',  # noqa: E501
         'azure_blob_storage': 'azure_blob_storage',  # noqa: E501
-        'azure_event_hub': 'azure_event_hub',  # noqa: E501
+        'azure_event_hubs': 'azure_event_hubs',  # noqa: E501
         'azure_service_bus': 'azure_service_bus',  # noqa: E501
         'collections': 'collections',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
@@ -193,8 +193,8 @@ class Integration(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             azure_blob_storage (AzureBlobStorageIntegration): [optional]  # noqa: E501
-            azure_event_hub (AzEventHubIntegration): [optional]  # noqa: E501
-            azure_service_bus (AzServiceBusIntegration): [optional]  # noqa: E501
+            azure_event_hubs (AzureEventHubsIntegration): [optional]  # noqa: E501
+            azure_service_bus (AzureServiceBusIntegration): [optional]  # noqa: E501
             collections ([Collection]): list of collections that use the integration. [optional]  # noqa: E501
             created_at (str): ISO-8601 date. [optional]  # noqa: E501
             description (str): longer explanation for the integration. [optional]  # noqa: E501
@@ -261,8 +261,8 @@ class Integration(ModelNormal):
             created_by (str): email of user who created the integration
             name (str): descriptive label and unique identifier
             azure_blob_storage (AzureBlobStorageIntegration): [optional]  # noqa: E501
-            azure_event_hub (AzEventHubIntegration): [optional]  # noqa: E501
-            azure_service_bus (AzServiceBusIntegration): [optional]  # noqa: E501
+            azure_event_hubs (AzureEventHubsIntegration): [optional]  # noqa: E501
+            azure_service_bus (AzureServiceBusIntegration): [optional]  # noqa: E501
             collections ([Collection]): list of collections that use the integration. [optional]  # noqa: E501
             created_at (str): ISO-8601 date. [optional]  # noqa: E501
             description (str): longer explanation for the integration. [optional]  # noqa: E501

@@ -127,6 +127,9 @@ class SourceS3(ModelNormal):
     read_only_vars = {
         'prefixes',  # noqa: E501
         'access_key',  # noqa: E501
+        'object_bytes_total',  # noqa: E501
+        'object_count_downloaded',  # noqa: E501
+        'object_count_total',  # noqa: E501
         'secret_access',  # noqa: E501
     }
 
@@ -236,16 +239,11 @@ class SourceS3(ModelNormal):
 
         Keyword Args:
             bucket (str): address of S3 bucket containing data
-            access_key (str): AWS credential with ListObjects and GetObject access. [optional]  # noqa: E501
             format (str): do not use. [optional] if omitted the server will use the default value of "JSON"  # noqa: E501
             mappings ([FieldMask]): custom transformation on data field. [optional]  # noqa: E501
-            object_bytes_total (int): [optional]  # noqa: E501
-            object_count_downloaded (int): [optional]  # noqa: E501
-            object_count_total (int): [optional]  # noqa: E501
             pattern (str): Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified.. [optional]  # noqa: E501
             prefix (str): Prefix that selects keys to ingest.. [optional]  # noqa: E501
             region (str): AWS region containing source bucket. [optional]  # noqa: E501
-            secret_access (str): AWS credential with ListObjects and GetObject access. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

@@ -224,6 +224,7 @@ class {{classname}}(object):
         *,
 {{/hasParams}}
 {{#requiredParams}}
+{{^isReadOnly}}
 {{^defaultValue}}
 {{^isBodyParam}}
         {{paramName}}: {{dataType}},
@@ -233,6 +234,7 @@ class {{classname}}(object):
 {{#required}}
 {{#isArray}}
 {{#items}}
+{{^isReadOnly}}
 {{#isPrimitiveType}}
         {{name}}: typing.Sequence[{{dataType}}],
 {{/isPrimitiveType}}
@@ -244,6 +246,7 @@ class {{classname}}(object):
         {{name}}: typing.Sequence,
 {{/isModel}}
 {{/isPrimitiveType}}
+{{/isReadOnly}}
 {{/items}}
 {{/isArray}}
 {{#isMap}}
@@ -260,44 +263,51 @@ class {{classname}}(object):
 {{^required}}
 {{#isArray}}
 {{#items}}
+{{^isReadOnly}}
 {{#isPrimitiveType}}
-        {{name}}: typing.Sequence[{{dataType}}]=None,
+        {{name}}: typing.Sequence[{{dataType}}] = None,
 {{/isPrimitiveType}}
 {{#isModel}}
-        {{name}}: typing.Sequence[{{dataType}}]=None,
+        {{name}}: typing.Sequence[{{dataType}}] = None,
 {{/isModel}}
 {{^isPrimitiveType}}
 {{^isModel}}
-        {{name}}: typing.Sequence=None,
+        {{name}}: typing.Sequence = None,
 {{/isModel}}
 {{/isPrimitiveType}}
+{{/isReadOnly}}
 {{/items}}
 {{/isArray}}
 {{#isMap}}
-        {{name}}: typing.Dict=None,
+        {{name}}: typing.Dict = None,
 {{/isMap}}
 {{^isArray}}
 {{^isMap}}
-        {{name}}: {{dataType}}=None,
+        {{name}}: {{dataType}} = None,
 {{/isMap}}
 {{/isArray}}
 {{/required}}
 {{/vars}}
 {{/isBodyParam}}
 {{/defaultValue}}
+{{/isReadOnly}}
 {{/requiredParams}}
 {{#requiredParams}}
+{{^isReadOnly}}
 {{#defaultValue}}
-        {{paramName}}={{{defaultValue}}},
+        {{paramName}} = {{{defaultValue}}},
 {{/defaultValue}}
+{{/isReadOnly}}
 {{/requiredParams}}
 {{#optionalParams}}
+{{^isReadOnly}}
 {{#defaultValue}}
-        {{paramName}}: {{dataType}}={{{defaultValue}}},
+        {{paramName}}: {{dataType}} = {{{defaultValue}}},
 {{/defaultValue}}
 {{^defaultValue}}
-        {{paramName}}: {{dataType}}=None,
+        {{paramName}}: {{dataType}} = None,
 {{/defaultValue}}
+{{/isReadOnly}}
 {{/optionalParams}}
         **kwargs
     ) -> typing.Union[{{returnType}}{{^returnType}}None{{/returnType}}, asyncio.Future]:
@@ -309,79 +319,36 @@ class {{classname}}(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> rs = RocksetClient(apikey=APIKEY)
-        >>> future = rs.{{classname}}.{{operationId}}(
+```python
+rs = RocksetClient(apikey=APIKEY)
+future = rs.{{classname}}.{{operationId}}(
 {{#requiredParams}}
+{{^isReadOnly}}
 {{^defaultValue}}
 {{^isBodyParam}}
-                {{paramName}}={{paramName}},
+{{^isReadOnly}}
+    {{paramName}}={{#example}}{{{.}}}{{/example}}{{^example}}{{paramName}}{{/example}},
+{{/isReadOnly}}
 {{/isBodyParam}}
 {{#isBodyParam}}
 {{#vars}}
-{{#required}}
-{{#isArray}}
-{{#items}}
-{{#isPrimitiveType}}
-                {{name}}=[],
-{{/isPrimitiveType}}
-{{#isModel}}
-                {{name}}=[],
-{{/isModel}}
-{{^isPrimitiveType}}
-{{^isModel}}
-                {{name}}=[],
-{{/isModel}}
-{{/isPrimitiveType}}
-{{/items}}
-{{/isArray}}
-{{#isMap}}
-                {{name}}={},
-{{/isMap}}
-{{^isArray}}
-{{^isMap}}
-                {{name}}={{name}},
-{{/isMap}}
-{{/isArray}}
-{{/required}}
-{{/vars}}
-{{#vars}}
-{{^required}}
-{{#isArray}}
-{{#items}}
-{{#isPrimitiveType}}
-                {{name}}=[],
-{{/isPrimitiveType}}
-{{#isModel}}
-                {{name}}=[],
-{{/isModel}}
-{{^isPrimitiveType}}
-{{^isModel}}
-                {{name}}=[],
-{{/isModel}}
-{{/isPrimitiveType}}
-{{/items}}
-{{/isArray}}
-{{#isMap}}
-                {{name}}={},
-{{/isMap}}
-{{^isArray}}
-{{^isMap}}
-                {{name}}={{name}},
-{{/isMap}}
-{{/isArray}}
-{{/required}}
+{{^isReadOnly}}
+    {{name}}={{#example}}{{{.}}}{{/example}}{{^example}}{{name}}{{/example}},
+{{/isReadOnly}}
 {{/vars}}
 {{/isBodyParam}}
 {{/defaultValue}}
+{{/isReadOnly}}
 {{/requiredParams}}
-                async_req=True,
-            )
-        >>> result = await future
+    async_req=True,
+)
+result = await future
+```
 
-        Keyword Args:{{#requiredParams}}{{#isBodyParam}}{{#vars}}
-            {{name}} ({{dataType}}):{{#description}} {{{.}}}.{{/description}} {{#required}}[required]{{/required}}{{^required}}[optional]{{/required}}{{#defaultValue}} if omitted the server will use the default value of {{{.}}}{{/defaultValue}}{{/vars}}{{/isBodyParam}}{{^isBodyParam}}
-            {{paramName}} ({{dataType}}):{{#description}} {{{.}}}.{{/description}} [required]{{#defaultValue}} if omitted the server will use the default value of {{{.}}}{{/defaultValue}}{{/isBodyParam}}{{/requiredParams}}{{#optionalParams}}
-            {{paramName}} ({{dataType}}):{{#description}} {{{.}}}.{{/description}} [optional]{{#defaultValue}} if omitted the server will use the default value of {{{.}}}{{/defaultValue}}{{/optionalParams}}
+        Keyword Args:{{#requiredParams}}{{^isReadOnly}}{{#isBodyParam}}{{#vars}}{{^isReadOnly}}
+            {{name}} ({{dataType}}):{{#description}} {{{.}}}.{{/description}} {{#required}}[required]{{/required}}{{^required}}[optional]{{/required}}{{#defaultValue}} if omitted the server will use the default value of {{{.}}}{{/defaultValue}}{{/isReadOnly}}{{/vars}}{{/isBodyParam}}{{^isBodyParam}}
+            {{paramName}} ({{dataType}}):{{#description}} {{{.}}}.{{/description}} [required]{{#defaultValue}} if omitted the server will use the default value of {{{.}}}{{/defaultValue}}{{/isBodyParam}}{{/isReadOnly}}{{/requiredParams}}{{#optionalParams}}{{^isReadOnly}}
+            {{paramName}} ({{dataType}}):{{#description}} {{{.}}}.{{/description}} [optional]{{#defaultValue}} if omitted the server will use the default value of {{{.}}}{{/defaultValue}}{{/isReadOnly}}{{/optionalParams}}
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

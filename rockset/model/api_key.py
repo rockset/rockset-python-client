@@ -90,7 +90,6 @@ class ApiKey(ModelNormal):
             'created_at': (str,),  # noqa: E501
             'created_by': (str,),  # noqa: E501
             'last_access_time': (str,),  # noqa: E501
-            'role': (str,),  # noqa: E501
             'state': (str,),  # noqa: E501
         }
 
@@ -105,7 +104,6 @@ class ApiKey(ModelNormal):
         'created_at': 'created_at',  # noqa: E501
         'created_by': 'created_by',  # noqa: E501
         'last_access_time': 'last_access_time',  # noqa: E501
-        'role': 'role',  # noqa: E501
         'state': 'state',  # noqa: E501
     }
 
@@ -157,7 +155,6 @@ class ApiKey(ModelNormal):
             created_at (str): Date that API key was created (ISO-8601 format).. [optional]  # noqa: E501
             created_by (str): Email of API key owner.. [optional]  # noqa: E501
             last_access_time (str): Date that API key was most recently used (ISO-8601 format).. [optional]  # noqa: E501
-            role (str): [optional]  # noqa: E501
             state (str): current state of this key. [optional]  # noqa: E501
         """
 
@@ -217,7 +214,6 @@ class ApiKey(ModelNormal):
             created_at (str): Date that API key was created (ISO-8601 format).. [optional]  # noqa: E501
             created_by (str): Email of API key owner.. [optional]  # noqa: E501
             last_access_time (str): Date that API key was most recently used (ISO-8601 format).. [optional]  # noqa: E501
-            role (str): [optional]  # noqa: E501
             state (str): current state of this key. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be

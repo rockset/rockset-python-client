@@ -187,7 +187,6 @@ class SegmentIntegration(ModelNormal):
         """SegmentIntegration - a model defined in OpenAPI
 
         Keyword Args:
-            connection_string (str): segment connection string. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

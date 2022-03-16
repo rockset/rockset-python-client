@@ -104,6 +104,9 @@ class SourceAzureBlobStorage(ModelNormal):
     }
 
     read_only_vars = {
+        'blob_bytes_total',  # noqa: E501
+        'blob_count_downloaded',  # noqa: E501
+        'blob_count_total',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -201,9 +204,6 @@ class SourceAzureBlobStorage(ModelNormal):
         """SourceAzureBlobStorage - a model defined in OpenAPI
 
         Keyword Args:
-            blob_bytes_total (int): [optional]  # noqa: E501
-            blob_count_downloaded (int): [optional]  # noqa: E501
-            blob_count_total (int): [optional]  # noqa: E501
             container (str): name of Azure blob Storage container you want to ingest from. [optional]  # noqa: E501
             pattern (str): Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified.. [optional]  # noqa: E501
             prefix (str): Prefix that selects blobs to ingest.. [optional]  # noqa: E501

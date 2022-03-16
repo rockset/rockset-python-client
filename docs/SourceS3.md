@@ -9,9 +9,9 @@ Name | Type | Description | Notes
 **access_key** | **str** | AWS credential with ListObjects and GetObject access | [optional] [readonly] 
 **format** | **str** | do not use | [optional]  if omitted the server will use the default value of "JSON"
 **mappings** | [**[FieldMask]**](FieldMask.md) | custom transformation on data field | [optional] 
-**object_bytes_total** | **int** |  | [optional] 
-**object_count_downloaded** | **int** |  | [optional] 
-**object_count_total** | **int** |  | [optional] 
+**object_bytes_total** | **int** |  | [optional] [readonly] 
+**object_count_downloaded** | **int** |  | [optional] [readonly] 
+**object_count_total** | **int** |  | [optional] [readonly] 
 **pattern** | **str** | Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified. | [optional] 
 **prefix** | **str** | Prefix that selects keys to ingest. | [optional] 
 **region** | **str** | AWS region containing source bucket | [optional] 

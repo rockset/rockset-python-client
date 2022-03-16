@@ -8,8 +8,8 @@ Name | Type | Description | Notes
 **created_by** | **str** | email of user who created the integration | 
 **name** | **str** | descriptive label and unique identifier | 
 **azure_blob_storage** | [**AzureBlobStorageIntegration**](AzureBlobStorageIntegration.md) |  | [optional] 
-**azure_event_hub** | [**AzEventHubIntegration**](AzEventHubIntegration.md) |  | [optional] 
-**azure_service_bus** | [**AzServiceBusIntegration**](AzServiceBusIntegration.md) |  | [optional] 
+**azure_event_hubs** | [**AzureEventHubsIntegration**](AzureEventHubsIntegration.md) |  | [optional] 
+**azure_service_bus** | [**AzureServiceBusIntegration**](AzureServiceBusIntegration.md) |  | [optional] 
 **collections** | [**[Collection]**](Collection.md) | list of collections that use the integration | [optional] 
 **created_at** | **str** | ISO-8601 date | [optional] 
 **description** | **str** | longer explanation for the integration | [optional] 

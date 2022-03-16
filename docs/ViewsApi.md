@@ -26,44 +26,41 @@ Create a view
 ```python
 import time
 import rockset
-from rockset.api import views_api
+from rockset import RocksetClient
 from rockset.model.create_view_request import CreateViewRequest
 from rockset.model.create_view_response import CreateViewResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = views_api.ViewsApi(api_client)
-    create_view_request = CreateViewRequest(
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Create View
+    api_response = rs.ViewsApi.create_view(
         description="view of awesome collection",
         name="myAwesomeView",
         query="SELECT * FROM foo",
-    ) # CreateViewRequest | JSON object
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling ViewsApi->create_view: %s\n" % e)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Create View
-        api_response = api_instance.create_view(create_view_request)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Create View
+    api_response = await rs.ViewsApi.create_view(
+        description="view of awesome collection",
+        name="myAwesomeView",
+        query="SELECT * FROM foo",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling ViewsApi->create_view: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -110,39 +107,36 @@ Delete a view
 ```python
 import time
 import rockset
-from rockset.api import views_api
+from rockset import RocksetClient
 from rockset.model.delete_view_response import DeleteViewResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Delete View
+    api_response = rs.ViewsApi.delete_view(
+        view="view_example",
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling ViewsApi->delete_view: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = views_api.ViewsApi(api_client)
-    view = "view_example" # str | name of the view
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Delete View
-        api_response = api_instance.delete_view(view)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Delete View
+    api_response = await rs.ViewsApi.delete_view(
+        view="view_example",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling ViewsApi->delete_view: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -189,40 +183,37 @@ Get details about a view
 ```python
 import time
 import rockset
-from rockset.api import views_api
+from rockset import RocksetClient
 from rockset.model.error_model import ErrorModel
 from rockset.model.get_view_response import GetViewResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Retrieve View
+    api_response = rs.ViewsApi.get_view(
+        view="view_example",
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling ViewsApi->get_view: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = views_api.ViewsApi(api_client)
-    view = "view_example" # str | name of the view
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Retrieve View
-        api_response = api_instance.get_view(view)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Retrieve View
+    api_response = await rs.ViewsApi.get_view(
+        view="view_example",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling ViewsApi->get_view: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -282,39 +273,35 @@ Retrieve all views in an organization
 ```python
 import time
 import rockset
-from rockset.api import views_api
+from rockset import RocksetClient
 from rockset.model.error_model import ErrorModel
 from rockset.model.list_views_response import ListViewsResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # List Views
+    api_response = rs.ViewsApi.list_views(
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling ViewsApi->list_views: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = views_api.ViewsApi(api_client)
-
-    # example, this endpoint has no required or optional parameters
-    try:
-        # List Views
-        api_response = api_instance.list_views()
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # List Views
+    api_response = await rs.ViewsApi.list_views(
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling ViewsApi->list_views: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -370,44 +357,41 @@ Update a view
 ```python
 import time
 import rockset
-from rockset.api import views_api
+from rockset import RocksetClient
 from rockset.model.update_view_request import UpdateViewRequest
 from rockset.model.update_view_response import UpdateViewResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = views_api.ViewsApi(api_client)
-    view = "view_example" # str | name of the view
-    update_view_request = UpdateViewRequest(
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Update View
+    api_response = rs.ViewsApi.update_view(
+        view="view_example",
         description="view of awesome collection",
         query="SELECT * FROM foo",
-    ) # UpdateViewRequest | JSON object
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling ViewsApi->update_view: %s\n" % e)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Update View
-        api_response = api_instance.update_view(view, update_view_request)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Update View
+    api_response = await rs.ViewsApi.update_view(
+        view="view_example",
+        description="view of awesome collection",
+        query="SELECT * FROM foo",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling ViewsApi->update_view: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -455,39 +439,35 @@ Retrieve all views in a workspace.
 ```python
 import time
 import rockset
-from rockset.api import views_api
+from rockset import RocksetClient
 from rockset.model.error_model import ErrorModel
 from rockset.model.list_views_response import ListViewsResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # List Views in Workspace
+    api_response = rs.ViewsApi.workspace_views(
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling ViewsApi->workspace_views: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = views_api.ViewsApi(api_client)
-
-    # example passing only required values which don't have defaults set
-    try:
-        # List Views in Workspace
-        api_response = api_instance.workspace_views()
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # List Views in Workspace
+    api_response = await rs.ViewsApi.workspace_views(
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling ViewsApi->workspace_views: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 

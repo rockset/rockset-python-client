@@ -381,8 +381,8 @@ class ViewsApi(object):
         *,
         name: str,
         query: str,
-        description: str=None,
-        workspace="commons",
+        description: str = None,
+        workspace = "commons",
         **kwargs
     ) -> typing.Union[CreateViewResponse, asyncio.Future]:
         """Create View  # noqa: E501
@@ -391,14 +391,16 @@ class ViewsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> rs = RocksetClient(apikey=APIKEY)
-        >>> future = rs.ViewsApi.create_view(
-                name=name,
-                query=query,
-                description=description,
-                async_req=True,
-            )
-        >>> result = await future
+```python
+rs = RocksetClient(apikey=APIKEY)
+future = rs.ViewsApi.create_view(
+    description="view of awesome collection",
+    name="myAwesomeView",
+    query="SELECT * FROM foo",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -470,7 +472,7 @@ class ViewsApi(object):
         self,
         *,
         view: str,
-        workspace="commons",
+        workspace = "commons",
         **kwargs
     ) -> typing.Union[DeleteViewResponse, asyncio.Future]:
         """Delete View  # noqa: E501
@@ -479,12 +481,14 @@ class ViewsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> rs = RocksetClient(apikey=APIKEY)
-        >>> future = rs.ViewsApi.delete_view(
-                view=view,
-                async_req=True,
-            )
-        >>> result = await future
+```python
+rs = RocksetClient(apikey=APIKEY)
+future = rs.ViewsApi.delete_view(
+    view="view_example",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -554,7 +558,7 @@ class ViewsApi(object):
         self,
         *,
         view: str,
-        workspace="commons",
+        workspace = "commons",
         **kwargs
     ) -> typing.Union[GetViewResponse, asyncio.Future]:
         """Retrieve View  # noqa: E501
@@ -563,12 +567,14 @@ class ViewsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> rs = RocksetClient(apikey=APIKEY)
-        >>> future = rs.ViewsApi.get_view(
-                view=view,
-                async_req=True,
-            )
-        >>> result = await future
+```python
+rs = RocksetClient(apikey=APIKEY)
+future = rs.ViewsApi.get_view(
+    view="view_example",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -644,11 +650,13 @@ class ViewsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> rs = RocksetClient(apikey=APIKEY)
-        >>> future = rs.ViewsApi.list_views(
-                async_req=True,
-            )
-        >>> result = await future
+```python
+rs = RocksetClient(apikey=APIKEY)
+future = rs.ViewsApi.list_views(
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -713,8 +721,8 @@ class ViewsApi(object):
         *,
         view: str,
         query: str,
-        description: str=None,
-        workspace="commons",
+        description: str = None,
+        workspace = "commons",
         **kwargs
     ) -> typing.Union[UpdateViewResponse, asyncio.Future]:
         """Update View  # noqa: E501
@@ -723,14 +731,16 @@ class ViewsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> rs = RocksetClient(apikey=APIKEY)
-        >>> future = rs.ViewsApi.update_view(
-                view=view,
-                query=query,
-                description=description,
-                async_req=True,
-            )
-        >>> result = await future
+```python
+rs = RocksetClient(apikey=APIKEY)
+future = rs.ViewsApi.update_view(
+    view="view_example",
+    description="view of awesome collection",
+    query="SELECT * FROM foo",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -803,7 +813,7 @@ class ViewsApi(object):
     def workspace_views(
         self,
         *,
-        workspace="commons",
+        workspace = "commons",
         **kwargs
     ) -> typing.Union[ListViewsResponse, asyncio.Future]:
         """List Views in Workspace  # noqa: E501
@@ -812,11 +822,13 @@ class ViewsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> rs = RocksetClient(apikey=APIKEY)
-        >>> future = rs.ViewsApi.workspace_views(
-                async_req=True,
-            )
-        >>> result = await future
+```python
+rs = RocksetClient(apikey=APIKEY)
+future = rs.ViewsApi.workspace_views(
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"

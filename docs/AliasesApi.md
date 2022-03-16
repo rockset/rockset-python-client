@@ -26,47 +26,42 @@ Create new alias in a workspace.
 ```python
 import time
 import rockset
-from rockset.api import aliases_api
+from rockset import RocksetClient
 from rockset.model.error_model import ErrorModel
 from rockset.model.create_alias_response import CreateAliasResponse
 from rockset.model.create_alias_request import CreateAliasRequest
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = aliases_api.AliasesApi(api_client)
-    create_alias_request = CreateAliasRequest(
-        collections=[
-            "["commons.foo", "prod.demo"]",
-        ],
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Create Alias
+    api_response = rs.AliasesApi.create_alias(
+        collections=["commons.foo","prod.demo"],
         description="version alias",
         name="aliasName",
-    ) # CreateAliasRequest | JSON object
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling AliasesApi->create_alias: %s\n" % e)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Create Alias
-        api_response = api_instance.create_alias(create_alias_request)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Create Alias
+    api_response = await rs.AliasesApi.create_alias(
+        collections=["commons.foo","prod.demo"],
+        description="version alias",
+        name="aliasName",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling AliasesApi->create_alias: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -126,39 +121,36 @@ Delete an alias.
 ```python
 import time
 import rockset
-from rockset.api import aliases_api
+from rockset import RocksetClient
 from rockset.model.delete_alias_response import DeleteAliasResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Delete Alias
+    api_response = rs.AliasesApi.delete_alias(
+        alias="alias_example",
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling AliasesApi->delete_alias: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = aliases_api.AliasesApi(api_client)
-    alias = "alias_example" # str | name of the alias
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Delete Alias
-        api_response = api_instance.delete_alias(alias)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Delete Alias
+    api_response = await rs.AliasesApi.delete_alias(
+        alias="alias_example",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling AliasesApi->delete_alias: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -205,40 +197,37 @@ Get details about an alias
 ```python
 import time
 import rockset
-from rockset.api import aliases_api
+from rockset import RocksetClient
 from rockset.model.error_model import ErrorModel
 from rockset.model.get_alias_response import GetAliasResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Retrieve Alias
+    api_response = rs.AliasesApi.get_alias(
+        alias="alias_example",
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling AliasesApi->get_alias: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = aliases_api.AliasesApi(api_client)
-    alias = "alias_example" # str | name of the alias
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Retrieve Alias
-        api_response = api_instance.get_alias(alias)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Retrieve Alias
+    api_response = await rs.AliasesApi.get_alias(
+        alias="alias_example",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling AliasesApi->get_alias: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -298,39 +287,35 @@ Retrieve all aliases in an organization
 ```python
 import time
 import rockset
-from rockset.api import aliases_api
+from rockset import RocksetClient
 from rockset.model.error_model import ErrorModel
 from rockset.model.list_aliases_response import ListAliasesResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # List Aliases
+    api_response = rs.AliasesApi.list_aliases(
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling AliasesApi->list_aliases: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = aliases_api.AliasesApi(api_client)
-
-    # example, this endpoint has no required or optional parameters
-    try:
-        # List Aliases
-        api_response = api_instance.list_aliases()
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # List Aliases
+    api_response = await rs.AliasesApi.list_aliases(
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling AliasesApi->list_aliases: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -386,46 +371,41 @@ Update alias in a workspace.
 ```python
 import time
 import rockset
-from rockset.api import aliases_api
+from rockset import RocksetClient
 from rockset.model.get_alias_response import GetAliasResponse
 from rockset.model.update_alias_request import UpdateAliasRequest
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = aliases_api.AliasesApi(api_client)
-    alias = "alias_example" # str | name of the alias
-    update_alias_request = UpdateAliasRequest(
-        collections=[
-            "["commons.foo", "prod.demo"]",
-        ],
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Update Alias
+    api_response = rs.AliasesApi.update_alias(
+        alias="alias_example",
+        collections=["commons.foo","prod.demo"],
         description="version alias",
-    ) # UpdateAliasRequest | JSON object
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling AliasesApi->update_alias: %s\n" % e)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Update Alias
-        api_response = api_instance.update_alias(alias, update_alias_request)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Update Alias
+    api_response = await rs.AliasesApi.update_alias(
+        alias="alias_example",
+        collections=["commons.foo","prod.demo"],
+        description="version alias",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling AliasesApi->update_alias: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -473,39 +453,35 @@ Retrieve all aliases in a workspace.
 ```python
 import time
 import rockset
-from rockset.api import aliases_api
+from rockset import RocksetClient
 from rockset.model.error_model import ErrorModel
 from rockset.model.list_aliases_response import ListAliasesResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # List Aliases in Workspace
+    api_response = rs.AliasesApi.workspace_aliases(
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling AliasesApi->workspace_aliases: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = aliases_api.AliasesApi(api_client)
-
-    # example passing only required values which don't have defaults set
-    try:
-        # List Aliases in Workspace
-        api_response = api_instance.workspace_aliases()
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # List Aliases in Workspace
+    api_response = await rs.AliasesApi.workspace_aliases(
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling AliasesApi->workspace_aliases: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 

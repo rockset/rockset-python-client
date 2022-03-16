@@ -104,6 +104,9 @@ class SourceGcs(ModelNormal):
     }
 
     read_only_vars = {
+        'object_bytes_total',  # noqa: E501
+        'object_count_downloaded',  # noqa: E501
+        'object_count_total',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -202,9 +205,6 @@ class SourceGcs(ModelNormal):
 
         Keyword Args:
             bucket (str): name of GCS bucket you want to ingest from. [optional]  # noqa: E501
-            object_bytes_total (int): [optional]  # noqa: E501
-            object_count_downloaded (int): [optional]  # noqa: E501
-            object_count_total (int): [optional]  # noqa: E501
             pattern (str): Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified.. [optional]  # noqa: E501
             prefix (str): Prefix that selects keys to ingest.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types

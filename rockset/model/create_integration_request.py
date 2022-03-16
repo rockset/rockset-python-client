@@ -30,8 +30,8 @@ from rockset.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from rockset.model.az_event_hub_integration import AzEventHubIntegration
     from rockset.model.azure_blob_storage_integration import AzureBlobStorageIntegration
+    from rockset.model.azure_event_hubs_integration import AzureEventHubsIntegration
     from rockset.model.dynamodb_integration import DynamodbIntegration
     from rockset.model.gcs_integration import GcsIntegration
     from rockset.model.kafka_integration import KafkaIntegration
@@ -40,8 +40,8 @@ def lazy_import():
     from rockset.model.redshift_integration import RedshiftIntegration
     from rockset.model.s3_integration import S3Integration
     from rockset.model.segment_integration import SegmentIntegration
-    globals()['AzEventHubIntegration'] = AzEventHubIntegration
     globals()['AzureBlobStorageIntegration'] = AzureBlobStorageIntegration
+    globals()['AzureEventHubsIntegration'] = AzureEventHubsIntegration
     globals()['DynamodbIntegration'] = DynamodbIntegration
     globals()['GcsIntegration'] = GcsIntegration
     globals()['KafkaIntegration'] = KafkaIntegration
@@ -107,7 +107,7 @@ class CreateIntegrationRequest(ModelNormal):
         return {
             'name': (str,),  # noqa: E501
             'azure_blob_storage': (AzureBlobStorageIntegration,),  # noqa: E501
-            'azure_event_hub': (AzEventHubIntegration,),  # noqa: E501
+            'azure_event_hubs': (AzureEventHubsIntegration,),  # noqa: E501
             'description': (str,),  # noqa: E501
             'dynamodb': (DynamodbIntegration,),  # noqa: E501
             'gcs': (GcsIntegration,),  # noqa: E501
@@ -127,7 +127,7 @@ class CreateIntegrationRequest(ModelNormal):
     attribute_map = {
         'name': 'name',  # noqa: E501
         'azure_blob_storage': 'azure_blob_storage',  # noqa: E501
-        'azure_event_hub': 'azure_event_hub',  # noqa: E501
+        'azure_event_hubs': 'azure_event_hubs',  # noqa: E501
         'description': 'description',  # noqa: E501
         'dynamodb': 'dynamodb',  # noqa: E501
         'gcs': 'gcs',  # noqa: E501
@@ -184,7 +184,7 @@ class CreateIntegrationRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             azure_blob_storage (AzureBlobStorageIntegration): [optional]  # noqa: E501
-            azure_event_hub (AzEventHubIntegration): [optional]  # noqa: E501
+            azure_event_hubs (AzureEventHubsIntegration): [optional]  # noqa: E501
             description (str): longer explanation for the integration. [optional]  # noqa: E501
             dynamodb (DynamodbIntegration): [optional]  # noqa: E501
             gcs (GcsIntegration): [optional]  # noqa: E501
@@ -248,7 +248,7 @@ class CreateIntegrationRequest(ModelNormal):
         Keyword Args:
             name (str): descriptive label
             azure_blob_storage (AzureBlobStorageIntegration): [optional]  # noqa: E501
-            azure_event_hub (AzEventHubIntegration): [optional]  # noqa: E501
+            azure_event_hubs (AzureEventHubsIntegration): [optional]  # noqa: E501
             description (str): longer explanation for the integration. [optional]  # noqa: E501
             dynamodb (DynamodbIntegration): [optional]  # noqa: E501
             gcs (GcsIntegration): [optional]  # noqa: E501

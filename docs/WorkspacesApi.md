@@ -25,39 +25,35 @@ List workspaces under given workspace.
 ```python
 import time
 import rockset
-from rockset.api import workspaces_api
+from rockset import RocksetClient
 from rockset.model.list_workspaces_response import ListWorkspacesResponse
 from rockset.model.error_model import ErrorModel
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # List Workspaces in Workspace
+    api_response = rs.WorkspacesApi.child_workspaces(
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling WorkspacesApi->child_workspaces: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = workspaces_api.WorkspacesApi(api_client)
-
-    # example passing only required values which don't have defaults set
-    try:
-        # List Workspaces in Workspace
-        api_response = api_instance.child_workspaces()
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # List Workspaces in Workspace
+    api_response = await rs.WorkspacesApi.child_workspaces(
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling WorkspacesApi->child_workspaces: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -116,44 +112,40 @@ Create a new workspace.
 ```python
 import time
 import rockset
-from rockset.api import workspaces_api
+from rockset import RocksetClient
 from rockset.model.create_workspace_response import CreateWorkspaceResponse
 from rockset.model.create_workspace_request import CreateWorkspaceRequest
 from rockset.model.error_model import ErrorModel
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = workspaces_api.WorkspacesApi(api_client)
-    create_workspace_request = CreateWorkspaceRequest(
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Create Workspace
+    api_response = rs.WorkspacesApi.create_workspace(
         description="Datasets of system logs for the ops team.",
         name="event_logs",
-    ) # CreateWorkspaceRequest | workspace details
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling WorkspacesApi->create_workspace: %s\n" % e)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Create Workspace
-        api_response = api_instance.create_workspace(create_workspace_request)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Create Workspace
+    api_response = await rs.WorkspacesApi.create_workspace(
+        description="Datasets of system logs for the ops team.",
+        name="event_logs",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling WorkspacesApi->create_workspace: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -212,39 +204,35 @@ Remove a workspace.
 ```python
 import time
 import rockset
-from rockset.api import workspaces_api
+from rockset import RocksetClient
 from rockset.model.error_model import ErrorModel
 from rockset.model.delete_workspace_response import DeleteWorkspaceResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Delete Workspace
+    api_response = rs.WorkspacesApi.delete_workspace(
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling WorkspacesApi->delete_workspace: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = workspaces_api.WorkspacesApi(api_client)
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Delete Workspace
-        api_response = api_instance.delete_workspace()
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Delete Workspace
+    api_response = await rs.WorkspacesApi.delete_workspace(
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling WorkspacesApi->delete_workspace: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -303,39 +291,35 @@ Get information about a single workspace.
 ```python
 import time
 import rockset
-from rockset.api import workspaces_api
+from rockset import RocksetClient
 from rockset.model.get_workspace_response import GetWorkspaceResponse
 from rockset.model.error_model import ErrorModel
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Retrieve Workspace
+    api_response = rs.WorkspacesApi.get_workspace(
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling WorkspacesApi->get_workspace: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = workspaces_api.WorkspacesApi(api_client)
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Retrieve Workspace
-        api_response = api_instance.get_workspace()
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Retrieve Workspace
+    api_response = await rs.WorkspacesApi.get_workspace(
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling WorkspacesApi->get_workspace: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -394,41 +378,35 @@ List all workspaces in an organization.
 ```python
 import time
 import rockset
-from rockset.api import workspaces_api
+from rockset import RocksetClient
 from rockset.model.list_workspaces_response import ListWorkspacesResponse
 from rockset.model.error_model import ErrorModel
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # List Workspaces
+    api_response = rs.WorkspacesApi.list_workspaces(
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling WorkspacesApi->list_workspaces: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = workspaces_api.WorkspacesApi(api_client)
-    fetch_across_regions = True # bool |  (optional)
-
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # List Workspaces
-        api_response = api_instance.list_workspaces(fetch_across_regions=fetch_across_regions)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # List Workspaces
+    api_response = await rs.WorkspacesApi.list_workspaces(
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling WorkspacesApi->list_workspaces: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 

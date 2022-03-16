@@ -91,7 +91,7 @@ class Source(ModelNormal):
         return {
             'integration_name': (str,),  # noqa: E501
             'format_params': (FormatParams,),  # noqa: E501
-            'status': (Status,),  # noqa: E501
+            'status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
         }
 
     @cached_property
@@ -106,6 +106,7 @@ class Source(ModelNormal):
     }
 
     read_only_vars = {
+        'status',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -150,7 +151,7 @@ class Source(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             format_params (FormatParams): [optional]  # noqa: E501
-            status (Status): [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -205,7 +206,6 @@ class Source(ModelNormal):
         Keyword Args:
             integration_name (str): name of integration to use
             format_params (FormatParams): [optional]  # noqa: E501
-            status (Status): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

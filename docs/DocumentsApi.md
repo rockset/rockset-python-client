@@ -23,46 +23,40 @@ Add documents to a collection.
 ```python
 import time
 import rockset
-from rockset.api import documents_api
+from rockset import RocksetClient
 from rockset.model.add_documents_request import AddDocumentsRequest
 from rockset.model.add_documents_response import AddDocumentsResponse
 from rockset.model.error_model import ErrorModel
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Add Documents
+    api_response = rs.DocumentsApi.add_documents(
+        collection="collection_example",
+        data=[{"field":"value"}],
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling DocumentsApi->add_documents: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = documents_api.DocumentsApi(api_client)
-    collection = "collection_example" # str | Name of the collection.
-    add_documents_request = AddDocumentsRequest(
-        data=[
-            {},
-        ],
-    ) # AddDocumentsRequest | JSON object
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Add Documents
-        api_response = api_instance.add_documents(collection, add_documents_request)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Add Documents
+    api_response = await rs.DocumentsApi.add_documents(
+        collection="collection_example",
+        data=[{"field":"value"}],
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling DocumentsApi->add_documents: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -123,48 +117,48 @@ Delete documents from a collection.
 ```python
 import time
 import rockset
-from rockset.api import documents_api
+from rockset import RocksetClient
 from rockset.model.delete_documents_request import DeleteDocumentsRequest
 from rockset.model.error_model import ErrorModel
 from rockset.model.delete_documents_response import DeleteDocumentsResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = documents_api.DocumentsApi(api_client)
-    collection = "collection_example" # str | Name of the collection.
-    delete_documents_request = DeleteDocumentsRequest(
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Delete Documents
+    api_response = rs.DocumentsApi.delete_documents(
+        collection="collection_example",
         data=[
-            DeleteDocumentsRequestData(
-                id="2cd61e3b",
-            ),
-        ],
-    ) # DeleteDocumentsRequest | JSON object
+        DeleteDocumentsRequestData(
+            id="2cd61e3b",
+        ),
+    ],
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling DocumentsApi->delete_documents: %s\n" % e)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Delete Documents
-        api_response = api_instance.delete_documents(collection, delete_documents_request)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Delete Documents
+    api_response = await rs.DocumentsApi.delete_documents(
+        collection="collection_example",
+        data=[
+        DeleteDocumentsRequestData(
+            id="2cd61e3b",
+        ),
+    ],
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling DocumentsApi->delete_documents: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -225,56 +219,64 @@ Update existing documents in a collection.
 ```python
 import time
 import rockset
-from rockset.api import documents_api
+from rockset import RocksetClient
 from rockset.model.patch_documents_request import PatchDocumentsRequest
 from rockset.model.error_model import ErrorModel
 from rockset.model.patch_documents_response import PatchDocumentsResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = documents_api.DocumentsApi(api_client)
-    collection = "collection_example" # str | Name of the collection.
-    patch_documents_request = PatchDocumentsRequest(
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Patch Documents
+    api_response = rs.DocumentsApi.patch_documents(
+        collection="collection_example",
         data=[
-            PatchDocument(
-                id="ca2d6832-1bfd-f88f-0620-d2aa27a5d86c",
-                patch=[
-                    PatchOperation(
-                        _from="_from_example",
-                        op="ADD",
-                        path="/foo/bar",
-                        value={},
-                    ),
-                ],
-            ),
-        ],
-    ) # PatchDocumentsRequest | JSON Patch objects
+        PatchDocument(
+            id="ca2d6832-1bfd-f88f-0620-d2aa27a5d86c",
+            patch=[
+                PatchOperation(
+                    _from="_from_example",
+                    op="ADD",
+                    path="/foo/bar",
+                    value={},
+                ),
+            ],
+        ),
+    ],
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling DocumentsApi->patch_documents: %s\n" % e)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Patch Documents
-        api_response = api_instance.patch_documents(collection, patch_documents_request)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Patch Documents
+    api_response = await rs.DocumentsApi.patch_documents(
+        collection="collection_example",
+        data=[
+        PatchDocument(
+            id="ca2d6832-1bfd-f88f-0620-d2aa27a5d86c",
+            patch=[
+                PatchOperation(
+                    _from="_from_example",
+                    op="ADD",
+                    path="/foo/bar",
+                    value={},
+                ),
+            ],
+        ),
+    ],
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling DocumentsApi->patch_documents: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 

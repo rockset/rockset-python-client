@@ -60,11 +60,6 @@ class Document(dict):
     """
 
     def __init__(self, *args, **kwargs):
-        """This is a sub-class of dict. So, treat this object as a dict
-        for all practical purposes.
-        Only contains the constructor to handle the type adaptations
-        shown in the table above.
-        """
         super(Document, self).__init__(*args, **kwargs)
         for k in self.keys():
             if not isinstance(self[k], dict):

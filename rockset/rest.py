@@ -19,7 +19,7 @@ from urllib.request import proxy_bypass_environment
 import urllib3
 import ipaddress
 
-from rockset.exceptions import ApiException, UnauthorizedException, ForbiddenException, NotFoundException, ServiceException, ApiValueError
+from rockset.exceptions import ApiException, BadRequestException, UnauthorizedException, ForbiddenException, NotFoundException, ServiceException, ApiValueError
 
 
 logger = logging.getLogger(__name__)
@@ -223,6 +223,9 @@ class RESTClientObject(object):
 
             if 500 <= r.status <= 599:
                 raise ServiceException(http_resp=r)
+
+            if 400 <= r.status < 500:
+                raise BadRequestException(http_resp=r)
 
             raise ApiException(http_resp=r)
 

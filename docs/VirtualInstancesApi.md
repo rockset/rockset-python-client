@@ -23,40 +23,37 @@ Get details about a virtual instance.
 ```python
 import time
 import rockset
-from rockset.api import virtual_instances_api
+from rockset import RocksetClient
 from rockset.model.error_model import ErrorModel
 from rockset.model.get_virtual_instance_response import GetVirtualInstanceResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Retrieve Virtual Instance
+    api_response = rs.VirtualInstancesApi.get_virtual_instance(
+        virtual_instance_id="virtualInstanceId_example",
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling VirtualInstancesApi->get_virtual_instance: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = virtual_instances_api.VirtualInstancesApi(api_client)
-    virtual_instance_id = "virtualInstanceId_example" # str | uuid of the virtual instance
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Retrieve Virtual Instance
-        api_response = api_instance.get_virtual_instance(virtual_instance_id)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Retrieve Virtual Instance
+    api_response = await rs.VirtualInstancesApi.get_virtual_instance(
+        virtual_instance_id="virtualInstanceId_example",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling VirtualInstancesApi->get_virtual_instance: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -115,39 +112,35 @@ Retrieve all virtual instances in an organization.
 ```python
 import time
 import rockset
-from rockset.api import virtual_instances_api
+from rockset import RocksetClient
 from rockset.model.error_model import ErrorModel
 from rockset.model.list_virtual_instances_response import ListVirtualInstancesResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # List Virtual Instances
+    api_response = rs.VirtualInstancesApi.list_virtual_instances(
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling VirtualInstancesApi->list_virtual_instances: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = virtual_instances_api.VirtualInstancesApi(api_client)
-
-    # example, this endpoint has no required or optional parameters
-    try:
-        # List Virtual Instances
-        api_response = api_instance.list_virtual_instances()
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # List Virtual Instances
+    api_response = await rs.VirtualInstancesApi.list_virtual_instances(
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling VirtualInstancesApi->list_virtual_instances: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -203,46 +196,44 @@ Update the properties of a virtual instance.
 ```python
 import time
 import rockset
-from rockset.api import virtual_instances_api
+from rockset import RocksetClient
 from rockset.model.update_virtual_instance_response import UpdateVirtualInstanceResponse
 from rockset.model.update_virtual_instance_request import UpdateVirtualInstanceRequest
 from rockset.model.error_model import ErrorModel
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = virtual_instances_api.VirtualInstancesApi(api_client)
-    virtual_instance_id = "virtualInstanceId_example" # str | uuid of the virtual instance
-    update_virtual_instance_request = UpdateVirtualInstanceRequest(
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Update Virtual Instance
+    api_response = rs.VirtualInstancesApi.set_virtual_instance(
+        virtual_instance_id="virtualInstanceId_example",
         monitoring_enabled=True,
         new_size="LARGE",
         new_type="FREE",
-    ) # UpdateVirtualInstanceRequest | JSON object
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling VirtualInstancesApi->set_virtual_instance: %s\n" % e)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Update Virtual Instance
-        api_response = api_instance.set_virtual_instance(virtual_instance_id, update_virtual_instance_request)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Update Virtual Instance
+    api_response = await rs.VirtualInstancesApi.set_virtual_instance(
+        virtual_instance_id="virtualInstanceId_example",
+        monitoring_enabled=True,
+        new_size="LARGE",
+        new_type="FREE",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling VirtualInstancesApi->set_virtual_instance: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 

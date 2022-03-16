@@ -272,10 +272,8 @@ class VirtualInstance(ModelNormal):
         """VirtualInstance - a model defined in OpenAPI
 
         Keyword Args:
-            current_size (str): virtual instance current size. [optional]  # noqa: E501
             current_type (str): [optional]  # noqa: E501
             default_pod_count (int): [optional]  # noqa: E501
-            desired_size (str): virtual instance desired size. [optional]  # noqa: E501
             desired_type (str): [optional]  # noqa: E501
             estimated_switch_duration_minutes (int): estimated duration in minutes of last virtual instance size update. [optional]  # noqa: E501
             id (str): unique identifier for virtual instance. [optional]  # noqa: E501

@@ -1,0 +1,78 @@
+```python
+import time
+import {{{packageName}}}
+from {{packageName}} import RocksetClient
+{{#imports}}
+{{{.}}}
+{{/imports}}
+from pprint import pprint
+
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
+
+# synchronous example passing only required values which don't have defaults set
+try:
+{{#summary}}
+    # {{{.}}}
+{{/summary}}
+    {{#returnType}}api_response = {{/returnType}}rs.{{classname}}.{{{operationId}}}(
+{{#requiredParams}}
+{{^isReadOnly}}
+{{^defaultValue}}
+{{^isBodyParam}}
+{{^isReadOnly}}
+        {{paramName}}={{#example}}{{{.}}}{{/example}}{{^example}}{{paramName}}{{/example}},
+{{/isReadOnly}}
+{{/isBodyParam}}
+{{#isBodyParam}}
+{{#vars}}
+{{^isReadOnly}}
+        {{name}}={{#example}}{{{.}}}{{/example}}{{^example}}{{name}}{{/example}},
+{{/isReadOnly}}
+{{/vars}}
+{{/isBodyParam}}
+{{/defaultValue}}
+{{/isReadOnly}}
+{{/requiredParams}}
+    )
+{{#returnType}}
+    pprint(api_response)
+{{/returnType}}
+except {{{packageName}}}.ApiException as e:
+    print("Exception when calling {{classname}}->{{operationId}}: %s\n" % e)
+
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+{{#summary}}
+    # {{{.}}}
+{{/summary}}
+    {{#returnType}}api_response = await {{/returnType}}rs.{{classname}}.{{{operationId}}}(
+{{#requiredParams}}
+{{^isReadOnly}}
+{{^defaultValue}}
+{{^isBodyParam}}
+{{^isReadOnly}}
+        {{paramName}}={{#example}}{{{.}}}{{/example}}{{^example}}{{paramName}}{{/example}},
+{{/isReadOnly}}
+{{/isBodyParam}}
+{{#isBodyParam}}
+{{#vars}}
+{{^isReadOnly}}
+        {{name}}={{#example}}{{{.}}}{{/example}}{{^example}}{{name}}{{/example}},
+{{/isReadOnly}}
+{{/vars}}
+{{/isBodyParam}}
+{{/defaultValue}}
+{{/isReadOnly}}
+{{/requiredParams}}
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
+        print("Exception when calling {{classname}}->{{operationId}}: %s\n" % e)
+        return
+{{#returnType}}
+    pprint(api_response)
+{{/returnType}}
+
+```

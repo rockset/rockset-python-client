@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | descriptive label | 
 **azure_blob_storage** | [**AzureBlobStorageIntegration**](AzureBlobStorageIntegration.md) |  | [optional] 
-**azure_event_hub** | [**AzEventHubIntegration**](AzEventHubIntegration.md) |  | [optional] 
+**azure_event_hubs** | [**AzureEventHubsIntegration**](AzureEventHubsIntegration.md) |  | [optional] 
 **description** | **str** | longer explanation for the integration | [optional] 
 **dynamodb** | [**DynamodbIntegration**](DynamodbIntegration.md) |  | [optional] 
 **gcs** | [**GcsIntegration**](GcsIntegration.md) |  | [optional] 

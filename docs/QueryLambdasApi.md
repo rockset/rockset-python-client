@@ -34,54 +34,60 @@ Create a Query Lambda in given workspace.
 ```python
 import time
 import rockset
-from rockset.api import query_lambdas_api
+from rockset import RocksetClient
 from rockset.model.query_lambda_version_response import QueryLambdaVersionResponse
 from rockset.model.create_query_lambda_request import CreateQueryLambdaRequest
 from rockset.model.error_model import ErrorModel
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = query_lambdas_api.QueryLambdasApi(api_client)
-    create_query_lambda_request = CreateQueryLambdaRequest(
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Create Query Lambda
+    api_response = rs.QueryLambdasApi.create_query_lambda(
         description="production version foo",
         name="myQueryLambda",
         sql=QueryLambdaSql(
-            default_parameters=[
-                QueryParameter(
-                    name="_id",
-                    type="string",
-                    value="85beb391",
-                ),
-            ],
-            query="SELECT 'Foo'",
-        ),
-    ) # CreateQueryLambdaRequest | JSON object
+        default_parameters=[
+            QueryParameter(
+                name="_id",
+                type="string",
+                value="85beb391",
+            ),
+        ],
+        query="SELECT 'Foo'",
+    ),
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling QueryLambdasApi->create_query_lambda: %s\n" % e)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Create Query Lambda
-        api_response = api_instance.create_query_lambda(create_query_lambda_request)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Create Query Lambda
+    api_response = await rs.QueryLambdasApi.create_query_lambda(
+        description="production version foo",
+        name="myQueryLambda",
+        sql=QueryLambdaSql(
+        default_parameters=[
+            QueryParameter(
+                name="_id",
+                type="string",
+                value="85beb391",
+            ),
+        ],
+        query="SELECT 'Foo'",
+    ),
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling QueryLambdasApi->create_query_lambda: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -141,45 +147,42 @@ Create a tag for a specific Query Lambda version, or update that tag if it alrea
 ```python
 import time
 import rockset
-from rockset.api import query_lambdas_api
+from rockset import RocksetClient
 from rockset.model.error_model import ErrorModel
 from rockset.model.create_query_lambda_tag_request import CreateQueryLambdaTagRequest
 from rockset.model.query_lambda_tag_response import QueryLambdaTagResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = query_lambdas_api.QueryLambdasApi(api_client)
-    query_lambda = "queryLambda_example" # str | name of the Query Lambda
-    create_query_lambda_tag_request = CreateQueryLambdaTagRequest(
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Create Query Lambda Tag
+    api_response = rs.QueryLambdasApi.create_query_lambda_tag(
+        query_lambda="queryLambda_example",
         tag_name="production",
         version="123ABC",
-    ) # CreateQueryLambdaTagRequest | JSON object
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling QueryLambdasApi->create_query_lambda_tag: %s\n" % e)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Create Query Lambda Tag
-        api_response = api_instance.create_query_lambda_tag(query_lambda, create_query_lambda_tag_request)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Create Query Lambda Tag
+    api_response = await rs.QueryLambdasApi.create_query_lambda_tag(
+        query_lambda="queryLambda_example",
+        tag_name="production",
+        version="123ABC",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling QueryLambdasApi->create_query_lambda_tag: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -240,40 +243,37 @@ Delete a Query Lambda.
 ```python
 import time
 import rockset
-from rockset.api import query_lambdas_api
+from rockset import RocksetClient
 from rockset.model.error_model import ErrorModel
 from rockset.model.delete_query_lambda_response import DeleteQueryLambdaResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Delete Query Lambda
+    api_response = rs.QueryLambdasApi.delete_query_lambda(
+        query_lambda="queryLambda_example",
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling QueryLambdasApi->delete_query_lambda: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = query_lambdas_api.QueryLambdasApi(api_client)
-    query_lambda = "queryLambda_example" # str | name of the Query Lambda
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Delete Query Lambda
-        api_response = api_instance.delete_query_lambda(query_lambda)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Delete Query Lambda
+    api_response = await rs.QueryLambdasApi.delete_query_lambda(
+        query_lambda="queryLambda_example",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling QueryLambdasApi->delete_query_lambda: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -333,41 +333,39 @@ Delete a tag for a specific Query Lambda
 ```python
 import time
 import rockset
-from rockset.api import query_lambdas_api
+from rockset import RocksetClient
 from rockset.model.error_model import ErrorModel
 from rockset.model.query_lambda_tag_response import QueryLambdaTagResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Delete Query Lambda Tag Version
+    api_response = rs.QueryLambdasApi.delete_query_lambda_tag(
+        query_lambda="queryLambda_example",
+        tag="tag_example",
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling QueryLambdasApi->delete_query_lambda_tag: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = query_lambdas_api.QueryLambdasApi(api_client)
-    query_lambda = "queryLambda_example" # str | name of the Query Lambda
-    tag = "tag_example" # str | name of the tag
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Delete Query Lambda Tag Version
-        api_response = api_instance.delete_query_lambda_tag(query_lambda, tag)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Delete Query Lambda Tag Version
+    api_response = await rs.QueryLambdasApi.delete_query_lambda_tag(
+        query_lambda="queryLambda_example",
+        tag="tag_example",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling QueryLambdasApi->delete_query_lambda_tag: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -428,41 +426,39 @@ Delete a Query Lambda version.
 ```python
 import time
 import rockset
-from rockset.api import query_lambdas_api
+from rockset import RocksetClient
 from rockset.model.query_lambda_version_response import QueryLambdaVersionResponse
 from rockset.model.error_model import ErrorModel
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Delete Query Lambda Version
+    api_response = rs.QueryLambdasApi.delete_query_lambda_version(
+        query_lambda="queryLambda_example",
+        version="version_example",
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling QueryLambdasApi->delete_query_lambda_version: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = query_lambdas_api.QueryLambdasApi(api_client)
-    query_lambda = "queryLambda_example" # str | name of the Query Lambda
-    version = "version_example" # str | version
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Delete Query Lambda Version
-        api_response = api_instance.delete_query_lambda_version(query_lambda, version)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Delete Query Lambda Version
+    api_response = await rs.QueryLambdasApi.delete_query_lambda_version(
+        query_lambda="queryLambda_example",
+        version="version_example",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling QueryLambdasApi->delete_query_lambda_version: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -523,64 +519,40 @@ Execute a particular version of a Query Lambda.
 ```python
 import time
 import rockset
-from rockset.api import query_lambdas_api
+from rockset import RocksetClient
 from rockset.model.execute_query_lambda_request import ExecuteQueryLambdaRequest
 from rockset.model.error_model import ErrorModel
 from rockset.model.query_response import QueryResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Execute Query Lambda By Version
+    api_response = rs.QueryLambdasApi.execute_query_lambda(
+        query_lambda="queryLambda_example",
+        version="version_example",
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling QueryLambdasApi->execute_query_lambda: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = query_lambdas_api.QueryLambdasApi(api_client)
-    query_lambda = "queryLambda_example" # str | name of the Query Lambda
-    version = "version_example" # str | version
-    execute_query_lambda_request = ExecuteQueryLambdaRequest(
-        default_row_limit=1,
-        generate_warnings=True,
-        initial_paginate_response_doc_count=1,
-        paginate=True,
-        parameters=[
-            QueryParameter(
-                name="_id",
-                type="string",
-                value="85beb391",
-            ),
-        ],
-    ) # ExecuteQueryLambdaRequest | JSON object (optional)
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Execute Query Lambda By Version
-        api_response = api_instance.execute_query_lambda(query_lambda, version)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Execute Query Lambda By Version
+    api_response = await rs.QueryLambdasApi.execute_query_lambda(
+        query_lambda="queryLambda_example",
+        version="version_example",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling QueryLambdasApi->execute_query_lambda: %s\n" % e)
+        return
+    pprint(api_response)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Execute Query Lambda By Version
-        api_response = api_instance.execute_query_lambda(query_lambda, version, execute_query_lambda_request=execute_query_lambda_request)
-        pprint(api_response)
-    except rockset.ApiException as e:
-        print("Exception when calling QueryLambdasApi->execute_query_lambda: %s\n" % e)
 ```
 
 
@@ -642,64 +614,40 @@ Execute the Query Lambda version associated with a given tag.
 ```python
 import time
 import rockset
-from rockset.api import query_lambdas_api
+from rockset import RocksetClient
 from rockset.model.execute_query_lambda_request import ExecuteQueryLambdaRequest
 from rockset.model.error_model import ErrorModel
 from rockset.model.query_response import QueryResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Execute Query Lambda By Tag
+    api_response = rs.QueryLambdasApi.execute_query_lambda_by_tag(
+        query_lambda="queryLambda_example",
+        tag="tag_example",
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling QueryLambdasApi->execute_query_lambda_by_tag: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = query_lambdas_api.QueryLambdasApi(api_client)
-    query_lambda = "queryLambda_example" # str | name of the Query Lambda
-    tag = "tag_example" # str | tag
-    execute_query_lambda_request = ExecuteQueryLambdaRequest(
-        default_row_limit=1,
-        generate_warnings=True,
-        initial_paginate_response_doc_count=1,
-        paginate=True,
-        parameters=[
-            QueryParameter(
-                name="_id",
-                type="string",
-                value="85beb391",
-            ),
-        ],
-    ) # ExecuteQueryLambdaRequest | JSON object (optional)
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Execute Query Lambda By Tag
-        api_response = api_instance.execute_query_lambda_by_tag(query_lambda, tag)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Execute Query Lambda By Tag
+    api_response = await rs.QueryLambdasApi.execute_query_lambda_by_tag(
+        query_lambda="queryLambda_example",
+        tag="tag_example",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling QueryLambdasApi->execute_query_lambda_by_tag: %s\n" % e)
+        return
+    pprint(api_response)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Execute Query Lambda By Tag
-        api_response = api_instance.execute_query_lambda_by_tag(query_lambda, tag, execute_query_lambda_request=execute_query_lambda_request)
-        pprint(api_response)
-    except rockset.ApiException as e:
-        print("Exception when calling QueryLambdasApi->execute_query_lambda_by_tag: %s\n" % e)
 ```
 
 
@@ -761,41 +709,39 @@ Retrieve the Query Lambda version associated with a given tag.
 ```python
 import time
 import rockset
-from rockset.api import query_lambdas_api
+from rockset import RocksetClient
 from rockset.model.error_model import ErrorModel
 from rockset.model.query_lambda_tag_response import QueryLambdaTagResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Retrieve Query Lambda Tag
+    api_response = rs.QueryLambdasApi.get_query_lambda_tag_version(
+        query_lambda="queryLambda_example",
+        tag="tag_example",
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling QueryLambdasApi->get_query_lambda_tag_version: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = query_lambdas_api.QueryLambdasApi(api_client)
-    query_lambda = "queryLambda_example" # str | name of the Query Lambda
-    tag = "tag_example" # str | name of the tag
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Retrieve Query Lambda Tag
-        api_response = api_instance.get_query_lambda_tag_version(query_lambda, tag)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Retrieve Query Lambda Tag
+    api_response = await rs.QueryLambdasApi.get_query_lambda_tag_version(
+        query_lambda="queryLambda_example",
+        tag="tag_example",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling QueryLambdasApi->get_query_lambda_tag_version: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -856,41 +802,39 @@ Retrieve details for a specified version of a Query Lambda.
 ```python
 import time
 import rockset
-from rockset.api import query_lambdas_api
+from rockset import RocksetClient
 from rockset.model.query_lambda_version_response import QueryLambdaVersionResponse
 from rockset.model.error_model import ErrorModel
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Retrieve Query Lambda Version
+    api_response = rs.QueryLambdasApi.get_query_lambda_version(
+        query_lambda="queryLambda_example",
+        version="version_example",
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling QueryLambdasApi->get_query_lambda_version: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = query_lambdas_api.QueryLambdasApi(api_client)
-    query_lambda = "queryLambda_example" # str | name of the Query Lambda
-    version = "version_example" # str | version
-
-    # example passing only required values which don't have defaults set
-    try:
-        # Retrieve Query Lambda Version
-        api_response = api_instance.get_query_lambda_version(query_lambda, version)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Retrieve Query Lambda Version
+    api_response = await rs.QueryLambdasApi.get_query_lambda_version(
+        query_lambda="queryLambda_example",
+        version="version_example",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling QueryLambdasApi->get_query_lambda_version: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -951,39 +895,35 @@ List all Query Lambdas in an organization.
 ```python
 import time
 import rockset
-from rockset.api import query_lambdas_api
+from rockset import RocksetClient
 from rockset.model.list_query_lambdas_response import ListQueryLambdasResponse
 from rockset.model.error_model import ErrorModel
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # List Query Lambdas
+    api_response = rs.QueryLambdasApi.list_all_query_lambdas(
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling QueryLambdasApi->list_all_query_lambdas: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = query_lambdas_api.QueryLambdasApi(api_client)
-
-    # example, this endpoint has no required or optional parameters
-    try:
-        # List Query Lambdas
-        api_response = api_instance.list_all_query_lambdas()
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # List Query Lambdas
+    api_response = await rs.QueryLambdasApi.list_all_query_lambdas(
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling QueryLambdasApi->list_all_query_lambdas: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -1039,40 +979,37 @@ List all tags associated with a Query Lambda
 ```python
 import time
 import rockset
-from rockset.api import query_lambdas_api
+from rockset import RocksetClient
 from rockset.model.error_model import ErrorModel
 from rockset.model.list_query_lambda_tags_response import ListQueryLambdaTagsResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # List Query Lambda Tags
+    api_response = rs.QueryLambdasApi.list_query_lambda_tags(
+        query_lambda="queryLambda_example",
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling QueryLambdasApi->list_query_lambda_tags: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = query_lambdas_api.QueryLambdasApi(api_client)
-    query_lambda = "queryLambda_example" # str | name of the Query Lambda
-
-    # example passing only required values which don't have defaults set
-    try:
-        # List Query Lambda Tags
-        api_response = api_instance.list_query_lambda_tags(query_lambda)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # List Query Lambda Tags
+    api_response = await rs.QueryLambdasApi.list_query_lambda_tags(
+        query_lambda="queryLambda_example",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling QueryLambdasApi->list_query_lambda_tags: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -1132,40 +1069,37 @@ List all versions of a Query Lambda.
 ```python
 import time
 import rockset
-from rockset.api import query_lambdas_api
+from rockset import RocksetClient
 from rockset.model.error_model import ErrorModel
 from rockset.model.list_query_lambda_versions_response import ListQueryLambdaVersionsResponse
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # List Query Lambda Versions
+    api_response = rs.QueryLambdasApi.list_query_lambda_versions(
+        query_lambda="queryLambda_example",
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling QueryLambdasApi->list_query_lambda_versions: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = query_lambdas_api.QueryLambdasApi(api_client)
-    query_lambda = "queryLambda_example" # str | name of the Query Lambda
-
-    # example passing only required values which don't have defaults set
-    try:
-        # List Query Lambda Versions
-        api_response = api_instance.list_query_lambda_versions(query_lambda)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # List Query Lambda Versions
+    api_response = await rs.QueryLambdasApi.list_query_lambda_versions(
+        query_lambda="queryLambda_example",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling QueryLambdasApi->list_query_lambda_versions: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -1225,39 +1159,35 @@ List all Query Lambdas under given workspace.
 ```python
 import time
 import rockset
-from rockset.api import query_lambdas_api
+from rockset import RocksetClient
 from rockset.model.list_query_lambdas_response import ListQueryLambdasResponse
 from rockset.model.error_model import ErrorModel
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
+# synchronous example passing only required values which don't have defaults set
+try:
+    # List Query Lambdas in Workspace
+    api_response = rs.QueryLambdasApi.list_query_lambdas_in_workspace(
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling QueryLambdasApi->list_query_lambdas_in_workspace: %s\n" % e)
 
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = query_lambdas_api.QueryLambdasApi(api_client)
-
-    # example passing only required values which don't have defaults set
-    try:
-        # List Query Lambdas in Workspace
-        api_response = api_instance.list_query_lambdas_in_workspace()
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # List Query Lambdas in Workspace
+    api_response = await rs.QueryLambdasApi.list_query_lambdas_in_workspace(
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling QueryLambdasApi->list_query_lambdas_in_workspace: %s\n" % e)
+        return
+    pprint(api_response)
+
 ```
 
 
@@ -1316,64 +1246,60 @@ Create a new version of a Query Lambda in given workspace.
 ```python
 import time
 import rockset
-from rockset.api import query_lambdas_api
+from rockset import RocksetClient
 from rockset.model.query_lambda_version_response import QueryLambdaVersionResponse
 from rockset.model.update_query_lambda_request import UpdateQueryLambdaRequest
 from rockset.model.error_model import ErrorModel
 from pprint import pprint
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-# See configuration.py for a list of all supported configuration parameters.
-configuration = rockset.Configuration(
-    host = "https://api.rs2.usw2.rockset.com"
-)
 
-# The client must configure the authentication and authorization parameters
-# in accordance with the API server security policy.
-# Examples for each auth method are provided below, use the example that
-# satisfies your auth use case.
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(apikey="abc123")
 
-# Configure API key authorization: apikey
-configuration.api_key['apikey'] = 'YOUR_API_KEY'
-
-# Uncomment below to setup prefix (e.g. Bearer) for API key, if needed
-# configuration.api_key_prefix['apikey'] = 'Bearer'
-
-# Enter a context with an instance of the API client
-with rockset.ApiClient(configuration) as api_client:
-    # Create an instance of the API class
-    api_instance = query_lambdas_api.QueryLambdasApi(api_client)
-    query_lambda = "queryLambda_example" # str | name of the Query Lambda
-    update_query_lambda_request = UpdateQueryLambdaRequest(
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Update Query Lambda
+    api_response = rs.QueryLambdasApi.update_query_lambda(
+        query_lambda="queryLambda_example",
         description="production version foo",
         sql=QueryLambdaSql(
-            default_parameters=[
-                QueryParameter(
-                    name="_id",
-                    type="string",
-                    value="85beb391",
-                ),
-            ],
-            query="SELECT 'Foo'",
-        ),
-    ) # UpdateQueryLambdaRequest | JSON object
-    create = True # bool |  (optional)
+        default_parameters=[
+            QueryParameter(
+                name="_id",
+                type="string",
+                value="85beb391",
+            ),
+        ],
+        query="SELECT 'Foo'",
+    ),
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling QueryLambdasApi->update_query_lambda: %s\n" % e)
 
-    # example passing only required values which don't have defaults set
-    try:
-        # Update Query Lambda
-        api_response = api_instance.update_query_lambda(query_lambda, update_query_lambda_request)
-        pprint(api_response)
-    except rockset.ApiException as e:
+# asynchronous example passing required values which don't have defaults set and optional values
+async def call_api():
+    # Update Query Lambda
+    api_response = await rs.QueryLambdasApi.update_query_lambda(
+        query_lambda="queryLambda_example",
+        description="production version foo",
+        sql=QueryLambdaSql(
+        default_parameters=[
+            QueryParameter(
+                name="_id",
+                type="string",
+                value="85beb391",
+            ),
+        ],
+        query="SELECT 'Foo'",
+    ),
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
         print("Exception when calling QueryLambdasApi->update_query_lambda: %s\n" % e)
+        return
+    pprint(api_response)
 
-    # example passing only required values which don't have defaults set
-    # and optional values
-    try:
-        # Update Query Lambda
-        api_response = api_instance.update_query_lambda(query_lambda, update_query_lambda_request, create=create)
-        pprint(api_response)
-    except rockset.ApiException as e:
-        print("Exception when calling QueryLambdasApi->update_query_lambda: %s\n" % e)
 ```
 
 
