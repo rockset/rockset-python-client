@@ -12,6 +12,8 @@ import re  # noqa: F401
 import sys  # noqa: F401
 import typing  # noqa: F401
 
+import asyncio
+
 from rockset.api_client import ApiClient, Endpoint as _Endpoint
 from rockset.model_utils import (  # noqa: F401
     check_allowed_values,
@@ -330,20 +332,24 @@ class APIKeysApi(object):
         name: str,
         role: str=None,
         **kwargs
-    ):
+    ) -> typing.Union[CreateApiKeyResponse, asyncio.Future]:
         """Create API Key  # noqa: E501
 
         Create a new API key for the authenticated user.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_api_key(create_api_key_request, async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            create_api_key_request (CreateApiKeyRequest): JSON object
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.APIKeysApi.create_api_key(
+                name=name,
+                role=role,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            name (str): Name for this API key.. [required]
+            role (str): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -373,8 +379,7 @@ class APIKeysApi(object):
 
         Returns:
             CreateApiKeyResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -410,21 +415,24 @@ class APIKeysApi(object):
         name: str,
         user: str,
         **kwargs
-    ):
+    ) -> typing.Union[DeleteApiKeyResponse, asyncio.Future]:
         """Delete API Key  # noqa: E501
 
         Delete an API key for any user in your organization.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_api_key(name, user, async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            name (str): Name of the API key.
-            user (str): Email of the API key owner. Use `self` to specify the currently authenticated user.
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.APIKeysApi.delete_api_key(
+                name=name,
+                user=user,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            name (str): Name of the API key.. [required]
+            user (str): Email of the API key owner. Use `self` to specify the currently authenticated user.. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -454,8 +462,7 @@ class APIKeysApi(object):
 
         Returns:
             DeleteApiKeyResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -493,21 +500,24 @@ class APIKeysApi(object):
         user: str,
         name: str,
         **kwargs
-    ):
+    ) -> typing.Union[GetApiKeyResponse, asyncio.Future]:
         """Retrieve API Key  # noqa: E501
 
         Retrieve a particular API key for any user in your organization.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_api_key(user, name, async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            user (str): Email of the API key owner. Use `self` to specify the currently authenticated user.
-            name (str): Name of the API key.
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.APIKeysApi.get_api_key(
+                user=user,
+                name=name,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            user (str): Email of the API key owner. Use `self` to specify the currently authenticated user.. [required]
+            name (str): Name of the API key.. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -537,8 +547,7 @@ class APIKeysApi(object):
 
         Returns:
             GetApiKeyResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -575,20 +584,22 @@ class APIKeysApi(object):
         *,
         user: str,
         **kwargs
-    ):
+    ) -> typing.Union[ListApiKeysResponse, asyncio.Future]:
         """List API Keys.  # noqa: E501
 
         List API key metadata for any user in your organization.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.list_api_keys(user, async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            user (str): Email of the API key owner. Use `self` to specify the currently authenticated user.
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.APIKeysApi.list_api_keys(
+                user=user,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            user (str): Email of the API key owner. Use `self` to specify the currently authenticated user.. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -618,8 +629,7 @@ class APIKeysApi(object):
 
         Returns:
             ListApiKeysResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -656,22 +666,26 @@ class APIKeysApi(object):
         user: str,
         state: str=None,
         **kwargs
-    ):
+    ) -> typing.Union[UpdateApiKeyResponse, asyncio.Future]:
         """Update an API key's state  # noqa: E501
 
         Update the state of an API key for any user in your organization.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.update_api_key(name, user, update_api_key_request, async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            name (str): Name of the API key.
-            user (str): Email of the API key owner. Use `self` to specify the currently authenticated user.
-            update_api_key_request (UpdateApiKeyRequest): JSON object
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.APIKeysApi.update_api_key(
+                name=name,
+                user=user,
+                state=state,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            name (str): Name of the API key.. [required]
+            user (str): Email of the API key owner. Use `self` to specify the currently authenticated user.. [required]
+            state (str): State that the api key should be set to.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -701,8 +715,7 @@ class APIKeysApi(object):
 
         Returns:
             UpdateApiKeyResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False

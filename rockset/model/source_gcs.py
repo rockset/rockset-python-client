@@ -197,10 +197,16 @@ class SourceGcs(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, **kwargs):  # noqa: E501
         """SourceGcs - a model defined in OpenAPI
 
         Keyword Args:
+            bucket (str): name of GCS bucket you want to ingest from. [optional]  # noqa: E501
+            object_bytes_total (int): [optional]  # noqa: E501
+            object_count_downloaded (int): [optional]  # noqa: E501
+            object_count_total (int): [optional]  # noqa: E501
+            pattern (str): Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified.. [optional]  # noqa: E501
+            prefix (str): Prefix that selects keys to ingest.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -231,14 +237,9 @@ class SourceGcs(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            bucket (str): name of GCS bucket you want to ingest from. [optional]  # noqa: E501
-            object_bytes_total (int): [optional]  # noqa: E501
-            object_count_downloaded (int): [optional]  # noqa: E501
-            object_count_total (int): [optional]  # noqa: E501
-            pattern (str): Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified.. [optional]  # noqa: E501
-            prefix (str): Prefix that selects keys to ingest.. [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

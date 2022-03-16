@@ -203,10 +203,16 @@ class Role(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, **kwargs):  # noqa: E501
         """Role - a model defined in OpenAPI
 
         Keyword Args:
+            created_at (str): ISO-8601 date of when the role was created.. [optional]  # noqa: E501
+            created_by (str): Email of the user who created the role.. [optional]  # noqa: E501
+            description (str): Description for the role.. [optional]  # noqa: E501
+            owner_email (str): Email of the user who currently owns the role.. [optional]  # noqa: E501
+            privileges ([Privilege]): List of privileges associated with the role.. [optional]  # noqa: E501
+            role_name (str): Unique identifier for the role.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -237,14 +243,9 @@ class Role(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            created_at (str): ISO-8601 date of when the role was created.. [optional]  # noqa: E501
-            created_by (str): Email of the user who created the role.. [optional]  # noqa: E501
-            description (str): Description for the role.. [optional]  # noqa: E501
-            owner_email (str): Email of the user who currently owns the role.. [optional]  # noqa: E501
-            privileges ([Privilege]): List of privileges associated with the role.. [optional]  # noqa: E501
-            role_name (str): Unique identifier for the role.. [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

@@ -209,13 +209,17 @@ class QueryRequestSql(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, query, *args, **kwargs):  # noqa: E501
+    def __init__(self, *, query, **kwargs):  # noqa: E501
         """QueryRequestSql - a model defined in OpenAPI
 
-        Args:
-            query (str): SQL query string.
-
         Keyword Args:
+            query (str): SQL query string.
+            default_row_limit (int): Row limit to use. Limits specified in the query text will override this default.. [optional]  # noqa: E501
+            generate_warnings (bool): Flag to enable warnings. Warnings can help debug query issues but negatively affect performance.. [optional]  # noqa: E501
+            initial_paginate_response_doc_count (int): Number of documents to return in addition to paginating for this query call. Only relevant if `paginate` flag is also set.. [optional]  # noqa: E501
+            paginate (bool): Flag to paginate and store the results of this query for later / sequential retrieval.. [optional]  # noqa: E501
+            parameters ([QueryParameter]): List of named parameters.. [optional]  # noqa: E501
+            profiling_enabled (bool): Flag to generate a performance profile for this query.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -246,14 +250,9 @@ class QueryRequestSql(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            default_row_limit (int): Row limit to use. Limits specified in the query text will override this default.. [optional]  # noqa: E501
-            generate_warnings (bool): Flag to enable warnings. Warnings can help debug query issues but negatively affect performance.. [optional]  # noqa: E501
-            initial_paginate_response_doc_count (int): Number of documents to return in addition to paginating for this query call. Only relevant if `paginate` flag is also set.. [optional]  # noqa: E501
-            paginate (bool): Flag to paginate and store the results of this query for later / sequential retrieval.. [optional]  # noqa: E501
-            parameters ([QueryParameter]): List of named parameters.. [optional]  # noqa: E501
-            profiling_enabled (bool): Flag to generate a performance profile for this query.. [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

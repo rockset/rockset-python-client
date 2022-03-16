@@ -185,13 +185,11 @@ class AwsRole(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, aws_role_arn, *args, **kwargs):  # noqa: E501
+    def __init__(self, *, aws_role_arn, **kwargs):  # noqa: E501
         """AwsRole - a model defined in OpenAPI
 
-        Args:
-            aws_role_arn (str): ARN of rockset-role created in your account
-
         Keyword Args:
+            aws_role_arn (str): ARN of rockset-role created in your account
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -223,7 +221,8 @@ class AwsRole(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

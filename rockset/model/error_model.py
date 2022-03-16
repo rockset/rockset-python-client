@@ -226,10 +226,17 @@ class ErrorModel(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, **kwargs):  # noqa: E501
         """ErrorModel - a model defined in OpenAPI
 
         Keyword Args:
+            column (int): Column where the error happened (if applicable). [optional]  # noqa: E501
+            error_id (str): ID of the error. [optional]  # noqa: E501
+            line (int): Line where the error happened (if applicable). [optional]  # noqa: E501
+            message (str): descriptive message about the error. [optional]  # noqa: E501
+            query_id (str): ID of the query (if applicable). [optional]  # noqa: E501
+            trace_id (str): Internal trace ID to help with debugging. [optional]  # noqa: E501
+            type (str): category of the error. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -260,15 +267,9 @@ class ErrorModel(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            column (int): Column where the error happened (if applicable). [optional]  # noqa: E501
-            error_id (str): ID of the error. [optional]  # noqa: E501
-            line (int): Line where the error happened (if applicable). [optional]  # noqa: E501
-            message (str): descriptive message about the error. [optional]  # noqa: E501
-            query_id (str): ID of the query (if applicable). [optional]  # noqa: E501
-            trace_id (str): Internal trace ID to help with debugging. [optional]  # noqa: E501
-            type (str): category of the error. [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

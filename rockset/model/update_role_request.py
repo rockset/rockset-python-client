@@ -191,10 +191,12 @@ class UpdateRoleRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, **kwargs):  # noqa: E501
         """UpdateRoleRequest - a model defined in OpenAPI
 
         Keyword Args:
+            description (str): Description for the role.. [optional]  # noqa: E501
+            privileges ([Privilege]): List of privileges that will be associated with the role.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -225,10 +227,9 @@ class UpdateRoleRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            description (str): Description for the role.. [optional]  # noqa: E501
-            privileges ([Privilege]): List of privileges that will be associated with the role.. [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

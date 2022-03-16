@@ -27,3 +27,4 @@ from rockset.exceptions import ApiKeyError
 from rockset.exceptions import ApiException
 
 from rockset.rockset_client import RocksetClient
+from rockset.document import Document

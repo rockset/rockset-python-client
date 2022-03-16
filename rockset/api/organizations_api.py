@@ -12,6 +12,8 @@ import re  # noqa: F401
 import sys  # noqa: F401
 import typing  # noqa: F401
 
+import asyncio
+
 from rockset.api_client import ApiClient, Endpoint as _Endpoint
 from rockset.model_utils import (  # noqa: F401
     check_allowed_values,
@@ -86,16 +88,18 @@ class OrganizationsApi(object):
     def get_organization(
         self,
         **kwargs
-    ):
+    ) -> typing.Union[OrganizationResponse, asyncio.Future]:
         """Get Organization  # noqa: E501
 
         Retrieve information about current organization.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_organization(async_req=True)
-        >>> result = thread.get()
-
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.OrganizationsApi.get_organization(
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -127,8 +131,7 @@ class OrganizationsApi(object):
 
         Returns:
             OrganizationResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False

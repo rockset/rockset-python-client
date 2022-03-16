@@ -200,10 +200,15 @@ class ExecuteQueryLambdaRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, **kwargs):  # noqa: E501
         """ExecuteQueryLambdaRequest - a model defined in OpenAPI
 
         Keyword Args:
+            default_row_limit (int): Row limit to use if no limit specified in the SQL query text. [optional]  # noqa: E501
+            generate_warnings (bool): Whether to generate warnings. [optional]  # noqa: E501
+            initial_paginate_response_doc_count (int): Number of documents to return in addition to paginating for this query call. Only relevant if `paginate` flag is also set.. [optional]  # noqa: E501
+            paginate (bool): Flag to paginate and store the results of this query for later / sequential retrieval.. [optional]  # noqa: E501
+            parameters ([QueryParameter]): list of named parameters. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -234,13 +239,9 @@ class ExecuteQueryLambdaRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            default_row_limit (int): Row limit to use if no limit specified in the SQL query text. [optional]  # noqa: E501
-            generate_warnings (bool): Whether to generate warnings. [optional]  # noqa: E501
-            initial_paginate_response_doc_count (int): Number of documents to return in addition to paginating for this query call. Only relevant if `paginate` flag is also set.. [optional]  # noqa: E501
-            paginate (bool): Flag to paginate and store the results of this query for later / sequential retrieval.. [optional]  # noqa: E501
-            parameters ([QueryParameter]): list of named parameters. [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

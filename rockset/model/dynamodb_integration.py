@@ -196,10 +196,13 @@ class DynamodbIntegration(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, **kwargs):  # noqa: E501
         """DynamodbIntegration - a model defined in OpenAPI
 
         Keyword Args:
+            aws_access_key (AwsAccessKey): [optional]  # noqa: E501
+            aws_role (AwsRole): [optional]  # noqa: E501
+            s3_export_bucket_name (str): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -230,11 +233,9 @@ class DynamodbIntegration(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            aws_access_key (AwsAccessKey): [optional]  # noqa: E501
-            aws_role (AwsRole): [optional]  # noqa: E501
-            s3_export_bucket_name (str): [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

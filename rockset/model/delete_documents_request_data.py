@@ -185,13 +185,11 @@ class DeleteDocumentsRequestData(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, id, *args, **kwargs):  # noqa: E501
+    def __init__(self, *, id, **kwargs):  # noqa: E501
         """DeleteDocumentsRequestData - a model defined in OpenAPI
 
-        Args:
-            id (str): unique document ID
-
         Keyword Args:
+            id (str): unique document ID
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -223,7 +221,8 @@ class DeleteDocumentsRequestData(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

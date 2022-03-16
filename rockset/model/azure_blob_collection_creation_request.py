@@ -236,13 +236,22 @@ class AzureBlobCollectionCreationRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, name, *args, **kwargs):  # noqa: E501
+    def __init__(self, *, name, **kwargs):  # noqa: E501
         """AzureBlobCollectionCreationRequest - a model defined in OpenAPI
 
-        Args:
-            name (str): unique identifier for collection, can contain alphanumeric or dash characters
-
         Keyword Args:
+            name (str): unique identifier for collection, can contain alphanumeric or dash characters
+            clustering_key ([FieldPartition]): list of clustering fields. [optional]  # noqa: E501
+            description (str): text describing the collection. [optional]  # noqa: E501
+            event_time_info (EventTimeInfo): [optional]  # noqa: E501
+            field_mapping_query (FieldMappingQuery): [optional]  # noqa: E501
+            field_mappings ([FieldMappingV2]): list of mappings. [optional]  # noqa: E501
+            field_schemas ([FieldSchema]): list of field schemas. [optional]  # noqa: E501
+            insert_only (bool): If true disallows updates and deletes, but makes indexing more efficient. [optional]  # noqa: E501
+            inverted_index_group_encoding_options (InvertedIndexGroupEncodingOptions): [optional]  # noqa: E501
+            retention_secs (int): number of seconds after which data is purged, based on event time. [optional]  # noqa: E501
+            sources ([AzureBlobStorageSourceWrapper]): List of sources from which to ingest data. [optional]  # noqa: E501
+            time_partition_resolution_secs (int): If non-null, the collection will be time partitioned and each partition will be time_partition_resolution_secs wide.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -273,19 +282,9 @@ class AzureBlobCollectionCreationRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            clustering_key ([FieldPartition]): list of clustering fields. [optional]  # noqa: E501
-            description (str): text describing the collection. [optional]  # noqa: E501
-            event_time_info (EventTimeInfo): [optional]  # noqa: E501
-            field_mapping_query (FieldMappingQuery): [optional]  # noqa: E501
-            field_mappings ([FieldMappingV2]): list of mappings. [optional]  # noqa: E501
-            field_schemas ([FieldSchema]): list of field schemas. [optional]  # noqa: E501
-            insert_only (bool): If true disallows updates and deletes, but makes indexing more efficient. [optional]  # noqa: E501
-            inverted_index_group_encoding_options (InvertedIndexGroupEncodingOptions): [optional]  # noqa: E501
-            retention_secs (int): number of seconds after which data is purged, based on event time. [optional]  # noqa: E501
-            sources ([AzureBlobStorageSourceWrapper]): List of sources from which to ingest data. [optional]  # noqa: E501
-            time_partition_resolution_secs (int): If non-null, the collection will be time partitioned and each partition will be time_partition_resolution_secs wide.. [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

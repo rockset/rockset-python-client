@@ -198,13 +198,14 @@ class SourceKinesis(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, stream_name, *args, **kwargs):  # noqa: E501
+    def __init__(self, *, stream_name, **kwargs):  # noqa: E501
         """SourceKinesis - a model defined in OpenAPI
 
-        Args:
-            stream_name (str): name of kinesis stream
-
         Keyword Args:
+            stream_name (str): name of kinesis stream
+            aws_region (str): AWS region name of Kinesis stream, by default us-west-2 is used. [optional]  # noqa: E501
+            dms_primary_key ([str]): set of fields that correspond to a DMS primary key. [optional]  # noqa: E501
+            offset_reset_policy (str): For non-DMS streams, Rockset can tail from the earliest end or latest end of kinesis source.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -235,11 +236,9 @@ class SourceKinesis(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            aws_region (str): AWS region name of Kinesis stream, by default us-west-2 is used. [optional]  # noqa: E501
-            dms_primary_key ([str]): set of fields that correspond to a DMS primary key. [optional]  # noqa: E501
-            offset_reset_policy (str): For non-DMS streams, Rockset can tail from the earliest end or latest end of kinesis source.. [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

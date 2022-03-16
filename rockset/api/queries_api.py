@@ -12,6 +12,8 @@ import re  # noqa: F401
 import sys  # noqa: F401
 import typing  # noqa: F401
 
+import asyncio
+
 from rockset.api_client import ApiClient, Endpoint as _Endpoint
 from rockset.model_utils import (  # noqa: F401
     check_allowed_values,
@@ -148,20 +150,22 @@ class QueriesApi(object):
         *,
         sql: QueryRequestSql,
         **kwargs
-    ):
+    ) -> typing.Union[QueryResponse, asyncio.Future]:
         """Query  # noqa: E501
 
         Make a SQL query to Rockset.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.query(query_request, async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            query_request (QueryRequest): JSON object
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.QueriesApi.query(
+                sql=sql,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            sql (QueryRequestSql): [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -191,8 +195,7 @@ class QueriesApi(object):
 
         Returns:
             QueryResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -227,20 +230,22 @@ class QueriesApi(object):
         *,
         sql: QueryRequestSql,
         **kwargs
-    ):
+    ) -> typing.Union[ValidateQueryResponse, asyncio.Future]:
         """Validate Query  # noqa: E501
 
         Validate a SQL query with Rockset's parser and planner.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.validate(query_request, async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            query_request (QueryRequest): JSON object
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.QueriesApi.validate(
+                sql=sql,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            sql (QueryRequestSql): [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -270,8 +275,7 @@ class QueriesApi(object):
 
         Returns:
             ValidateQueryResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False

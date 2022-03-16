@@ -194,13 +194,12 @@ class QueryLambdaSql(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, query, *args, **kwargs):  # noqa: E501
+    def __init__(self, *, query, **kwargs):  # noqa: E501
         """QueryLambdaSql - a model defined in OpenAPI
 
-        Args:
-            query (str): SQL text
-
         Keyword Args:
+            query (str): SQL text
+            default_parameters ([QueryParameter]): default parameters for this Query Lambda. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -231,9 +230,9 @@ class QueryLambdaSql(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            default_parameters ([QueryParameter]): default parameters for this Query Lambda. [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

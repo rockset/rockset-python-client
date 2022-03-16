@@ -189,14 +189,12 @@ class AwsAccessKey(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, aws_access_key_id, aws_secret_access_key, *args, **kwargs):  # noqa: E501
+    def __init__(self, *, aws_access_key_id, aws_secret_access_key, **kwargs):  # noqa: E501
         """AwsAccessKey - a model defined in OpenAPI
 
-        Args:
+        Keyword Args:
             aws_access_key_id (str): AWS access key ID
             aws_secret_access_key (str): AWS secret access key
-
-        Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -228,7 +226,8 @@ class AwsAccessKey(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

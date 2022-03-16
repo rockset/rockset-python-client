@@ -231,12 +231,21 @@ class SourceS3(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, bucket, *args, **kwargs):  # noqa: E501
+    def __init__(self, *, bucket, **kwargs):  # noqa: E501
         """SourceS3 - a model defined in OpenAPI
 
-        Args:
-            bucket (str): address of S3 bucket containing data
         Keyword Args:
+            bucket (str): address of S3 bucket containing data
+            access_key (str): AWS credential with ListObjects and GetObject access. [optional]  # noqa: E501
+            format (str): do not use. [optional] if omitted the server will use the default value of "JSON"  # noqa: E501
+            mappings ([FieldMask]): custom transformation on data field. [optional]  # noqa: E501
+            object_bytes_total (int): [optional]  # noqa: E501
+            object_count_downloaded (int): [optional]  # noqa: E501
+            object_count_total (int): [optional]  # noqa: E501
+            pattern (str): Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified.. [optional]  # noqa: E501
+            prefix (str): Prefix that selects keys to ingest.. [optional]  # noqa: E501
+            region (str): AWS region containing source bucket. [optional]  # noqa: E501
+            secret_access (str): AWS credential with ListObjects and GetObject access. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -267,18 +276,9 @@ class SourceS3(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            access_key (str): AWS credential with ListObjects and GetObject access. [optional]  # noqa: E501
-            format (str): do not use. [optional] if omitted the server will use the default value of "JSON"  # noqa: E501
-            mappings ([FieldMask]): custom transformation on data field. [optional]  # noqa: E501
-            object_bytes_total (int): [optional]  # noqa: E501
-            object_count_downloaded (int): [optional]  # noqa: E501
-            object_count_total (int): [optional]  # noqa: E501
-            pattern (str): Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified.. [optional]  # noqa: E501
-            prefix (str): Prefix that selects keys to ingest.. [optional]  # noqa: E501
-            region (str): AWS region containing source bucket. [optional]  # noqa: E501
-            secret_access (str): AWS credential with ListObjects and GetObject access. [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

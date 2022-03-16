@@ -206,10 +206,17 @@ class Organization(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, **kwargs):  # noqa: E501
         """Organization - a model defined in OpenAPI
 
         Keyword Args:
+            clusters ([Cluster]): list of clusters associated with this org. [optional]  # noqa: E501
+            created_at (str): ISO-8601 date. [optional]  # noqa: E501
+            deletion_scheduled_at (str): [optional]  # noqa: E501
+            display_name (str): name of the organization. [optional]  # noqa: E501
+            external_id (str): organization's unique external ID within Rockset. [optional]  # noqa: E501
+            id (str): unique identifier for the organization. [optional]  # noqa: E501
+            rockset_user (str): Rockset's global AWS user. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -240,15 +247,9 @@ class Organization(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            clusters ([Cluster]): list of clusters associated with this org. [optional]  # noqa: E501
-            created_at (str): ISO-8601 date. [optional]  # noqa: E501
-            deletion_scheduled_at (str): [optional]  # noqa: E501
-            display_name (str): name of the organization. [optional]  # noqa: E501
-            external_id (str): organization's unique external ID within Rockset. [optional]  # noqa: E501
-            id (str): unique identifier for the organization. [optional]  # noqa: E501
-            rockset_user (str): Rockset's global AWS user. [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

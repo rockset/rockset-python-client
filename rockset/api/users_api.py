@@ -12,6 +12,8 @@ import re  # noqa: F401
 import sys  # noqa: F401
 import typing  # noqa: F401
 
+import asyncio
+
 from rockset.api_client import ApiClient, Endpoint as _Endpoint
 from rockset.model_utils import (  # noqa: F401
     check_allowed_values,
@@ -386,22 +388,26 @@ class UsersApi(object):
         self,
         *,
         email: str,
-        roles: typing.List[str]=None,
+        roles: typing.Sequence[str]=None,
         **kwargs
-    ):
+    ) -> typing.Union[CreateUserResponse, asyncio.Future]:
         """Create User  # noqa: E501
 
         Create a new user for an organization.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_user(create_user_request, async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            create_user_request (CreateUserRequest): JSON object
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.UsersApi.create_user(
+                email=email,
+                roles=[],
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            email (str): user email, must be unique. [required]
+            roles ([str]): List of roles for a given user. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -431,8 +437,7 @@ class UsersApi(object):
 
         Returns:
             CreateUserResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -467,20 +472,22 @@ class UsersApi(object):
         *,
         user: str,
         **kwargs
-    ):
+    ) -> typing.Union[DeleteUserResponse, asyncio.Future]:
         """Delete User  # noqa: E501
 
         Delete a user from an organization.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_user(user, async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            user (str): user email
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.UsersApi.delete_user(
+                user=user,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            user (str): user email. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -510,8 +517,7 @@ class UsersApi(object):
 
         Returns:
             DeleteUserResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -544,16 +550,18 @@ class UsersApi(object):
     def get_current_user(
         self,
         **kwargs
-    ):
+    ) -> typing.Union[User, asyncio.Future]:
         """Retrieve Current User  # noqa: E501
 
         Retrieve currently authenticated user.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_current_user(async_req=True)
-        >>> result = thread.get()
-
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.UsersApi.get_current_user(
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -585,8 +593,7 @@ class UsersApi(object):
 
         Returns:
             User
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -619,20 +626,22 @@ class UsersApi(object):
         *,
         user: str,
         **kwargs
-    ):
+    ) -> typing.Union[User, asyncio.Future]:
         """Retrieve User  # noqa: E501
 
         Retrieve user by email.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_user(user, async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            user (str): user email
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.UsersApi.get_user(
+                user=user,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            user (str): user email. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -662,8 +671,7 @@ class UsersApi(object):
 
         Returns:
             User
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -696,16 +704,18 @@ class UsersApi(object):
     def list_unsubscribe_preferences(
         self,
         **kwargs
-    ):
+    ) -> typing.Union[ListUnsubscribePreferencesResponse, asyncio.Future]:
         """Get all notification preferences  # noqa: E501
 
         Get all notification preferences.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.list_unsubscribe_preferences(async_req=True)
-        >>> result = thread.get()
-
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.UsersApi.list_unsubscribe_preferences(
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -737,8 +747,7 @@ class UsersApi(object):
 
         Returns:
             ListUnsubscribePreferencesResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -769,16 +778,18 @@ class UsersApi(object):
     def list_users(
         self,
         **kwargs
-    ):
+    ) -> typing.Union[ListUsersResponse, asyncio.Future]:
         """List Users  # noqa: E501
 
         Retrieve all users for an organization.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.list_users(async_req=True)
-        >>> result = thread.get()
-
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.UsersApi.list_users(
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -810,8 +821,7 @@ class UsersApi(object):
 
         Returns:
             ListUsersResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -842,22 +852,24 @@ class UsersApi(object):
     def update_unsubscribe_preferences(
         self,
         *,
-        data: typing.List[UnsubscribePreference]=None,
+        data: typing.Sequence[UnsubscribePreference]=None,
         **kwargs
-    ):
+    ) -> typing.Union[UpdateUnsubscribePreferencesResponse, asyncio.Future]:
         """Update notification preferences  # noqa: E501
 
         Update notification preference.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.update_unsubscribe_preferences(update_unsubscribe_preferences_request, async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            update_unsubscribe_preferences_request (UpdateUnsubscribePreferencesRequest): JSON Object
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.UsersApi.update_unsubscribe_preferences(
+                data=[],
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            data ([UnsubscribePreference]): List of notification preferences. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -887,8 +899,7 @@ class UsersApi(object):
 
         Returns:
             UpdateUnsubscribePreferencesResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False

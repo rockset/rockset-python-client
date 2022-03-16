@@ -216,10 +216,17 @@ class KafkaIntegration(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, **kwargs):  # noqa: E501
         """KafkaIntegration - a model defined in OpenAPI
 
         Keyword Args:
+            bootstrap_servers (str): [optional]  # noqa: E501
+            connection_string (str): kafka connection string. [optional]  # noqa: E501
+            kafka_data_format (str): The format of the Kafka topics being tailed. [optional]  # noqa: E501
+            kafka_topic_names ([str]): Kafka topics to tail. [optional]  # noqa: E501
+            security_config (KafkaV3SecurityConfig): [optional]  # noqa: E501
+            source_status_by_topic ({str: (StatusKafka,)}): The status of the Kafka source by topic. [optional]  # noqa: E501
+            use_v3 (bool): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -250,15 +257,9 @@ class KafkaIntegration(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            bootstrap_servers (str): [optional]  # noqa: E501
-            connection_string (str): kafka connection string. [optional]  # noqa: E501
-            kafka_data_format (str): The format of the Kafka topics being tailed. [optional]  # noqa: E501
-            kafka_topic_names ([str]): Kafka topics to tail. [optional]  # noqa: E501
-            security_config (KafkaV3SecurityConfig): [optional]  # noqa: E501
-            source_status_by_topic ({str: (StatusKafka,)}): The status of the Kafka source by topic. [optional]  # noqa: E501
-            use_v3 (bool): [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

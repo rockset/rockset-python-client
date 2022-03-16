@@ -204,13 +204,14 @@ class SourceKafka(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, kafka_topic_name, *args, **kwargs):  # noqa: E501
+    def __init__(self, *, kafka_topic_name, **kwargs):  # noqa: E501
         """SourceKafka - a model defined in OpenAPI
 
-        Args:
-            kafka_topic_name (str): The Kafka topic to be tailed
-
         Keyword Args:
+            kafka_topic_name (str): The Kafka topic to be tailed
+            offset_reset_policy (str): [optional]  # noqa: E501
+            status (StatusKafka): [optional]  # noqa: E501
+            use_v3 (bool): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -241,11 +242,9 @@ class SourceKafka(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            offset_reset_policy (str): [optional]  # noqa: E501
-            status (StatusKafka): [optional]  # noqa: E501
-            use_v3 (bool): [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

@@ -12,6 +12,8 @@ import re  # noqa: F401
 import sys  # noqa: F401
 import typing  # noqa: F401
 
+import asyncio
+
 from rockset.api_client import ApiClient, Endpoint as _Endpoint
 from rockset.model_utils import (  # noqa: F401
     check_allowed_values,
@@ -237,25 +239,28 @@ class DocumentsApi(object):
         self,
         *,
         collection: str,
-        data: typing.List,
+        data: typing.Sequence,
         workspace="commons",
         **kwargs
-    ):
+    ) -> typing.Union[AddDocumentsResponse, asyncio.Future]:
         """Add Documents  # noqa: E501
 
         Add documents to a collection.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.add_documents(collection, add_documents_request, workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            collection (str): Name of the collection.
-            add_documents_request (AddDocumentsRequest): JSON object
-            workspace (str): Name of the workspace.. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.DocumentsApi.add_documents(
+                collection=collection,
+                data=[],
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): Name of the workspace.. [required] if omitted the server will use the default value of "commons"
+            collection (str): Name of the collection.. [required]
+            data ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]): Array of documents to be added to the collection.. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -285,8 +290,7 @@ class DocumentsApi(object):
 
         Returns:
             AddDocumentsResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -324,25 +328,28 @@ class DocumentsApi(object):
         self,
         *,
         collection: str,
-        data: typing.List[DeleteDocumentsRequestData],
+        data: typing.Sequence[DeleteDocumentsRequestData],
         workspace="commons",
         **kwargs
-    ):
+    ) -> typing.Union[DeleteDocumentsResponse, asyncio.Future]:
         """Delete Documents  # noqa: E501
 
         Delete documents from a collection.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_documents(collection, delete_documents_request, workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            collection (str): Name of the collection.
-            delete_documents_request (DeleteDocumentsRequest): JSON object
-            workspace (str): Name of the workspace.. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.DocumentsApi.delete_documents(
+                collection=collection,
+                data=[],
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): Name of the workspace.. [required] if omitted the server will use the default value of "commons"
+            collection (str): Name of the collection.. [required]
+            data ([DeleteDocumentsRequestData]): Array of IDs of documents to be deleted. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -372,8 +379,7 @@ class DocumentsApi(object):
 
         Returns:
             DeleteDocumentsResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -411,25 +417,28 @@ class DocumentsApi(object):
         self,
         *,
         collection: str,
-        data: typing.List[PatchDocument],
+        data: typing.Sequence[PatchDocument],
         workspace="commons",
         **kwargs
-    ):
+    ) -> typing.Union[PatchDocumentsResponse, asyncio.Future]:
         """Patch Documents  # noqa: E501
 
         Update existing documents in a collection.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.patch_documents(collection, patch_documents_request, workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            collection (str): Name of the collection.
-            patch_documents_request (PatchDocumentsRequest): JSON Patch objects
-            workspace (str): Name of the workspace.. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.DocumentsApi.patch_documents(
+                collection=collection,
+                data=[],
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): Name of the workspace.. [required] if omitted the server will use the default value of "commons"
+            collection (str): Name of the collection.. [required]
+            data ([PatchDocument]): List of patches to be applied.. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -459,8 +468,7 @@ class DocumentsApi(object):
 
         Returns:
             PatchDocumentsResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False

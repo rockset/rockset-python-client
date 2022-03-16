@@ -12,6 +12,8 @@ import re  # noqa: F401
 import sys  # noqa: F401
 import typing  # noqa: F401
 
+import asyncio
+
 from rockset.api_client import ApiClient, Endpoint as _Endpoint
 from rockset.model_utils import (  # noqa: F401
     check_allowed_values,
@@ -199,20 +201,22 @@ class VirtualInstancesApi(object):
         *,
         virtual_instance_id: str,
         **kwargs
-    ):
+    ) -> typing.Union[GetVirtualInstanceResponse, asyncio.Future]:
         """Retrieve Virtual Instance  # noqa: E501
 
         Get details about a virtual instance.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_virtual_instance(virtual_instance_id, async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            virtual_instance_id (str): uuid of the virtual instance
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.VirtualInstancesApi.get_virtual_instance(
+                virtual_instance_id=virtual_instance_id,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            virtual_instance_id (str): uuid of the virtual instance. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -242,8 +246,7 @@ class VirtualInstancesApi(object):
 
         Returns:
             GetVirtualInstanceResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -276,16 +279,18 @@ class VirtualInstancesApi(object):
     def list_virtual_instances(
         self,
         **kwargs
-    ):
+    ) -> typing.Union[ListVirtualInstancesResponse, asyncio.Future]:
         """List Virtual Instances  # noqa: E501
 
         Retrieve all virtual instances in an organization.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.list_virtual_instances(async_req=True)
-        >>> result = thread.get()
-
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.VirtualInstancesApi.list_virtual_instances(
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -317,8 +322,7 @@ class VirtualInstancesApi(object):
 
         Returns:
             ListVirtualInstancesResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -354,21 +358,28 @@ class VirtualInstancesApi(object):
         new_size: str=None,
         new_type: str=None,
         **kwargs
-    ):
+    ) -> typing.Union[UpdateVirtualInstanceResponse, asyncio.Future]:
         """Update Virtual Instance  # noqa: E501
 
         Update the properties of a virtual instance.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.set_virtual_instance(virtual_instance_id, update_virtual_instance_request, async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            virtual_instance_id (str): uuid of the virtual instance
-            update_virtual_instance_request (UpdateVirtualInstanceRequest): JSON object
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.VirtualInstancesApi.set_virtual_instance(
+                virtual_instance_id=virtual_instance_id,
+                monitoring_enabled=monitoring_enabled,
+                new_size=new_size,
+                new_type=new_type,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            virtual_instance_id (str): uuid of the virtual instance. [required]
+            monitoring_enabled (bool): [optional]
+            new_size (str): requested virtual instance size. [optional]
+            new_type (str): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -398,8 +409,7 @@ class VirtualInstancesApi(object):
 
         Returns:
             UpdateVirtualInstanceResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False

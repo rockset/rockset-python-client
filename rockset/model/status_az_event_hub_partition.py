@@ -188,10 +188,13 @@ class StatusAzEventHubPartition(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, **kwargs):  # noqa: E501
         """StatusAzEventHubPartition - a model defined in OpenAPI
 
         Keyword Args:
+            offset_lag (int): Per partition lag for offset. [optional]  # noqa: E501
+            partition_number (int): The number of this partition. [optional]  # noqa: E501
+            partition_offset (int): Latest offset of partition. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -222,11 +225,9 @@ class StatusAzEventHubPartition(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            offset_lag (int): Per partition lag for offset. [optional]  # noqa: E501
-            partition_number (int): The number of this partition. [optional]  # noqa: E501
-            partition_offset (int): Latest offset of partition. [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

@@ -297,7 +297,6 @@ rockset/model/query_lambda_version_response.py
 rockset/model/query_parameter.py
 rockset/model/query_request.py
 rockset/model/query_request_sql.py
-rockset/model/query_response.py
 rockset/model/query_response_stats.py
 rockset/model/redshift_integration.py
 rockset/model/role.py

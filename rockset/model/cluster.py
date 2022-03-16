@@ -201,10 +201,16 @@ class Cluster(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, **kwargs):  # noqa: E501
         """Cluster - a model defined in OpenAPI
 
         Keyword Args:
+            apiserver_url (str): api server url for cluster. [optional]  # noqa: E501
+            aws_region (str): aws region. [optional]  # noqa: E501
+            cluster_type (str): cluster type. [optional]  # noqa: E501
+            domain (str): domain of org using cluster. [optional]  # noqa: E501
+            id (str): unique identifier for the cluster. [optional]  # noqa: E501
+            top_level_domain (str): top level domain of org using cluster. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -235,14 +241,9 @@ class Cluster(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            apiserver_url (str): api server url for cluster. [optional]  # noqa: E501
-            aws_region (str): aws region. [optional]  # noqa: E501
-            cluster_type (str): cluster type. [optional]  # noqa: E501
-            domain (str): domain of org using cluster. [optional]  # noqa: E501
-            id (str): unique identifier for the cluster. [optional]  # noqa: E501
-            top_level_domain (str): top level domain of org using cluster. [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

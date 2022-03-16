@@ -583,23 +583,8 @@ class ApiClient(object):
         :param body: A object representing the body of the HTTP request.
             The object type is the return value of _encoder.default().
         """
-        if not auth_settings:
-            return
-
-        for auth in auth_settings:
-            auth_setting = self.configuration.auth_settings().get(auth)
-            if auth_setting:
-                if auth_setting['in'] == 'cookie':
-                    headers['Cookie'] = auth_setting['value']
-                elif auth_setting['in'] == 'header':
-                    if auth_setting['type'] != 'http-signature':
-                        headers[auth_setting['key']] = auth_setting['value']
-                elif auth_setting['in'] == 'query':
-                    queries.append((auth_setting['key'], auth_setting['value']))
-                else:
-                    raise ApiValueError(
-                        'Authentication token must be in `query` or `header`'
-                    )
+        headers["Authorization"] = self.configuration.auth_settings().get("apikey")["value"]
+        return self.configuration.auth_settings().get("apikey")["value"]
 
 
 class Endpoint(object):

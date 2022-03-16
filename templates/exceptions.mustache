@@ -146,6 +146,12 @@ class InitializationException(RocksetException):
         super(InitializationException, self).__init__(f"The rockset client was initialized incorrectly: {reason}")
 
 
+class InputException(RocksetException):
+
+    def __init__(self, status=None, reason=None, http_resp=None):
+        super(InputException, self).__init__(status, reason, http_resp)
+
+
 def render_path(path_to_item):
     """Returns a string representation of a path"""
     result = ""

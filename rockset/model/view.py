@@ -217,10 +217,21 @@ class View(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, **kwargs):  # noqa: E501
         """View - a model defined in OpenAPI
 
         Keyword Args:
+            created_at (str): ISO-8601 date. [optional]  # noqa: E501
+            creator_email (str): email of the creator. [optional]  # noqa: E501
+            description (str): view description. [optional]  # noqa: E501
+            entities ([str]): list of entities referenced by view. An entity can be a view, alias or collection. [optional]  # noqa: E501
+            modified_at (str): ISO-8601 date. [optional]  # noqa: E501
+            name (str): name of the view. [optional]  # noqa: E501
+            owner_email (str): email of the owner. [optional]  # noqa: E501
+            path (str): [optional]  # noqa: E501
+            query_sql (str): SQL query of the view. [optional]  # noqa: E501
+            state (str): state of the view. [optional]  # noqa: E501
+            workspace (str): name of the workspace. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -251,19 +262,9 @@ class View(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            created_at (str): ISO-8601 date. [optional]  # noqa: E501
-            creator_email (str): email of the creator. [optional]  # noqa: E501
-            description (str): view description. [optional]  # noqa: E501
-            entities ([str]): list of entities referenced by view. An entity can be a view, alias or collection. [optional]  # noqa: E501
-            modified_at (str): ISO-8601 date. [optional]  # noqa: E501
-            name (str): name of the view. [optional]  # noqa: E501
-            owner_email (str): email of the owner. [optional]  # noqa: E501
-            path (str): [optional]  # noqa: E501
-            query_sql (str): SQL query of the view. [optional]  # noqa: E501
-            state (str): state of the view. [optional]  # noqa: E501
-            workspace (str): name of the workspace. [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

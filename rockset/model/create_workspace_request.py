@@ -188,13 +188,12 @@ class CreateWorkspaceRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, name, *args, **kwargs):  # noqa: E501
+    def __init__(self, *, name, **kwargs):  # noqa: E501
         """CreateWorkspaceRequest - a model defined in OpenAPI
 
-        Args:
-            name (str): descriptive label and unique identifier
-
         Keyword Args:
+            name (str): descriptive label and unique identifier
+            description (str): longer explanation for the workspace. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -225,9 +224,9 @@ class CreateWorkspaceRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            description (str): longer explanation for the workspace. [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

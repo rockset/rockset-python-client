@@ -208,14 +208,17 @@ class ApiKey(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, key, name, *args, **kwargs):  # noqa: E501
+    def __init__(self, *, key, name, **kwargs):  # noqa: E501
         """ApiKey - a model defined in OpenAPI
 
-        Args:
+        Keyword Args:
             key (str): API key string of 64 alphanumeric characters.
             name (str): Name of the API key.
-
-        Keyword Args:
+            created_at (str): Date that API key was created (ISO-8601 format).. [optional]  # noqa: E501
+            created_by (str): Email of API key owner.. [optional]  # noqa: E501
+            last_access_time (str): Date that API key was most recently used (ISO-8601 format).. [optional]  # noqa: E501
+            role (str): [optional]  # noqa: E501
+            state (str): current state of this key. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -246,13 +249,9 @@ class ApiKey(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            created_at (str): Date that API key was created (ISO-8601 format).. [optional]  # noqa: E501
-            created_by (str): Email of API key owner.. [optional]  # noqa: E501
-            last_access_time (str): Date that API key was most recently used (ISO-8601 format).. [optional]  # noqa: E501
-            role (str): [optional]  # noqa: E501
-            state (str): current state of this key. [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

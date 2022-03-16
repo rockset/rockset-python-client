@@ -191,10 +191,14 @@ class FieldOptions(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, **kwargs):  # noqa: E501
         """FieldOptions - a model defined in OpenAPI
 
         Keyword Args:
+            column_index_mode (str):  store or no_store. [optional]  # noqa: E501
+            index_mode (str):  index or no_index. [optional]  # noqa: E501
+            range_index_mode (str):  v1_index or no_index. [optional]  # noqa: E501
+            type_index_mode (str):  index or no_index. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -225,12 +229,9 @@ class FieldOptions(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            column_index_mode (str):  store or no_store. [optional]  # noqa: E501
-            index_mode (str):  index or no_index. [optional]  # noqa: E501
-            range_index_mode (str):  v1_index or no_index. [optional]  # noqa: E501
-            type_index_mode (str):  index or no_index. [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

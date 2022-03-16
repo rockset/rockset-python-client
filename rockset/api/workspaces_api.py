@@ -12,6 +12,8 @@ import re  # noqa: F401
 import sys  # noqa: F401
 import typing  # noqa: F401
 
+import asyncio
+
 from rockset.api_client import ApiClient, Endpoint as _Endpoint
 from rockset.model_utils import (  # noqa: F401
     check_allowed_values,
@@ -301,20 +303,21 @@ class WorkspacesApi(object):
         *,
         workspace="commons",
         **kwargs
-    ):
+    ) -> typing.Union[ListWorkspacesResponse, asyncio.Future]:
         """List Workspaces in Workspace  # noqa: E501
 
         List workspaces under given workspace.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.child_workspaces(workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            workspace (str): name of the workspace. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.WorkspacesApi.child_workspaces(
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -344,8 +347,7 @@ class WorkspacesApi(object):
 
         Returns:
             ListWorkspacesResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -381,20 +383,24 @@ class WorkspacesApi(object):
         name: str,
         description: str=None,
         **kwargs
-    ):
+    ) -> typing.Union[CreateWorkspaceResponse, asyncio.Future]:
         """Create Workspace  # noqa: E501
 
         Create a new workspace.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_workspace(create_workspace_request, async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            create_workspace_request (CreateWorkspaceRequest): workspace details
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.WorkspacesApi.create_workspace(
+                name=name,
+                description=description,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            description (str): longer explanation for the workspace. [optional]
+            name (str): descriptive label and unique identifier. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -424,8 +430,7 @@ class WorkspacesApi(object):
 
         Returns:
             CreateWorkspaceResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -460,20 +465,21 @@ class WorkspacesApi(object):
         *,
         workspace="commons",
         **kwargs
-    ):
+    ) -> typing.Union[DeleteWorkspaceResponse, asyncio.Future]:
         """Delete Workspace  # noqa: E501
 
         Remove a workspace.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_workspace(workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            workspace (str): name of the workspace. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.WorkspacesApi.delete_workspace(
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -503,8 +509,7 @@ class WorkspacesApi(object):
 
         Returns:
             DeleteWorkspaceResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -539,20 +544,21 @@ class WorkspacesApi(object):
         *,
         workspace="commons",
         **kwargs
-    ):
+    ) -> typing.Union[GetWorkspaceResponse, asyncio.Future]:
         """Retrieve Workspace  # noqa: E501
 
         Get information about a single workspace.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_workspace(workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            workspace (str): name of the workspace. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.WorkspacesApi.get_workspace(
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -582,8 +588,7 @@ class WorkspacesApi(object):
 
         Returns:
             GetWorkspaceResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -618,16 +623,18 @@ class WorkspacesApi(object):
         *,
         fetch_across_regions: bool=None,
         **kwargs
-    ):
+    ) -> typing.Union[ListWorkspacesResponse, asyncio.Future]:
         """List Workspaces  # noqa: E501
 
         List all workspaces in an organization.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.list_workspaces(async_req=True)
-        >>> result = thread.get()
-
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.WorkspacesApi.list_workspaces(
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
             fetch_across_regions (bool): [optional]
@@ -660,8 +667,7 @@ class WorkspacesApi(object):
 
         Returns:
             ListWorkspacesResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False

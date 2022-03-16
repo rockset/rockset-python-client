@@ -210,17 +210,16 @@ class RedshiftIntegration(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, host, password, port, s3_bucket_path, username, *args, **kwargs):  # noqa: E501
+    def __init__(self, *, host, password, port, s3_bucket_path, username, **kwargs):  # noqa: E501
         """RedshiftIntegration - a model defined in OpenAPI
 
-        Args:
+        Keyword Args:
             host (str): Redshift Cluster host
             password (str): Password associated with Redshift cluster
             port (int): Redshift Cluster port
             s3_bucket_path (str): unload S3 bucket path
             username (str): Username associated with Redshift cluster
-
-        Keyword Args:
+            aws_access_key (AwsAccessKey): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -251,9 +250,9 @@ class RedshiftIntegration(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            aws_access_key (AwsAccessKey): [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

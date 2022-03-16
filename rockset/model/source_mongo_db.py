@@ -198,14 +198,13 @@ class SourceMongoDb(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, collection_name, database_name, *args, **kwargs):  # noqa: E501
+    def __init__(self, *, collection_name, database_name, **kwargs):  # noqa: E501
         """SourceMongoDb - a model defined in OpenAPI
 
-        Args:
+        Keyword Args:
             collection_name (str): MongoDB collection name
             database_name (str): MongoDB database name containing this collection
-
-        Keyword Args:
+            status (StatusMongoDb): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -236,9 +235,9 @@ class SourceMongoDb(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            status (StatusMongoDb): [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

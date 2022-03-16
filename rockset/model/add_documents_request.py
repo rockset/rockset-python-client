@@ -185,13 +185,11 @@ class AddDocumentsRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, data, *args, **kwargs):  # noqa: E501
+    def __init__(self, *, data, **kwargs):  # noqa: E501
         """AddDocumentsRequest - a model defined in OpenAPI
 
-        Args:
-            data ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]): Array of documents to be added to the collection.
-
         Keyword Args:
+            data ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]): Array of documents to be added to the collection.
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -223,7 +221,8 @@ class AddDocumentsRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

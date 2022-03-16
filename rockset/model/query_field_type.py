@@ -189,14 +189,12 @@ class QueryFieldType(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, name, type, *args, **kwargs):  # noqa: E501
+    def __init__(self, *, name, type, **kwargs):  # noqa: E501
         """QueryFieldType - a model defined in OpenAPI
 
-        Args:
+        Keyword Args:
             name (str): name of the field
             type (str): data type of the field
-
-        Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -228,7 +226,8 @@ class QueryFieldType(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

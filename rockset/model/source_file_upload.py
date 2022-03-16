@@ -193,15 +193,13 @@ class SourceFileUpload(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, file_name, file_size, file_upload_time, *args, **kwargs):  # noqa: E501
+    def __init__(self, *, file_name, file_size, file_upload_time, **kwargs):  # noqa: E501
         """SourceFileUpload - a model defined in OpenAPI
 
-        Args:
+        Keyword Args:
             file_name (str): name of the file
             file_size (int): size of the file in bytes
             file_upload_time (str): time of file upload
-
-        Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -233,7 +231,8 @@ class SourceFileUpload(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

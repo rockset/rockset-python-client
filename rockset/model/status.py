@@ -201,10 +201,15 @@ class Status(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, **kwargs):  # noqa: E501
         """Status - a model defined in OpenAPI
 
         Keyword Args:
+            last_processed_at (str): ISO-8601 date when source was last processed. [optional]  # noqa: E501
+            last_processed_item (str): last source item processed by ingester. [optional]  # noqa: E501
+            message (str): state message. [optional]  # noqa: E501
+            state (str): Status of the Source's ingestion, one of: INITIALIZING, WATCHING, PROCESSING, COMPLETED, ERROR. [optional]  # noqa: E501
+            total_processed_items (int): Total items processed of source. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -235,13 +240,9 @@ class Status(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            last_processed_at (str): ISO-8601 date when source was last processed. [optional]  # noqa: E501
-            last_processed_item (str): last source item processed by ingester. [optional]  # noqa: E501
-            message (str): state message. [optional]  # noqa: E501
-            state (str): Status of the Source's ingestion, one of: INITIALIZING, WATCHING, PROCESSING, COMPLETED, ERROR. [optional]  # noqa: E501
-            total_processed_items (int): Total items processed of source. [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

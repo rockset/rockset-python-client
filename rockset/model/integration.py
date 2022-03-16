@@ -254,14 +254,25 @@ class Integration(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, created_by, name, *args, **kwargs):  # noqa: E501
+    def __init__(self, *, created_by, name, **kwargs):  # noqa: E501
         """Integration - a model defined in OpenAPI
 
-        Args:
+        Keyword Args:
             created_by (str): email of user who created the integration
             name (str): descriptive label and unique identifier
-
-        Keyword Args:
+            azure_blob_storage (AzureBlobStorageIntegration): [optional]  # noqa: E501
+            azure_event_hub (AzEventHubIntegration): [optional]  # noqa: E501
+            azure_service_bus (AzServiceBusIntegration): [optional]  # noqa: E501
+            collections ([Collection]): list of collections that use the integration. [optional]  # noqa: E501
+            created_at (str): ISO-8601 date. [optional]  # noqa: E501
+            description (str): longer explanation for the integration. [optional]  # noqa: E501
+            dynamodb (DynamodbIntegration): [optional]  # noqa: E501
+            gcs (GcsIntegration): [optional]  # noqa: E501
+            kafka (KafkaIntegration): [optional]  # noqa: E501
+            kinesis (KinesisIntegration): [optional]  # noqa: E501
+            mongodb (MongoDbIntegration): [optional]  # noqa: E501
+            s3 (S3Integration): [optional]  # noqa: E501
+            segment (SegmentIntegration): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -292,21 +303,9 @@ class Integration(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            azure_blob_storage (AzureBlobStorageIntegration): [optional]  # noqa: E501
-            azure_event_hub (AzEventHubIntegration): [optional]  # noqa: E501
-            azure_service_bus (AzServiceBusIntegration): [optional]  # noqa: E501
-            collections ([Collection]): list of collections that use the integration. [optional]  # noqa: E501
-            created_at (str): ISO-8601 date. [optional]  # noqa: E501
-            description (str): longer explanation for the integration. [optional]  # noqa: E501
-            dynamodb (DynamodbIntegration): [optional]  # noqa: E501
-            gcs (GcsIntegration): [optional]  # noqa: E501
-            kafka (KafkaIntegration): [optional]  # noqa: E501
-            kinesis (KinesisIntegration): [optional]  # noqa: E501
-            mongodb (MongoDbIntegration): [optional]  # noqa: E501
-            s3 (S3Integration): [optional]  # noqa: E501
-            segment (SegmentIntegration): [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

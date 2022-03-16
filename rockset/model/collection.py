@@ -271,10 +271,28 @@ class Collection(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, **kwargs):  # noqa: E501
         """Collection - a model defined in OpenAPI
 
         Keyword Args:
+            aliases ([Alias]): list of aliases for a collection. [optional]  # noqa: E501
+            clustering_key ([FieldPartition]): list of clustering fields for a collection. [optional]  # noqa: E501
+            created_at (str): ISO-8601 date. [optional]  # noqa: E501
+            created_by (str): email of user who created the collection. [optional]  # noqa: E501
+            description (str): text describing the collection. [optional]  # noqa: E501
+            enable_exactly_once_writes (bool): If true, exactly-once write semantics is enabled.. [optional]  # noqa: E501
+            field_partitions ([FieldPartition]): [optional]  # noqa: E501
+            field_mapping_query (FieldMappingQuery): [optional]  # noqa: E501
+            field_mappings ([FieldMappingV2]): list of mappings applied on all documents in a collection. [optional]  # noqa: E501
+            field_schemas ([FieldSchema]): list of field schemas . [optional]  # noqa: E501
+            insert_only (bool): Whether the collection is insert only or not. [optional]  # noqa: E501
+            inverted_index_group_encoding_options (InvertedIndexGroupEncodingOptions): [optional]  # noqa: E501
+            name (str): unique identifer for collection, can contain alphanumeric or dash characters. [optional]  # noqa: E501
+            retention_secs (int): number of seconds after which data is purged based on event time. [optional]  # noqa: E501
+            sources ([Source]): list of sources from which collection ingests. [optional]  # noqa: E501
+            stats (CollectionStats): [optional]  # noqa: E501
+            status (str): current status of collection, one of: CREATED, READY, DELETED. [optional]  # noqa: E501
+            workspace (str): name of the workspace that the collection is in. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -305,26 +323,9 @@ class Collection(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            aliases ([Alias]): list of aliases for a collection. [optional]  # noqa: E501
-            clustering_key ([FieldPartition]): list of clustering fields for a collection. [optional]  # noqa: E501
-            created_at (str): ISO-8601 date. [optional]  # noqa: E501
-            created_by (str): email of user who created the collection. [optional]  # noqa: E501
-            description (str): text describing the collection. [optional]  # noqa: E501
-            enable_exactly_once_writes (bool): If true, exactly-once write semantics is enabled.. [optional]  # noqa: E501
-            field_partitions ([FieldPartition]): [optional]  # noqa: E501
-            field_mapping_query (FieldMappingQuery): [optional]  # noqa: E501
-            field_mappings ([FieldMappingV2]): list of mappings applied on all documents in a collection. [optional]  # noqa: E501
-            field_schemas ([FieldSchema]): list of field schemas . [optional]  # noqa: E501
-            insert_only (bool): Whether the collection is insert only or not. [optional]  # noqa: E501
-            inverted_index_group_encoding_options (InvertedIndexGroupEncodingOptions): [optional]  # noqa: E501
-            name (str): unique identifer for collection, can contain alphanumeric or dash characters. [optional]  # noqa: E501
-            retention_secs (int): number of seconds after which data is purged based on event time. [optional]  # noqa: E501
-            sources ([Source]): list of sources from which collection ingests. [optional]  # noqa: E501
-            stats (CollectionStats): [optional]  # noqa: E501
-            status (str): current status of collection, one of: CREATED, READY, DELETED. [optional]  # noqa: E501
-            workspace (str): name of the workspace that the collection is in. [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

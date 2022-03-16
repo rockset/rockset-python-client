@@ -204,14 +204,14 @@ class PatchOperation(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, op, path, *args, **kwargs):  # noqa: E501
+    def __init__(self, *, op, path, **kwargs):  # noqa: E501
         """PatchOperation - a model defined in OpenAPI
 
-        Args:
+        Keyword Args:
             op (str): [JSON Patch operation](https://datatracker.ietf.org/doc/html/rfc6902#page-4) to be performed in this patch. Case insensitive.
             path (str): [JSON Pointer](https://datatracker.ietf.org/doc/html/rfc6901) referencing a location in the target document where the operation is performed
-
-        Keyword Args:
+            _from (str): [JSON Pointer](https://datatracker.ietf.org/doc/html/rfc6901) referencing a location in the target document. Required for `COPY` and `MOVE` operations.. [optional]  # noqa: E501
+            value ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Value used in the patch operation. Required for `ADD`, `REPLACE`, `TEST`, and `INCREMENT` operations.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -242,10 +242,9 @@ class PatchOperation(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            _from (str): [JSON Pointer](https://datatracker.ietf.org/doc/html/rfc6901) referencing a location in the target document. Required for `COPY` and `MOVE` operations.. [optional]  # noqa: E501
-            value ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): Value used in the patch operation. Required for `ADD`, `REPLACE`, `TEST`, and `INCREMENT` operations.. [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

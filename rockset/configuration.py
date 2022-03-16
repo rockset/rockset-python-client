@@ -31,15 +31,7 @@ class Configuration(object):
     Do not edit the class manually.
 
     :param host: Base url
-    :param api_key: Dict to store API key(s).
-      Each entry in the dict specifies an API key.
-      The dict key is the name of the security scheme in the OAS specification.
-      The dict value is the API key secret.
-    :param api_key_prefix: Dict to store API prefix (e.g. Bearer)
-      The dict key is the name of the security scheme in the OAS specification.
-      The dict value is an API key prefix when generating the auth data.
-    :param username: Username for HTTP basic authentication
-    :param password: Password for HTTP basic authentication
+    :param api_key: The api key to use for requests
     :param discard_unknown_keys: Boolean value indicating whether to discard
       unknown properties. A server may send a response that includes additional
       properties that are not known by the client in the following scenarios:
@@ -75,6 +67,8 @@ class Configuration(object):
       The validation of enums is performed for variables with defined enum values before.
     :param ssl_ca_cert: str - the path to a file of concatenated CA certificates
       in PEM format
+    :param retries: int - Overrides the default number of retry attempts for the
+      urllib3 PoolManager
 
     :Example:
 
@@ -100,15 +94,13 @@ conf = rockset.Configuration(
 
     _default = None
 
-    def __init__(self, host=None,
-                 api_key=None, api_key_prefix=None,
-                 access_token=None,
-                 username=None, password=None,
+    def __init__(self, host: str=None,
+                 api_key: str=None,
                  discard_unknown_keys=False,
                  disabled_client_side_validations="",
                  server_index=None, server_variables=None,
                  server_operation_index=None, server_operation_variables=None,
-                 ssl_ca_cert=None,
+                 ssl_ca_cert=None, retries=None
                  ):
         """Constructor
         """
@@ -127,26 +119,14 @@ conf = rockset.Configuration(
         """Temp file folder for downloading files
         """
         # Authentication Settings
-        self.access_token = access_token
-        self.api_key = {}
+        self.api_key = None
         if api_key:
             self.api_key = api_key
-        """dict to store API key(s)
-        """
-        self.api_key_prefix = {}
-        if api_key_prefix:
-            self.api_key_prefix = api_key_prefix
-        """dict to store API prefix (e.g. Bearer)
-        """
+
         self.refresh_api_key_hook = None
         """function hook to refresh API key if expired
         """
-        self.username = username
-        """Username for HTTP basic authentication
-        """
-        self.password = password
-        """Password for HTTP basic authentication
-        """
+
         self.discard_unknown_keys = discard_unknown_keys
         self.disabled_client_side_validations = disabled_client_side_validations
         self.logger = {}
@@ -209,6 +189,8 @@ conf = rockset.Configuration(
         """Safe chars for path_param
         """
         self.retries = None
+        if retries is not None:
+            self.retries = retries
         """Adding retries to override urllib3 default value 3
         """
         # Enable client side validation
@@ -358,30 +340,7 @@ conf = rockset.Configuration(
         :param alias: The alternative identifier of apiKey.
         :return: The token for api key authentication.
         """
-        if self.refresh_api_key_hook is not None:
-            self.refresh_api_key_hook(self)
-        key = self.api_key.get(identifier, self.api_key.get(alias) if alias is not None else None)
-        if key:
-            prefix = self.api_key_prefix.get(identifier)
-            if prefix:
-                return "%s %s" % (prefix, key)
-            else:
-                return key
-
-    def get_basic_auth_token(self):
-        """Gets HTTP basic authentication header (string).
-
-        :return: The token for basic HTTP authentication.
-        """
-        username = ""
-        if self.username is not None:
-            username = self.username
-        password = ""
-        if self.password is not None:
-            password = self.password
-        return urllib3.util.make_headers(
-            basic_auth=username + ':' + password
-        ).get('authorization')
+        return f"apikey {self.api_key}"
 
     def auth_settings(self):
         """Gets Auth Settings dict for api client.
@@ -389,15 +348,14 @@ conf = rockset.Configuration(
         :return: The Auth Settings information dict.
         """
         auth = {}
-        if 'apikey' in self.api_key:
-            auth['apikey'] = {
-                'type': 'api_key',
-                'in': 'header',
-                'key': 'Authorization',
-                'value': self.get_api_key_with_prefix(
-                    'apikey',
-                ),
-            }
+        auth['apikey'] = {
+            'type': 'api_key',
+            'in': 'header',
+            'key': 'Authorization',
+            'value': self.get_api_key_with_prefix(
+                'apikey',
+            ),
+        }
         return auth
 
     def to_debug_report(self):

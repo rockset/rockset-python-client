@@ -12,6 +12,8 @@ import re  # noqa: F401
 import sys  # noqa: F401
 import typing  # noqa: F401
 
+import asyncio
+
 from rockset.api_client import ApiClient, Endpoint as _Endpoint
 from rockset.model_utils import (  # noqa: F401
     check_allowed_values,
@@ -299,20 +301,26 @@ class IntegrationsApi(object):
         azure_blob_storage: AzureBlobStorageIntegration=None,
         description: str=None,
         **kwargs
-    ):
+    ) -> typing.Union[CreateIntegrationResponse, asyncio.Future]:
         """Create azure blob integration  # noqa: E501
 
         Create a new integration.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_azure_blob_integration(azure_blob_integration_creation_request, async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            azure_blob_integration_creation_request (AzureBlobIntegrationCreationRequest): integration credentials
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.IntegrationsApi.create_azure_blob_integration(
+                name=name,
+                azure_blob_storage=azure_blob_storage,
+                description=description,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            azure_blob_storage (AzureBlobStorageIntegration): [optional]
+            description (str): longer explanation for the integration. [optional]
+            name (str): descriptive label. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -342,8 +350,7 @@ class IntegrationsApi(object):
 
         Returns:
             CreateIntegrationResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -380,20 +387,26 @@ class IntegrationsApi(object):
         description: str=None,
         gcs: GcsIntegration=None,
         **kwargs
-    ):
+    ) -> typing.Union[CreateIntegrationResponse, asyncio.Future]:
         """Create gcs integration  # noqa: E501
 
         Create a new integration.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_gcs_integration(gcs_integration_creation_request, async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            gcs_integration_creation_request (GcsIntegrationCreationRequest): integration credentials
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.IntegrationsApi.create_gcs_integration(
+                name=name,
+                description=description,
+                gcs=gcs,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            description (str): longer explanation for the integration. [optional]
+            gcs (GcsIntegration): [optional]
+            name (str): descriptive label. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -423,8 +436,7 @@ class IntegrationsApi(object):
 
         Returns:
             CreateIntegrationResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -459,20 +471,22 @@ class IntegrationsApi(object):
         *,
         integration: str,
         **kwargs
-    ):
+    ) -> typing.Union[DeleteIntegrationResponse, asyncio.Future]:
         """Delete Integration  # noqa: E501
 
         Remove an integration.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_integration(integration, async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            integration (str): name of the integration
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.IntegrationsApi.delete_integration(
+                integration=integration,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            integration (str): name of the integration. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -502,8 +516,7 @@ class IntegrationsApi(object):
 
         Returns:
             DeleteIntegrationResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -538,20 +551,22 @@ class IntegrationsApi(object):
         *,
         integration: str,
         **kwargs
-    ):
+    ) -> typing.Union[GetIntegrationResponse, asyncio.Future]:
         """Retrieve Integration  # noqa: E501
 
         Retrieve information about a single integration.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_integration(integration, async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            integration (str): name of the integration
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.IntegrationsApi.get_integration(
+                integration=integration,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            integration (str): name of the integration. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -581,8 +596,7 @@ class IntegrationsApi(object):
 
         Returns:
             GetIntegrationResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -615,16 +629,18 @@ class IntegrationsApi(object):
     def list_integrations(
         self,
         **kwargs
-    ):
+    ) -> typing.Union[ListIntegrationsResponse, asyncio.Future]:
         """List Integrations  # noqa: E501
 
         List all integrations in an organization.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.list_integrations(async_req=True)
-        >>> result = thread.get()
-
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.IntegrationsApi.list_integrations(
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -656,8 +672,7 @@ class IntegrationsApi(object):
 
         Returns:
             ListIntegrationsResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False

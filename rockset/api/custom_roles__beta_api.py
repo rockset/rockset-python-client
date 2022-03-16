@@ -12,6 +12,8 @@ import re  # noqa: F401
 import sys  # noqa: F401
 import typing  # noqa: F401
 
+import asyncio
+
 from rockset.api_client import ApiClient, Endpoint as _Endpoint
 from rockset.model_utils import (  # noqa: F401
     check_allowed_values,
@@ -249,23 +251,29 @@ class CustomRolesBetaApi(object):
         self,
         *,
         description: str=None,
-        privileges: typing.List[Privilege]=None,
+        privileges: typing.Sequence[Privilege]=None,
         role_name: str=None,
         **kwargs
-    ):
+    ) -> typing.Union[RoleResponse, asyncio.Future]:
         """Create a Role  # noqa: E501
 
         Create a role for your organization.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_role(create_role_request, async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            create_role_request (CreateRoleRequest): JSON Object
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.CustomRolesBetaApi.create_role(
+                description=description,
+                privileges=[],
+                role_name=role_name,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            description (str): Description for the role.. [optional]
+            privileges ([Privilege]): List of privileges that will be associated with the role.. [optional]
+            role_name (str): Unique identifier for the role.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -295,8 +303,7 @@ class CustomRolesBetaApi(object):
 
         Returns:
             RoleResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -331,20 +338,22 @@ class CustomRolesBetaApi(object):
         *,
         role_name: str,
         **kwargs
-    ):
+    ) -> typing.Union[RoleResponse, asyncio.Future]:
         """Delete a Role  # noqa: E501
 
         Delete a role for your organization.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_role(role_name, async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            role_name (str):
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.CustomRolesBetaApi.delete_role(
+                role_name=role_name,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            role_name (str): [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -374,8 +383,7 @@ class CustomRolesBetaApi(object):
 
         Returns:
             RoleResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -408,16 +416,18 @@ class CustomRolesBetaApi(object):
     def list_roles(
         self,
         **kwargs
-    ):
+    ) -> typing.Union[ListRolesResponse, asyncio.Future]:
         """List Roles  # noqa: E501
 
         List all roles for your organization.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.list_roles(async_req=True)
-        >>> result = thread.get()
-
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.CustomRolesBetaApi.list_roles(
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -449,8 +459,7 @@ class CustomRolesBetaApi(object):
 
         Returns:
             ListRolesResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -483,23 +492,28 @@ class CustomRolesBetaApi(object):
         *,
         role_name: str,
         description: str=None,
-        privileges: typing.List[Privilege]=None,
+        privileges: typing.Sequence[Privilege]=None,
         **kwargs
-    ):
+    ) -> typing.Union[RoleResponse, asyncio.Future]:
         """Update a Role  # noqa: E501
 
         Update a role for your organization.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.update_role(role_name, update_role_request, async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            role_name (str):
-            update_role_request (UpdateRoleRequest): JSON Object
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.CustomRolesBetaApi.update_role(
+                role_name=role_name,
+                description=description,
+                privileges=[],
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            role_name (str): [required]
+            description (str): Description for the role.. [optional]
+            privileges ([Privilege]): List of privileges that will be associated with the role.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -529,8 +543,7 @@ class CustomRolesBetaApi(object):
 
         Returns:
             RoleResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False

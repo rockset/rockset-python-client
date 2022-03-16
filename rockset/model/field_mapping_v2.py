@@ -199,10 +199,14 @@ class FieldMappingV2(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, **kwargs):  # noqa: E501
         """FieldMappingV2 - a model defined in OpenAPI
 
         Keyword Args:
+            input_fields ([InputField]): A List of InputField for this mapping. [optional]  # noqa: E501
+            is_drop_all_fields (bool): A boolean that determines whether to drop all fields in this document. If set, input and output fields should not be set. [optional]  # noqa: E501
+            name (str): A user specified string that is a name for this mapping. [optional]  # noqa: E501
+            output_field (OutputField): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -233,12 +237,9 @@ class FieldMappingV2(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            input_fields ([InputField]): A List of InputField for this mapping. [optional]  # noqa: E501
-            is_drop_all_fields (bool): A boolean that determines whether to drop all fields in this document. If set, input and output fields should not be set. [optional]  # noqa: E501
-            name (str): A user specified string that is a name for this mapping. [optional]  # noqa: E501
-            output_field (OutputField): [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

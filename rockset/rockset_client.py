@@ -7,10 +7,10 @@ from rockset.apis import (
     AliasesApi,
     APIKeysApi,
     CollectionsApi,
-    # DocumentsApi,
+    DocumentsApi,
     IntegrationsApi,
     OrganizationsApi,
-    # QueriesApi,
+    QueriesApi,
     QueryLambdasApi,
     UsersApi,
     ViewsApi,
@@ -18,9 +18,7 @@ from rockset.apis import (
     WorkspacesApi,
 )
 from rockset.configuration import Configuration
-from rockset.exceptions import InitializationException
-
-# todo: change module-level docstrings in templates
+from rockset.exceptions import ApiTypeError, ApiValueError, InitializationException
 
 
 def wrapper(method):
@@ -40,7 +38,14 @@ def wrapper(method):
         body_args = dict(filter(lambda item: item[0] in body_fields, kwargs.items()))
         other_args = kwargs
 
-        body = req_type(**body_args)
+        body = None
+        try:
+            body = req_type(**body_args)
+        except ApiTypeError as e:
+            raise ApiValueError(f"Body for the request ({req_type}) could not be created because of an incorrect type: {e}") from e
+        except TypeError as e:
+            raise ApiValueError(f"Body for the request ({req_type}) could not be created because of a missing argument: {e}") from e
+
         other_args[body_param_name] = body
         return method(*args, **other_args)
 
@@ -73,11 +78,19 @@ class CollectionsApiWrapper(CollectionsApi, metaclass=ApiMetaclass):
     pass
 
 
+class DocumentsApiWrapper(DocumentsApi, metaclass=ApiMetaclass):
+    pass
+
+
 class IntegrationsApiWrapper(IntegrationsApi, metaclass=ApiMetaclass):
     pass
 
 
 class OrganizationsApiWrapper(OrganizationsApi, metaclass=ApiMetaclass):
+    pass
+
+
+class QueriesApiWrapper(QueriesApi, metaclass=ApiMetaclass):
     pass
 
 
@@ -102,23 +115,57 @@ class WorkspacesApiWrapper(WorkspacesApi, metaclass=ApiMetaclass):
 
 
 class RocksetClient:
-    # todo: should user create Config object or pass in each config var as arguments?
-    def __init__(self, host: str = None, apikey: str = None, max_workers=4):
-        self.api_client = ApiClient(Configuration(host=host), max_workers=max_workers)
+    """
+    The class that is used to make requests to the Rockset API.
 
-        if not apikey:
-            raise InitializationException("an api key must be provided")
-        self.api_client.default_headers["Authorization"] = f"apikey {apikey}"
+    Usage:
+        >>> rs = RocksetClient(apikey=APIKEY)
 
-        self.Alias = AliasesApiWrapper(self.api_client)
-        self.ApiKey = APIKeysApiWrapper(self.api_client)
-        self.Collection = CollectionsApiWrapper(self.api_client)
-        # self.Document = DocumentsApi(self.api_client)
-        self.Integration = IntegrationsApiWrapper(self.api_client)
-        self.Organization = OrganizationsApiWrapper(self.api_client)
-        # self.Query = QueriesApi(self.api_client)
-        self.QueryLambda = QueryLambdasApiWrapper(self.api_client)
-        self.User = UsersApiWrapper(self.api_client)
-        self.View = ViewsApiWrapper(self.api_client)
-        self.VirtualInstance = VirtualInstancesApiWrapper(self.api_client)
-        self.Workspace = WorkspacesApiWrapper(self.api_client)
+        >>> # Synchronous request
+        >>> response = rs.DocumentsApi.add_documents(
+                collection=collection,
+                data=[{"column": "value"}],
+            )
+
+        >>> # Asynchronous request
+        >>> future = rs.DocumentsApi.add_documents(
+                collection=collection,
+                data=[{"column": "value"}],
+                async_req=True,
+            )
+        >>> result = await future
+    """
+    def __init__(self, host: str = None, api_key: str = None, max_workers: int=4, config: Configuration=None):
+        """
+        Keyword Args:
+            host (str): Base url of the Rockset apiserver that should be used.
+                Can be specified here or within the Configuration object.
+                If no host is specified, the client will default to us-west-2.
+                us-west-2: https://api.rs2.usw2.rockset.com
+                us-east-1: https://api.use1a1.rockset.com
+                eu-central-1: https://api.euc1a1.rockset.com
+            api_key (str): The api key to use for authorization when making requests.
+                The api key must be provided here or within the configuration object
+            max_workers (int): The max number of workers that the ThreadPoolExecutor
+                should use when making asynchronous requests. [optional]
+        """
+        if not config:
+            config = Configuration(host=host, api_key=api_key)
+
+        if not config.api_key:
+            raise InitializationException("An api key must be provided as a parameter to the RocksetClient or the Configuration object.")
+
+        self.api_client = ApiClient(config, max_workers=max_workers)
+
+        self.AliasesApi = AliasesApiWrapper(self.api_client)
+        self.APIKeysApi = APIKeysApiWrapper(self.api_client)
+        self.CollectionsApi = CollectionsApiWrapper(self.api_client)
+        self.DocumentsApi = DocumentsApiWrapper(self.api_client)
+        self.IntegrationsApi = IntegrationsApiWrapper(self.api_client)
+        self.OrganizationsApi = OrganizationsApiWrapper(self.api_client)
+        self.QueriesApi = QueriesApiWrapper(self.api_client)
+        self.QueryLambdasApi = QueryLambdasApiWrapper(self.api_client)
+        self.UsersApi = UsersApiWrapper(self.api_client)
+        self.ViewsApi = ViewsApiWrapper(self.api_client)
+        self.VirtualInstancesApi = VirtualInstancesApiWrapper(self.api_client)
+        self.WorkspacesApi = WorkspacesApiWrapper(self.api_client)

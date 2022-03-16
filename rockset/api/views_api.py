@@ -12,6 +12,8 @@ import re  # noqa: F401
 import sys  # noqa: F401
 import typing  # noqa: F401
 
+import asyncio
+
 from rockset.api_client import ApiClient, Endpoint as _Endpoint
 from rockset.model_utils import (  # noqa: F401
     check_allowed_values,
@@ -382,21 +384,27 @@ class ViewsApi(object):
         description: str=None,
         workspace="commons",
         **kwargs
-    ):
+    ) -> typing.Union[CreateViewResponse, asyncio.Future]:
         """Create View  # noqa: E501
 
         Create a view  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_view(create_view_request, workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            create_view_request (CreateViewRequest): JSON object
-            workspace (str): name of the workspace. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.ViewsApi.create_view(
+                name=name,
+                query=query,
+                description=description,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            description (str): optional description. [optional]
+            name (str): View name. [required]
+            query (str): SQL for this view. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -426,8 +434,7 @@ class ViewsApi(object):
 
         Returns:
             CreateViewResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -465,21 +472,23 @@ class ViewsApi(object):
         view: str,
         workspace="commons",
         **kwargs
-    ):
+    ) -> typing.Union[DeleteViewResponse, asyncio.Future]:
         """Delete View  # noqa: E501
 
         Delete a view  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_view(view, workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            view (str): name of the view
-            workspace (str): name of the workspace. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.ViewsApi.delete_view(
+                view=view,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            view (str): name of the view. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -509,8 +518,7 @@ class ViewsApi(object):
 
         Returns:
             DeleteViewResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -548,21 +556,23 @@ class ViewsApi(object):
         view: str,
         workspace="commons",
         **kwargs
-    ):
+    ) -> typing.Union[GetViewResponse, asyncio.Future]:
         """Retrieve View  # noqa: E501
 
         Get details about a view  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_view(view, workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            view (str): name of the view
-            workspace (str): name of the workspace. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.ViewsApi.get_view(
+                view=view,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            view (str): name of the view. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -592,8 +602,7 @@ class ViewsApi(object):
 
         Returns:
             GetViewResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -628,16 +637,18 @@ class ViewsApi(object):
     def list_views(
         self,
         **kwargs
-    ):
+    ) -> typing.Union[ListViewsResponse, asyncio.Future]:
         """List Views  # noqa: E501
 
         Retrieve all views in an organization  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.list_views(async_req=True)
-        >>> result = thread.get()
-
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.ViewsApi.list_views(
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -669,8 +680,7 @@ class ViewsApi(object):
 
         Returns:
             ListViewsResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -706,22 +716,27 @@ class ViewsApi(object):
         description: str=None,
         workspace="commons",
         **kwargs
-    ):
+    ) -> typing.Union[UpdateViewResponse, asyncio.Future]:
         """Update View  # noqa: E501
 
         Update a view  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.update_view(view, update_view_request, workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            view (str): name of the view
-            update_view_request (UpdateViewRequest): JSON object
-            workspace (str): name of the workspace. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.ViewsApi.update_view(
+                view=view,
+                query=query,
+                description=description,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            view (str): name of the view. [required]
+            description (str): optional description. [optional]
+            query (str): SQL for this view. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -751,8 +766,7 @@ class ViewsApi(object):
 
         Returns:
             UpdateViewResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -791,20 +805,21 @@ class ViewsApi(object):
         *,
         workspace="commons",
         **kwargs
-    ):
+    ) -> typing.Union[ListViewsResponse, asyncio.Future]:
         """List Views in Workspace  # noqa: E501
 
         Retrieve all views in a workspace.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.workspace_views(workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            workspace (str): name of the workspace. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.ViewsApi.workspace_views(
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -834,8 +849,7 @@ class ViewsApi(object):
 
         Returns:
             ListViewsResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False

@@ -196,15 +196,14 @@ class SourceRedshift(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, database, schema, table_name, *args, **kwargs):  # noqa: E501
+    def __init__(self, *, database, schema, table_name, **kwargs):  # noqa: E501
         """SourceRedshift - a model defined in OpenAPI
 
-        Args:
+        Keyword Args:
             database (str): name of the database in Redshift Cluster
             schema (str): schema which contains the Redshift table
             table_name (str): name of Redshift table containing data
-
-        Keyword Args:
+            incremental_field (str): field in Redshift source table to monitor for updates. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -235,9 +234,9 @@ class SourceRedshift(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            incremental_field (str): field in Redshift source table to monitor for updates. [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

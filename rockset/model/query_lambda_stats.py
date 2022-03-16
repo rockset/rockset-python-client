@@ -191,10 +191,14 @@ class QueryLambdaStats(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, **kwargs):  # noqa: E501
         """QueryLambdaStats - a model defined in OpenAPI
 
         Keyword Args:
+            last_executed (str): ISO-8601 date. [optional]  # noqa: E501
+            last_executed_by (str): user who last executed Query Lambda. [optional]  # noqa: E501
+            last_execution_error (str): ISO-8601 date of last execution failure. [optional]  # noqa: E501
+            last_execution_error_message (str): error message associated with last failed execution. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -225,12 +229,9 @@ class QueryLambdaStats(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            last_executed (str): ISO-8601 date. [optional]  # noqa: E501
-            last_executed_by (str): user who last executed Query Lambda. [optional]  # noqa: E501
-            last_execution_error (str): ISO-8601 date of last execution failure. [optional]  # noqa: E501
-            last_execution_error_message (str): error message associated with last failed execution. [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

@@ -12,6 +12,8 @@ import re  # noqa: F401
 import sys  # noqa: F401
 import typing  # noqa: F401
 
+import asyncio
+
 from rockset.api_client import ApiClient, Endpoint as _Endpoint
 from rockset.model_utils import (  # noqa: F401
     check_allowed_values,
@@ -371,34 +373,58 @@ class CollectionsApi(object):
         self,
         *,
         name: str,
-        clustering_key: typing.List[FieldPartition]=None,
+        clustering_key: typing.Sequence[FieldPartition]=None,
         description: str=None,
         event_time_info: EventTimeInfo=None,
         field_mapping_query: FieldMappingQuery=None,
-        field_mappings: typing.List[FieldMappingV2]=None,
-        field_schemas: typing.List[FieldSchema]=None,
+        field_mappings: typing.Sequence[FieldMappingV2]=None,
+        field_schemas: typing.Sequence[FieldSchema]=None,
         insert_only: bool=None,
         inverted_index_group_encoding_options: InvertedIndexGroupEncodingOptions=None,
         retention_secs: int=None,
-        sources: typing.List[AzureBlobStorageSourceWrapper]=None,
+        sources: typing.Sequence[AzureBlobStorageSourceWrapper]=None,
         time_partition_resolution_secs: int=None,
         workspace="commons",
         **kwargs
-    ):
+    ) -> typing.Union[CreateCollectionResponse, asyncio.Future]:
         """Create azure blob collection  # noqa: E501
 
         Create new collection in a workspace.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_azure_blob_collection(azure_blob_collection_creation_request, workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            azure_blob_collection_creation_request (AzureBlobCollectionCreationRequest): JSON object
-            workspace (str): name of the workspace. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.CollectionsApi.create_azure_blob_collection(
+                name=name,
+                clustering_key=[],
+                description=description,
+                event_time_info=event_time_info,
+                field_mapping_query=field_mapping_query,
+                field_mappings=[],
+                field_schemas=[],
+                insert_only=insert_only,
+                inverted_index_group_encoding_options=inverted_index_group_encoding_options,
+                retention_secs=retention_secs,
+                sources=[],
+                time_partition_resolution_secs=time_partition_resolution_secs,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            clustering_key ([FieldPartition]): list of clustering fields. [optional]
+            description (str): text describing the collection. [optional]
+            event_time_info (EventTimeInfo): [optional]
+            field_mapping_query (FieldMappingQuery): [optional]
+            field_mappings ([FieldMappingV2]): list of mappings. [optional]
+            field_schemas ([FieldSchema]): list of field schemas. [optional]
+            insert_only (bool): If true disallows updates and deletes, but makes indexing more efficient. [optional]
+            inverted_index_group_encoding_options (InvertedIndexGroupEncodingOptions): [optional]
+            name (str): unique identifier for collection, can contain alphanumeric or dash characters. [required]
+            retention_secs (int): number of seconds after which data is purged, based on event time. [optional]
+            sources ([AzureBlobStorageSourceWrapper]): List of sources from which to ingest data. [optional]
+            time_partition_resolution_secs (int): If non-null, the collection will be time partitioned and each partition will be time_partition_resolution_secs wide.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -428,8 +454,7 @@ class CollectionsApi(object):
 
         Returns:
             CreateCollectionResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -465,34 +490,58 @@ class CollectionsApi(object):
         self,
         *,
         name: str,
-        clustering_key: typing.List[FieldPartition]=None,
+        clustering_key: typing.Sequence[FieldPartition]=None,
         description: str=None,
         event_time_info: EventTimeInfo=None,
         field_mapping_query: FieldMappingQuery=None,
-        field_mappings: typing.List[FieldMappingV2]=None,
-        field_schemas: typing.List[FieldSchema]=None,
+        field_mappings: typing.Sequence[FieldMappingV2]=None,
+        field_schemas: typing.Sequence[FieldSchema]=None,
         insert_only: bool=None,
         inverted_index_group_encoding_options: InvertedIndexGroupEncodingOptions=None,
         retention_secs: int=None,
-        sources: typing.List[GcsSourceWrapper]=None,
+        sources: typing.Sequence[GcsSourceWrapper]=None,
         time_partition_resolution_secs: int=None,
         workspace="commons",
         **kwargs
-    ):
+    ) -> typing.Union[CreateCollectionResponse, asyncio.Future]:
         """Create gcs collection  # noqa: E501
 
         Create new collection in a workspace.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_gcs_collection(gcs_collection_creation_request, workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            gcs_collection_creation_request (GcsCollectionCreationRequest): JSON object
-            workspace (str): name of the workspace. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.CollectionsApi.create_gcs_collection(
+                name=name,
+                clustering_key=[],
+                description=description,
+                event_time_info=event_time_info,
+                field_mapping_query=field_mapping_query,
+                field_mappings=[],
+                field_schemas=[],
+                insert_only=insert_only,
+                inverted_index_group_encoding_options=inverted_index_group_encoding_options,
+                retention_secs=retention_secs,
+                sources=[],
+                time_partition_resolution_secs=time_partition_resolution_secs,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            clustering_key ([FieldPartition]): list of clustering fields. [optional]
+            description (str): text describing the collection. [optional]
+            event_time_info (EventTimeInfo): [optional]
+            field_mapping_query (FieldMappingQuery): [optional]
+            field_mappings ([FieldMappingV2]): list of mappings. [optional]
+            field_schemas ([FieldSchema]): list of field schemas. [optional]
+            insert_only (bool): If true disallows updates and deletes, but makes indexing more efficient. [optional]
+            inverted_index_group_encoding_options (InvertedIndexGroupEncodingOptions): [optional]
+            name (str): unique identifier for collection, can contain alphanumeric or dash characters. [required]
+            retention_secs (int): number of seconds after which data is purged, based on event time. [optional]
+            sources ([GcsSourceWrapper]): List of sources from which to ingest data. [optional]
+            time_partition_resolution_secs (int): If non-null, the collection will be time partitioned and each partition will be time_partition_resolution_secs wide.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -522,8 +571,7 @@ class CollectionsApi(object):
 
         Returns:
             CreateCollectionResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -561,21 +609,23 @@ class CollectionsApi(object):
         collection: str,
         workspace="commons",
         **kwargs
-    ):
+    ) -> typing.Union[DeleteCollectionResponse, asyncio.Future]:
         """Delete Collection  # noqa: E501
 
         Delete a collection and all its documents from Rockset.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_collection(collection, workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            collection (str): name of the collection
-            workspace (str): name of the workspace. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.CollectionsApi.delete_collection(
+                collection=collection,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            collection (str): name of the collection. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -605,8 +655,7 @@ class CollectionsApi(object):
 
         Returns:
             DeleteCollectionResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -644,21 +693,23 @@ class CollectionsApi(object):
         collection: str,
         workspace="commons",
         **kwargs
-    ):
+    ) -> typing.Union[GetCollectionResponse, asyncio.Future]:
         """Retrieve Collection  # noqa: E501
 
         Get details about a collection.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_collection(collection, workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            collection (str): name of the collection
-            workspace (str): name of the workspace. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.CollectionsApi.get_collection(
+                collection=collection,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            collection (str): name of the collection. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -688,8 +739,7 @@ class CollectionsApi(object):
 
         Returns:
             GetCollectionResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -724,16 +774,18 @@ class CollectionsApi(object):
     def list_collections(
         self,
         **kwargs
-    ):
+    ) -> typing.Union[ListCollectionsResponse, asyncio.Future]:
         """List Collections  # noqa: E501
 
         Retrieve all collections in an organization.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.list_collections(async_req=True)
-        >>> result = thread.get()
-
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.CollectionsApi.list_collections(
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -765,8 +817,7 @@ class CollectionsApi(object):
 
         Returns:
             ListCollectionsResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -799,20 +850,21 @@ class CollectionsApi(object):
         *,
         workspace="commons",
         **kwargs
-    ):
+    ) -> typing.Union[ListCollectionsResponse, asyncio.Future]:
         """List Collections in Workspace  # noqa: E501
 
         Retrieve all collections in a workspace.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.workspace_collections(workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            workspace (str): name of the workspace. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.CollectionsApi.workspace_collections(
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -842,8 +894,7 @@ class CollectionsApi(object):
 
         Returns:
             ListCollectionsResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False

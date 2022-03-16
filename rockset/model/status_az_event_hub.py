@@ -202,10 +202,14 @@ class StatusAzEventHub(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, **kwargs):  # noqa: E501
         """StatusAzEventHub - a model defined in OpenAPI
 
         Keyword Args:
+            last_consumed_time (str): Time at which the last document was consumed. [optional]  # noqa: E501
+            num_documents_processed (int): Number of documents consumed. [optional]  # noqa: E501
+            partitions ([StatusAzEventHubPartition]): Status info per partition. [optional]  # noqa: E501
+            state (str): State of the source. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -236,12 +240,9 @@ class StatusAzEventHub(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            last_consumed_time (str): Time at which the last document was consumed. [optional]  # noqa: E501
-            num_documents_processed (int): Number of documents consumed. [optional]  # noqa: E501
-            partitions ([StatusAzEventHubPartition]): Status info per partition. [optional]  # noqa: E501
-            state (str): State of the source. [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

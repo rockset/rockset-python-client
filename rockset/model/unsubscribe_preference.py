@@ -185,13 +185,11 @@ class UnsubscribePreference(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, notification_type, *args, **kwargs):  # noqa: E501
+    def __init__(self, *, notification_type, **kwargs):  # noqa: E501
         """UnsubscribePreference - a model defined in OpenAPI
 
-        Args:
-            notification_type (str): The type of notification to be unsubscribed from.
-
         Keyword Args:
+            notification_type (str): The type of notification to be unsubscribed from.
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -223,7 +221,8 @@ class UnsubscribePreference(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

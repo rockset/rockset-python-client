@@ -268,10 +268,21 @@ class VirtualInstance(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, **kwargs):  # noqa: E501
         """VirtualInstance - a model defined in OpenAPI
 
         Keyword Args:
+            current_size (str): virtual instance current size. [optional]  # noqa: E501
+            current_type (str): [optional]  # noqa: E501
+            default_pod_count (int): [optional]  # noqa: E501
+            desired_size (str): virtual instance desired size. [optional]  # noqa: E501
+            desired_type (str): [optional]  # noqa: E501
+            estimated_switch_duration_minutes (int): estimated duration in minutes of last virtual instance size update. [optional]  # noqa: E501
+            id (str): unique identifier for virtual instance. [optional]  # noqa: E501
+            last_updated (str): ISO-8601 date of when virtual instance size was last updated. [optional]  # noqa: E501
+            monitoring_enabled (bool): [optional]  # noqa: E501
+            scaled_pod_count (int): [optional]  # noqa: E501
+            state (str): virtual instance state. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -302,19 +313,9 @@ class VirtualInstance(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            current_size (str): virtual instance current size. [optional]  # noqa: E501
-            current_type (str): [optional]  # noqa: E501
-            default_pod_count (int): [optional]  # noqa: E501
-            desired_size (str): virtual instance desired size. [optional]  # noqa: E501
-            desired_type (str): [optional]  # noqa: E501
-            estimated_switch_duration_minutes (int): estimated duration in minutes of last virtual instance size update. [optional]  # noqa: E501
-            id (str): unique identifier for virtual instance. [optional]  # noqa: E501
-            last_updated (str): ISO-8601 date of when virtual instance size was last updated. [optional]  # noqa: E501
-            monitoring_enabled (bool): [optional]  # noqa: E501
-            scaled_pod_count (int): [optional]  # noqa: E501
-            state (str): virtual instance state. [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

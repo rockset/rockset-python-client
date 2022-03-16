@@ -12,6 +12,8 @@ import re  # noqa: F401
 import sys  # noqa: F401
 import typing  # noqa: F401
 
+import asyncio
+
 from rockset.api_client import ApiClient, Endpoint as _Endpoint
 from rockset.model_utils import (  # noqa: F401
     check_allowed_values,
@@ -901,21 +903,27 @@ class QueryLambdasApi(object):
         sql: QueryLambdaSql=None,
         workspace="commons",
         **kwargs
-    ):
+    ) -> typing.Union[QueryLambdaVersionResponse, asyncio.Future]:
         """Create Query Lambda  # noqa: E501
 
         Create a Query Lambda in given workspace.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_query_lambda(create_query_lambda_request, workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            create_query_lambda_request (CreateQueryLambdaRequest): JSON object
-            workspace (str): name of the workspace. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.QueryLambdasApi.create_query_lambda(
+                name=name,
+                description=description,
+                sql=sql,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            description (str): optional description. [optional]
+            name (str): Query Lambda name. [required]
+            sql (QueryLambdaSql): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -945,8 +953,7 @@ class QueryLambdasApi(object):
 
         Returns:
             QueryLambdaVersionResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -986,22 +993,27 @@ class QueryLambdasApi(object):
         version: str,
         workspace="commons",
         **kwargs
-    ):
+    ) -> typing.Union[QueryLambdaTagResponse, asyncio.Future]:
         """Create Query Lambda Tag  # noqa: E501
 
         Create a tag for a specific Query Lambda version, or update that tag if it already exists.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_query_lambda_tag(query_lambda, create_query_lambda_tag_request, workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            query_lambda (str): name of the Query Lambda
-            create_query_lambda_tag_request (CreateQueryLambdaTagRequest): JSON object
-            workspace (str): name of the workspace. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.QueryLambdasApi.create_query_lambda_tag(
+                query_lambda=query_lambda,
+                tag_name=tag_name,
+                version=version,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            query_lambda (str): name of the Query Lambda. [required]
+            tag_name (str): name of Query Lambda tag. [required]
+            version (str): hash identifying a Query Lambda tag. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1031,8 +1043,7 @@ class QueryLambdasApi(object):
 
         Returns:
             QueryLambdaTagResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -1072,21 +1083,23 @@ class QueryLambdasApi(object):
         query_lambda: str,
         workspace="commons",
         **kwargs
-    ):
+    ) -> typing.Union[DeleteQueryLambdaResponse, asyncio.Future]:
         """Delete Query Lambda  # noqa: E501
 
         Delete a Query Lambda.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_query_lambda(query_lambda, workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            query_lambda (str): name of the Query Lambda
-            workspace (str): name of the workspace. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.QueryLambdasApi.delete_query_lambda(
+                query_lambda=query_lambda,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            query_lambda (str): name of the Query Lambda. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1116,8 +1129,7 @@ class QueryLambdasApi(object):
 
         Returns:
             DeleteQueryLambdaResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -1156,22 +1168,25 @@ class QueryLambdasApi(object):
         tag: str,
         workspace="commons",
         **kwargs
-    ):
+    ) -> typing.Union[QueryLambdaTagResponse, asyncio.Future]:
         """Delete Query Lambda Tag Version  # noqa: E501
 
         Delete a tag for a specific Query Lambda  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_query_lambda_tag(query_lambda, tag, workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            query_lambda (str): name of the Query Lambda
-            tag (str): name of the tag
-            workspace (str): name of the workspace. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.QueryLambdasApi.delete_query_lambda_tag(
+                query_lambda=query_lambda,
+                tag=tag,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            query_lambda (str): name of the Query Lambda. [required]
+            tag (str): name of the tag. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1201,8 +1216,7 @@ class QueryLambdasApi(object):
 
         Returns:
             QueryLambdaTagResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -1243,22 +1257,25 @@ class QueryLambdasApi(object):
         version: str,
         workspace="commons",
         **kwargs
-    ):
+    ) -> typing.Union[QueryLambdaVersionResponse, asyncio.Future]:
         """Delete Query Lambda Version  # noqa: E501
 
         Delete a Query Lambda version.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_query_lambda_version(query_lambda, version, workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            query_lambda (str): name of the Query Lambda
-            version (str): version
-            workspace (str): name of the workspace. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.QueryLambdasApi.delete_query_lambda_version(
+                query_lambda=query_lambda,
+                version=version,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            query_lambda (str): name of the Query Lambda. [required]
+            version (str): version. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1288,8 +1305,7 @@ class QueryLambdasApi(object):
 
         Returns:
             QueryLambdaVersionResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -1331,22 +1347,25 @@ class QueryLambdasApi(object):
         workspace="commons",
         execute_query_lambda_request: ExecuteQueryLambdaRequest=None,
         **kwargs
-    ):
+    ) -> typing.Union[QueryResponse, asyncio.Future]:
         """Execute Query Lambda By Version  # noqa: E501
 
         Execute a particular version of a Query Lambda.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.execute_query_lambda(query_lambda, version, workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            query_lambda (str): name of the Query Lambda
-            version (str): version
-            workspace (str): name of the workspace. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.QueryLambdasApi.execute_query_lambda(
+                query_lambda=query_lambda,
+                version=version,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            query_lambda (str): name of the Query Lambda. [required]
+            version (str): version. [required]
             execute_query_lambda_request (ExecuteQueryLambdaRequest): JSON object. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -1377,8 +1396,7 @@ class QueryLambdasApi(object):
 
         Returns:
             QueryResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -1420,22 +1438,25 @@ class QueryLambdasApi(object):
         workspace="commons",
         execute_query_lambda_request: ExecuteQueryLambdaRequest=None,
         **kwargs
-    ):
+    ) -> typing.Union[QueryResponse, asyncio.Future]:
         """Execute Query Lambda By Tag  # noqa: E501
 
         Execute the Query Lambda version associated with a given tag.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.execute_query_lambda_by_tag(query_lambda, tag, workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            query_lambda (str): name of the Query Lambda
-            tag (str): tag
-            workspace (str): name of the workspace. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.QueryLambdasApi.execute_query_lambda_by_tag(
+                query_lambda=query_lambda,
+                tag=tag,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            query_lambda (str): name of the Query Lambda. [required]
+            tag (str): tag. [required]
             execute_query_lambda_request (ExecuteQueryLambdaRequest): JSON object. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -1466,8 +1487,7 @@ class QueryLambdasApi(object):
 
         Returns:
             QueryResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -1508,22 +1528,25 @@ class QueryLambdasApi(object):
         tag: str,
         workspace="commons",
         **kwargs
-    ):
+    ) -> typing.Union[QueryLambdaTagResponse, asyncio.Future]:
         """Retrieve Query Lambda Tag  # noqa: E501
 
         Retrieve the Query Lambda version associated with a given tag.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_query_lambda_tag_version(query_lambda, tag, workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            query_lambda (str): name of the Query Lambda
-            tag (str): name of the tag
-            workspace (str): name of the workspace. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.QueryLambdasApi.get_query_lambda_tag_version(
+                query_lambda=query_lambda,
+                tag=tag,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            query_lambda (str): name of the Query Lambda. [required]
+            tag (str): name of the tag. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1553,8 +1576,7 @@ class QueryLambdasApi(object):
 
         Returns:
             QueryLambdaTagResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -1595,22 +1617,25 @@ class QueryLambdasApi(object):
         version: str,
         workspace="commons",
         **kwargs
-    ):
+    ) -> typing.Union[QueryLambdaVersionResponse, asyncio.Future]:
         """Retrieve Query Lambda Version  # noqa: E501
 
         Retrieve details for a specified version of a Query Lambda.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_query_lambda_version(query_lambda, version, workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            query_lambda (str): name of the Query Lambda
-            version (str): version
-            workspace (str): name of the workspace. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.QueryLambdasApi.get_query_lambda_version(
+                query_lambda=query_lambda,
+                version=version,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            query_lambda (str): name of the Query Lambda. [required]
+            version (str): version. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1640,8 +1665,7 @@ class QueryLambdasApi(object):
 
         Returns:
             QueryLambdaVersionResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -1678,16 +1702,18 @@ class QueryLambdasApi(object):
     def list_all_query_lambdas(
         self,
         **kwargs
-    ):
+    ) -> typing.Union[ListQueryLambdasResponse, asyncio.Future]:
         """List Query Lambdas  # noqa: E501
 
         List all Query Lambdas in an organization.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.list_all_query_lambdas(async_req=True)
-        >>> result = thread.get()
-
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.QueryLambdasApi.list_all_query_lambdas(
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -1719,8 +1745,7 @@ class QueryLambdasApi(object):
 
         Returns:
             ListQueryLambdasResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -1754,21 +1779,23 @@ class QueryLambdasApi(object):
         query_lambda: str,
         workspace="commons",
         **kwargs
-    ):
+    ) -> typing.Union[ListQueryLambdaTagsResponse, asyncio.Future]:
         """List Query Lambda Tags  # noqa: E501
 
         List all tags associated with a Query Lambda  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.list_query_lambda_tags(query_lambda, workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            query_lambda (str): name of the Query Lambda
-            workspace (str): name of the workspace. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.QueryLambdasApi.list_query_lambda_tags(
+                query_lambda=query_lambda,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            query_lambda (str): name of the Query Lambda. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1798,8 +1825,7 @@ class QueryLambdasApi(object):
 
         Returns:
             ListQueryLambdaTagsResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -1837,21 +1863,23 @@ class QueryLambdasApi(object):
         query_lambda: str,
         workspace="commons",
         **kwargs
-    ):
+    ) -> typing.Union[ListQueryLambdaVersionsResponse, asyncio.Future]:
         """List Query Lambda Versions  # noqa: E501
 
         List all versions of a Query Lambda.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.list_query_lambda_versions(query_lambda, workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            query_lambda (str): name of the Query Lambda
-            workspace (str): name of the workspace. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.QueryLambdasApi.list_query_lambda_versions(
+                query_lambda=query_lambda,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            query_lambda (str): name of the Query Lambda. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1881,8 +1909,7 @@ class QueryLambdasApi(object):
 
         Returns:
             ListQueryLambdaVersionsResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -1919,20 +1946,21 @@ class QueryLambdasApi(object):
         *,
         workspace="commons",
         **kwargs
-    ):
+    ) -> typing.Union[ListQueryLambdasResponse, asyncio.Future]:
         """List Query Lambdas in Workspace  # noqa: E501
 
         List all Query Lambdas under given workspace.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.list_query_lambdas_in_workspace(workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            workspace (str): name of the workspace. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.QueryLambdasApi.list_query_lambdas_in_workspace(
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1962,8 +1990,7 @@ class QueryLambdasApi(object):
 
         Returns:
             ListQueryLambdasResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -2002,22 +2029,27 @@ class QueryLambdasApi(object):
         workspace="commons",
         create: bool=None,
         **kwargs
-    ):
+    ) -> typing.Union[QueryLambdaVersionResponse, asyncio.Future]:
         """Update Query Lambda  # noqa: E501
 
         Create a new version of a Query Lambda in given workspace.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.update_query_lambda(query_lambda, update_query_lambda_request, workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            query_lambda (str): name of the Query Lambda
-            update_query_lambda_request (UpdateQueryLambdaRequest): JSON object
-            workspace (str): name of the workspace. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.QueryLambdasApi.update_query_lambda(
+                query_lambda=query_lambda,
+                description=description,
+                sql=sql,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            query_lambda (str): name of the Query Lambda. [required]
+            description (str): optional description. [optional]
+            sql (QueryLambdaSql): [optional]
             create (bool): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -2048,8 +2080,7 @@ class QueryLambdasApi(object):
 
         Returns:
             QueryLambdaVersionResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False

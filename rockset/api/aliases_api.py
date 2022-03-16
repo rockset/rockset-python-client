@@ -12,6 +12,8 @@ import re  # noqa: F401
 import sys  # noqa: F401
 import typing  # noqa: F401
 
+import asyncio
+
 from rockset.api_client import ApiClient, Endpoint as _Endpoint
 from rockset.model_utils import (  # noqa: F401
     check_allowed_values,
@@ -376,26 +378,32 @@ class AliasesApi(object):
     def create_alias(
         self,
         *,
-        collections: typing.List[str],
+        collections: typing.Sequence[str],
         name: str,
         description: str=None,
         workspace="commons",
         **kwargs
-    ):
+    ) -> typing.Union[CreateAliasResponse, asyncio.Future]:
         """Create Alias  # noqa: E501
 
         Create new alias in a workspace.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.create_alias(create_alias_request, workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            create_alias_request (CreateAliasRequest): JSON object
-            workspace (str): name of the workspace. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.AliasesApi.create_alias(
+                collections=[],
+                name=name,
+                description=description,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            collections ([str]): list of fully qualified collection names referenced by alias. [required]
+            description (str): optional description. [optional]
+            name (str): Alias name. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -425,8 +433,7 @@ class AliasesApi(object):
 
         Returns:
             CreateAliasResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -464,21 +471,23 @@ class AliasesApi(object):
         alias: str,
         workspace="commons",
         **kwargs
-    ):
+    ) -> typing.Union[DeleteAliasResponse, asyncio.Future]:
         """Delete Alias  # noqa: E501
 
         Delete an alias.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.delete_alias(alias, workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            alias (str): name of the alias
-            workspace (str): name of the workspace. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.AliasesApi.delete_alias(
+                alias=alias,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            alias (str): name of the alias. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -508,8 +517,7 @@ class AliasesApi(object):
 
         Returns:
             DeleteAliasResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -547,21 +555,23 @@ class AliasesApi(object):
         alias: str,
         workspace="commons",
         **kwargs
-    ):
+    ) -> typing.Union[GetAliasResponse, asyncio.Future]:
         """Retrieve Alias  # noqa: E501
 
         Get details about an alias  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.get_alias(alias, workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            alias (str): name of the alias
-            workspace (str): name of the workspace. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.AliasesApi.get_alias(
+                alias=alias,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            alias (str): name of the alias. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -591,8 +601,7 @@ class AliasesApi(object):
 
         Returns:
             GetAliasResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -627,16 +636,18 @@ class AliasesApi(object):
     def list_aliases(
         self,
         **kwargs
-    ):
+    ) -> typing.Union[ListAliasesResponse, asyncio.Future]:
         """List Aliases  # noqa: E501
 
         Retrieve all aliases in an organization  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.list_aliases(async_req=True)
-        >>> result = thread.get()
-
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.AliasesApi.list_aliases(
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -668,8 +679,7 @@ class AliasesApi(object):
 
         Returns:
             ListAliasesResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -701,26 +711,31 @@ class AliasesApi(object):
         self,
         *,
         alias: str,
-        collections: typing.List[str],
+        collections: typing.Sequence[str],
         description: str=None,
         workspace="commons",
         **kwargs
-    ):
+    ) -> typing.Union[GetAliasResponse, asyncio.Future]:
         """Update Alias  # noqa: E501
 
         Update alias in a workspace.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.update_alias(alias, update_alias_request, workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            alias (str): name of the alias
-            update_alias_request (UpdateAliasRequest): JSON object
-            workspace (str): name of the workspace. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.AliasesApi.update_alias(
+                alias=alias,
+                collections=[],
+                description=description,
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            alias (str): name of the alias. [required]
+            collections ([str]): list of fully qualified collection names referenced by alias. [required]
+            description (str): optional description. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -750,8 +765,7 @@ class AliasesApi(object):
 
         Returns:
             GetAliasResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False
@@ -790,20 +804,21 @@ class AliasesApi(object):
         *,
         workspace="commons",
         **kwargs
-    ):
+    ) -> typing.Union[ListAliasesResponse, asyncio.Future]:
         """List Aliases in Workspace  # noqa: E501
 
         Retrieve all aliases in a workspace.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        >>> thread = api.workspace_aliases(workspace="commons", async_req=True)
-        >>> result = thread.get()
-
-        Args:
-            workspace (str): name of the workspace. defaults to "commons", must be one of ["commons"]
+        >>> rs = RocksetClient(apikey=APIKEY)
+        >>> future = rs.AliasesApi.workspace_aliases(
+                async_req=True,
+            )
+        >>> result = await future
 
         Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -833,8 +848,7 @@ class AliasesApi(object):
 
         Returns:
             ListAliasesResponse
-                If the method is called asynchronously, returns the request
-                thread.
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
             'async_req', False

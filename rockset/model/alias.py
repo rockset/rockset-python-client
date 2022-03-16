@@ -207,10 +207,18 @@ class Alias(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, **kwargs):  # noqa: E501
         """Alias - a model defined in OpenAPI
 
         Keyword Args:
+            collections ([str]): list of fully qualified collection names referenced by alias. [optional]  # noqa: E501
+            created_at (str): ISO-8601 date. [optional]  # noqa: E501
+            creator_email (str): email of the creator. [optional]  # noqa: E501
+            description (str): alias description. [optional]  # noqa: E501
+            modified_at (str): ISO-8601 date. [optional]  # noqa: E501
+            name (str): name of the alias. [optional]  # noqa: E501
+            state (str): state of the alias. [optional]  # noqa: E501
+            workspace (str): name of the workspace. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -241,16 +249,9 @@ class Alias(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            collections ([str]): list of fully qualified collection names referenced by alias. [optional]  # noqa: E501
-            created_at (str): ISO-8601 date. [optional]  # noqa: E501
-            creator_email (str): email of the creator. [optional]  # noqa: E501
-            description (str): alias description. [optional]  # noqa: E501
-            modified_at (str): ISO-8601 date. [optional]  # noqa: E501
-            name (str): name of the alias. [optional]  # noqa: E501
-            state (str): state of the alias. [optional]  # noqa: E501
-            workspace (str): name of the workspace. [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

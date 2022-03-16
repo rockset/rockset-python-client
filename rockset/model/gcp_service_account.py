@@ -185,13 +185,11 @@ class GcpServiceAccount(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, service_account_key_file_json, *args, **kwargs):  # noqa: E501
+    def __init__(self, *, service_account_key_file_json, **kwargs):  # noqa: E501
         """GcpServiceAccount - a model defined in OpenAPI
 
-        Args:
-            service_account_key_file_json (str): Contents of JSON Service Account key file
-
         Keyword Args:
+            service_account_key_file_json (str): Contents of JSON Service Account key file
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -223,7 +221,8 @@ class GcpServiceAccount(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

@@ -73,29 +73,21 @@ class Configuration(object):
       The validation of enums is performed for variables with defined enum values before.
     :param ssl_ca_cert: str - the path to a file of concatenated CA certificates
       in PEM format
+    :param retries: int - Overrides the default number of retry attempts for the
+      urllib3 PoolManager
 
 {{#hasAuthMethods}}
     :Example:
 {{#hasApiKeyMethods}}
 
-    API Key Authentication Example.
-    Given the following security scheme in the OpenAPI specification:
-      components:
-        securitySchemes:
-          cookieAuth:         # name for the security scheme
-            type: apiKey
-            in: cookie
-            name: JSESSIONID  # cookie name
-
-    You can programmatically set the cookie:
+    Requests to the Rockset API made from clients should use apikeys which are set in the authorization header with a prefix of 'apikey'.
 
 conf = {{{packageName}}}.Configuration(
-    api_key={'cookieAuth': 'abc123'}
-    api_key_prefix={'cookieAuth': 'JSESSIONID'}
+    api_key='abc123'
 )
 
-    The following cookie will be added to the HTTP request:
-       Cookie: JSESSIONID abc123
+    The following header will be added to the HTTP request:
+       Authorization: apikey abc123
 {{/hasApiKeyMethods}}
 {{#hasHttpBasicMethods}}
 
@@ -161,10 +153,8 @@ conf = {{{packageName}}}.Configuration(
 
     _default = None
 
-    def __init__(self, host=None,
-                 api_key=None, api_key_prefix=None,
-                 access_token=None,
-                 username=None, password=None,
+    def __init__(self, host: str=None,
+                 api_key: str=None,
                  discard_unknown_keys=False,
                  disabled_client_side_validations="",
 {{#hasHttpSignatureMethods}}
@@ -172,7 +162,7 @@ conf = {{{packageName}}}.Configuration(
 {{/hasHttpSignatureMethods}}
                  server_index=None, server_variables=None,
                  server_operation_index=None, server_operation_variables=None,
-                 ssl_ca_cert=None,
+                 ssl_ca_cert=None, retries=None,
                  ):
         """Constructor
         """
@@ -191,26 +181,14 @@ conf = {{{packageName}}}.Configuration(
         """Temp file folder for downloading files
         """
         # Authentication Settings
-        self.access_token = access_token
-        self.api_key = {}
+        self.api_key = None
         if api_key:
             self.api_key = api_key
-        """dict to store API key(s)
-        """
-        self.api_key_prefix = {}
-        if api_key_prefix:
-            self.api_key_prefix = api_key_prefix
-        """dict to store API prefix (e.g. Bearer)
-        """
+
         self.refresh_api_key_hook = None
         """function hook to refresh API key if expired
         """
-        self.username = username
-        """Username for HTTP basic authentication
-        """
-        self.password = password
-        """Password for HTTP basic authentication
-        """
+
         self.discard_unknown_keys = discard_unknown_keys
         self.disabled_client_side_validations = disabled_client_side_validations
 {{#hasHttpSignatureMethods}}
@@ -288,6 +266,8 @@ conf = {{{packageName}}}.Configuration(
         """Safe chars for path_param
         """
         self.retries = None
+        if retries is not None:
+            self.retries = retries
         """Adding retries to override urllib3 default value 3
         """
         # Enable client side validation
@@ -443,30 +423,7 @@ conf = {{{packageName}}}.Configuration(
         :param alias: The alternative identifier of apiKey.
         :return: The token for api key authentication.
         """
-        if self.refresh_api_key_hook is not None:
-            self.refresh_api_key_hook(self)
-        key = self.api_key.get(identifier, self.api_key.get(alias) if alias is not None else None)
-        if key:
-            prefix = self.api_key_prefix.get(identifier)
-            if prefix:
-                return "%s %s" % (prefix, key)
-            else:
-                return key
-
-    def get_basic_auth_token(self):
-        """Gets HTTP basic authentication header (string).
-
-        :return: The token for basic HTTP authentication.
-        """
-        username = ""
-        if self.username is not None:
-            username = self.username
-        password = ""
-        if self.password is not None:
-            password = self.password
-        return urllib3.util.make_headers(
-            basic_auth=username + ':' + password
-        ).get('authorization')
+        return f"apikey {self.api_key}"
 
     def auth_settings(self):
         """Gets Auth Settings dict for api client.
@@ -476,58 +433,16 @@ conf = {{{packageName}}}.Configuration(
         auth = {}
 {{#authMethods}}
 {{#isApiKey}}
-        if '{{name}}' in self.api_key{{#vendorExtensions.x-auth-id-alias}} or '{{.}}' in self.api_key{{/vendorExtensions.x-auth-id-alias}}:
-            auth['{{name}}'] = {
-                'type': 'api_key',
-                'in': {{#isKeyInCookie}}'cookie'{{/isKeyInCookie}}{{#isKeyInHeader}}'header'{{/isKeyInHeader}}{{#isKeyInQuery}}'query'{{/isKeyInQuery}},
-                'key': '{{keyParamName}}',
-                'value': self.get_api_key_with_prefix(
-                    '{{name}}',{{#vendorExtensions.x-auth-id-alias}}
-                    alias='{{.}}',{{/vendorExtensions.x-auth-id-alias}}
-                ),
-            }
+        auth['{{name}}'] = {
+            'type': 'api_key',
+            'in': {{#isKeyInCookie}}'cookie'{{/isKeyInCookie}}{{#isKeyInHeader}}'header'{{/isKeyInHeader}}{{#isKeyInQuery}}'query'{{/isKeyInQuery}},
+            'key': '{{keyParamName}}',
+            'value': self.get_api_key_with_prefix(
+                '{{name}}',{{#vendorExtensions.x-auth-id-alias}}
+                alias='{{.}}',{{/vendorExtensions.x-auth-id-alias}}
+            ),
+        }
 {{/isApiKey}}
-{{#isBasic}}
-  {{#isBasicBasic}}
-        if self.username is not None and self.password is not None:
-            auth['{{name}}'] = {
-                'type': 'basic',
-                'in': 'header',
-                'key': 'Authorization',
-                'value': self.get_basic_auth_token()
-            }
-  {{/isBasicBasic}}
-  {{#isBasicBearer}}
-        if self.access_token is not None:
-            auth['{{name}}'] = {
-                'type': 'bearer',
-                'in': 'header',
-                {{#bearerFormat}}
-                'format': '{{{.}}}',
-                {{/bearerFormat}}
-                'key': 'Authorization',
-                'value': 'Bearer ' + self.access_token
-            }
-  {{/isBasicBearer}}
-  {{#isHttpSignature}}
-        if self.signing_info is not None:
-            auth['{{name}}'] = {
-                'type': 'http-signature',
-                'in': 'header',
-                'key': 'Authorization',
-                'value': None  # Signature headers are calculated for every HTTP request
-            }
-  {{/isHttpSignature}}
-{{/isBasic}}
-{{#isOAuth}}
-        if self.access_token is not None:
-            auth['{{name}}'] = {
-                'type': 'oauth2',
-                'in': 'header',
-                'key': 'Authorization',
-                'value': 'Bearer ' + self.access_token
-            }
-{{/isOAuth}}
 {{/authMethods}}
         return auth
 

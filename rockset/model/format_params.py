@@ -202,10 +202,15 @@ class FormatParams(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, **kwargs):  # noqa: E501
         """FormatParams - a model defined in OpenAPI
 
         Keyword Args:
+            csv (CsvParams): [optional]  # noqa: E501
+            json (bool): source data is in json format. [optional]  # noqa: E501
+            mysql_dms (bool): [optional]  # noqa: E501
+            postgres_dms (bool): [optional]  # noqa: E501
+            xml (XmlParams): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -236,13 +241,9 @@ class FormatParams(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            csv (CsvParams): [optional]  # noqa: E501
-            json (bool): source data is in json format. [optional]  # noqa: E501
-            mysql_dms (bool): [optional]  # noqa: E501
-            postgres_dms (bool): [optional]  # noqa: E501
-            xml (XmlParams): [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

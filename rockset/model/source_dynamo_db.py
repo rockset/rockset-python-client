@@ -208,13 +208,16 @@ class SourceDynamoDb(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, table_name, *args, **kwargs):  # noqa: E501
+    def __init__(self, *, table_name, **kwargs):  # noqa: E501
         """SourceDynamoDb - a model defined in OpenAPI
 
-        Args:
-            table_name (str): name of DynamoDB table containing data
-
         Keyword Args:
+            table_name (str): name of DynamoDB table containing data
+            aws_region (str): AWS region name of DynamoDB table, by default us-west-2 is used. [optional]  # noqa: E501
+            current_status (StatusDynamoDbV2): [optional]  # noqa: E501
+            rcu (int): Max RCU usage for scan. [optional]  # noqa: E501
+            status (StatusDynamoDb): [optional]  # noqa: E501
+            use_scan_api (bool): Whether to use DynamoDB Scan API for the initial scan. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -245,13 +248,9 @@ class SourceDynamoDb(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            aws_region (str): AWS region name of DynamoDB table, by default us-west-2 is used. [optional]  # noqa: E501
-            current_status (StatusDynamoDbV2): [optional]  # noqa: E501
-            rcu (int): Max RCU usage for scan. [optional]  # noqa: E501
-            status (StatusDynamoDb): [optional]  # noqa: E501
-            use_scan_api (bool): Whether to use DynamoDB Scan API for the initial scan. [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())

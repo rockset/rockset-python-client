@@ -206,10 +206,17 @@ class QueryLambda(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *args, **kwargs):  # noqa: E501
+    def __init__(self, **kwargs):  # noqa: E501
         """QueryLambda - a model defined in OpenAPI
 
         Keyword Args:
+            collections ([str]): collections/aliases queried by underlying SQL query. [optional]  # noqa: E501
+            last_updated (str): ISO-8601 date of when Query Lambda was last updated. [optional]  # noqa: E501
+            last_updated_by (str): user that created this Query Lambda. [optional]  # noqa: E501
+            latest_version (QueryLambdaVersion): [optional]  # noqa: E501
+            name (str): Query Lambda name. [optional]  # noqa: E501
+            version_count (int): number of Query Lambda versions. [optional]  # noqa: E501
+            workspace (str): workspace of this Query Lambda. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -240,15 +247,9 @@ class QueryLambda(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            collections ([str]): collections/aliases queried by underlying SQL query. [optional]  # noqa: E501
-            last_updated (str): ISO-8601 date of when Query Lambda was last updated. [optional]  # noqa: E501
-            last_updated_by (str): user that created this Query Lambda. [optional]  # noqa: E501
-            latest_version (QueryLambdaVersion): [optional]  # noqa: E501
-            name (str): Query Lambda name. [optional]  # noqa: E501
-            version_count (int): number of Query Lambda versions. [optional]  # noqa: E501
-            workspace (str): workspace of this Query Lambda. [optional]  # noqa: E501
         """
-
+        
+        args = []
         _check_type = kwargs.pop('_check_type', True)
         _spec_property_naming = kwargs.pop('_spec_property_naming', False)
         _path_to_item = kwargs.pop('_path_to_item', ())
