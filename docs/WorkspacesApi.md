@@ -61,7 +61,7 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspace** | **str**| name of the workspace | defaults to "commons"
+ **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
 
@@ -69,7 +69,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -126,7 +127,6 @@ rs = RocksetClient(apikey="abc123")
 try:
     # Create Workspace
     api_response = rs.WorkspacesApi.create_workspace(
-        description="Datasets of system logs for the ops team.",
         name="event_logs",
     )
     pprint(api_response)
@@ -153,7 +153,8 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_workspace_request** | [**CreateWorkspaceRequest**](CreateWorkspaceRequest.md)| workspace details |
+ **description** | **str** | longer explanation for the workspace | [optional]
+ **name** | **str** | descriptive label and unique identifier | 
 
 ### Return type
 
@@ -161,7 +162,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -240,7 +242,7 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspace** | **str**| name of the workspace | defaults to "commons"
+ **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
 
@@ -248,7 +250,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -327,7 +330,7 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspace** | **str**| name of the workspace | defaults to "commons"
+ **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
 
@@ -335,7 +338,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -414,7 +418,7 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **fetch_across_regions** | **bool**|  | [optional]
+ **fetch_across_regions** | **bool** |  | [optional]
 
 ### Return type
 
@@ -422,7 +426,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 

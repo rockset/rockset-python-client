@@ -28,7 +28,9 @@ try:
 {{#isBodyParam}}
 {{#vars}}
 {{^isReadOnly}}
+{{#required}}
         {{name}}={{#example}}{{{.}}}{{/example}}{{^example}}{{name}}{{/example}},
+{{/required}}
 {{/isReadOnly}}
 {{/vars}}
 {{/isBodyParam}}

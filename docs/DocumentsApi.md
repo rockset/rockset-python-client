@@ -64,9 +64,9 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **collection** | **str**| Name of the collection. |
- **add_documents_request** | [**AddDocumentsRequest**](AddDocumentsRequest.md)| JSON object |
- **workspace** | **str**| Name of the workspace. | defaults to "commons"
+ **collection** | **str** | Name of the collection. |
+ **data** | **[{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]** | Array of documents to be added to the collection. | 
+ **workspace** | **str** | Name of the workspace. | defaults to "commons"
 
 ### Return type
 
@@ -74,7 +74,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -166,9 +167,9 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **collection** | **str**| Name of the collection. |
- **delete_documents_request** | [**DeleteDocumentsRequest**](DeleteDocumentsRequest.md)| JSON object |
- **workspace** | **str**| Name of the workspace. | defaults to "commons"
+ **collection** | **str** | Name of the collection. |
+ **data** | [**[DeleteDocumentsRequestData]**](DeleteDocumentsRequestData.md) | Array of IDs of documents to be deleted | 
+ **workspace** | **str** | Name of the workspace. | defaults to "commons"
 
 ### Return type
 
@@ -176,7 +177,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -284,9 +286,9 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **collection** | **str**| Name of the collection. |
- **patch_documents_request** | [**PatchDocumentsRequest**](PatchDocumentsRequest.md)| JSON Patch objects |
- **workspace** | **str**| Name of the workspace. | defaults to "commons"
+ **collection** | **str** | Name of the collection. |
+ **data** | [**[PatchDocument]**](PatchDocument.md) | List of patches to be applied. | 
+ **workspace** | **str** | Name of the workspace. | defaults to "commons"
 
 ### Return type
 
@@ -294,7 +296,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 

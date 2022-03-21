@@ -89,7 +89,7 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **query_request** | [**QueryRequest**](QueryRequest.md)| JSON object |
+ **sql** | [**QueryRequestSql**](QueryRequestSql.md) |  | 
 
 ### Return type
 
@@ -97,7 +97,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -207,7 +208,7 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **query_request** | [**QueryRequest**](QueryRequest.md)| JSON object |
+ **sql** | [**QueryRequestSql**](QueryRequestSql.md) |  | 
 
 ### Return type
 
@@ -215,7 +216,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 

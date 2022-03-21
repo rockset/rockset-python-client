@@ -62,7 +62,8 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 

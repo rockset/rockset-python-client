@@ -5,11 +5,6 @@ Things that are currently being worked on:
 # rockset
 Rockset's REST API allows for creating and managing all resources in Rockset. Each supported endpoint is documented below.
 
-All requests must be authorized with a Rockset API key, which can be created in the [Rockset console](https://console.rockset.com). The API key must be provided as `ApiKey <api_key>` in the `Authorization` request header. For example:
-```
-Authorization: ApiKey aB35kDjg93J5nsf4GjwMeErAVd832F7ad4vhsW1S02kfZiab42sTsfW5Sxt25asT
-```
-
 All endpoints are only accessible via https.
 
 Build something awesome!
@@ -313,6 +308,16 @@ Class | Method | HTTP request | Description
 ## Documentation For Authorization
 
 The RocksetClient object must be instantiated with an apikey. You can create your first apikey in the [Rockset console](https://console.rockset.com/apikeys). The provided apikey will be used for all requests that are made using the instance of the client.
+
+```python
+rs = RocksetClient(apikey="aB35kDjg93J5nsf4GjwMeErAVd832F7ad4vhsW1S02kfZiab42sTsfW5Sxt25asT")
+```
+
+The client will automatically include the provided apikey within the authorization header of every request.
+
+```
+Authorization: ApiKey aB35kDjg93J5nsf4GjwMeErAVd832F7ad4vhsW1S02kfZiab42sTsfW5Sxt25asT
+```
 
 ## Author
 

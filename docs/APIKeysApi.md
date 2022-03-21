@@ -40,7 +40,6 @@ try:
     # Create API Key
     api_response = rs.APIKeysApi.create_api_key(
         name="my-app",
-        role="string_example",
     )
     pprint(api_response)
 except rockset.ApiException as e:
@@ -66,7 +65,8 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_api_key_request** | [**CreateApiKeyRequest**](CreateApiKeyRequest.md)| JSON object |
+ **name** | **str** | Name for this API key. | 
+ **role** | **str** |  | [optional]
 
 ### Return type
 
@@ -74,7 +74,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -157,8 +158,8 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| Name of the API key. |
- **user** | **str**| Email of the API key owner. Use &#x60;self&#x60; to specify the currently authenticated user. |
+ **name** | **str** | Name of the API key. |
+ **user** | **str** | Email of the API key owner. Use &#x60;self&#x60; to specify the currently authenticated user. |
 
 ### Return type
 
@@ -166,7 +167,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -249,8 +251,8 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user** | **str**| Email of the API key owner. Use &#x60;self&#x60; to specify the currently authenticated user. |
- **name** | **str**| Name of the API key. |
+ **user** | **str** | Email of the API key owner. Use &#x60;self&#x60; to specify the currently authenticated user. |
+ **name** | **str** | Name of the API key. |
 
 ### Return type
 
@@ -258,7 +260,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -339,7 +342,7 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user** | **str**| Email of the API key owner. Use &#x60;self&#x60; to specify the currently authenticated user. |
+ **user** | **str** | Email of the API key owner. Use &#x60;self&#x60; to specify the currently authenticated user. |
 
 ### Return type
 
@@ -347,7 +350,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -406,7 +410,6 @@ try:
     api_response = rs.APIKeysApi.update_api_key(
         name="my-key",
         user="admin@me.com",
-        state="ACTIVE",
     )
     pprint(api_response)
 except rockset.ApiException as e:
@@ -433,9 +436,9 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str**| Name of the API key. |
- **user** | **str**| Email of the API key owner. Use &#x60;self&#x60; to specify the currently authenticated user. |
- **update_api_key_request** | [**UpdateApiKeyRequest**](UpdateApiKeyRequest.md)| JSON object |
+ **name** | **str** | Name of the API key. |
+ **user** | **str** | Email of the API key owner. Use &#x60;self&#x60; to specify the currently authenticated user. |
+ **state** | **str** | State that the api key should be set to. | [optional]
 
 ### Return type
 
@@ -443,7 +446,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 

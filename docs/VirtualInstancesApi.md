@@ -61,7 +61,7 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **virtual_instance_id** | **str**| uuid of the virtual instance |
+ **virtual_instance_id** | **str** | uuid of the virtual instance |
 
 ### Return type
 
@@ -69,7 +69,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -153,7 +154,8 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -211,9 +213,6 @@ try:
     # Update Virtual Instance
     api_response = rs.VirtualInstancesApi.set_virtual_instance(
         virtual_instance_id="virtualInstanceId_example",
-        monitoring_enabled=True,
-        new_size="LARGE",
-        new_type="FREE",
     )
     pprint(api_response)
 except rockset.ApiException as e:
@@ -241,8 +240,10 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **virtual_instance_id** | **str**| uuid of the virtual instance |
- **update_virtual_instance_request** | [**UpdateVirtualInstanceRequest**](UpdateVirtualInstanceRequest.md)| JSON object |
+ **virtual_instance_id** | **str** | uuid of the virtual instance |
+ **monitoring_enabled** | **bool** |  | [optional]
+ **new_size** | **str** | requested virtual instance size | [optional]
+ **new_type** | **str** |  | [optional]
 
 ### Return type
 
@@ -250,7 +251,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 

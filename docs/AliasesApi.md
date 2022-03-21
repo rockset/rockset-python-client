@@ -41,7 +41,6 @@ try:
     # Create Alias
     api_response = rs.AliasesApi.create_alias(
         collections=["commons.foo","prod.demo"],
-        description="version alias",
         name="aliasName",
     )
     pprint(api_response)
@@ -69,8 +68,10 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_alias_request** | [**CreateAliasRequest**](CreateAliasRequest.md)| JSON object |
- **workspace** | **str**| name of the workspace | defaults to "commons"
+ **collections** | **[str]** | list of fully qualified collection names referenced by alias | 
+ **description** | **str** | optional description | [optional]
+ **name** | **str** | Alias name | 
+ **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
 
@@ -78,7 +79,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -158,8 +160,8 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **alias** | **str**| name of the alias |
- **workspace** | **str**| name of the workspace | defaults to "commons"
+ **alias** | **str** | name of the alias |
+ **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
 
@@ -167,7 +169,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -235,8 +238,8 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **alias** | **str**| name of the alias |
- **workspace** | **str**| name of the workspace | defaults to "commons"
+ **alias** | **str** | name of the alias |
+ **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
 
@@ -244,7 +247,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -328,7 +332,8 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -386,7 +391,6 @@ try:
     api_response = rs.AliasesApi.update_alias(
         alias="alias_example",
         collections=["commons.foo","prod.demo"],
-        description="version alias",
     )
     pprint(api_response)
 except rockset.ApiException as e:
@@ -413,9 +417,10 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **alias** | **str**| name of the alias |
- **update_alias_request** | [**UpdateAliasRequest**](UpdateAliasRequest.md)| JSON object |
- **workspace** | **str**| name of the workspace | defaults to "commons"
+ **alias** | **str** | name of the alias |
+ **collections** | **[str]** | list of fully qualified collection names referenced by alias | 
+ **description** | **str** | optional description | [optional]
+ **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
 
@@ -423,7 +428,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -489,7 +495,7 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspace** | **str**| name of the workspace | defaults to "commons"
+ **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
 
@@ -497,7 +503,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 

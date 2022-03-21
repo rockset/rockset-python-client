@@ -39,7 +39,6 @@ rs = RocksetClient(apikey="abc123")
 try:
     # Create View
     api_response = rs.ViewsApi.create_view(
-        description="view of awesome collection",
         name="myAwesomeView",
         query="SELECT * FROM foo",
     )
@@ -68,8 +67,10 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_view_request** | [**CreateViewRequest**](CreateViewRequest.md)| JSON object |
- **workspace** | **str**| name of the workspace | defaults to "commons"
+ **description** | **str** | optional description | [optional]
+ **name** | **str** | View name | 
+ **query** | **str** | SQL for this view | 
+ **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
 
@@ -77,7 +78,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -144,8 +146,8 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **view** | **str**| name of the view |
- **workspace** | **str**| name of the workspace | defaults to "commons"
+ **view** | **str** | name of the view |
+ **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
 
@@ -153,7 +155,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -221,8 +224,8 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **view** | **str**| name of the view |
- **workspace** | **str**| name of the workspace | defaults to "commons"
+ **view** | **str** | name of the view |
+ **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
 
@@ -230,7 +233,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -314,7 +318,8 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -371,7 +376,6 @@ try:
     # Update View
     api_response = rs.ViewsApi.update_view(
         view="view_example",
-        description="view of awesome collection",
         query="SELECT * FROM foo",
     )
     pprint(api_response)
@@ -399,9 +403,10 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **view** | **str**| name of the view |
- **update_view_request** | [**UpdateViewRequest**](UpdateViewRequest.md)| JSON object |
- **workspace** | **str**| name of the workspace | defaults to "commons"
+ **view** | **str** | name of the view |
+ **description** | **str** | optional description | [optional]
+ **query** | **str** | SQL for this view | 
+ **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
 
@@ -409,7 +414,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -475,7 +481,7 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspace** | **str**| name of the workspace | defaults to "commons"
+ **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
 
@@ -483,7 +489,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 

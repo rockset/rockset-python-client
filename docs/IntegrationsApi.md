@@ -47,10 +47,6 @@ rs = RocksetClient(apikey="abc123")
 try:
     # Create azure blob storage integration
     api_response = rs.IntegrationsApi.create_azure_blob_storage_integration(
-        azure_blob_storage=AzureBlobStorageIntegration(
-        connection_string="connection_string_example",
-    ),
-        description="AWS account with event data for the data science team.",
         name="event-logs",
     )
     pprint(api_response)
@@ -80,7 +76,9 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **azure_blob_storage_integration_creation_request** | [**AzureBlobStorageIntegrationCreationRequest**](AzureBlobStorageIntegrationCreationRequest.md)| integration credentials |
+ **azure_blob_storage** | [**AzureBlobStorageIntegration**](AzureBlobStorageIntegration.md) |  | [optional]
+ **description** | **str** | longer explanation for the integration | [optional]
+ **name** | **str** | descriptive label | 
 
 ### Return type
 
@@ -88,7 +86,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -145,9 +144,6 @@ rs = RocksetClient(apikey="abc123")
 try:
     # Create azure event hubs integration
     api_response = rs.IntegrationsApi.create_azure_event_hubs_integration(
-        azure_event_hubs=AzureEventHubsIntegration(
-    ),
-        description="AWS account with event data for the data science team.",
         name="event-logs",
     )
     pprint(api_response)
@@ -176,7 +172,9 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **azure_event_hubs_integration_creation_request** | [**AzureEventHubsIntegrationCreationRequest**](AzureEventHubsIntegrationCreationRequest.md)| integration credentials |
+ **azure_event_hubs** | [**AzureEventHubsIntegration**](AzureEventHubsIntegration.md) |  | [optional]
+ **description** | **str** | longer explanation for the integration | [optional]
+ **name** | **str** | descriptive label | 
 
 ### Return type
 
@@ -184,7 +182,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -241,17 +240,6 @@ rs = RocksetClient(apikey="abc123")
 try:
     # Create dynamodb integration
     api_response = rs.IntegrationsApi.create_dynamodb_integration(
-        description="AWS account with event data for the data science team.",
-        dynamodb=DynamodbIntegration(
-        aws_access_key=AwsAccessKey(
-            aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
-            aws_secret_access_key="wJal....",
-        ),
-        aws_role=AwsRole(
-            aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
-        ),
-        s3_export_bucket_name="s3_export_bucket_name_example",
-    ),
         name="event-logs",
     )
     pprint(api_response)
@@ -288,7 +276,9 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **dynamodb_integration_creation_request** | [**DynamodbIntegrationCreationRequest**](DynamodbIntegrationCreationRequest.md)| integration credentials |
+ **description** | **str** | longer explanation for the integration | [optional]
+ **dynamodb** | [**DynamodbIntegration**](DynamodbIntegration.md) |  | [optional]
+ **name** | **str** | descriptive label | 
 
 ### Return type
 
@@ -296,7 +286,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -353,12 +344,6 @@ rs = RocksetClient(apikey="abc123")
 try:
     # Create gcs integration
     api_response = rs.IntegrationsApi.create_gcs_integration(
-        description="AWS account with event data for the data science team.",
-        gcs=GcsIntegration(
-        gcp_service_account=GcpServiceAccount(
-            service_account_key_file_json="service_account_key_file_json_example",
-        ),
-    ),
         name="event-logs",
     )
     pprint(api_response)
@@ -390,7 +375,9 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **gcs_integration_creation_request** | [**GcsIntegrationCreationRequest**](GcsIntegrationCreationRequest.md)| integration credentials |
+ **description** | **str** | longer explanation for the integration | [optional]
+ **gcs** | [**GcsIntegration**](GcsIntegration.md) |  | [optional]
+ **name** | **str** | descriptive label | 
 
 ### Return type
 
@@ -398,7 +385,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -455,19 +443,6 @@ rs = RocksetClient(apikey="abc123")
 try:
     # Create kafka integration
     api_response = rs.IntegrationsApi.create_kafka_integration(
-        description="AWS account with event data for the data science team.",
-        kafka=KafkaIntegration(
-        bootstrap_servers="bootstrap_servers_example",
-        kafka_data_format="json",
-        kafka_topic_names=[
-            "kafka_topic_names_example",
-        ],
-        security_config=KafkaV3SecurityConfig(
-            api_key="api_key_example",
-            secret="secret_example",
-        ),
-        use_v3=True,
-    ),
         name="event-logs",
     )
     pprint(api_response)
@@ -506,7 +481,9 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **kafka_integration_creation_request** | [**KafkaIntegrationCreationRequest**](KafkaIntegrationCreationRequest.md)| integration credentials |
+ **description** | **str** | longer explanation for the integration | [optional]
+ **kafka** | [**KafkaIntegration**](KafkaIntegration.md) |  | [optional]
+ **name** | **str** | descriptive label | 
 
 ### Return type
 
@@ -514,7 +491,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -571,16 +549,6 @@ rs = RocksetClient(apikey="abc123")
 try:
     # Create kinesis integration
     api_response = rs.IntegrationsApi.create_kinesis_integration(
-        description="AWS account with event data for the data science team.",
-        kinesis=KinesisIntegration(
-        aws_access_key=AwsAccessKey(
-            aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
-            aws_secret_access_key="wJal....",
-        ),
-        aws_role=AwsRole(
-            aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
-        ),
-    ),
         name="event-logs",
     )
     pprint(api_response)
@@ -616,7 +584,9 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **kinesis_integration_creation_request** | [**KinesisIntegrationCreationRequest**](KinesisIntegrationCreationRequest.md)| integration credentials |
+ **description** | **str** | longer explanation for the integration | [optional]
+ **kinesis** | [**KinesisIntegration**](KinesisIntegration.md) |  | [optional]
+ **name** | **str** | descriptive label | 
 
 ### Return type
 
@@ -624,7 +594,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -681,10 +652,6 @@ rs = RocksetClient(apikey="abc123")
 try:
     # Create mongodb integration
     api_response = rs.IntegrationsApi.create_mongodb_integration(
-        description="AWS account with event data for the data science team.",
-        mongodb=MongoDbIntegration(
-        connection_uri="mongodb+srv://<username>:<password>@server.example.com/",
-    ),
         name="event-logs",
     )
     pprint(api_response)
@@ -714,7 +681,9 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **mongodb_integration_creation_request** | [**MongodbIntegrationCreationRequest**](MongodbIntegrationCreationRequest.md)| integration credentials |
+ **description** | **str** | longer explanation for the integration | [optional]
+ **mongodb** | [**MongoDbIntegration**](MongoDbIntegration.md) |  | [optional]
+ **name** | **str** | descriptive label | 
 
 ### Return type
 
@@ -722,7 +691,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -779,19 +749,7 @@ rs = RocksetClient(apikey="abc123")
 try:
     # Create redshift integration
     api_response = rs.IntegrationsApi.create_redshift_integration(
-        description="AWS account with event data for the data science team.",
         name="event-logs",
-        redshift=RedshiftIntegration(
-        aws_access_key=AwsAccessKey(
-            aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
-            aws_secret_access_key="wJal....",
-        ),
-        host="test.yuyugt.us-west-2.redshift.amazonaws.com",
-        password="pswd....",
-        port=5439,
-        s3_bucket_path="s3://redshift-unload",
-        username="awsuser",
-    ),
     )
     pprint(api_response)
 except rockset.ApiException as e:
@@ -828,7 +786,9 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **redshift_integration_creation_request** | [**RedshiftIntegrationCreationRequest**](RedshiftIntegrationCreationRequest.md)| integration credentials |
+ **description** | **str** | longer explanation for the integration | [optional]
+ **name** | **str** | descriptive label | 
+ **redshift** | [**RedshiftIntegration**](RedshiftIntegration.md) |  | [optional]
 
 ### Return type
 
@@ -836,7 +796,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -893,17 +854,7 @@ rs = RocksetClient(apikey="abc123")
 try:
     # Create s3 integration
     api_response = rs.IntegrationsApi.create_s3_integration(
-        description="AWS account with event data for the data science team.",
         name="event-logs",
-        s3=S3Integration(
-        aws_access_key=AwsAccessKey(
-            aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
-            aws_secret_access_key="wJal....",
-        ),
-        aws_role=AwsRole(
-            aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
-        ),
-    ),
     )
     pprint(api_response)
 except rockset.ApiException as e:
@@ -938,7 +889,9 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **s3_integration_creation_request** | [**S3IntegrationCreationRequest**](S3IntegrationCreationRequest.md)| integration credentials |
+ **description** | **str** | longer explanation for the integration | [optional]
+ **name** | **str** | descriptive label | 
+ **s3** | [**S3Integration**](S3Integration.md) |  | [optional]
 
 ### Return type
 
@@ -946,7 +899,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -1003,10 +957,7 @@ rs = RocksetClient(apikey="abc123")
 try:
     # Create segment integration
     api_response = rs.IntegrationsApi.create_segment_integration(
-        description="AWS account with event data for the data science team.",
         name="event-logs",
-        segment=SegmentIntegration(
-    ),
     )
     pprint(api_response)
 except rockset.ApiException as e:
@@ -1034,7 +985,9 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **segment_integration_creation_request** | [**SegmentIntegrationCreationRequest**](SegmentIntegrationCreationRequest.md)| integration credentials |
+ **description** | **str** | longer explanation for the integration | [optional]
+ **name** | **str** | descriptive label | 
+ **segment** | [**SegmentIntegration**](SegmentIntegration.md) |  | [optional]
 
 ### Return type
 
@@ -1042,7 +995,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -1123,7 +1077,7 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **integration** | **str**| name of the integration |
+ **integration** | **str** | name of the integration |
 
 ### Return type
 
@@ -1131,7 +1085,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -1212,7 +1167,7 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **integration** | **str**| name of the integration |
+ **integration** | **str** | name of the integration |
 
 ### Return type
 
@@ -1220,7 +1175,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -1304,7 +1260,8 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 

@@ -42,7 +42,6 @@ try:
     # Create User
     api_response = rs.UsersApi.create_user(
         email="hello@rockset.com",
-        roles=["admin","member","read-only"],
     )
     pprint(api_response)
 except rockset.ApiException as e:
@@ -68,7 +67,8 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_user_request** | [**CreateUserRequest**](CreateUserRequest.md)| JSON object |
+ **email** | **str** | user email, must be unique | 
+ **roles** | **[str]** | List of roles for a given user | [optional]
 
 ### Return type
 
@@ -76,7 +76,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -157,7 +158,7 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user** | **str**| user email |
+ **user** | **str** | user email |
 
 ### Return type
 
@@ -165,7 +166,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -249,7 +251,8 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -330,7 +333,7 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user** | **str**| user email |
+ **user** | **str** | user email |
 
 ### Return type
 
@@ -338,7 +341,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -422,7 +426,8 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -506,7 +511,8 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -563,11 +569,6 @@ rs = RocksetClient(apikey="abc123")
 try:
     # Update Notification Preferences
     api_response = rs.UsersApi.update_unsubscribe_preferences(
-        data=[
-        UnsubscribePreference(
-            notification_type="create_apikey",
-        ),
-    ],
     )
     pprint(api_response)
 except rockset.ApiException as e:
@@ -596,7 +597,7 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **update_unsubscribe_preferences_request** | [**UpdateUnsubscribePreferencesRequest**](UpdateUnsubscribePreferencesRequest.md)| JSON Object |
+ **data** | [**[UnsubscribePreference]**](UnsubscribePreference.md) | List of notification preferences | [optional]
 
 ### Return type
 
@@ -604,7 +605,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 

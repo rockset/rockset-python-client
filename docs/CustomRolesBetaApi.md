@@ -38,15 +38,6 @@ rs = RocksetClient(apikey="abc123")
 try:
     # Create a Role
     api_response = rs.CustomRolesBetaApi.create_role(
-        description="Role with read and write privileges to all collections.",
-        privileges=[
-        Privilege(
-            action="Create collection",
-            cluster="*ALL*",
-            resource_name="commons",
-        ),
-    ],
-        role_name="read_write",
     )
     pprint(api_response)
 except rockset.ApiException as e:
@@ -79,7 +70,9 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_role_request** | [**CreateRoleRequest**](CreateRoleRequest.md)| JSON Object |
+ **description** | **str** | Description for the role. | [optional]
+ **privileges** | [**[Privilege]**](Privilege.md) | List of privileges that will be associated with the role. | [optional]
+ **role_name** | **str** | Unique identifier for the role. | [optional]
 
 ### Return type
 
@@ -87,7 +80,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -168,7 +162,7 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **role_name** | **str**|  |
+ **role_name** | **str** |  |
 
 ### Return type
 
@@ -176,7 +170,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -260,7 +255,8 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -318,14 +314,6 @@ try:
     # Update a Role
     api_response = rs.CustomRolesBetaApi.update_role(
         role_name="roleName_example",
-        description="Role with read and write privileges to all collections.",
-        privileges=[
-        Privilege(
-            action="Create collection",
-            cluster="*ALL*",
-            resource_name="commons",
-        ),
-    ],
     )
     pprint(api_response)
 except rockset.ApiException as e:
@@ -358,8 +346,9 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **role_name** | **str**|  |
- **update_role_request** | [**UpdateRoleRequest**](UpdateRoleRequest.md)| JSON Object |
+ **role_name** | **str** |  |
+ **description** | **str** | Description for the role. | [optional]
+ **privileges** | [**[Privilege]**](Privilege.md) | List of privileges that will be associated with the role. | [optional]
 
 ### Return type
 
@@ -367,7 +356,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 

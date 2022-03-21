@@ -48,18 +48,7 @@ rs = RocksetClient(apikey="abc123")
 try:
     # Create Query Lambda
     api_response = rs.QueryLambdasApi.create_query_lambda(
-        description="production version foo",
         name="myQueryLambda",
-        sql=QueryLambdaSql(
-        default_parameters=[
-            QueryParameter(
-                name="_id",
-                type="string",
-                value="85beb391",
-            ),
-        ],
-        query="SELECT 'Foo'",
-    ),
     )
     pprint(api_response)
 except rockset.ApiException as e:
@@ -95,8 +84,10 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **create_query_lambda_request** | [**CreateQueryLambdaRequest**](CreateQueryLambdaRequest.md)| JSON object |
- **workspace** | **str**| name of the workspace | defaults to "commons"
+ **description** | **str** | optional description | [optional]
+ **name** | **str** | Query Lambda name | 
+ **sql** | [**QueryLambdaSql**](QueryLambdaSql.md) |  | [optional]
+ **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
 
@@ -104,7 +95,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -190,9 +182,10 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **query_lambda** | **str**| name of the Query Lambda |
- **create_query_lambda_tag_request** | [**CreateQueryLambdaTagRequest**](CreateQueryLambdaTagRequest.md)| JSON object |
- **workspace** | **str**| name of the workspace | defaults to "commons"
+ **query_lambda** | **str** | name of the Query Lambda |
+ **tag_name** | **str** | name of Query Lambda tag | 
+ **version** | **str** | hash identifying a Query Lambda tag | 
+ **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
 
@@ -200,7 +193,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -281,8 +275,8 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **query_lambda** | **str**| name of the Query Lambda |
- **workspace** | **str**| name of the workspace | defaults to "commons"
+ **query_lambda** | **str** | name of the Query Lambda |
+ **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
 
@@ -290,7 +284,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -373,9 +368,9 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **query_lambda** | **str**| name of the Query Lambda |
- **tag** | **str**| name of the tag |
- **workspace** | **str**| name of the workspace | defaults to "commons"
+ **query_lambda** | **str** | name of the Query Lambda |
+ **tag** | **str** | name of the tag |
+ **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
 
@@ -383,7 +378,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -466,9 +462,9 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **query_lambda** | **str**| name of the Query Lambda |
- **version** | **str**| version |
- **workspace** | **str**| name of the workspace | defaults to "commons"
+ **query_lambda** | **str** | name of the Query Lambda |
+ **version** | **str** | version |
+ **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
 
@@ -476,7 +472,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -560,10 +557,10 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **query_lambda** | **str**| name of the Query Lambda |
- **version** | **str**| version |
- **workspace** | **str**| name of the workspace | defaults to "commons"
- **execute_query_lambda_request** | [**ExecuteQueryLambdaRequest**](ExecuteQueryLambdaRequest.md)| JSON object | [optional]
+ **query_lambda** | **str** | name of the Query Lambda |
+ **version** | **str** | version |
+ **workspace** | **str** | name of the workspace | defaults to "commons"
+ **execute_query_lambda_request** | [**ExecuteQueryLambdaRequest**](ExecuteQueryLambdaRequest.md) | JSON object | [optional]
 
 ### Return type
 
@@ -571,7 +568,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -655,10 +653,10 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **query_lambda** | **str**| name of the Query Lambda |
- **tag** | **str**| tag |
- **workspace** | **str**| name of the workspace | defaults to "commons"
- **execute_query_lambda_request** | [**ExecuteQueryLambdaRequest**](ExecuteQueryLambdaRequest.md)| JSON object | [optional]
+ **query_lambda** | **str** | name of the Query Lambda |
+ **tag** | **str** | tag |
+ **workspace** | **str** | name of the workspace | defaults to "commons"
+ **execute_query_lambda_request** | [**ExecuteQueryLambdaRequest**](ExecuteQueryLambdaRequest.md) | JSON object | [optional]
 
 ### Return type
 
@@ -666,7 +664,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -749,9 +748,9 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **query_lambda** | **str**| name of the Query Lambda |
- **tag** | **str**| name of the tag |
- **workspace** | **str**| name of the workspace | defaults to "commons"
+ **query_lambda** | **str** | name of the Query Lambda |
+ **tag** | **str** | name of the tag |
+ **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
 
@@ -759,7 +758,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -842,9 +842,9 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **query_lambda** | **str**| name of the Query Lambda |
- **version** | **str**| version |
- **workspace** | **str**| name of the workspace | defaults to "commons"
+ **query_lambda** | **str** | name of the Query Lambda |
+ **version** | **str** | version |
+ **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
 
@@ -852,7 +852,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -936,7 +937,8 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -1017,8 +1019,8 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **query_lambda** | **str**| name of the Query Lambda |
- **workspace** | **str**| name of the workspace | defaults to "commons"
+ **query_lambda** | **str** | name of the Query Lambda |
+ **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
 
@@ -1026,7 +1028,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -1107,8 +1110,8 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **query_lambda** | **str**| name of the Query Lambda |
- **workspace** | **str**| name of the workspace | defaults to "commons"
+ **query_lambda** | **str** | name of the Query Lambda |
+ **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
 
@@ -1116,7 +1119,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -1195,7 +1199,7 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **workspace** | **str**| name of the workspace | defaults to "commons"
+ **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
 
@@ -1203,7 +1207,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
@@ -1261,17 +1266,6 @@ try:
     # Update Query Lambda
     api_response = rs.QueryLambdasApi.update_query_lambda(
         query_lambda="queryLambda_example",
-        description="production version foo",
-        sql=QueryLambdaSql(
-        default_parameters=[
-            QueryParameter(
-                name="_id",
-                type="string",
-                value="85beb391",
-            ),
-        ],
-        query="SELECT 'Foo'",
-    ),
     )
     pprint(api_response)
 except rockset.ApiException as e:
@@ -1307,10 +1301,11 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **query_lambda** | **str**| name of the Query Lambda |
- **update_query_lambda_request** | [**UpdateQueryLambdaRequest**](UpdateQueryLambdaRequest.md)| JSON object |
- **workspace** | **str**| name of the workspace | defaults to "commons"
- **create** | **bool**|  | [optional]
+ **query_lambda** | **str** | name of the Query Lambda |
+ **description** | **str** | optional description | [optional]
+ **sql** | [**QueryLambdaSql**](QueryLambdaSql.md) |  | [optional]
+ **workspace** | **str** | name of the workspace | defaults to "commons"
+ **create** | **bool** |  | [optional]
 
 ### Return type
 
@@ -1318,7 +1313,8 @@ Name | Type | Description  | Notes
 
 ### Authorization
 
-[apikey](../README.md#apikey)
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
 
 ### HTTP request headers
 
