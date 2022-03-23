@@ -1,13 +1,11 @@
-# Source
+# StatusAzureServiceBusSession
 
-Details about the data source for the given collection. Only one of the following fields are allowed to be defined. Only collections can act as data sources for views. 
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**integration_name** | **str** | name of integration to use | 
-**format_params** | [**FormatParams**](FormatParams.md) |  | [optional] 
-**status** | **bool, date, datetime, dict, float, int, list, str, none_type** |  | [optional] [readonly] 
+**last_processed** | **datetime** | Most recent ISO-8601 date when a message from this session was processed | [optional] 
+**sequence_number** | **int** | The last processed sequence number within this session | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

@@ -1,6 +1,6 @@
 # rockset.IntegrationsApi
 
-All URIs are relative to *https://api.rs2.usw2.rockset.com*
+All URIs are relative to *https://api.rs2.usw2.rockset.com* or the apiserver provided when initializing RocksetClient
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -11,7 +11,6 @@ Method | HTTP request | Description
 [**create_kafka_integration**](IntegrationsApi.md#create_kafka_integration) | **POST** /v1/orgs/self/integrations#Kafka | Create kafka integration
 [**create_kinesis_integration**](IntegrationsApi.md#create_kinesis_integration) | **POST** /v1/orgs/self/integrations#Kinesis | Create kinesis integration
 [**create_mongodb_integration**](IntegrationsApi.md#create_mongodb_integration) | **POST** /v1/orgs/self/integrations#Mongodb | Create mongodb integration
-[**create_redshift_integration**](IntegrationsApi.md#create_redshift_integration) | **POST** /v1/orgs/self/integrations#Redshift | Create redshift integration
 [**create_s3_integration**](IntegrationsApi.md#create_s3_integration) | **POST** /v1/orgs/self/integrations#S3 | Create s3 integration
 [**create_segment_integration**](IntegrationsApi.md#create_segment_integration) | **POST** /v1/orgs/self/integrations#Segment | Create segment integration
 [**delete_integration**](IntegrationsApi.md#delete_integration) | **DELETE** /v1/orgs/self/integrations/{integration} | Delete Integration
@@ -53,7 +52,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling IntegrationsApi->create_azure_blob_storage_integration: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Create azure blob storage integration
     api_response = await rs.IntegrationsApi.create_azure_blob_storage_integration(
@@ -150,7 +149,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling IntegrationsApi->create_azure_event_hubs_integration: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Create azure event hubs integration
     api_response = await rs.IntegrationsApi.create_azure_event_hubs_integration(
@@ -246,7 +245,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling IntegrationsApi->create_dynamodb_integration: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Create dynamodb integration
     api_response = await rs.IntegrationsApi.create_dynamodb_integration(
@@ -350,7 +349,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling IntegrationsApi->create_gcs_integration: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Create gcs integration
     api_response = await rs.IntegrationsApi.create_gcs_integration(
@@ -449,7 +448,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling IntegrationsApi->create_kafka_integration: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Create kafka integration
     api_response = await rs.IntegrationsApi.create_kafka_integration(
@@ -555,7 +554,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling IntegrationsApi->create_kinesis_integration: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Create kinesis integration
     api_response = await rs.IntegrationsApi.create_kinesis_integration(
@@ -658,7 +657,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling IntegrationsApi->create_mongodb_integration: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Create mongodb integration
     api_response = await rs.IntegrationsApi.create_mongodb_integration(
@@ -684,111 +683,6 @@ Name | Type | Description  | Notes
  **description** | **str** | longer explanation for the integration | [optional]
  **mongodb** | [**MongoDbIntegration**](MongoDbIntegration.md) |  | [optional]
  **name** | **str** | descriptive label | 
-
-### Return type
-
-[**CreateIntegrationResponse**](CreateIntegrationResponse.md)
-
-### Authorization
-
-All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
-
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | integration created successfully |  -  |
-**400** | bad request |  -  |
-**401** | unauthorized |  -  |
-**403** | forbidden |  -  |
-**404** | not found |  -  |
-**405** | not allowed |  -  |
-**406** | not acceptable |  -  |
-**408** | request timeout |  -  |
-**415** | not supported |  -  |
-**429** | resource exceeded |  -  |
-**500** | internal error |  -  |
-**501** | not implemented |  -  |
-**502** | bad gateway |  -  |
-**503** | not ready |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **create_redshift_integration**
-> CreateIntegrationResponse create_redshift_integration(redshift_integration_creation_request)
-
-Create redshift integration
-
-Create a new integration.
-
-### Example
-
-* Api Key Authentication (apikey):
-
-```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.create_integration_response import CreateIntegrationResponse
-from rockset.model.error_model import ErrorModel
-from rockset.model.redshift_integration_creation_request import RedshiftIntegrationCreationRequest
-from pprint import pprint
-
-# Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(apikey="abc123")
-
-# synchronous example passing only required values which don't have defaults set
-try:
-    # Create redshift integration
-    api_response = rs.IntegrationsApi.create_redshift_integration(
-        name="event-logs",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling IntegrationsApi->create_redshift_integration: %s\n" % e)
-
-# asynchronous example passing required values which don't have defaults set and optional values
-async def call_api():
-    # Create redshift integration
-    api_response = await rs.IntegrationsApi.create_redshift_integration(
-        description="AWS account with event data for the data science team.",
-        name="event-logs",
-        redshift=RedshiftIntegration(
-        aws_access_key=AwsAccessKey(
-            aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
-            aws_secret_access_key="wJal....",
-        ),
-        host="test.yuyugt.us-west-2.redshift.amazonaws.com",
-        password="pswd....",
-        port=5439,
-        s3_bucket_path="s3://redshift-unload",
-        username="awsuser",
-    ),
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling IntegrationsApi->create_redshift_integration: %s\n" % e)
-        return
-    pprint(api_response)
-
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **description** | **str** | longer explanation for the integration | [optional]
- **name** | **str** | descriptive label | 
- **redshift** | [**RedshiftIntegration**](RedshiftIntegration.md) |  | [optional]
 
 ### Return type
 
@@ -860,7 +754,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling IntegrationsApi->create_s3_integration: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Create s3 integration
     api_response = await rs.IntegrationsApi.create_s3_integration(
@@ -963,7 +857,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling IntegrationsApi->create_segment_integration: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Create segment integration
     api_response = await rs.IntegrationsApi.create_segment_integration(
@@ -1058,7 +952,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling IntegrationsApi->delete_integration: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Delete Integration
     api_response = await rs.IntegrationsApi.delete_integration(
@@ -1148,7 +1042,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling IntegrationsApi->get_integration: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Retrieve Integration
     api_response = await rs.IntegrationsApi.get_integration(
@@ -1237,7 +1131,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling IntegrationsApi->list_integrations: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # List Integrations
     api_response = await rs.IntegrationsApi.list_integrations(

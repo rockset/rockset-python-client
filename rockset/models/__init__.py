@@ -140,10 +140,6 @@ from rockset.model.query_request import QueryRequest
 from rockset.model.query_request_sql import QueryRequestSql
 from rockset.model.query_response import QueryResponse
 from rockset.model.query_response_stats import QueryResponseStats
-from rockset.model.redshift_collection_creation_request import RedshiftCollectionCreationRequest
-from rockset.model.redshift_integration import RedshiftIntegration
-from rockset.model.redshift_integration_creation_request import RedshiftIntegrationCreationRequest
-from rockset.model.redshift_source_wrapper import RedshiftSourceWrapper
 from rockset.model.role import Role
 from rockset.model.role_response import RoleResponse
 from rockset.model.s3_collection_creation_request import S3CollectionCreationRequest
@@ -162,13 +158,13 @@ from rockset.model.source_gcs import SourceGcs
 from rockset.model.source_kafka import SourceKafka
 from rockset.model.source_kinesis import SourceKinesis
 from rockset.model.source_mongo_db import SourceMongoDb
-from rockset.model.source_redshift import SourceRedshift
 from rockset.model.source_s3 import SourceS3
 from rockset.model.sql_expression import SqlExpression
 from rockset.model.status import Status
 from rockset.model.status_azure_event_hubs import StatusAzureEventHubs
 from rockset.model.status_azure_event_hubs_partition import StatusAzureEventHubsPartition
 from rockset.model.status_azure_service_bus import StatusAzureServiceBus
+from rockset.model.status_azure_service_bus_session import StatusAzureServiceBusSession
 from rockset.model.status_dynamo_db import StatusDynamoDb
 from rockset.model.status_dynamo_db_v2 import StatusDynamoDbV2
 from rockset.model.status_kafka import StatusKafka

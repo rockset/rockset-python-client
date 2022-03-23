@@ -1,6 +1,6 @@
 # rockset.UsersApi
 
-All URIs are relative to *https://api.rs2.usw2.rockset.com*
+All URIs are relative to *https://api.rs2.usw2.rockset.com* or the apiserver provided when initializing RocksetClient
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -47,7 +47,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling UsersApi->create_user: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Create User
     api_response = await rs.UsersApi.create_user(
@@ -139,7 +139,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling UsersApi->delete_user: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Delete User
     api_response = await rs.UsersApi.delete_user(
@@ -228,7 +228,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling UsersApi->get_current_user: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Retrieve Current User
     api_response = await rs.UsersApi.get_current_user(
@@ -314,7 +314,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling UsersApi->get_user: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Retrieve User
     api_response = await rs.UsersApi.get_user(
@@ -403,7 +403,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling UsersApi->list_unsubscribe_preferences: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Retrieve Notification Preferences
     api_response = await rs.UsersApi.list_unsubscribe_preferences(
@@ -488,7 +488,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling UsersApi->list_users: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # List Users
     api_response = await rs.UsersApi.list_users(
@@ -574,7 +574,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling UsersApi->update_unsubscribe_preferences: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Update Notification Preferences
     api_response = await rs.UsersApi.update_unsubscribe_preferences(

@@ -47,6 +47,7 @@ def wrapper(method):
             raise ApiValueError(f"Body for the request ({req_type}) could not be created because of a missing argument: {e}") from e
 
         other_args[body_param_name] = body
+
         return method(*args, **other_args)
 
     return wrapped

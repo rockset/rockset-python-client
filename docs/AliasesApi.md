@@ -1,6 +1,6 @@
 # rockset.AliasesApi
 
-All URIs are relative to *https://api.rs2.usw2.rockset.com*
+All URIs are relative to *https://api.rs2.usw2.rockset.com* or the apiserver provided when initializing RocksetClient
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -47,7 +47,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling AliasesApi->create_alias: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Create Alias
     api_response = await rs.AliasesApi.create_alias(
@@ -141,7 +141,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling AliasesApi->delete_alias: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Delete Alias
     api_response = await rs.AliasesApi.delete_alias(
@@ -219,7 +219,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling AliasesApi->get_alias: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Retrieve Alias
     api_response = await rs.AliasesApi.get_alias(
@@ -309,7 +309,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling AliasesApi->list_aliases: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # List Aliases
     api_response = await rs.AliasesApi.list_aliases(
@@ -396,7 +396,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling AliasesApi->update_alias: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Update Alias
     api_response = await rs.AliasesApi.update_alias(
@@ -477,7 +477,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling AliasesApi->workspace_aliases: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # List Aliases in Workspace
     api_response = await rs.AliasesApi.workspace_aliases(

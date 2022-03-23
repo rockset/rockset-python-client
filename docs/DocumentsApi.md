@@ -1,6 +1,6 @@
 # rockset.DocumentsApi
 
-All URIs are relative to *https://api.rs2.usw2.rockset.com*
+All URIs are relative to *https://api.rs2.usw2.rockset.com* or the apiserver provided when initializing RocksetClient
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -44,7 +44,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling DocumentsApi->add_documents: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Add Documents
     api_response = await rs.DocumentsApi.add_documents(
@@ -143,7 +143,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling DocumentsApi->delete_documents: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Delete Documents
     api_response = await rs.DocumentsApi.delete_documents(
@@ -254,7 +254,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling DocumentsApi->patch_documents: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Patch Documents
     api_response = await rs.DocumentsApi.patch_documents(

@@ -1,6 +1,6 @@
 # rockset.VirtualInstancesApi
 
-All URIs are relative to *https://api.rs2.usw2.rockset.com*
+All URIs are relative to *https://api.rs2.usw2.rockset.com* or the apiserver provided when initializing RocksetClient
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -42,7 +42,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling VirtualInstancesApi->get_virtual_instance: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Retrieve Virtual Instance
     api_response = await rs.VirtualInstancesApi.get_virtual_instance(
@@ -131,7 +131,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling VirtualInstancesApi->list_virtual_instances: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # List Virtual Instances
     api_response = await rs.VirtualInstancesApi.list_virtual_instances(
@@ -218,7 +218,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling VirtualInstancesApi->set_virtual_instance: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Update Virtual Instance
     api_response = await rs.VirtualInstancesApi.set_virtual_instance(

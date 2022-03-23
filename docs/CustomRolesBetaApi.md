@@ -1,6 +1,6 @@
 # rockset.CustomRolesBetaApi
 
-All URIs are relative to *https://api.rs2.usw2.rockset.com*
+All URIs are relative to *https://api.rs2.usw2.rockset.com* or the apiserver provided when initializing RocksetClient
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -43,7 +43,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling CustomRolesBetaApi->create_role: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Create a Role
     api_response = await rs.CustomRolesBetaApi.create_role(
@@ -143,7 +143,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling CustomRolesBetaApi->delete_role: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Delete a Role
     api_response = await rs.CustomRolesBetaApi.delete_role(
@@ -232,7 +232,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling CustomRolesBetaApi->list_roles: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # List Roles
     api_response = await rs.CustomRolesBetaApi.list_roles(
@@ -319,7 +319,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling CustomRolesBetaApi->update_role: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Update a Role
     api_response = await rs.CustomRolesBetaApi.update_role(

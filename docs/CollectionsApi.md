@@ -1,6 +1,6 @@
 # rockset.CollectionsApi
 
-All URIs are relative to *https://api.rs2.usw2.rockset.com*
+All URIs are relative to *https://api.rs2.usw2.rockset.com* or the apiserver provided when initializing RocksetClient
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -13,7 +13,6 @@ Method | HTTP request | Description
 [**create_kafka_collection**](CollectionsApi.md#create_kafka_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections#Kafka | Create kafka collection
 [**create_kinesis_collection**](CollectionsApi.md#create_kinesis_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections#Kinesis | Create kinesis collection
 [**create_mongodb_collection**](CollectionsApi.md#create_mongodb_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections#Mongodb | Create mongodb collection
-[**create_redshift_collection**](CollectionsApi.md#create_redshift_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections#Redshift | Create redshift collection
 [**create_s3_collection**](CollectionsApi.md#create_s3_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections#S3 | Create s3 collection
 [**delete_collection**](CollectionsApi.md#delete_collection) | **DELETE** /v1/orgs/self/ws/{workspace}/collections/{collection} | Delete Collection
 [**get_collection**](CollectionsApi.md#get_collection) | **GET** /v1/orgs/self/ws/{workspace}/collections/{collection} | Retrieve Collection
@@ -55,7 +54,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling CollectionsApi->create_azure_blob_storage_collection: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Create azure blob storage collection
     api_response = await rs.CollectionsApi.create_azure_blob_storage_collection(
@@ -251,7 +250,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling CollectionsApi->create_azure_event_hubs_collection: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Create azure event hubs collection
     api_response = await rs.CollectionsApi.create_azure_event_hubs_collection(
@@ -446,7 +445,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling CollectionsApi->create_azure_service_bus_collection: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Create azure service bus collection
     api_response = await rs.CollectionsApi.create_azure_service_bus_collection(
@@ -641,7 +640,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling CollectionsApi->create_dynamodb_collection: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Create dynamodb collection
     api_response = await rs.CollectionsApi.create_dynamodb_collection(
@@ -838,7 +837,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling CollectionsApi->create_file_upload_collection: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Create file upload collection
     api_response = await rs.CollectionsApi.create_file_upload_collection(
@@ -1034,7 +1033,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling CollectionsApi->create_gcs_collection: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Create gcs collection
     api_response = await rs.CollectionsApi.create_gcs_collection(
@@ -1230,7 +1229,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling CollectionsApi->create_kafka_collection: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Create kafka collection
     api_response = await rs.CollectionsApi.create_kafka_collection(
@@ -1426,7 +1425,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling CollectionsApi->create_kinesis_collection: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Create kinesis collection
     api_response = await rs.CollectionsApi.create_kinesis_collection(
@@ -1625,7 +1624,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling CollectionsApi->create_mongodb_collection: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Create mongodb collection
     api_response = await rs.CollectionsApi.create_mongodb_collection(
@@ -1786,203 +1785,6 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **create_redshift_collection**
-> CreateCollectionResponse create_redshift_collection(redshift_collection_creation_request)
-
-Create redshift collection
-
-Create new collection in a workspace.
-
-### Example
-
-* Api Key Authentication (apikey):
-
-```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.create_collection_response import CreateCollectionResponse
-from rockset.model.error_model import ErrorModel
-from rockset.model.redshift_collection_creation_request import RedshiftCollectionCreationRequest
-from pprint import pprint
-
-# Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(apikey="abc123")
-
-# synchronous example passing only required values which don't have defaults set
-try:
-    # Create redshift collection
-    api_response = rs.CollectionsApi.create_redshift_collection(
-        name="global-transactions",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling CollectionsApi->create_redshift_collection: %s\n" % e)
-
-# asynchronous example passing required values which don't have defaults set and optional values
-async def call_api():
-    # Create redshift collection
-    api_response = await rs.CollectionsApi.create_redshift_collection(
-        clustering_key=[
-        FieldPartition(
-            field_name="address.city.zipcode",
-            keys=[
-                "Values of a record to partition on. This is not needed if the partition type is AUTO",
-            ],
-            type="AUTO",
-        ),
-    ],
-        description="transactions from stores worldwide",
-        event_time_info=EventTimeInfo(
-        field="timestamp",
-        format="seconds_since_epoch",
-        time_zone="UTC",
-    ),
-        field_mapping_query=FieldMappingQuery(
-        sql="sql",
-    ),
-        field_mappings=[
-        FieldMappingV2(
-            input_fields=[
-                InputField(
-                    field_name="address.city.zipcode",
-                    if_missing="['SKIP', 'PASS']",
-                    is_drop=True,
-                    param="zip",
-                ),
-            ],
-            is_drop_all_fields=True,
-            name="myTestMapping",
-            output_field=OutputField(
-                field_name="zip_hash",
-                on_error="['SKIP', 'FAIL']",
-                value=SqlExpression(
-                    sql="SHA256()",
-                ),
-            ),
-        ),
-    ],
-        field_schemas=[
-        FieldSchema(
-            field_name="address.city.zipcode",
-            field_options=FieldOptions(
-                column_index_mode="store",
-                index_mode="index",
-                range_index_mode="v1_index",
-                type_index_mode="index",
-            ),
-        ),
-    ],
-        insert_only=True,
-        inverted_index_group_encoding_options=InvertedIndexGroupEncodingOptions(
-        doc_id_codec="doc_id_codec_example",
-        event_time_codec="event_time_codec_example",
-        format_version=1,
-        group_size=1,
-        restart_length=1,
-    ),
-        name="global-transactions",
-        retention_secs=1000000,
-        sources=[
-        RedshiftSourceWrapper(
-            format_params=FormatParams(
-                csv=CsvParams(
-                    column_names=["c1","c2","c3"],
-                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
-                    encoding="UTF-8",
-                    escape_char="\\",
-                    first_line_as_column_names=True,
-                    quote_char="\"",
-                    separator=",",
-                ),
-                json=True,
-                mssql_dms=True,
-                mysql_dms=True,
-                oracle_dms=True,
-                postgres_dms=True,
-                xml=XmlParams(
-                    attribute_prefix="_attr",
-                    doc_tag="row",
-                    encoding="UTF-8",
-                    root_tag="root",
-                    value_tag="value",
-                ),
-            ),
-            integration_name="aws-integration",
-            redshift=SourceRedshift(
-                database="dev",
-                incremental_field="updated_at",
-                schema="common",
-                table_name="redshift_table_name",
-            ),
-        ),
-    ],
-        time_partition_resolution_secs=1,
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling CollectionsApi->create_redshift_collection: %s\n" % e)
-        return
-    pprint(api_response)
-
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **clustering_key** | [**[FieldPartition]**](FieldPartition.md) | list of clustering fields | [optional]
- **description** | **str** | text describing the collection | [optional]
- **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
- **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
- **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | list of mappings | [optional]
- **field_schemas** | [**[FieldSchema]**](FieldSchema.md) | list of field schemas | [optional]
- **insert_only** | **bool** | If true disallows updates and deletes, but makes indexing more efficient | [optional]
- **inverted_index_group_encoding_options** | [**InvertedIndexGroupEncodingOptions**](InvertedIndexGroupEncodingOptions.md) |  | [optional]
- **name** | **str** | unique identifier for collection, can contain alphanumeric or dash characters | 
- **retention_secs** | **int** | number of seconds after which data is purged, based on event time | [optional]
- **sources** | [**[RedshiftSourceWrapper]**](RedshiftSourceWrapper.md) | List of sources from which to ingest data | [optional]
- **time_partition_resolution_secs** | **int** | If non-null, the collection will be time partitioned and each partition will be time_partition_resolution_secs wide. | [optional]
- **workspace** | **str** | name of the workspace | defaults to "commons"
-
-### Return type
-
-[**CreateCollectionResponse**](CreateCollectionResponse.md)
-
-### Authorization
-
-All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
-
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | collection created successfully |  -  |
-**400** | bad request |  -  |
-**401** | unauthorized |  -  |
-**403** | forbidden |  -  |
-**404** | not found |  -  |
-**405** | not allowed |  -  |
-**406** | not acceptable |  -  |
-**408** | request timeout |  -  |
-**415** | not supported |  -  |
-**429** | resource exceeded |  -  |
-**500** | internal error |  -  |
-**501** | not implemented |  -  |
-**502** | bad gateway |  -  |
-**503** | not ready |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
 # **create_s3_collection**
 > CreateCollectionResponse create_s3_collection(s3_collection_creation_request)
 
@@ -2017,7 +1819,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling CollectionsApi->create_s3_collection: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Create s3 collection
     api_response = await rs.CollectionsApi.create_s3_collection(
@@ -2225,7 +2027,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling CollectionsApi->delete_collection: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Delete Collection
     api_response = await rs.CollectionsApi.delete_collection(
@@ -2316,7 +2118,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling CollectionsApi->get_collection: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Retrieve Collection
     api_response = await rs.CollectionsApi.get_collection(
@@ -2406,7 +2208,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling CollectionsApi->list_collections: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # List Collections
     api_response = await rs.CollectionsApi.list_collections(
@@ -2491,7 +2293,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling CollectionsApi->workspace_collections: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # List Collections in Workspace
     api_response = await rs.CollectionsApi.workspace_collections(

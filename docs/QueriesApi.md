@@ -1,6 +1,6 @@
 # rockset.QueriesApi
 
-All URIs are relative to *https://api.rs2.usw2.rockset.com*
+All URIs are relative to *https://api.rs2.usw2.rockset.com* or the apiserver provided when initializing RocksetClient
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -56,7 +56,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling QueriesApi->query: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Query
     api_response = await rs.QueriesApi.query(
@@ -175,7 +175,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling QueriesApi->validate: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Validate Query
     api_response = await rs.QueriesApi.validate(

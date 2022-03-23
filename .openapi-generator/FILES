@@ -1,3 +1,4 @@
+README.md
 docs/APIKeysApi.md
 docs/AddDocumentsRequest.md
 docs/AddDocumentsResponse.md
@@ -138,10 +139,6 @@ docs/QueryRequest.md
 docs/QueryRequestSql.md
 docs/QueryResponse.md
 docs/QueryResponseStats.md
-docs/RedshiftCollectionCreationRequest.md
-docs/RedshiftIntegration.md
-docs/RedshiftIntegrationCreationRequest.md
-docs/RedshiftSourceWrapper.md
 docs/Role.md
 docs/RoleResponse.md
 docs/S3CollectionCreationRequest.md
@@ -160,13 +157,13 @@ docs/SourceGcs.md
 docs/SourceKafka.md
 docs/SourceKinesis.md
 docs/SourceMongoDb.md
-docs/SourceRedshift.md
 docs/SourceS3.md
 docs/SqlExpression.md
 docs/Status.md
 docs/StatusAzureEventHubs.md
 docs/StatusAzureEventHubsPartition.md
 docs/StatusAzureServiceBus.md
+docs/StatusAzureServiceBusSession.md
 docs/StatusDynamoDb.md
 docs/StatusDynamoDbV2.md
 docs/StatusKafka.md
@@ -340,10 +337,6 @@ rockset/model/query_parameter.py
 rockset/model/query_request.py
 rockset/model/query_request_sql.py
 rockset/model/query_response_stats.py
-rockset/model/redshift_collection_creation_request.py
-rockset/model/redshift_integration.py
-rockset/model/redshift_integration_creation_request.py
-rockset/model/redshift_source_wrapper.py
 rockset/model/role.py
 rockset/model/role_response.py
 rockset/model/s3_collection_creation_request.py
@@ -362,13 +355,13 @@ rockset/model/source_gcs.py
 rockset/model/source_kafka.py
 rockset/model/source_kinesis.py
 rockset/model/source_mongo_db.py
-rockset/model/source_redshift.py
 rockset/model/source_s3.py
 rockset/model/sql_expression.py
 rockset/model/status.py
 rockset/model/status_azure_event_hubs.py
 rockset/model/status_azure_event_hubs_partition.py
 rockset/model/status_azure_service_bus.py
+rockset/model/status_azure_service_bus_session.py
 rockset/model/status_dynamo_db.py
 rockset/model/status_dynamo_db_v2.py
 rockset/model/status_kafka.py
@@ -396,3 +389,4 @@ rockset/model_utils.py
 rockset/models/__init__.py
 test-requirements.txt
 test/__init__.py
+test/test_status_azure_service_bus_session.py

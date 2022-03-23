@@ -1,6 +1,6 @@
 # rockset.QueryLambdasApi
 
-All URIs are relative to *https://api.rs2.usw2.rockset.com*
+All URIs are relative to *https://api.rs2.usw2.rockset.com* or the apiserver provided when initializing RocksetClient
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -54,7 +54,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling QueryLambdasApi->create_query_lambda: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Create Query Lambda
     api_response = await rs.QueryLambdasApi.create_query_lambda(
@@ -161,7 +161,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling QueryLambdasApi->create_query_lambda_tag: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Create Query Lambda Tag
     api_response = await rs.QueryLambdasApi.create_query_lambda_tag(
@@ -256,7 +256,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling QueryLambdasApi->delete_query_lambda: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Delete Query Lambda
     api_response = await rs.QueryLambdasApi.delete_query_lambda(
@@ -348,7 +348,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling QueryLambdasApi->delete_query_lambda_tag: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Delete Query Lambda Tag Version
     api_response = await rs.QueryLambdasApi.delete_query_lambda_tag(
@@ -442,7 +442,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling QueryLambdasApi->delete_query_lambda_version: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Delete Query Lambda Version
     api_response = await rs.QueryLambdasApi.delete_query_lambda_version(
@@ -537,7 +537,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling QueryLambdasApi->execute_query_lambda: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Execute Query Lambda By Version
     api_response = await rs.QueryLambdasApi.execute_query_lambda(
@@ -633,7 +633,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling QueryLambdasApi->execute_query_lambda_by_tag: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Execute Query Lambda By Tag
     api_response = await rs.QueryLambdasApi.execute_query_lambda_by_tag(
@@ -728,7 +728,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling QueryLambdasApi->get_query_lambda_tag_version: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Retrieve Query Lambda Tag
     api_response = await rs.QueryLambdasApi.get_query_lambda_tag_version(
@@ -822,7 +822,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling QueryLambdasApi->get_query_lambda_version: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Retrieve Query Lambda Version
     api_response = await rs.QueryLambdasApi.get_query_lambda_version(
@@ -914,7 +914,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling QueryLambdasApi->list_all_query_lambdas: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # List Query Lambdas
     api_response = await rs.QueryLambdasApi.list_all_query_lambdas(
@@ -1000,7 +1000,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling QueryLambdasApi->list_query_lambda_tags: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # List Query Lambda Tags
     api_response = await rs.QueryLambdasApi.list_query_lambda_tags(
@@ -1091,7 +1091,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling QueryLambdasApi->list_query_lambda_versions: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # List Query Lambda Versions
     api_response = await rs.QueryLambdasApi.list_query_lambda_versions(
@@ -1181,7 +1181,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling QueryLambdasApi->list_query_lambdas_in_workspace: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # List Query Lambdas in Workspace
     api_response = await rs.QueryLambdasApi.list_query_lambdas_in_workspace(
@@ -1271,7 +1271,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling QueryLambdasApi->update_query_lambda: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Update Query Lambda
     api_response = await rs.QueryLambdasApi.update_query_lambda(

@@ -37,7 +37,6 @@ def lazy_import():
     from rockset.model.kafka_integration import KafkaIntegration
     from rockset.model.kinesis_integration import KinesisIntegration
     from rockset.model.mongo_db_integration import MongoDbIntegration
-    from rockset.model.redshift_integration import RedshiftIntegration
     from rockset.model.s3_integration import S3Integration
     from rockset.model.segment_integration import SegmentIntegration
     globals()['AzureBlobStorageIntegration'] = AzureBlobStorageIntegration
@@ -47,7 +46,6 @@ def lazy_import():
     globals()['KafkaIntegration'] = KafkaIntegration
     globals()['KinesisIntegration'] = KinesisIntegration
     globals()['MongoDbIntegration'] = MongoDbIntegration
-    globals()['RedshiftIntegration'] = RedshiftIntegration
     globals()['S3Integration'] = S3Integration
     globals()['SegmentIntegration'] = SegmentIntegration
 
@@ -114,7 +112,6 @@ class CreateIntegrationRequest(ModelNormal):
             'kafka': (KafkaIntegration,),  # noqa: E501
             'kinesis': (KinesisIntegration,),  # noqa: E501
             'mongodb': (MongoDbIntegration,),  # noqa: E501
-            'redshift': (RedshiftIntegration,),  # noqa: E501
             's3': (S3Integration,),  # noqa: E501
             'segment': (SegmentIntegration,),  # noqa: E501
         }
@@ -134,7 +131,6 @@ class CreateIntegrationRequest(ModelNormal):
         'kafka': 'kafka',  # noqa: E501
         'kinesis': 'kinesis',  # noqa: E501
         'mongodb': 'mongodb',  # noqa: E501
-        'redshift': 'redshift',  # noqa: E501
         's3': 's3',  # noqa: E501
         'segment': 'segment',  # noqa: E501
     }
@@ -191,7 +187,6 @@ class CreateIntegrationRequest(ModelNormal):
             kafka (KafkaIntegration): [optional]  # noqa: E501
             kinesis (KinesisIntegration): [optional]  # noqa: E501
             mongodb (MongoDbIntegration): [optional]  # noqa: E501
-            redshift (RedshiftIntegration): [optional]  # noqa: E501
             s3 (S3Integration): [optional]  # noqa: E501
             segment (SegmentIntegration): [optional]  # noqa: E501
         """
@@ -255,7 +250,6 @@ class CreateIntegrationRequest(ModelNormal):
             kafka (KafkaIntegration): [optional]  # noqa: E501
             kinesis (KinesisIntegration): [optional]  # noqa: E501
             mongodb (MongoDbIntegration): [optional]  # noqa: E501
-            redshift (RedshiftIntegration): [optional]  # noqa: E501
             s3 (S3Integration): [optional]  # noqa: E501
             segment (SegmentIntegration): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types

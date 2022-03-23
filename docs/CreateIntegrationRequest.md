@@ -13,7 +13,6 @@ Name | Type | Description | Notes
 **kafka** | [**KafkaIntegration**](KafkaIntegration.md) |  | [optional] 
 **kinesis** | [**KinesisIntegration**](KinesisIntegration.md) |  | [optional] 
 **mongodb** | [**MongoDbIntegration**](MongoDbIntegration.md) |  | [optional] 
-**redshift** | [**RedshiftIntegration**](RedshiftIntegration.md) |  | [optional] 
 **s3** | [**S3Integration**](S3Integration.md) |  | [optional] 
 **segment** | [**SegmentIntegration**](SegmentIntegration.md) |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]

@@ -1,9 +1,16 @@
-Things that are currently being worked on:
-- Docs
-- Polishing
+## In progress
+- README postprocessing
+- polishing
 - QA
+- complete last part of async support
+
 # rockset
 Rockset's REST API allows for creating and managing all resources in Rockset. Each supported endpoint is documented below.
+
+All requests must be authorized with a Rockset API key, which can be created in the [Rockset console](https://console.rockset.com). The API key must be provided as `ApiKey <api_key>` in the `Authorization` request header. For example:
+```
+Authorization: ApiKey aB35kDjg93J5nsf4GjwMeErAVd832F7ad4vhsW1S02kfZiab42sTsfW5Sxt25asT
+```
 
 All endpoints are only accessible via https.
 
@@ -64,7 +71,7 @@ from rockset.model.update_api_key_response import UpdateApiKeyResponse
 # Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
 with rockset.RocksetClient(host="https://api.rs2.usw2.rockset.com", apikey="APIKEY") as rs:
     try:
-        rs.ApiKey.create_api_key(name="api-key-name", role="member")
+        rs.APIKeysApi.create_api_key(name="api-key-name", role="member")
     except rockset.ApiException as e:
         print("Exception when calling ApiKey->create_api_key: %s\n" % e)
 ```
@@ -78,16 +85,24 @@ Class | Method | HTTP request | Description
 *APIKeysApi* | [**create_api_key**](docs/APIKeysApi.md#create_api_key) | **POST** /v1/orgs/self/users/self/apikeys | Create API Key
 *APIKeysApi* | [**delete_api_key**](docs/APIKeysApi.md#delete_api_key) | **DELETE** /v1/orgs/self/users/{user}/apikeys/{name} | Delete API Key
 *APIKeysApi* | [**get_api_key**](docs/APIKeysApi.md#get_api_key) | **GET** /v1/orgs/self/users/{user}/apikeys/{name} | Retrieve API Key
-*APIKeysApi* | [**list_api_keys**](docs/APIKeysApi.md#list_api_keys) | **GET** /v1/orgs/self/users/{user}/apikeys | List API Keys.
-*APIKeysApi* | [**update_api_key**](docs/APIKeysApi.md#update_api_key) | **POST** /v1/orgs/self/users/{user}/apikeys/{name} | Update an API key&#39;s state
+*APIKeysApi* | [**list_api_keys**](docs/APIKeysApi.md#list_api_keys) | **GET** /v1/orgs/self/users/{user}/apikeys | List API Keys
+*APIKeysApi* | [**update_api_key**](docs/APIKeysApi.md#update_api_key) | **POST** /v1/orgs/self/users/{user}/apikeys/{name} | Update API Key State
 *AliasesApi* | [**create_alias**](docs/AliasesApi.md#create_alias) | **POST** /v1/orgs/self/ws/{workspace}/aliases | Create Alias
 *AliasesApi* | [**delete_alias**](docs/AliasesApi.md#delete_alias) | **DELETE** /v1/orgs/self/ws/{workspace}/aliases/{alias} | Delete Alias
 *AliasesApi* | [**get_alias**](docs/AliasesApi.md#get_alias) | **GET** /v1/orgs/self/ws/{workspace}/aliases/{alias} | Retrieve Alias
 *AliasesApi* | [**list_aliases**](docs/AliasesApi.md#list_aliases) | **GET** /v1/orgs/self/aliases | List Aliases
 *AliasesApi* | [**update_alias**](docs/AliasesApi.md#update_alias) | **POST** /v1/orgs/self/ws/{workspace}/aliases/{alias} | Update Alias
 *AliasesApi* | [**workspace_aliases**](docs/AliasesApi.md#workspace_aliases) | **GET** /v1/orgs/self/ws/{workspace}/aliases | List Aliases in Workspace
-*CollectionsApi* | [**create_azure_blob_collection**](docs/CollectionsApi.md#create_azure_blob_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections#AzureBlob | Create azure blob collection
+*CollectionsApi* | [**create_azure_blob_storage_collection**](docs/CollectionsApi.md#create_azure_blob_storage_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections#AzureBlobStorage | Create azure blob storage collection
+*CollectionsApi* | [**create_azure_event_hubs_collection**](docs/CollectionsApi.md#create_azure_event_hubs_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections#AzureEventHubs | Create azure event hubs collection
+*CollectionsApi* | [**create_azure_service_bus_collection**](docs/CollectionsApi.md#create_azure_service_bus_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections#AzureServiceBus | Create azure service bus collection
+*CollectionsApi* | [**create_dynamodb_collection**](docs/CollectionsApi.md#create_dynamodb_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections#Dynamodb | Create dynamodb collection
+*CollectionsApi* | [**create_file_upload_collection**](docs/CollectionsApi.md#create_file_upload_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections#FileUpload | Create file upload collection
 *CollectionsApi* | [**create_gcs_collection**](docs/CollectionsApi.md#create_gcs_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections#Gcs | Create gcs collection
+*CollectionsApi* | [**create_kafka_collection**](docs/CollectionsApi.md#create_kafka_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections#Kafka | Create kafka collection
+*CollectionsApi* | [**create_kinesis_collection**](docs/CollectionsApi.md#create_kinesis_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections#Kinesis | Create kinesis collection
+*CollectionsApi* | [**create_mongodb_collection**](docs/CollectionsApi.md#create_mongodb_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections#Mongodb | Create mongodb collection
+*CollectionsApi* | [**create_s3_collection**](docs/CollectionsApi.md#create_s3_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections#S3 | Create s3 collection
 *CollectionsApi* | [**delete_collection**](docs/CollectionsApi.md#delete_collection) | **DELETE** /v1/orgs/self/ws/{workspace}/collections/{collection} | Delete Collection
 *CollectionsApi* | [**get_collection**](docs/CollectionsApi.md#get_collection) | **GET** /v1/orgs/self/ws/{workspace}/collections/{collection} | Retrieve Collection
 *CollectionsApi* | [**list_collections**](docs/CollectionsApi.md#list_collections) | **GET** /v1/orgs/self/collections | List Collections
@@ -99,8 +114,15 @@ Class | Method | HTTP request | Description
 *DocumentsApi* | [**add_documents**](docs/DocumentsApi.md#add_documents) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/docs | Add Documents
 *DocumentsApi* | [**delete_documents**](docs/DocumentsApi.md#delete_documents) | **DELETE** /v1/orgs/self/ws/{workspace}/collections/{collection}/docs | Delete Documents
 *DocumentsApi* | [**patch_documents**](docs/DocumentsApi.md#patch_documents) | **PATCH** /v1/orgs/self/ws/{workspace}/collections/{collection}/docs | Patch Documents
-*IntegrationsApi* | [**create_azure_blob_integration**](docs/IntegrationsApi.md#create_azure_blob_integration) | **POST** /v1/orgs/self/integrations#AzureBlob | Create azure blob integration
+*IntegrationsApi* | [**create_azure_blob_storage_integration**](docs/IntegrationsApi.md#create_azure_blob_storage_integration) | **POST** /v1/orgs/self/integrations#AzureBlobStorage | Create azure blob storage integration
+*IntegrationsApi* | [**create_azure_event_hubs_integration**](docs/IntegrationsApi.md#create_azure_event_hubs_integration) | **POST** /v1/orgs/self/integrations#AzureEventHubs | Create azure event hubs integration
+*IntegrationsApi* | [**create_dynamodb_integration**](docs/IntegrationsApi.md#create_dynamodb_integration) | **POST** /v1/orgs/self/integrations#Dynamodb | Create dynamodb integration
 *IntegrationsApi* | [**create_gcs_integration**](docs/IntegrationsApi.md#create_gcs_integration) | **POST** /v1/orgs/self/integrations#Gcs | Create gcs integration
+*IntegrationsApi* | [**create_kafka_integration**](docs/IntegrationsApi.md#create_kafka_integration) | **POST** /v1/orgs/self/integrations#Kafka | Create kafka integration
+*IntegrationsApi* | [**create_kinesis_integration**](docs/IntegrationsApi.md#create_kinesis_integration) | **POST** /v1/orgs/self/integrations#Kinesis | Create kinesis integration
+*IntegrationsApi* | [**create_mongodb_integration**](docs/IntegrationsApi.md#create_mongodb_integration) | **POST** /v1/orgs/self/integrations#Mongodb | Create mongodb integration
+*IntegrationsApi* | [**create_s3_integration**](docs/IntegrationsApi.md#create_s3_integration) | **POST** /v1/orgs/self/integrations#S3 | Create s3 integration
+*IntegrationsApi* | [**create_segment_integration**](docs/IntegrationsApi.md#create_segment_integration) | **POST** /v1/orgs/self/integrations#Segment | Create segment integration
 *IntegrationsApi* | [**delete_integration**](docs/IntegrationsApi.md#delete_integration) | **DELETE** /v1/orgs/self/integrations/{integration} | Delete Integration
 *IntegrationsApi* | [**get_integration**](docs/IntegrationsApi.md#get_integration) | **GET** /v1/orgs/self/integrations/{integration} | Retrieve Integration
 *IntegrationsApi* | [**list_integrations**](docs/IntegrationsApi.md#list_integrations) | **GET** /v1/orgs/self/integrations | List Integrations
@@ -125,9 +147,9 @@ Class | Method | HTTP request | Description
 *UsersApi* | [**delete_user**](docs/UsersApi.md#delete_user) | **DELETE** /v1/orgs/self/users/{user} | Delete User
 *UsersApi* | [**get_current_user**](docs/UsersApi.md#get_current_user) | **GET** /v1/orgs/self/users/self | Retrieve Current User
 *UsersApi* | [**get_user**](docs/UsersApi.md#get_user) | **GET** /v1/orgs/self/users/{user} | Retrieve User
-*UsersApi* | [**list_unsubscribe_preferences**](docs/UsersApi.md#list_unsubscribe_preferences) | **GET** /v1/orgs/self/users/self/preferences | Get all notification preferences
+*UsersApi* | [**list_unsubscribe_preferences**](docs/UsersApi.md#list_unsubscribe_preferences) | **GET** /v1/orgs/self/users/self/preferences | Retrieve Notification Preferences
 *UsersApi* | [**list_users**](docs/UsersApi.md#list_users) | **GET** /v1/orgs/self/users | List Users
-*UsersApi* | [**update_unsubscribe_preferences**](docs/UsersApi.md#update_unsubscribe_preferences) | **POST** /v1/orgs/self/users/self/preferences | Update notification preferences
+*UsersApi* | [**update_unsubscribe_preferences**](docs/UsersApi.md#update_unsubscribe_preferences) | **POST** /v1/orgs/self/users/self/preferences | Update Notification Preferences
 *ViewsApi* | [**create_view**](docs/ViewsApi.md#create_view) | **POST** /v1/orgs/self/ws/{workspace}/views | Create View
 *ViewsApi* | [**delete_view**](docs/ViewsApi.md#delete_view) | **DELETE** /v1/orgs/self/ws/{workspace}/views/{view} | Delete View
 *ViewsApi* | [**get_view**](docs/ViewsApi.md#get_view) | **GET** /v1/orgs/self/ws/{workspace}/views/{view} | Retrieve View
@@ -152,12 +174,17 @@ Class | Method | HTTP request | Description
  - [ApiKey](docs/ApiKey.md)
  - [AwsAccessKey](docs/AwsAccessKey.md)
  - [AwsRole](docs/AwsRole.md)
- - [AzEventHubIntegration](docs/AzEventHubIntegration.md)
- - [AzServiceBusIntegration](docs/AzServiceBusIntegration.md)
- - [AzureBlobCollectionCreationRequest](docs/AzureBlobCollectionCreationRequest.md)
- - [AzureBlobIntegrationCreationRequest](docs/AzureBlobIntegrationCreationRequest.md)
+ - [AzureBlobStorageCollectionCreationRequest](docs/AzureBlobStorageCollectionCreationRequest.md)
  - [AzureBlobStorageIntegration](docs/AzureBlobStorageIntegration.md)
+ - [AzureBlobStorageIntegrationCreationRequest](docs/AzureBlobStorageIntegrationCreationRequest.md)
  - [AzureBlobStorageSourceWrapper](docs/AzureBlobStorageSourceWrapper.md)
+ - [AzureEventHubsCollectionCreationRequest](docs/AzureEventHubsCollectionCreationRequest.md)
+ - [AzureEventHubsIntegration](docs/AzureEventHubsIntegration.md)
+ - [AzureEventHubsIntegrationCreationRequest](docs/AzureEventHubsIntegrationCreationRequest.md)
+ - [AzureEventHubsSourceWrapper](docs/AzureEventHubsSourceWrapper.md)
+ - [AzureServiceBusCollectionCreationRequest](docs/AzureServiceBusCollectionCreationRequest.md)
+ - [AzureServiceBusIntegration](docs/AzureServiceBusIntegration.md)
+ - [AzureServiceBusSourceWrapper](docs/AzureServiceBusSourceWrapper.md)
  - [Cluster](docs/Cluster.md)
  - [Collection](docs/Collection.md)
  - [CollectionStats](docs/CollectionStats.md)
@@ -191,7 +218,10 @@ Class | Method | HTTP request | Description
  - [DeleteViewResponse](docs/DeleteViewResponse.md)
  - [DeleteWorkspaceResponse](docs/DeleteWorkspaceResponse.md)
  - [DocumentStatus](docs/DocumentStatus.md)
+ - [DynamodbCollectionCreationRequest](docs/DynamodbCollectionCreationRequest.md)
  - [DynamodbIntegration](docs/DynamodbIntegration.md)
+ - [DynamodbIntegrationCreationRequest](docs/DynamodbIntegrationCreationRequest.md)
+ - [DynamodbSourceWrapper](docs/DynamodbSourceWrapper.md)
  - [ErrorModel](docs/ErrorModel.md)
  - [EventTimeInfo](docs/EventTimeInfo.md)
  - [ExecuteQueryLambdaRequest](docs/ExecuteQueryLambdaRequest.md)
@@ -202,6 +232,8 @@ Class | Method | HTTP request | Description
  - [FieldOptions](docs/FieldOptions.md)
  - [FieldPartition](docs/FieldPartition.md)
  - [FieldSchema](docs/FieldSchema.md)
+ - [FileUploadCollectionCreationRequest](docs/FileUploadCollectionCreationRequest.md)
+ - [FileUploadSourceWrapper](docs/FileUploadSourceWrapper.md)
  - [FormatParams](docs/FormatParams.md)
  - [GcpServiceAccount](docs/GcpServiceAccount.md)
  - [GcsCollectionCreationRequest](docs/GcsCollectionCreationRequest.md)
@@ -218,9 +250,15 @@ Class | Method | HTTP request | Description
  - [InputField](docs/InputField.md)
  - [Integration](docs/Integration.md)
  - [InvertedIndexGroupEncodingOptions](docs/InvertedIndexGroupEncodingOptions.md)
+ - [KafkaCollectionCreationRequest](docs/KafkaCollectionCreationRequest.md)
  - [KafkaIntegration](docs/KafkaIntegration.md)
+ - [KafkaIntegrationCreationRequest](docs/KafkaIntegrationCreationRequest.md)
+ - [KafkaSourceWrapper](docs/KafkaSourceWrapper.md)
  - [KafkaV3SecurityConfig](docs/KafkaV3SecurityConfig.md)
+ - [KinesisCollectionCreationRequest](docs/KinesisCollectionCreationRequest.md)
  - [KinesisIntegration](docs/KinesisIntegration.md)
+ - [KinesisIntegrationCreationRequest](docs/KinesisIntegrationCreationRequest.md)
+ - [KinesisStorageSourceWrapper](docs/KinesisStorageSourceWrapper.md)
  - [ListAliasesResponse](docs/ListAliasesResponse.md)
  - [ListApiKeysResponse](docs/ListApiKeysResponse.md)
  - [ListCollectionsResponse](docs/ListCollectionsResponse.md)
@@ -235,6 +273,9 @@ Class | Method | HTTP request | Description
  - [ListVirtualInstancesResponse](docs/ListVirtualInstancesResponse.md)
  - [ListWorkspacesResponse](docs/ListWorkspacesResponse.md)
  - [MongoDbIntegration](docs/MongoDbIntegration.md)
+ - [MongodbCollectionCreationRequest](docs/MongodbCollectionCreationRequest.md)
+ - [MongodbIntegrationCreationRequest](docs/MongodbIntegrationCreationRequest.md)
+ - [MongodbSourceWrapper](docs/MongodbSourceWrapper.md)
  - [Organization](docs/Organization.md)
  - [OrganizationResponse](docs/OrganizationResponse.md)
  - [OutputField](docs/OutputField.md)
@@ -258,28 +299,31 @@ Class | Method | HTTP request | Description
  - [QueryRequestSql](docs/QueryRequestSql.md)
  - [QueryResponse](docs/QueryResponse.md)
  - [QueryResponseStats](docs/QueryResponseStats.md)
- - [RedshiftIntegration](docs/RedshiftIntegration.md)
  - [Role](docs/Role.md)
  - [RoleResponse](docs/RoleResponse.md)
+ - [S3CollectionCreationRequest](docs/S3CollectionCreationRequest.md)
  - [S3Integration](docs/S3Integration.md)
+ - [S3IntegrationCreationRequest](docs/S3IntegrationCreationRequest.md)
+ - [S3SourceWrapper](docs/S3SourceWrapper.md)
  - [SegmentIntegration](docs/SegmentIntegration.md)
+ - [SegmentIntegrationCreationRequest](docs/SegmentIntegrationCreationRequest.md)
  - [Source](docs/Source.md)
- - [SourceAzEventHub](docs/SourceAzEventHub.md)
- - [SourceAzServiceBus](docs/SourceAzServiceBus.md)
  - [SourceAzureBlobStorage](docs/SourceAzureBlobStorage.md)
+ - [SourceAzureEventHubs](docs/SourceAzureEventHubs.md)
+ - [SourceAzureServiceBus](docs/SourceAzureServiceBus.md)
  - [SourceDynamoDb](docs/SourceDynamoDb.md)
  - [SourceFileUpload](docs/SourceFileUpload.md)
  - [SourceGcs](docs/SourceGcs.md)
  - [SourceKafka](docs/SourceKafka.md)
  - [SourceKinesis](docs/SourceKinesis.md)
  - [SourceMongoDb](docs/SourceMongoDb.md)
- - [SourceRedshift](docs/SourceRedshift.md)
  - [SourceS3](docs/SourceS3.md)
  - [SqlExpression](docs/SqlExpression.md)
  - [Status](docs/Status.md)
- - [StatusAzEventHub](docs/StatusAzEventHub.md)
- - [StatusAzEventHubPartition](docs/StatusAzEventHubPartition.md)
- - [StatusAzServiceBus](docs/StatusAzServiceBus.md)
+ - [StatusAzureEventHubs](docs/StatusAzureEventHubs.md)
+ - [StatusAzureEventHubsPartition](docs/StatusAzureEventHubsPartition.md)
+ - [StatusAzureServiceBus](docs/StatusAzureServiceBus.md)
+ - [StatusAzureServiceBusSession](docs/StatusAzureServiceBusSession.md)
  - [StatusDynamoDb](docs/StatusDynamoDb.md)
  - [StatusDynamoDbV2](docs/StatusDynamoDbV2.md)
  - [StatusKafka](docs/StatusKafka.md)
@@ -308,16 +352,6 @@ Class | Method | HTTP request | Description
 ## Documentation For Authorization
 
 The RocksetClient object must be instantiated with an apikey. You can create your first apikey in the [Rockset console](https://console.rockset.com/apikeys). The provided apikey will be used for all requests that are made using the instance of the client.
-
-```python
-rs = RocksetClient(apikey="aB35kDjg93J5nsf4GjwMeErAVd832F7ad4vhsW1S02kfZiab42sTsfW5Sxt25asT")
-```
-
-The client will automatically include the provided apikey within the authorization header of every request.
-
-```
-Authorization: ApiKey aB35kDjg93J5nsf4GjwMeErAVd832F7ad4vhsW1S02kfZiab42sTsfW5Sxt25asT
-```
 
 ## Author
 

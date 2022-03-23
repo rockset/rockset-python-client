@@ -1,6 +1,6 @@
 # rockset.APIKeysApi
 
-All URIs are relative to *https://api.rs2.usw2.rockset.com*
+All URIs are relative to *https://api.rs2.usw2.rockset.com* or the apiserver provided when initializing RocksetClient
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -45,7 +45,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling APIKeysApi->create_api_key: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Create API Key
     api_response = await rs.APIKeysApi.create_api_key(
@@ -138,7 +138,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling APIKeysApi->delete_api_key: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Delete API Key
     api_response = await rs.APIKeysApi.delete_api_key(
@@ -231,7 +231,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling APIKeysApi->get_api_key: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Retrieve API Key
     api_response = await rs.APIKeysApi.get_api_key(
@@ -323,7 +323,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling APIKeysApi->list_api_keys: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # List API Keys
     api_response = await rs.APIKeysApi.list_api_keys(
@@ -415,7 +415,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling APIKeysApi->update_api_key: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Update API Key State
     api_response = await rs.APIKeysApi.update_api_key(

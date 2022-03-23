@@ -1,6 +1,6 @@
 # rockset.ViewsApi
 
-All URIs are relative to *https://api.rs2.usw2.rockset.com*
+All URIs are relative to *https://api.rs2.usw2.rockset.com* or the apiserver provided when initializing RocksetClient
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -46,7 +46,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling ViewsApi->create_view: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Create View
     api_response = await rs.ViewsApi.create_view(
@@ -127,7 +127,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling ViewsApi->delete_view: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Delete View
     api_response = await rs.ViewsApi.delete_view(
@@ -205,7 +205,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling ViewsApi->get_view: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Retrieve View
     api_response = await rs.ViewsApi.get_view(
@@ -295,7 +295,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling ViewsApi->list_views: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # List Views
     api_response = await rs.ViewsApi.list_views(
@@ -382,7 +382,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling ViewsApi->update_view: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Update View
     api_response = await rs.ViewsApi.update_view(
@@ -463,7 +463,7 @@ try:
 except rockset.ApiException as e:
     print("Exception when calling ViewsApi->workspace_views: %s\n" % e)
 
-# asynchronous example passing required values which don't have defaults set and optional values
+# asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # List Views in Workspace
     api_response = await rs.ViewsApi.workspace_views(
