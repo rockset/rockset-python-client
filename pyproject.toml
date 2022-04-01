@@ -1,16 +1,22 @@
 [tool.poetry]
-name = "rockset-client-v2-alpha"
-version = "0.0.1"
+name = "rockset-v2-alpha"
+version = "0.0.2"
 description = "The python client for the Rockset API."
 authors = ["Rockset <support@rockset.com>"]
+packages = [
+    {include = "rockset"}
+]
+repository = "https://github.com/rockset/rockset-python-client"
+readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.6"
+urllib3 = "^1.25.3"
+python_dateutil = "^2.5.3"
+geojson = "^2.5.0"
 
 [tool.poetry.dev-dependencies]
-python_dateutil = "^2.5.3"
 setuptools = "^21.0.0"
-urllib3 = "^1.25.3"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
