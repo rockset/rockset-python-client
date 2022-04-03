@@ -19,15 +19,14 @@ with open(
     long_description = fp.read()
 
 NAME = "rockset"
-VERSION = "0.0.3"
 REQUIRES = [
     "urllib3 >= 1.25.3",
     "python-dateutil",
+    "geojson"
 ]
 
 setup(
     name=NAME,
-    version=VERSION,
     description="REST API",
     author="Rockset",
     author_email="support@rockset.com",
@@ -38,4 +37,5 @@ setup(
     packages=find_packages(exclude=["test", "tests"]),
     include_package_data=True,
     long_description=long_description,
+    long_description_content_type="text/x-rst",
 )

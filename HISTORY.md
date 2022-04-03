@@ -1,3 +1,6 @@
+### v0.0.4
+    - More updates for extra files
+
 ### v0.0.3
     - Add long description file
 
