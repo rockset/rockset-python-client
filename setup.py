@@ -19,7 +19,7 @@ with open(
     long_description = fp.read()
 
 NAME = "rockset"
-VERSION = "0.0.1"
+VERSION = "0.0.3"
 REQUIRES = [
     "urllib3 >= 1.25.3",
     "python-dateutil",
