@@ -29,9 +29,8 @@ Python >=3.6
 ## Installation & Usage
 ### pip install
 
-Until the library is actually published in Pypi, you can install this client by running:
 ```sh
-pip install ./dist/rockset-1.0.0-py3-none-any.whl
+pip install rockset-v2-alpha
 ```
 
 ### Setuptools
