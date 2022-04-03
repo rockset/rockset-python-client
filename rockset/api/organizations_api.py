@@ -95,13 +95,13 @@ class OrganizationsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(apikey=APIKEY)
-future = rs.OrganizationsApi.get_organization(
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.OrganizationsApi.get_organization(
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status

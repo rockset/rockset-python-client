@@ -157,28 +157,28 @@ class QueriesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(apikey=APIKEY)
-future = rs.QueriesApi.query(
-    sql=QueryRequestSql(
-        default_row_limit=1,
-        generate_warnings=True,
-        initial_paginate_response_doc_count=1,
-        paginate=True,
-        parameters=[
-            QueryParameter(
-                name="_id",
-                type="string",
-                value="85beb391",
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.QueriesApi.query(
+            sql=QueryRequestSql(
+                default_row_limit=1,
+                generate_warnings=True,
+                initial_paginate_response_doc_count=1,
+                paginate=True,
+                parameters=[
+                    QueryParameter(
+                        name="_id",
+                        type="string",
+                        value="85beb391",
+                    ),
+                ],
+                profiling_enabled=True,
+                query="SELECT * FROM foo where _id = :_id",
             ),
-        ],
-        profiling_enabled=True,
-        query="SELECT * FROM foo where _id = :_id",
-    ),
-    async_req=True,
-)
-result = await future
-```
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             sql (QueryRequestSql): [required]
@@ -253,28 +253,28 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(apikey=APIKEY)
-future = rs.QueriesApi.validate(
-    sql=QueryRequestSql(
-        default_row_limit=1,
-        generate_warnings=True,
-        initial_paginate_response_doc_count=1,
-        paginate=True,
-        parameters=[
-            QueryParameter(
-                name="_id",
-                type="string",
-                value="85beb391",
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.QueriesApi.validate(
+            sql=QueryRequestSql(
+                default_row_limit=1,
+                generate_warnings=True,
+                initial_paginate_response_doc_count=1,
+                paginate=True,
+                parameters=[
+                    QueryParameter(
+                        name="_id",
+                        type="string",
+                        value="85beb391",
+                    ),
+                ],
+                profiling_enabled=True,
+                query="SELECT * FROM foo where _id = :_id",
             ),
-        ],
-        profiling_enabled=True,
-        query="SELECT * FROM foo where _id = :_id",
-    ),
-    async_req=True,
-)
-result = await future
-```
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             sql (QueryRequestSql): [required]

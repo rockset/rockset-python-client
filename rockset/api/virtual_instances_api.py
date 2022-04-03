@@ -208,14 +208,14 @@ class VirtualInstancesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(apikey=APIKEY)
-future = rs.VirtualInstancesApi.get_virtual_instance(
-    virtual_instance_id="virtualInstanceId_example",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.VirtualInstancesApi.get_virtual_instance(
+            virtual_instance_id="virtualInstanceId_example",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             virtual_instance_id (str): uuid of the virtual instance. [required]
@@ -288,13 +288,13 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(apikey=APIKEY)
-future = rs.VirtualInstancesApi.list_virtual_instances(
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.VirtualInstancesApi.list_virtual_instances(
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -369,17 +369,17 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(apikey=APIKEY)
-future = rs.VirtualInstancesApi.set_virtual_instance(
-    virtual_instance_id="virtualInstanceId_example",
-    monitoring_enabled=True,
-    new_size="LARGE",
-    new_type="FREE",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.VirtualInstancesApi.set_virtual_instance(
+            virtual_instance_id="virtualInstanceId_example",
+            monitoring_enabled=True,
+            new_size="LARGE",
+            new_type="FREE",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             virtual_instance_id (str): uuid of the virtual instance. [required]

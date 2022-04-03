@@ -1,3 +1,6 @@
+### v0.0.5
+    - Reintroduce correct formatting for code examples in docstrings
+
 ### v0.0.4
     - More updates for extra files
 

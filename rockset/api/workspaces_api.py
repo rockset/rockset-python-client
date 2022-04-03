@@ -310,13 +310,13 @@ class WorkspacesApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(apikey=APIKEY)
-future = rs.WorkspacesApi.child_workspaces(
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.WorkspacesApi.child_workspaces(
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -392,15 +392,15 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(apikey=APIKEY)
-future = rs.WorkspacesApi.create_workspace(
-    description="Datasets of system logs for the ops team.",
-    name="event_logs",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.WorkspacesApi.create_workspace(
+            description="Datasets of system logs for the ops team.",
+            name="event_logs",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             description (str): longer explanation for the workspace. [optional]
@@ -476,13 +476,13 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(apikey=APIKEY)
-future = rs.WorkspacesApi.delete_workspace(
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.WorkspacesApi.delete_workspace(
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -557,13 +557,13 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(apikey=APIKEY)
-future = rs.WorkspacesApi.get_workspace(
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.WorkspacesApi.get_workspace(
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -638,13 +638,13 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(apikey=APIKEY)
-future = rs.WorkspacesApi.list_workspaces(
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.WorkspacesApi.list_workspaces(
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             fetch_across_regions (bool): [optional]

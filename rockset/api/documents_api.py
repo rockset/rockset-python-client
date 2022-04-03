@@ -249,15 +249,15 @@ class DocumentsApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(apikey=APIKEY)
-future = rs.DocumentsApi.add_documents(
-    collection="collection_example",
-    data=[{"field":"value"}],
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.DocumentsApi.add_documents(
+            collection="collection_example",
+            data=[{"field":"value"}],
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): Name of the workspace.. [required] if omitted the server will use the default value of "commons"
@@ -340,19 +340,19 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(apikey=APIKEY)
-future = rs.DocumentsApi.delete_documents(
-    collection="collection_example",
-    data=[
-        DeleteDocumentsRequestData(
-            id="2cd61e3b",
-        ),
-    ],
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.DocumentsApi.delete_documents(
+            collection="collection_example",
+            data=[
+                DeleteDocumentsRequestData(
+                    id="2cd61e3b",
+                ),
+            ],
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): Name of the workspace.. [required] if omitted the server will use the default value of "commons"
@@ -435,27 +435,27 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(apikey=APIKEY)
-future = rs.DocumentsApi.patch_documents(
-    collection="collection_example",
-    data=[
-        PatchDocument(
-            id="ca2d6832-1bfd-f88f-0620-d2aa27a5d86c",
-            patch=[
-                PatchOperation(
-                    _from="_from_example",
-                    op="ADD",
-                    path="/foo/bar",
-                    value={},
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.DocumentsApi.patch_documents(
+            collection="collection_example",
+            data=[
+                PatchDocument(
+                    id="ca2d6832-1bfd-f88f-0620-d2aa27a5d86c",
+                    patch=[
+                        PatchOperation(
+                            _from="_from_example",
+                            op="ADD",
+                            path="/foo/bar",
+                            value={},
+                        ),
+                    ],
                 ),
             ],
-        ),
-    ],
-    async_req=True,
-)
-result = await future
-```
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): Name of the workspace.. [required] if omitted the server will use the default value of "commons"

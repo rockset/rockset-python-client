@@ -910,25 +910,25 @@ class QueryLambdasApi(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(apikey=APIKEY)
-future = rs.QueryLambdasApi.create_query_lambda(
-    description="production version foo",
-    name="myQueryLambda",
-    sql=QueryLambdaSql(
-        default_parameters=[
-            QueryParameter(
-                name="_id",
-                type="string",
-                value="85beb391",
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.QueryLambdasApi.create_query_lambda(
+            description="production version foo",
+            name="myQueryLambda",
+            sql=QueryLambdaSql(
+                default_parameters=[
+                    QueryParameter(
+                        name="_id",
+                        type="string",
+                        value="85beb391",
+                    ),
+                ],
+                query="SELECT 'Foo'",
             ),
-        ],
-        query="SELECT 'Foo'",
-    ),
-    async_req=True,
-)
-result = await future
-```
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -1011,16 +1011,16 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(apikey=APIKEY)
-future = rs.QueryLambdasApi.create_query_lambda_tag(
-    query_lambda="queryLambda_example",
-    tag_name="production",
-    version="123ABC",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.QueryLambdasApi.create_query_lambda_tag(
+            query_lambda="queryLambda_example",
+            tag_name="production",
+            version="123ABC",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -1103,14 +1103,14 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(apikey=APIKEY)
-future = rs.QueryLambdasApi.delete_query_lambda(
-    query_lambda="queryLambda_example",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.QueryLambdasApi.delete_query_lambda(
+            query_lambda="queryLambda_example",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -1190,15 +1190,15 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(apikey=APIKEY)
-future = rs.QueryLambdasApi.delete_query_lambda_tag(
-    query_lambda="queryLambda_example",
-    tag="tag_example",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.QueryLambdasApi.delete_query_lambda_tag(
+            query_lambda="queryLambda_example",
+            tag="tag_example",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -1281,15 +1281,15 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(apikey=APIKEY)
-future = rs.QueryLambdasApi.delete_query_lambda_version(
-    query_lambda="queryLambda_example",
-    version="version_example",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.QueryLambdasApi.delete_query_lambda_version(
+            query_lambda="queryLambda_example",
+            version="version_example",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -1373,15 +1373,15 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(apikey=APIKEY)
-future = rs.QueryLambdasApi.execute_query_lambda(
-    query_lambda="queryLambda_example",
-    version="version_example",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.QueryLambdasApi.execute_query_lambda(
+            query_lambda="queryLambda_example",
+            version="version_example",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -1466,15 +1466,15 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(apikey=APIKEY)
-future = rs.QueryLambdasApi.execute_query_lambda_by_tag(
-    query_lambda="queryLambda_example",
-    tag="tag_example",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.QueryLambdasApi.execute_query_lambda_by_tag(
+            query_lambda="queryLambda_example",
+            tag="tag_example",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -1558,15 +1558,15 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(apikey=APIKEY)
-future = rs.QueryLambdasApi.get_query_lambda_tag_version(
-    query_lambda="queryLambda_example",
-    tag="tag_example",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.QueryLambdasApi.get_query_lambda_tag_version(
+            query_lambda="queryLambda_example",
+            tag="tag_example",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -1649,15 +1649,15 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(apikey=APIKEY)
-future = rs.QueryLambdasApi.get_query_lambda_version(
-    query_lambda="queryLambda_example",
-    version="version_example",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.QueryLambdasApi.get_query_lambda_version(
+            query_lambda="queryLambda_example",
+            version="version_example",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -1736,13 +1736,13 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(apikey=APIKEY)
-future = rs.QueryLambdasApi.list_all_query_lambdas(
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.QueryLambdasApi.list_all_query_lambdas(
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -1815,14 +1815,14 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(apikey=APIKEY)
-future = rs.QueryLambdasApi.list_query_lambda_tags(
-    query_lambda="queryLambda_example",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.QueryLambdasApi.list_query_lambda_tags(
+            query_lambda="queryLambda_example",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -1901,14 +1901,14 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(apikey=APIKEY)
-future = rs.QueryLambdasApi.list_query_lambda_versions(
-    query_lambda="queryLambda_example",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.QueryLambdasApi.list_query_lambda_versions(
+            query_lambda="queryLambda_example",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -1986,13 +1986,13 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(apikey=APIKEY)
-future = rs.QueryLambdasApi.list_query_lambdas_in_workspace(
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.QueryLambdasApi.list_query_lambdas_in_workspace(
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -2071,25 +2071,25 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(apikey=APIKEY)
-future = rs.QueryLambdasApi.update_query_lambda(
-    query_lambda="queryLambda_example",
-    description="production version foo",
-    sql=QueryLambdaSql(
-        default_parameters=[
-            QueryParameter(
-                name="_id",
-                type="string",
-                value="85beb391",
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.QueryLambdasApi.update_query_lambda(
+            query_lambda="queryLambda_example",
+            description="production version foo",
+            sql=QueryLambdaSql(
+                default_parameters=[
+                    QueryParameter(
+                        name="_id",
+                        type="string",
+                        value="85beb391",
+                    ),
+                ],
+                query="SELECT 'Foo'",
             ),
-        ],
-        query="SELECT 'Foo'",
-    ),
-    async_req=True,
-)
-result = await future
-```
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
