@@ -82,7 +82,6 @@ class ValidateQueryResponse(ModelNormal):
         """
         return {
             'collections': ([str],),  # noqa: E501
-            'name': ([str],),  # noqa: E501
             'parameters': ([str],),  # noqa: E501
         }
 
@@ -93,7 +92,6 @@ class ValidateQueryResponse(ModelNormal):
 
     attribute_map = {
         'collections': 'collections',  # noqa: E501
-        'name': 'name',  # noqa: E501
         'parameters': 'parameters',  # noqa: E501
     }
 
@@ -104,12 +102,11 @@ class ValidateQueryResponse(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, collections, name, parameters, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, collections, parameters, *args, **kwargs):  # noqa: E501
         """ValidateQueryResponse - a model defined in OpenAPI
 
         Args:
-            collections ([str]): list of collection specified in query
-            name ([str]): list of collection specified in query
+            collections ([str]): list of collections specified in query
             parameters ([str]): list of parameters specified in query
 
         Keyword Args:
@@ -171,7 +168,6 @@ class ValidateQueryResponse(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.collections = collections
-        self.name = name
         self.parameters = parameters
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
@@ -193,12 +189,11 @@ class ValidateQueryResponse(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *, collections, name, parameters, **kwargs):  # noqa: E501
+    def __init__(self, *, collections, parameters, **kwargs):  # noqa: E501
         """ValidateQueryResponse - a model defined in OpenAPI
 
         Keyword Args:
-            collections ([str]): list of collection specified in query
-            name ([str]): list of collection specified in query
+            collections ([str]): list of collections specified in query
             parameters ([str]): list of parameters specified in query
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
@@ -257,7 +252,6 @@ class ValidateQueryResponse(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.collections = collections
-        self.name = name
         self.parameters = parameters
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \

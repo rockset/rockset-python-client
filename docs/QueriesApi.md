@@ -48,7 +48,6 @@ try:
                 value="85beb391",
             ),
         ],
-        profiling_enabled=True,
         query="SELECT * FROM foo where _id = :_id",
     ),
     )
@@ -72,7 +71,6 @@ async def call_api():
                 value="85beb391",
             ),
         ],
-        profiling_enabled=True,
         query="SELECT * FROM foo where _id = :_id",
     ),
         async_req=True,
@@ -167,7 +165,6 @@ try:
                 value="85beb391",
             ),
         ],
-        profiling_enabled=True,
         query="SELECT * FROM foo where _id = :_id",
     ),
     )
@@ -191,7 +188,6 @@ async def call_api():
                 value="85beb391",
             ),
         ],
-        profiling_enabled=True,
         query="SELECT * FROM foo where _id = :_id",
     ),
         async_req=True,

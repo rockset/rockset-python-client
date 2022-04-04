@@ -68,11 +68,7 @@ from rockset.model.event_time_info import EventTimeInfo
 from rockset.model.execute_query_lambda_request import ExecuteQueryLambdaRequest
 from rockset.model.field_mapping_query import FieldMappingQuery
 from rockset.model.field_mapping_v2 import FieldMappingV2
-from rockset.model.field_mask import FieldMask
-from rockset.model.field_mask_mask import FieldMaskMask
-from rockset.model.field_options import FieldOptions
 from rockset.model.field_partition import FieldPartition
-from rockset.model.field_schema import FieldSchema
 from rockset.model.file_upload_collection_creation_request import FileUploadCollectionCreationRequest
 from rockset.model.file_upload_source_wrapper import FileUploadSourceWrapper
 from rockset.model.format_params import FormatParams
@@ -90,7 +86,6 @@ from rockset.model.get_virtual_instance_response import GetVirtualInstanceRespon
 from rockset.model.get_workspace_response import GetWorkspaceResponse
 from rockset.model.input_field import InputField
 from rockset.model.integration import Integration
-from rockset.model.inverted_index_group_encoding_options import InvertedIndexGroupEncodingOptions
 from rockset.model.kafka_collection_creation_request import KafkaCollectionCreationRequest
 from rockset.model.kafka_integration import KafkaIntegration
 from rockset.model.kafka_integration_creation_request import KafkaIntegrationCreationRequest

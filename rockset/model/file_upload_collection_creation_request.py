@@ -34,16 +34,12 @@ def lazy_import():
     from rockset.model.field_mapping_query import FieldMappingQuery
     from rockset.model.field_mapping_v2 import FieldMappingV2
     from rockset.model.field_partition import FieldPartition
-    from rockset.model.field_schema import FieldSchema
     from rockset.model.file_upload_source_wrapper import FileUploadSourceWrapper
-    from rockset.model.inverted_index_group_encoding_options import InvertedIndexGroupEncodingOptions
     globals()['EventTimeInfo'] = EventTimeInfo
     globals()['FieldMappingQuery'] = FieldMappingQuery
     globals()['FieldMappingV2'] = FieldMappingV2
     globals()['FieldPartition'] = FieldPartition
-    globals()['FieldSchema'] = FieldSchema
     globals()['FileUploadSourceWrapper'] = FileUploadSourceWrapper
-    globals()['InvertedIndexGroupEncodingOptions'] = InvertedIndexGroupEncodingOptions
 
 
 class FileUploadCollectionCreationRequest(ModelNormal):
@@ -105,12 +101,9 @@ class FileUploadCollectionCreationRequest(ModelNormal):
             'event_time_info': (EventTimeInfo,),  # noqa: E501
             'field_mapping_query': (FieldMappingQuery,),  # noqa: E501
             'field_mappings': ([FieldMappingV2],),  # noqa: E501
-            'field_schemas': ([FieldSchema],),  # noqa: E501
             'insert_only': (bool,),  # noqa: E501
-            'inverted_index_group_encoding_options': (InvertedIndexGroupEncodingOptions,),  # noqa: E501
             'retention_secs': (int,),  # noqa: E501
             'sources': ([FileUploadSourceWrapper],),  # noqa: E501
-            'time_partition_resolution_secs': (int,),  # noqa: E501
         }
 
     @cached_property
@@ -125,12 +118,9 @@ class FileUploadCollectionCreationRequest(ModelNormal):
         'event_time_info': 'event_time_info',  # noqa: E501
         'field_mapping_query': 'field_mapping_query',  # noqa: E501
         'field_mappings': 'field_mappings',  # noqa: E501
-        'field_schemas': 'field_schemas',  # noqa: E501
         'insert_only': 'insert_only',  # noqa: E501
-        'inverted_index_group_encoding_options': 'inverted_index_group_encoding_options',  # noqa: E501
         'retention_secs': 'retention_secs',  # noqa: E501
         'sources': 'sources',  # noqa: E501
-        'time_partition_resolution_secs': 'time_partition_resolution_secs',  # noqa: E501
     }
 
     read_only_vars = {
@@ -182,12 +172,9 @@ class FileUploadCollectionCreationRequest(ModelNormal):
             event_time_info (EventTimeInfo): [optional]  # noqa: E501
             field_mapping_query (FieldMappingQuery): [optional]  # noqa: E501
             field_mappings ([FieldMappingV2]): list of mappings. [optional]  # noqa: E501
-            field_schemas ([FieldSchema]): list of field schemas. [optional]  # noqa: E501
             insert_only (bool): If true disallows updates and deletes, but makes indexing more efficient. [optional]  # noqa: E501
-            inverted_index_group_encoding_options (InvertedIndexGroupEncodingOptions): [optional]  # noqa: E501
             retention_secs (int): number of seconds after which data is purged, based on event time. [optional]  # noqa: E501
             sources ([FileUploadSourceWrapper]): List of sources from which to ingest data. [optional]  # noqa: E501
-            time_partition_resolution_secs (int): If non-null, the collection will be time partitioned and each partition will be time_partition_resolution_secs wide.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -246,12 +233,9 @@ class FileUploadCollectionCreationRequest(ModelNormal):
             event_time_info (EventTimeInfo): [optional]  # noqa: E501
             field_mapping_query (FieldMappingQuery): [optional]  # noqa: E501
             field_mappings ([FieldMappingV2]): list of mappings. [optional]  # noqa: E501
-            field_schemas ([FieldSchema]): list of field schemas. [optional]  # noqa: E501
             insert_only (bool): If true disallows updates and deletes, but makes indexing more efficient. [optional]  # noqa: E501
-            inverted_index_group_encoding_options (InvertedIndexGroupEncodingOptions): [optional]  # noqa: E501
             retention_secs (int): number of seconds after which data is purged, based on event time. [optional]  # noqa: E501
             sources ([FileUploadSourceWrapper]): List of sources from which to ingest data. [optional]  # noqa: E501
-            time_partition_resolution_secs (int): If non-null, the collection will be time partitioned and each partition will be time_partition_resolution_secs wide.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

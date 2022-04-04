@@ -40,7 +40,7 @@ docs/CreateViewResponse.md
 docs/CreateWorkspaceRequest.md
 docs/CreateWorkspaceResponse.md
 docs/CsvParams.md
-docs/CustomRolesBetaApi.md
+docs/CustomRolesApi.md
 docs/DeleteAliasResponse.md
 docs/DeleteApiKeyResponse.md
 docs/DeleteCollectionResponse.md
@@ -63,11 +63,7 @@ docs/EventTimeInfo.md
 docs/ExecuteQueryLambdaRequest.md
 docs/FieldMappingQuery.md
 docs/FieldMappingV2.md
-docs/FieldMask.md
-docs/FieldMaskMask.md
-docs/FieldOptions.md
 docs/FieldPartition.md
-docs/FieldSchema.md
 docs/FileUploadCollectionCreationRequest.md
 docs/FileUploadSourceWrapper.md
 docs/FormatParams.md
@@ -86,7 +82,6 @@ docs/GetWorkspaceResponse.md
 docs/InputField.md
 docs/Integration.md
 docs/IntegrationsApi.md
-docs/InvertedIndexGroupEncodingOptions.md
 docs/KafkaCollectionCreationRequest.md
 docs/KafkaIntegration.md
 docs/KafkaIntegrationCreationRequest.md
@@ -195,7 +190,7 @@ rockset/api/__init__.py
 rockset/api/aliases_api.py
 rockset/api/api_keys_api.py
 rockset/api/collections_api.py
-rockset/api/custom_roles__beta_api.py
+rockset/api/custom_roles_api.py
 rockset/api/documents_api.py
 rockset/api/integrations_api.py
 rockset/api/organizations_api.py
@@ -266,11 +261,7 @@ rockset/model/event_time_info.py
 rockset/model/execute_query_lambda_request.py
 rockset/model/field_mapping_query.py
 rockset/model/field_mapping_v2.py
-rockset/model/field_mask.py
-rockset/model/field_mask_mask.py
-rockset/model/field_options.py
 rockset/model/field_partition.py
-rockset/model/field_schema.py
 rockset/model/file_upload_collection_creation_request.py
 rockset/model/file_upload_source_wrapper.py
 rockset/model/format_params.py
@@ -288,7 +279,6 @@ rockset/model/get_virtual_instance_response.py
 rockset/model/get_workspace_response.py
 rockset/model/input_field.py
 rockset/model/integration.py
-rockset/model/inverted_index_group_encoding_options.py
 rockset/model/kafka_collection_creation_request.py
 rockset/model/kafka_integration.py
 rockset/model/kafka_integration_creation_request.py
@@ -389,4 +379,3 @@ rockset/model_utils.py
 rockset/models/__init__.py
 test-requirements.txt
 test/__init__.py
-test/test_status_azure_service_bus_session.py

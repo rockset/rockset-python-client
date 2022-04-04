@@ -35,16 +35,12 @@ def lazy_import():
     from rockset.model.field_mapping_query import FieldMappingQuery
     from rockset.model.field_mapping_v2 import FieldMappingV2
     from rockset.model.field_partition import FieldPartition
-    from rockset.model.field_schema import FieldSchema
-    from rockset.model.inverted_index_group_encoding_options import InvertedIndexGroupEncodingOptions
     from rockset.model.source import Source
     globals()['Alias'] = Alias
     globals()['CollectionStats'] = CollectionStats
     globals()['FieldMappingQuery'] = FieldMappingQuery
     globals()['FieldMappingV2'] = FieldMappingV2
     globals()['FieldPartition'] = FieldPartition
-    globals()['FieldSchema'] = FieldSchema
-    globals()['InvertedIndexGroupEncodingOptions'] = InvertedIndexGroupEncodingOptions
     globals()['Source'] = Source
 
 
@@ -124,13 +120,9 @@ class Collection(ModelNormal):
             'created_at': (str,),  # noqa: E501
             'created_by': (str,),  # noqa: E501
             'description': (str,),  # noqa: E501
-            'enable_exactly_once_writes': (bool,),  # noqa: E501
-            'field_partitions': ([FieldPartition],),  # noqa: E501
             'field_mapping_query': (FieldMappingQuery,),  # noqa: E501
             'field_mappings': ([FieldMappingV2],),  # noqa: E501
-            'field_schemas': ([FieldSchema],),  # noqa: E501
             'insert_only': (bool,),  # noqa: E501
-            'inverted_index_group_encoding_options': (InvertedIndexGroupEncodingOptions,),  # noqa: E501
             'name': (str,),  # noqa: E501
             'retention_secs': (int,),  # noqa: E501
             'sources': ([Source],),  # noqa: E501
@@ -150,13 +142,9 @@ class Collection(ModelNormal):
         'created_at': 'created_at',  # noqa: E501
         'created_by': 'created_by',  # noqa: E501
         'description': 'description',  # noqa: E501
-        'enable_exactly_once_writes': 'enable_exactly_once_writes',  # noqa: E501
-        'field_partitions': 'fieldPartitions',  # noqa: E501
         'field_mapping_query': 'field_mapping_query',  # noqa: E501
         'field_mappings': 'field_mappings',  # noqa: E501
-        'field_schemas': 'field_schemas',  # noqa: E501
         'insert_only': 'insert_only',  # noqa: E501
-        'inverted_index_group_encoding_options': 'inverted_index_group_encoding_options',  # noqa: E501
         'name': 'name',  # noqa: E501
         'retention_secs': 'retention_secs',  # noqa: E501
         'sources': 'sources',  # noqa: E501
@@ -211,13 +199,9 @@ class Collection(ModelNormal):
             created_at (str): ISO-8601 date. [optional]  # noqa: E501
             created_by (str): email of user who created the collection. [optional]  # noqa: E501
             description (str): text describing the collection. [optional]  # noqa: E501
-            enable_exactly_once_writes (bool): If true, exactly-once write semantics is enabled.. [optional]  # noqa: E501
-            field_partitions ([FieldPartition]): [optional]  # noqa: E501
             field_mapping_query (FieldMappingQuery): [optional]  # noqa: E501
             field_mappings ([FieldMappingV2]): list of mappings applied on all documents in a collection. [optional]  # noqa: E501
-            field_schemas ([FieldSchema]): list of field schemas . [optional]  # noqa: E501
             insert_only (bool): Whether the collection is insert only or not. [optional]  # noqa: E501
-            inverted_index_group_encoding_options (InvertedIndexGroupEncodingOptions): [optional]  # noqa: E501
             name (str): unique identifer for collection, can contain alphanumeric or dash characters. [optional]  # noqa: E501
             retention_secs (int): number of seconds after which data is purged based on event time. [optional]  # noqa: E501
             sources ([Source]): list of sources from which collection ingests. [optional]  # noqa: E501
@@ -280,13 +264,9 @@ class Collection(ModelNormal):
             created_at (str): ISO-8601 date. [optional]  # noqa: E501
             created_by (str): email of user who created the collection. [optional]  # noqa: E501
             description (str): text describing the collection. [optional]  # noqa: E501
-            enable_exactly_once_writes (bool): If true, exactly-once write semantics is enabled.. [optional]  # noqa: E501
-            field_partitions ([FieldPartition]): [optional]  # noqa: E501
             field_mapping_query (FieldMappingQuery): [optional]  # noqa: E501
             field_mappings ([FieldMappingV2]): list of mappings applied on all documents in a collection. [optional]  # noqa: E501
-            field_schemas ([FieldSchema]): list of field schemas . [optional]  # noqa: E501
             insert_only (bool): Whether the collection is insert only or not. [optional]  # noqa: E501
-            inverted_index_group_encoding_options (InvertedIndexGroupEncodingOptions): [optional]  # noqa: E501
             name (str): unique identifer for collection, can contain alphanumeric or dash characters. [optional]  # noqa: E501
             retention_secs (int): number of seconds after which data is purged based on event time. [optional]  # noqa: E501
             sources ([Source]): list of sources from which collection ingests. [optional]  # noqa: E501

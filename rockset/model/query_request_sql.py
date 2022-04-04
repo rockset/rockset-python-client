@@ -93,7 +93,6 @@ class QueryRequestSql(ModelNormal):
             'initial_paginate_response_doc_count': (int,),  # noqa: E501
             'paginate': (bool,),  # noqa: E501
             'parameters': ([QueryParameter],),  # noqa: E501
-            'profiling_enabled': (bool,),  # noqa: E501
         }
 
     @cached_property
@@ -108,7 +107,6 @@ class QueryRequestSql(ModelNormal):
         'initial_paginate_response_doc_count': 'initial_paginate_response_doc_count',  # noqa: E501
         'paginate': 'paginate',  # noqa: E501
         'parameters': 'parameters',  # noqa: E501
-        'profiling_enabled': 'profiling_enabled',  # noqa: E501
     }
 
     read_only_vars = {
@@ -160,7 +158,6 @@ class QueryRequestSql(ModelNormal):
             initial_paginate_response_doc_count (int): Number of documents to return in addition to paginating for this query call. Only relevant if `paginate` flag is also set.. [optional]  # noqa: E501
             paginate (bool): Flag to paginate and store the results of this query for later / sequential retrieval.. [optional]  # noqa: E501
             parameters ([QueryParameter]): List of named parameters.. [optional]  # noqa: E501
-            profiling_enabled (bool): Flag to generate a performance profile for this query.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -219,7 +216,6 @@ class QueryRequestSql(ModelNormal):
             initial_paginate_response_doc_count (int): Number of documents to return in addition to paginating for this query call. Only relevant if `paginate` flag is also set.. [optional]  # noqa: E501
             paginate (bool): Flag to paginate and store the results of this query for later / sequential retrieval.. [optional]  # noqa: E501
             parameters ([QueryParameter]): List of named parameters.. [optional]  # noqa: E501
-            profiling_enabled (bool): Flag to generate a performance profile for this query.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

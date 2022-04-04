@@ -142,7 +142,7 @@ class FieldPartition(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             field_name (str): The name of a field, parsed as a SQL qualified name. [optional]  # noqa: E501
-            keys ([str]): The values for partitioning of a field. [optional]  # noqa: E501
+            keys ([str]): The values for partitioning of a field. Unneeded if the partition type is AUTO.. [optional]  # noqa: E501
             type (str): The type of partitions on a field. [optional] if omitted the server will use the default value of "AUTO"  # noqa: E501
         """
 
@@ -196,7 +196,7 @@ class FieldPartition(ModelNormal):
 
         Keyword Args:
             field_name (str): The name of a field, parsed as a SQL qualified name. [optional]  # noqa: E501
-            keys ([str]): The values for partitioning of a field. [optional]  # noqa: E501
+            keys ([str]): The values for partitioning of a field. Unneeded if the partition type is AUTO.. [optional]  # noqa: E501
             type (str): The type of partitions on a field. [optional] if omitted the server will use the default value of "AUTO"  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be

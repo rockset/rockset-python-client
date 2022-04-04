@@ -61,9 +61,7 @@ async def call_api():
         clustering_key=[
         FieldPartition(
             field_name="address.city.zipcode",
-            keys=[
-                "Values of a record to partition on. This is not needed if the partition type is AUTO",
-            ],
+            keys=["value1","value2"],
             type="AUTO",
         ),
     ],
@@ -81,7 +79,7 @@ async def call_api():
             input_fields=[
                 InputField(
                     field_name="address.city.zipcode",
-                    if_missing="['SKIP', 'PASS']",
+                    if_missing="SKIP",
                     is_drop=True,
                     param="zip",
                 ),
@@ -90,32 +88,14 @@ async def call_api():
             name="myTestMapping",
             output_field=OutputField(
                 field_name="zip_hash",
-                on_error="['SKIP', 'FAIL']",
+                on_error="SKIP",
                 value=SqlExpression(
                     sql="SHA256()",
                 ),
             ),
         ),
     ],
-        field_schemas=[
-        FieldSchema(
-            field_name="address.city.zipcode",
-            field_options=FieldOptions(
-                column_index_mode="store",
-                index_mode="index",
-                range_index_mode="v1_index",
-                type_index_mode="index",
-            ),
-        ),
-    ],
         insert_only=True,
-        inverted_index_group_encoding_options=InvertedIndexGroupEncodingOptions(
-        doc_id_codec="doc_id_codec_example",
-        event_time_codec="event_time_codec_example",
-        format_version=1,
-        group_size=1,
-        restart_length=1,
-    ),
         name="global-transactions",
         retention_secs=1000000,
         sources=[
@@ -151,7 +131,6 @@ async def call_api():
             integration_name="aws-integration",
         ),
     ],
-        time_partition_resolution_secs=1,
         async_req=True,
     )
     if isinstance(api_response, rockset.ApiException):
@@ -171,13 +150,10 @@ Name | Type | Description  | Notes
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
  **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | list of mappings | [optional]
- **field_schemas** | [**[FieldSchema]**](FieldSchema.md) | list of field schemas | [optional]
  **insert_only** | **bool** | If true disallows updates and deletes, but makes indexing more efficient | [optional]
- **inverted_index_group_encoding_options** | [**InvertedIndexGroupEncodingOptions**](InvertedIndexGroupEncodingOptions.md) |  | [optional]
  **name** | **str** | unique identifier for collection, can contain alphanumeric or dash characters | 
  **retention_secs** | **int** | number of seconds after which data is purged, based on event time | [optional]
  **sources** | [**[AzureBlobStorageSourceWrapper]**](AzureBlobStorageSourceWrapper.md) | List of sources from which to ingest data | [optional]
- **time_partition_resolution_secs** | **int** | If non-null, the collection will be time partitioned and each partition will be time_partition_resolution_secs wide. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
@@ -257,9 +233,7 @@ async def call_api():
         clustering_key=[
         FieldPartition(
             field_name="address.city.zipcode",
-            keys=[
-                "Values of a record to partition on. This is not needed if the partition type is AUTO",
-            ],
+            keys=["value1","value2"],
             type="AUTO",
         ),
     ],
@@ -277,7 +251,7 @@ async def call_api():
             input_fields=[
                 InputField(
                     field_name="address.city.zipcode",
-                    if_missing="['SKIP', 'PASS']",
+                    if_missing="SKIP",
                     is_drop=True,
                     param="zip",
                 ),
@@ -286,32 +260,14 @@ async def call_api():
             name="myTestMapping",
             output_field=OutputField(
                 field_name="zip_hash",
-                on_error="['SKIP', 'FAIL']",
+                on_error="SKIP",
                 value=SqlExpression(
                     sql="SHA256()",
                 ),
             ),
         ),
     ],
-        field_schemas=[
-        FieldSchema(
-            field_name="address.city.zipcode",
-            field_options=FieldOptions(
-                column_index_mode="store",
-                index_mode="index",
-                range_index_mode="v1_index",
-                type_index_mode="index",
-            ),
-        ),
-    ],
         insert_only=True,
-        inverted_index_group_encoding_options=InvertedIndexGroupEncodingOptions(
-        doc_id_codec="doc_id_codec_example",
-        event_time_codec="event_time_codec_example",
-        format_version=1,
-        group_size=1,
-        restart_length=1,
-    ),
         name="global-transactions",
         retention_secs=1000000,
         sources=[
@@ -346,7 +302,6 @@ async def call_api():
             integration_name="aws-integration",
         ),
     ],
-        time_partition_resolution_secs=1,
         async_req=True,
     )
     if isinstance(api_response, rockset.ApiException):
@@ -366,13 +321,10 @@ Name | Type | Description  | Notes
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
  **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | list of mappings | [optional]
- **field_schemas** | [**[FieldSchema]**](FieldSchema.md) | list of field schemas | [optional]
  **insert_only** | **bool** | If true disallows updates and deletes, but makes indexing more efficient | [optional]
- **inverted_index_group_encoding_options** | [**InvertedIndexGroupEncodingOptions**](InvertedIndexGroupEncodingOptions.md) |  | [optional]
  **name** | **str** | unique identifier for collection, can contain alphanumeric or dash characters | 
  **retention_secs** | **int** | number of seconds after which data is purged, based on event time | [optional]
  **sources** | [**[AzureEventHubsSourceWrapper]**](AzureEventHubsSourceWrapper.md) | List of sources from which to ingest data | [optional]
- **time_partition_resolution_secs** | **int** | If non-null, the collection will be time partitioned and each partition will be time_partition_resolution_secs wide. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
@@ -452,9 +404,7 @@ async def call_api():
         clustering_key=[
         FieldPartition(
             field_name="address.city.zipcode",
-            keys=[
-                "Values of a record to partition on. This is not needed if the partition type is AUTO",
-            ],
+            keys=["value1","value2"],
             type="AUTO",
         ),
     ],
@@ -472,7 +422,7 @@ async def call_api():
             input_fields=[
                 InputField(
                     field_name="address.city.zipcode",
-                    if_missing="['SKIP', 'PASS']",
+                    if_missing="SKIP",
                     is_drop=True,
                     param="zip",
                 ),
@@ -481,32 +431,14 @@ async def call_api():
             name="myTestMapping",
             output_field=OutputField(
                 field_name="zip_hash",
-                on_error="['SKIP', 'FAIL']",
+                on_error="SKIP",
                 value=SqlExpression(
                     sql="SHA256()",
                 ),
             ),
         ),
     ],
-        field_schemas=[
-        FieldSchema(
-            field_name="address.city.zipcode",
-            field_options=FieldOptions(
-                column_index_mode="store",
-                index_mode="index",
-                range_index_mode="v1_index",
-                type_index_mode="index",
-            ),
-        ),
-    ],
         insert_only=True,
-        inverted_index_group_encoding_options=InvertedIndexGroupEncodingOptions(
-        doc_id_codec="doc_id_codec_example",
-        event_time_codec="event_time_codec_example",
-        format_version=1,
-        group_size=1,
-        restart_length=1,
-    ),
         name="global-transactions",
         retention_secs=1000000,
         sources=[
@@ -541,7 +473,6 @@ async def call_api():
             integration_name="aws-integration",
         ),
     ],
-        time_partition_resolution_secs=1,
         async_req=True,
     )
     if isinstance(api_response, rockset.ApiException):
@@ -561,13 +492,10 @@ Name | Type | Description  | Notes
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
  **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | list of mappings | [optional]
- **field_schemas** | [**[FieldSchema]**](FieldSchema.md) | list of field schemas | [optional]
  **insert_only** | **bool** | If true disallows updates and deletes, but makes indexing more efficient | [optional]
- **inverted_index_group_encoding_options** | [**InvertedIndexGroupEncodingOptions**](InvertedIndexGroupEncodingOptions.md) |  | [optional]
  **name** | **str** | unique identifier for collection, can contain alphanumeric or dash characters | 
  **retention_secs** | **int** | number of seconds after which data is purged, based on event time | [optional]
  **sources** | [**[AzureServiceBusSourceWrapper]**](AzureServiceBusSourceWrapper.md) | List of sources from which to ingest data | [optional]
- **time_partition_resolution_secs** | **int** | If non-null, the collection will be time partitioned and each partition will be time_partition_resolution_secs wide. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
@@ -647,9 +575,7 @@ async def call_api():
         clustering_key=[
         FieldPartition(
             field_name="address.city.zipcode",
-            keys=[
-                "Values of a record to partition on. This is not needed if the partition type is AUTO",
-            ],
+            keys=["value1","value2"],
             type="AUTO",
         ),
     ],
@@ -667,7 +593,7 @@ async def call_api():
             input_fields=[
                 InputField(
                     field_name="address.city.zipcode",
-                    if_missing="['SKIP', 'PASS']",
+                    if_missing="SKIP",
                     is_drop=True,
                     param="zip",
                 ),
@@ -676,32 +602,14 @@ async def call_api():
             name="myTestMapping",
             output_field=OutputField(
                 field_name="zip_hash",
-                on_error="['SKIP', 'FAIL']",
+                on_error="SKIP",
                 value=SqlExpression(
                     sql="SHA256()",
                 ),
             ),
         ),
     ],
-        field_schemas=[
-        FieldSchema(
-            field_name="address.city.zipcode",
-            field_options=FieldOptions(
-                column_index_mode="store",
-                index_mode="index",
-                range_index_mode="v1_index",
-                type_index_mode="index",
-            ),
-        ),
-    ],
         insert_only=True,
-        inverted_index_group_encoding_options=InvertedIndexGroupEncodingOptions(
-        doc_id_codec="doc_id_codec_example",
-        event_time_codec="event_time_codec_example",
-        format_version=1,
-        group_size=1,
-        restart_length=1,
-    ),
         name="global-transactions",
         retention_secs=1000000,
         sources=[
@@ -738,7 +646,6 @@ async def call_api():
             integration_name="aws-integration",
         ),
     ],
-        time_partition_resolution_secs=1,
         async_req=True,
     )
     if isinstance(api_response, rockset.ApiException):
@@ -758,13 +665,10 @@ Name | Type | Description  | Notes
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
  **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | list of mappings | [optional]
- **field_schemas** | [**[FieldSchema]**](FieldSchema.md) | list of field schemas | [optional]
  **insert_only** | **bool** | If true disallows updates and deletes, but makes indexing more efficient | [optional]
- **inverted_index_group_encoding_options** | [**InvertedIndexGroupEncodingOptions**](InvertedIndexGroupEncodingOptions.md) |  | [optional]
  **name** | **str** | unique identifier for collection, can contain alphanumeric or dash characters | 
  **retention_secs** | **int** | number of seconds after which data is purged, based on event time | [optional]
  **sources** | [**[DynamodbSourceWrapper]**](DynamodbSourceWrapper.md) | List of sources from which to ingest data | [optional]
- **time_partition_resolution_secs** | **int** | If non-null, the collection will be time partitioned and each partition will be time_partition_resolution_secs wide. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
@@ -844,9 +748,7 @@ async def call_api():
         clustering_key=[
         FieldPartition(
             field_name="address.city.zipcode",
-            keys=[
-                "Values of a record to partition on. This is not needed if the partition type is AUTO",
-            ],
+            keys=["value1","value2"],
             type="AUTO",
         ),
     ],
@@ -864,7 +766,7 @@ async def call_api():
             input_fields=[
                 InputField(
                     field_name="address.city.zipcode",
-                    if_missing="['SKIP', 'PASS']",
+                    if_missing="SKIP",
                     is_drop=True,
                     param="zip",
                 ),
@@ -873,32 +775,14 @@ async def call_api():
             name="myTestMapping",
             output_field=OutputField(
                 field_name="zip_hash",
-                on_error="['SKIP', 'FAIL']",
+                on_error="SKIP",
                 value=SqlExpression(
                     sql="SHA256()",
                 ),
             ),
         ),
     ],
-        field_schemas=[
-        FieldSchema(
-            field_name="address.city.zipcode",
-            field_options=FieldOptions(
-                column_index_mode="store",
-                index_mode="index",
-                range_index_mode="v1_index",
-                type_index_mode="index",
-            ),
-        ),
-    ],
         insert_only=True,
-        inverted_index_group_encoding_options=InvertedIndexGroupEncodingOptions(
-        doc_id_codec="doc_id_codec_example",
-        event_time_codec="event_time_codec_example",
-        format_version=1,
-        group_size=1,
-        restart_length=1,
-    ),
         name="global-transactions",
         retention_secs=1000000,
         sources=[
@@ -934,7 +818,6 @@ async def call_api():
             integration_name="aws-integration",
         ),
     ],
-        time_partition_resolution_secs=1,
         async_req=True,
     )
     if isinstance(api_response, rockset.ApiException):
@@ -954,13 +837,10 @@ Name | Type | Description  | Notes
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
  **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | list of mappings | [optional]
- **field_schemas** | [**[FieldSchema]**](FieldSchema.md) | list of field schemas | [optional]
  **insert_only** | **bool** | If true disallows updates and deletes, but makes indexing more efficient | [optional]
- **inverted_index_group_encoding_options** | [**InvertedIndexGroupEncodingOptions**](InvertedIndexGroupEncodingOptions.md) |  | [optional]
  **name** | **str** | unique identifier for collection, can contain alphanumeric or dash characters | 
  **retention_secs** | **int** | number of seconds after which data is purged, based on event time | [optional]
  **sources** | [**[FileUploadSourceWrapper]**](FileUploadSourceWrapper.md) | List of sources from which to ingest data | [optional]
- **time_partition_resolution_secs** | **int** | If non-null, the collection will be time partitioned and each partition will be time_partition_resolution_secs wide. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
@@ -1040,9 +920,7 @@ async def call_api():
         clustering_key=[
         FieldPartition(
             field_name="address.city.zipcode",
-            keys=[
-                "Values of a record to partition on. This is not needed if the partition type is AUTO",
-            ],
+            keys=["value1","value2"],
             type="AUTO",
         ),
     ],
@@ -1060,7 +938,7 @@ async def call_api():
             input_fields=[
                 InputField(
                     field_name="address.city.zipcode",
-                    if_missing="['SKIP', 'PASS']",
+                    if_missing="SKIP",
                     is_drop=True,
                     param="zip",
                 ),
@@ -1069,32 +947,14 @@ async def call_api():
             name="myTestMapping",
             output_field=OutputField(
                 field_name="zip_hash",
-                on_error="['SKIP', 'FAIL']",
+                on_error="SKIP",
                 value=SqlExpression(
                     sql="SHA256()",
                 ),
             ),
         ),
     ],
-        field_schemas=[
-        FieldSchema(
-            field_name="address.city.zipcode",
-            field_options=FieldOptions(
-                column_index_mode="store",
-                index_mode="index",
-                range_index_mode="v1_index",
-                type_index_mode="index",
-            ),
-        ),
-    ],
         insert_only=True,
-        inverted_index_group_encoding_options=InvertedIndexGroupEncodingOptions(
-        doc_id_codec="doc_id_codec_example",
-        event_time_codec="event_time_codec_example",
-        format_version=1,
-        group_size=1,
-        restart_length=1,
-    ),
         name="global-transactions",
         retention_secs=1000000,
         sources=[
@@ -1130,7 +990,6 @@ async def call_api():
             integration_name="aws-integration",
         ),
     ],
-        time_partition_resolution_secs=1,
         async_req=True,
     )
     if isinstance(api_response, rockset.ApiException):
@@ -1150,13 +1009,10 @@ Name | Type | Description  | Notes
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
  **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | list of mappings | [optional]
- **field_schemas** | [**[FieldSchema]**](FieldSchema.md) | list of field schemas | [optional]
  **insert_only** | **bool** | If true disallows updates and deletes, but makes indexing more efficient | [optional]
- **inverted_index_group_encoding_options** | [**InvertedIndexGroupEncodingOptions**](InvertedIndexGroupEncodingOptions.md) |  | [optional]
  **name** | **str** | unique identifier for collection, can contain alphanumeric or dash characters | 
  **retention_secs** | **int** | number of seconds after which data is purged, based on event time | [optional]
  **sources** | [**[GcsSourceWrapper]**](GcsSourceWrapper.md) | List of sources from which to ingest data | [optional]
- **time_partition_resolution_secs** | **int** | If non-null, the collection will be time partitioned and each partition will be time_partition_resolution_secs wide. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
@@ -1236,9 +1092,7 @@ async def call_api():
         clustering_key=[
         FieldPartition(
             field_name="address.city.zipcode",
-            keys=[
-                "Values of a record to partition on. This is not needed if the partition type is AUTO",
-            ],
+            keys=["value1","value2"],
             type="AUTO",
         ),
     ],
@@ -1256,7 +1110,7 @@ async def call_api():
             input_fields=[
                 InputField(
                     field_name="address.city.zipcode",
-                    if_missing="['SKIP', 'PASS']",
+                    if_missing="SKIP",
                     is_drop=True,
                     param="zip",
                 ),
@@ -1265,32 +1119,14 @@ async def call_api():
             name="myTestMapping",
             output_field=OutputField(
                 field_name="zip_hash",
-                on_error="['SKIP', 'FAIL']",
+                on_error="SKIP",
                 value=SqlExpression(
                     sql="SHA256()",
                 ),
             ),
         ),
     ],
-        field_schemas=[
-        FieldSchema(
-            field_name="address.city.zipcode",
-            field_options=FieldOptions(
-                column_index_mode="store",
-                index_mode="index",
-                range_index_mode="v1_index",
-                type_index_mode="index",
-            ),
-        ),
-    ],
         insert_only=True,
-        inverted_index_group_encoding_options=InvertedIndexGroupEncodingOptions(
-        doc_id_codec="doc_id_codec_example",
-        event_time_codec="event_time_codec_example",
-        format_version=1,
-        group_size=1,
-        restart_length=1,
-    ),
         name="global-transactions",
         retention_secs=1000000,
         sources=[
@@ -1326,7 +1162,6 @@ async def call_api():
             ),
         ),
     ],
-        time_partition_resolution_secs=1,
         async_req=True,
     )
     if isinstance(api_response, rockset.ApiException):
@@ -1346,13 +1181,10 @@ Name | Type | Description  | Notes
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
  **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | list of mappings | [optional]
- **field_schemas** | [**[FieldSchema]**](FieldSchema.md) | list of field schemas | [optional]
  **insert_only** | **bool** | If true disallows updates and deletes, but makes indexing more efficient | [optional]
- **inverted_index_group_encoding_options** | [**InvertedIndexGroupEncodingOptions**](InvertedIndexGroupEncodingOptions.md) |  | [optional]
  **name** | **str** | unique identifier for collection, can contain alphanumeric or dash characters | 
  **retention_secs** | **int** | number of seconds after which data is purged, based on event time | [optional]
  **sources** | [**[KafkaSourceWrapper]**](KafkaSourceWrapper.md) | List of sources from which to ingest data | [optional]
- **time_partition_resolution_secs** | **int** | If non-null, the collection will be time partitioned and each partition will be time_partition_resolution_secs wide. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
@@ -1432,9 +1264,7 @@ async def call_api():
         clustering_key=[
         FieldPartition(
             field_name="address.city.zipcode",
-            keys=[
-                "Values of a record to partition on. This is not needed if the partition type is AUTO",
-            ],
+            keys=["value1","value2"],
             type="AUTO",
         ),
     ],
@@ -1452,7 +1282,7 @@ async def call_api():
             input_fields=[
                 InputField(
                     field_name="address.city.zipcode",
-                    if_missing="['SKIP', 'PASS']",
+                    if_missing="SKIP",
                     is_drop=True,
                     param="zip",
                 ),
@@ -1461,32 +1291,14 @@ async def call_api():
             name="myTestMapping",
             output_field=OutputField(
                 field_name="zip_hash",
-                on_error="['SKIP', 'FAIL']",
+                on_error="SKIP",
                 value=SqlExpression(
                     sql="SHA256()",
                 ),
             ),
         ),
     ],
-        field_schemas=[
-        FieldSchema(
-            field_name="address.city.zipcode",
-            field_options=FieldOptions(
-                column_index_mode="store",
-                index_mode="index",
-                range_index_mode="v1_index",
-                type_index_mode="index",
-            ),
-        ),
-    ],
         insert_only=True,
-        inverted_index_group_encoding_options=InvertedIndexGroupEncodingOptions(
-        doc_id_codec="doc_id_codec_example",
-        event_time_codec="event_time_codec_example",
-        format_version=1,
-        group_size=1,
-        restart_length=1,
-    ),
         name="global-transactions",
         retention_secs=1000000,
         sources=[
@@ -1525,7 +1337,6 @@ async def call_api():
             ),
         ),
     ],
-        time_partition_resolution_secs=1,
         async_req=True,
     )
     if isinstance(api_response, rockset.ApiException):
@@ -1545,13 +1356,10 @@ Name | Type | Description  | Notes
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
  **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | list of mappings | [optional]
- **field_schemas** | [**[FieldSchema]**](FieldSchema.md) | list of field schemas | [optional]
  **insert_only** | **bool** | If true disallows updates and deletes, but makes indexing more efficient | [optional]
- **inverted_index_group_encoding_options** | [**InvertedIndexGroupEncodingOptions**](InvertedIndexGroupEncodingOptions.md) |  | [optional]
  **name** | **str** | unique identifier for collection, can contain alphanumeric or dash characters | 
  **retention_secs** | **int** | number of seconds after which data is purged, based on event time | [optional]
  **sources** | [**[KinesisStorageSourceWrapper]**](KinesisStorageSourceWrapper.md) | List of sources from which to ingest data | [optional]
- **time_partition_resolution_secs** | **int** | If non-null, the collection will be time partitioned and each partition will be time_partition_resolution_secs wide. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
@@ -1631,9 +1439,7 @@ async def call_api():
         clustering_key=[
         FieldPartition(
             field_name="address.city.zipcode",
-            keys=[
-                "Values of a record to partition on. This is not needed if the partition type is AUTO",
-            ],
+            keys=["value1","value2"],
             type="AUTO",
         ),
     ],
@@ -1651,7 +1457,7 @@ async def call_api():
             input_fields=[
                 InputField(
                     field_name="address.city.zipcode",
-                    if_missing="['SKIP', 'PASS']",
+                    if_missing="SKIP",
                     is_drop=True,
                     param="zip",
                 ),
@@ -1660,32 +1466,14 @@ async def call_api():
             name="myTestMapping",
             output_field=OutputField(
                 field_name="zip_hash",
-                on_error="['SKIP', 'FAIL']",
+                on_error="SKIP",
                 value=SqlExpression(
                     sql="SHA256()",
                 ),
             ),
         ),
     ],
-        field_schemas=[
-        FieldSchema(
-            field_name="address.city.zipcode",
-            field_options=FieldOptions(
-                column_index_mode="store",
-                index_mode="index",
-                range_index_mode="v1_index",
-                type_index_mode="index",
-            ),
-        ),
-    ],
         insert_only=True,
-        inverted_index_group_encoding_options=InvertedIndexGroupEncodingOptions(
-        doc_id_codec="doc_id_codec_example",
-        event_time_codec="event_time_codec_example",
-        format_version=1,
-        group_size=1,
-        restart_length=1,
-    ),
         name="global-transactions",
         retention_secs=1000000,
         sources=[
@@ -1720,7 +1508,6 @@ async def call_api():
             ),
         ),
     ],
-        time_partition_resolution_secs=1,
         async_req=True,
     )
     if isinstance(api_response, rockset.ApiException):
@@ -1740,13 +1527,10 @@ Name | Type | Description  | Notes
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
  **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | list of mappings | [optional]
- **field_schemas** | [**[FieldSchema]**](FieldSchema.md) | list of field schemas | [optional]
  **insert_only** | **bool** | If true disallows updates and deletes, but makes indexing more efficient | [optional]
- **inverted_index_group_encoding_options** | [**InvertedIndexGroupEncodingOptions**](InvertedIndexGroupEncodingOptions.md) |  | [optional]
  **name** | **str** | unique identifier for collection, can contain alphanumeric or dash characters | 
  **retention_secs** | **int** | number of seconds after which data is purged, based on event time | [optional]
  **sources** | [**[MongodbSourceWrapper]**](MongodbSourceWrapper.md) | List of sources from which to ingest data | [optional]
- **time_partition_resolution_secs** | **int** | If non-null, the collection will be time partitioned and each partition will be time_partition_resolution_secs wide. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
@@ -1826,9 +1610,7 @@ async def call_api():
         clustering_key=[
         FieldPartition(
             field_name="address.city.zipcode",
-            keys=[
-                "Values of a record to partition on. This is not needed if the partition type is AUTO",
-            ],
+            keys=["value1","value2"],
             type="AUTO",
         ),
     ],
@@ -1846,7 +1628,7 @@ async def call_api():
             input_fields=[
                 InputField(
                     field_name="address.city.zipcode",
-                    if_missing="['SKIP', 'PASS']",
+                    if_missing="SKIP",
                     is_drop=True,
                     param="zip",
                 ),
@@ -1855,32 +1637,14 @@ async def call_api():
             name="myTestMapping",
             output_field=OutputField(
                 field_name="zip_hash",
-                on_error="['SKIP', 'FAIL']",
+                on_error="SKIP",
                 value=SqlExpression(
                     sql="SHA256()",
                 ),
             ),
         ),
     ],
-        field_schemas=[
-        FieldSchema(
-            field_name="address.city.zipcode",
-            field_options=FieldOptions(
-                column_index_mode="store",
-                index_mode="index",
-                range_index_mode="v1_index",
-                type_index_mode="index",
-            ),
-        ),
-    ],
         insert_only=True,
-        inverted_index_group_encoding_options=InvertedIndexGroupEncodingOptions(
-        doc_id_codec="doc_id_codec_example",
-        event_time_codec="event_time_codec_example",
-        format_version=1,
-        group_size=1,
-        restart_length=1,
-    ),
         name="global-transactions",
         retention_secs=1000000,
         sources=[
@@ -1911,25 +1675,12 @@ async def call_api():
             integration_name="aws-integration",
             s3=SourceS3(
                 bucket="s3://customer-account-info",
-                format="none",
-                mappings=[
-                    FieldMask(
-                        input_path=[
-                            "input_path_example",
-                        ],
-                        mask=FieldMaskMask(
-                            args={},
-                            name="name_example",
-                        ),
-                    ),
-                ],
                 pattern="prefix/to/**/keys/*.format",
                 prefix="prefix/to/keys",
                 region="us-west-2",
             ),
         ),
     ],
-        time_partition_resolution_secs=1,
         async_req=True,
     )
     if isinstance(api_response, rockset.ApiException):
@@ -1949,13 +1700,10 @@ Name | Type | Description  | Notes
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
  **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | list of mappings | [optional]
- **field_schemas** | [**[FieldSchema]**](FieldSchema.md) | list of field schemas | [optional]
  **insert_only** | **bool** | If true disallows updates and deletes, but makes indexing more efficient | [optional]
- **inverted_index_group_encoding_options** | [**InvertedIndexGroupEncodingOptions**](InvertedIndexGroupEncodingOptions.md) |  | [optional]
  **name** | **str** | unique identifier for collection, can contain alphanumeric or dash characters | 
  **retention_secs** | **int** | number of seconds after which data is purged, based on event time | [optional]
  **sources** | [**[S3SourceWrapper]**](S3SourceWrapper.md) | List of sources from which to ingest data | [optional]
- **time_partition_resolution_secs** | **int** | If non-null, the collection will be time partitioned and each partition will be time_partition_resolution_secs wide. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type

@@ -1,9 +1,3 @@
-## In progress
-- README postprocessing
-- polishing
-- QA
-- complete last part of async support
-
 # rockset
 Rockset's REST API allows for creating and managing all resources in Rockset. Each supported endpoint is documented below.
 
@@ -77,8 +71,6 @@ with rockset.RocksetClient(host="https://api.rs2.usw2.rockset.com", apikey="APIK
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *https://api.rs2.usw2.rockset.com*
-
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *APIKeysApi* | [**create_api_key**](docs/APIKeysApi.md#create_api_key) | **POST** /v1/orgs/self/users/self/apikeys | Create API Key
@@ -106,10 +98,11 @@ Class | Method | HTTP request | Description
 *CollectionsApi* | [**get_collection**](docs/CollectionsApi.md#get_collection) | **GET** /v1/orgs/self/ws/{workspace}/collections/{collection} | Retrieve Collection
 *CollectionsApi* | [**list_collections**](docs/CollectionsApi.md#list_collections) | **GET** /v1/orgs/self/collections | List Collections
 *CollectionsApi* | [**workspace_collections**](docs/CollectionsApi.md#workspace_collections) | **GET** /v1/orgs/self/ws/{workspace}/collections | List Collections in Workspace
-*CustomRolesBetaApi* | [**create_role**](docs/CustomRolesBetaApi.md#create_role) | **POST** /v1/orgs/self/roles | Create a Role
-*CustomRolesBetaApi* | [**delete_role**](docs/CustomRolesBetaApi.md#delete_role) | **DELETE** /v1/orgs/self/roles/{roleName} | Delete a Role
-*CustomRolesBetaApi* | [**list_roles**](docs/CustomRolesBetaApi.md#list_roles) | **GET** /v1/orgs/self/roles | List Roles
-*CustomRolesBetaApi* | [**update_role**](docs/CustomRolesBetaApi.md#update_role) | **POST** /v1/orgs/self/roles/{roleName} | Update a Role
+*CustomRolesApi* | [**create_role**](docs/CustomRolesApi.md#create_role) | **POST** /v1/orgs/self/roles | Create a Role
+*CustomRolesApi* | [**delete_role**](docs/CustomRolesApi.md#delete_role) | **DELETE** /v1/orgs/self/roles/{roleName} | Delete a Role
+*CustomRolesApi* | [**get_role**](docs/CustomRolesApi.md#get_role) | **GET** /v1/orgs/self/roles/{roleName} | Retrieve role
+*CustomRolesApi* | [**list_roles**](docs/CustomRolesApi.md#list_roles) | **GET** /v1/orgs/self/roles | List Roles
+*CustomRolesApi* | [**update_role**](docs/CustomRolesApi.md#update_role) | **POST** /v1/orgs/self/roles/{roleName} | Update a Role
 *DocumentsApi* | [**add_documents**](docs/DocumentsApi.md#add_documents) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/docs | Add Documents
 *DocumentsApi* | [**delete_documents**](docs/DocumentsApi.md#delete_documents) | **DELETE** /v1/orgs/self/ws/{workspace}/collections/{collection}/docs | Delete Documents
 *DocumentsApi* | [**patch_documents**](docs/DocumentsApi.md#patch_documents) | **PATCH** /v1/orgs/self/ws/{workspace}/collections/{collection}/docs | Patch Documents
@@ -158,7 +151,6 @@ Class | Method | HTTP request | Description
 *VirtualInstancesApi* | [**get_virtual_instance**](docs/VirtualInstancesApi.md#get_virtual_instance) | **GET** /v1/orgs/self/virtualinstances/{virtualInstanceId} | Retrieve Virtual Instance
 *VirtualInstancesApi* | [**list_virtual_instances**](docs/VirtualInstancesApi.md#list_virtual_instances) | **GET** /v1/orgs/self/virtualinstances | List Virtual Instances
 *VirtualInstancesApi* | [**set_virtual_instance**](docs/VirtualInstancesApi.md#set_virtual_instance) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId} | Update Virtual Instance
-*WorkspacesApi* | [**child_workspaces**](docs/WorkspacesApi.md#child_workspaces) | **GET** /v1/orgs/self/ws/{workspace}/ws | List Workspaces in Workspace
 *WorkspacesApi* | [**create_workspace**](docs/WorkspacesApi.md#create_workspace) | **POST** /v1/orgs/self/ws | Create Workspace
 *WorkspacesApi* | [**delete_workspace**](docs/WorkspacesApi.md#delete_workspace) | **DELETE** /v1/orgs/self/ws/{workspace} | Delete Workspace
 *WorkspacesApi* | [**get_workspace**](docs/WorkspacesApi.md#get_workspace) | **GET** /v1/orgs/self/ws/{workspace} | Retrieve Workspace
@@ -226,11 +218,7 @@ Class | Method | HTTP request | Description
  - [ExecuteQueryLambdaRequest](docs/ExecuteQueryLambdaRequest.md)
  - [FieldMappingQuery](docs/FieldMappingQuery.md)
  - [FieldMappingV2](docs/FieldMappingV2.md)
- - [FieldMask](docs/FieldMask.md)
- - [FieldMaskMask](docs/FieldMaskMask.md)
- - [FieldOptions](docs/FieldOptions.md)
  - [FieldPartition](docs/FieldPartition.md)
- - [FieldSchema](docs/FieldSchema.md)
  - [FileUploadCollectionCreationRequest](docs/FileUploadCollectionCreationRequest.md)
  - [FileUploadSourceWrapper](docs/FileUploadSourceWrapper.md)
  - [FormatParams](docs/FormatParams.md)
@@ -248,7 +236,6 @@ Class | Method | HTTP request | Description
  - [GetWorkspaceResponse](docs/GetWorkspaceResponse.md)
  - [InputField](docs/InputField.md)
  - [Integration](docs/Integration.md)
- - [InvertedIndexGroupEncodingOptions](docs/InvertedIndexGroupEncodingOptions.md)
  - [KafkaCollectionCreationRequest](docs/KafkaCollectionCreationRequest.md)
  - [KafkaIntegration](docs/KafkaIntegration.md)
  - [KafkaIntegrationCreationRequest](docs/KafkaIntegrationCreationRequest.md)
@@ -355,23 +342,4 @@ The RocksetClient object must be instantiated with an apikey. You can create you
 ## Author
 
 Rockset
-
-## Notes for Large OpenAPI documents
-If the OpenAPI document is large, imports in rockset.apis and rockset.models may fail with a
-RecursionError indicating the maximum recursion limit has been exceeded. In that case, there are a couple of solutions:
-
-Solution 1:
-Use specific imports for apis and models like:
-- `from rockset.api.default_api import DefaultApi`
-- `from rockset.model.pet import Pet`
-
-Solution 2:
-Before importing the package, adjust the maximum recursion limit as shown below:
-```
-import sys
-sys.setrecursionlimit(1500)
-import rockset
-from rockset.apis import *
-from rockset.models import *
-```
 

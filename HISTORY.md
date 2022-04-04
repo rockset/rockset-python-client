@@ -1,3 +1,6 @@
+### v0.0.6
+    - Update client for API updates
+
 ### v0.0.5
     - Reintroduce correct formatting for code examples in docstrings
 
