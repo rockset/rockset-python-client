@@ -1,3 +1,8 @@
+### v0.0.7
+    - Update client for async options
+    - Update readme
+    - Remove unnecessary imports
+
 ### v0.0.6
     - Update client for API updates
 
