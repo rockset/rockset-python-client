@@ -22,12 +22,7 @@ Create a new workspace.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.create_workspace_response import CreateWorkspaceResponse
-from rockset.model.create_workspace_request import CreateWorkspaceRequest
-from rockset.model.error_model import ErrorModel
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -115,11 +110,7 @@ Remove a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.error_model import ErrorModel
-from rockset.model.delete_workspace_response import DeleteWorkspaceResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -203,11 +194,7 @@ Get information about a single workspace.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.get_workspace_response import GetWorkspaceResponse
-from rockset.model.error_model import ErrorModel
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -291,11 +278,7 @@ List all workspaces in an organization.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.list_workspaces_response import ListWorkspacesResponse
-from rockset.model.error_model import ErrorModel
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client

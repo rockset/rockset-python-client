@@ -30,12 +30,7 @@ Create a new integration.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.create_integration_response import CreateIntegrationResponse
-from rockset.model.error_model import ErrorModel
-from rockset.model.azure_blob_storage_integration_creation_request import AzureBlobStorageIntegrationCreationRequest
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -127,12 +122,7 @@ Create a new integration.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.create_integration_response import CreateIntegrationResponse
-from rockset.model.error_model import ErrorModel
-from rockset.model.azure_event_hubs_integration_creation_request import AzureEventHubsIntegrationCreationRequest
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -223,12 +213,7 @@ Create a new integration.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.create_integration_response import CreateIntegrationResponse
-from rockset.model.error_model import ErrorModel
-from rockset.model.dynamodb_integration_creation_request import DynamodbIntegrationCreationRequest
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -327,12 +312,7 @@ Create a new integration.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.create_integration_response import CreateIntegrationResponse
-from rockset.model.error_model import ErrorModel
-from rockset.model.gcs_integration_creation_request import GcsIntegrationCreationRequest
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -426,12 +406,7 @@ Create a new integration.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.kafka_integration_creation_request import KafkaIntegrationCreationRequest
-from rockset.model.create_integration_response import CreateIntegrationResponse
-from rockset.model.error_model import ErrorModel
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -459,6 +434,11 @@ async def call_api():
         kafka_topic_names=[
             "kafka_topic_names_example",
         ],
+        schema_registry_config=SchemaRegistryConfig(
+            key="key_example",
+            secret="secret_example",
+            url="url_example",
+        ),
         security_config=KafkaV3SecurityConfig(
             api_key="api_key_example",
             secret="secret_example",
@@ -532,12 +512,7 @@ Create a new integration.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.create_integration_response import CreateIntegrationResponse
-from rockset.model.kinesis_integration_creation_request import KinesisIntegrationCreationRequest
-from rockset.model.error_model import ErrorModel
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -635,12 +610,7 @@ Create a new integration.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.create_integration_response import CreateIntegrationResponse
-from rockset.model.error_model import ErrorModel
-from rockset.model.mongodb_integration_creation_request import MongodbIntegrationCreationRequest
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -732,12 +702,7 @@ Create a new integration.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.create_integration_response import CreateIntegrationResponse
-from rockset.model.error_model import ErrorModel
-from rockset.model.s3_integration_creation_request import S3IntegrationCreationRequest
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -835,12 +800,7 @@ Create a new integration.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.create_integration_response import CreateIntegrationResponse
-from rockset.model.error_model import ErrorModel
-from rockset.model.segment_integration_creation_request import SegmentIntegrationCreationRequest
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -931,11 +891,7 @@ Remove an integration.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.delete_integration_response import DeleteIntegrationResponse
-from rockset.model.error_model import ErrorModel
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1021,11 +977,7 @@ Retrieve information about a single integration.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.error_model import ErrorModel
-from rockset.model.get_integration_response import GetIntegrationResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1111,11 +1063,7 @@ List all integrations in an organization.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.list_integrations_response import ListIntegrationsResponse
-from rockset.model.error_model import ErrorModel
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client

@@ -23,12 +23,7 @@ Create a role for your organization.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.create_role_request import CreateRoleRequest
-from rockset.model.error_model import ErrorModel
-from rockset.model.role_response import RoleResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -123,11 +118,7 @@ Delete a role for your organization.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.error_model import ErrorModel
-from rockset.model.role_response import RoleResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -213,11 +204,7 @@ Retrieve a role by name for your organization.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.error_model import ErrorModel
-from rockset.model.role_response import RoleResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -303,11 +290,7 @@ List all roles for your organization.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.list_roles_response import ListRolesResponse
-from rockset.model.error_model import ErrorModel
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -388,12 +371,7 @@ Update a role for your organization.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.error_model import ErrorModel
-from rockset.model.role_response import RoleResponse
-from rockset.model.update_role_request import UpdateRoleRequest
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client

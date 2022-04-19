@@ -21,12 +21,7 @@ Add documents to a collection.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.add_documents_request import AddDocumentsRequest
-from rockset.model.add_documents_response import AddDocumentsResponse
-from rockset.model.error_model import ErrorModel
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -116,12 +111,7 @@ Delete documents from a collection.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.delete_documents_request import DeleteDocumentsRequest
-from rockset.model.error_model import ErrorModel
-from rockset.model.delete_documents_response import DeleteDocumentsResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -219,12 +209,7 @@ Update existing documents in a collection.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.patch_documents_request import PatchDocumentsRequest
-from rockset.model.error_model import ErrorModel
-from rockset.model.patch_documents_response import PatchDocumentsResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client

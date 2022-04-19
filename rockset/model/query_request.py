@@ -30,7 +30,9 @@ from rockset.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from rockset.model.async_query_options import AsyncQueryOptions
     from rockset.model.query_request_sql import QueryRequestSql
+    globals()['AsyncQueryOptions'] = AsyncQueryOptions
     globals()['QueryRequestSql'] = QueryRequestSql
 
 
@@ -88,6 +90,7 @@ class QueryRequest(ModelNormal):
         lazy_import()
         return {
             'sql': (QueryRequestSql,),  # noqa: E501
+            'async_options': (AsyncQueryOptions,),  # noqa: E501
         }
 
     @cached_property
@@ -97,6 +100,7 @@ class QueryRequest(ModelNormal):
 
     attribute_map = {
         'sql': 'sql',  # noqa: E501
+        'async_options': 'async_options',  # noqa: E501
     }
 
     read_only_vars = {
@@ -143,6 +147,7 @@ class QueryRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            async_options (AsyncQueryOptions): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -196,6 +201,7 @@ class QueryRequest(ModelNormal):
 
         Keyword Args:
             sql (QueryRequestSql):
+            async_options (AsyncQueryOptions): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

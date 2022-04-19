@@ -24,7 +24,10 @@ from rockset.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
+from rockset.model.cancel_query_response import CancelQueryResponse
 from rockset.model.error_model import ErrorModel
+from rockset.model.list_queries_response import ListQueriesResponse
+from rockset.model.query_pagination_response import QueryPaginationResponse
 from rockset.model.query_request import QueryRequest
 from rockset.model.query_response import QueryResponse
 from rockset.model.validate_query_response import ValidateQueryResponse
@@ -42,6 +45,218 @@ class QueriesApi(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
+        self.cancel_query_endpoint = _Endpoint(
+            settings={
+                'response_type': (CancelQueryResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/queries/{queryId}'.split('#')[0],
+                'operation_id': 'cancel_query',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'query_id',
+                ],
+                'required': [
+                    'query_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'query_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'query_id': 'queryId',
+                },
+                'location_map': {
+                    'query_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.get_query_endpoint = _Endpoint(
+            settings={
+                'response_type': (QueryResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/queries/{queryId}'.split('#')[0],
+                'operation_id': 'get_query',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'query_id',
+                ],
+                'required': [
+                    'query_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'query_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'query_id': 'queryId',
+                },
+                'location_map': {
+                    'query_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.get_query_results_endpoint = _Endpoint(
+            settings={
+                'response_type': (QueryPaginationResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/queries/{queryId}/pages'.split('#')[0],
+                'operation_id': 'get_query_results',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'query_id',
+                    'cursor',
+                    'docs',
+                    'offset',
+                ],
+                'required': [
+                    'query_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'query_id':
+                        (str,),
+                    'cursor':
+                        (str,),
+                    'docs':
+                        (int,),
+                    'offset':
+                        (int,),
+                },
+                'attribute_map': {
+                    'query_id': 'queryId',
+                    'cursor': 'cursor',
+                    'docs': 'docs',
+                    'offset': 'offset',
+                },
+                'location_map': {
+                    'query_id': 'path',
+                    'cursor': 'query',
+                    'docs': 'query',
+                    'offset': 'query',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.list_active_queries_endpoint = _Endpoint(
+            settings={
+                'response_type': (ListQueriesResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/queries'.split('#')[0],
+                'operation_id': 'list_active_queries',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                ],
+                'required': [],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
         self.query_endpoint = _Endpoint(
             settings={
                 'response_type': (QueryResponse,),
@@ -145,10 +360,339 @@ class QueriesApi(object):
             api_client=api_client
         )
 
+    def cancel_query(
+        self,
+        *,
+        query_id: str,
+        **kwargs
+    ) -> typing.Union[CancelQueryResponse, asyncio.Future]:
+        """Cancel query  # noqa: E501
+
+        Attempts to cancel an actively-running query.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.QueriesApi.cancel_query(
+            query_id="queryId_example",
+            async_req=True,
+        )
+        result = await future
+        ```
+
+        Keyword Args:
+            query_id (str): [required]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is False.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            CancelQueryResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', False
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['query_id'] = \
+            query_id
+        return self.cancel_query_endpoint.call_with_http_info(**kwargs)
+
+    def get_query(
+        self,
+        *,
+        query_id: str,
+        **kwargs
+    ) -> typing.Union[QueryResponse, asyncio.Future]:
+        """Get query information  # noqa: E501
+
+        Returns information about a query.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.QueriesApi.get_query(
+            query_id="queryId_example",
+            async_req=True,
+        )
+        result = await future
+        ```
+
+        Keyword Args:
+            query_id (str): [required]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is False.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            QueryResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', False
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['query_id'] = \
+            query_id
+        return self.get_query_endpoint.call_with_http_info(**kwargs)
+
+    def get_query_results(
+        self,
+        *,
+        query_id: str,
+        cursor: str = None,
+        docs: int = None,
+        offset: int = None,
+        **kwargs
+    ) -> typing.Union[QueryPaginationResponse, asyncio.Future]:
+        """Fetch query results page  # noqa: E501
+
+        Returns a page of query results.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.QueriesApi.get_query_results(
+            query_id="queryId_example",
+            async_req=True,
+        )
+        result = await future
+        ```
+
+        Keyword Args:
+            query_id (str): [required]
+            cursor (str): [optional]
+            docs (int): [optional]
+            offset (int): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is False.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            QueryPaginationResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', False
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['query_id'] = \
+            query_id
+        return self.get_query_results_endpoint.call_with_http_info(**kwargs)
+
+    def list_active_queries(
+        self,
+        **kwargs
+    ) -> typing.Union[ListQueriesResponse, asyncio.Future]:
+        """List Queries  # noqa: E501
+
+        Lists actively queued and running queries.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        ```python
+        rs = RocksetClient(apikey=APIKEY)
+        future = rs.QueriesApi.list_active_queries(
+            async_req=True,
+        )
+        result = await future
+        ```
+
+        Keyword Args:
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done one the data received from the server.
+                Default is False.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            ListQueriesResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', False
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        return self.list_active_queries_endpoint.call_with_http_info(**kwargs)
+
     def query(
         self,
         *,
         sql: QueryRequestSql,
+        async_options: AsyncQueryOptions = None,
         **kwargs
     ) -> typing.Union[QueryResponse, asyncio.Future]:
         """Query  # noqa: E501
@@ -160,6 +704,11 @@ class QueriesApi(object):
         ```python
         rs = RocksetClient(apikey=APIKEY)
         future = rs.QueriesApi.query(
+            async_options=AsyncQueryOptions(
+                client_timeout_ms=1,
+                max_initial_results=1,
+                timeout_ms=1,
+            ),
             sql=QueryRequestSql(
                 default_row_limit=1,
                 generate_warnings=True,
@@ -180,6 +729,7 @@ class QueriesApi(object):
         ```
 
         Keyword Args:
+            async_options (AsyncQueryOptions): [optional]
             sql (QueryRequestSql): [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -244,6 +794,7 @@ class QueriesApi(object):
         self,
         *,
         sql: QueryRequestSql,
+        async_options: AsyncQueryOptions = None,
         **kwargs
     ) -> typing.Union[ValidateQueryResponse, asyncio.Future]:
         """Validate Query  # noqa: E501
@@ -255,6 +806,11 @@ class QueriesApi(object):
         ```python
         rs = RocksetClient(apikey=APIKEY)
         future = rs.QueriesApi.validate(
+            async_options=AsyncQueryOptions(
+                client_timeout_ms=1,
+                max_initial_results=1,
+                timeout_ms=1,
+            ),
             sql=QueryRequestSql(
                 default_row_limit=1,
                 generate_warnings=True,
@@ -275,6 +831,7 @@ class QueriesApi(object):
         ```
 
         Keyword Args:
+            async_options (AsyncQueryOptions): [optional]
             sql (QueryRequestSql): [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.

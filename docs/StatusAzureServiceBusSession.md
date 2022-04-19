@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**last_processed** | **datetime** | Most recent ISO-8601 date when a message from this session was processed | [optional] 
+**last_processed** | **str** | Most recent ISO-8601 date when a message from this session was processed | [optional] 
 **sequence_number** | **int** | The last processed sequence number within this session | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 

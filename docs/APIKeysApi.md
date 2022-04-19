@@ -23,12 +23,7 @@ Create a new API key for the authenticated user.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.create_api_key_request import CreateApiKeyRequest
-from rockset.model.error_model import ErrorModel
-from rockset.model.create_api_key_response import CreateApiKeyResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -116,11 +111,7 @@ Delete an API key for any user in your organization.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.delete_api_key_response import DeleteApiKeyResponse
-from rockset.model.error_model import ErrorModel
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -209,11 +200,7 @@ Retrieve a particular API key for any user in your organization.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.error_model import ErrorModel
-from rockset.model.get_api_key_response import GetApiKeyResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -253,6 +240,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **user** | **str** | Email of the API key owner. Use &#x60;self&#x60; to specify the currently authenticated user. |
  **name** | **str** | Name of the API key. |
+ **reveal** | **bool** | Reveal full key. | [optional]
 
 ### Return type
 
@@ -302,11 +290,7 @@ List API key metadata for any user in your organization.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.list_api_keys_response import ListApiKeysResponse
-from rockset.model.error_model import ErrorModel
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -392,12 +376,7 @@ Update the state of an API key for any user in your organization.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.error_model import ErrorModel
-from rockset.model.update_api_key_request import UpdateApiKeyRequest
-from rockset.model.update_api_key_response import UpdateApiKeyResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client

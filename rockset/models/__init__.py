@@ -13,6 +13,7 @@ from rockset.model.add_documents_request import AddDocumentsRequest
 from rockset.model.add_documents_response import AddDocumentsResponse
 from rockset.model.alias import Alias
 from rockset.model.api_key import ApiKey
+from rockset.model.async_query_options import AsyncQueryOptions
 from rockset.model.aws_access_key import AwsAccessKey
 from rockset.model.aws_role import AwsRole
 from rockset.model.azure_blob_storage_collection_creation_request import AzureBlobStorageCollectionCreationRequest
@@ -26,6 +27,7 @@ from rockset.model.azure_event_hubs_source_wrapper import AzureEventHubsSourceWr
 from rockset.model.azure_service_bus_collection_creation_request import AzureServiceBusCollectionCreationRequest
 from rockset.model.azure_service_bus_integration import AzureServiceBusIntegration
 from rockset.model.azure_service_bus_source_wrapper import AzureServiceBusSourceWrapper
+from rockset.model.cancel_query_response import CancelQueryResponse
 from rockset.model.cluster import Cluster
 from rockset.model.collection import Collection
 from rockset.model.collection_stats import CollectionStats
@@ -99,6 +101,7 @@ from rockset.model.list_aliases_response import ListAliasesResponse
 from rockset.model.list_api_keys_response import ListApiKeysResponse
 from rockset.model.list_collections_response import ListCollectionsResponse
 from rockset.model.list_integrations_response import ListIntegrationsResponse
+from rockset.model.list_queries_response import ListQueriesResponse
 from rockset.model.list_query_lambda_tags_response import ListQueryLambdaTagsResponse
 from rockset.model.list_query_lambda_versions_response import ListQueryLambdaVersionsResponse
 from rockset.model.list_query_lambdas_response import ListQueryLambdasResponse
@@ -115,6 +118,7 @@ from rockset.model.mongodb_source_wrapper import MongodbSourceWrapper
 from rockset.model.organization import Organization
 from rockset.model.organization_response import OrganizationResponse
 from rockset.model.output_field import OutputField
+from rockset.model.pagination import Pagination
 from rockset.model.pagination_info import PaginationInfo
 from rockset.model.patch_document import PatchDocument
 from rockset.model.patch_documents_request import PatchDocumentsRequest
@@ -123,6 +127,7 @@ from rockset.model.patch_operation import PatchOperation
 from rockset.model.privilege import Privilege
 from rockset.model.query_error import QueryError
 from rockset.model.query_field_type import QueryFieldType
+from rockset.model.query_info import QueryInfo
 from rockset.model.query_lambda import QueryLambda
 from rockset.model.query_lambda_sql import QueryLambdaSql
 from rockset.model.query_lambda_stats import QueryLambdaStats
@@ -130,6 +135,7 @@ from rockset.model.query_lambda_tag import QueryLambdaTag
 from rockset.model.query_lambda_tag_response import QueryLambdaTagResponse
 from rockset.model.query_lambda_version import QueryLambdaVersion
 from rockset.model.query_lambda_version_response import QueryLambdaVersionResponse
+from rockset.model.query_pagination_response import QueryPaginationResponse
 from rockset.model.query_parameter import QueryParameter
 from rockset.model.query_request import QueryRequest
 from rockset.model.query_request_sql import QueryRequestSql
@@ -141,6 +147,7 @@ from rockset.model.s3_collection_creation_request import S3CollectionCreationReq
 from rockset.model.s3_integration import S3Integration
 from rockset.model.s3_integration_creation_request import S3IntegrationCreationRequest
 from rockset.model.s3_source_wrapper import S3SourceWrapper
+from rockset.model.schema_registry_config import SchemaRegistryConfig
 from rockset.model.segment_integration import SegmentIntegration
 from rockset.model.segment_integration_creation_request import SegmentIntegrationCreationRequest
 from rockset.model.source import Source
@@ -155,6 +162,7 @@ from rockset.model.source_kinesis import SourceKinesis
 from rockset.model.source_mongo_db import SourceMongoDb
 from rockset.model.source_s3 import SourceS3
 from rockset.model.sql_expression import SqlExpression
+from rockset.model.stats import Stats
 from rockset.model.status import Status
 from rockset.model.status_azure_event_hubs import StatusAzureEventHubs
 from rockset.model.status_azure_event_hubs_partition import StatusAzureEventHubsPartition

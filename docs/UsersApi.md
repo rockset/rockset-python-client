@@ -25,12 +25,7 @@ Create a new user for an organization.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.create_user_response import CreateUserResponse
-from rockset.model.error_model import ErrorModel
-from rockset.model.create_user_request import CreateUserRequest
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -118,11 +113,7 @@ Delete a user from an organization.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.error_model import ErrorModel
-from rockset.model.delete_user_response import DeleteUserResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -208,11 +199,7 @@ Retrieve currently authenticated user.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.error_model import ErrorModel
-from rockset.model.user import User
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -293,11 +280,7 @@ Retrieve user by email.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.error_model import ErrorModel
-from rockset.model.user import User
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -383,11 +366,7 @@ Get all notification preferences.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.list_unsubscribe_preferences_response import ListUnsubscribePreferencesResponse
-from rockset.model.error_model import ErrorModel
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -468,11 +447,7 @@ Retrieve all users for an organization.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.error_model import ErrorModel
-from rockset.model.list_users_response import ListUsersResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -553,12 +528,7 @@ Update notification preference.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.error_model import ErrorModel
-from rockset.model.update_unsubscribe_preferences_request import UpdateUnsubscribePreferencesRequest
-from rockset.model.update_unsubscribe_preferences_response import UpdateUnsubscribePreferencesResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client

@@ -32,12 +32,7 @@ Create a Query Lambda in given workspace.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.query_lambda_version_response import QueryLambdaVersionResponse
-from rockset.model.create_query_lambda_request import CreateQueryLambdaRequest
-from rockset.model.error_model import ErrorModel
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -137,12 +132,7 @@ Create a tag for a specific Query Lambda version, or update that tag if it alrea
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.error_model import ErrorModel
-from rockset.model.create_query_lambda_tag_request import CreateQueryLambdaTagRequest
-from rockset.model.query_lambda_tag_response import QueryLambdaTagResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -235,11 +225,7 @@ Delete a Query Lambda.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.error_model import ErrorModel
-from rockset.model.delete_query_lambda_response import DeleteQueryLambdaResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -326,11 +312,7 @@ Delete a tag for a specific Query Lambda
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.error_model import ErrorModel
-from rockset.model.query_lambda_tag_response import QueryLambdaTagResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -420,11 +402,7 @@ Delete a Query Lambda version.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.query_lambda_version_response import QueryLambdaVersionResponse
-from rockset.model.error_model import ErrorModel
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -514,12 +492,7 @@ Execute a particular version of a Query Lambda.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.execute_query_lambda_request import ExecuteQueryLambdaRequest
-from rockset.model.error_model import ErrorModel
-from rockset.model.query_response import QueryResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -610,12 +583,7 @@ Execute the Query Lambda version associated with a given tag.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.execute_query_lambda_request import ExecuteQueryLambdaRequest
-from rockset.model.error_model import ErrorModel
-from rockset.model.query_response import QueryResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -706,11 +674,7 @@ Retrieve the Query Lambda version associated with a given tag.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.error_model import ErrorModel
-from rockset.model.query_lambda_tag_response import QueryLambdaTagResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -800,11 +764,7 @@ Retrieve details for a specified version of a Query Lambda.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.query_lambda_version_response import QueryLambdaVersionResponse
-from rockset.model.error_model import ErrorModel
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -894,11 +854,7 @@ List all Query Lambdas in an organization.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.list_query_lambdas_response import ListQueryLambdasResponse
-from rockset.model.error_model import ErrorModel
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -979,11 +935,7 @@ List all tags associated with a Query Lambda
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.error_model import ErrorModel
-from rockset.model.list_query_lambda_tags_response import ListQueryLambdaTagsResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1070,11 +1022,7 @@ List all versions of a Query Lambda.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.error_model import ErrorModel
-from rockset.model.list_query_lambda_versions_response import ListQueryLambdaVersionsResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1161,11 +1109,7 @@ List all Query Lambdas under given workspace.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.list_query_lambdas_response import ListQueryLambdasResponse
-from rockset.model.error_model import ErrorModel
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1249,12 +1193,7 @@ Create a new version of a Query Lambda in given workspace.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.query_lambda_version_response import QueryLambdaVersionResponse
-from rockset.model.update_query_lambda_request import UpdateQueryLambdaRequest
-from rockset.model.error_model import ErrorModel
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client

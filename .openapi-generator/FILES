@@ -5,6 +5,7 @@ docs/AddDocumentsResponse.md
 docs/Alias.md
 docs/AliasesApi.md
 docs/ApiKey.md
+docs/AsyncQueryOptions.md
 docs/AwsAccessKey.md
 docs/AwsRole.md
 docs/AzureBlobStorageCollectionCreationRequest.md
@@ -18,6 +19,7 @@ docs/AzureEventHubsSourceWrapper.md
 docs/AzureServiceBusCollectionCreationRequest.md
 docs/AzureServiceBusIntegration.md
 docs/AzureServiceBusSourceWrapper.md
+docs/CancelQueryResponse.md
 docs/Cluster.md
 docs/Collection.md
 docs/CollectionStats.md
@@ -95,6 +97,7 @@ docs/ListAliasesResponse.md
 docs/ListApiKeysResponse.md
 docs/ListCollectionsResponse.md
 docs/ListIntegrationsResponse.md
+docs/ListQueriesResponse.md
 docs/ListQueryLambdaTagsResponse.md
 docs/ListQueryLambdaVersionsResponse.md
 docs/ListQueryLambdasResponse.md
@@ -112,6 +115,7 @@ docs/Organization.md
 docs/OrganizationResponse.md
 docs/OrganizationsApi.md
 docs/OutputField.md
+docs/Pagination.md
 docs/PaginationInfo.md
 docs/PatchDocument.md
 docs/PatchDocumentsRequest.md
@@ -121,6 +125,7 @@ docs/Privilege.md
 docs/QueriesApi.md
 docs/QueryError.md
 docs/QueryFieldType.md
+docs/QueryInfo.md
 docs/QueryLambda.md
 docs/QueryLambdaSql.md
 docs/QueryLambdaStats.md
@@ -129,6 +134,7 @@ docs/QueryLambdaTagResponse.md
 docs/QueryLambdaVersion.md
 docs/QueryLambdaVersionResponse.md
 docs/QueryLambdasApi.md
+docs/QueryPaginationResponse.md
 docs/QueryParameter.md
 docs/QueryRequest.md
 docs/QueryRequestSql.md
@@ -140,6 +146,7 @@ docs/S3CollectionCreationRequest.md
 docs/S3Integration.md
 docs/S3IntegrationCreationRequest.md
 docs/S3SourceWrapper.md
+docs/SchemaRegistryConfig.md
 docs/SegmentIntegration.md
 docs/SegmentIntegrationCreationRequest.md
 docs/Source.md
@@ -154,6 +161,7 @@ docs/SourceKinesis.md
 docs/SourceMongoDb.md
 docs/SourceS3.md
 docs/SqlExpression.md
+docs/Stats.md
 docs/Status.md
 docs/StatusAzureEventHubs.md
 docs/StatusAzureEventHubsPartition.md
@@ -206,6 +214,7 @@ rockset/model/add_documents_request.py
 rockset/model/add_documents_response.py
 rockset/model/alias.py
 rockset/model/api_key.py
+rockset/model/async_query_options.py
 rockset/model/aws_access_key.py
 rockset/model/aws_role.py
 rockset/model/azure_blob_storage_collection_creation_request.py
@@ -219,6 +228,7 @@ rockset/model/azure_event_hubs_source_wrapper.py
 rockset/model/azure_service_bus_collection_creation_request.py
 rockset/model/azure_service_bus_integration.py
 rockset/model/azure_service_bus_source_wrapper.py
+rockset/model/cancel_query_response.py
 rockset/model/cluster.py
 rockset/model/collection.py
 rockset/model/collection_stats.py
@@ -292,6 +302,7 @@ rockset/model/list_aliases_response.py
 rockset/model/list_api_keys_response.py
 rockset/model/list_collections_response.py
 rockset/model/list_integrations_response.py
+rockset/model/list_queries_response.py
 rockset/model/list_query_lambda_tags_response.py
 rockset/model/list_query_lambda_versions_response.py
 rockset/model/list_query_lambdas_response.py
@@ -308,6 +319,7 @@ rockset/model/mongodb_source_wrapper.py
 rockset/model/organization.py
 rockset/model/organization_response.py
 rockset/model/output_field.py
+rockset/model/pagination.py
 rockset/model/pagination_info.py
 rockset/model/patch_document.py
 rockset/model/patch_documents_request.py
@@ -316,6 +328,7 @@ rockset/model/patch_operation.py
 rockset/model/privilege.py
 rockset/model/query_error.py
 rockset/model/query_field_type.py
+rockset/model/query_info.py
 rockset/model/query_lambda.py
 rockset/model/query_lambda_sql.py
 rockset/model/query_lambda_stats.py
@@ -323,6 +336,7 @@ rockset/model/query_lambda_tag.py
 rockset/model/query_lambda_tag_response.py
 rockset/model/query_lambda_version.py
 rockset/model/query_lambda_version_response.py
+rockset/model/query_pagination_response.py
 rockset/model/query_parameter.py
 rockset/model/query_request.py
 rockset/model/query_request_sql.py
@@ -333,6 +347,7 @@ rockset/model/s3_collection_creation_request.py
 rockset/model/s3_integration.py
 rockset/model/s3_integration_creation_request.py
 rockset/model/s3_source_wrapper.py
+rockset/model/schema_registry_config.py
 rockset/model/segment_integration.py
 rockset/model/segment_integration_creation_request.py
 rockset/model/source.py
@@ -347,6 +362,7 @@ rockset/model/source_kinesis.py
 rockset/model/source_mongo_db.py
 rockset/model/source_s3.py
 rockset/model/sql_expression.py
+rockset/model/stats.py
 rockset/model/status.py
 rockset/model/status_azure_event_hubs.py
 rockset/model/status_azure_event_hubs_partition.py

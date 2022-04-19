@@ -21,11 +21,7 @@ Get details about a virtual instance.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.error_model import ErrorModel
-from rockset.model.get_virtual_instance_response import GetVirtualInstanceResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -111,11 +107,7 @@ Retrieve all virtual instances in an organization.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.error_model import ErrorModel
-from rockset.model.list_virtual_instances_response import ListVirtualInstancesResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -196,12 +188,7 @@ Update the properties of a virtual instance.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.update_virtual_instance_response import UpdateVirtualInstanceResponse
-from rockset.model.update_virtual_instance_request import UpdateVirtualInstanceRequest
-from rockset.model.error_model import ErrorModel
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client

@@ -24,11 +24,7 @@ Create a view
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.create_view_request import CreateViewRequest
-from rockset.model.create_view_response import CreateViewResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -107,10 +103,7 @@ Delete a view
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.delete_view_response import DeleteViewResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -184,11 +177,7 @@ Get details about a view
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.error_model import ErrorModel
-from rockset.model.get_view_response import GetViewResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -275,11 +264,7 @@ Retrieve all views in an organization
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.error_model import ErrorModel
-from rockset.model.list_views_response import ListViewsResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -360,11 +345,7 @@ Update a view
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.update_view_request import UpdateViewRequest
-from rockset.model.update_view_response import UpdateViewResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -443,11 +424,7 @@ Retrieve all views in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.error_model import ErrorModel
-from rockset.model.list_views_response import ListViewsResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client

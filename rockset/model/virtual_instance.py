@@ -107,6 +107,9 @@ class VirtualInstance(ModelNormal):
             'PROVISIONING_RESOURCES': "PROVISIONING_RESOURCES",
             'REBALANCING_COLLECTIONS': "REBALANCING_COLLECTIONS",
             'ACTIVE': "ACTIVE",
+            'SUSPENDING': "SUSPENDING",
+            'SUSPENDED': "SUSPENDED",
+            'RESUMING': "RESUMING",
             'DELETED': "DELETED",
         },
     }

@@ -169,6 +169,7 @@ class APIKeysApi(object):
                 'all': [
                     'user',
                     'name',
+                    'reveal',
                 ],
                 'required': [
                     'user',
@@ -191,14 +192,18 @@ class APIKeysApi(object):
                         (str,),
                     'name':
                         (str,),
+                    'reveal':
+                        (bool,),
                 },
                 'attribute_map': {
                     'user': 'user',
                     'name': 'name',
+                    'reveal': 'reveal',
                 },
                 'location_map': {
                     'user': 'path',
                     'name': 'path',
+                    'reveal': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -503,6 +508,7 @@ class APIKeysApi(object):
         *,
         user: str,
         name: str,
+        reveal: bool = None,
         **kwargs
     ) -> typing.Union[GetApiKeyResponse, asyncio.Future]:
         """Retrieve API Key  # noqa: E501
@@ -524,6 +530,7 @@ class APIKeysApi(object):
         Keyword Args:
             user (str): Email of the API key owner. Use `self` to specify the currently authenticated user.. [required]
             name (str): Name of the API key.. [required]
+            reveal (bool): Reveal full key.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

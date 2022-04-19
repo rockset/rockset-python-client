@@ -32,12 +32,7 @@ Create new collection in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.create_collection_response import CreateCollectionResponse
-from rockset.model.error_model import ErrorModel
-from rockset.model.azure_blob_storage_collection_creation_request import AzureBlobStorageCollectionCreationRequest
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -204,12 +199,7 @@ Create new collection in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.create_collection_response import CreateCollectionResponse
-from rockset.model.error_model import ErrorModel
-from rockset.model.azure_event_hubs_collection_creation_request import AzureEventHubsCollectionCreationRequest
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -375,12 +365,7 @@ Create new collection in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.create_collection_response import CreateCollectionResponse
-from rockset.model.error_model import ErrorModel
-from rockset.model.azure_service_bus_collection_creation_request import AzureServiceBusCollectionCreationRequest
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -546,12 +531,7 @@ Create new collection in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.create_collection_response import CreateCollectionResponse
-from rockset.model.error_model import ErrorModel
-from rockset.model.dynamodb_collection_creation_request import DynamodbCollectionCreationRequest
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -719,12 +699,7 @@ Create new collection in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.create_collection_response import CreateCollectionResponse
-from rockset.model.error_model import ErrorModel
-from rockset.model.file_upload_collection_creation_request import FileUploadCollectionCreationRequest
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -891,12 +866,7 @@ Create new collection in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.create_collection_response import CreateCollectionResponse
-from rockset.model.error_model import ErrorModel
-from rockset.model.gcs_collection_creation_request import GcsCollectionCreationRequest
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1063,12 +1033,7 @@ Create new collection in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.create_collection_response import CreateCollectionResponse
-from rockset.model.kafka_collection_creation_request import KafkaCollectionCreationRequest
-from rockset.model.error_model import ErrorModel
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1235,12 +1200,7 @@ Create new collection in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.create_collection_response import CreateCollectionResponse
-from rockset.model.error_model import ErrorModel
-from rockset.model.kinesis_collection_creation_request import KinesisCollectionCreationRequest
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1410,12 +1370,7 @@ Create new collection in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.create_collection_response import CreateCollectionResponse
-from rockset.model.error_model import ErrorModel
-from rockset.model.mongodb_collection_creation_request import MongodbCollectionCreationRequest
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1581,12 +1536,7 @@ Create new collection in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.create_collection_response import CreateCollectionResponse
-from rockset.model.error_model import ErrorModel
-from rockset.model.s3_collection_creation_request import S3CollectionCreationRequest
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1754,11 +1704,7 @@ Delete a collection and all its documents from Rockset.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.delete_collection_response import DeleteCollectionResponse
-from rockset.model.error_model import ErrorModel
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1845,11 +1791,7 @@ Get details about a collection.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.error_model import ErrorModel
-from rockset.model.get_collection_response import GetCollectionResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1936,11 +1878,7 @@ Retrieve all collections in an organization.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.error_model import ErrorModel
-from rockset.model.list_collections_response import ListCollectionsResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -2021,11 +1959,7 @@ Retrieve all collections in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.error_model import ErrorModel
-from rockset.model.list_collections_response import ListCollectionsResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client

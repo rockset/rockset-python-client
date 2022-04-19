@@ -1050,6 +1050,11 @@ class IntegrationsApi(object):
                 kafka_topic_names=[
                     "kafka_topic_names_example",
                 ],
+                schema_registry_config=SchemaRegistryConfig(
+                    key="key_example",
+                    secret="secret_example",
+                    url="url_example",
+                ),
                 security_config=KafkaV3SecurityConfig(
                     api_key="api_key_example",
                     secret="secret_example",

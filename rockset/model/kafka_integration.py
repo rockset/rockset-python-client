@@ -31,8 +31,10 @@ from rockset.exceptions import ApiAttributeError
 
 def lazy_import():
     from rockset.model.kafka_v3_security_config import KafkaV3SecurityConfig
+    from rockset.model.schema_registry_config import SchemaRegistryConfig
     from rockset.model.status_kafka import StatusKafka
     globals()['KafkaV3SecurityConfig'] = KafkaV3SecurityConfig
+    globals()['SchemaRegistryConfig'] = SchemaRegistryConfig
     globals()['StatusKafka'] = StatusKafka
 
 
@@ -99,6 +101,7 @@ class KafkaIntegration(ModelNormal):
             'connection_string': (str,),  # noqa: E501
             'kafka_data_format': (str,),  # noqa: E501
             'kafka_topic_names': ([str],),  # noqa: E501
+            'schema_registry_config': (SchemaRegistryConfig,),  # noqa: E501
             'security_config': (KafkaV3SecurityConfig,),  # noqa: E501
             'source_status_by_topic': ({str: (StatusKafka,)},),  # noqa: E501
             'use_v3': (bool,),  # noqa: E501
@@ -114,6 +117,7 @@ class KafkaIntegration(ModelNormal):
         'connection_string': 'connection_string',  # noqa: E501
         'kafka_data_format': 'kafka_data_format',  # noqa: E501
         'kafka_topic_names': 'kafka_topic_names',  # noqa: E501
+        'schema_registry_config': 'schema_registry_config',  # noqa: E501
         'security_config': 'security_config',  # noqa: E501
         'source_status_by_topic': 'source_status_by_topic',  # noqa: E501
         'use_v3': 'use_v3',  # noqa: E501
@@ -166,6 +170,7 @@ class KafkaIntegration(ModelNormal):
             connection_string (str): kafka connection string. [optional]  # noqa: E501
             kafka_data_format (str): The format of the Kafka topics being tailed. [optional]  # noqa: E501
             kafka_topic_names ([str]): Kafka topics to tail. [optional]  # noqa: E501
+            schema_registry_config (SchemaRegistryConfig): [optional]  # noqa: E501
             security_config (KafkaV3SecurityConfig): [optional]  # noqa: E501
             source_status_by_topic ({str: (StatusKafka,)}): The status of the Kafka source by topic. [optional]  # noqa: E501
             use_v3 (bool): [optional]  # noqa: E501
@@ -223,6 +228,7 @@ class KafkaIntegration(ModelNormal):
             bootstrap_servers (str): [optional]  # noqa: E501
             kafka_data_format (str): The format of the Kafka topics being tailed. [optional]  # noqa: E501
             kafka_topic_names ([str]): Kafka topics to tail. [optional]  # noqa: E501
+            schema_registry_config (SchemaRegistryConfig): [optional]  # noqa: E501
             security_config (KafkaV3SecurityConfig): [optional]  # noqa: E501
             use_v3 (bool): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types

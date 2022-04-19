@@ -24,12 +24,7 @@ Create new alias in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.error_model import ErrorModel
-from rockset.model.create_alias_response import CreateAliasResponse
-from rockset.model.create_alias_request import CreateAliasRequest
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -121,10 +116,7 @@ Delete an alias.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.delete_alias_response import DeleteAliasResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -198,11 +190,7 @@ Get details about an alias
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.error_model import ErrorModel
-from rockset.model.get_alias_response import GetAliasResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -289,11 +277,7 @@ Retrieve all aliases in an organization
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.error_model import ErrorModel
-from rockset.model.list_aliases_response import ListAliasesResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -374,11 +358,7 @@ Update alias in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.get_alias_response import GetAliasResponse
-from rockset.model.update_alias_request import UpdateAliasRequest
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -457,11 +437,7 @@ Retrieve all aliases in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-import time
-import rockset
-from rockset import RocksetClient
-from rockset.model.error_model import ErrorModel
-from rockset.model.list_aliases_response import ListAliasesResponse
+from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client

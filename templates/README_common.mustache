@@ -1,26 +1,18 @@
 ```python
-{{#apiInfo}}{{#apis}}{{#-last}}{{#hasHttpSignatureMethods}}import datetime{{/hasHttpSignatureMethods}}{{/-last}}{{/apis}}{{/apiInfo}}
-import time
 import {{{packageName}}}
-from pprint import pprint
 {{#apiInfo}}
 {{#apis}}
 {{#-first}}
-from {{apiPackage}} import {{classFilename}}
-{{#imports}}
-{{{import}}}
-{{/imports}}
 {{#operations}}
 {{#operation}}
 {{#-first}}
 
-# Enter a context with an instance of the API client
 # Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-with {{{packageName}}}.RocksetClient(host="https://api.rs2.usw2.rockset.com", apikey="APIKEY") as rs:
-    try:
-        rs.APIKeysApi.create_api_key(name="api-key-name", role="member")
-    except {{{packageName}}}.ApiException as e:
-        print("Exception when calling ApiKey->create_api_key: %s\n" % e)
+rs = {{{packageName}}}.RocksetClient(host="https://api.rs2.usw2.rockset.com", apikey="APIKEY")
+try:
+    rs.APIKeysApi.create_api_key(name="api-key-name", role="member")
+except {{{packageName}}}.ApiException as e:
+    print("Exception when calling ApiKey->create_api_key: %s\n" % e)
 {{/-first}}
 {{/operation}}
 {{/operations}}

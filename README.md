@@ -46,27 +46,14 @@ import rockset
 Please follow the [installation procedure](#installation--usage) and then run the following:
 
 ```python
-
-import time
 import rockset
-from pprint import pprint
-from rockset.api import api_keys_api
-from rockset.model.create_api_key_request import CreateApiKeyRequest
-from rockset.model.create_api_key_response import CreateApiKeyResponse
-from rockset.model.delete_api_key_response import DeleteApiKeyResponse
-from rockset.model.error_model import ErrorModel
-from rockset.model.get_api_key_response import GetApiKeyResponse
-from rockset.model.list_api_keys_response import ListApiKeysResponse
-from rockset.model.update_api_key_request import UpdateApiKeyRequest
-from rockset.model.update_api_key_response import UpdateApiKeyResponse
 
-# Enter a context with an instance of the API client
 # Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-with rockset.RocksetClient(host="https://api.rs2.usw2.rockset.com", apikey="APIKEY") as rs:
-    try:
-        rs.APIKeysApi.create_api_key(name="api-key-name", role="member")
-    except rockset.ApiException as e:
-        print("Exception when calling ApiKey->create_api_key: %s\n" % e)
+rs = rockset.RocksetClient(host="https://api.rs2.usw2.rockset.com", apikey="APIKEY")
+try:
+    rs.APIKeysApi.create_api_key(name="api-key-name", role="member")
+except rockset.ApiException as e:
+    print("Exception when calling ApiKey->create_api_key: %s\n" % e)
 ```
 
 ## Documentation for API Endpoints
@@ -119,6 +106,10 @@ Class | Method | HTTP request | Description
 *IntegrationsApi* | [**get_integration**](docs/IntegrationsApi.md#get_integration) | **GET** /v1/orgs/self/integrations/{integration} | Retrieve Integration
 *IntegrationsApi* | [**list_integrations**](docs/IntegrationsApi.md#list_integrations) | **GET** /v1/orgs/self/integrations | List Integrations
 *OrganizationsApi* | [**get_organization**](docs/OrganizationsApi.md#get_organization) | **GET** /v1/orgs/self | Get Organization
+*QueriesApi* | [**cancel_query**](docs/QueriesApi.md#cancel_query) | **DELETE** /v1/orgs/self/queries/{queryId} | Cancel query
+*QueriesApi* | [**get_query**](docs/QueriesApi.md#get_query) | **GET** /v1/orgs/self/queries/{queryId} | Get query information
+*QueriesApi* | [**get_query_results**](docs/QueriesApi.md#get_query_results) | **GET** /v1/orgs/self/queries/{queryId}/pages | Fetch query results page
+*QueriesApi* | [**list_active_queries**](docs/QueriesApi.md#list_active_queries) | **GET** /v1/orgs/self/queries | List Queries
 *QueriesApi* | [**query**](docs/QueriesApi.md#query) | **POST** /v1/orgs/self/queries | Query
 *QueriesApi* | [**validate**](docs/QueriesApi.md#validate) | **POST** /v1/orgs/self/queries/validations | Validate Query
 *QueryLambdasApi* | [**create_query_lambda**](docs/QueryLambdasApi.md#create_query_lambda) | **POST** /v1/orgs/self/ws/{workspace}/lambdas | Create Query Lambda
@@ -163,6 +154,7 @@ Class | Method | HTTP request | Description
  - [AddDocumentsResponse](docs/AddDocumentsResponse.md)
  - [Alias](docs/Alias.md)
  - [ApiKey](docs/ApiKey.md)
+ - [AsyncQueryOptions](docs/AsyncQueryOptions.md)
  - [AwsAccessKey](docs/AwsAccessKey.md)
  - [AwsRole](docs/AwsRole.md)
  - [AzureBlobStorageCollectionCreationRequest](docs/AzureBlobStorageCollectionCreationRequest.md)
@@ -176,6 +168,7 @@ Class | Method | HTTP request | Description
  - [AzureServiceBusCollectionCreationRequest](docs/AzureServiceBusCollectionCreationRequest.md)
  - [AzureServiceBusIntegration](docs/AzureServiceBusIntegration.md)
  - [AzureServiceBusSourceWrapper](docs/AzureServiceBusSourceWrapper.md)
+ - [CancelQueryResponse](docs/CancelQueryResponse.md)
  - [Cluster](docs/Cluster.md)
  - [Collection](docs/Collection.md)
  - [CollectionStats](docs/CollectionStats.md)
@@ -249,6 +242,7 @@ Class | Method | HTTP request | Description
  - [ListApiKeysResponse](docs/ListApiKeysResponse.md)
  - [ListCollectionsResponse](docs/ListCollectionsResponse.md)
  - [ListIntegrationsResponse](docs/ListIntegrationsResponse.md)
+ - [ListQueriesResponse](docs/ListQueriesResponse.md)
  - [ListQueryLambdaTagsResponse](docs/ListQueryLambdaTagsResponse.md)
  - [ListQueryLambdaVersionsResponse](docs/ListQueryLambdaVersionsResponse.md)
  - [ListQueryLambdasResponse](docs/ListQueryLambdasResponse.md)
@@ -265,6 +259,7 @@ Class | Method | HTTP request | Description
  - [Organization](docs/Organization.md)
  - [OrganizationResponse](docs/OrganizationResponse.md)
  - [OutputField](docs/OutputField.md)
+ - [Pagination](docs/Pagination.md)
  - [PaginationInfo](docs/PaginationInfo.md)
  - [PatchDocument](docs/PatchDocument.md)
  - [PatchDocumentsRequest](docs/PatchDocumentsRequest.md)
@@ -273,6 +268,7 @@ Class | Method | HTTP request | Description
  - [Privilege](docs/Privilege.md)
  - [QueryError](docs/QueryError.md)
  - [QueryFieldType](docs/QueryFieldType.md)
+ - [QueryInfo](docs/QueryInfo.md)
  - [QueryLambda](docs/QueryLambda.md)
  - [QueryLambdaSql](docs/QueryLambdaSql.md)
  - [QueryLambdaStats](docs/QueryLambdaStats.md)
@@ -280,6 +276,7 @@ Class | Method | HTTP request | Description
  - [QueryLambdaTagResponse](docs/QueryLambdaTagResponse.md)
  - [QueryLambdaVersion](docs/QueryLambdaVersion.md)
  - [QueryLambdaVersionResponse](docs/QueryLambdaVersionResponse.md)
+ - [QueryPaginationResponse](docs/QueryPaginationResponse.md)
  - [QueryParameter](docs/QueryParameter.md)
  - [QueryRequest](docs/QueryRequest.md)
  - [QueryRequestSql](docs/QueryRequestSql.md)
@@ -291,6 +288,7 @@ Class | Method | HTTP request | Description
  - [S3Integration](docs/S3Integration.md)
  - [S3IntegrationCreationRequest](docs/S3IntegrationCreationRequest.md)
  - [S3SourceWrapper](docs/S3SourceWrapper.md)
+ - [SchemaRegistryConfig](docs/SchemaRegistryConfig.md)
  - [SegmentIntegration](docs/SegmentIntegration.md)
  - [SegmentIntegrationCreationRequest](docs/SegmentIntegrationCreationRequest.md)
  - [Source](docs/Source.md)
@@ -305,6 +303,7 @@ Class | Method | HTTP request | Description
  - [SourceMongoDb](docs/SourceMongoDb.md)
  - [SourceS3](docs/SourceS3.md)
  - [SqlExpression](docs/SqlExpression.md)
+ - [Stats](docs/Stats.md)
  - [Status](docs/Status.md)
  - [StatusAzureEventHubs](docs/StatusAzureEventHubs.md)
  - [StatusAzureEventHubsPartition](docs/StatusAzureEventHubsPartition.md)

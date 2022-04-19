@@ -1,6 +1,6 @@
 # Source
 
-Details about the data source for the given collection. Only one of the following fields are allowed to be defined. Only collections can act as data sources for views. 
+Details about the data source for the given collection. Only one of the following fields are allowed to be defined. Only collections can act as data sources for views.
 
 ## Properties
 Name | Type | Description | Notes

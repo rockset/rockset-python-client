@@ -84,6 +84,7 @@ class PaginationInfo(ModelNormal):
             'current_page_doc_count': (int,),  # noqa: E501
             'next_cursor': (str,),  # noqa: E501
             'next_cursor_offset': (int,),  # noqa: E501
+            'next_page_link': (str,),  # noqa: E501
             'start_cursor': (str,),  # noqa: E501
         }
 
@@ -96,10 +97,12 @@ class PaginationInfo(ModelNormal):
         'current_page_doc_count': 'current_page_doc_count',  # noqa: E501
         'next_cursor': 'next_cursor',  # noqa: E501
         'next_cursor_offset': 'next_cursor_offset',  # noqa: E501
+        'next_page_link': 'next_page_link',  # noqa: E501
         'start_cursor': 'start_cursor',  # noqa: E501
     }
 
     read_only_vars = {
+        'next_page_link',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -143,6 +146,7 @@ class PaginationInfo(ModelNormal):
             current_page_doc_count (int): Number of documents returned in this result set. [optional]  # noqa: E501
             next_cursor (str): Cursor to use to get the list of documents. [optional]  # noqa: E501
             next_cursor_offset (int): The doc offset that next_cursor starts at.. [optional]  # noqa: E501
+            next_page_link (str): Direct link to the next page of results.. [optional]  # noqa: E501
             start_cursor (str): Cursor used to retrieve the first set of documents.. [optional]  # noqa: E501
         """
 
