@@ -13,8 +13,7 @@ import unittest
 
 import rockset
 from rockset.model.query_parameter import QueryParameter
-
-globals()["QueryParameter"] = QueryParameter
+globals()['QueryParameter'] = QueryParameter
 from rockset.model.query_lambda_sql import QueryLambdaSql
 
 
@@ -34,5 +33,5 @@ class TestQueryLambdaSql(unittest.TestCase):
         pass
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

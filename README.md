@@ -49,7 +49,7 @@ Please follow the [installation procedure](#installation--usage) and then run th
 import rockset
 
 # Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-rs = rockset.RocksetClient(host="https://api.rs2.usw2.rockset.com", apikey="APIKEY")
+rs = rockset.RocksetClient(host=rockset.Regions.use1a1, apikey="APIKEY")
 try:
     rs.APIKeysApi.create_api_key(name="api-key-name", role="member")
 except rockset.ApiException as e:
@@ -106,11 +106,11 @@ Class | Method | HTTP request | Description
 *IntegrationsApi* | [**get_integration**](docs/IntegrationsApi.md#get_integration) | **GET** /v1/orgs/self/integrations/{integration} | Retrieve Integration
 *IntegrationsApi* | [**list_integrations**](docs/IntegrationsApi.md#list_integrations) | **GET** /v1/orgs/self/integrations | List Integrations
 *OrganizationsApi* | [**get_organization**](docs/OrganizationsApi.md#get_organization) | **GET** /v1/orgs/self | Get Organization
-*QueriesApi* | [**cancel_query**](docs/QueriesApi.md#cancel_query) | **DELETE** /v1/orgs/self/queries/{queryId} | Cancel query
-*QueriesApi* | [**get_query**](docs/QueriesApi.md#get_query) | **GET** /v1/orgs/self/queries/{queryId} | Get query information
-*QueriesApi* | [**get_query_results**](docs/QueriesApi.md#get_query_results) | **GET** /v1/orgs/self/queries/{queryId}/pages | Fetch query results page
+*QueriesApi* | [**cancel_query**](docs/QueriesApi.md#cancel_query) | **DELETE** /v1/orgs/self/queries/{queryId} | Cancel Query
+*QueriesApi* | [**get_query**](docs/QueriesApi.md#get_query) | **GET** /v1/orgs/self/queries/{queryId} | Retrieve Query
+*QueriesApi* | [**get_query_results**](docs/QueriesApi.md#get_query_results) | **GET** /v1/orgs/self/queries/{queryId}/pages | Retrieve Query Results Page
 *QueriesApi* | [**list_active_queries**](docs/QueriesApi.md#list_active_queries) | **GET** /v1/orgs/self/queries | List Queries
-*QueriesApi* | [**query**](docs/QueriesApi.md#query) | **POST** /v1/orgs/self/queries | Query
+*QueriesApi* | [**query**](docs/QueriesApi.md#query) | **POST** /v1/orgs/self/queries | Execute SQL Query
 *QueriesApi* | [**validate**](docs/QueriesApi.md#validate) | **POST** /v1/orgs/self/queries/validations | Validate Query
 *QueryLambdasApi* | [**create_query_lambda**](docs/QueryLambdasApi.md#create_query_lambda) | **POST** /v1/orgs/self/ws/{workspace}/lambdas | Create Query Lambda
 *QueryLambdasApi* | [**create_query_lambda_tag**](docs/QueryLambdasApi.md#create_query_lambda_tag) | **POST** /v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/tags | Create Query Lambda Tag

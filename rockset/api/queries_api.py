@@ -366,7 +366,7 @@ class QueriesApi(object):
         query_id: str,
         **kwargs
     ) -> typing.Union[CancelQueryResponse, asyncio.Future]:
-        """Cancel query  # noqa: E501
+        """Cancel Query  # noqa: E501
 
         Attempts to cancel an actively-running query.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -448,7 +448,7 @@ class QueriesApi(object):
         query_id: str,
         **kwargs
     ) -> typing.Union[QueryResponse, asyncio.Future]:
-        """Get query information  # noqa: E501
+        """Retrieve Query  # noqa: E501
 
         Returns information about a query.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -533,7 +533,7 @@ class QueriesApi(object):
         offset: int = None,
         **kwargs
     ) -> typing.Union[QueryPaginationResponse, asyncio.Future]:
-        """Fetch query results page  # noqa: E501
+        """Retrieve Query Results Page  # noqa: E501
 
         Returns a page of query results.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -695,7 +695,7 @@ class QueriesApi(object):
         async_options: AsyncQueryOptions = None,
         **kwargs
     ) -> typing.Union[QueryResponse, asyncio.Future]:
-        """Query  # noqa: E501
+        """Execute SQL Query  # noqa: E501
 
         Make a SQL query to Rockset.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an

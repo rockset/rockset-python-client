@@ -13,8 +13,7 @@ import unittest
 
 import rockset
 from rockset.model.status_kafka_partition import StatusKafkaPartition
-
-globals()["StatusKafkaPartition"] = StatusKafkaPartition
+globals()['StatusKafkaPartition'] = StatusKafkaPartition
 from rockset.model.status_kafka import StatusKafka
 
 
@@ -34,5 +33,5 @@ class TestStatusKafka(unittest.TestCase):
         pass
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

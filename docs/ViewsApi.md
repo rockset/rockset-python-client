@@ -29,7 +29,7 @@ from pprint import pprint
 
 # Create an instance of the Rockset client
 # example passing only required values which don't have defaults set
-rs = RocksetClient(apikey="abc123")
+rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 try:
@@ -108,7 +108,7 @@ from pprint import pprint
 
 # Create an instance of the Rockset client
 # example passing only required values which don't have defaults set
-rs = RocksetClient(apikey="abc123")
+rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 try:
@@ -182,7 +182,7 @@ from pprint import pprint
 
 # Create an instance of the Rockset client
 # example passing only required values which don't have defaults set
-rs = RocksetClient(apikey="abc123")
+rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 try:
@@ -269,7 +269,7 @@ from pprint import pprint
 
 # Create an instance of the Rockset client
 # example passing only required values which don't have defaults set
-rs = RocksetClient(apikey="abc123")
+rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 try:
@@ -350,7 +350,7 @@ from pprint import pprint
 
 # Create an instance of the Rockset client
 # example passing only required values which don't have defaults set
-rs = RocksetClient(apikey="abc123")
+rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 try:
@@ -429,7 +429,7 @@ from pprint import pprint
 
 # Create an instance of the Rockset client
 # example passing only required values which don't have defaults set
-rs = RocksetClient(apikey="abc123")
+rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 try:

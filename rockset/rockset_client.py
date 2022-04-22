@@ -1,6 +1,9 @@
 import inspect
+import re
+from enum import Enum
 from functools import wraps
 from types import FunctionType
+from typing import Union
 
 from rockset.api_client import ApiClient
 from rockset.apis import (
@@ -19,6 +22,21 @@ from rockset.apis import (
 )
 from rockset.configuration import Configuration
 from rockset.exceptions import ApiTypeError, ApiValueError, InitializationException
+
+
+APISERVER_PATTERN = re.compile(r"^https:\/\/(\w|-|\.)+\.rockset\.com$")
+
+
+class Regions(str, Enum):
+    rs2 = "https://api.rs2.usw2.rockset.com"
+    use1a1 = "https://api.use1a1.rockset.com"
+    euc1a1 = "https://api.euc1a1.rockset.com"
+
+
+class DevRegions(str, Enum):
+    dev = "https://master-api.dev.rockset.com"
+    use1a1 = "https://staging-api.use1a1.dev.rockset.com"
+    usw2a1 = "https://staging-api.usw2a1.dev.rockset.com"
 
 
 def wrapper(method):
@@ -120,26 +138,28 @@ class RocksetClient:
     The class that is used to make requests to the Rockset API.
 
     Usage:
-        >>> rs = RocksetClient(apikey=APIKEY)
+        rs = RocksetClient(api_key=APIKEY, host=Regions.use1a1)
 
-        >>> # Synchronous request
-        >>> response = rs.DocumentsApi.add_documents(
-                collection=collection,
-                data=[{"column": "value"}],
-            )
+        # Synchronous request
+        response = rs.DocumentsApi.add_documents(
+            collection=collection,
+            data=[{"column": "value"}],
+        )
+        dict = response.to_dict()
 
-        >>> # Asynchronous request
-        >>> future = rs.DocumentsApi.add_documents(
-                collection=collection,
-                data=[{"column": "value"}],
-                async_req=True,
-            )
-        >>> result = await future
+        # Asynchronous request
+        future = rs.DocumentsApi.add_documents(
+            collection=collection,
+            data=[{"column": "value"}],
+            async_req=True,
+        )
+        result = await future
     """
-    def __init__(self, host: str = None, api_key: str = None, max_workers: int=4, config: Configuration=None):
+    def __init__(self, host: Union[str, Regions, DevRegions] = None, api_key: str = None, max_workers: int=4, config: Configuration=None):
         """
         Keyword Args:
-            host (str): Base url of the Rockset apiserver that should be used.
+            host (str, Regions, DevRegions): Base url of the Rockset apiserver that should be used.
+                The Regions enum can be used instead of a string.
                 Can be specified here or within the Configuration object.
                 If no host is specified, the client will default to us-west-2.
                 us-west-2: https://api.rs2.usw2.rockset.com
@@ -150,6 +170,20 @@ class RocksetClient:
             max_workers (int): The max number of workers that the ThreadPoolExecutor
                 should use when making asynchronous requests. [optional]
         """
+        if isinstance(host, Enum):
+            host = host.value
+        else:
+            if host.startswith("http://"):
+                host = f"https://{host[7:]}"
+            elif not host.startswith("https://"):
+                host = f"https://{host}"
+
+            if host.endswith("/"):
+                host = host[:-1]
+
+        if not re.match(APISERVER_PATTERN, host):
+            raise InitializationException("The provided host was invalid and could not be parsed into a valid host.")
+
         if not config:
             config = Configuration(host=host, api_key=api_key)
 

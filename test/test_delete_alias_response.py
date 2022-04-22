@@ -13,8 +13,7 @@ import unittest
 
 import rockset
 from rockset.model.alias import Alias
-
-globals()["Alias"] = Alias
+globals()['Alias'] = Alias
 from rockset.model.delete_alias_response import DeleteAliasResponse
 
 
@@ -34,5 +33,5 @@ class TestDeleteAliasResponse(unittest.TestCase):
         pass
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

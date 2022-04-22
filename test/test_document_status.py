@@ -13,8 +13,7 @@ import unittest
 
 import rockset
 from rockset.model.error_model import ErrorModel
-
-globals()["ErrorModel"] = ErrorModel
+globals()['ErrorModel'] = ErrorModel
 from rockset.model.document_status import DocumentStatus
 
 
@@ -34,5 +33,5 @@ class TestDocumentStatus(unittest.TestCase):
         pass
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

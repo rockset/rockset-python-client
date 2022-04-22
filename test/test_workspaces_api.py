@@ -23,13 +23,6 @@ class TestWorkspacesApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_child_workspaces(self):
-        """Test case for child_workspaces
-
-        List Workspaces in Workspace  # noqa: E501
-        """
-        pass
-
     def test_create_workspace(self):
         """Test case for create_workspace
 
@@ -59,5 +52,5 @@ class TestWorkspacesApi(unittest.TestCase):
         pass
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

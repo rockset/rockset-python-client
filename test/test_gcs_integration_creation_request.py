@@ -13,8 +13,7 @@ import unittest
 
 import rockset
 from rockset.model.gcs_integration import GcsIntegration
-
-globals()["GcsIntegration"] = GcsIntegration
+globals()['GcsIntegration'] = GcsIntegration
 from rockset.model.gcs_integration_creation_request import GcsIntegrationCreationRequest
 
 
@@ -34,5 +33,5 @@ class TestGcsIntegrationCreationRequest(unittest.TestCase):
         pass
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

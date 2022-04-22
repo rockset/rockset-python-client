@@ -13,8 +13,7 @@ import unittest
 
 import rockset
 from rockset.model.privilege import Privilege
-
-globals()["Privilege"] = Privilege
+globals()['Privilege'] = Privilege
 from rockset.model.update_role_request import UpdateRoleRequest
 
 
@@ -34,5 +33,5 @@ class TestUpdateRoleRequest(unittest.TestCase):
         pass
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

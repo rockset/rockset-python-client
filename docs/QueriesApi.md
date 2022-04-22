@@ -4,18 +4,18 @@ All URIs are relative to *https://api.rs2.usw2.rockset.com* or the apiserver pro
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**cancel_query**](QueriesApi.md#cancel_query) | **DELETE** /v1/orgs/self/queries/{queryId} | Cancel query
-[**get_query**](QueriesApi.md#get_query) | **GET** /v1/orgs/self/queries/{queryId} | Get query information
-[**get_query_results**](QueriesApi.md#get_query_results) | **GET** /v1/orgs/self/queries/{queryId}/pages | Fetch query results page
+[**cancel_query**](QueriesApi.md#cancel_query) | **DELETE** /v1/orgs/self/queries/{queryId} | Cancel Query
+[**get_query**](QueriesApi.md#get_query) | **GET** /v1/orgs/self/queries/{queryId} | Retrieve Query
+[**get_query_results**](QueriesApi.md#get_query_results) | **GET** /v1/orgs/self/queries/{queryId}/pages | Retrieve Query Results Page
 [**list_active_queries**](QueriesApi.md#list_active_queries) | **GET** /v1/orgs/self/queries | List Queries
-[**query**](QueriesApi.md#query) | **POST** /v1/orgs/self/queries | Query
+[**query**](QueriesApi.md#query) | **POST** /v1/orgs/self/queries | Execute SQL Query
 [**validate**](QueriesApi.md#validate) | **POST** /v1/orgs/self/queries/validations | Validate Query
 
 
 # **cancel_query**
 > CancelQueryResponse cancel_query(query_id)
 
-Cancel query
+Cancel Query
 
 Attempts to cancel an actively-running query.
 
@@ -29,11 +29,11 @@ from pprint import pprint
 
 # Create an instance of the Rockset client
 # example passing only required values which don't have defaults set
-rs = RocksetClient(apikey="abc123")
+rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 try:
-    # Cancel query
+    # Cancel Query
     api_response = rs.QueriesApi.cancel_query(
         query_id="queryId_example",
     )
@@ -43,7 +43,7 @@ except rockset.ApiException as e:
 
 # asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
-    # Cancel query
+    # Cancel Query
     api_response = await rs.QueriesApi.cancel_query(
         query_id="queryId_example",
         async_req=True,
@@ -101,7 +101,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 # **get_query**
 > QueryResponse get_query(query_id)
 
-Get query information
+Retrieve Query
 
 Returns information about a query.
 
@@ -115,11 +115,11 @@ from pprint import pprint
 
 # Create an instance of the Rockset client
 # example passing only required values which don't have defaults set
-rs = RocksetClient(apikey="abc123")
+rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 try:
-    # Get query information
+    # Retrieve Query
     api_response = rs.QueriesApi.get_query(
         query_id="queryId_example",
     )
@@ -129,7 +129,7 @@ except rockset.ApiException as e:
 
 # asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
-    # Get query information
+    # Retrieve Query
     api_response = await rs.QueriesApi.get_query(
         query_id="queryId_example",
         async_req=True,
@@ -187,7 +187,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 # **get_query_results**
 > QueryPaginationResponse get_query_results(query_id)
 
-Fetch query results page
+Retrieve Query Results Page
 
 Returns a page of query results.
 
@@ -201,11 +201,11 @@ from pprint import pprint
 
 # Create an instance of the Rockset client
 # example passing only required values which don't have defaults set
-rs = RocksetClient(apikey="abc123")
+rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 try:
-    # Fetch query results page
+    # Retrieve Query Results Page
     api_response = rs.QueriesApi.get_query_results(
         query_id="queryId_example",
     )
@@ -215,7 +215,7 @@ except rockset.ApiException as e:
 
 # asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
-    # Fetch query results page
+    # Retrieve Query Results Page
     api_response = await rs.QueriesApi.get_query_results(
         query_id="queryId_example",
         async_req=True,
@@ -290,7 +290,7 @@ from pprint import pprint
 
 # Create an instance of the Rockset client
 # example passing only required values which don't have defaults set
-rs = RocksetClient(apikey="abc123")
+rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 try:
@@ -357,7 +357,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 # **query**
 > QueryResponse query(query_request)
 
-Query
+Execute SQL Query
 
 Make a SQL query to Rockset.
 
@@ -371,11 +371,11 @@ from pprint import pprint
 
 # Create an instance of the Rockset client
 # example passing only required values which don't have defaults set
-rs = RocksetClient(apikey="abc123")
+rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 try:
-    # Query
+    # Execute SQL Query
     api_response = rs.QueriesApi.query(
         sql=QueryRequestSql(
         default_row_limit=1,
@@ -398,7 +398,7 @@ except rockset.ApiException as e:
 
 # asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
-    # Query
+    # Execute SQL Query
     api_response = await rs.QueriesApi.query(
         async_options=AsyncQueryOptions(
         client_timeout_ms=1,
@@ -489,7 +489,7 @@ from pprint import pprint
 
 # Create an instance of the Rockset client
 # example passing only required values which don't have defaults set
-rs = RocksetClient(apikey="abc123")
+rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 try:

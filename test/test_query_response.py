@@ -16,11 +16,10 @@ from rockset.model.pagination_info import PaginationInfo
 from rockset.model.query_error import QueryError
 from rockset.model.query_field_type import QueryFieldType
 from rockset.model.query_response_stats import QueryResponseStats
-
-globals()["PaginationInfo"] = PaginationInfo
-globals()["QueryError"] = QueryError
-globals()["QueryFieldType"] = QueryFieldType
-globals()["QueryResponseStats"] = QueryResponseStats
+globals()['PaginationInfo'] = PaginationInfo
+globals()['QueryError'] = QueryError
+globals()['QueryFieldType'] = QueryFieldType
+globals()['QueryResponseStats'] = QueryResponseStats
 from rockset.model.query_response import QueryResponse
 
 
@@ -40,5 +39,5 @@ class TestQueryResponse(unittest.TestCase):
         pass
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

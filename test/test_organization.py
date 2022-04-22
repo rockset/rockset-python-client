@@ -13,8 +13,7 @@ import unittest
 
 import rockset
 from rockset.model.cluster import Cluster
-
-globals()["Cluster"] = Cluster
+globals()['Cluster'] = Cluster
 from rockset.model.organization import Organization
 
 
@@ -34,5 +33,5 @@ class TestOrganization(unittest.TestCase):
         pass
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

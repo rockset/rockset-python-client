@@ -54,7 +54,7 @@ class TestUsersApi(unittest.TestCase):
     def test_list_unsubscribe_preferences(self):
         """Test case for list_unsubscribe_preferences
 
-        Get all notification preferences  # noqa: E501
+        Retrieve Notification Preferences  # noqa: E501
         """
         pass
 
@@ -68,10 +68,10 @@ class TestUsersApi(unittest.TestCase):
     def test_update_unsubscribe_preferences(self):
         """Test case for update_unsubscribe_preferences
 
-        Update notification preferences  # noqa: E501
+        Update Notification Preferences  # noqa: E501
         """
         pass
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

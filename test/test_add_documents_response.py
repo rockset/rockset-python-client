@@ -13,8 +13,7 @@ import unittest
 
 import rockset
 from rockset.model.document_status import DocumentStatus
-
-globals()["DocumentStatus"] = DocumentStatus
+globals()['DocumentStatus'] = DocumentStatus
 from rockset.model.add_documents_response import AddDocumentsResponse
 
 
@@ -34,5 +33,5 @@ class TestAddDocumentsResponse(unittest.TestCase):
         pass
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

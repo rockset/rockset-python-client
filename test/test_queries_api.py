@@ -23,10 +23,38 @@ class TestQueriesApi(unittest.TestCase):
     def tearDown(self):
         pass
 
+    def test_cancel_query(self):
+        """Test case for cancel_query
+
+        Cancel Query  # noqa: E501
+        """
+        pass
+
+    def test_get_query(self):
+        """Test case for get_query
+
+        Retrieve Query  # noqa: E501
+        """
+        pass
+
+    def test_get_query_results(self):
+        """Test case for get_query_results
+
+        Retrieve Query Results Page  # noqa: E501
+        """
+        pass
+
+    def test_list_active_queries(self):
+        """Test case for list_active_queries
+
+        List Queries  # noqa: E501
+        """
+        pass
+
     def test_query(self):
         """Test case for query
 
-        Query  # noqa: E501
+        Execute SQL Query  # noqa: E501
         """
         pass
 
@@ -38,5 +66,5 @@ class TestQueriesApi(unittest.TestCase):
         pass
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

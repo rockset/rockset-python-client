@@ -13,15 +13,11 @@ import unittest
 
 import rockset
 from rockset.model.format_params import FormatParams
-from rockset.model.source import Source
 from rockset.model.source_dynamo_db import SourceDynamoDb
-from rockset.model.status_dynamo_db import StatusDynamoDb
-from rockset.model.status_dynamo_db_v2 import StatusDynamoDbV2
+from rockset.model.status import Status
 globals()['FormatParams'] = FormatParams
-globals()['Source'] = Source
 globals()['SourceDynamoDb'] = SourceDynamoDb
-globals()['StatusDynamoDb'] = StatusDynamoDb
-globals()['StatusDynamoDbV2'] = StatusDynamoDbV2
+globals()['Status'] = Status
 from rockset.model.dynamodb_source_wrapper import DynamodbSourceWrapper
 
 

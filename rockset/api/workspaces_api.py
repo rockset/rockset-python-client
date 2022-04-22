@@ -210,7 +210,6 @@ class WorkspacesApi(object):
             },
             params_map={
                 'all': [
-                    'fetch_across_regions',
                 ],
                 'required': [],
                 'nullable': [
@@ -226,14 +225,10 @@ class WorkspacesApi(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'fetch_across_regions':
-                        (bool,),
                 },
                 'attribute_map': {
-                    'fetch_across_regions': 'fetch_across_regions',
                 },
                 'location_map': {
-                    'fetch_across_regions': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -496,8 +491,6 @@ class WorkspacesApi(object):
 
     def list_workspaces(
         self,
-        *,
-        fetch_across_regions: bool = None,
         **kwargs
     ) -> typing.Union[ListWorkspacesResponse, asyncio.Future]:
         """List Workspaces  # noqa: E501
@@ -515,7 +508,6 @@ class WorkspacesApi(object):
         ```
 
         Keyword Args:
-            fetch_across_regions (bool): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

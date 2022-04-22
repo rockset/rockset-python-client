@@ -1,3 +1,7 @@
+### v0.0.8
+    - Ease-of-use upgrades for host initialization
+    - Typo fixes
+
 ### v0.0.7
     - Update client for async options
     - Update readme

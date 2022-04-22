@@ -14,9 +14,8 @@ import unittest
 import rockset
 from rockset.model.status_dynamo_db import StatusDynamoDb
 from rockset.model.status_dynamo_db_v2 import StatusDynamoDbV2
-
-globals()["StatusDynamoDb"] = StatusDynamoDb
-globals()["StatusDynamoDbV2"] = StatusDynamoDbV2
+globals()['StatusDynamoDb'] = StatusDynamoDb
+globals()['StatusDynamoDbV2'] = StatusDynamoDbV2
 from rockset.model.source_dynamo_db import SourceDynamoDb
 
 
@@ -36,5 +35,5 @@ class TestSourceDynamoDb(unittest.TestCase):
         pass
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

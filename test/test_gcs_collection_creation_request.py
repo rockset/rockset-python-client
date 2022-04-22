@@ -12,29 +12,16 @@ import sys
 import unittest
 
 import rockset
-from rockset.model.create_collection_request import CreateCollectionRequest
 from rockset.model.event_time_info import EventTimeInfo
 from rockset.model.field_mapping_query import FieldMappingQuery
 from rockset.model.field_mapping_v2 import FieldMappingV2
 from rockset.model.field_partition import FieldPartition
-from rockset.model.field_schema import FieldSchema
-from rockset.model.gcs_collection_creation_request_all_of import (
-    GcsCollectionCreationRequestAllOf,
-)
 from rockset.model.gcs_source_wrapper import GcsSourceWrapper
-from rockset.model.inverted_index_group_encoding_options import (
-    InvertedIndexGroupEncodingOptions,
-)
-
-globals()["CreateCollectionRequest"] = CreateCollectionRequest
-globals()["EventTimeInfo"] = EventTimeInfo
-globals()["FieldMappingQuery"] = FieldMappingQuery
-globals()["FieldMappingV2"] = FieldMappingV2
-globals()["FieldPartition"] = FieldPartition
-globals()["FieldSchema"] = FieldSchema
-globals()["GcsCollectionCreationRequestAllOf"] = GcsCollectionCreationRequestAllOf
-globals()["GcsSourceWrapper"] = GcsSourceWrapper
-globals()["InvertedIndexGroupEncodingOptions"] = InvertedIndexGroupEncodingOptions
+globals()['EventTimeInfo'] = EventTimeInfo
+globals()['FieldMappingQuery'] = FieldMappingQuery
+globals()['FieldMappingV2'] = FieldMappingV2
+globals()['FieldPartition'] = FieldPartition
+globals()['GcsSourceWrapper'] = GcsSourceWrapper
 from rockset.model.gcs_collection_creation_request import GcsCollectionCreationRequest
 
 
@@ -54,5 +41,5 @@ class TestGcsCollectionCreationRequest(unittest.TestCase):
         pass
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

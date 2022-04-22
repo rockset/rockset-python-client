@@ -13,13 +13,11 @@ import unittest
 
 import rockset
 from rockset.model.format_params import FormatParams
-from rockset.model.source import Source
 from rockset.model.source_azure_event_hubs import SourceAzureEventHubs
-from rockset.model.status_azure_event_hubs import StatusAzureEventHubs
+from rockset.model.status import Status
 globals()['FormatParams'] = FormatParams
-globals()['Source'] = Source
 globals()['SourceAzureEventHubs'] = SourceAzureEventHubs
-globals()['StatusAzureEventHubs'] = StatusAzureEventHubs
+globals()['Status'] = Status
 from rockset.model.azure_event_hubs_source_wrapper import AzureEventHubsSourceWrapper
 
 

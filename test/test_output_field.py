@@ -13,8 +13,7 @@ import unittest
 
 import rockset
 from rockset.model.sql_expression import SqlExpression
-
-globals()["SqlExpression"] = SqlExpression
+globals()['SqlExpression'] = SqlExpression
 from rockset.model.output_field import OutputField
 
 
@@ -34,5 +33,5 @@ class TestOutputField(unittest.TestCase):
         pass
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

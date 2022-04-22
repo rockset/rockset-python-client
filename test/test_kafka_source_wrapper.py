@@ -13,13 +13,11 @@ import unittest
 
 import rockset
 from rockset.model.format_params import FormatParams
-from rockset.model.source import Source
 from rockset.model.source_kafka import SourceKafka
-from rockset.model.status_kafka import StatusKafka
+from rockset.model.status import Status
 globals()['FormatParams'] = FormatParams
-globals()['Source'] = Source
 globals()['SourceKafka'] = SourceKafka
-globals()['StatusKafka'] = StatusKafka
+globals()['Status'] = Status
 from rockset.model.kafka_source_wrapper import KafkaSourceWrapper
 
 

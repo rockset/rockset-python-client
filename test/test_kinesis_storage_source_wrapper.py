@@ -13,11 +13,9 @@ import unittest
 
 import rockset
 from rockset.model.format_params import FormatParams
-from rockset.model.source import Source
 from rockset.model.source_kinesis import SourceKinesis
 from rockset.model.status import Status
 globals()['FormatParams'] = FormatParams
-globals()['Source'] = Source
 globals()['SourceKinesis'] = SourceKinesis
 globals()['Status'] = Status
 from rockset.model.kinesis_storage_source_wrapper import KinesisStorageSourceWrapper

@@ -12,9 +12,6 @@ import sys
 import unittest
 
 import rockset
-from rockset.model.field_mask import FieldMask
-
-globals()["FieldMask"] = FieldMask
 from rockset.model.source_s3 import SourceS3
 
 
@@ -34,5 +31,5 @@ class TestSourceS3(unittest.TestCase):
         pass
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

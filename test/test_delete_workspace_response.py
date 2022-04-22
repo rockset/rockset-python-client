@@ -13,8 +13,7 @@ import unittest
 
 import rockset
 from rockset.model.workspace import Workspace
-
-globals()["Workspace"] = Workspace
+globals()['Workspace'] = Workspace
 from rockset.model.delete_workspace_response import DeleteWorkspaceResponse
 
 
@@ -34,5 +33,5 @@ class TestDeleteWorkspaceResponse(unittest.TestCase):
         pass
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

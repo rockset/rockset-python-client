@@ -47,17 +47,17 @@ class TestAPIKeysApi(unittest.TestCase):
     def test_list_api_keys(self):
         """Test case for list_api_keys
 
-        List API Keys.  # noqa: E501
+        List API Keys  # noqa: E501
         """
         pass
 
     def test_update_api_key(self):
         """Test case for update_api_key
 
-        Update an API key's state  # noqa: E501
+        Update API Key State  # noqa: E501
         """
         pass
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

@@ -14,9 +14,8 @@ import unittest
 import rockset
 from rockset.model.query_lambda_sql import QueryLambdaSql
 from rockset.model.query_lambda_stats import QueryLambdaStats
-
-globals()["QueryLambdaSql"] = QueryLambdaSql
-globals()["QueryLambdaStats"] = QueryLambdaStats
+globals()['QueryLambdaSql'] = QueryLambdaSql
+globals()['QueryLambdaStats'] = QueryLambdaStats
 from rockset.model.query_lambda_version import QueryLambdaVersion
 
 
@@ -36,5 +35,5 @@ class TestQueryLambdaVersion(unittest.TestCase):
         pass
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

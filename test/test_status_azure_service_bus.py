@@ -12,6 +12,8 @@ import sys
 import unittest
 
 import rockset
+from rockset.model.status_azure_service_bus_session import StatusAzureServiceBusSession
+globals()['StatusAzureServiceBusSession'] = StatusAzureServiceBusSession
 from rockset.model.status_azure_service_bus import StatusAzureServiceBus
 
 

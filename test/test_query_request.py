@@ -12,9 +12,10 @@ import sys
 import unittest
 
 import rockset
+from rockset.model.async_query_options import AsyncQueryOptions
 from rockset.model.query_request_sql import QueryRequestSql
-
-globals()["QueryRequestSql"] = QueryRequestSql
+globals()['AsyncQueryOptions'] = AsyncQueryOptions
+globals()['QueryRequestSql'] = QueryRequestSql
 from rockset.model.query_request import QueryRequest
 
 
@@ -34,5 +35,5 @@ class TestQueryRequest(unittest.TestCase):
         pass
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

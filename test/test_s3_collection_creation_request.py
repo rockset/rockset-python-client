@@ -16,15 +16,11 @@ from rockset.model.event_time_info import EventTimeInfo
 from rockset.model.field_mapping_query import FieldMappingQuery
 from rockset.model.field_mapping_v2 import FieldMappingV2
 from rockset.model.field_partition import FieldPartition
-from rockset.model.field_schema import FieldSchema
-from rockset.model.inverted_index_group_encoding_options import InvertedIndexGroupEncodingOptions
 from rockset.model.s3_source_wrapper import S3SourceWrapper
 globals()['EventTimeInfo'] = EventTimeInfo
 globals()['FieldMappingQuery'] = FieldMappingQuery
 globals()['FieldMappingV2'] = FieldMappingV2
 globals()['FieldPartition'] = FieldPartition
-globals()['FieldSchema'] = FieldSchema
-globals()['InvertedIndexGroupEncodingOptions'] = InvertedIndexGroupEncodingOptions
 globals()['S3SourceWrapper'] = S3SourceWrapper
 from rockset.model.s3_collection_creation_request import S3CollectionCreationRequest
 

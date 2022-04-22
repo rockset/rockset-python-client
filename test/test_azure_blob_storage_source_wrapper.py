@@ -13,17 +13,12 @@ import unittest
 
 import rockset
 from rockset.model.format_params import FormatParams
-from rockset.model.source import Source
 from rockset.model.source_azure_blob_storage import SourceAzureBlobStorage
 from rockset.model.status import Status
-
-globals()["FormatParams"] = FormatParams
-globals()["Source"] = Source
-globals()["SourceAzureBlobStorage"] = SourceAzureBlobStorage
-globals()["Status"] = Status
-from rockset.model.azure_blob_storage_source_wrapper import (
-    AzureBlobStorageSourceWrapper,
-)
+globals()['FormatParams'] = FormatParams
+globals()['SourceAzureBlobStorage'] = SourceAzureBlobStorage
+globals()['Status'] = Status
+from rockset.model.azure_blob_storage_source_wrapper import AzureBlobStorageSourceWrapper
 
 
 class TestAzureBlobStorageSourceWrapper(unittest.TestCase):
@@ -42,5 +37,5 @@ class TestAzureBlobStorageSourceWrapper(unittest.TestCase):
         pass
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

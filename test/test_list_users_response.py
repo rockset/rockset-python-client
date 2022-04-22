@@ -13,8 +13,7 @@ import unittest
 
 import rockset
 from rockset.model.user import User
-
-globals()["User"] = User
+globals()['User'] = User
 from rockset.model.list_users_response import ListUsersResponse
 
 
@@ -34,5 +33,5 @@ class TestListUsersResponse(unittest.TestCase):
         pass
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

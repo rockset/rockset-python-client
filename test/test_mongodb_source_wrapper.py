@@ -13,13 +13,11 @@ import unittest
 
 import rockset
 from rockset.model.format_params import FormatParams
-from rockset.model.source import Source
 from rockset.model.source_mongo_db import SourceMongoDb
-from rockset.model.status_mongo_db import StatusMongoDb
+from rockset.model.status import Status
 globals()['FormatParams'] = FormatParams
-globals()['Source'] = Source
 globals()['SourceMongoDb'] = SourceMongoDb
-globals()['StatusMongoDb'] = StatusMongoDb
+globals()['Status'] = Status
 from rockset.model.mongodb_source_wrapper import MongodbSourceWrapper
 
 

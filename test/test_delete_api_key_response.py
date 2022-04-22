@@ -13,8 +13,7 @@ import unittest
 
 import rockset
 from rockset.model.api_key import ApiKey
-
-globals()["ApiKey"] = ApiKey
+globals()['ApiKey'] = ApiKey
 from rockset.model.delete_api_key_response import DeleteApiKeyResponse
 
 
@@ -34,5 +33,5 @@ class TestDeleteApiKeyResponse(unittest.TestCase):
         pass
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

@@ -13,14 +13,11 @@ import unittest
 
 import rockset
 from rockset.model.format_params import FormatParams
-from rockset.model.source import Source
 from rockset.model.source_gcs import SourceGcs
 from rockset.model.status import Status
-
-globals()["FormatParams"] = FormatParams
-globals()["Source"] = Source
-globals()["SourceGcs"] = SourceGcs
-globals()["Status"] = Status
+globals()['FormatParams'] = FormatParams
+globals()['SourceGcs'] = SourceGcs
+globals()['Status'] = Status
 from rockset.model.gcs_source_wrapper import GcsSourceWrapper
 
 
@@ -40,5 +37,5 @@ class TestGcsSourceWrapper(unittest.TestCase):
         pass
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

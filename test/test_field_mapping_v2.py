@@ -14,9 +14,8 @@ import unittest
 import rockset
 from rockset.model.input_field import InputField
 from rockset.model.output_field import OutputField
-
-globals()["InputField"] = InputField
-globals()["OutputField"] = OutputField
+globals()['InputField'] = InputField
+globals()['OutputField'] = OutputField
 from rockset.model.field_mapping_v2 import FieldMappingV2
 
 
@@ -36,5 +35,5 @@ class TestFieldMappingV2(unittest.TestCase):
         pass
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

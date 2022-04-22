@@ -14,9 +14,8 @@ import unittest
 import rockset
 from rockset.model.aws_access_key import AwsAccessKey
 from rockset.model.aws_role import AwsRole
-
-globals()["AwsAccessKey"] = AwsAccessKey
-globals()["AwsRole"] = AwsRole
+globals()['AwsAccessKey'] = AwsAccessKey
+globals()['AwsRole'] = AwsRole
 from rockset.model.s3_integration import S3Integration
 
 
@@ -36,5 +35,5 @@ class TestS3Integration(unittest.TestCase):
         pass
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

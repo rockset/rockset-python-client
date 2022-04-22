@@ -23,10 +23,38 @@ class TestCollectionsApi(unittest.TestCase):
     def tearDown(self):
         pass
 
-    def test_create_azure_blob_collection(self):
-        """Test case for create_azure_blob_collection
+    def test_create_azure_blob_storage_collection(self):
+        """Test case for create_azure_blob_storage_collection
 
-        Create azure blob collection  # noqa: E501
+        Create azure blob storage collection  # noqa: E501
+        """
+        pass
+
+    def test_create_azure_event_hubs_collection(self):
+        """Test case for create_azure_event_hubs_collection
+
+        Create azure event hubs collection  # noqa: E501
+        """
+        pass
+
+    def test_create_azure_service_bus_collection(self):
+        """Test case for create_azure_service_bus_collection
+
+        Create azure service bus collection  # noqa: E501
+        """
+        pass
+
+    def test_create_dynamodb_collection(self):
+        """Test case for create_dynamodb_collection
+
+        Create dynamodb collection  # noqa: E501
+        """
+        pass
+
+    def test_create_file_upload_collection(self):
+        """Test case for create_file_upload_collection
+
+        Create file upload collection  # noqa: E501
         """
         pass
 
@@ -34,6 +62,34 @@ class TestCollectionsApi(unittest.TestCase):
         """Test case for create_gcs_collection
 
         Create gcs collection  # noqa: E501
+        """
+        pass
+
+    def test_create_kafka_collection(self):
+        """Test case for create_kafka_collection
+
+        Create kafka collection  # noqa: E501
+        """
+        pass
+
+    def test_create_kinesis_collection(self):
+        """Test case for create_kinesis_collection
+
+        Create kinesis collection  # noqa: E501
+        """
+        pass
+
+    def test_create_mongodb_collection(self):
+        """Test case for create_mongodb_collection
+
+        Create mongodb collection  # noqa: E501
+        """
+        pass
+
+    def test_create_s3_collection(self):
+        """Test case for create_s3_collection
+
+        Create s3 collection  # noqa: E501
         """
         pass
 
@@ -66,5 +122,5 @@ class TestCollectionsApi(unittest.TestCase):
         pass
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()

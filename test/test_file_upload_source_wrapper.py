@@ -13,11 +13,9 @@ import unittest
 
 import rockset
 from rockset.model.format_params import FormatParams
-from rockset.model.source import Source
 from rockset.model.source_file_upload import SourceFileUpload
 from rockset.model.status import Status
 globals()['FormatParams'] = FormatParams
-globals()['Source'] = Source
 globals()['SourceFileUpload'] = SourceFileUpload
 globals()['Status'] = Status
 from rockset.model.file_upload_source_wrapper import FileUploadSourceWrapper

@@ -12,14 +12,10 @@ import sys
 import unittest
 
 import rockset
-from rockset.model.field_mask import FieldMask
 from rockset.model.format_params import FormatParams
-from rockset.model.source import Source
 from rockset.model.source_s3 import SourceS3
 from rockset.model.status import Status
-globals()['FieldMask'] = FieldMask
 globals()['FormatParams'] = FormatParams
-globals()['Source'] = Source
 globals()['SourceS3'] = SourceS3
 globals()['Status'] = Status
 from rockset.model.s3_source_wrapper import S3SourceWrapper
