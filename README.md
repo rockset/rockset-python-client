@@ -49,7 +49,7 @@ Please follow the [installation procedure](#installation--usage) and then run th
 import rockset
 
 # Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-rs = rockset.RocksetClient(host=rockset.Regions.use1a1, apikey="APIKEY")
+rs = rockset.RocksetClient(host=rockset.Regions.use1a1, api_key="APIKEY")
 try:
     rs.APIKeysApi.create_api_key(name="api-key-name", role="member")
 except rockset.ApiException as e:
