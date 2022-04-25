@@ -185,8 +185,8 @@ class RocksetClient:
             if host.endswith("/"):
                 host = host[:-1]
 
-        if not re.match(APISERVER_PATTERN, host):
-            raise InitializationException("The provided host was invalid and could not be parsed into a valid host.")
+            if not re.match(APISERVER_PATTERN, host):
+                raise InitializationException("The provided host was invalid and could not be parsed into a valid host.")
 
         if not config:
             config = Configuration(host=host, api_key=api_key)
