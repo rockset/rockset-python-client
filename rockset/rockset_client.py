@@ -2,6 +2,7 @@ import inspect
 import re
 from enum import Enum
 from functools import wraps
+from sys import intern
 from types import FunctionType
 from typing import Union
 
@@ -155,7 +156,7 @@ class RocksetClient:
         )
         result = await future
     """
-    def __init__(self, host: Union[str, Regions, DevRegions] = None, api_key: str = None, max_workers: int=4, config: Configuration=None):
+    def __init__(self, host: Union[str, Regions, DevRegions] = None, api_key: str = None, max_workers: int = 4, config: Configuration = None):
         """
         Keyword Args:
             host (str, Regions, DevRegions): Base url of the Rockset apiserver that should be used.
@@ -170,9 +171,12 @@ class RocksetClient:
             max_workers (int): The max number of workers that the ThreadPoolExecutor
                 should use when making asynchronous requests. [optional]
         """
+        if not host and config.host:
+            host = config.host
+
         if isinstance(host, Enum):
             host = host.value
-        else:
+        elif host:
             if host.startswith("http://"):
                 host = f"https://{host[7:]}"
             elif not host.startswith("https://"):
@@ -186,6 +190,8 @@ class RocksetClient:
 
         if not config:
             config = Configuration(host=host, api_key=api_key)
+        else:
+            config.host = host
 
         if not config.api_key:
             raise InitializationException("An api key must be provided as a parameter to the RocksetClient or the Configuration object.")
