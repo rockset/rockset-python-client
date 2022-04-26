@@ -171,7 +171,7 @@ class RocksetClient:
             max_workers (int): The max number of workers that the ThreadPoolExecutor
                 should use when making asynchronous requests. [optional]
         """
-        if not host and config.host:
+        if not host and config and config.host:
             host = config.host
 
         if isinstance(host, Enum):

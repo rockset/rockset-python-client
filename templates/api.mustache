@@ -320,7 +320,7 @@ class {{classname}}(object):
         asynchronous HTTP request, please pass async_req=True
 
 ```python
-rs = RocksetClient(apikey=APIKEY)
+rs = RocksetClient(api_key=APIKEY)
 future = rs.{{classname}}.{{operationId}}(
 {{#requiredParams}}
 {{^isReadOnly}}
