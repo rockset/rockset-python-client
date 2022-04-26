@@ -1,10 +1,10 @@
-# rockset.OrganizationsApi
+# rockset.Organizations
 
 All URIs are relative to *https://api.rs2.usw2.rockset.com* or the apiserver provided when initializing RocksetClient
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_organization**](OrganizationsApi.md#get_organization) | **GET** /v1/orgs/self | Get Organization
+[**get_organization**](Organizations.md#get_organization) | **GET** /v1/orgs/self | Get Organization
 
 
 # **get_organization**
@@ -29,20 +29,20 @@ rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
 # synchronous example passing only required values which don't have defaults set
 try:
     # Get Organization
-    api_response = rs.OrganizationsApi.get_organization(
+    api_response = rs.Organizations.get_organization(
     )
     pprint(api_response)
 except rockset.ApiException as e:
-    print("Exception when calling OrganizationsApi->get_organization: %s\n" % e)
+    print("Exception when calling Organizations->get_organization: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Get Organization
-    api_response = await rs.OrganizationsApi.get_organization(
+    api_response = await rs.Organizations.get_organization(
         async_req=True,
     )
     if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling OrganizationsApi->get_organization: %s\n" % e)
+        print("Exception when calling Organizations->get_organization: %s\n" % e)
         return
     pprint(api_response)
 

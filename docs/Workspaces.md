@@ -1,13 +1,13 @@
-# rockset.WorkspacesApi
+# rockset.Workspaces
 
 All URIs are relative to *https://api.rs2.usw2.rockset.com* or the apiserver provided when initializing RocksetClient
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_workspace**](WorkspacesApi.md#create_workspace) | **POST** /v1/orgs/self/ws | Create Workspace
-[**delete_workspace**](WorkspacesApi.md#delete_workspace) | **DELETE** /v1/orgs/self/ws/{workspace} | Delete Workspace
-[**get_workspace**](WorkspacesApi.md#get_workspace) | **GET** /v1/orgs/self/ws/{workspace} | Retrieve Workspace
-[**list_workspaces**](WorkspacesApi.md#list_workspaces) | **GET** /v1/orgs/self/ws | List Workspaces
+[**create_workspace**](Workspaces.md#create_workspace) | **POST** /v1/orgs/self/ws | Create Workspace
+[**delete_workspace**](Workspaces.md#delete_workspace) | **DELETE** /v1/orgs/self/ws/{workspace} | Delete Workspace
+[**get_workspace**](Workspaces.md#get_workspace) | **GET** /v1/orgs/self/ws/{workspace} | Retrieve Workspace
+[**list_workspaces**](Workspaces.md#list_workspaces) | **GET** /v1/orgs/self/ws | List Workspaces
 
 
 # **create_workspace**
@@ -32,23 +32,23 @@ rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
 # synchronous example passing only required values which don't have defaults set
 try:
     # Create Workspace
-    api_response = rs.WorkspacesApi.create_workspace(
+    api_response = rs.Workspaces.create_workspace(
         name="event_logs",
     )
     pprint(api_response)
 except rockset.ApiException as e:
-    print("Exception when calling WorkspacesApi->create_workspace: %s\n" % e)
+    print("Exception when calling Workspaces->create_workspace: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Create Workspace
-    api_response = await rs.WorkspacesApi.create_workspace(
+    api_response = await rs.Workspaces.create_workspace(
         description="Datasets of system logs for the ops team.",
         name="event_logs",
         async_req=True,
     )
     if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling WorkspacesApi->create_workspace: %s\n" % e)
+        print("Exception when calling Workspaces->create_workspace: %s\n" % e)
         return
     pprint(api_response)
 
@@ -120,20 +120,20 @@ rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
 # synchronous example passing only required values which don't have defaults set
 try:
     # Delete Workspace
-    api_response = rs.WorkspacesApi.delete_workspace(
+    api_response = rs.Workspaces.delete_workspace(
     )
     pprint(api_response)
 except rockset.ApiException as e:
-    print("Exception when calling WorkspacesApi->delete_workspace: %s\n" % e)
+    print("Exception when calling Workspaces->delete_workspace: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Delete Workspace
-    api_response = await rs.WorkspacesApi.delete_workspace(
+    api_response = await rs.Workspaces.delete_workspace(
         async_req=True,
     )
     if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling WorkspacesApi->delete_workspace: %s\n" % e)
+        print("Exception when calling Workspaces->delete_workspace: %s\n" % e)
         return
     pprint(api_response)
 
@@ -204,20 +204,20 @@ rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
 # synchronous example passing only required values which don't have defaults set
 try:
     # Retrieve Workspace
-    api_response = rs.WorkspacesApi.get_workspace(
+    api_response = rs.Workspaces.get_workspace(
     )
     pprint(api_response)
 except rockset.ApiException as e:
-    print("Exception when calling WorkspacesApi->get_workspace: %s\n" % e)
+    print("Exception when calling Workspaces->get_workspace: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # Retrieve Workspace
-    api_response = await rs.WorkspacesApi.get_workspace(
+    api_response = await rs.Workspaces.get_workspace(
         async_req=True,
     )
     if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling WorkspacesApi->get_workspace: %s\n" % e)
+        print("Exception when calling Workspaces->get_workspace: %s\n" % e)
         return
     pprint(api_response)
 
@@ -288,20 +288,20 @@ rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
 # synchronous example passing only required values which don't have defaults set
 try:
     # List Workspaces
-    api_response = rs.WorkspacesApi.list_workspaces(
+    api_response = rs.Workspaces.list_workspaces(
     )
     pprint(api_response)
 except rockset.ApiException as e:
-    print("Exception when calling WorkspacesApi->list_workspaces: %s\n" % e)
+    print("Exception when calling Workspaces->list_workspaces: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
     # List Workspaces
-    api_response = await rs.WorkspacesApi.list_workspaces(
+    api_response = await rs.Workspaces.list_workspaces(
         async_req=True,
     )
     if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling WorkspacesApi->list_workspaces: %s\n" % e)
+        print("Exception when calling Workspaces->list_workspaces: %s\n" % e)
         return
     pprint(api_response)
 

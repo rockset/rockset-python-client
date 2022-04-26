@@ -1,22 +1,24 @@
-# rockset.APIKeysApi
+# rockset.Users
 
 All URIs are relative to *https://api.rs2.usw2.rockset.com* or the apiserver provided when initializing RocksetClient
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_api_key**](APIKeysApi.md#create_api_key) | **POST** /v1/orgs/self/users/self/apikeys | Create API Key
-[**delete_api_key**](APIKeysApi.md#delete_api_key) | **DELETE** /v1/orgs/self/users/{user}/apikeys/{name} | Delete API Key
-[**get_api_key**](APIKeysApi.md#get_api_key) | **GET** /v1/orgs/self/users/{user}/apikeys/{name} | Retrieve API Key
-[**list_api_keys**](APIKeysApi.md#list_api_keys) | **GET** /v1/orgs/self/users/{user}/apikeys | List API Keys
-[**update_api_key**](APIKeysApi.md#update_api_key) | **POST** /v1/orgs/self/users/{user}/apikeys/{name} | Update API Key State
+[**create_user**](Users.md#create_user) | **POST** /v1/orgs/self/users | Create User
+[**delete_user**](Users.md#delete_user) | **DELETE** /v1/orgs/self/users/{user} | Delete User
+[**get_current_user**](Users.md#get_current_user) | **GET** /v1/orgs/self/users/self | Retrieve Current User
+[**get_user**](Users.md#get_user) | **GET** /v1/orgs/self/users/{user} | Retrieve User
+[**list_unsubscribe_preferences**](Users.md#list_unsubscribe_preferences) | **GET** /v1/orgs/self/users/self/preferences | Retrieve Notification Preferences
+[**list_users**](Users.md#list_users) | **GET** /v1/orgs/self/users | List Users
+[**update_unsubscribe_preferences**](Users.md#update_unsubscribe_preferences) | **POST** /v1/orgs/self/users/self/preferences | Update Notification Preferences
 
 
-# **create_api_key**
-> CreateApiKeyResponse create_api_key(create_api_key_request)
+# **create_user**
+> CreateUserResponse create_user(create_user_request)
 
-Create API Key
+Create User
 
-Create a new API key for the authenticated user.
+Create a new user for an organization.
 
 ### Example
 
@@ -32,24 +34,24 @@ rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 try:
-    # Create API Key
-    api_response = rs.APIKeysApi.create_api_key(
-        name="my-app",
+    # Create User
+    api_response = rs.Users.create_user(
+        email="hello@rockset.com",
     )
     pprint(api_response)
 except rockset.ApiException as e:
-    print("Exception when calling APIKeysApi->create_api_key: %s\n" % e)
+    print("Exception when calling Users->create_user: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
-    # Create API Key
-    api_response = await rs.APIKeysApi.create_api_key(
-        name="my-app",
-        role="string_example",
+    # Create User
+    api_response = await rs.Users.create_user(
+        email="hello@rockset.com",
+        roles=["admin","member","read-only"],
         async_req=True,
     )
     if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling APIKeysApi->create_api_key: %s\n" % e)
+        print("Exception when calling Users->create_user: %s\n" % e)
         return
     pprint(api_response)
 
@@ -60,12 +62,12 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str** | Name for this API key. | 
- **role** | **str** |  | [optional]
+ **email** | **str** | user email, must be unique | 
+ **roles** | **[str]** | List of roles for a given user | [optional]
 
 ### Return type
 
-[**CreateApiKeyResponse**](CreateApiKeyResponse.md)
+[**CreateUserResponse**](CreateUserResponse.md)
 
 ### Authorization
 
@@ -82,7 +84,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | API key created successfully |  -  |
+**200** | user created successfully |  -  |
 **400** | bad request |  -  |
 **401** | unauthorized |  -  |
 **403** | forbidden |  -  |
@@ -99,12 +101,12 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **delete_api_key**
-> DeleteApiKeyResponse delete_api_key(name, user)
+# **delete_user**
+> DeleteUserResponse delete_user(user)
 
-Delete API Key
+Delete User
 
-Delete an API key for any user in your organization.
+Delete a user from an organization.
 
 ### Example
 
@@ -120,25 +122,23 @@ rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 try:
-    # Delete API Key
-    api_response = rs.APIKeysApi.delete_api_key(
-        name="my-key",
-        user="admin@me.com",
+    # Delete User
+    api_response = rs.Users.delete_user(
+        user="user_example",
     )
     pprint(api_response)
 except rockset.ApiException as e:
-    print("Exception when calling APIKeysApi->delete_api_key: %s\n" % e)
+    print("Exception when calling Users->delete_user: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
-    # Delete API Key
-    api_response = await rs.APIKeysApi.delete_api_key(
-        name="my-key",
-        user="admin@me.com",
+    # Delete User
+    api_response = await rs.Users.delete_user(
+        user="user_example",
         async_req=True,
     )
     if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling APIKeysApi->delete_api_key: %s\n" % e)
+        print("Exception when calling Users->delete_user: %s\n" % e)
         return
     pprint(api_response)
 
@@ -149,12 +149,11 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str** | Name of the API key. |
- **user** | **str** | Email of the API key owner. Use &#x60;self&#x60; to specify the currently authenticated user. |
+ **user** | **str** | user email |
 
 ### Return type
 
-[**DeleteApiKeyResponse**](DeleteApiKeyResponse.md)
+[**DeleteUserResponse**](DeleteUserResponse.md)
 
 ### Authorization
 
@@ -171,7 +170,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | API key deleted successfully |  -  |
+**200** | user deleted successfully |  -  |
 **400** | bad request |  -  |
 **401** | unauthorized |  -  |
 **403** | forbidden |  -  |
@@ -188,12 +187,12 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_api_key**
-> GetApiKeyResponse get_api_key(user, name)
+# **get_current_user**
+> User get_current_user()
 
-Retrieve API Key
+Retrieve Current User
 
-Retrieve a particular API key for any user in your organization.
+Retrieve currently authenticated user.
 
 ### Example
 
@@ -209,25 +208,21 @@ rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 try:
-    # Retrieve API Key
-    api_response = rs.APIKeysApi.get_api_key(
-        user="admin@me.com",
-        name="my-key",
+    # Retrieve Current User
+    api_response = rs.Users.get_current_user(
     )
     pprint(api_response)
 except rockset.ApiException as e:
-    print("Exception when calling APIKeysApi->get_api_key: %s\n" % e)
+    print("Exception when calling Users->get_current_user: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
-    # Retrieve API Key
-    api_response = await rs.APIKeysApi.get_api_key(
-        user="admin@me.com",
-        name="my-key",
+    # Retrieve Current User
+    api_response = await rs.Users.get_current_user(
         async_req=True,
     )
     if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling APIKeysApi->get_api_key: %s\n" % e)
+        print("Exception when calling Users->get_current_user: %s\n" % e)
         return
     pprint(api_response)
 
@@ -235,16 +230,11 @@ async def call_api():
 
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **user** | **str** | Email of the API key owner. Use &#x60;self&#x60; to specify the currently authenticated user. |
- **name** | **str** | Name of the API key. |
- **reveal** | **bool** | Reveal full key. | [optional]
+This endpoint does not need any parameter.
 
 ### Return type
 
-[**GetApiKeyResponse**](GetApiKeyResponse.md)
+[**User**](User.md)
 
 ### Authorization
 
@@ -261,7 +251,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | API key retrieved successfully |  -  |
+**200** | user retrieved successfully |  -  |
 **400** | bad request |  -  |
 **401** | unauthorized |  -  |
 **403** | forbidden |  -  |
@@ -278,12 +268,12 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **list_api_keys**
-> ListApiKeysResponse list_api_keys(user)
+# **get_user**
+> User get_user(user)
 
-List API Keys
+Retrieve User
 
-List API key metadata for any user in your organization.
+Retrieve user by email.
 
 ### Example
 
@@ -299,23 +289,23 @@ rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 try:
-    # List API Keys
-    api_response = rs.APIKeysApi.list_api_keys(
-        user="admin@me.com",
+    # Retrieve User
+    api_response = rs.Users.get_user(
+        user="user_example",
     )
     pprint(api_response)
 except rockset.ApiException as e:
-    print("Exception when calling APIKeysApi->list_api_keys: %s\n" % e)
+    print("Exception when calling Users->get_user: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
-    # List API Keys
-    api_response = await rs.APIKeysApi.list_api_keys(
-        user="admin@me.com",
+    # Retrieve User
+    api_response = await rs.Users.get_user(
+        user="user_example",
         async_req=True,
     )
     if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling APIKeysApi->list_api_keys: %s\n" % e)
+        print("Exception when calling Users->get_user: %s\n" % e)
         return
     pprint(api_response)
 
@@ -326,11 +316,11 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user** | **str** | Email of the API key owner. Use &#x60;self&#x60; to specify the currently authenticated user. |
+ **user** | **str** | user email |
 
 ### Return type
 
-[**ListApiKeysResponse**](ListApiKeysResponse.md)
+[**User**](User.md)
 
 ### Authorization
 
@@ -347,7 +337,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | API keys retrieved successfully |  -  |
+**200** | user found |  -  |
 **400** | bad request |  -  |
 **401** | unauthorized |  -  |
 **403** | forbidden |  -  |
@@ -364,12 +354,12 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **update_api_key**
-> UpdateApiKeyResponse update_api_key(name, user, update_api_key_request)
+# **list_unsubscribe_preferences**
+> ListUnsubscribePreferencesResponse list_unsubscribe_preferences()
 
-Update API Key State
+Retrieve Notification Preferences
 
-Update the state of an API key for any user in your organization.
+Get all notification preferences.
 
 ### Example
 
@@ -385,26 +375,188 @@ rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 try:
-    # Update API Key State
-    api_response = rs.APIKeysApi.update_api_key(
-        name="my-key",
-        user="admin@me.com",
+    # Retrieve Notification Preferences
+    api_response = rs.Users.list_unsubscribe_preferences(
     )
     pprint(api_response)
 except rockset.ApiException as e:
-    print("Exception when calling APIKeysApi->update_api_key: %s\n" % e)
+    print("Exception when calling Users->list_unsubscribe_preferences: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
-    # Update API Key State
-    api_response = await rs.APIKeysApi.update_api_key(
-        name="my-key",
-        user="admin@me.com",
-        state="ACTIVE",
+    # Retrieve Notification Preferences
+    api_response = await rs.Users.list_unsubscribe_preferences(
         async_req=True,
     )
     if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling APIKeysApi->update_api_key: %s\n" % e)
+        print("Exception when calling Users->list_unsubscribe_preferences: %s\n" % e)
+        return
+    pprint(api_response)
+
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ListUnsubscribePreferencesResponse**](ListUnsubscribePreferencesResponse.md)
+
+### Authorization
+
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Notification preferences retrieved successfully |  -  |
+**400** | bad request |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+**405** | not allowed |  -  |
+**406** | not acceptable |  -  |
+**408** | request timeout |  -  |
+**415** | not supported |  -  |
+**429** | resource exceeded |  -  |
+**500** | internal error |  -  |
+**501** | not implemented |  -  |
+**502** | bad gateway |  -  |
+**503** | not ready |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_users**
+> ListUsersResponse list_users()
+
+List Users
+
+Retrieve all users for an organization.
+
+### Example
+
+* Api Key Authentication (apikey):
+
+```python
+from rockset import *
+from pprint import pprint
+
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+
+# synchronous example passing only required values which don't have defaults set
+try:
+    # List Users
+    api_response = rs.Users.list_users(
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling Users->list_users: %s\n" % e)
+
+# asynchronous example passing optional values and required values which don't have defaults set
+async def call_api():
+    # List Users
+    api_response = await rs.Users.list_users(
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
+        print("Exception when calling Users->list_users: %s\n" % e)
+        return
+    pprint(api_response)
+
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ListUsersResponse**](ListUsersResponse.md)
+
+### Authorization
+
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | users retrieved successfully |  -  |
+**400** | bad request |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+**405** | not allowed |  -  |
+**406** | not acceptable |  -  |
+**408** | request timeout |  -  |
+**415** | not supported |  -  |
+**429** | resource exceeded |  -  |
+**500** | internal error |  -  |
+**501** | not implemented |  -  |
+**502** | bad gateway |  -  |
+**503** | not ready |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_unsubscribe_preferences**
+> UpdateUnsubscribePreferencesResponse update_unsubscribe_preferences(update_unsubscribe_preferences_request)
+
+Update Notification Preferences
+
+Update notification preference.
+
+### Example
+
+* Api Key Authentication (apikey):
+
+```python
+from rockset import *
+from pprint import pprint
+
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Update Notification Preferences
+    api_response = rs.Users.update_unsubscribe_preferences(
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling Users->update_unsubscribe_preferences: %s\n" % e)
+
+# asynchronous example passing optional values and required values which don't have defaults set
+async def call_api():
+    # Update Notification Preferences
+    api_response = await rs.Users.update_unsubscribe_preferences(
+        data=[
+        UnsubscribePreference(
+            notification_type="create_apikey",
+        ),
+    ],
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
+        print("Exception when calling Users->update_unsubscribe_preferences: %s\n" % e)
         return
     pprint(api_response)
 
@@ -415,13 +567,11 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str** | Name of the API key. |
- **user** | **str** | Email of the API key owner. Use &#x60;self&#x60; to specify the currently authenticated user. |
- **state** | **str** | State that the api key should be set to. | [optional]
+ **data** | [**[UnsubscribePreference]**](UnsubscribePreference.md) | List of notification preferences | [optional]
 
 ### Return type
 
-[**UpdateApiKeyResponse**](UpdateApiKeyResponse.md)
+[**UpdateUnsubscribePreferencesResponse**](UpdateUnsubscribePreferencesResponse.md)
 
 ### Authorization
 
@@ -438,7 +588,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | API key successfully updated |  -  |
+**200** | Notification preference created successfully |  -  |
 **400** | bad request |  -  |
 **401** | unauthorized |  -  |
 **403** | forbidden |  -  |

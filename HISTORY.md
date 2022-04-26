@@ -1,3 +1,7 @@
+### v0.0.9
+    - Bug fixes
+    - Change pattern of API groups (AliasesApi -> Aliases)
+
 ### v0.0.8
     - Ease-of-use upgrades for host initialization
     - Typo fixes

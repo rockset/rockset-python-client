@@ -2,24 +2,23 @@ import inspect
 import re
 from enum import Enum
 from functools import wraps
-from sys import intern
 from types import FunctionType
 from typing import Union
 
 from rockset.api_client import ApiClient
 from rockset.apis import (
-    AliasesApi,
-    APIKeysApi,
-    CollectionsApi,
-    DocumentsApi,
-    IntegrationsApi,
-    OrganizationsApi,
-    QueriesApi,
-    QueryLambdasApi,
-    UsersApi,
-    ViewsApi,
-    VirtualInstancesApi,
-    WorkspacesApi,
+    Aliases,
+    APIKeys,
+    Collections,
+    Documents,
+    Integrations,
+    Organizations,
+    Queries,
+    QueryLambdas,
+    Users,
+    Views,
+    VirtualInstances,
+    Workspaces,
 )
 from rockset.configuration import Configuration
 from rockset.exceptions import ApiTypeError, ApiValueError, InitializationException
@@ -86,51 +85,51 @@ class ApiMetaclass(type):
         return child
 
 
-class AliasesApiWrapper(AliasesApi, metaclass=ApiMetaclass):
+class AliasesApiWrapper(Aliases, metaclass=ApiMetaclass):
     pass
 
 
-class APIKeysApiWrapper(APIKeysApi, metaclass=ApiMetaclass):
+class APIKeysApiWrapper(APIKeys, metaclass=ApiMetaclass):
     pass
 
 
-class CollectionsApiWrapper(CollectionsApi, metaclass=ApiMetaclass):
+class CollectionsApiWrapper(Collections, metaclass=ApiMetaclass):
     pass
 
 
-class DocumentsApiWrapper(DocumentsApi, metaclass=ApiMetaclass):
+class DocumentsApiWrapper(Documents, metaclass=ApiMetaclass):
     pass
 
 
-class IntegrationsApiWrapper(IntegrationsApi, metaclass=ApiMetaclass):
+class IntegrationsApiWrapper(Integrations, metaclass=ApiMetaclass):
     pass
 
 
-class OrganizationsApiWrapper(OrganizationsApi, metaclass=ApiMetaclass):
+class OrganizationsApiWrapper(Organizations, metaclass=ApiMetaclass):
     pass
 
 
-class QueriesApiWrapper(QueriesApi, metaclass=ApiMetaclass):
+class QueriesApiWrapper(Queries, metaclass=ApiMetaclass):
     pass
 
 
-class QueryLambdasApiWrapper(QueryLambdasApi, metaclass=ApiMetaclass):
+class QueryLambdasApiWrapper(QueryLambdas, metaclass=ApiMetaclass):
     pass
 
 
-class UsersApiWrapper(UsersApi, metaclass=ApiMetaclass):
+class UsersApiWrapper(Users, metaclass=ApiMetaclass):
     pass
 
 
-class ViewsApiWrapper(ViewsApi, metaclass=ApiMetaclass):
+class ViewsApiWrapper(Views, metaclass=ApiMetaclass):
     pass
 
 
-class VirtualInstancesApiWrapper(VirtualInstancesApi, metaclass=ApiMetaclass):
+class VirtualInstancesApiWrapper(VirtualInstances, metaclass=ApiMetaclass):
     pass
 
 
-class WorkspacesApiWrapper(WorkspacesApi, metaclass=ApiMetaclass):
+class WorkspacesApiWrapper(Workspaces, metaclass=ApiMetaclass):
     pass
 
 
@@ -198,15 +197,15 @@ class RocksetClient:
 
         self.api_client = ApiClient(config, max_workers=max_workers)
 
-        self.AliasesApi = AliasesApiWrapper(self.api_client)
-        self.APIKeysApi = APIKeysApiWrapper(self.api_client)
-        self.CollectionsApi = CollectionsApiWrapper(self.api_client)
-        self.DocumentsApi = DocumentsApiWrapper(self.api_client)
-        self.IntegrationsApi = IntegrationsApiWrapper(self.api_client)
-        self.OrganizationsApi = OrganizationsApiWrapper(self.api_client)
-        self.QueriesApi = QueriesApiWrapper(self.api_client)
-        self.QueryLambdasApi = QueryLambdasApiWrapper(self.api_client)
-        self.UsersApi = UsersApiWrapper(self.api_client)
-        self.ViewsApi = ViewsApiWrapper(self.api_client)
-        self.VirtualInstancesApi = VirtualInstancesApiWrapper(self.api_client)
-        self.WorkspacesApi = WorkspacesApiWrapper(self.api_client)
+        self.Aliases = AliasesApiWrapper(self.api_client)
+        self.APIKeys = APIKeysApiWrapper(self.api_client)
+        self.Collections = CollectionsApiWrapper(self.api_client)
+        self.Documents = DocumentsApiWrapper(self.api_client)
+        self.Integrations = IntegrationsApiWrapper(self.api_client)
+        self.Organizations = OrganizationsApiWrapper(self.api_client)
+        self.Queries = QueriesApiWrapper(self.api_client)
+        self.QueryLambdas = QueryLambdasApiWrapper(self.api_client)
+        self.Users = UsersApiWrapper(self.api_client)
+        self.Views = ViewsApiWrapper(self.api_client)
+        self.VirtualInstances = VirtualInstancesApiWrapper(self.api_client)
+        self.Workspaces = WorkspacesApiWrapper(self.api_client)

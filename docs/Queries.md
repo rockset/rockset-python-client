@@ -1,24 +1,23 @@
-# rockset.UsersApi
+# rockset.Queries
 
 All URIs are relative to *https://api.rs2.usw2.rockset.com* or the apiserver provided when initializing RocksetClient
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_user**](UsersApi.md#create_user) | **POST** /v1/orgs/self/users | Create User
-[**delete_user**](UsersApi.md#delete_user) | **DELETE** /v1/orgs/self/users/{user} | Delete User
-[**get_current_user**](UsersApi.md#get_current_user) | **GET** /v1/orgs/self/users/self | Retrieve Current User
-[**get_user**](UsersApi.md#get_user) | **GET** /v1/orgs/self/users/{user} | Retrieve User
-[**list_unsubscribe_preferences**](UsersApi.md#list_unsubscribe_preferences) | **GET** /v1/orgs/self/users/self/preferences | Retrieve Notification Preferences
-[**list_users**](UsersApi.md#list_users) | **GET** /v1/orgs/self/users | List Users
-[**update_unsubscribe_preferences**](UsersApi.md#update_unsubscribe_preferences) | **POST** /v1/orgs/self/users/self/preferences | Update Notification Preferences
+[**cancel_query**](Queries.md#cancel_query) | **DELETE** /v1/orgs/self/queries/{queryId} | Cancel Query
+[**get_query**](Queries.md#get_query) | **GET** /v1/orgs/self/queries/{queryId} | Retrieve Query
+[**get_query_results**](Queries.md#get_query_results) | **GET** /v1/orgs/self/queries/{queryId}/pages | Retrieve Query Results Page
+[**list_active_queries**](Queries.md#list_active_queries) | **GET** /v1/orgs/self/queries | List Queries
+[**query**](Queries.md#query) | **POST** /v1/orgs/self/queries | Execute SQL Query
+[**validate**](Queries.md#validate) | **POST** /v1/orgs/self/queries/validations | Validate Query
 
 
-# **create_user**
-> CreateUserResponse create_user(create_user_request)
+# **cancel_query**
+> CancelQueryResponse cancel_query(query_id)
 
-Create User
+Cancel Query
 
-Create a new user for an organization.
+Attempts to cancel an actively-running query.
 
 ### Example
 
@@ -34,24 +33,23 @@ rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 try:
-    # Create User
-    api_response = rs.UsersApi.create_user(
-        email="hello@rockset.com",
+    # Cancel Query
+    api_response = rs.Queries.cancel_query(
+        query_id="queryId_example",
     )
     pprint(api_response)
 except rockset.ApiException as e:
-    print("Exception when calling UsersApi->create_user: %s\n" % e)
+    print("Exception when calling Queries->cancel_query: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
-    # Create User
-    api_response = await rs.UsersApi.create_user(
-        email="hello@rockset.com",
-        roles=["admin","member","read-only"],
+    # Cancel Query
+    api_response = await rs.Queries.cancel_query(
+        query_id="queryId_example",
         async_req=True,
     )
     if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling UsersApi->create_user: %s\n" % e)
+        print("Exception when calling Queries->cancel_query: %s\n" % e)
         return
     pprint(api_response)
 
@@ -62,12 +60,385 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **str** | user email, must be unique | 
- **roles** | **[str]** | List of roles for a given user | [optional]
+ **query_id** | **str** |  |
 
 ### Return type
 
-[**CreateUserResponse**](CreateUserResponse.md)
+[**CancelQueryResponse**](CancelQueryResponse.md)
+
+### Authorization
+
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully canceled query |  -  |
+**400** | bad request |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+**405** | not allowed |  -  |
+**406** | not acceptable |  -  |
+**408** | request timeout |  -  |
+**415** | not supported |  -  |
+**429** | resource exceeded |  -  |
+**500** | internal error |  -  |
+**501** | not implemented |  -  |
+**502** | bad gateway |  -  |
+**503** | not ready |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_query**
+> QueryResponse get_query(query_id)
+
+Retrieve Query
+
+Returns information about a query.
+
+### Example
+
+* Api Key Authentication (apikey):
+
+```python
+from rockset import *
+from pprint import pprint
+
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Retrieve Query
+    api_response = rs.Queries.get_query(
+        query_id="queryId_example",
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling Queries->get_query: %s\n" % e)
+
+# asynchronous example passing optional values and required values which don't have defaults set
+async def call_api():
+    # Retrieve Query
+    api_response = await rs.Queries.get_query(
+        query_id="queryId_example",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
+        print("Exception when calling Queries->get_query: %s\n" % e)
+        return
+    pprint(api_response)
+
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **query_id** | **str** |  |
+
+### Return type
+
+[**QueryResponse**](QueryResponse.md)
+
+### Authorization
+
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | Successfully fetched query info |  -  |
+**400** | bad request |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+**405** | not allowed |  -  |
+**406** | not acceptable |  -  |
+**408** | request timeout |  -  |
+**415** | not supported |  -  |
+**429** | resource exceeded |  -  |
+**500** | internal error |  -  |
+**501** | not implemented |  -  |
+**502** | bad gateway |  -  |
+**503** | not ready |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_query_results**
+> QueryPaginationResponse get_query_results(query_id)
+
+Retrieve Query Results Page
+
+Returns a page of query results.
+
+### Example
+
+* Api Key Authentication (apikey):
+
+```python
+from rockset import *
+from pprint import pprint
+
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Retrieve Query Results Page
+    api_response = rs.Queries.get_query_results(
+        query_id="queryId_example",
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling Queries->get_query_results: %s\n" % e)
+
+# asynchronous example passing optional values and required values which don't have defaults set
+async def call_api():
+    # Retrieve Query Results Page
+    api_response = await rs.Queries.get_query_results(
+        query_id="queryId_example",
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
+        print("Exception when calling Queries->get_query_results: %s\n" % e)
+        return
+    pprint(api_response)
+
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **query_id** | **str** |  |
+ **cursor** | **str** |  | [optional]
+ **docs** | **int** |  | [optional]
+ **offset** | **int** |  | [optional]
+
+### Return type
+
+[**QueryPaginationResponse**](QueryPaginationResponse.md)
+
+### Authorization
+
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successfully fetched query results |  -  |
+**400** | bad request |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+**405** | not allowed |  -  |
+**406** | not acceptable |  -  |
+**408** | request timeout |  -  |
+**415** | not supported |  -  |
+**429** | resource exceeded |  -  |
+**500** | internal error |  -  |
+**501** | not implemented |  -  |
+**502** | bad gateway |  -  |
+**503** | not ready |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **list_active_queries**
+> ListQueriesResponse list_active_queries()
+
+List Queries
+
+Lists actively queued and running queries.
+
+### Example
+
+* Api Key Authentication (apikey):
+
+```python
+from rockset import *
+from pprint import pprint
+
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+
+# synchronous example passing only required values which don't have defaults set
+try:
+    # List Queries
+    api_response = rs.Queries.list_active_queries(
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling Queries->list_active_queries: %s\n" % e)
+
+# asynchronous example passing optional values and required values which don't have defaults set
+async def call_api():
+    # List Queries
+    api_response = await rs.Queries.list_active_queries(
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
+        print("Exception when calling Queries->list_active_queries: %s\n" % e)
+        return
+    pprint(api_response)
+
+```
+
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ListQueriesResponse**](ListQueriesResponse.md)
+
+### Authorization
+
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successfully fetched queries |  -  |
+**400** | bad request |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+**405** | not allowed |  -  |
+**406** | not acceptable |  -  |
+**408** | request timeout |  -  |
+**415** | not supported |  -  |
+**429** | resource exceeded |  -  |
+**500** | internal error |  -  |
+**501** | not implemented |  -  |
+**502** | bad gateway |  -  |
+**503** | not ready |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **query**
+> QueryResponse query(query_request)
+
+Execute SQL Query
+
+Make a SQL query to Rockset.
+
+### Example
+
+* Api Key Authentication (apikey):
+
+```python
+from rockset import *
+from pprint import pprint
+
+# Create an instance of the Rockset client
+# example passing only required values which don't have defaults set
+rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+
+# synchronous example passing only required values which don't have defaults set
+try:
+    # Execute SQL Query
+    api_response = rs.Queries.query(
+        sql=QueryRequestSql(
+        default_row_limit=1,
+        generate_warnings=True,
+        initial_paginate_response_doc_count=1,
+        paginate=True,
+        parameters=[
+            QueryParameter(
+                name="_id",
+                type="string",
+                value="85beb391",
+            ),
+        ],
+        query="SELECT * FROM foo where _id = :_id",
+    ),
+    )
+    pprint(api_response)
+except rockset.ApiException as e:
+    print("Exception when calling Queries->query: %s\n" % e)
+
+# asynchronous example passing optional values and required values which don't have defaults set
+async def call_api():
+    # Execute SQL Query
+    api_response = await rs.Queries.query(
+        async_options=AsyncQueryOptions(
+        client_timeout_ms=1,
+        max_initial_results=1,
+        timeout_ms=1,
+    ),
+        sql=QueryRequestSql(
+        default_row_limit=1,
+        generate_warnings=True,
+        initial_paginate_response_doc_count=1,
+        paginate=True,
+        parameters=[
+            QueryParameter(
+                name="_id",
+                type="string",
+                value="85beb391",
+            ),
+        ],
+        query="SELECT * FROM foo where _id = :_id",
+    ),
+        async_req=True,
+    )
+    if isinstance(api_response, rockset.ApiException):
+        print("Exception when calling Queries->query: %s\n" % e)
+        return
+    pprint(api_response)
+
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **async_options** | [**AsyncQueryOptions**](AsyncQueryOptions.md) |  | [optional]
+ **sql** | [**QueryRequestSql**](QueryRequestSql.md) |  | 
+
+### Return type
+
+[**QueryResponse**](QueryResponse.md)
 
 ### Authorization
 
@@ -84,7 +455,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | user created successfully |  -  |
+**200** | query executed successfully |  -  |
 **400** | bad request |  -  |
 **401** | unauthorized |  -  |
 **403** | forbidden |  -  |
@@ -101,12 +472,12 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **delete_user**
-> DeleteUserResponse delete_user(user)
+# **validate**
+> ValidateQueryResponse validate(query_request)
 
-Delete User
+Validate Query
 
-Delete a user from an organization.
+Validate a SQL query with Rockset's parser and planner.
 
 ### Example
 
@@ -122,23 +493,54 @@ rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 try:
-    # Delete User
-    api_response = rs.UsersApi.delete_user(
-        user="user_example",
+    # Validate Query
+    api_response = rs.Queries.validate(
+        sql=QueryRequestSql(
+        default_row_limit=1,
+        generate_warnings=True,
+        initial_paginate_response_doc_count=1,
+        paginate=True,
+        parameters=[
+            QueryParameter(
+                name="_id",
+                type="string",
+                value="85beb391",
+            ),
+        ],
+        query="SELECT * FROM foo where _id = :_id",
+    ),
     )
     pprint(api_response)
 except rockset.ApiException as e:
-    print("Exception when calling UsersApi->delete_user: %s\n" % e)
+    print("Exception when calling Queries->validate: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
-    # Delete User
-    api_response = await rs.UsersApi.delete_user(
-        user="user_example",
+    # Validate Query
+    api_response = await rs.Queries.validate(
+        async_options=AsyncQueryOptions(
+        client_timeout_ms=1,
+        max_initial_results=1,
+        timeout_ms=1,
+    ),
+        sql=QueryRequestSql(
+        default_row_limit=1,
+        generate_warnings=True,
+        initial_paginate_response_doc_count=1,
+        paginate=True,
+        parameters=[
+            QueryParameter(
+                name="_id",
+                type="string",
+                value="85beb391",
+            ),
+        ],
+        query="SELECT * FROM foo where _id = :_id",
+    ),
         async_req=True,
     )
     if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling UsersApi->delete_user: %s\n" % e)
+        print("Exception when calling Queries->validate: %s\n" % e)
         return
     pprint(api_response)
 
@@ -149,429 +551,12 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user** | **str** | user email |
+ **async_options** | [**AsyncQueryOptions**](AsyncQueryOptions.md) |  | [optional]
+ **sql** | [**QueryRequestSql**](QueryRequestSql.md) |  | 
 
 ### Return type
 
-[**DeleteUserResponse**](DeleteUserResponse.md)
-
-### Authorization
-
-All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
-
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | user deleted successfully |  -  |
-**400** | bad request |  -  |
-**401** | unauthorized |  -  |
-**403** | forbidden |  -  |
-**404** | not found |  -  |
-**405** | not allowed |  -  |
-**406** | not acceptable |  -  |
-**408** | request timeout |  -  |
-**415** | not supported |  -  |
-**429** | resource exceeded |  -  |
-**500** | internal error |  -  |
-**501** | not implemented |  -  |
-**502** | bad gateway |  -  |
-**503** | not ready |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_current_user**
-> User get_current_user()
-
-Retrieve Current User
-
-Retrieve currently authenticated user.
-
-### Example
-
-* Api Key Authentication (apikey):
-
-```python
-from rockset import *
-from pprint import pprint
-
-# Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
-
-# synchronous example passing only required values which don't have defaults set
-try:
-    # Retrieve Current User
-    api_response = rs.UsersApi.get_current_user(
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling UsersApi->get_current_user: %s\n" % e)
-
-# asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Retrieve Current User
-    api_response = await rs.UsersApi.get_current_user(
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling UsersApi->get_current_user: %s\n" % e)
-        return
-    pprint(api_response)
-
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**User**](User.md)
-
-### Authorization
-
-All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
-
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | user retrieved successfully |  -  |
-**400** | bad request |  -  |
-**401** | unauthorized |  -  |
-**403** | forbidden |  -  |
-**404** | not found |  -  |
-**405** | not allowed |  -  |
-**406** | not acceptable |  -  |
-**408** | request timeout |  -  |
-**415** | not supported |  -  |
-**429** | resource exceeded |  -  |
-**500** | internal error |  -  |
-**501** | not implemented |  -  |
-**502** | bad gateway |  -  |
-**503** | not ready |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_user**
-> User get_user(user)
-
-Retrieve User
-
-Retrieve user by email.
-
-### Example
-
-* Api Key Authentication (apikey):
-
-```python
-from rockset import *
-from pprint import pprint
-
-# Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
-
-# synchronous example passing only required values which don't have defaults set
-try:
-    # Retrieve User
-    api_response = rs.UsersApi.get_user(
-        user="user_example",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling UsersApi->get_user: %s\n" % e)
-
-# asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Retrieve User
-    api_response = await rs.UsersApi.get_user(
-        user="user_example",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling UsersApi->get_user: %s\n" % e)
-        return
-    pprint(api_response)
-
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **user** | **str** | user email |
-
-### Return type
-
-[**User**](User.md)
-
-### Authorization
-
-All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
-
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | user found |  -  |
-**400** | bad request |  -  |
-**401** | unauthorized |  -  |
-**403** | forbidden |  -  |
-**404** | not found |  -  |
-**405** | not allowed |  -  |
-**406** | not acceptable |  -  |
-**408** | request timeout |  -  |
-**415** | not supported |  -  |
-**429** | resource exceeded |  -  |
-**500** | internal error |  -  |
-**501** | not implemented |  -  |
-**502** | bad gateway |  -  |
-**503** | not ready |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **list_unsubscribe_preferences**
-> ListUnsubscribePreferencesResponse list_unsubscribe_preferences()
-
-Retrieve Notification Preferences
-
-Get all notification preferences.
-
-### Example
-
-* Api Key Authentication (apikey):
-
-```python
-from rockset import *
-from pprint import pprint
-
-# Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
-
-# synchronous example passing only required values which don't have defaults set
-try:
-    # Retrieve Notification Preferences
-    api_response = rs.UsersApi.list_unsubscribe_preferences(
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling UsersApi->list_unsubscribe_preferences: %s\n" % e)
-
-# asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Retrieve Notification Preferences
-    api_response = await rs.UsersApi.list_unsubscribe_preferences(
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling UsersApi->list_unsubscribe_preferences: %s\n" % e)
-        return
-    pprint(api_response)
-
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**ListUnsubscribePreferencesResponse**](ListUnsubscribePreferencesResponse.md)
-
-### Authorization
-
-All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
-
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | Notification preferences retrieved successfully |  -  |
-**400** | bad request |  -  |
-**401** | unauthorized |  -  |
-**403** | forbidden |  -  |
-**404** | not found |  -  |
-**405** | not allowed |  -  |
-**406** | not acceptable |  -  |
-**408** | request timeout |  -  |
-**415** | not supported |  -  |
-**429** | resource exceeded |  -  |
-**500** | internal error |  -  |
-**501** | not implemented |  -  |
-**502** | bad gateway |  -  |
-**503** | not ready |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **list_users**
-> ListUsersResponse list_users()
-
-List Users
-
-Retrieve all users for an organization.
-
-### Example
-
-* Api Key Authentication (apikey):
-
-```python
-from rockset import *
-from pprint import pprint
-
-# Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
-
-# synchronous example passing only required values which don't have defaults set
-try:
-    # List Users
-    api_response = rs.UsersApi.list_users(
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling UsersApi->list_users: %s\n" % e)
-
-# asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # List Users
-    api_response = await rs.UsersApi.list_users(
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling UsersApi->list_users: %s\n" % e)
-        return
-    pprint(api_response)
-
-```
-
-
-### Parameters
-This endpoint does not need any parameter.
-
-### Return type
-
-[**ListUsersResponse**](ListUsersResponse.md)
-
-### Authorization
-
-All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
-
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | users retrieved successfully |  -  |
-**400** | bad request |  -  |
-**401** | unauthorized |  -  |
-**403** | forbidden |  -  |
-**404** | not found |  -  |
-**405** | not allowed |  -  |
-**406** | not acceptable |  -  |
-**408** | request timeout |  -  |
-**415** | not supported |  -  |
-**429** | resource exceeded |  -  |
-**500** | internal error |  -  |
-**501** | not implemented |  -  |
-**502** | bad gateway |  -  |
-**503** | not ready |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **update_unsubscribe_preferences**
-> UpdateUnsubscribePreferencesResponse update_unsubscribe_preferences(update_unsubscribe_preferences_request)
-
-Update Notification Preferences
-
-Update notification preference.
-
-### Example
-
-* Api Key Authentication (apikey):
-
-```python
-from rockset import *
-from pprint import pprint
-
-# Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
-
-# synchronous example passing only required values which don't have defaults set
-try:
-    # Update Notification Preferences
-    api_response = rs.UsersApi.update_unsubscribe_preferences(
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling UsersApi->update_unsubscribe_preferences: %s\n" % e)
-
-# asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Update Notification Preferences
-    api_response = await rs.UsersApi.update_unsubscribe_preferences(
-        data=[
-        UnsubscribePreference(
-            notification_type="create_apikey",
-        ),
-    ],
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling UsersApi->update_unsubscribe_preferences: %s\n" % e)
-        return
-    pprint(api_response)
-
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **data** | [**[UnsubscribePreference]**](UnsubscribePreference.md) | List of notification preferences | [optional]
-
-### Return type
-
-[**UpdateUnsubscribePreferencesResponse**](UpdateUnsubscribePreferencesResponse.md)
+[**ValidateQueryResponse**](ValidateQueryResponse.md)
 
 ### Authorization
 
@@ -588,7 +573,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | Notification preference created successfully |  -  |
+**200** | query validated successfully |  -  |
 **400** | bad request |  -  |
 **401** | unauthorized |  -  |
 **403** | forbidden |  -  |

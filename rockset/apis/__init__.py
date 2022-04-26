@@ -6,7 +6,7 @@
 # raise a `RecursionError`.
 # In order to avoid this, import only the API that you directly need like:
 #
-#   from .api.api_keys_api import APIKeysApi
+#   from .api.api_keys_api import APIKeys
 #
 # or import this package, but before doing it, use:
 #
@@ -14,16 +14,16 @@
 #   sys.setrecursionlimit(n)
 
 # Import APIs into API package:
-from rockset.api.api_keys_api import APIKeysApi
-from rockset.api.aliases_api import AliasesApi
-from rockset.api.collections_api import CollectionsApi
-from rockset.api.custom_roles_api import CustomRolesApi
-from rockset.api.documents_api import DocumentsApi
-from rockset.api.integrations_api import IntegrationsApi
-from rockset.api.organizations_api import OrganizationsApi
-from rockset.api.queries_api import QueriesApi
-from rockset.api.query_lambdas_api import QueryLambdasApi
-from rockset.api.users_api import UsersApi
-from rockset.api.views_api import ViewsApi
-from rockset.api.virtual_instances_api import VirtualInstancesApi
-from rockset.api.workspaces_api import WorkspacesApi
+from rockset.api.api_keys_api import APIKeys
+from rockset.api.aliases_api import Aliases
+from rockset.api.collections_api import Collections
+from rockset.api.custom_roles_api import CustomRoles
+from rockset.api.documents_api import Documents
+from rockset.api.integrations_api import Integrations
+from rockset.api.organizations_api import Organizations
+from rockset.api.queries_api import Queries
+from rockset.api.query_lambdas_api import QueryLambdas
+from rockset.api.users_api import Users
+from rockset.api.views_api import Views
+from rockset.api.virtual_instances_api import VirtualInstances
+from rockset.api.workspaces_api import Workspaces

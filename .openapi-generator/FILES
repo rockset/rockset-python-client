@@ -1,9 +1,9 @@
 README.md
-docs/APIKeysApi.md
+docs/APIKeys.md
 docs/AddDocumentsRequest.md
 docs/AddDocumentsResponse.md
 docs/Alias.md
-docs/AliasesApi.md
+docs/Aliases.md
 docs/ApiKey.md
 docs/AsyncQueryOptions.md
 docs/AwsAccessKey.md
@@ -23,7 +23,7 @@ docs/CancelQueryResponse.md
 docs/Cluster.md
 docs/Collection.md
 docs/CollectionStats.md
-docs/CollectionsApi.md
+docs/Collections.md
 docs/CreateAliasRequest.md
 docs/CreateAliasResponse.md
 docs/CreateApiKeyRequest.md
@@ -42,7 +42,7 @@ docs/CreateViewResponse.md
 docs/CreateWorkspaceRequest.md
 docs/CreateWorkspaceResponse.md
 docs/CsvParams.md
-docs/CustomRolesApi.md
+docs/CustomRoles.md
 docs/DeleteAliasResponse.md
 docs/DeleteApiKeyResponse.md
 docs/DeleteCollectionResponse.md
@@ -55,7 +55,7 @@ docs/DeleteUserResponse.md
 docs/DeleteViewResponse.md
 docs/DeleteWorkspaceResponse.md
 docs/DocumentStatus.md
-docs/DocumentsApi.md
+docs/Documents.md
 docs/DynamodbCollectionCreationRequest.md
 docs/DynamodbIntegration.md
 docs/DynamodbIntegrationCreationRequest.md
@@ -83,7 +83,7 @@ docs/GetVirtualInstanceResponse.md
 docs/GetWorkspaceResponse.md
 docs/InputField.md
 docs/Integration.md
-docs/IntegrationsApi.md
+docs/Integrations.md
 docs/KafkaCollectionCreationRequest.md
 docs/KafkaIntegration.md
 docs/KafkaIntegrationCreationRequest.md
@@ -113,7 +113,7 @@ docs/MongodbIntegrationCreationRequest.md
 docs/MongodbSourceWrapper.md
 docs/Organization.md
 docs/OrganizationResponse.md
-docs/OrganizationsApi.md
+docs/Organizations.md
 docs/OutputField.md
 docs/Pagination.md
 docs/PaginationInfo.md
@@ -122,7 +122,7 @@ docs/PatchDocumentsRequest.md
 docs/PatchDocumentsResponse.md
 docs/PatchOperation.md
 docs/Privilege.md
-docs/QueriesApi.md
+docs/Queries.md
 docs/QueryError.md
 docs/QueryFieldType.md
 docs/QueryInfo.md
@@ -133,7 +133,7 @@ docs/QueryLambdaTag.md
 docs/QueryLambdaTagResponse.md
 docs/QueryLambdaVersion.md
 docs/QueryLambdaVersionResponse.md
-docs/QueryLambdasApi.md
+docs/QueryLambdas.md
 docs/QueryPaginationResponse.md
 docs/QueryParameter.md
 docs/QueryRequest.md
@@ -185,14 +185,14 @@ docs/UpdateViewResponse.md
 docs/UpdateVirtualInstanceRequest.md
 docs/UpdateVirtualInstanceResponse.md
 docs/User.md
-docs/UsersApi.md
+docs/Users.md
 docs/ValidateQueryResponse.md
 docs/View.md
-docs/ViewsApi.md
+docs/Views.md
 docs/VirtualInstance.md
-docs/VirtualInstancesApi.md
+docs/VirtualInstances.md
 docs/Workspace.md
-docs/WorkspacesApi.md
+docs/Workspaces.md
 docs/XmlParams.md
 rockset/api/__init__.py
 rockset/api/aliases_api.py

@@ -1,23 +1,23 @@
-# rockset.AliasesApi
+# rockset.Views
 
 All URIs are relative to *https://api.rs2.usw2.rockset.com* or the apiserver provided when initializing RocksetClient
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_alias**](AliasesApi.md#create_alias) | **POST** /v1/orgs/self/ws/{workspace}/aliases | Create Alias
-[**delete_alias**](AliasesApi.md#delete_alias) | **DELETE** /v1/orgs/self/ws/{workspace}/aliases/{alias} | Delete Alias
-[**get_alias**](AliasesApi.md#get_alias) | **GET** /v1/orgs/self/ws/{workspace}/aliases/{alias} | Retrieve Alias
-[**list_aliases**](AliasesApi.md#list_aliases) | **GET** /v1/orgs/self/aliases | List Aliases
-[**update_alias**](AliasesApi.md#update_alias) | **POST** /v1/orgs/self/ws/{workspace}/aliases/{alias} | Update Alias
-[**workspace_aliases**](AliasesApi.md#workspace_aliases) | **GET** /v1/orgs/self/ws/{workspace}/aliases | List Aliases in Workspace
+[**create_view**](Views.md#create_view) | **POST** /v1/orgs/self/ws/{workspace}/views | Create View
+[**delete_view**](Views.md#delete_view) | **DELETE** /v1/orgs/self/ws/{workspace}/views/{view} | Delete View
+[**get_view**](Views.md#get_view) | **GET** /v1/orgs/self/ws/{workspace}/views/{view} | Retrieve View
+[**list_views**](Views.md#list_views) | **GET** /v1/orgs/self/views | List Views
+[**update_view**](Views.md#update_view) | **POST** /v1/orgs/self/ws/{workspace}/views/{view} | Update View
+[**workspace_views**](Views.md#workspace_views) | **GET** /v1/orgs/self/ws/{workspace}/views | List Views in Workspace
 
 
-# **create_alias**
-> CreateAliasResponse create_alias(create_alias_request)
+# **create_view**
+> CreateViewResponse create_view(create_view_request)
 
-Create Alias
+Create View
 
-Create new alias in a workspace.
+Create a view
 
 ### Example
 
@@ -33,26 +33,26 @@ rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 try:
-    # Create Alias
-    api_response = rs.AliasesApi.create_alias(
-        collections=["commons.foo","prod.demo"],
-        name="aliasName",
+    # Create View
+    api_response = rs.Views.create_view(
+        name="myAwesomeView",
+        query="SELECT * FROM foo",
     )
     pprint(api_response)
 except rockset.ApiException as e:
-    print("Exception when calling AliasesApi->create_alias: %s\n" % e)
+    print("Exception when calling Views->create_view: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
-    # Create Alias
-    api_response = await rs.AliasesApi.create_alias(
-        collections=["commons.foo","prod.demo"],
-        description="version alias",
-        name="aliasName",
+    # Create View
+    api_response = await rs.Views.create_view(
+        description="view of awesome collection",
+        name="myAwesomeView",
+        query="SELECT * FROM foo",
         async_req=True,
     )
     if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling AliasesApi->create_alias: %s\n" % e)
+        print("Exception when calling Views->create_view: %s\n" % e)
         return
     pprint(api_response)
 
@@ -63,14 +63,14 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **collections** | **[str]** | list of fully qualified collection names referenced by alias | 
  **description** | **str** | optional description | [optional]
- **name** | **str** | Alias name | 
+ **name** | **str** | View name | 
+ **query** | **str** | SQL for this view | 
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
 
-[**CreateAliasResponse**](CreateAliasResponse.md)
+[**CreateViewResponse**](CreateViewResponse.md)
 
 ### Authorization
 
@@ -87,29 +87,16 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | alias created successfully |  -  |
-**400** | bad request |  -  |
-**401** | unauthorized |  -  |
-**403** | forbidden |  -  |
-**404** | not found |  -  |
-**405** | not allowed |  -  |
-**406** | not acceptable |  -  |
-**408** | request timeout |  -  |
-**415** | not supported |  -  |
-**429** | resource exceeded |  -  |
-**500** | internal error |  -  |
-**501** | not implemented |  -  |
-**502** | bad gateway |  -  |
-**503** | not ready |  -  |
+**200** | view created successfully |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **delete_alias**
-> DeleteAliasResponse delete_alias(alias)
+# **delete_view**
+> DeleteViewResponse delete_view(view)
 
-Delete Alias
+Delete View
 
-Delete an alias.
+Delete a view
 
 ### Example
 
@@ -125,23 +112,23 @@ rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 try:
-    # Delete Alias
-    api_response = rs.AliasesApi.delete_alias(
-        alias="alias_example",
+    # Delete View
+    api_response = rs.Views.delete_view(
+        view="view_example",
     )
     pprint(api_response)
 except rockset.ApiException as e:
-    print("Exception when calling AliasesApi->delete_alias: %s\n" % e)
+    print("Exception when calling Views->delete_view: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
-    # Delete Alias
-    api_response = await rs.AliasesApi.delete_alias(
-        alias="alias_example",
+    # Delete View
+    api_response = await rs.Views.delete_view(
+        view="view_example",
         async_req=True,
     )
     if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling AliasesApi->delete_alias: %s\n" % e)
+        print("Exception when calling Views->delete_view: %s\n" % e)
         return
     pprint(api_response)
 
@@ -152,12 +139,12 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **alias** | **str** | name of the alias |
+ **view** | **str** | name of the view |
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
 
-[**DeleteAliasResponse**](DeleteAliasResponse.md)
+[**DeleteViewResponse**](DeleteViewResponse.md)
 
 ### Authorization
 
@@ -174,16 +161,16 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | alias deleted successfully |  -  |
+**200** | view deleted successfully |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_alias**
-> GetAliasResponse get_alias(alias)
+# **get_view**
+> GetViewResponse get_view(view)
 
-Retrieve Alias
+Retrieve View
 
-Get details about an alias
+Get details about a view
 
 ### Example
 
@@ -199,23 +186,23 @@ rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 try:
-    # Retrieve Alias
-    api_response = rs.AliasesApi.get_alias(
-        alias="alias_example",
+    # Retrieve View
+    api_response = rs.Views.get_view(
+        view="view_example",
     )
     pprint(api_response)
 except rockset.ApiException as e:
-    print("Exception when calling AliasesApi->get_alias: %s\n" % e)
+    print("Exception when calling Views->get_view: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
-    # Retrieve Alias
-    api_response = await rs.AliasesApi.get_alias(
-        alias="alias_example",
+    # Retrieve View
+    api_response = await rs.Views.get_view(
+        view="view_example",
         async_req=True,
     )
     if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling AliasesApi->get_alias: %s\n" % e)
+        print("Exception when calling Views->get_view: %s\n" % e)
         return
     pprint(api_response)
 
@@ -226,12 +213,12 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **alias** | **str** | name of the alias |
+ **view** | **str** | name of the view |
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
 
-[**GetAliasResponse**](GetAliasResponse.md)
+[**GetViewResponse**](GetViewResponse.md)
 
 ### Authorization
 
@@ -248,7 +235,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | alias retrieved successfully |  -  |
+**200** | view retrieved successfully |  -  |
 **400** | bad request |  -  |
 **401** | unauthorized |  -  |
 **403** | forbidden |  -  |
@@ -265,12 +252,12 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **list_aliases**
-> ListAliasesResponse list_aliases()
+# **list_views**
+> ListViewsResponse list_views()
 
-List Aliases
+List Views
 
-Retrieve all aliases in an organization
+Retrieve all views in an organization
 
 ### Example
 
@@ -286,21 +273,21 @@ rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 try:
-    # List Aliases
-    api_response = rs.AliasesApi.list_aliases(
+    # List Views
+    api_response = rs.Views.list_views(
     )
     pprint(api_response)
 except rockset.ApiException as e:
-    print("Exception when calling AliasesApi->list_aliases: %s\n" % e)
+    print("Exception when calling Views->list_views: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
-    # List Aliases
-    api_response = await rs.AliasesApi.list_aliases(
+    # List Views
+    api_response = await rs.Views.list_views(
         async_req=True,
     )
     if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling AliasesApi->list_aliases: %s\n" % e)
+        print("Exception when calling Views->list_views: %s\n" % e)
         return
     pprint(api_response)
 
@@ -312,7 +299,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**ListAliasesResponse**](ListAliasesResponse.md)
+[**ListViewsResponse**](ListViewsResponse.md)
 
 ### Authorization
 
@@ -329,7 +316,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | aliases retrieved successfully |  -  |
+**200** | views retrieved successfully |  -  |
 **400** | bad request |  -  |
 **401** | unauthorized |  -  |
 **403** | forbidden |  -  |
@@ -346,12 +333,12 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **update_alias**
-> GetAliasResponse update_alias(alias, update_alias_request)
+# **update_view**
+> UpdateViewResponse update_view(view, update_view_request)
 
-Update Alias
+Update View
 
-Update alias in a workspace.
+Update a view
 
 ### Example
 
@@ -367,26 +354,26 @@ rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 try:
-    # Update Alias
-    api_response = rs.AliasesApi.update_alias(
-        alias="alias_example",
-        collections=["commons.foo","prod.demo"],
+    # Update View
+    api_response = rs.Views.update_view(
+        view="view_example",
+        query="SELECT * FROM foo",
     )
     pprint(api_response)
 except rockset.ApiException as e:
-    print("Exception when calling AliasesApi->update_alias: %s\n" % e)
+    print("Exception when calling Views->update_view: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
-    # Update Alias
-    api_response = await rs.AliasesApi.update_alias(
-        alias="alias_example",
-        collections=["commons.foo","prod.demo"],
-        description="version alias",
+    # Update View
+    api_response = await rs.Views.update_view(
+        view="view_example",
+        description="view of awesome collection",
+        query="SELECT * FROM foo",
         async_req=True,
     )
     if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling AliasesApi->update_alias: %s\n" % e)
+        print("Exception when calling Views->update_view: %s\n" % e)
         return
     pprint(api_response)
 
@@ -397,14 +384,14 @@ async def call_api():
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **alias** | **str** | name of the alias |
- **collections** | **[str]** | list of fully qualified collection names referenced by alias | 
+ **view** | **str** | name of the view |
  **description** | **str** | optional description | [optional]
+ **query** | **str** | SQL for this view | 
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
 
-[**GetAliasResponse**](GetAliasResponse.md)
+[**UpdateViewResponse**](UpdateViewResponse.md)
 
 ### Authorization
 
@@ -421,16 +408,16 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | alias updated successfully |  -  |
+**200** | view updated successfully |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **workspace_aliases**
-> ListAliasesResponse workspace_aliases()
+# **workspace_views**
+> ListViewsResponse workspace_views()
 
-List Aliases in Workspace
+List Views in Workspace
 
-Retrieve all aliases in a workspace.
+Retrieve all views in a workspace.
 
 ### Example
 
@@ -446,21 +433,21 @@ rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 try:
-    # List Aliases in Workspace
-    api_response = rs.AliasesApi.workspace_aliases(
+    # List Views in Workspace
+    api_response = rs.Views.workspace_views(
     )
     pprint(api_response)
 except rockset.ApiException as e:
-    print("Exception when calling AliasesApi->workspace_aliases: %s\n" % e)
+    print("Exception when calling Views->workspace_views: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 async def call_api():
-    # List Aliases in Workspace
-    api_response = await rs.AliasesApi.workspace_aliases(
+    # List Views in Workspace
+    api_response = await rs.Views.workspace_views(
         async_req=True,
     )
     if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling AliasesApi->workspace_aliases: %s\n" % e)
+        print("Exception when calling Views->workspace_views: %s\n" % e)
         return
     pprint(api_response)
 
@@ -475,7 +462,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**ListAliasesResponse**](ListAliasesResponse.md)
+[**ListViewsResponse**](ListViewsResponse.md)
 
 ### Authorization
 
@@ -492,7 +479,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | aliases retrieved successfully |  -  |
+**200** | views retrieved successfully |  -  |
 **400** | bad request |  -  |
 **401** | unauthorized |  -  |
 **403** | forbidden |  -  |
