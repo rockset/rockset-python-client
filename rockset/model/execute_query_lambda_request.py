@@ -87,11 +87,11 @@ class ExecuteQueryLambdaRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'default_row_limit': (int,),  # noqa: E501
-            'generate_warnings': (bool,),  # noqa: E501
-            'initial_paginate_response_doc_count': (int,),  # noqa: E501
-            'paginate': (bool,),  # noqa: E501
-            'parameters': ([QueryParameter],),  # noqa: E501
+            'default_row_limit': (int, none_type),  # noqa: E501
+            'generate_warnings': (bool, none_type),  # noqa: E501
+            'initial_paginate_response_doc_count': (int, none_type),  # noqa: E501
+            'paginate': (bool, none_type),  # noqa: E501
+            'parameters': ([QueryParameter], none_type),  # noqa: E501
         }
 
     @cached_property

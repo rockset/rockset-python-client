@@ -87,9 +87,9 @@ class SourceAzureServiceBus(ModelNormal):
         """
         lazy_import()
         return {
-            'status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
-            'subscription': (str,),  # noqa: E501
-            'topic': (str,),  # noqa: E501
+            'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
+            'subscription': (str, none_type),  # noqa: E501
+            'topic': (str, none_type),  # noqa: E501
         }
 
     @cached_property

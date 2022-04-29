@@ -81,11 +81,11 @@ class XmlParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'attribute_prefix': (str,),  # noqa: E501
-            'doc_tag': (str,),  # noqa: E501
-            'encoding': (str,),  # noqa: E501
-            'root_tag': (str,),  # noqa: E501
-            'value_tag': (str,),  # noqa: E501
+            'attribute_prefix': (str, none_type),  # noqa: E501
+            'doc_tag': (str, none_type),  # noqa: E501
+            'encoding': (str, none_type),  # noqa: E501
+            'root_tag': (str, none_type),  # noqa: E501
+            'value_tag': (str, none_type),  # noqa: E501
         }
 
     @cached_property

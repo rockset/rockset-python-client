@@ -93,16 +93,16 @@ class QueryLambdaVersion(ModelNormal):
         """
         lazy_import()
         return {
-            'collections': ([str],),  # noqa: E501
-            'created_at': (str,),  # noqa: E501
-            'created_by': (str,),  # noqa: E501
-            'description': (str,),  # noqa: E501
-            'name': (str,),  # noqa: E501
-            'sql': (QueryLambdaSql,),  # noqa: E501
-            'state': (str,),  # noqa: E501
-            'stats': (QueryLambdaStats,),  # noqa: E501
-            'version': (str,),  # noqa: E501
-            'workspace': (str,),  # noqa: E501
+            'collections': ([str], none_type),  # noqa: E501
+            'created_at': (str, none_type),  # noqa: E501
+            'created_by': (str, none_type),  # noqa: E501
+            'description': (str, none_type),  # noqa: E501
+            'name': (str, none_type),  # noqa: E501
+            'sql': (QueryLambdaSql, none_type),  # noqa: E501
+            'state': (str, none_type),  # noqa: E501
+            'stats': (QueryLambdaStats, none_type),  # noqa: E501
+            'version': (str, none_type),  # noqa: E501
+            'workspace': (str, none_type),  # noqa: E501
         }
 
     @cached_property

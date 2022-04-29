@@ -281,8 +281,11 @@ class Workspaces(object):
                 should be done one the data sent to the server.
                 Default is True.
             _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is False.
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
             _spec_property_naming (bool): True if the variable names in the input data
                 are serialized names, as specified in the OpenAPI document.
                 False if the variable names in the input data
@@ -315,7 +318,7 @@ class Workspaces(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
+            '_check_return_type', True
         )
         kwargs['_spec_property_naming'] = kwargs.get(
             '_spec_property_naming', False
@@ -362,8 +365,11 @@ class Workspaces(object):
                 should be done one the data sent to the server.
                 Default is True.
             _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is False.
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
             _spec_property_naming (bool): True if the variable names in the input data
                 are serialized names, as specified in the OpenAPI document.
                 False if the variable names in the input data
@@ -396,7 +402,7 @@ class Workspaces(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
+            '_check_return_type', True
         )
         kwargs['_spec_property_naming'] = kwargs.get(
             '_spec_property_naming', False
@@ -443,8 +449,11 @@ class Workspaces(object):
                 should be done one the data sent to the server.
                 Default is True.
             _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is False.
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
             _spec_property_naming (bool): True if the variable names in the input data
                 are serialized names, as specified in the OpenAPI document.
                 False if the variable names in the input data
@@ -477,7 +486,7 @@ class Workspaces(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
+            '_check_return_type', True
         )
         kwargs['_spec_property_naming'] = kwargs.get(
             '_spec_property_naming', False
@@ -521,8 +530,11 @@ class Workspaces(object):
                 should be done one the data sent to the server.
                 Default is True.
             _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is False.
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
             _spec_property_naming (bool): True if the variable names in the input data
                 are serialized names, as specified in the OpenAPI document.
                 False if the variable names in the input data
@@ -555,7 +567,7 @@ class Workspaces(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
+            '_check_return_type', True
         )
         kwargs['_spec_property_naming'] = kwargs.get(
             '_spec_property_naming', False

@@ -81,11 +81,11 @@ class Workspace(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'collection_count': (int,),  # noqa: E501
-            'created_at': (str,),  # noqa: E501
-            'created_by': (str,),  # noqa: E501
-            'description': (str,),  # noqa: E501
-            'name': (str,),  # noqa: E501
+            'collection_count': (int, none_type),  # noqa: E501
+            'created_at': (str, none_type),  # noqa: E501
+            'created_by': (str, none_type),  # noqa: E501
+            'description': (str, none_type),  # noqa: E501
+            'name': (str, none_type),  # noqa: E501
         }
 
     @cached_property

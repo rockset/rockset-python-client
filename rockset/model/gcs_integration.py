@@ -87,7 +87,7 @@ class GcsIntegration(ModelNormal):
         """
         lazy_import()
         return {
-            'gcp_service_account': (GcpServiceAccount,),  # noqa: E501
+            'gcp_service_account': (GcpServiceAccount, none_type),  # noqa: E501
         }
 
     @cached_property

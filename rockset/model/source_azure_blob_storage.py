@@ -81,12 +81,12 @@ class SourceAzureBlobStorage(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'blob_bytes_total': (int,),  # noqa: E501
-            'blob_count_downloaded': (int,),  # noqa: E501
-            'blob_count_total': (int,),  # noqa: E501
-            'container': (str,),  # noqa: E501
-            'pattern': (str,),  # noqa: E501
-            'prefix': (str,),  # noqa: E501
+            'blob_bytes_total': (int, none_type),  # noqa: E501
+            'blob_count_downloaded': (int, none_type),  # noqa: E501
+            'blob_count_total': (int, none_type),  # noqa: E501
+            'container': (str, none_type),  # noqa: E501
+            'pattern': (str, none_type),  # noqa: E501
+            'prefix': (str, none_type),  # noqa: E501
         }
 
     @cached_property

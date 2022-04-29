@@ -86,17 +86,17 @@ class StatusMongoDb(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'scan_end_time': (str,),  # noqa: E501
-            'scan_records_processed': (int,),  # noqa: E501
-            'scan_start_time': (str,),  # noqa: E501
-            'scan_total_records': (int,),  # noqa: E501
-            'state': (str,),  # noqa: E501
-            'stream_last_delete_processed_at': (str,),  # noqa: E501
-            'stream_last_insert_processed_at': (str,),  # noqa: E501
-            'stream_last_update_processed_at': (str,),  # noqa: E501
-            'stream_records_deleted': (int,),  # noqa: E501
-            'stream_records_inserted': (int,),  # noqa: E501
-            'stream_records_updated': (int,),  # noqa: E501
+            'scan_end_time': (str, none_type),  # noqa: E501
+            'scan_records_processed': (int, none_type),  # noqa: E501
+            'scan_start_time': (str, none_type),  # noqa: E501
+            'scan_total_records': (int, none_type),  # noqa: E501
+            'state': (str, none_type),  # noqa: E501
+            'stream_last_delete_processed_at': (str, none_type),  # noqa: E501
+            'stream_last_insert_processed_at': (str, none_type),  # noqa: E501
+            'stream_last_update_processed_at': (str, none_type),  # noqa: E501
+            'stream_records_deleted': (int, none_type),  # noqa: E501
+            'stream_records_inserted': (int, none_type),  # noqa: E501
+            'stream_records_updated': (int, none_type),  # noqa: E501
         }
 
     @cached_property

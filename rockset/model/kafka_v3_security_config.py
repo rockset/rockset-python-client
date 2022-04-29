@@ -81,8 +81,8 @@ class KafkaV3SecurityConfig(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'api_key': (str,),  # noqa: E501
-            'secret': (str,),  # noqa: E501
+            'api_key': (str, none_type),  # noqa: E501
+            'secret': (str, none_type),  # noqa: E501
         }
 
     @cached_property

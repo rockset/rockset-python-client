@@ -81,7 +81,7 @@ class AzureEventHubsIntegration(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'connection_string': (str,),  # noqa: E501
+            'connection_string': (str, none_type),  # noqa: E501
         }
 
     @cached_property

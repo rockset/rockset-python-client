@@ -87,13 +87,13 @@ class QueryLambda(ModelNormal):
         """
         lazy_import()
         return {
-            'collections': ([str],),  # noqa: E501
-            'last_updated': (str,),  # noqa: E501
-            'last_updated_by': (str,),  # noqa: E501
-            'latest_version': (QueryLambdaVersion,),  # noqa: E501
-            'name': (str,),  # noqa: E501
-            'version_count': (int,),  # noqa: E501
-            'workspace': (str,),  # noqa: E501
+            'collections': ([str], none_type),  # noqa: E501
+            'last_updated': (str, none_type),  # noqa: E501
+            'last_updated_by': (str, none_type),  # noqa: E501
+            'latest_version': (QueryLambdaVersion, none_type),  # noqa: E501
+            'name': (str, none_type),  # noqa: E501
+            'version_count': (int, none_type),  # noqa: E501
+            'workspace': (str, none_type),  # noqa: E501
         }
 
     @cached_property

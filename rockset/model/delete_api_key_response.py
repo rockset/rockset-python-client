@@ -87,7 +87,7 @@ class DeleteApiKeyResponse(ModelNormal):
         """
         lazy_import()
         return {
-            'data': (ApiKey,),  # noqa: E501
+            'data': (ApiKey, none_type),  # noqa: E501
         }
 
     @cached_property

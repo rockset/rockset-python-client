@@ -1114,6 +1114,7 @@ async def call_api():
             ),
             integration_name="aws-integration",
             kafka=SourceKafka(
+                consumer_group_id="org-collection",
                 kafka_topic_name="example-topic",
                 offset_reset_policy="LATEST",
                 use_v3=True,
@@ -1254,7 +1255,7 @@ async def call_api():
         name="global-transactions",
         retention_secs=1000000,
         sources=[
-        KinesisStorageSourceWrapper(
+        KinesisSourceWrapper(
             format_params=FormatParams(
                 csv=CsvParams(
                     column_names=["c1","c2","c3"],
@@ -1311,7 +1312,7 @@ Name | Type | Description  | Notes
  **insert_only** | **bool** | If true disallows updates and deletes, but makes indexing more efficient | [optional]
  **name** | **str** | unique identifier for collection, can contain alphanumeric or dash characters | 
  **retention_secs** | **int** | number of seconds after which data is purged, based on event time | [optional]
- **sources** | [**[KinesisStorageSourceWrapper]**](KinesisStorageSourceWrapper.md) | List of sources from which to ingest data | [optional]
+ **sources** | [**[KinesisSourceWrapper]**](KinesisSourceWrapper.md) | List of sources from which to ingest data | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type

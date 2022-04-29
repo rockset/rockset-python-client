@@ -85,10 +85,10 @@ class InputField(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'field_name': (str,),  # noqa: E501
-            'if_missing': (str,),  # noqa: E501
-            'is_drop': (bool,),  # noqa: E501
-            'param': (str,),  # noqa: E501
+            'field_name': (str, none_type),  # noqa: E501
+            'if_missing': (str, none_type),  # noqa: E501
+            'is_drop': (bool, none_type),  # noqa: E501
+            'param': (str, none_type),  # noqa: E501
         }
 
     @cached_property

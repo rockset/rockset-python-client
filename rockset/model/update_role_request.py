@@ -87,8 +87,8 @@ class UpdateRoleRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'description': (str,),  # noqa: E501
-            'privileges': ([Privilege],),  # noqa: E501
+            'description': (str, none_type),  # noqa: E501
+            'privileges': ([Privilege], none_type),  # noqa: E501
         }
 
     @cached_property

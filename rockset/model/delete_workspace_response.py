@@ -87,7 +87,7 @@ class DeleteWorkspaceResponse(ModelNormal):
         """
         lazy_import()
         return {
-            'data': (Workspace,),  # noqa: E501
+            'data': (Workspace, none_type),  # noqa: E501
         }
 
     @cached_property

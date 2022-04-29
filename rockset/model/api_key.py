@@ -87,11 +87,11 @@ class ApiKey(ModelNormal):
         return {
             'key': (str,),  # noqa: E501
             'name': (str,),  # noqa: E501
-            'created_at': (str,),  # noqa: E501
-            'created_by': (str,),  # noqa: E501
-            'last_access_time': (str,),  # noqa: E501
-            'role': (str,),  # noqa: E501
-            'state': (str,),  # noqa: E501
+            'created_at': (str, none_type),  # noqa: E501
+            'created_by': (str, none_type),  # noqa: E501
+            'last_access_time': (str, none_type),  # noqa: E501
+            'role': (str, none_type),  # noqa: E501
+            'state': (str, none_type),  # noqa: E501
         }
 
     @cached_property

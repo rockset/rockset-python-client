@@ -87,7 +87,7 @@ class ListQueryLambdaVersionsResponse(ModelNormal):
         """
         lazy_import()
         return {
-            'data': ([QueryLambdaVersion],),  # noqa: E501
+            'data': ([QueryLambdaVersion], none_type),  # noqa: E501
         }
 
     @cached_property

@@ -91,9 +91,9 @@ class SourceAzureEventHubs(ModelNormal):
         """
         lazy_import()
         return {
-            'hub_id': (str,),  # noqa: E501
-            'offset_reset_policy': (str,),  # noqa: E501
-            'status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'hub_id': (str, none_type),  # noqa: E501
+            'offset_reset_policy': (str, none_type),  # noqa: E501
+            'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
         }
 
     @cached_property

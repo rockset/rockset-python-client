@@ -90,7 +90,7 @@ class QueryRequest(ModelNormal):
         lazy_import()
         return {
             'sql': (QueryRequestSql,),  # noqa: E501
-            'async_options': (AsyncQueryOptions,),  # noqa: E501
+            'async_options': (AsyncQueryOptions, none_type),  # noqa: E501
         }
 
     @cached_property

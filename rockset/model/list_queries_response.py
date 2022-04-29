@@ -87,7 +87,7 @@ class ListQueriesResponse(ModelNormal):
         """
         lazy_import()
         return {
-            'data': ([QueryInfo],),  # noqa: E501
+            'data': ([QueryInfo], none_type),  # noqa: E501
         }
 
     @cached_property

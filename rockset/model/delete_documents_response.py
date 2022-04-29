@@ -87,7 +87,7 @@ class DeleteDocumentsResponse(ModelNormal):
         """
         lazy_import()
         return {
-            'data': ([DocumentStatus],),  # noqa: E501
+            'data': ([DocumentStatus], none_type),  # noqa: E501
         }
 
     @cached_property

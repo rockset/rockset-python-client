@@ -87,8 +87,8 @@ class QueryLambdaTag(ModelNormal):
         """
         lazy_import()
         return {
-            'tag_name': (str,),  # noqa: E501
-            'version': (QueryLambdaVersion,),  # noqa: E501
+            'tag_name': (str, none_type),  # noqa: E501
+            'version': (QueryLambdaVersion, none_type),  # noqa: E501
         }
 
     @cached_property

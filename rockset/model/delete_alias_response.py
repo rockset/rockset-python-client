@@ -87,7 +87,7 @@ class DeleteAliasResponse(ModelNormal):
         """
         lazy_import()
         return {
-            'data': (Alias,),  # noqa: E501
+            'data': (Alias, none_type),  # noqa: E501
         }
 
     @cached_property

@@ -81,7 +81,7 @@ class FieldMappingQuery(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'sql': (str,),  # noqa: E501
+            'sql': (str, none_type),  # noqa: E501
         }
 
     @cached_property

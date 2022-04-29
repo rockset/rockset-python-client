@@ -85,12 +85,12 @@ class Cluster(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'apiserver_url': (str,),  # noqa: E501
-            'aws_region': (str,),  # noqa: E501
-            'cluster_type': (str,),  # noqa: E501
-            'domain': (str,),  # noqa: E501
-            'id': (str,),  # noqa: E501
-            'top_level_domain': (str,),  # noqa: E501
+            'apiserver_url': (str, none_type),  # noqa: E501
+            'aws_region': (str, none_type),  # noqa: E501
+            'cluster_type': (str, none_type),  # noqa: E501
+            'domain': (str, none_type),  # noqa: E501
+            'id': (str, none_type),  # noqa: E501
+            'top_level_domain': (str, none_type),  # noqa: E501
         }
 
     @cached_property

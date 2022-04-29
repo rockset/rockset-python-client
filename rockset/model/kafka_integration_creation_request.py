@@ -88,8 +88,8 @@ class KafkaIntegrationCreationRequest(ModelNormal):
         lazy_import()
         return {
             'name': (str,),  # noqa: E501
-            'description': (str,),  # noqa: E501
-            'kafka': (KafkaIntegration,),  # noqa: E501
+            'description': (str, none_type),  # noqa: E501
+            'kafka': (KafkaIntegration, none_type),  # noqa: E501
         }
 
     @cached_property

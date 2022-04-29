@@ -88,8 +88,8 @@ class AzureEventHubsIntegrationCreationRequest(ModelNormal):
         lazy_import()
         return {
             'name': (str,),  # noqa: E501
-            'azure_event_hubs': (AzureEventHubsIntegration,),  # noqa: E501
-            'description': (str,),  # noqa: E501
+            'azure_event_hubs': (AzureEventHubsIntegration, none_type),  # noqa: E501
+            'description': (str, none_type),  # noqa: E501
         }
 
     @cached_property

@@ -87,7 +87,7 @@ class GetVirtualInstanceResponse(ModelNormal):
         """
         lazy_import()
         return {
-            'data': (VirtualInstance,),  # noqa: E501
+            'data': (VirtualInstance, none_type),  # noqa: E501
         }
 
     @cached_property

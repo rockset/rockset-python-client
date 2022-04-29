@@ -81,12 +81,12 @@ class SourceGcs(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'bucket': (str,),  # noqa: E501
-            'object_bytes_total': (int,),  # noqa: E501
-            'object_count_downloaded': (int,),  # noqa: E501
-            'object_count_total': (int,),  # noqa: E501
-            'pattern': (str,),  # noqa: E501
-            'prefix': (str,),  # noqa: E501
+            'bucket': (str, none_type),  # noqa: E501
+            'object_bytes_total': (int, none_type),  # noqa: E501
+            'object_count_downloaded': (int, none_type),  # noqa: E501
+            'object_count_total': (int, none_type),  # noqa: E501
+            'pattern': (str, none_type),  # noqa: E501
+            'prefix': (str, none_type),  # noqa: E501
         }
 
     @cached_property

@@ -38,6 +38,8 @@ from rockset.model.list_integrations_response import ListIntegrationsResponse
 from rockset.model.mongodb_integration_creation_request import MongodbIntegrationCreationRequest
 from rockset.model.s3_integration_creation_request import S3IntegrationCreationRequest
 from rockset.model.segment_integration_creation_request import SegmentIntegrationCreationRequest
+from rockset.model.update_integration_request import UpdateIntegrationRequest
+from rockset.model.update_integration_response import UpdateIntegrationResponse
 from rockset.models import *
 
 
@@ -657,6 +659,63 @@ class Integrations(object):
             },
             api_client=api_client
         )
+        self.update_integration_endpoint = _Endpoint(
+            settings={
+                'response_type': (UpdateIntegrationResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/integrations/{integration}'.split('#')[0],
+                'operation_id': 'update_integration',
+                'http_method': 'PATCH',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'integration',
+                    'update_integration_request',
+                ],
+                'required': [
+                    'integration',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'integration':
+                        (str,),
+                    'update_integration_request':
+                        (UpdateIntegrationRequest,),
+                },
+                'attribute_map': {
+                    'integration': 'integration',
+                },
+                'location_map': {
+                    'integration': 'path',
+                    'update_integration_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
 
     def create_azure_blob_storage_integration(
         self,
@@ -702,8 +761,11 @@ class Integrations(object):
                 should be done one the data sent to the server.
                 Default is True.
             _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is False.
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
             _spec_property_naming (bool): True if the variable names in the input data
                 are serialized names, as specified in the OpenAPI document.
                 False if the variable names in the input data
@@ -736,7 +798,7 @@ class Integrations(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
+            '_check_return_type', True
         )
         kwargs['_spec_property_naming'] = kwargs.get(
             '_spec_property_naming', False
@@ -791,8 +853,11 @@ class Integrations(object):
                 should be done one the data sent to the server.
                 Default is True.
             _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is False.
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
             _spec_property_naming (bool): True if the variable names in the input data
                 are serialized names, as specified in the OpenAPI document.
                 False if the variable names in the input data
@@ -825,7 +890,7 @@ class Integrations(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
+            '_check_return_type', True
         )
         kwargs['_spec_property_naming'] = kwargs.get(
             '_spec_property_naming', False
@@ -888,8 +953,11 @@ class Integrations(object):
                 should be done one the data sent to the server.
                 Default is True.
             _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is False.
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
             _spec_property_naming (bool): True if the variable names in the input data
                 are serialized names, as specified in the OpenAPI document.
                 False if the variable names in the input data
@@ -922,7 +990,7 @@ class Integrations(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
+            '_check_return_type', True
         )
         kwargs['_spec_property_naming'] = kwargs.get(
             '_spec_property_naming', False
@@ -980,8 +1048,11 @@ class Integrations(object):
                 should be done one the data sent to the server.
                 Default is True.
             _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is False.
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
             _spec_property_naming (bool): True if the variable names in the input data
                 are serialized names, as specified in the OpenAPI document.
                 False if the variable names in the input data
@@ -1014,7 +1085,7 @@ class Integrations(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
+            '_check_return_type', True
         )
         kwargs['_spec_property_naming'] = kwargs.get(
             '_spec_property_naming', False
@@ -1084,8 +1155,11 @@ class Integrations(object):
                 should be done one the data sent to the server.
                 Default is True.
             _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is False.
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
             _spec_property_naming (bool): True if the variable names in the input data
                 are serialized names, as specified in the OpenAPI document.
                 False if the variable names in the input data
@@ -1118,7 +1192,7 @@ class Integrations(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
+            '_check_return_type', True
         )
         kwargs['_spec_property_naming'] = kwargs.get(
             '_spec_property_naming', False
@@ -1180,8 +1254,11 @@ class Integrations(object):
                 should be done one the data sent to the server.
                 Default is True.
             _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is False.
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
             _spec_property_naming (bool): True if the variable names in the input data
                 are serialized names, as specified in the OpenAPI document.
                 False if the variable names in the input data
@@ -1214,7 +1291,7 @@ class Integrations(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
+            '_check_return_type', True
         )
         kwargs['_spec_property_naming'] = kwargs.get(
             '_spec_property_naming', False
@@ -1270,8 +1347,11 @@ class Integrations(object):
                 should be done one the data sent to the server.
                 Default is True.
             _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is False.
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
             _spec_property_naming (bool): True if the variable names in the input data
                 are serialized names, as specified in the OpenAPI document.
                 False if the variable names in the input data
@@ -1304,7 +1384,7 @@ class Integrations(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
+            '_check_return_type', True
         )
         kwargs['_spec_property_naming'] = kwargs.get(
             '_spec_property_naming', False
@@ -1366,8 +1446,11 @@ class Integrations(object):
                 should be done one the data sent to the server.
                 Default is True.
             _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is False.
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
             _spec_property_naming (bool): True if the variable names in the input data
                 are serialized names, as specified in the OpenAPI document.
                 False if the variable names in the input data
@@ -1400,7 +1483,7 @@ class Integrations(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
+            '_check_return_type', True
         )
         kwargs['_spec_property_naming'] = kwargs.get(
             '_spec_property_naming', False
@@ -1455,8 +1538,11 @@ class Integrations(object):
                 should be done one the data sent to the server.
                 Default is True.
             _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is False.
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
             _spec_property_naming (bool): True if the variable names in the input data
                 are serialized names, as specified in the OpenAPI document.
                 False if the variable names in the input data
@@ -1489,7 +1575,7 @@ class Integrations(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
+            '_check_return_type', True
         )
         kwargs['_spec_property_naming'] = kwargs.get(
             '_spec_property_naming', False
@@ -1537,8 +1623,11 @@ class Integrations(object):
                 should be done one the data sent to the server.
                 Default is True.
             _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is False.
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
             _spec_property_naming (bool): True if the variable names in the input data
                 are serialized names, as specified in the OpenAPI document.
                 False if the variable names in the input data
@@ -1571,7 +1660,7 @@ class Integrations(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
+            '_check_return_type', True
         )
         kwargs['_spec_property_naming'] = kwargs.get(
             '_spec_property_naming', False
@@ -1619,8 +1708,11 @@ class Integrations(object):
                 should be done one the data sent to the server.
                 Default is True.
             _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is False.
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
             _spec_property_naming (bool): True if the variable names in the input data
                 are serialized names, as specified in the OpenAPI document.
                 False if the variable names in the input data
@@ -1653,7 +1745,7 @@ class Integrations(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
+            '_check_return_type', True
         )
         kwargs['_spec_property_naming'] = kwargs.get(
             '_spec_property_naming', False
@@ -1697,8 +1789,11 @@ class Integrations(object):
                 should be done one the data sent to the server.
                 Default is True.
             _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is False.
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
             _spec_property_naming (bool): True if the variable names in the input data
                 are serialized names, as specified in the OpenAPI document.
                 False if the variable names in the input data
@@ -1731,7 +1826,7 @@ class Integrations(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
+            '_check_return_type', True
         )
         kwargs['_spec_property_naming'] = kwargs.get(
             '_spec_property_naming', False
@@ -1740,6 +1835,115 @@ class Integrations(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         return self.list_integrations_endpoint.call_with_http_info(**kwargs)
+
+    def update_integration(
+        self,
+        *,
+        integration: str,
+        description: str = None,
+        kafka: KafkaIntegration = None,
+        **kwargs
+    ) -> typing.Union[UpdateIntegrationResponse, asyncio.Future]:
+        """Update Integration  # noqa: E501
+
+        Update an existing integration. It is only supported to update a Kafka (Confluent Cloud) integration at the moment.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Integrations.update_integration(
+            integration="integration_example",
+            description="AWS account with event data for the data science team.",
+            kafka=KafkaIntegration(
+                bootstrap_servers="bootstrap_servers_example",
+                kafka_data_format="json",
+                kafka_topic_names=[
+                    "kafka_topic_names_example",
+                ],
+                schema_registry_config=SchemaRegistryConfig(
+                    key="key_example",
+                    secret="secret_example",
+                    url="url_example",
+                ),
+                security_config=KafkaV3SecurityConfig(
+                    api_key="api_key_example",
+                    secret="secret_example",
+                ),
+                use_v3=True,
+            ),
+            async_req=True,
+        )
+        result = await future
+        ```
+
+        Keyword Args:
+            integration (str): [required]
+            description (str): longer explanation for the integration. [optional]
+            kafka (KafkaIntegration): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            UpdateIntegrationResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['integration'] = \
+            integration
+        kwargs['update_integration_request'] = \
+            kwargs['update_integration_request']
+        return self.update_integration_endpoint.call_with_http_info(**kwargs)
 
 
     body_params_dict = dict()
@@ -1762,3 +1966,5 @@ class Integrations(object):
     return_types_dict['create_s3_integration'] = S3IntegrationCreationRequest
     body_params_dict['create_segment_integration'] = 'segment_integration_creation_request'
     return_types_dict['create_segment_integration'] = SegmentIntegrationCreationRequest
+    body_params_dict['update_integration'] = 'update_integration_request'
+    return_types_dict['update_integration'] = UpdateIntegrationRequest

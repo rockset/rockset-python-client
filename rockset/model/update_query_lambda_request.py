@@ -87,8 +87,8 @@ class UpdateQueryLambdaRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'description': (str,),  # noqa: E501
-            'sql': (QueryLambdaSql,),  # noqa: E501
+            'description': (str, none_type),  # noqa: E501
+            'sql': (QueryLambdaSql, none_type),  # noqa: E501
         }
 
     @cached_property

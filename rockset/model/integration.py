@@ -109,19 +109,19 @@ class Integration(ModelNormal):
         return {
             'created_by': (str,),  # noqa: E501
             'name': (str,),  # noqa: E501
-            'azure_blob_storage': (AzureBlobStorageIntegration,),  # noqa: E501
-            'azure_event_hubs': (AzureEventHubsIntegration,),  # noqa: E501
-            'azure_service_bus': (AzureServiceBusIntegration,),  # noqa: E501
-            'collections': ([Collection],),  # noqa: E501
-            'created_at': (str,),  # noqa: E501
-            'description': (str,),  # noqa: E501
-            'dynamodb': (DynamodbIntegration,),  # noqa: E501
-            'gcs': (GcsIntegration,),  # noqa: E501
-            'kafka': (KafkaIntegration,),  # noqa: E501
-            'kinesis': (KinesisIntegration,),  # noqa: E501
-            'mongodb': (MongoDbIntegration,),  # noqa: E501
-            's3': (S3Integration,),  # noqa: E501
-            'segment': (SegmentIntegration,),  # noqa: E501
+            'azure_blob_storage': (AzureBlobStorageIntegration, none_type),  # noqa: E501
+            'azure_event_hubs': (AzureEventHubsIntegration, none_type),  # noqa: E501
+            'azure_service_bus': (AzureServiceBusIntegration, none_type),  # noqa: E501
+            'collections': ([Collection], none_type),  # noqa: E501
+            'created_at': (str, none_type),  # noqa: E501
+            'description': (str, none_type),  # noqa: E501
+            'dynamodb': (DynamodbIntegration, none_type),  # noqa: E501
+            'gcs': (GcsIntegration, none_type),  # noqa: E501
+            'kafka': (KafkaIntegration, none_type),  # noqa: E501
+            'kinesis': (KinesisIntegration, none_type),  # noqa: E501
+            'mongodb': (MongoDbIntegration, none_type),  # noqa: E501
+            's3': (S3Integration, none_type),  # noqa: E501
+            'segment': (SegmentIntegration, none_type),  # noqa: E501
         }
 
     @cached_property

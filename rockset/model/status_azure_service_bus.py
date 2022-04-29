@@ -87,9 +87,9 @@ class StatusAzureServiceBus(ModelNormal):
         """
         lazy_import()
         return {
-            'first_processed_at': (str,),  # noqa: E501
-            'records_processed': (int,),  # noqa: E501
-            'sessions': ({str: (StatusAzureServiceBusSession,)},),  # noqa: E501
+            'first_processed_at': (str, none_type),  # noqa: E501
+            'records_processed': (int, none_type),  # noqa: E501
+            'sessions': ({str: (StatusAzureServiceBusSession,)}, none_type),  # noqa: E501
         }
 
     @cached_property

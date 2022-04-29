@@ -88,8 +88,8 @@ class SegmentIntegrationCreationRequest(ModelNormal):
         lazy_import()
         return {
             'name': (str,),  # noqa: E501
-            'description': (str,),  # noqa: E501
-            'segment': (SegmentIntegration,),  # noqa: E501
+            'description': (str, none_type),  # noqa: E501
+            'segment': (SegmentIntegration, none_type),  # noqa: E501
         }
 
     @cached_property

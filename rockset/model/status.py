@@ -88,11 +88,11 @@ class Status(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'last_processed_at': (str,),  # noqa: E501
-            'last_processed_item': (str,),  # noqa: E501
-            'message': (str,),  # noqa: E501
-            'state': (str,),  # noqa: E501
-            'total_processed_items': (int,),  # noqa: E501
+            'last_processed_at': (str, none_type),  # noqa: E501
+            'last_processed_item': (str, none_type),  # noqa: E501
+            'message': (str, none_type),  # noqa: E501
+            'state': (str, none_type),  # noqa: E501
+            'total_processed_items': (int, none_type),  # noqa: E501
         }
 
     @cached_property

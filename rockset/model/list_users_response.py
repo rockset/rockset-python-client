@@ -87,7 +87,7 @@ class ListUsersResponse(ModelNormal):
         """
         lazy_import()
         return {
-            'data': ([User],),  # noqa: E501
+            'data': ([User], none_type),  # noqa: E501
         }
 
     @cached_property

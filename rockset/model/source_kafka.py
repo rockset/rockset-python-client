@@ -92,9 +92,10 @@ class SourceKafka(ModelNormal):
         lazy_import()
         return {
             'kafka_topic_name': (str,),  # noqa: E501
-            'offset_reset_policy': (str,),  # noqa: E501
-            'status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
-            'use_v3': (bool,),  # noqa: E501
+            'consumer_group_id': (str, none_type),  # noqa: E501
+            'offset_reset_policy': (str, none_type),  # noqa: E501
+            'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
+            'use_v3': (bool, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -104,6 +105,7 @@ class SourceKafka(ModelNormal):
 
     attribute_map = {
         'kafka_topic_name': 'kafka_topic_name',  # noqa: E501
+        'consumer_group_id': 'consumer_group_id',  # noqa: E501
         'offset_reset_policy': 'offset_reset_policy',  # noqa: E501
         'status': 'status',  # noqa: E501
         'use_v3': 'use_v3',  # noqa: E501
@@ -154,6 +156,7 @@ class SourceKafka(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            consumer_group_id (str): The Kafka consumer group Id being used. [optional]  # noqa: E501
             offset_reset_policy (str): [optional]  # noqa: E501
             status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
             use_v3 (bool): [optional]  # noqa: E501
@@ -210,6 +213,7 @@ class SourceKafka(ModelNormal):
 
         Keyword Args:
             kafka_topic_name (str): The Kafka topic to be tailed
+            consumer_group_id (str): The Kafka consumer group Id being used. [optional]  # noqa: E501
             offset_reset_policy (str): [optional]  # noqa: E501
             use_v3 (bool): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types

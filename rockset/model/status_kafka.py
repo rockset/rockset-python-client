@@ -92,10 +92,10 @@ class StatusKafka(ModelNormal):
         """
         lazy_import()
         return {
-            'kafka_partitions': ([StatusKafkaPartition],),  # noqa: E501
-            'last_consumed_time': (str,),  # noqa: E501
-            'num_documents_processed': (int,),  # noqa: E501
-            'state': (str,),  # noqa: E501
+            'kafka_partitions': ([StatusKafkaPartition], none_type),  # noqa: E501
+            'last_consumed_time': (str, none_type),  # noqa: E501
+            'num_documents_processed': (int, none_type),  # noqa: E501
+            'state': (str, none_type),  # noqa: E501
         }
 
     @cached_property

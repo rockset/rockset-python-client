@@ -87,12 +87,12 @@ class Role(ModelNormal):
         """
         lazy_import()
         return {
-            'created_at': (str,),  # noqa: E501
-            'created_by': (str,),  # noqa: E501
-            'description': (str,),  # noqa: E501
-            'owner_email': (str,),  # noqa: E501
-            'privileges': ([Privilege],),  # noqa: E501
-            'role_name': (str,),  # noqa: E501
+            'created_at': (str, none_type),  # noqa: E501
+            'created_by': (str, none_type),  # noqa: E501
+            'description': (str, none_type),  # noqa: E501
+            'owner_email': (str, none_type),  # noqa: E501
+            'privileges': ([Privilege], none_type),  # noqa: E501
+            'role_name': (str, none_type),  # noqa: E501
         }
 
     @cached_property

@@ -81,9 +81,9 @@ class AsyncQueryOptions(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'client_timeout_ms': (int,),  # noqa: E501
-            'max_initial_results': (int,),  # noqa: E501
-            'timeout_ms': (int,),  # noqa: E501
+            'client_timeout_ms': (int, none_type),  # noqa: E501
+            'max_initial_results': (int, none_type),  # noqa: E501
+            'timeout_ms': (int, none_type),  # noqa: E501
         }
 
     @cached_property

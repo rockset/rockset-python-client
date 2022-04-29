@@ -87,7 +87,7 @@ class GetViewResponse(ModelNormal):
         """
         lazy_import()
         return {
-            'data': (View,),  # noqa: E501
+            'data': (View, none_type),  # noqa: E501
         }
 
     @cached_property

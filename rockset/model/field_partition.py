@@ -84,9 +84,9 @@ class FieldPartition(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'field_name': (str,),  # noqa: E501
-            'keys': ([str],),  # noqa: E501
-            'type': (str,),  # noqa: E501
+            'field_name': (str, none_type),  # noqa: E501
+            'keys': ([str], none_type),  # noqa: E501
+            'type': (str, none_type),  # noqa: E501
         }
 
     @cached_property

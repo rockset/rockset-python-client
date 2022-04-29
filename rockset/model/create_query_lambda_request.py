@@ -89,7 +89,7 @@ class CreateQueryLambdaRequest(ModelNormal):
         return {
             'name': (str,),  # noqa: E501
             'sql': (QueryLambdaSql,),  # noqa: E501
-            'description': (str,),  # noqa: E501
+            'description': (str, none_type),  # noqa: E501
         }
 
     @cached_property

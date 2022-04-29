@@ -92,7 +92,7 @@ docs/KafkaV3SecurityConfig.md
 docs/KinesisCollectionCreationRequest.md
 docs/KinesisIntegration.md
 docs/KinesisIntegrationCreationRequest.md
-docs/KinesisStorageSourceWrapper.md
+docs/KinesisSourceWrapper.md
 docs/ListAliasesResponse.md
 docs/ListApiKeysResponse.md
 docs/ListCollectionsResponse.md
@@ -176,6 +176,8 @@ docs/UnsubscribePreference.md
 docs/UpdateAliasRequest.md
 docs/UpdateApiKeyRequest.md
 docs/UpdateApiKeyResponse.md
+docs/UpdateIntegrationRequest.md
+docs/UpdateIntegrationResponse.md
 docs/UpdateQueryLambdaRequest.md
 docs/UpdateRoleRequest.md
 docs/UpdateUnsubscribePreferencesRequest.md
@@ -297,7 +299,7 @@ rockset/model/kafka_v3_security_config.py
 rockset/model/kinesis_collection_creation_request.py
 rockset/model/kinesis_integration.py
 rockset/model/kinesis_integration_creation_request.py
-rockset/model/kinesis_storage_source_wrapper.py
+rockset/model/kinesis_source_wrapper.py
 rockset/model/list_aliases_response.py
 rockset/model/list_api_keys_response.py
 rockset/model/list_collections_response.py
@@ -377,6 +379,8 @@ rockset/model/unsubscribe_preference.py
 rockset/model/update_alias_request.py
 rockset/model/update_api_key_request.py
 rockset/model/update_api_key_response.py
+rockset/model/update_integration_request.py
+rockset/model/update_integration_response.py
 rockset/model/update_query_lambda_request.py
 rockset/model/update_role_request.py
 rockset/model/update_unsubscribe_preferences_request.py

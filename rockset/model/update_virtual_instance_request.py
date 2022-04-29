@@ -105,9 +105,9 @@ class UpdateVirtualInstanceRequest(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'monitoring_enabled': (bool,),  # noqa: E501
-            'new_size': (str,),  # noqa: E501
-            'new_type': (str,),  # noqa: E501
+            'monitoring_enabled': (bool, none_type),  # noqa: E501
+            'new_size': (str, none_type),  # noqa: E501
+            'new_type': (str, none_type),  # noqa: E501
         }
 
     @cached_property

@@ -87,7 +87,7 @@ class GetCollectionResponse(ModelNormal):
         """
         lazy_import()
         return {
-            'data': (Collection,),  # noqa: E501
+            'data': (Collection, none_type),  # noqa: E501
         }
 
     @cached_property

@@ -81,9 +81,9 @@ class QueryError(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'message': (str,),  # noqa: E501
-            'status_code': (int,),  # noqa: E501
-            'type': (str,),  # noqa: E501
+            'message': (str, none_type),  # noqa: E501
+            'status_code': (int, none_type),  # noqa: E501
+            'type': (str, none_type),  # noqa: E501
         }
 
     @cached_property

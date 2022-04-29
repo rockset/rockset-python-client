@@ -89,7 +89,7 @@ class SourceMongoDb(ModelNormal):
         return {
             'collection_name': (str,),  # noqa: E501
             'database_name': (str,),  # noqa: E501
-            'status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
         }
 
     @cached_property

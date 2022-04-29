@@ -123,9 +123,9 @@ class Privilege(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'action': (str,),  # noqa: E501
-            'cluster': (str,),  # noqa: E501
-            'resource_name': (str,),  # noqa: E501
+            'action': (str, none_type),  # noqa: E501
+            'cluster': (str, none_type),  # noqa: E501
+            'resource_name': (str, none_type),  # noqa: E501
         }
 
     @cached_property

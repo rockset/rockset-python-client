@@ -81,9 +81,9 @@ class StatusAzureEventHubsPartition(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'offset_lag': (int,),  # noqa: E501
-            'partition_number': (int,),  # noqa: E501
-            'partition_offset': (int,),  # noqa: E501
+            'offset_lag': (int, none_type),  # noqa: E501
+            'partition_number': (int, none_type),  # noqa: E501
+            'partition_offset': (int, none_type),  # noqa: E501
         }
 
     @cached_property

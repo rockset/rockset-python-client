@@ -89,10 +89,10 @@ class FieldMappingV2(ModelNormal):
         """
         lazy_import()
         return {
-            'input_fields': ([InputField],),  # noqa: E501
-            'is_drop_all_fields': (bool,),  # noqa: E501
-            'name': (str,),  # noqa: E501
-            'output_field': (OutputField,),  # noqa: E501
+            'input_fields': ([InputField], none_type),  # noqa: E501
+            'is_drop_all_fields': (bool, none_type),  # noqa: E501
+            'name': (str, none_type),  # noqa: E501
+            'output_field': (OutputField, none_type),  # noqa: E501
         }
 
     @cached_property

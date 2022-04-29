@@ -87,9 +87,9 @@ class QueryPaginationResponse(ModelNormal):
         """
         lazy_import()
         return {
-            'pagination': (PaginationInfo,),  # noqa: E501
-            'results': ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}],),  # noqa: E501
-            'results_total_doc_count': (int,),  # noqa: E501
+            'pagination': (PaginationInfo, none_type),  # noqa: E501
+            'results': ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}], none_type),  # noqa: E501
+            'results_total_doc_count': (int, none_type),  # noqa: E501
         }
 
     @cached_property

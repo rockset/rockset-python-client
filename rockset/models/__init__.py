@@ -96,7 +96,7 @@ from rockset.model.kafka_v3_security_config import KafkaV3SecurityConfig
 from rockset.model.kinesis_collection_creation_request import KinesisCollectionCreationRequest
 from rockset.model.kinesis_integration import KinesisIntegration
 from rockset.model.kinesis_integration_creation_request import KinesisIntegrationCreationRequest
-from rockset.model.kinesis_storage_source_wrapper import KinesisStorageSourceWrapper
+from rockset.model.kinesis_source_wrapper import KinesisSourceWrapper
 from rockset.model.list_aliases_response import ListAliasesResponse
 from rockset.model.list_api_keys_response import ListApiKeysResponse
 from rockset.model.list_collections_response import ListCollectionsResponse
@@ -177,6 +177,8 @@ from rockset.model.unsubscribe_preference import UnsubscribePreference
 from rockset.model.update_alias_request import UpdateAliasRequest
 from rockset.model.update_api_key_request import UpdateApiKeyRequest
 from rockset.model.update_api_key_response import UpdateApiKeyResponse
+from rockset.model.update_integration_request import UpdateIntegrationRequest
+from rockset.model.update_integration_response import UpdateIntegrationResponse
 from rockset.model.update_query_lambda_request import UpdateQueryLambdaRequest
 from rockset.model.update_role_request import UpdateRoleRequest
 from rockset.model.update_unsubscribe_preferences_request import UpdateUnsubscribePreferencesRequest

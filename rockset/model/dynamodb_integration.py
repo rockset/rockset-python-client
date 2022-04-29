@@ -89,9 +89,9 @@ class DynamodbIntegration(ModelNormal):
         """
         lazy_import()
         return {
-            'aws_access_key': (AwsAccessKey,),  # noqa: E501
-            'aws_role': (AwsRole,),  # noqa: E501
-            's3_export_bucket_name': (str,),  # noqa: E501
+            'aws_access_key': (AwsAccessKey, none_type),  # noqa: E501
+            'aws_role': (AwsRole, none_type),  # noqa: E501
+            's3_export_bucket_name': (str, none_type),  # noqa: E501
         }
 
     @cached_property

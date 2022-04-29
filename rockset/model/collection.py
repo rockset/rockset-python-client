@@ -115,20 +115,20 @@ class Collection(ModelNormal):
         """
         lazy_import()
         return {
-            'aliases': ([Alias],),  # noqa: E501
-            'clustering_key': ([FieldPartition],),  # noqa: E501
-            'created_at': (str,),  # noqa: E501
-            'created_by': (str,),  # noqa: E501
-            'description': (str,),  # noqa: E501
-            'field_mapping_query': (FieldMappingQuery,),  # noqa: E501
-            'field_mappings': ([FieldMappingV2],),  # noqa: E501
-            'insert_only': (bool,),  # noqa: E501
-            'name': (str,),  # noqa: E501
-            'retention_secs': (int,),  # noqa: E501
-            'sources': ([Source],),  # noqa: E501
-            'stats': (CollectionStats,),  # noqa: E501
-            'status': (str,),  # noqa: E501
-            'workspace': (str,),  # noqa: E501
+            'aliases': ([Alias], none_type),  # noqa: E501
+            'clustering_key': ([FieldPartition], none_type),  # noqa: E501
+            'created_at': (str, none_type),  # noqa: E501
+            'created_by': (str, none_type),  # noqa: E501
+            'description': (str, none_type),  # noqa: E501
+            'field_mapping_query': (FieldMappingQuery, none_type),  # noqa: E501
+            'field_mappings': ([FieldMappingV2], none_type),  # noqa: E501
+            'insert_only': (bool, none_type),  # noqa: E501
+            'name': (str, none_type),  # noqa: E501
+            'retention_secs': (int, none_type),  # noqa: E501
+            'sources': ([Source], none_type),  # noqa: E501
+            'stats': (CollectionStats, none_type),  # noqa: E501
+            'status': (str, none_type),  # noqa: E501
+            'workspace': (str, none_type),  # noqa: E501
         }
 
     @cached_property

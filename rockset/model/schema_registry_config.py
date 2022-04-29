@@ -81,9 +81,9 @@ class SchemaRegistryConfig(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'key': (str,),  # noqa: E501
-            'secret': (str,),  # noqa: E501
-            'url': (str,),  # noqa: E501
+            'key': (str, none_type),  # noqa: E501
+            'secret': (str, none_type),  # noqa: E501
+            'url': (str, none_type),  # noqa: E501
         }
 
     @cached_property

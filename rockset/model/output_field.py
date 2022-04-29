@@ -91,9 +91,9 @@ class OutputField(ModelNormal):
         """
         lazy_import()
         return {
-            'field_name': (str,),  # noqa: E501
-            'on_error': (str,),  # noqa: E501
-            'value': (SqlExpression,),  # noqa: E501
+            'field_name': (str, none_type),  # noqa: E501
+            'on_error': (str, none_type),  # noqa: E501
+            'value': (SqlExpression, none_type),  # noqa: E501
         }
 
     @cached_property

@@ -87,7 +87,7 @@ class OrganizationResponse(ModelNormal):
         """
         lazy_import()
         return {
-            'data': (Organization,),  # noqa: E501
+            'data': (Organization, none_type),  # noqa: E501
         }
 
     @cached_property

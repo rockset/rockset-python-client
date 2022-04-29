@@ -82,7 +82,7 @@ class CreateApiKeyRequest(ModelNormal):
         """
         return {
             'name': (str,),  # noqa: E501
-            'role': (str,),  # noqa: E501
+            'role': (str, none_type),  # noqa: E501
         }
 
     @cached_property

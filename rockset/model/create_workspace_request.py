@@ -82,7 +82,7 @@ class CreateWorkspaceRequest(ModelNormal):
         """
         return {
             'name': (str,),  # noqa: E501
-            'description': (str,),  # noqa: E501
+            'description': (str, none_type),  # noqa: E501
         }
 
     @cached_property

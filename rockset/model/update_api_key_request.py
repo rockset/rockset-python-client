@@ -85,7 +85,7 @@ class UpdateApiKeyRequest(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'state': (str,),  # noqa: E501
+            'state': (str, none_type),  # noqa: E501
         }
 
     @cached_property

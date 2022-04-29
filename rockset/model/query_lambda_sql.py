@@ -88,7 +88,7 @@ class QueryLambdaSql(ModelNormal):
         lazy_import()
         return {
             'query': (str,),  # noqa: E501
-            'default_parameters': ([QueryParameter],),  # noqa: E501
+            'default_parameters': ([QueryParameter], none_type),  # noqa: E501
         }
 
     @cached_property

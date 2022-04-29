@@ -90,8 +90,8 @@ class Source(ModelNormal):
         lazy_import()
         return {
             'integration_name': (str,),  # noqa: E501
-            'format_params': (FormatParams,),  # noqa: E501
-            'status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
+            'format_params': (FormatParams, none_type),  # noqa: E501
+            'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
         }
 
     @cached_property

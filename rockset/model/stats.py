@@ -81,10 +81,10 @@ class Stats(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'elapsed_time_ms': (int,),  # noqa: E501
-            'result_set_bytes_size': (int,),  # noqa: E501
-            'result_set_document_count': (int,),  # noqa: E501
-            'throttled_time_ms': (int,),  # noqa: E501
+            'elapsed_time_ms': (int, none_type),  # noqa: E501
+            'result_set_bytes_size': (int, none_type),  # noqa: E501
+            'result_set_document_count': (int, none_type),  # noqa: E501
+            'throttled_time_ms': (int, none_type),  # noqa: E501
         }
 
     @cached_property

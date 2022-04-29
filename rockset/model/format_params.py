@@ -89,13 +89,13 @@ class FormatParams(ModelNormal):
         """
         lazy_import()
         return {
-            'csv': (CsvParams,),  # noqa: E501
-            'json': (bool,),  # noqa: E501
-            'mssql_dms': (bool,),  # noqa: E501
-            'mysql_dms': (bool,),  # noqa: E501
-            'oracle_dms': (bool,),  # noqa: E501
-            'postgres_dms': (bool,),  # noqa: E501
-            'xml': (XmlParams,),  # noqa: E501
+            'csv': (CsvParams, none_type),  # noqa: E501
+            'json': (bool, none_type),  # noqa: E501
+            'mssql_dms': (bool, none_type),  # noqa: E501
+            'mysql_dms': (bool, none_type),  # noqa: E501
+            'oracle_dms': (bool, none_type),  # noqa: E501
+            'postgres_dms': (bool, none_type),  # noqa: E501
+            'xml': (XmlParams, none_type),  # noqa: E501
         }
 
     @cached_property

@@ -88,9 +88,9 @@ class StatusDynamoDbV2(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'initial_dump_completion_percentage': (float,),  # noqa: E501
-            'state': (str,),  # noqa: E501
-            'stream_last_processed_at': (str,),  # noqa: E501
+            'initial_dump_completion_percentage': (float, none_type),  # noqa: E501
+            'state': (str, none_type),  # noqa: E501
+            'stream_last_processed_at': (str, none_type),  # noqa: E501
         }
 
     @cached_property

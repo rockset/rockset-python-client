@@ -82,11 +82,11 @@ class User(ModelNormal):
         """
         return {
             'email': (str,),  # noqa: E501
-            'created_at': (str,),  # noqa: E501
-            'first_name': (str,),  # noqa: E501
-            'last_name': (str,),  # noqa: E501
-            'roles': ([str],),  # noqa: E501
-            'state': (str,),  # noqa: E501
+            'created_at': (str, none_type),  # noqa: E501
+            'first_name': (str, none_type),  # noqa: E501
+            'last_name': (str, none_type),  # noqa: E501
+            'roles': ([str], none_type),  # noqa: E501
+            'state': (str, none_type),  # noqa: E501
         }
 
     @cached_property

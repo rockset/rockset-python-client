@@ -87,7 +87,7 @@ class ListIntegrationsResponse(ModelNormal):
         """
         lazy_import()
         return {
-            'data': ([Integration],),  # noqa: E501
+            'data': ([Integration], none_type),  # noqa: E501
         }
 
     @cached_property

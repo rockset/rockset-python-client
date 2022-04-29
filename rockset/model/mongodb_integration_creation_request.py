@@ -88,8 +88,8 @@ class MongodbIntegrationCreationRequest(ModelNormal):
         lazy_import()
         return {
             'name': (str,),  # noqa: E501
-            'description': (str,),  # noqa: E501
-            'mongodb': (MongoDbIntegration,),  # noqa: E501
+            'description': (str, none_type),  # noqa: E501
+            'mongodb': (MongoDbIntegration, none_type),  # noqa: E501
         }
 
     @cached_property

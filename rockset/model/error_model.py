@@ -107,13 +107,13 @@ class ErrorModel(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'column': (int,),  # noqa: E501
-            'error_id': (str,),  # noqa: E501
-            'line': (int,),  # noqa: E501
-            'message': (str,),  # noqa: E501
-            'query_id': (str,),  # noqa: E501
-            'trace_id': (str,),  # noqa: E501
-            'type': (str,),  # noqa: E501
+            'column': (int, none_type),  # noqa: E501
+            'error_id': (str, none_type),  # noqa: E501
+            'line': (int, none_type),  # noqa: E501
+            'message': (str, none_type),  # noqa: E501
+            'query_id': (str, none_type),  # noqa: E501
+            'trace_id': (str, none_type),  # noqa: E501
+            'type': (str, none_type),  # noqa: E501
         }
 
     @cached_property

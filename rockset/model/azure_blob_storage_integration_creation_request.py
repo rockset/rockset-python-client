@@ -88,8 +88,8 @@ class AzureBlobStorageIntegrationCreationRequest(ModelNormal):
         lazy_import()
         return {
             'name': (str,),  # noqa: E501
-            'azure_blob_storage': (AzureBlobStorageIntegration,),  # noqa: E501
-            'description': (str,),  # noqa: E501
+            'azure_blob_storage': (AzureBlobStorageIntegration, none_type),  # noqa: E501
+            'description': (str, none_type),  # noqa: E501
         }
 
     @cached_property

@@ -733,7 +733,7 @@ class Endpoint(object):
         """ This method is invoked when endpoints are called
         Example:
 
-        api_instance = APIKeysApi()
+        api_instance = APIKeys()
         api_instance.create_api_key  # this is an instance of the class Endpoint
         api_instance.create_api_key()  # this invokes api_instance.create_api_key.__call__()
         which then invokes the callable functions stored in that endpoint at

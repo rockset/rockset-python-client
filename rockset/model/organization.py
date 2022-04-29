@@ -87,13 +87,13 @@ class Organization(ModelNormal):
         """
         lazy_import()
         return {
-            'clusters': ([Cluster],),  # noqa: E501
-            'created_at': (str,),  # noqa: E501
-            'deletion_scheduled_at': (str,),  # noqa: E501
-            'display_name': (str,),  # noqa: E501
-            'external_id': (str,),  # noqa: E501
-            'id': (str,),  # noqa: E501
-            'rockset_user': (str,),  # noqa: E501
+            'clusters': ([Cluster], none_type),  # noqa: E501
+            'created_at': (str, none_type),  # noqa: E501
+            'deletion_scheduled_at': (str, none_type),  # noqa: E501
+            'display_name': (str, none_type),  # noqa: E501
+            'external_id': (str, none_type),  # noqa: E501
+            'id': (str, none_type),  # noqa: E501
+            'rockset_user': (str, none_type),  # noqa: E501
         }
 
     @cached_property

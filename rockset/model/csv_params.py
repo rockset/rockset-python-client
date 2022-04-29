@@ -94,13 +94,13 @@ class CsvParams(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'column_names': ([str],),  # noqa: E501
-            'column_types': ([str],),  # noqa: E501
-            'encoding': (str,),  # noqa: E501
-            'escape_char': (str,),  # noqa: E501
-            'first_line_as_column_names': (bool,),  # noqa: E501
-            'quote_char': (str,),  # noqa: E501
-            'separator': (str,),  # noqa: E501
+            'column_names': ([str], none_type),  # noqa: E501
+            'column_types': ([str], none_type),  # noqa: E501
+            'encoding': (str, none_type),  # noqa: E501
+            'escape_char': (str, none_type),  # noqa: E501
+            'first_line_as_column_names': (bool, none_type),  # noqa: E501
+            'quote_char': (str, none_type),  # noqa: E501
+            'separator': (str, none_type),  # noqa: E501
         }
 
     @cached_property

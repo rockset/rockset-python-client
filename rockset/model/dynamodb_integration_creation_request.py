@@ -88,8 +88,8 @@ class DynamodbIntegrationCreationRequest(ModelNormal):
         lazy_import()
         return {
             'name': (str,),  # noqa: E501
-            'description': (str,),  # noqa: E501
-            'dynamodb': (DynamodbIntegration,),  # noqa: E501
+            'description': (str, none_type),  # noqa: E501
+            'dynamodb': (DynamodbIntegration, none_type),  # noqa: E501
         }
 
     @cached_property

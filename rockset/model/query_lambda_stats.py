@@ -81,10 +81,10 @@ class QueryLambdaStats(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'last_executed': (str,),  # noqa: E501
-            'last_executed_by': (str,),  # noqa: E501
-            'last_execution_error': (str,),  # noqa: E501
-            'last_execution_error_message': (str,),  # noqa: E501
+            'last_executed': (str, none_type),  # noqa: E501
+            'last_executed_by': (str, none_type),  # noqa: E501
+            'last_execution_error': (str, none_type),  # noqa: E501
+            'last_execution_error_message': (str, none_type),  # noqa: E501
         }
 
     @cached_property

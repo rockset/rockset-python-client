@@ -81,22 +81,22 @@ class CollectionStats(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'bulk_bytes_inserted': (int,),  # noqa: E501
-            'bulk_bytes_overwritten': (int,),  # noqa: E501
-            'bytes_inserted': (int,),  # noqa: E501
-            'bytes_overwritten': (int,),  # noqa: E501
-            'column_index_size': (int,),  # noqa: E501
-            'doc_count': (int,),  # noqa: E501
-            'fill_progress': (float,),  # noqa: E501
-            'inverted_index_size': (int,),  # noqa: E501
-            'last_queried_ms': (int,),  # noqa: E501
-            'last_updated_ms': (int,),  # noqa: E501
-            'purged_doc_count': (int,),  # noqa: E501
-            'purged_doc_size': (int,),  # noqa: E501
-            'range_index_size': (int,),  # noqa: E501
-            'row_index_size': (int,),  # noqa: E501
-            'total_index_size': (int,),  # noqa: E501
-            'total_size': (int,),  # noqa: E501
+            'bulk_bytes_inserted': (int, none_type),  # noqa: E501
+            'bulk_bytes_overwritten': (int, none_type),  # noqa: E501
+            'bytes_inserted': (int, none_type),  # noqa: E501
+            'bytes_overwritten': (int, none_type),  # noqa: E501
+            'column_index_size': (int, none_type),  # noqa: E501
+            'doc_count': (int, none_type),  # noqa: E501
+            'fill_progress': (float, none_type),  # noqa: E501
+            'inverted_index_size': (int, none_type),  # noqa: E501
+            'last_queried_ms': (int, none_type),  # noqa: E501
+            'last_updated_ms': (int, none_type),  # noqa: E501
+            'purged_doc_count': (int, none_type),  # noqa: E501
+            'purged_doc_size': (int, none_type),  # noqa: E501
+            'range_index_size': (int, none_type),  # noqa: E501
+            'row_index_size': (int, none_type),  # noqa: E501
+            'total_index_size': (int, none_type),  # noqa: E501
+            'total_size': (int, none_type),  # noqa: E501
         }
 
     @cached_property

@@ -92,8 +92,8 @@ class PatchOperation(ModelNormal):
         return {
             'op': (str,),  # noqa: E501
             'path': (str,),  # noqa: E501
-            '_from': (str,),  # noqa: E501
-            'value': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)},),  # noqa: E501
+            '_from': (str, none_type),  # noqa: E501
+            'value': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type),  # noqa: E501
         }
 
     @cached_property

@@ -81,8 +81,8 @@ class QueryResponseStats(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'elapsed_time_ms': (int,),  # noqa: E501
-            'throttled_time_micros': (int,),  # noqa: E501
+            'elapsed_time_ms': (int, none_type),  # noqa: E501
+            'throttled_time_micros': (int, none_type),  # noqa: E501
         }
 
     @cached_property

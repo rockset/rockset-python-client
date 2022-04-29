@@ -97,14 +97,14 @@ class KafkaIntegration(ModelNormal):
         """
         lazy_import()
         return {
-            'bootstrap_servers': (str,),  # noqa: E501
-            'connection_string': (str,),  # noqa: E501
-            'kafka_data_format': (str,),  # noqa: E501
-            'kafka_topic_names': ([str],),  # noqa: E501
-            'schema_registry_config': (SchemaRegistryConfig,),  # noqa: E501
-            'security_config': (KafkaV3SecurityConfig,),  # noqa: E501
-            'source_status_by_topic': ({str: (StatusKafka,)},),  # noqa: E501
-            'use_v3': (bool,),  # noqa: E501
+            'bootstrap_servers': (str, none_type),  # noqa: E501
+            'connection_string': (str, none_type),  # noqa: E501
+            'kafka_data_format': (str, none_type),  # noqa: E501
+            'kafka_topic_names': ([str], none_type),  # noqa: E501
+            'schema_registry_config': (SchemaRegistryConfig, none_type),  # noqa: E501
+            'security_config': (KafkaV3SecurityConfig, none_type),  # noqa: E501
+            'source_status_by_topic': ({str: (StatusKafka,)}, none_type),  # noqa: E501
+            'use_v3': (bool, none_type),  # noqa: E501
         }
 
     @cached_property

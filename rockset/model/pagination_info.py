@@ -81,11 +81,11 @@ class PaginationInfo(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'current_page_doc_count': (int,),  # noqa: E501
-            'next_cursor': (str,),  # noqa: E501
-            'next_cursor_offset': (int,),  # noqa: E501
-            'next_page_link': (str,),  # noqa: E501
-            'start_cursor': (str,),  # noqa: E501
+            'current_page_doc_count': (int, none_type),  # noqa: E501
+            'next_cursor': (str, none_type),  # noqa: E501
+            'next_cursor_offset': (int, none_type),  # noqa: E501
+            'next_page_link': (str, none_type),  # noqa: E501
+            'start_cursor': (str, none_type),  # noqa: E501
         }
 
     @cached_property

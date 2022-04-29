@@ -958,8 +958,11 @@ class Collections(object):
                 should be done one the data sent to the server.
                 Default is True.
             _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is False.
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
             _spec_property_naming (bool): True if the variable names in the input data
                 are serialized names, as specified in the OpenAPI document.
                 False if the variable names in the input data
@@ -992,7 +995,7 @@ class Collections(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
+            '_check_return_type', True
         )
         kwargs['_spec_property_naming'] = kwargs.get(
             '_spec_property_naming', False
@@ -1130,8 +1133,11 @@ class Collections(object):
                 should be done one the data sent to the server.
                 Default is True.
             _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is False.
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
             _spec_property_naming (bool): True if the variable names in the input data
                 are serialized names, as specified in the OpenAPI document.
                 False if the variable names in the input data
@@ -1164,7 +1170,7 @@ class Collections(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
+            '_check_return_type', True
         )
         kwargs['_spec_property_naming'] = kwargs.get(
             '_spec_property_naming', False
@@ -1302,8 +1308,11 @@ class Collections(object):
                 should be done one the data sent to the server.
                 Default is True.
             _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is False.
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
             _spec_property_naming (bool): True if the variable names in the input data
                 are serialized names, as specified in the OpenAPI document.
                 False if the variable names in the input data
@@ -1336,7 +1345,7 @@ class Collections(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
+            '_check_return_type', True
         )
         kwargs['_spec_property_naming'] = kwargs.get(
             '_spec_property_naming', False
@@ -1476,8 +1485,11 @@ class Collections(object):
                 should be done one the data sent to the server.
                 Default is True.
             _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is False.
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
             _spec_property_naming (bool): True if the variable names in the input data
                 are serialized names, as specified in the OpenAPI document.
                 False if the variable names in the input data
@@ -1510,7 +1522,7 @@ class Collections(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
+            '_check_return_type', True
         )
         kwargs['_spec_property_naming'] = kwargs.get(
             '_spec_property_naming', False
@@ -1649,8 +1661,11 @@ class Collections(object):
                 should be done one the data sent to the server.
                 Default is True.
             _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is False.
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
             _spec_property_naming (bool): True if the variable names in the input data
                 are serialized names, as specified in the OpenAPI document.
                 False if the variable names in the input data
@@ -1683,7 +1698,7 @@ class Collections(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
+            '_check_return_type', True
         )
         kwargs['_spec_property_naming'] = kwargs.get(
             '_spec_property_naming', False
@@ -1822,8 +1837,11 @@ class Collections(object):
                 should be done one the data sent to the server.
                 Default is True.
             _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is False.
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
             _spec_property_naming (bool): True if the variable names in the input data
                 are serialized names, as specified in the OpenAPI document.
                 False if the variable names in the input data
@@ -1856,7 +1874,7 @@ class Collections(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
+            '_check_return_type', True
         )
         kwargs['_spec_property_naming'] = kwargs.get(
             '_spec_property_naming', False
@@ -1960,6 +1978,7 @@ class Collections(object):
                     ),
                     integration_name="aws-integration",
                     kafka=SourceKafka(
+                        consumer_group_id="org-collection",
                         kafka_topic_name="example-topic",
                         offset_reset_policy="LATEST",
                         use_v3=True,
@@ -1995,8 +2014,11 @@ class Collections(object):
                 should be done one the data sent to the server.
                 Default is True.
             _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is False.
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
             _spec_property_naming (bool): True if the variable names in the input data
                 are serialized names, as specified in the OpenAPI document.
                 False if the variable names in the input data
@@ -2029,7 +2051,7 @@ class Collections(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
+            '_check_return_type', True
         )
         kwargs['_spec_property_naming'] = kwargs.get(
             '_spec_property_naming', False
@@ -2054,7 +2076,7 @@ class Collections(object):
         field_mappings: typing.Sequence[FieldMappingV2] = None,
         insert_only: bool = None,
         retention_secs: int = None,
-        sources: typing.Sequence[KinesisStorageSourceWrapper] = None,
+        sources: typing.Sequence[KinesisSourceWrapper] = None,
         workspace = "commons",
         **kwargs
     ) -> typing.Union[CreateCollectionResponse, asyncio.Future]:
@@ -2107,7 +2129,7 @@ class Collections(object):
             name="global-transactions",
             retention_secs=1000000,
             sources=[
-                KinesisStorageSourceWrapper(
+                KinesisSourceWrapper(
                     format_params=FormatParams(
                         csv=CsvParams(
                             column_names=["c1","c2","c3"],
@@ -2157,7 +2179,7 @@ class Collections(object):
             insert_only (bool): If true disallows updates and deletes, but makes indexing more efficient. [optional]
             name (str): unique identifier for collection, can contain alphanumeric or dash characters. [required]
             retention_secs (int): number of seconds after which data is purged, based on event time. [optional]
-            sources ([KinesisStorageSourceWrapper]): List of sources from which to ingest data. [optional]
+            sources ([KinesisSourceWrapper]): List of sources from which to ingest data. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2171,8 +2193,11 @@ class Collections(object):
                 should be done one the data sent to the server.
                 Default is True.
             _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is False.
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
             _spec_property_naming (bool): True if the variable names in the input data
                 are serialized names, as specified in the OpenAPI document.
                 False if the variable names in the input data
@@ -2205,7 +2230,7 @@ class Collections(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
+            '_check_return_type', True
         )
         kwargs['_spec_property_naming'] = kwargs.get(
             '_spec_property_naming', False
@@ -2343,8 +2368,11 @@ class Collections(object):
                 should be done one the data sent to the server.
                 Default is True.
             _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is False.
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
             _spec_property_naming (bool): True if the variable names in the input data
                 are serialized names, as specified in the OpenAPI document.
                 False if the variable names in the input data
@@ -2377,7 +2405,7 @@ class Collections(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
+            '_check_return_type', True
         )
         kwargs['_spec_property_naming'] = kwargs.get(
             '_spec_property_naming', False
@@ -2517,8 +2545,11 @@ class Collections(object):
                 should be done one the data sent to the server.
                 Default is True.
             _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is False.
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
             _spec_property_naming (bool): True if the variable names in the input data
                 are serialized names, as specified in the OpenAPI document.
                 False if the variable names in the input data
@@ -2551,7 +2582,7 @@ class Collections(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
+            '_check_return_type', True
         )
         kwargs['_spec_property_naming'] = kwargs.get(
             '_spec_property_naming', False
@@ -2603,8 +2634,11 @@ class Collections(object):
                 should be done one the data sent to the server.
                 Default is True.
             _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is False.
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
             _spec_property_naming (bool): True if the variable names in the input data
                 are serialized names, as specified in the OpenAPI document.
                 False if the variable names in the input data
@@ -2637,7 +2671,7 @@ class Collections(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
+            '_check_return_type', True
         )
         kwargs['_spec_property_naming'] = kwargs.get(
             '_spec_property_naming', False
@@ -2689,8 +2723,11 @@ class Collections(object):
                 should be done one the data sent to the server.
                 Default is True.
             _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is False.
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
             _spec_property_naming (bool): True if the variable names in the input data
                 are serialized names, as specified in the OpenAPI document.
                 False if the variable names in the input data
@@ -2723,7 +2760,7 @@ class Collections(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
+            '_check_return_type', True
         )
         kwargs['_spec_property_naming'] = kwargs.get(
             '_spec_property_naming', False
@@ -2769,8 +2806,11 @@ class Collections(object):
                 should be done one the data sent to the server.
                 Default is True.
             _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is False.
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
             _spec_property_naming (bool): True if the variable names in the input data
                 are serialized names, as specified in the OpenAPI document.
                 False if the variable names in the input data
@@ -2803,7 +2843,7 @@ class Collections(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
+            '_check_return_type', True
         )
         kwargs['_spec_property_naming'] = kwargs.get(
             '_spec_property_naming', False
@@ -2848,8 +2888,11 @@ class Collections(object):
                 should be done one the data sent to the server.
                 Default is True.
             _check_return_type (bool): specifies if type checking
-                should be done one the data received from the server.
-                Default is False.
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
             _spec_property_naming (bool): True if the variable names in the input data
                 are serialized names, as specified in the OpenAPI document.
                 False if the variable names in the input data
@@ -2882,7 +2925,7 @@ class Collections(object):
             '_check_input_type', True
         )
         kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', False
+            '_check_return_type', True
         )
         kwargs['_spec_property_naming'] = kwargs.get(
             '_spec_property_naming', False

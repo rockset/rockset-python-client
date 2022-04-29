@@ -87,7 +87,7 @@ class ListUnsubscribePreferencesResponse(ModelNormal):
         """
         lazy_import()
         return {
-            'data': ([UnsubscribePreference],),  # noqa: E501
+            'data': ([UnsubscribePreference], none_type),  # noqa: E501
         }
 
     @cached_property

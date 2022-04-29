@@ -86,17 +86,17 @@ class View(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'created_at': (str,),  # noqa: E501
-            'creator_email': (str,),  # noqa: E501
-            'description': (str,),  # noqa: E501
-            'entities': ([str],),  # noqa: E501
-            'modified_at': (str,),  # noqa: E501
-            'name': (str,),  # noqa: E501
-            'owner_email': (str,),  # noqa: E501
-            'path': (str,),  # noqa: E501
-            'query_sql': (str,),  # noqa: E501
-            'state': (str,),  # noqa: E501
-            'workspace': (str,),  # noqa: E501
+            'created_at': (str, none_type),  # noqa: E501
+            'creator_email': (str, none_type),  # noqa: E501
+            'description': (str, none_type),  # noqa: E501
+            'entities': ([str], none_type),  # noqa: E501
+            'modified_at': (str, none_type),  # noqa: E501
+            'name': (str, none_type),  # noqa: E501
+            'owner_email': (str, none_type),  # noqa: E501
+            'path': (str, none_type),  # noqa: E501
+            'query_sql': (str, none_type),  # noqa: E501
+            'state': (str, none_type),  # noqa: E501
+            'workspace': (str, none_type),  # noqa: E501
         }
 
     @cached_property

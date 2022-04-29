@@ -85,14 +85,14 @@ class Alias(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'collections': ([str],),  # noqa: E501
-            'created_at': (str,),  # noqa: E501
-            'creator_email': (str,),  # noqa: E501
-            'description': (str,),  # noqa: E501
-            'modified_at': (str,),  # noqa: E501
-            'name': (str,),  # noqa: E501
-            'state': (str,),  # noqa: E501
-            'workspace': (str,),  # noqa: E501
+            'collections': ([str], none_type),  # noqa: E501
+            'created_at': (str, none_type),  # noqa: E501
+            'creator_email': (str, none_type),  # noqa: E501
+            'description': (str, none_type),  # noqa: E501
+            'modified_at': (str, none_type),  # noqa: E501
+            'name': (str, none_type),  # noqa: E501
+            'state': (str, none_type),  # noqa: E501
+            'workspace': (str, none_type),  # noqa: E501
         }
 
     @cached_property

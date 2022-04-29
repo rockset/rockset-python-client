@@ -87,7 +87,7 @@ class DeleteQueryLambdaResponse(ModelNormal):
         """
         lazy_import()
         return {
-            'data': (QueryLambda,),  # noqa: E501
+            'data': (QueryLambda, none_type),  # noqa: E501
         }
 
     @cached_property

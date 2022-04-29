@@ -87,7 +87,7 @@ class ListRolesResponse(ModelNormal):
         """
         lazy_import()
         return {
-            'data': ([Role],),  # noqa: E501
+            'data': ([Role], none_type),  # noqa: E501
         }
 
     @cached_property

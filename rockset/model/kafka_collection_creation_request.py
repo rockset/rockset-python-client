@@ -96,14 +96,14 @@ class KafkaCollectionCreationRequest(ModelNormal):
         lazy_import()
         return {
             'name': (str,),  # noqa: E501
-            'clustering_key': ([FieldPartition],),  # noqa: E501
-            'description': (str,),  # noqa: E501
-            'event_time_info': (EventTimeInfo,),  # noqa: E501
-            'field_mapping_query': (FieldMappingQuery,),  # noqa: E501
-            'field_mappings': ([FieldMappingV2],),  # noqa: E501
-            'insert_only': (bool,),  # noqa: E501
-            'retention_secs': (int,),  # noqa: E501
-            'sources': ([KafkaSourceWrapper],),  # noqa: E501
+            'clustering_key': ([FieldPartition], none_type),  # noqa: E501
+            'description': (str, none_type),  # noqa: E501
+            'event_time_info': (EventTimeInfo, none_type),  # noqa: E501
+            'field_mapping_query': (FieldMappingQuery, none_type),  # noqa: E501
+            'field_mappings': ([FieldMappingV2], none_type),  # noqa: E501
+            'insert_only': (bool, none_type),  # noqa: E501
+            'retention_secs': (int, none_type),  # noqa: E501
+            'sources': ([KafkaSourceWrapper], none_type),  # noqa: E501
         }
 
     @cached_property

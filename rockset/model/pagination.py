@@ -81,7 +81,7 @@ class Pagination(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'start_cursor': (str,),  # noqa: E501
+            'start_cursor': (str, none_type),  # noqa: E501
         }
 
     @cached_property

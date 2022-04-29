@@ -81,8 +81,8 @@ class StatusAzureServiceBusSession(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'last_processed': (str,),  # noqa: E501
-            'sequence_number': (int,),  # noqa: E501
+            'last_processed': (str, none_type),  # noqa: E501
+            'sequence_number': (int, none_type),  # noqa: E501
         }
 
     @cached_property

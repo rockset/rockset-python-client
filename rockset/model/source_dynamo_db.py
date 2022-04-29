@@ -90,11 +90,11 @@ class SourceDynamoDb(ModelNormal):
         lazy_import()
         return {
             'table_name': (str,),  # noqa: E501
-            'aws_region': (str,),  # noqa: E501
-            'current_status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
-            'rcu': (int,),  # noqa: E501
-            'status': (bool, date, datetime, dict, float, int, list, str, none_type,),  # noqa: E501
-            'use_scan_api': (bool,),  # noqa: E501
+            'aws_region': (str, none_type),  # noqa: E501
+            'current_status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
+            'rcu': (int, none_type),  # noqa: E501
+            'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
+            'use_scan_api': (bool, none_type),  # noqa: E501
         }
 
     @cached_property

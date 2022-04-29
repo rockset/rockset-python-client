@@ -94,11 +94,11 @@ class DocumentStatus(ModelNormal):
         """
         lazy_import()
         return {
-            'collection': (str,),  # noqa: E501
-            'id': (str,),  # noqa: E501
-            'error': (ErrorModel,),  # noqa: E501
-            'patch_id': (str,),  # noqa: E501
-            'status': (str,),  # noqa: E501
+            'collection': (str, none_type),  # noqa: E501
+            'id': (str, none_type),  # noqa: E501
+            'error': (ErrorModel, none_type),  # noqa: E501
+            'patch_id': (str, none_type),  # noqa: E501
+            'status': (str, none_type),  # noqa: E501
         }
 
     @cached_property

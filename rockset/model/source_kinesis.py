@@ -86,9 +86,9 @@ class SourceKinesis(ModelNormal):
         """
         return {
             'stream_name': (str,),  # noqa: E501
-            'aws_region': (str,),  # noqa: E501
-            'dms_primary_key': ([str],),  # noqa: E501
-            'offset_reset_policy': (str,),  # noqa: E501
+            'aws_region': (str, none_type),  # noqa: E501
+            'dms_primary_key': ([str], none_type),  # noqa: E501
+            'offset_reset_policy': (str, none_type),  # noqa: E501
         }
 
     @cached_property

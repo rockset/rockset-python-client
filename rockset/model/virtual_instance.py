@@ -109,7 +109,6 @@ class VirtualInstance(ModelNormal):
             'ACTIVE': "ACTIVE",
             'SUSPENDING': "SUSPENDING",
             'SUSPENDED': "SUSPENDED",
-            'RESUMING': "RESUMING",
             'DELETED': "DELETED",
         },
     }
@@ -138,17 +137,17 @@ class VirtualInstance(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'current_size': (str,),  # noqa: E501
-            'current_type': (str,),  # noqa: E501
-            'default_pod_count': (int,),  # noqa: E501
-            'desired_size': (str,),  # noqa: E501
-            'desired_type': (str,),  # noqa: E501
-            'estimated_switch_duration_minutes': (int,),  # noqa: E501
-            'id': (str,),  # noqa: E501
-            'last_updated': (str,),  # noqa: E501
-            'monitoring_enabled': (bool,),  # noqa: E501
-            'scaled_pod_count': (int,),  # noqa: E501
-            'state': (str,),  # noqa: E501
+            'current_size': (str, none_type),  # noqa: E501
+            'current_type': (str, none_type),  # noqa: E501
+            'default_pod_count': (int, none_type),  # noqa: E501
+            'desired_size': (str, none_type),  # noqa: E501
+            'desired_type': (str, none_type),  # noqa: E501
+            'estimated_switch_duration_minutes': (int, none_type),  # noqa: E501
+            'id': (str, none_type),  # noqa: E501
+            'last_updated': (str, none_type),  # noqa: E501
+            'monitoring_enabled': (bool, none_type),  # noqa: E501
+            'scaled_pod_count': (int, none_type),  # noqa: E501
+            'state': (str, none_type),  # noqa: E501
         }
 
     @cached_property

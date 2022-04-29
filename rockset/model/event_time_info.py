@@ -82,8 +82,8 @@ class EventTimeInfo(ModelNormal):
         """
         return {
             'field': (str,),  # noqa: E501
-            'format': (str,),  # noqa: E501
-            'time_zone': (str,),  # noqa: E501
+            'format': (str, none_type),  # noqa: E501
+            'time_zone': (str, none_type),  # noqa: E501
         }
 
     @cached_property

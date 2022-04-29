@@ -98,15 +98,15 @@ class QueryInfo(ModelNormal):
         """
         lazy_import()
         return {
-            'executed_by': (str,),  # noqa: E501
-            'expires_at': (str,),  # noqa: E501
-            'last_offset': (str,),  # noqa: E501
-            'pagination': (Pagination,),  # noqa: E501
-            'query_errors': ([QueryError],),  # noqa: E501
-            'query_id': (str,),  # noqa: E501
-            'stats': (Stats,),  # noqa: E501
-            'status': (str,),  # noqa: E501
-            'submitted_at': (str,),  # noqa: E501
+            'executed_by': (str, none_type),  # noqa: E501
+            'expires_at': (str, none_type),  # noqa: E501
+            'last_offset': (str, none_type),  # noqa: E501
+            'pagination': (Pagination, none_type),  # noqa: E501
+            'query_errors': ([QueryError], none_type),  # noqa: E501
+            'query_id': (str, none_type),  # noqa: E501
+            'stats': (Stats, none_type),  # noqa: E501
+            'status': (str, none_type),  # noqa: E501
+            'submitted_at': (str, none_type),  # noqa: E501
         }
 
     @cached_property
