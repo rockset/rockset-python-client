@@ -1,3 +1,6 @@
+### v0.0.10
+    - Include response type-checking and nested object model object conversions by default.
+
 ### v0.0.9
     - Bug fixes
     - Change pattern of API groups (AliasesApi -> Aliases)
