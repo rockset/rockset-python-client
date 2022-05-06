@@ -91,9 +91,9 @@ class FileUploadSourceWrapper(ModelNormal):
         """
         lazy_import()
         return {
-            'integration_name': (str,),  # noqa: E501
             'file_upload': (SourceFileUpload, none_type),  # noqa: E501
             'format_params': (FormatParams, none_type),  # noqa: E501
+            'integration_name': (str, none_type),  # noqa: E501
             'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
         }
 
@@ -103,9 +103,9 @@ class FileUploadSourceWrapper(ModelNormal):
 
 
     attribute_map = {
-        'integration_name': 'integration_name',  # noqa: E501
         'file_upload': 'file_upload',  # noqa: E501
         'format_params': 'format_params',  # noqa: E501
+        'integration_name': 'integration_name',  # noqa: E501
         'status': 'status',  # noqa: E501
     }
 
@@ -117,11 +117,8 @@ class FileUploadSourceWrapper(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, integration_name, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """FileUploadSourceWrapper - a model defined in OpenAPI
-
-        Args:
-            integration_name (str): name of integration to use
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -156,6 +153,7 @@ class FileUploadSourceWrapper(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             file_upload (SourceFileUpload): [optional]  # noqa: E501
             format_params (FormatParams): [optional]  # noqa: E501
+            integration_name (str): name of integration to use. [optional]  # noqa: E501
             status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
         """
 
@@ -184,7 +182,6 @@ class FileUploadSourceWrapper(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.integration_name = integration_name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -205,13 +202,13 @@ class FileUploadSourceWrapper(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *, integration_name, **kwargs):  # noqa: E501
+    def __init__(self, **kwargs):  # noqa: E501
         """FileUploadSourceWrapper - a model defined in OpenAPI
 
         Keyword Args:
-            integration_name (str): name of integration to use
             file_upload (SourceFileUpload): [optional]  # noqa: E501
             format_params (FormatParams): [optional]  # noqa: E501
+            integration_name (str): name of integration to use. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -268,7 +265,6 @@ class FileUploadSourceWrapper(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.integration_name = integration_name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

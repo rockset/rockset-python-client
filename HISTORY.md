@@ -1,3 +1,6 @@
+### v0.0.12
+    - Updates for latest API changes (namely removal of the updateIntegration call)
+
 ### v0.0.11
     - Add convenience method for making queries (rs.sql()).
     - Port over code from the old client's query builder.
