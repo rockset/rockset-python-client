@@ -1,9 +1,10 @@
+import datetime
 import inspect
 import re
 from enum import Enum
 from functools import wraps
 from types import FunctionType
-from typing import Union
+from typing import Any, Dict, Union
 
 from rockset.api_client import ApiClient
 from rockset.apis import (
@@ -22,6 +23,8 @@ from rockset.apis import (
 )
 from rockset.configuration import Configuration
 from rockset.exceptions import ApiTypeError, ApiValueError, InitializationException
+from rockset.models import QueryParameter, QueryRequestSql, QueryResponse
+from rockset.query_builder import Query
 
 
 APISERVER_PATTERN = re.compile(r"^https:\/\/(\w|-|\.)+\.rockset\.com$")
@@ -83,6 +86,23 @@ class ApiMetaclass(type):
                 ):
                     setattr(child, field_name, wrapper(field))
         return child
+
+
+def convert_to_rockset_type(v):
+    if isinstance(v, bool):
+        return "bool"
+    elif isinstance(v, int):
+        return "int"
+    elif isinstance(v, float):
+        return "float"
+    elif isinstance(v, str):
+        return "string"
+    # this check needs to be first because `date` is also a `datetime`
+    elif isinstance(v, datetime.datetime):
+        return "datetime"
+    elif isinstance(v, datetime.date):
+        return "date"
+    raise TypeError("Parameter value of type {} is not supported by Rockset".format(type(v)))
 
 
 class AliasesApiWrapper(Aliases, metaclass=ApiMetaclass):
@@ -209,3 +229,16 @@ class RocksetClient:
         self.Views = ViewsApiWrapper(self.api_client)
         self.VirtualInstances = VirtualInstancesApiWrapper(self.api_client)
         self.Workspaces = WorkspacesApiWrapper(self.api_client)
+
+    def sql(self, query: Union[str, Query], params: Dict[str, Any] = None) -> QueryResponse:
+        """Convenience method for making queries.
+        
+        If parameters are specified with the Query object, the params parameter should not be used.
+        The method will automatically handle conversion and calling the API.
+        """ 
+        if isinstance(query, Query):
+            query, query_params = query.sql()
+            params = query_params or params
+
+        params = [QueryParameter(name=param, value=val, type=convert_to_rockset_type(val)) for param, val in params.items()]
+        return self.Queries.query(sql=QueryRequestSql(query=query, parameters=params))

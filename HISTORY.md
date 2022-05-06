@@ -1,3 +1,7 @@
+### v0.0.11
+    - Add convenience method for making queries (rs.sql()).
+    - Port over code from the old client's query builder.
+
 ### v0.0.10
     - Include response type-checking and nested object model object conversions by default.
 

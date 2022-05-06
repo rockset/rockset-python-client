@@ -29,7 +29,35 @@ import rockset
 # Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
 rs = rockset.RocksetClient(host=rockset.Regions.use1a1, api_key="APIKEY")
 try:
-    rs.APIKeys.create_api_key(name="api-key-name", role="member")
+    res = rs.APIKeys.create_api_key(name="api-key-name", role="member")
+except rockset.ApiException as e:
+    print("Exception when calling ApiKey->create_api_key: %s\n" % e)
+```
+
+## Queries
+
+Queries can be made be either calling the regular client [**query method**](docs/Queries.md#query) or by using the convenience method (rs.sql). The convenience method currently does not support all the options of the regular call. If you need these more advanced features, you should use the regular call.
+
+```python
+import rockset
+
+rs = rockset.RocksetClient(host=rockset.Regions.use1a1, api_key="APIKEY")
+try:
+    res = rs.sql(query="SELECT * FROM _events WHERE kind=:event_type LIMIT 100", params={"event_type", "INGEST"})
+except rockset.ApiException as e:
+    print("Exception when calling ApiKey->create_api_key: %s\n" % e)
+```
+
+It is recommended that you write a standard query even when using rs.sql(). However, the query builder from the old Rockset python client has been included in order to make it easier to migrate to the new version. The query builder should be considered as deprecated. See the docstrings within rockset.query_builder.py for more query builder usage information.
+
+```python
+import rockset
+
+rs = rockset.RocksetClient(host=rockset.Regions.use1a1, api_key="APIKEY")
+try:
+    query = rockset.Q("_events").where(rockset.F["kind"] == rockset.P["event_type"]).limit(100)
+    query.P = {"event_type": "INGEST"}
+    res = rs.sql(query=query)
 except rockset.ApiException as e:
     print("Exception when calling ApiKey->create_api_key: %s\n" % e)
 ```
