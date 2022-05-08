@@ -1,3 +1,6 @@
+### v0.0.14
+    - Allow none for fields inside of response objects
+
 ### v0.0.13
     - Fix bug that occurs when no parameters are passed in to sql()
 

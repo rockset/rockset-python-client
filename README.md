@@ -29,7 +29,7 @@ import rockset
 # Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
 rs = rockset.RocksetClient(host=rockset.Regions.use1a1, api_key="APIKEY")
 try:
-    res = rs.APIKeys.create_api_key(name="api-key-name", role="member")
+    rs.APIKeys.create_api_key(name="api-key-name", role="member")
 except rockset.ApiException as e:
     print("Exception when calling ApiKey->create_api_key: %s\n" % e)
 ```
@@ -111,7 +111,6 @@ Class | Method | HTTP request | Description
 *Integrations* | [**delete_integration**](docs/Integrations.md#delete_integration) | **DELETE** /v1/orgs/self/integrations/{integration} | Delete Integration
 *Integrations* | [**get_integration**](docs/Integrations.md#get_integration) | **GET** /v1/orgs/self/integrations/{integration} | Retrieve Integration
 *Integrations* | [**list_integrations**](docs/Integrations.md#list_integrations) | **GET** /v1/orgs/self/integrations | List Integrations
-*Integrations* | [**update_integration**](docs/Integrations.md#update_integration) | **PATCH** /v1/orgs/self/integrations/{integration} | Update Integration
 *Organizations* | [**get_organization**](docs/Organizations.md#get_organization) | **GET** /v1/orgs/self | Get Organization
 *Queries* | [**cancel_query**](docs/Queries.md#cancel_query) | **DELETE** /v1/orgs/self/queries/{queryId} | Cancel Query
 *Queries* | [**get_query**](docs/Queries.md#get_query) | **GET** /v1/orgs/self/queries/{queryId} | Retrieve Query
@@ -325,8 +324,6 @@ Class | Method | HTTP request | Description
  - [UpdateAliasRequest](docs/UpdateAliasRequest.md)
  - [UpdateApiKeyRequest](docs/UpdateApiKeyRequest.md)
  - [UpdateApiKeyResponse](docs/UpdateApiKeyResponse.md)
- - [UpdateIntegrationRequest](docs/UpdateIntegrationRequest.md)
- - [UpdateIntegrationResponse](docs/UpdateIntegrationResponse.md)
  - [UpdateQueryLambdaRequest](docs/UpdateQueryLambdaRequest.md)
  - [UpdateRoleRequest](docs/UpdateRoleRequest.md)
  - [UpdateUnsubscribePreferencesRequest](docs/UpdateUnsubscribePreferencesRequest.md)

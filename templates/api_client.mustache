@@ -323,7 +323,8 @@ class ApiClient(object):
             ['received_data'],
             True,
             _check_type,
-            configuration=self.configuration
+            configuration=self.configuration,
+            is_from_server=True,
         )
         return deserialized_data
 
