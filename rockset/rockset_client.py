@@ -240,5 +240,7 @@ class RocksetClient:
             query, query_params = query.sql()
             params = query_params or params
 
-        params = [QueryParameter(name=param, value=val, type=convert_to_rockset_type(val)) for param, val in params.items()]
+        if params:
+            params = [QueryParameter(name=param, value=val, type=convert_to_rockset_type(val)) for param, val in params.items()]
+            
         return self.Queries.query(sql=QueryRequestSql(query=query, parameters=params))

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "rockset-v2-alpha"
-version = "0.0.12"
+version = "0.0.13"
 description = "The python client for the Rockset API."
 authors = ["Rockset <support@rockset.com>"]
 packages = [

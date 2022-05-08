@@ -1,3 +1,6 @@
+### v0.0.13
+    - Fix bug that occurs when no parameters are passed in to sql()
+
 ### v0.0.12
     - Updates for latest API changes (namely removal of the updateIntegration call)
 
