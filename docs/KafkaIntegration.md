@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **bootstrap_servers** | **str** |  | [optional] 
 **connection_string** | **str** | kafka connection string | [optional] [readonly] 
-**kafka_data_format** | **str** | The format of the Kafka topics being tailed | [optional] 
+**kafka_data_format** | **str, none_type** | The format of the Kafka topics being tailed | [optional] 
 **kafka_topic_names** | **[str]** | Kafka topics to tail | [optional] 
 **schema_registry_config** | [**SchemaRegistryConfig**](SchemaRegistryConfig.md) |  | [optional] 
 **security_config** | [**KafkaV3SecurityConfig**](KafkaV3SecurityConfig.md) |  | [optional] 

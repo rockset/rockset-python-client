@@ -1,3 +1,6 @@
+### v0.0.15
+    - Introduce temporary fix for nullable enums
+
 ### v0.0.14
     - Allow none for fields inside of response objects
 
