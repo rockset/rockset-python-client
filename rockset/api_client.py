@@ -51,6 +51,10 @@ def threadpool(f):
     return wrap
 
 
+def ignore_nulls(json_obj):
+    return {k: v for k, v in json_obj.items() if v is not None}
+
+
 class ApiClient(object):
     """Generic API client for OpenAPI client library builds.
 
@@ -305,7 +309,7 @@ class ApiClient(object):
 
         # fetch data from response object
         try:
-            received_data = json.loads(response.data)
+            received_data = json.loads(response.data, object_hook=ignore_nulls)
         except ValueError:
             received_data = response.data
 

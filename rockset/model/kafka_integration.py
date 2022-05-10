@@ -64,10 +64,8 @@ class KafkaIntegration(ModelNormal):
 
     allowed_values = {
         ('kafka_data_format',): {
-            'None': None,
             'JSON': "JSON",
             'AVRO': "AVRO",
-            'NULL': "null",
         },
     }
 
@@ -101,7 +99,7 @@ class KafkaIntegration(ModelNormal):
         return {
             'bootstrap_servers': (str, none_type),  # noqa: E501
             'connection_string': (str, none_type),  # noqa: E501
-            'kafka_data_format': (str, none_type, none_type),  # noqa: E501
+            'kafka_data_format': (str, none_type),  # noqa: E501
             'kafka_topic_names': ([str], none_type),  # noqa: E501
             'schema_registry_config': (SchemaRegistryConfig, none_type),  # noqa: E501
             'security_config': (KafkaV3SecurityConfig, none_type),  # noqa: E501
@@ -170,7 +168,7 @@ class KafkaIntegration(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             bootstrap_servers (str): [optional]  # noqa: E501
             connection_string (str): kafka connection string. [optional]  # noqa: E501
-            kafka_data_format (str, none_type): The format of the Kafka topics being tailed. [optional]  # noqa: E501
+            kafka_data_format (str): The format of the Kafka topics being tailed. [optional]  # noqa: E501
             kafka_topic_names ([str]): Kafka topics to tail. [optional]  # noqa: E501
             schema_registry_config (SchemaRegistryConfig): [optional]  # noqa: E501
             security_config (KafkaV3SecurityConfig): [optional]  # noqa: E501
@@ -228,7 +226,7 @@ class KafkaIntegration(ModelNormal):
 
         Keyword Args:
             bootstrap_servers (str): [optional]  # noqa: E501
-            kafka_data_format (str, none_type): The format of the Kafka topics being tailed. [optional]  # noqa: E501
+            kafka_data_format (str): The format of the Kafka topics being tailed. [optional]  # noqa: E501
             kafka_topic_names ([str]): Kafka topics to tail. [optional]  # noqa: E501
             schema_registry_config (SchemaRegistryConfig): [optional]  # noqa: E501
             security_config (KafkaV3SecurityConfig): [optional]  # noqa: E501

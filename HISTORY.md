@@ -1,3 +1,6 @@
+### v0.0.16
+    - Ignore nulls when deserializing responses so type validation succeeds
+
 ### v0.0.15
     - Introduce temporary fix for nullable enums
 
