@@ -161,14 +161,14 @@ class RocksetClient:
         rs = RocksetClient(api_key=APIKEY, host=Regions.use1a1)
 
         # Synchronous request
-        response = rs.DocumentsApi.add_documents(
+        response = rs.Documents.add_documents(
             collection=collection,
             data=[{"column": "value"}],
         )
         dict = response.to_dict()
 
         # Asynchronous request
-        future = rs.DocumentsApi.add_documents(
+        future = rs.Documents.add_documents(
             collection=collection,
             data=[{"column": "value"}],
             async_req=True,

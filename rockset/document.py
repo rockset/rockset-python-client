@@ -1,6 +1,5 @@
 import datetime
 import geojson
-from typing import Dict
 
 # all Rockset data types
 DATATYPE_META = "__rockset_type"
