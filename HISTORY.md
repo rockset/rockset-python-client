@@ -1,3 +1,7 @@
+### v0.0.17
+    - Fix bug where query parameters were not being propagated to the actual call.
+    - Add the QueryPaginator class which can be used as an iterator for paginated queries.
+
 ### v0.0.16
     - Ignore nulls when deserializing responses so type validation succeeds
 

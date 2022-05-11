@@ -619,6 +619,15 @@ class Queries(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['query_id'] = \
             query_id
+        if cursor is not None:
+            kwargs['cursor'] = \
+                cursor
+        if docs is not None:
+            kwargs['docs'] = \
+                docs
+        if offset is not None:
+            kwargs['offset'] = \
+                offset
         return self.get_query_results_endpoint.call_with_http_info(**kwargs)
 
     def list_active_queries(

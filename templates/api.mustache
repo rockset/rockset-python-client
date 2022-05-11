@@ -417,6 +417,11 @@ result = await future
             kwargs['{{paramName}}']
 {{/isBodyParam}}
 {{/requiredParams}}
+{{#optionalParams}}
+        if {{paramName}} is not None:
+            kwargs['{{paramName}}'] = \
+                {{paramName}}
+{{/optionalParams}}
         return self.{{operationId}}_endpoint.call_with_http_info(**kwargs)
 
 {{/operation}}

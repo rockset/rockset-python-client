@@ -599,6 +599,9 @@ class APIKeys(object):
             user
         kwargs['name'] = \
             name
+        if reveal is not None:
+            kwargs['reveal'] = \
+                reveal
         return self.get_api_key_endpoint.call_with_http_info(**kwargs)
 
     def list_api_keys(

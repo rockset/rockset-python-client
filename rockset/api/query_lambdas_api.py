@@ -1467,6 +1467,9 @@ class QueryLambdas(object):
             query_lambda
         kwargs['version'] = \
             version
+        if execute_query_lambda_request is not None:
+            kwargs['execute_query_lambda_request'] = \
+                execute_query_lambda_request
         return self.execute_query_lambda_endpoint.call_with_http_info(**kwargs)
 
     def execute_query_lambda_by_tag(
@@ -1563,6 +1566,9 @@ class QueryLambdas(object):
             query_lambda
         kwargs['tag'] = \
             tag
+        if execute_query_lambda_request is not None:
+            kwargs['execute_query_lambda_request'] = \
+                execute_query_lambda_request
         return self.execute_query_lambda_by_tag_endpoint.call_with_http_info(**kwargs)
 
     def get_query_lambda_tag_version(
@@ -2200,6 +2206,9 @@ class QueryLambdas(object):
             query_lambda
         kwargs['update_query_lambda_request'] = \
             kwargs['update_query_lambda_request']
+        if create is not None:
+            kwargs['create'] = \
+                create
         return self.update_query_lambda_endpoint.call_with_http_info(**kwargs)
 
 
