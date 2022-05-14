@@ -26,6 +26,7 @@ from rockset.exceptions import ApiTypeError
 from rockset.exceptions import ApiValueError
 from rockset.exceptions import ApiKeyError
 from rockset.exceptions import ApiException
+from rockset.exceptions import BadRequestException
 
 from rockset.rockset_client import DevRegions, Regions, RocksetClient
 from rockset.document import Document
