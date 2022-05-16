@@ -56,7 +56,7 @@ class QueryLambdas(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas',
                 'operation_id': 'create_query_lambda',
                 'http_method': 'POST',
                 'servers': None,
@@ -113,7 +113,7 @@ class QueryLambdas(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/tags'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/tags',
                 'operation_id': 'create_query_lambda_tag',
                 'http_method': 'POST',
                 'servers': None,
@@ -176,7 +176,7 @@ class QueryLambdas(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}',
                 'operation_id': 'delete_query_lambda',
                 'http_method': 'DELETE',
                 'servers': None,
@@ -233,7 +233,7 @@ class QueryLambdas(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/tags/{tag}'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/tags/{tag}',
                 'operation_id': 'delete_query_lambda_tag',
                 'http_method': 'DELETE',
                 'servers': None,
@@ -296,7 +296,7 @@ class QueryLambdas(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/version/{version}'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/version/{version}',
                 'operation_id': 'delete_query_lambda_version',
                 'http_method': 'DELETE',
                 'servers': None,
@@ -359,7 +359,7 @@ class QueryLambdas(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/versions/{version}'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/versions/{version}',
                 'operation_id': 'execute_query_lambda',
                 'http_method': 'POST',
                 'servers': None,
@@ -428,7 +428,7 @@ class QueryLambdas(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/tags/{tag}'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/tags/{tag}',
                 'operation_id': 'execute_query_lambda_by_tag',
                 'http_method': 'POST',
                 'servers': None,
@@ -497,7 +497,7 @@ class QueryLambdas(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/tags/{tag}'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/tags/{tag}',
                 'operation_id': 'get_query_lambda_tag_version',
                 'http_method': 'GET',
                 'servers': None,
@@ -560,7 +560,7 @@ class QueryLambdas(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/versions/{version}'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/versions/{version}',
                 'operation_id': 'get_query_lambda_version',
                 'http_method': 'GET',
                 'servers': None,
@@ -623,7 +623,7 @@ class QueryLambdas(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/lambdas'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/lambdas',
                 'operation_id': 'list_all_query_lambdas',
                 'http_method': 'GET',
                 'servers': None,
@@ -667,7 +667,7 @@ class QueryLambdas(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/tags'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/tags',
                 'operation_id': 'list_query_lambda_tags',
                 'http_method': 'GET',
                 'servers': None,
@@ -724,7 +724,7 @@ class QueryLambdas(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/versions'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/versions',
                 'operation_id': 'list_query_lambda_versions',
                 'http_method': 'GET',
                 'servers': None,
@@ -781,7 +781,7 @@ class QueryLambdas(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas',
                 'operation_id': 'list_query_lambdas_in_workspace',
                 'http_method': 'GET',
                 'servers': None,
@@ -832,7 +832,7 @@ class QueryLambdas(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/versions'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/versions',
                 'operation_id': 'update_query_lambda',
                 'http_method': 'POST',
                 'servers': None,

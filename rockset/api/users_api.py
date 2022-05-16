@@ -53,7 +53,7 @@ class Users(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/users'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/users',
                 'operation_id': 'create_user',
                 'http_method': 'POST',
                 'servers': None,
@@ -104,7 +104,7 @@ class Users(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/users/{user}'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/users/{user}',
                 'operation_id': 'delete_user',
                 'http_method': 'DELETE',
                 'servers': None,
@@ -155,7 +155,7 @@ class Users(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/users/self'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/users/self',
                 'operation_id': 'get_current_user',
                 'http_method': 'GET',
                 'servers': None,
@@ -199,7 +199,7 @@ class Users(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/users/{user}'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/users/{user}',
                 'operation_id': 'get_user',
                 'http_method': 'GET',
                 'servers': None,
@@ -250,7 +250,7 @@ class Users(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/users/self/preferences'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/users/self/preferences',
                 'operation_id': 'list_unsubscribe_preferences',
                 'http_method': 'GET',
                 'servers': None,
@@ -294,7 +294,7 @@ class Users(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/users'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/users',
                 'operation_id': 'list_users',
                 'http_method': 'GET',
                 'servers': None,
@@ -338,7 +338,7 @@ class Users(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/users/self/preferences'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/users/self/preferences',
                 'operation_id': 'update_unsubscribe_preferences',
                 'http_method': 'POST',
                 'servers': None,

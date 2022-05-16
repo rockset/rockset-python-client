@@ -46,7 +46,7 @@ class Organizations(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self',
                 'operation_id': 'get_organization',
                 'http_method': 'GET',
                 'servers': None,

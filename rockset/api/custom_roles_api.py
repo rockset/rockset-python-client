@@ -49,7 +49,7 @@ class CustomRoles(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/roles'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/roles',
                 'operation_id': 'create_role',
                 'http_method': 'POST',
                 'servers': None,
@@ -100,7 +100,7 @@ class CustomRoles(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/roles/{roleName}'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/roles/{roleName}',
                 'operation_id': 'delete_role',
                 'http_method': 'DELETE',
                 'servers': None,
@@ -151,7 +151,7 @@ class CustomRoles(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/roles/{roleName}'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/roles/{roleName}',
                 'operation_id': 'get_role',
                 'http_method': 'GET',
                 'servers': None,
@@ -202,7 +202,7 @@ class CustomRoles(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/roles'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/roles',
                 'operation_id': 'list_roles',
                 'http_method': 'GET',
                 'servers': None,
@@ -246,7 +246,7 @@ class CustomRoles(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/roles/{roleName}'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/roles/{roleName}',
                 'operation_id': 'update_role',
                 'http_method': 'POST',
                 'servers': None,

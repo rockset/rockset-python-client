@@ -52,7 +52,7 @@ class Views(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/views'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/views',
                 'operation_id': 'create_view',
                 'http_method': 'POST',
                 'servers': None,
@@ -109,7 +109,7 @@ class Views(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/views/{view}'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/views/{view}',
                 'operation_id': 'delete_view',
                 'http_method': 'DELETE',
                 'servers': None,
@@ -166,7 +166,7 @@ class Views(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/views/{view}'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/views/{view}',
                 'operation_id': 'get_view',
                 'http_method': 'GET',
                 'servers': None,
@@ -223,7 +223,7 @@ class Views(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/views'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/views',
                 'operation_id': 'list_views',
                 'http_method': 'GET',
                 'servers': None,
@@ -267,7 +267,7 @@ class Views(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/views/{view}'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/views/{view}',
                 'operation_id': 'update_view',
                 'http_method': 'POST',
                 'servers': None,
@@ -330,7 +330,7 @@ class Views(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/views'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/views',
                 'operation_id': 'workspace_views',
                 'http_method': 'GET',
                 'servers': None,

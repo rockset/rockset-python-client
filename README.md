@@ -98,16 +98,16 @@ Class | Method | HTTP request | Description
 *Aliases* | [**list_aliases**](docs/Aliases.md#list_aliases) | **GET** /v1/orgs/self/aliases | List Aliases
 *Aliases* | [**update_alias**](docs/Aliases.md#update_alias) | **POST** /v1/orgs/self/ws/{workspace}/aliases/{alias} | Update Alias
 *Aliases* | [**workspace_aliases**](docs/Aliases.md#workspace_aliases) | **GET** /v1/orgs/self/ws/{workspace}/aliases | List Aliases in Workspace
-*Collections* | [**create_azure_blob_storage_collection**](docs/Collections.md#create_azure_blob_storage_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections#AzureBlobStorage | Create azure blob storage collection
-*Collections* | [**create_azure_event_hubs_collection**](docs/Collections.md#create_azure_event_hubs_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections#AzureEventHubs | Create azure event hubs collection
-*Collections* | [**create_azure_service_bus_collection**](docs/Collections.md#create_azure_service_bus_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections#AzureServiceBus | Create azure service bus collection
-*Collections* | [**create_dynamodb_collection**](docs/Collections.md#create_dynamodb_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections#Dynamodb | Create dynamodb collection
-*Collections* | [**create_file_upload_collection**](docs/Collections.md#create_file_upload_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections#FileUpload | Create file upload collection
-*Collections* | [**create_gcs_collection**](docs/Collections.md#create_gcs_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections#Gcs | Create gcs collection
-*Collections* | [**create_kafka_collection**](docs/Collections.md#create_kafka_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections#Kafka | Create kafka collection
-*Collections* | [**create_kinesis_collection**](docs/Collections.md#create_kinesis_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections#Kinesis | Create kinesis collection
-*Collections* | [**create_mongodb_collection**](docs/Collections.md#create_mongodb_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections#Mongodb | Create mongodb collection
-*Collections* | [**create_s3_collection**](docs/Collections.md#create_s3_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections#S3 | Create s3 collection
+*Collections* | [**create_azure_blob_storage_collection**](docs/Collections.md#create_azure_blob_storage_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create azure blob storage collection
+*Collections* | [**create_azure_event_hubs_collection**](docs/Collections.md#create_azure_event_hubs_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create azure event hubs collection
+*Collections* | [**create_azure_service_bus_collection**](docs/Collections.md#create_azure_service_bus_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create azure service bus collection
+*Collections* | [**create_dynamodb_collection**](docs/Collections.md#create_dynamodb_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create dynamodb collection
+*Collections* | [**create_file_upload_collection**](docs/Collections.md#create_file_upload_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create file upload collection
+*Collections* | [**create_gcs_collection**](docs/Collections.md#create_gcs_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create gcs collection
+*Collections* | [**create_kafka_collection**](docs/Collections.md#create_kafka_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create kafka collection
+*Collections* | [**create_kinesis_collection**](docs/Collections.md#create_kinesis_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create kinesis collection
+*Collections* | [**create_mongodb_collection**](docs/Collections.md#create_mongodb_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create mongodb collection
+*Collections* | [**create_s3_collection**](docs/Collections.md#create_s3_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create s3 collection
 *Collections* | [**delete_collection**](docs/Collections.md#delete_collection) | **DELETE** /v1/orgs/self/ws/{workspace}/collections/{collection} | Delete Collection
 *Collections* | [**get_collection**](docs/Collections.md#get_collection) | **GET** /v1/orgs/self/ws/{workspace}/collections/{collection} | Retrieve Collection
 *Collections* | [**list_collections**](docs/Collections.md#list_collections) | **GET** /v1/orgs/self/collections | List Collections
@@ -120,15 +120,15 @@ Class | Method | HTTP request | Description
 *Documents* | [**add_documents**](docs/Documents.md#add_documents) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/docs | Add Documents
 *Documents* | [**delete_documents**](docs/Documents.md#delete_documents) | **DELETE** /v1/orgs/self/ws/{workspace}/collections/{collection}/docs | Delete Documents
 *Documents* | [**patch_documents**](docs/Documents.md#patch_documents) | **PATCH** /v1/orgs/self/ws/{workspace}/collections/{collection}/docs | Patch Documents
-*Integrations* | [**create_azure_blob_storage_integration**](docs/Integrations.md#create_azure_blob_storage_integration) | **POST** /v1/orgs/self/integrations#AzureBlobStorage | Create azure blob storage integration
-*Integrations* | [**create_azure_event_hubs_integration**](docs/Integrations.md#create_azure_event_hubs_integration) | **POST** /v1/orgs/self/integrations#AzureEventHubs | Create azure event hubs integration
-*Integrations* | [**create_dynamodb_integration**](docs/Integrations.md#create_dynamodb_integration) | **POST** /v1/orgs/self/integrations#Dynamodb | Create dynamodb integration
-*Integrations* | [**create_gcs_integration**](docs/Integrations.md#create_gcs_integration) | **POST** /v1/orgs/self/integrations#Gcs | Create gcs integration
-*Integrations* | [**create_kafka_integration**](docs/Integrations.md#create_kafka_integration) | **POST** /v1/orgs/self/integrations#Kafka | Create kafka integration
-*Integrations* | [**create_kinesis_integration**](docs/Integrations.md#create_kinesis_integration) | **POST** /v1/orgs/self/integrations#Kinesis | Create kinesis integration
-*Integrations* | [**create_mongodb_integration**](docs/Integrations.md#create_mongodb_integration) | **POST** /v1/orgs/self/integrations#Mongodb | Create mongodb integration
-*Integrations* | [**create_s3_integration**](docs/Integrations.md#create_s3_integration) | **POST** /v1/orgs/self/integrations#S3 | Create s3 integration
-*Integrations* | [**create_segment_integration**](docs/Integrations.md#create_segment_integration) | **POST** /v1/orgs/self/integrations#Segment | Create segment integration
+*Integrations* | [**create_azure_blob_storage_integration**](docs/Integrations.md#create_azure_blob_storage_integration) | **POST** /v1/orgs/self/integrations | Create azure blob storage integration
+*Integrations* | [**create_azure_event_hubs_integration**](docs/Integrations.md#create_azure_event_hubs_integration) | **POST** /v1/orgs/self/integrations | Create azure event hubs integration
+*Integrations* | [**create_dynamodb_integration**](docs/Integrations.md#create_dynamodb_integration) | **POST** /v1/orgs/self/integrations | Create dynamodb integration
+*Integrations* | [**create_gcs_integration**](docs/Integrations.md#create_gcs_integration) | **POST** /v1/orgs/self/integrations | Create gcs integration
+*Integrations* | [**create_kafka_integration**](docs/Integrations.md#create_kafka_integration) | **POST** /v1/orgs/self/integrations | Create kafka integration
+*Integrations* | [**create_kinesis_integration**](docs/Integrations.md#create_kinesis_integration) | **POST** /v1/orgs/self/integrations | Create kinesis integration
+*Integrations* | [**create_mongodb_integration**](docs/Integrations.md#create_mongodb_integration) | **POST** /v1/orgs/self/integrations | Create mongodb integration
+*Integrations* | [**create_s3_integration**](docs/Integrations.md#create_s3_integration) | **POST** /v1/orgs/self/integrations | Create s3 integration
+*Integrations* | [**create_segment_integration**](docs/Integrations.md#create_segment_integration) | **POST** /v1/orgs/self/integrations | Create segment integration
 *Integrations* | [**delete_integration**](docs/Integrations.md#delete_integration) | **DELETE** /v1/orgs/self/integrations/{integration} | Delete Integration
 *Integrations* | [**get_integration**](docs/Integrations.md#get_integration) | **GET** /v1/orgs/self/integrations/{integration} | Retrieve Integration
 *Integrations* | [**list_integrations**](docs/Integrations.md#list_integrations) | **GET** /v1/orgs/self/integrations | List Integrations

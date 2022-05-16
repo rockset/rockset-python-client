@@ -50,7 +50,7 @@ class Workspaces(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws',
                 'operation_id': 'create_workspace',
                 'http_method': 'POST',
                 'servers': None,
@@ -101,7 +101,7 @@ class Workspaces(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}',
                 'operation_id': 'delete_workspace',
                 'http_method': 'DELETE',
                 'servers': None,
@@ -152,7 +152,7 @@ class Workspaces(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}',
                 'operation_id': 'get_workspace',
                 'http_method': 'GET',
                 'servers': None,
@@ -203,7 +203,7 @@ class Workspaces(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws',
                 'operation_id': 'list_workspaces',
                 'http_method': 'GET',
                 'servers': None,

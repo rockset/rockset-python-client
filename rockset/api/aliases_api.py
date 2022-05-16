@@ -51,7 +51,7 @@ class Aliases(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/aliases'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/aliases',
                 'operation_id': 'create_alias',
                 'http_method': 'POST',
                 'servers': None,
@@ -108,7 +108,7 @@ class Aliases(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/aliases/{alias}'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/aliases/{alias}',
                 'operation_id': 'delete_alias',
                 'http_method': 'DELETE',
                 'servers': None,
@@ -165,7 +165,7 @@ class Aliases(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/aliases/{alias}'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/aliases/{alias}',
                 'operation_id': 'get_alias',
                 'http_method': 'GET',
                 'servers': None,
@@ -222,7 +222,7 @@ class Aliases(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/aliases'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/aliases',
                 'operation_id': 'list_aliases',
                 'http_method': 'GET',
                 'servers': None,
@@ -266,7 +266,7 @@ class Aliases(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/aliases/{alias}'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/aliases/{alias}',
                 'operation_id': 'update_alias',
                 'http_method': 'POST',
                 'servers': None,
@@ -329,7 +329,7 @@ class Aliases(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/aliases'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/aliases',
                 'operation_id': 'workspace_aliases',
                 'http_method': 'GET',
                 'servers': None,

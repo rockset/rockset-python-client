@@ -50,7 +50,7 @@ class {{classname}}(object):
 {{^authMethods}}
                 'auth': [],
 {{/authMethods}}
-                'endpoint_path': '{{{path}}}'.split('#')[0],
+                'endpoint_path': '{{{path}}}',
                 'operation_id': '{{operationId}}',
                 'http_method': '{{httpMethod}}',
 {{#servers}}

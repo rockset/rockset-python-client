@@ -51,7 +51,7 @@ class Documents(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}/docs'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}/docs',
                 'operation_id': 'add_documents',
                 'http_method': 'POST',
                 'servers': None,
@@ -114,7 +114,7 @@ class Documents(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}/docs'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}/docs',
                 'operation_id': 'delete_documents',
                 'http_method': 'DELETE',
                 'servers': None,
@@ -177,7 +177,7 @@ class Documents(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}/docs'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}/docs',
                 'operation_id': 'patch_documents',
                 'http_method': 'PATCH',
                 'servers': None,

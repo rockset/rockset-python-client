@@ -58,7 +58,7 @@ class Integrations(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/integrations#AzureBlobStorage'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/integrations',
                 'operation_id': 'create_azure_blob_storage_integration',
                 'http_method': 'POST',
                 'servers': None,
@@ -109,7 +109,7 @@ class Integrations(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/integrations#AzureEventHubs'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/integrations',
                 'operation_id': 'create_azure_event_hubs_integration',
                 'http_method': 'POST',
                 'servers': None,
@@ -160,7 +160,7 @@ class Integrations(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/integrations#Dynamodb'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/integrations',
                 'operation_id': 'create_dynamodb_integration',
                 'http_method': 'POST',
                 'servers': None,
@@ -211,7 +211,7 @@ class Integrations(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/integrations#Gcs'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/integrations',
                 'operation_id': 'create_gcs_integration',
                 'http_method': 'POST',
                 'servers': None,
@@ -262,7 +262,7 @@ class Integrations(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/integrations#Kafka'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/integrations',
                 'operation_id': 'create_kafka_integration',
                 'http_method': 'POST',
                 'servers': None,
@@ -313,7 +313,7 @@ class Integrations(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/integrations#Kinesis'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/integrations',
                 'operation_id': 'create_kinesis_integration',
                 'http_method': 'POST',
                 'servers': None,
@@ -364,7 +364,7 @@ class Integrations(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/integrations#Mongodb'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/integrations',
                 'operation_id': 'create_mongodb_integration',
                 'http_method': 'POST',
                 'servers': None,
@@ -415,7 +415,7 @@ class Integrations(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/integrations#S3'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/integrations',
                 'operation_id': 'create_s3_integration',
                 'http_method': 'POST',
                 'servers': None,
@@ -466,7 +466,7 @@ class Integrations(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/integrations#Segment'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/integrations',
                 'operation_id': 'create_segment_integration',
                 'http_method': 'POST',
                 'servers': None,
@@ -517,7 +517,7 @@ class Integrations(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/integrations/{integration}'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/integrations/{integration}',
                 'operation_id': 'delete_integration',
                 'http_method': 'DELETE',
                 'servers': None,
@@ -568,7 +568,7 @@ class Integrations(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/integrations/{integration}'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/integrations/{integration}',
                 'operation_id': 'get_integration',
                 'http_method': 'GET',
                 'servers': None,
@@ -619,7 +619,7 @@ class Integrations(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/integrations'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/integrations',
                 'operation_id': 'list_integrations',
                 'http_method': 'GET',
                 'servers': None,

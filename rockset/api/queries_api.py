@@ -51,7 +51,7 @@ class Queries(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/queries/{queryId}'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/queries/{queryId}',
                 'operation_id': 'cancel_query',
                 'http_method': 'DELETE',
                 'servers': None,
@@ -102,7 +102,7 @@ class Queries(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/queries/{queryId}'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/queries/{queryId}',
                 'operation_id': 'get_query',
                 'http_method': 'GET',
                 'servers': None,
@@ -153,7 +153,7 @@ class Queries(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/queries/{queryId}/pages'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/queries/{queryId}/pages',
                 'operation_id': 'get_query_results',
                 'http_method': 'GET',
                 'servers': None,
@@ -219,7 +219,7 @@ class Queries(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/queries'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/queries',
                 'operation_id': 'list_active_queries',
                 'http_method': 'GET',
                 'servers': None,
@@ -263,7 +263,7 @@ class Queries(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/queries'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/queries',
                 'operation_id': 'query',
                 'http_method': 'POST',
                 'servers': None,
@@ -314,7 +314,7 @@ class Queries(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/queries/validations'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/queries/validations',
                 'operation_id': 'validate',
                 'http_method': 'POST',
                 'servers': None,

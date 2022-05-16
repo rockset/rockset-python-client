@@ -49,7 +49,7 @@ class VirtualInstances(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/virtualinstances/{virtualInstanceId}'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/virtualinstances/{virtualInstanceId}',
                 'operation_id': 'get_virtual_instance',
                 'http_method': 'GET',
                 'servers': None,
@@ -100,7 +100,7 @@ class VirtualInstances(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/virtualinstances'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/virtualinstances',
                 'operation_id': 'list_virtual_instances',
                 'http_method': 'GET',
                 'servers': None,
@@ -144,7 +144,7 @@ class VirtualInstances(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/virtualinstances/{virtualInstanceId}'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/virtualinstances/{virtualInstanceId}',
                 'operation_id': 'set_virtual_instance',
                 'http_method': 'POST',
                 'servers': None,

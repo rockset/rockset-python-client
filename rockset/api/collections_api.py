@@ -59,7 +59,7 @@ class Collections(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections#AzureBlobStorage'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections',
                 'operation_id': 'create_azure_blob_storage_collection',
                 'http_method': 'POST',
                 'servers': None,
@@ -116,7 +116,7 @@ class Collections(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections#AzureEventHubs'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections',
                 'operation_id': 'create_azure_event_hubs_collection',
                 'http_method': 'POST',
                 'servers': None,
@@ -173,7 +173,7 @@ class Collections(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections#AzureServiceBus'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections',
                 'operation_id': 'create_azure_service_bus_collection',
                 'http_method': 'POST',
                 'servers': None,
@@ -230,7 +230,7 @@ class Collections(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections#Dynamodb'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections',
                 'operation_id': 'create_dynamodb_collection',
                 'http_method': 'POST',
                 'servers': None,
@@ -287,7 +287,7 @@ class Collections(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections#FileUpload'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections',
                 'operation_id': 'create_file_upload_collection',
                 'http_method': 'POST',
                 'servers': None,
@@ -344,7 +344,7 @@ class Collections(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections#Gcs'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections',
                 'operation_id': 'create_gcs_collection',
                 'http_method': 'POST',
                 'servers': None,
@@ -401,7 +401,7 @@ class Collections(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections#Kafka'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections',
                 'operation_id': 'create_kafka_collection',
                 'http_method': 'POST',
                 'servers': None,
@@ -458,7 +458,7 @@ class Collections(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections#Kinesis'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections',
                 'operation_id': 'create_kinesis_collection',
                 'http_method': 'POST',
                 'servers': None,
@@ -515,7 +515,7 @@ class Collections(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections#Mongodb'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections',
                 'operation_id': 'create_mongodb_collection',
                 'http_method': 'POST',
                 'servers': None,
@@ -572,7 +572,7 @@ class Collections(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections#S3'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections',
                 'operation_id': 'create_s3_collection',
                 'http_method': 'POST',
                 'servers': None,
@@ -629,7 +629,7 @@ class Collections(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}',
                 'operation_id': 'delete_collection',
                 'http_method': 'DELETE',
                 'servers': None,
@@ -686,7 +686,7 @@ class Collections(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}',
                 'operation_id': 'get_collection',
                 'http_method': 'GET',
                 'servers': None,
@@ -743,7 +743,7 @@ class Collections(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/collections'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/collections',
                 'operation_id': 'list_collections',
                 'http_method': 'GET',
                 'servers': None,
@@ -787,7 +787,7 @@ class Collections(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections',
                 'operation_id': 'workspace_collections',
                 'http_method': 'GET',
                 'servers': None,

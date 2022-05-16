@@ -52,7 +52,7 @@ class APIKeys(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/users/self/apikeys'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/users/self/apikeys',
                 'operation_id': 'create_api_key',
                 'http_method': 'POST',
                 'servers': None,
@@ -103,7 +103,7 @@ class APIKeys(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/users/{user}/apikeys/{name}'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/users/{user}/apikeys/{name}',
                 'operation_id': 'delete_api_key',
                 'http_method': 'DELETE',
                 'servers': None,
@@ -160,7 +160,7 @@ class APIKeys(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/users/{user}/apikeys/{name}'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/users/{user}/apikeys/{name}',
                 'operation_id': 'get_api_key',
                 'http_method': 'GET',
                 'servers': None,
@@ -222,7 +222,7 @@ class APIKeys(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/users/{user}/apikeys'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/users/{user}/apikeys',
                 'operation_id': 'list_api_keys',
                 'http_method': 'GET',
                 'servers': None,
@@ -273,7 +273,7 @@ class APIKeys(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/users/{user}/apikeys/{name}'.split('#')[0],
+                'endpoint_path': '/v1/orgs/self/users/{user}/apikeys/{name}',
                 'operation_id': 'update_api_key',
                 'http_method': 'POST',
                 'servers': None,
