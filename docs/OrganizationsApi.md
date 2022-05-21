@@ -4,7 +4,7 @@ All URIs are relative to *https://api.rs2.usw2.rockset.com* or the apiserver pro
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_organization**](Organizations.md#get_organization) | **GET** /v1/orgs/self | Get Organization
+[**get_organization**](OrganizationsApi.md#get_organization) | **GET** /v1/orgs/self | Get Organization
 
 
 # **get_organization**

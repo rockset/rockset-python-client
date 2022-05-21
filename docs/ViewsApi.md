@@ -4,12 +4,12 @@ All URIs are relative to *https://api.rs2.usw2.rockset.com* or the apiserver pro
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_view**](Views.md#create_view) | **POST** /v1/orgs/self/ws/{workspace}/views | Create View
-[**delete_view**](Views.md#delete_view) | **DELETE** /v1/orgs/self/ws/{workspace}/views/{view} | Delete View
-[**get_view**](Views.md#get_view) | **GET** /v1/orgs/self/ws/{workspace}/views/{view} | Retrieve View
-[**list_views**](Views.md#list_views) | **GET** /v1/orgs/self/views | List Views
-[**update_view**](Views.md#update_view) | **POST** /v1/orgs/self/ws/{workspace}/views/{view} | Update View
-[**workspace_views**](Views.md#workspace_views) | **GET** /v1/orgs/self/ws/{workspace}/views | List Views in Workspace
+[**create_view**](ViewsApi.md#create_view) | **POST** /v1/orgs/self/ws/{workspace}/views | Create View
+[**delete_view**](ViewsApi.md#delete_view) | **DELETE** /v1/orgs/self/ws/{workspace}/views/{view} | Delete View
+[**get_view**](ViewsApi.md#get_view) | **GET** /v1/orgs/self/ws/{workspace}/views/{view} | Retrieve View
+[**list_views**](ViewsApi.md#list_views) | **GET** /v1/orgs/self/views | List Views
+[**update_view**](ViewsApi.md#update_view) | **POST** /v1/orgs/self/ws/{workspace}/views/{view} | Update View
+[**workspace_views**](ViewsApi.md#workspace_views) | **GET** /v1/orgs/self/ws/{workspace}/views | List Views in Workspace
 
 
 # **create_view**

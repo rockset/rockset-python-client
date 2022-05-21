@@ -4,13 +4,13 @@ All URIs are relative to *https://api.rs2.usw2.rockset.com* or the apiserver pro
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_user**](Users.md#create_user) | **POST** /v1/orgs/self/users | Create User
-[**delete_user**](Users.md#delete_user) | **DELETE** /v1/orgs/self/users/{user} | Delete User
-[**get_current_user**](Users.md#get_current_user) | **GET** /v1/orgs/self/users/self | Retrieve Current User
-[**get_user**](Users.md#get_user) | **GET** /v1/orgs/self/users/{user} | Retrieve User
-[**list_unsubscribe_preferences**](Users.md#list_unsubscribe_preferences) | **GET** /v1/orgs/self/users/self/preferences | Retrieve Notification Preferences
-[**list_users**](Users.md#list_users) | **GET** /v1/orgs/self/users | List Users
-[**update_unsubscribe_preferences**](Users.md#update_unsubscribe_preferences) | **POST** /v1/orgs/self/users/self/preferences | Update Notification Preferences
+[**create_user**](UsersApi.md#create_user) | **POST** /v1/orgs/self/users | Create User
+[**delete_user**](UsersApi.md#delete_user) | **DELETE** /v1/orgs/self/users/{user} | Delete User
+[**get_current_user**](UsersApi.md#get_current_user) | **GET** /v1/orgs/self/users/self | Retrieve Current User
+[**get_user**](UsersApi.md#get_user) | **GET** /v1/orgs/self/users/{user} | Retrieve User
+[**list_unsubscribe_preferences**](UsersApi.md#list_unsubscribe_preferences) | **GET** /v1/orgs/self/users/self/preferences | Retrieve Notification Preferences
+[**list_users**](UsersApi.md#list_users) | **GET** /v1/orgs/self/users | List Users
+[**update_unsubscribe_preferences**](UsersApi.md#update_unsubscribe_preferences) | **POST** /v1/orgs/self/users/self/preferences | Update Notification Preferences
 
 
 # **create_user**

@@ -4,11 +4,11 @@ All URIs are relative to *https://api.rs2.usw2.rockset.com* or the apiserver pro
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_api_key**](APIKeys.md#create_api_key) | **POST** /v1/orgs/self/users/self/apikeys | Create API Key
-[**delete_api_key**](APIKeys.md#delete_api_key) | **DELETE** /v1/orgs/self/users/{user}/apikeys/{name} | Delete API Key
-[**get_api_key**](APIKeys.md#get_api_key) | **GET** /v1/orgs/self/users/{user}/apikeys/{name} | Retrieve API Key
-[**list_api_keys**](APIKeys.md#list_api_keys) | **GET** /v1/orgs/self/users/{user}/apikeys | List API Keys
-[**update_api_key**](APIKeys.md#update_api_key) | **POST** /v1/orgs/self/users/{user}/apikeys/{name} | Update API Key State
+[**create_api_key**](APIKeysApi.md#create_api_key) | **POST** /v1/orgs/self/users/self/apikeys | Create API Key
+[**delete_api_key**](APIKeysApi.md#delete_api_key) | **DELETE** /v1/orgs/self/users/{user}/apikeys/{name} | Delete API Key
+[**get_api_key**](APIKeysApi.md#get_api_key) | **GET** /v1/orgs/self/users/{user}/apikeys/{name} | Retrieve API Key
+[**list_api_keys**](APIKeysApi.md#list_api_keys) | **GET** /v1/orgs/self/users/{user}/apikeys | List API Keys
+[**update_api_key**](APIKeysApi.md#update_api_key) | **POST** /v1/orgs/self/users/{user}/apikeys/{name} | Update API Key State
 
 
 # **create_api_key**

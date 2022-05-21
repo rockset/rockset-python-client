@@ -4,12 +4,12 @@ All URIs are relative to *https://api.rs2.usw2.rockset.com* or the apiserver pro
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**cancel_query**](Queries.md#cancel_query) | **DELETE** /v1/orgs/self/queries/{queryId} | Cancel Query
-[**get_query**](Queries.md#get_query) | **GET** /v1/orgs/self/queries/{queryId} | Retrieve Query
-[**get_query_results**](Queries.md#get_query_results) | **GET** /v1/orgs/self/queries/{queryId}/pages | Retrieve Query Results Page
-[**list_active_queries**](Queries.md#list_active_queries) | **GET** /v1/orgs/self/queries | List Queries
-[**query**](Queries.md#query) | **POST** /v1/orgs/self/queries | Execute SQL Query
-[**validate**](Queries.md#validate) | **POST** /v1/orgs/self/queries/validations | Validate Query
+[**cancel_query**](QueriesApi.md#cancel_query) | **DELETE** /v1/orgs/self/queries/{queryId} | Cancel Query
+[**get_query**](QueriesApi.md#get_query) | **GET** /v1/orgs/self/queries/{queryId} | Retrieve Query
+[**get_query_results**](QueriesApi.md#get_query_results) | **GET** /v1/orgs/self/queries/{queryId}/pages | Retrieve Query Results Page
+[**list_active_queries**](QueriesApi.md#list_active_queries) | **GET** /v1/orgs/self/queries | List Queries
+[**query**](QueriesApi.md#query) | **POST** /v1/orgs/self/queries | Execute SQL Query
+[**validate**](QueriesApi.md#validate) | **POST** /v1/orgs/self/queries/validations | Validate Query
 
 
 # **cancel_query**

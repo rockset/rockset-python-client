@@ -4,11 +4,11 @@ All URIs are relative to *https://api.rs2.usw2.rockset.com* or the apiserver pro
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_role**](CustomRoles.md#create_role) | **POST** /v1/orgs/self/roles | Create a Role
-[**delete_role**](CustomRoles.md#delete_role) | **DELETE** /v1/orgs/self/roles/{roleName} | Delete a Role
-[**get_role**](CustomRoles.md#get_role) | **GET** /v1/orgs/self/roles/{roleName} | Retrieve role
-[**list_roles**](CustomRoles.md#list_roles) | **GET** /v1/orgs/self/roles | List Roles
-[**update_role**](CustomRoles.md#update_role) | **POST** /v1/orgs/self/roles/{roleName} | Update a Role
+[**create_role**](CustomRolesApi.md#create_role) | **POST** /v1/orgs/self/roles | Create a Role
+[**delete_role**](CustomRolesApi.md#delete_role) | **DELETE** /v1/orgs/self/roles/{roleName} | Delete a Role
+[**get_role**](CustomRolesApi.md#get_role) | **GET** /v1/orgs/self/roles/{roleName} | Retrieve role
+[**list_roles**](CustomRolesApi.md#list_roles) | **GET** /v1/orgs/self/roles | List Roles
+[**update_role**](CustomRolesApi.md#update_role) | **POST** /v1/orgs/self/roles/{roleName} | Update a Role
 
 
 # **create_role**

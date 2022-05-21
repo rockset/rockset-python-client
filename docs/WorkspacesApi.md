@@ -4,10 +4,10 @@ All URIs are relative to *https://api.rs2.usw2.rockset.com* or the apiserver pro
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_workspace**](Workspaces.md#create_workspace) | **POST** /v1/orgs/self/ws | Create Workspace
-[**delete_workspace**](Workspaces.md#delete_workspace) | **DELETE** /v1/orgs/self/ws/{workspace} | Delete Workspace
-[**get_workspace**](Workspaces.md#get_workspace) | **GET** /v1/orgs/self/ws/{workspace} | Retrieve Workspace
-[**list_workspaces**](Workspaces.md#list_workspaces) | **GET** /v1/orgs/self/ws | List Workspaces
+[**create_workspace**](WorkspacesApi.md#create_workspace) | **POST** /v1/orgs/self/ws | Create Workspace
+[**delete_workspace**](WorkspacesApi.md#delete_workspace) | **DELETE** /v1/orgs/self/ws/{workspace} | Delete Workspace
+[**get_workspace**](WorkspacesApi.md#get_workspace) | **GET** /v1/orgs/self/ws/{workspace} | Retrieve Workspace
+[**list_workspaces**](WorkspacesApi.md#list_workspaces) | **GET** /v1/orgs/self/ws | List Workspaces
 
 
 # **create_workspace**

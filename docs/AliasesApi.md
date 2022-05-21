@@ -4,12 +4,12 @@ All URIs are relative to *https://api.rs2.usw2.rockset.com* or the apiserver pro
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_alias**](Aliases.md#create_alias) | **POST** /v1/orgs/self/ws/{workspace}/aliases | Create Alias
-[**delete_alias**](Aliases.md#delete_alias) | **DELETE** /v1/orgs/self/ws/{workspace}/aliases/{alias} | Delete Alias
-[**get_alias**](Aliases.md#get_alias) | **GET** /v1/orgs/self/ws/{workspace}/aliases/{alias} | Retrieve Alias
-[**list_aliases**](Aliases.md#list_aliases) | **GET** /v1/orgs/self/aliases | List Aliases
-[**update_alias**](Aliases.md#update_alias) | **POST** /v1/orgs/self/ws/{workspace}/aliases/{alias} | Update Alias
-[**workspace_aliases**](Aliases.md#workspace_aliases) | **GET** /v1/orgs/self/ws/{workspace}/aliases | List Aliases in Workspace
+[**create_alias**](AliasesApi.md#create_alias) | **POST** /v1/orgs/self/ws/{workspace}/aliases | Create Alias
+[**delete_alias**](AliasesApi.md#delete_alias) | **DELETE** /v1/orgs/self/ws/{workspace}/aliases/{alias} | Delete Alias
+[**get_alias**](AliasesApi.md#get_alias) | **GET** /v1/orgs/self/ws/{workspace}/aliases/{alias} | Retrieve Alias
+[**list_aliases**](AliasesApi.md#list_aliases) | **GET** /v1/orgs/self/aliases | List Aliases
+[**update_alias**](AliasesApi.md#update_alias) | **POST** /v1/orgs/self/ws/{workspace}/aliases/{alias} | Update Alias
+[**workspace_aliases**](AliasesApi.md#workspace_aliases) | **GET** /v1/orgs/self/ws/{workspace}/aliases | List Aliases in Workspace
 
 
 # **create_alias**
