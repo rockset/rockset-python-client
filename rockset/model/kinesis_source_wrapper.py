@@ -31,10 +31,8 @@ from rockset.exceptions import ApiAttributeError
 
 def lazy_import():
     from rockset.model.format_params import FormatParams
-    from rockset.model.source_kinesis import SourceKinesis
     from rockset.model.status import Status
     globals()['FormatParams'] = FormatParams
-    globals()['SourceKinesis'] = SourceKinesis
     globals()['Status'] = Status
 
 
@@ -61,8 +59,13 @@ class KinesisSourceWrapper(ModelNormal):
       additional_properties_type (tuple): A tuple of classes accepted
           as additional properties values.
     """
-
+    inner_field = "kinesis"
+    inner_properties = ["aws_region", "dms_primary_key", "offset_reset_policy", "stream_name"]
     allowed_values = {
+        ('offset_reset_policy',): {
+            'LATEST': "LATEST",
+            'EARLIEST': "EARLIEST",
+        },
     }
 
     validations = {
@@ -91,10 +94,13 @@ class KinesisSourceWrapper(ModelNormal):
         """
         lazy_import()
         return {
+            'stream_name': (str,),  # noqa: E501
             'format_params': (FormatParams, none_type),  # noqa: E501
             'integration_name': (str, none_type),  # noqa: E501
-            'kinesis': (SourceKinesis, none_type),  # noqa: E501
             'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
+            'aws_region': (str, none_type),  # noqa: E501
+            'dms_primary_key': ([str], none_type),  # noqa: E501
+            'offset_reset_policy': (str, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -103,10 +109,13 @@ class KinesisSourceWrapper(ModelNormal):
 
 
     attribute_map = {
+        'stream_name': 'stream_name',  # noqa: E501
         'format_params': 'format_params',  # noqa: E501
         'integration_name': 'integration_name',  # noqa: E501
-        'kinesis': 'kinesis',  # noqa: E501
         'status': 'status',  # noqa: E501
+        'aws_region': 'aws_region',  # noqa: E501
+        'dms_primary_key': 'dms_primary_key',  # noqa: E501
+        'offset_reset_policy': 'offset_reset_policy',  # noqa: E501
     }
 
     read_only_vars = {
@@ -117,8 +126,11 @@ class KinesisSourceWrapper(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, stream_name, *args, **kwargs):  # noqa: E501
         """KinesisSourceWrapper - a model defined in OpenAPI
+
+        Args:
+            stream_name (str): name of kinesis stream
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -153,8 +165,10 @@ class KinesisSourceWrapper(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             format_params (FormatParams): [optional]  # noqa: E501
             integration_name (str): name of integration to use. [optional]  # noqa: E501
-            kinesis (SourceKinesis): [optional]  # noqa: E501
             status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
+            aws_region (str): AWS region name of Kinesis stream, by default us-west-2 is used. [optional]  # noqa: E501
+            dms_primary_key ([str]): set of fields that correspond to a DMS primary key. [optional]  # noqa: E501
+            offset_reset_policy (str): For non-DMS streams, Rockset can tail from the earliest end or latest end of kinesis source.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -182,6 +196,7 @@ class KinesisSourceWrapper(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.stream_name = stream_name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -202,13 +217,16 @@ class KinesisSourceWrapper(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, **kwargs):  # noqa: E501
+    def __init__(self, *, stream_name, **kwargs):  # noqa: E501
         """KinesisSourceWrapper - a model defined in OpenAPI
 
         Keyword Args:
+            stream_name (str): name of kinesis stream
             format_params (FormatParams): [optional]  # noqa: E501
             integration_name (str): name of integration to use. [optional]  # noqa: E501
-            kinesis (SourceKinesis): [optional]  # noqa: E501
+            aws_region (str): AWS region name of Kinesis stream, by default us-west-2 is used. [optional]  # noqa: E501
+            dms_primary_key ([str]): set of fields that correspond to a DMS primary key. [optional]  # noqa: E501
+            offset_reset_policy (str): For non-DMS streams, Rockset can tail from the earliest end or latest end of kinesis source.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -265,6 +283,7 @@ class KinesisSourceWrapper(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.stream_name = stream_name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

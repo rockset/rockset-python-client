@@ -31,11 +31,9 @@ from rockset.exceptions import ApiAttributeError
 
 def lazy_import():
     from rockset.model.format_params import FormatParams
-    from rockset.model.source_mongo_db import SourceMongoDb
-    from rockset.model.status import Status
+    from rockset.model.status_mongo_db import StatusMongoDb
     globals()['FormatParams'] = FormatParams
-    globals()['SourceMongoDb'] = SourceMongoDb
-    globals()['Status'] = Status
+    globals()['StatusMongoDb'] = StatusMongoDb
 
 
 class MongodbSourceWrapper(ModelNormal):
@@ -61,7 +59,8 @@ class MongodbSourceWrapper(ModelNormal):
       additional_properties_type (tuple): A tuple of classes accepted
           as additional properties values.
     """
-
+    inner_field = "mongodb"
+    inner_properties = ["collection_name", "database_name", "status"]
     allowed_values = {
     }
 
@@ -91,9 +90,10 @@ class MongodbSourceWrapper(ModelNormal):
         """
         lazy_import()
         return {
+            'collection_name': (str,),  # noqa: E501
+            'database_name': (str,),  # noqa: E501
             'format_params': (FormatParams, none_type),  # noqa: E501
             'integration_name': (str, none_type),  # noqa: E501
-            'mongodb': (SourceMongoDb, none_type),  # noqa: E501
             'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
         }
 
@@ -103,9 +103,10 @@ class MongodbSourceWrapper(ModelNormal):
 
 
     attribute_map = {
+        'collection_name': 'collection_name',  # noqa: E501
+        'database_name': 'database_name',  # noqa: E501
         'format_params': 'format_params',  # noqa: E501
         'integration_name': 'integration_name',  # noqa: E501
-        'mongodb': 'mongodb',  # noqa: E501
         'status': 'status',  # noqa: E501
     }
 
@@ -117,8 +118,12 @@ class MongodbSourceWrapper(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, collection_name, database_name, *args, **kwargs):  # noqa: E501
         """MongodbSourceWrapper - a model defined in OpenAPI
+
+        Args:
+            collection_name (str): MongoDB collection name
+            database_name (str): MongoDB database name containing this collection
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -153,7 +158,6 @@ class MongodbSourceWrapper(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             format_params (FormatParams): [optional]  # noqa: E501
             integration_name (str): name of integration to use. [optional]  # noqa: E501
-            mongodb (SourceMongoDb): [optional]  # noqa: E501
             status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
         """
 
@@ -182,6 +186,8 @@ class MongodbSourceWrapper(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.collection_name = collection_name
+        self.database_name = database_name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -202,13 +208,14 @@ class MongodbSourceWrapper(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, **kwargs):  # noqa: E501
+    def __init__(self, *, collection_name, database_name, **kwargs):  # noqa: E501
         """MongodbSourceWrapper - a model defined in OpenAPI
 
         Keyword Args:
+            collection_name (str): MongoDB collection name
+            database_name (str): MongoDB database name containing this collection
             format_params (FormatParams): [optional]  # noqa: E501
             integration_name (str): name of integration to use. [optional]  # noqa: E501
-            mongodb (SourceMongoDb): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -265,6 +272,8 @@ class MongodbSourceWrapper(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.collection_name = collection_name
+        self.database_name = database_name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

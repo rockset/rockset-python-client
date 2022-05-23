@@ -31,10 +31,8 @@ from rockset.exceptions import ApiAttributeError
 
 def lazy_import():
     from rockset.model.format_params import FormatParams
-    from rockset.model.source_gcs import SourceGcs
     from rockset.model.status import Status
     globals()['FormatParams'] = FormatParams
-    globals()['SourceGcs'] = SourceGcs
     globals()['Status'] = Status
 
 
@@ -61,7 +59,8 @@ class GcsSourceWrapper(ModelNormal):
       additional_properties_type (tuple): A tuple of classes accepted
           as additional properties values.
     """
-
+    inner_field = "gcs"
+    inner_properties = ["bucket", "object_bytes_total", "object_count_downloaded", "object_count_total", "pattern", "prefix"]
     allowed_values = {
     }
 
@@ -92,9 +91,14 @@ class GcsSourceWrapper(ModelNormal):
         lazy_import()
         return {
             'format_params': (FormatParams, none_type),  # noqa: E501
-            'gcs': (SourceGcs, none_type),  # noqa: E501
             'integration_name': (str, none_type),  # noqa: E501
             'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
+            'bucket': (str, none_type),  # noqa: E501
+            'object_bytes_total': (int, none_type),  # noqa: E501
+            'object_count_downloaded': (int, none_type),  # noqa: E501
+            'object_count_total': (int, none_type),  # noqa: E501
+            'pattern': (str, none_type),  # noqa: E501
+            'prefix': (str, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -104,13 +108,21 @@ class GcsSourceWrapper(ModelNormal):
 
     attribute_map = {
         'format_params': 'format_params',  # noqa: E501
-        'gcs': 'gcs',  # noqa: E501
         'integration_name': 'integration_name',  # noqa: E501
         'status': 'status',  # noqa: E501
+        'bucket': 'bucket',  # noqa: E501
+        'object_bytes_total': 'object_bytes_total',  # noqa: E501
+        'object_count_downloaded': 'object_count_downloaded',  # noqa: E501
+        'object_count_total': 'object_count_total',  # noqa: E501
+        'pattern': 'pattern',  # noqa: E501
+        'prefix': 'prefix',  # noqa: E501
     }
 
     read_only_vars = {
         'status',  # noqa: E501
+        'object_bytes_total',  # noqa: E501
+        'object_count_downloaded',  # noqa: E501
+        'object_count_total',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -152,9 +164,14 @@ class GcsSourceWrapper(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             format_params (FormatParams): [optional]  # noqa: E501
-            gcs (SourceGcs): [optional]  # noqa: E501
             integration_name (str): name of integration to use. [optional]  # noqa: E501
             status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
+            bucket (str): name of GCS bucket you want to ingest from. [optional]  # noqa: E501
+            object_bytes_total (int): [optional]  # noqa: E501
+            object_count_downloaded (int): [optional]  # noqa: E501
+            object_count_total (int): [optional]  # noqa: E501
+            pattern (str): Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified.. [optional]  # noqa: E501
+            prefix (str): Prefix that selects keys to ingest.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -207,8 +224,10 @@ class GcsSourceWrapper(ModelNormal):
 
         Keyword Args:
             format_params (FormatParams): [optional]  # noqa: E501
-            gcs (SourceGcs): [optional]  # noqa: E501
             integration_name (str): name of integration to use. [optional]  # noqa: E501
+            bucket (str): name of GCS bucket you want to ingest from. [optional]  # noqa: E501
+            pattern (str): Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified.. [optional]  # noqa: E501
+            prefix (str): Prefix that selects keys to ingest.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

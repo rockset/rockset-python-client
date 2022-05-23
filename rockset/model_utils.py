@@ -1723,6 +1723,13 @@ def model_to_dict(model_instance, serialize=True):
             if json_key_assigned_no_need_for_python_key:
                 del result[python_key]
 
+        if hasattr(model_instance, "inner_field"):
+            inner_field = dict()
+            for field in model_instance.inner_properties:
+                if field in result:
+                    inner_field[field] = result.pop(field)
+            result[model_instance.inner_field] = inner_field
+
     return result
 
 

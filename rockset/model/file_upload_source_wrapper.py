@@ -31,10 +31,8 @@ from rockset.exceptions import ApiAttributeError
 
 def lazy_import():
     from rockset.model.format_params import FormatParams
-    from rockset.model.source_file_upload import SourceFileUpload
     from rockset.model.status import Status
     globals()['FormatParams'] = FormatParams
-    globals()['SourceFileUpload'] = SourceFileUpload
     globals()['Status'] = Status
 
 
@@ -61,7 +59,8 @@ class FileUploadSourceWrapper(ModelNormal):
       additional_properties_type (tuple): A tuple of classes accepted
           as additional properties values.
     """
-
+    inner_field = "file_upload"
+    inner_properties = ["file_name", "file_size", "file_upload_time"]
     allowed_values = {
     }
 
@@ -91,7 +90,9 @@ class FileUploadSourceWrapper(ModelNormal):
         """
         lazy_import()
         return {
-            'file_upload': (SourceFileUpload, none_type),  # noqa: E501
+            'file_name': (str,),  # noqa: E501
+            'file_size': (int,),  # noqa: E501
+            'file_upload_time': (str,),  # noqa: E501
             'format_params': (FormatParams, none_type),  # noqa: E501
             'integration_name': (str, none_type),  # noqa: E501
             'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
@@ -103,7 +104,9 @@ class FileUploadSourceWrapper(ModelNormal):
 
 
     attribute_map = {
-        'file_upload': 'file_upload',  # noqa: E501
+        'file_name': 'file_name',  # noqa: E501
+        'file_size': 'file_size',  # noqa: E501
+        'file_upload_time': 'file_upload_time',  # noqa: E501
         'format_params': 'format_params',  # noqa: E501
         'integration_name': 'integration_name',  # noqa: E501
         'status': 'status',  # noqa: E501
@@ -117,8 +120,13 @@ class FileUploadSourceWrapper(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, file_name, file_size, file_upload_time, *args, **kwargs):  # noqa: E501
         """FileUploadSourceWrapper - a model defined in OpenAPI
+
+        Args:
+            file_name (str): name of the file
+            file_size (int): size of the file in bytes
+            file_upload_time (str): time of file upload
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -151,7 +159,6 @@ class FileUploadSourceWrapper(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            file_upload (SourceFileUpload): [optional]  # noqa: E501
             format_params (FormatParams): [optional]  # noqa: E501
             integration_name (str): name of integration to use. [optional]  # noqa: E501
             status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
@@ -182,6 +189,9 @@ class FileUploadSourceWrapper(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.file_name = file_name
+        self.file_size = file_size
+        self.file_upload_time = file_upload_time
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -202,11 +212,13 @@ class FileUploadSourceWrapper(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, **kwargs):  # noqa: E501
+    def __init__(self, *, file_name, file_size, file_upload_time, **kwargs):  # noqa: E501
         """FileUploadSourceWrapper - a model defined in OpenAPI
 
         Keyword Args:
-            file_upload (SourceFileUpload): [optional]  # noqa: E501
+            file_name (str): name of the file
+            file_size (int): size of the file in bytes
+            file_upload_time (str): time of file upload
             format_params (FormatParams): [optional]  # noqa: E501
             integration_name (str): name of integration to use. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
@@ -265,6 +277,9 @@ class FileUploadSourceWrapper(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.file_name = file_name
+        self.file_size = file_size
+        self.file_upload_time = file_upload_time
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

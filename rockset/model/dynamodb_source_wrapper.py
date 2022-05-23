@@ -31,11 +31,11 @@ from rockset.exceptions import ApiAttributeError
 
 def lazy_import():
     from rockset.model.format_params import FormatParams
-    from rockset.model.source_dynamo_db import SourceDynamoDb
-    from rockset.model.status import Status
+    from rockset.model.status_dynamo_db import StatusDynamoDb
+    from rockset.model.status_dynamo_db_v2 import StatusDynamoDbV2
     globals()['FormatParams'] = FormatParams
-    globals()['SourceDynamoDb'] = SourceDynamoDb
-    globals()['Status'] = Status
+    globals()['StatusDynamoDb'] = StatusDynamoDb
+    globals()['StatusDynamoDbV2'] = StatusDynamoDbV2
 
 
 class DynamodbSourceWrapper(ModelNormal):
@@ -61,7 +61,8 @@ class DynamodbSourceWrapper(ModelNormal):
       additional_properties_type (tuple): A tuple of classes accepted
           as additional properties values.
     """
-
+    inner_field = "dynamodb"
+    inner_properties = ["aws_region", "current_status", "rcu", "status", "table_name", "use_scan_api"]
     allowed_values = {
     }
 
@@ -91,10 +92,14 @@ class DynamodbSourceWrapper(ModelNormal):
         """
         lazy_import()
         return {
-            'dynamodb': (SourceDynamoDb, none_type),  # noqa: E501
+            'table_name': (str,),  # noqa: E501
             'format_params': (FormatParams, none_type),  # noqa: E501
             'integration_name': (str, none_type),  # noqa: E501
             'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
+            'aws_region': (str, none_type),  # noqa: E501
+            'current_status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
+            'rcu': (int, none_type),  # noqa: E501
+            'use_scan_api': (bool, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -103,22 +108,30 @@ class DynamodbSourceWrapper(ModelNormal):
 
 
     attribute_map = {
-        'dynamodb': 'dynamodb',  # noqa: E501
+        'table_name': 'table_name',  # noqa: E501
         'format_params': 'format_params',  # noqa: E501
         'integration_name': 'integration_name',  # noqa: E501
         'status': 'status',  # noqa: E501
+        'aws_region': 'aws_region',  # noqa: E501
+        'current_status': 'current_status',  # noqa: E501
+        'rcu': 'rcu',  # noqa: E501
+        'use_scan_api': 'use_scan_api',  # noqa: E501
     }
 
     read_only_vars = {
         'status',  # noqa: E501
+        'current_status',  # noqa: E501
     }
 
     _composed_schemas = {}
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, table_name, *args, **kwargs):  # noqa: E501
         """DynamodbSourceWrapper - a model defined in OpenAPI
+
+        Args:
+            table_name (str): name of DynamoDB table containing data
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -151,10 +164,13 @@ class DynamodbSourceWrapper(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            dynamodb (SourceDynamoDb): [optional]  # noqa: E501
             format_params (FormatParams): [optional]  # noqa: E501
             integration_name (str): name of integration to use. [optional]  # noqa: E501
             status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
+            aws_region (str): AWS region name of DynamoDB table, by default us-west-2 is used. [optional]  # noqa: E501
+            current_status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
+            rcu (int): Max RCU usage for scan. [optional]  # noqa: E501
+            use_scan_api (bool): Whether to use DynamoDB Scan API for the initial scan. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -182,6 +198,7 @@ class DynamodbSourceWrapper(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.table_name = table_name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -202,13 +219,16 @@ class DynamodbSourceWrapper(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, **kwargs):  # noqa: E501
+    def __init__(self, *, table_name, **kwargs):  # noqa: E501
         """DynamodbSourceWrapper - a model defined in OpenAPI
 
         Keyword Args:
-            dynamodb (SourceDynamoDb): [optional]  # noqa: E501
+            table_name (str): name of DynamoDB table containing data
             format_params (FormatParams): [optional]  # noqa: E501
             integration_name (str): name of integration to use. [optional]  # noqa: E501
+            aws_region (str): AWS region name of DynamoDB table, by default us-west-2 is used. [optional]  # noqa: E501
+            rcu (int): Max RCU usage for scan. [optional]  # noqa: E501
+            use_scan_api (bool): Whether to use DynamoDB Scan API for the initial scan. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -265,6 +285,7 @@ class DynamodbSourceWrapper(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.table_name = table_name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
