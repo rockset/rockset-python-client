@@ -36,26 +36,25 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Create Query Lambda
-    api_response = rs.QueryLambdas.create_query_lambda(
-        name="myQueryLambda",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling QueryLambdas->create_query_lambda: %s\n" % e)
+# Create Query Lambda
+api_response = rs.QueryLambdas.create_query_lambda(
+    name="myQueryLambda",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling QueryLambdas->create_query_lambda: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Create Query Lambda
-    api_response = await rs.QueryLambdas.create_query_lambda(
-        description="production version foo",
-        name="myQueryLambda",
-        sql=QueryLambdaSql(
+# assumes that execution takes place within an asynchronous context
+# Create Query Lambda
+api_response = await rs.QueryLambdas.create_query_lambda(
+    description="production version foo",
+    name="myQueryLambda",
+    sql=QueryLambdaSql(
         default_parameters=[
             QueryParameter(
                 name="_id",
@@ -65,12 +64,12 @@ async def call_api():
         ],
         query="SELECT 'Foo'",
     ),
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling QueryLambdas->create_query_lambda: %s\n" % e)
-        return
-    pprint(api_response)
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling QueryLambdas->create_query_lambda: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -136,34 +135,33 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Create Query Lambda Tag
-    api_response = rs.QueryLambdas.create_query_lambda_tag(
-        query_lambda="queryLambda_example",
-        tag_name="production",
-        version="123ABC",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling QueryLambdas->create_query_lambda_tag: %s\n" % e)
+# Create Query Lambda Tag
+api_response = rs.QueryLambdas.create_query_lambda_tag(
+    query_lambda="queryLambda_example",
+    tag_name="production",
+    version="123ABC",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling QueryLambdas->create_query_lambda_tag: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Create Query Lambda Tag
-    api_response = await rs.QueryLambdas.create_query_lambda_tag(
-        query_lambda="queryLambda_example",
-        tag_name="production",
-        version="123ABC",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling QueryLambdas->create_query_lambda_tag: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Create Query Lambda Tag
+api_response = await rs.QueryLambdas.create_query_lambda_tag(
+    query_lambda="queryLambda_example",
+    tag_name="production",
+    version="123ABC",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling QueryLambdas->create_query_lambda_tag: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -229,30 +227,29 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Delete Query Lambda
-    api_response = rs.QueryLambdas.delete_query_lambda(
-        query_lambda="queryLambda_example",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling QueryLambdas->delete_query_lambda: %s\n" % e)
+# Delete Query Lambda
+api_response = rs.QueryLambdas.delete_query_lambda(
+    query_lambda="queryLambda_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling QueryLambdas->delete_query_lambda: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Delete Query Lambda
-    api_response = await rs.QueryLambdas.delete_query_lambda(
-        query_lambda="queryLambda_example",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling QueryLambdas->delete_query_lambda: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Delete Query Lambda
+api_response = await rs.QueryLambdas.delete_query_lambda(
+    query_lambda="queryLambda_example",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling QueryLambdas->delete_query_lambda: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -316,32 +313,31 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Delete Query Lambda Tag Version
-    api_response = rs.QueryLambdas.delete_query_lambda_tag(
-        query_lambda="queryLambda_example",
-        tag="tag_example",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling QueryLambdas->delete_query_lambda_tag: %s\n" % e)
+# Delete Query Lambda Tag Version
+api_response = rs.QueryLambdas.delete_query_lambda_tag(
+    query_lambda="queryLambda_example",
+    tag="tag_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling QueryLambdas->delete_query_lambda_tag: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Delete Query Lambda Tag Version
-    api_response = await rs.QueryLambdas.delete_query_lambda_tag(
-        query_lambda="queryLambda_example",
-        tag="tag_example",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling QueryLambdas->delete_query_lambda_tag: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Delete Query Lambda Tag Version
+api_response = await rs.QueryLambdas.delete_query_lambda_tag(
+    query_lambda="queryLambda_example",
+    tag="tag_example",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling QueryLambdas->delete_query_lambda_tag: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -406,32 +402,31 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Delete Query Lambda Version
-    api_response = rs.QueryLambdas.delete_query_lambda_version(
-        query_lambda="queryLambda_example",
-        version="version_example",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling QueryLambdas->delete_query_lambda_version: %s\n" % e)
+# Delete Query Lambda Version
+api_response = rs.QueryLambdas.delete_query_lambda_version(
+    query_lambda="queryLambda_example",
+    version="version_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling QueryLambdas->delete_query_lambda_version: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Delete Query Lambda Version
-    api_response = await rs.QueryLambdas.delete_query_lambda_version(
-        query_lambda="queryLambda_example",
-        version="version_example",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling QueryLambdas->delete_query_lambda_version: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Delete Query Lambda Version
+api_response = await rs.QueryLambdas.delete_query_lambda_version(
+    query_lambda="queryLambda_example",
+    version="version_example",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling QueryLambdas->delete_query_lambda_version: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -496,32 +491,31 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Execute Query Lambda By Version
-    api_response = rs.QueryLambdas.execute_query_lambda(
-        query_lambda="queryLambda_example",
-        version="version_example",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling QueryLambdas->execute_query_lambda: %s\n" % e)
+# Execute Query Lambda By Version
+api_response = rs.QueryLambdas.execute_query_lambda(
+    query_lambda="queryLambda_example",
+    version="version_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling QueryLambdas->execute_query_lambda: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Execute Query Lambda By Version
-    api_response = await rs.QueryLambdas.execute_query_lambda(
-        query_lambda="queryLambda_example",
-        version="version_example",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling QueryLambdas->execute_query_lambda: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Execute Query Lambda By Version
+api_response = await rs.QueryLambdas.execute_query_lambda(
+    query_lambda="queryLambda_example",
+    version="version_example",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling QueryLambdas->execute_query_lambda: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -587,32 +581,31 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Execute Query Lambda By Tag
-    api_response = rs.QueryLambdas.execute_query_lambda_by_tag(
-        query_lambda="queryLambda_example",
-        tag="tag_example",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling QueryLambdas->execute_query_lambda_by_tag: %s\n" % e)
+# Execute Query Lambda By Tag
+api_response = rs.QueryLambdas.execute_query_lambda_by_tag(
+    query_lambda="queryLambda_example",
+    tag="tag_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling QueryLambdas->execute_query_lambda_by_tag: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Execute Query Lambda By Tag
-    api_response = await rs.QueryLambdas.execute_query_lambda_by_tag(
-        query_lambda="queryLambda_example",
-        tag="tag_example",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling QueryLambdas->execute_query_lambda_by_tag: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Execute Query Lambda By Tag
+api_response = await rs.QueryLambdas.execute_query_lambda_by_tag(
+    query_lambda="queryLambda_example",
+    tag="tag_example",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling QueryLambdas->execute_query_lambda_by_tag: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -678,32 +671,31 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Retrieve Query Lambda Tag
-    api_response = rs.QueryLambdas.get_query_lambda_tag_version(
-        query_lambda="queryLambda_example",
-        tag="tag_example",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling QueryLambdas->get_query_lambda_tag_version: %s\n" % e)
+# Retrieve Query Lambda Tag
+api_response = rs.QueryLambdas.get_query_lambda_tag_version(
+    query_lambda="queryLambda_example",
+    tag="tag_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling QueryLambdas->get_query_lambda_tag_version: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Retrieve Query Lambda Tag
-    api_response = await rs.QueryLambdas.get_query_lambda_tag_version(
-        query_lambda="queryLambda_example",
-        tag="tag_example",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling QueryLambdas->get_query_lambda_tag_version: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Retrieve Query Lambda Tag
+api_response = await rs.QueryLambdas.get_query_lambda_tag_version(
+    query_lambda="queryLambda_example",
+    tag="tag_example",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling QueryLambdas->get_query_lambda_tag_version: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -768,32 +760,31 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Retrieve Query Lambda Version
-    api_response = rs.QueryLambdas.get_query_lambda_version(
-        query_lambda="queryLambda_example",
-        version="version_example",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling QueryLambdas->get_query_lambda_version: %s\n" % e)
+# Retrieve Query Lambda Version
+api_response = rs.QueryLambdas.get_query_lambda_version(
+    query_lambda="queryLambda_example",
+    version="version_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling QueryLambdas->get_query_lambda_version: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Retrieve Query Lambda Version
-    api_response = await rs.QueryLambdas.get_query_lambda_version(
-        query_lambda="queryLambda_example",
-        version="version_example",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling QueryLambdas->get_query_lambda_version: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Retrieve Query Lambda Version
+api_response = await rs.QueryLambdas.get_query_lambda_version(
+    query_lambda="queryLambda_example",
+    version="version_example",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling QueryLambdas->get_query_lambda_version: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -858,28 +849,27 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # List Query Lambdas
-    api_response = rs.QueryLambdas.list_all_query_lambdas(
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling QueryLambdas->list_all_query_lambdas: %s\n" % e)
+# List Query Lambdas
+api_response = rs.QueryLambdas.list_all_query_lambdas(
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling QueryLambdas->list_all_query_lambdas: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # List Query Lambdas
-    api_response = await rs.QueryLambdas.list_all_query_lambdas(
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling QueryLambdas->list_all_query_lambdas: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# List Query Lambdas
+api_response = await rs.QueryLambdas.list_all_query_lambdas(
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling QueryLambdas->list_all_query_lambdas: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -939,30 +929,29 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # List Query Lambda Tags
-    api_response = rs.QueryLambdas.list_query_lambda_tags(
-        query_lambda="queryLambda_example",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling QueryLambdas->list_query_lambda_tags: %s\n" % e)
+# List Query Lambda Tags
+api_response = rs.QueryLambdas.list_query_lambda_tags(
+    query_lambda="queryLambda_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling QueryLambdas->list_query_lambda_tags: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # List Query Lambda Tags
-    api_response = await rs.QueryLambdas.list_query_lambda_tags(
-        query_lambda="queryLambda_example",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling QueryLambdas->list_query_lambda_tags: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# List Query Lambda Tags
+api_response = await rs.QueryLambdas.list_query_lambda_tags(
+    query_lambda="queryLambda_example",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling QueryLambdas->list_query_lambda_tags: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -1026,30 +1015,29 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # List Query Lambda Versions
-    api_response = rs.QueryLambdas.list_query_lambda_versions(
-        query_lambda="queryLambda_example",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling QueryLambdas->list_query_lambda_versions: %s\n" % e)
+# List Query Lambda Versions
+api_response = rs.QueryLambdas.list_query_lambda_versions(
+    query_lambda="queryLambda_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling QueryLambdas->list_query_lambda_versions: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # List Query Lambda Versions
-    api_response = await rs.QueryLambdas.list_query_lambda_versions(
-        query_lambda="queryLambda_example",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling QueryLambdas->list_query_lambda_versions: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# List Query Lambda Versions
+api_response = await rs.QueryLambdas.list_query_lambda_versions(
+    query_lambda="queryLambda_example",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling QueryLambdas->list_query_lambda_versions: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -1113,28 +1101,27 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # List Query Lambdas in Workspace
-    api_response = rs.QueryLambdas.list_query_lambdas_in_workspace(
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling QueryLambdas->list_query_lambdas_in_workspace: %s\n" % e)
+# List Query Lambdas in Workspace
+api_response = rs.QueryLambdas.list_query_lambdas_in_workspace(
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling QueryLambdas->list_query_lambdas_in_workspace: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # List Query Lambdas in Workspace
-    api_response = await rs.QueryLambdas.list_query_lambdas_in_workspace(
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling QueryLambdas->list_query_lambdas_in_workspace: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# List Query Lambdas in Workspace
+api_response = await rs.QueryLambdas.list_query_lambdas_in_workspace(
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling QueryLambdas->list_query_lambdas_in_workspace: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -1197,26 +1184,25 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Update Query Lambda
-    api_response = rs.QueryLambdas.update_query_lambda(
-        query_lambda="queryLambda_example",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling QueryLambdas->update_query_lambda: %s\n" % e)
+# Update Query Lambda
+api_response = rs.QueryLambdas.update_query_lambda(
+    query_lambda="queryLambda_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling QueryLambdas->update_query_lambda: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Update Query Lambda
-    api_response = await rs.QueryLambdas.update_query_lambda(
-        query_lambda="queryLambda_example",
-        description="production version foo",
-        sql=QueryLambdaSql(
+# assumes that execution takes place within an asynchronous context
+# Update Query Lambda
+api_response = await rs.QueryLambdas.update_query_lambda(
+    query_lambda="queryLambda_example",
+    description="production version foo",
+    sql=QueryLambdaSql(
         default_parameters=[
             QueryParameter(
                 name="_id",
@@ -1226,12 +1212,12 @@ async def call_api():
         ],
         query="SELECT 'Foo'",
     ),
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling QueryLambdas->update_query_lambda: %s\n" % e)
-        return
-    pprint(api_response)
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling QueryLambdas->update_query_lambda: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 

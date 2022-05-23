@@ -25,30 +25,29 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Retrieve Virtual Instance
-    api_response = rs.VirtualInstances.get_virtual_instance(
-        virtual_instance_id="virtualInstanceId_example",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling VirtualInstances->get_virtual_instance: %s\n" % e)
+# Retrieve Virtual Instance
+api_response = rs.VirtualInstances.get_virtual_instance(
+    virtual_instance_id="virtualInstanceId_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling VirtualInstances->get_virtual_instance: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Retrieve Virtual Instance
-    api_response = await rs.VirtualInstances.get_virtual_instance(
-        virtual_instance_id="virtualInstanceId_example",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling VirtualInstances->get_virtual_instance: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Retrieve Virtual Instance
+api_response = await rs.VirtualInstances.get_virtual_instance(
+    virtual_instance_id="virtualInstanceId_example",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling VirtualInstances->get_virtual_instance: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -111,28 +110,27 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # List Virtual Instances
-    api_response = rs.VirtualInstances.list_virtual_instances(
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling VirtualInstances->list_virtual_instances: %s\n" % e)
+# List Virtual Instances
+api_response = rs.VirtualInstances.list_virtual_instances(
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling VirtualInstances->list_virtual_instances: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # List Virtual Instances
-    api_response = await rs.VirtualInstances.list_virtual_instances(
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling VirtualInstances->list_virtual_instances: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# List Virtual Instances
+api_response = await rs.VirtualInstances.list_virtual_instances(
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling VirtualInstances->list_virtual_instances: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -192,33 +190,32 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Update Virtual Instance
-    api_response = rs.VirtualInstances.set_virtual_instance(
-        virtual_instance_id="virtualInstanceId_example",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling VirtualInstances->set_virtual_instance: %s\n" % e)
+# Update Virtual Instance
+api_response = rs.VirtualInstances.set_virtual_instance(
+    virtual_instance_id="virtualInstanceId_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling VirtualInstances->set_virtual_instance: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Update Virtual Instance
-    api_response = await rs.VirtualInstances.set_virtual_instance(
-        virtual_instance_id="virtualInstanceId_example",
-        monitoring_enabled=True,
-        new_size="LARGE",
-        new_type="FREE",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling VirtualInstances->set_virtual_instance: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Update Virtual Instance
+api_response = await rs.VirtualInstances.set_virtual_instance(
+    virtual_instance_id="virtualInstanceId_example",
+    monitoring_enabled=True,
+    new_size="LARGE",
+    new_type="FREE",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling VirtualInstances->set_virtual_instance: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 

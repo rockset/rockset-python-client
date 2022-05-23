@@ -29,31 +29,30 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Create User
-    api_response = rs.Users.create_user(
-        email="hello@rockset.com",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Users->create_user: %s\n" % e)
+# Create User
+api_response = rs.Users.create_user(
+    email="hello@rockset.com",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Users->create_user: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Create User
-    api_response = await rs.Users.create_user(
-        email="hello@rockset.com",
-        roles=["admin","member","read-only"],
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Users->create_user: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Create User
+api_response = await rs.Users.create_user(
+    email="hello@rockset.com",
+    roles=["admin","member","read-only"],
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Users->create_user: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -117,30 +116,29 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Delete User
-    api_response = rs.Users.delete_user(
-        user="user_example",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Users->delete_user: %s\n" % e)
+# Delete User
+api_response = rs.Users.delete_user(
+    user="user_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Users->delete_user: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Delete User
-    api_response = await rs.Users.delete_user(
-        user="user_example",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Users->delete_user: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Delete User
+api_response = await rs.Users.delete_user(
+    user="user_example",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Users->delete_user: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -203,28 +201,27 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Retrieve Current User
-    api_response = rs.Users.get_current_user(
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Users->get_current_user: %s\n" % e)
+# Retrieve Current User
+api_response = rs.Users.get_current_user(
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Users->get_current_user: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Retrieve Current User
-    api_response = await rs.Users.get_current_user(
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Users->get_current_user: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Retrieve Current User
+api_response = await rs.Users.get_current_user(
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Users->get_current_user: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -284,30 +281,29 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Retrieve User
-    api_response = rs.Users.get_user(
-        user="user_example",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Users->get_user: %s\n" % e)
+# Retrieve User
+api_response = rs.Users.get_user(
+    user="user_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Users->get_user: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Retrieve User
-    api_response = await rs.Users.get_user(
-        user="user_example",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Users->get_user: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Retrieve User
+api_response = await rs.Users.get_user(
+    user="user_example",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Users->get_user: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -370,28 +366,27 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Retrieve Notification Preferences
-    api_response = rs.Users.list_unsubscribe_preferences(
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Users->list_unsubscribe_preferences: %s\n" % e)
+# Retrieve Notification Preferences
+api_response = rs.Users.list_unsubscribe_preferences(
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Users->list_unsubscribe_preferences: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Retrieve Notification Preferences
-    api_response = await rs.Users.list_unsubscribe_preferences(
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Users->list_unsubscribe_preferences: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Retrieve Notification Preferences
+api_response = await rs.Users.list_unsubscribe_preferences(
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Users->list_unsubscribe_preferences: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -451,28 +446,27 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # List Users
-    api_response = rs.Users.list_users(
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Users->list_users: %s\n" % e)
+# List Users
+api_response = rs.Users.list_users(
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Users->list_users: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # List Users
-    api_response = await rs.Users.list_users(
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Users->list_users: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# List Users
+api_response = await rs.Users.list_users(
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Users->list_users: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -532,33 +526,32 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Update Notification Preferences
-    api_response = rs.Users.update_unsubscribe_preferences(
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Users->update_unsubscribe_preferences: %s\n" % e)
+# Update Notification Preferences
+api_response = rs.Users.update_unsubscribe_preferences(
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Users->update_unsubscribe_preferences: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Update Notification Preferences
-    api_response = await rs.Users.update_unsubscribe_preferences(
-        data=[
+# assumes that execution takes place within an asynchronous context
+# Update Notification Preferences
+api_response = await rs.Users.update_unsubscribe_preferences(
+    data=[
         UnsubscribePreference(
             notification_type="create_apikey",
         ),
     ],
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Users->update_unsubscribe_preferences: %s\n" % e)
-        return
-    pprint(api_response)
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Users->update_unsubscribe_preferences: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 

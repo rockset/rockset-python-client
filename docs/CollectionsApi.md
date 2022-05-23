@@ -36,40 +36,39 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Create azure blob storage collection
-    api_response = rs.Collections.create_azure_blob_storage_collection(
-        name="global-transactions",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Collections->create_azure_blob_storage_collection: %s\n" % e)
+# Create azure blob storage collection
+api_response = rs.Collections.create_azure_blob_storage_collection(
+    name="global-transactions",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Collections->create_azure_blob_storage_collection: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Create azure blob storage collection
-    api_response = await rs.Collections.create_azure_blob_storage_collection(
-        clustering_key=[
+# assumes that execution takes place within an asynchronous context
+# Create azure blob storage collection
+api_response = await rs.Collections.create_azure_blob_storage_collection(
+    clustering_key=[
         FieldPartition(
             field_name="address.city.zipcode",
             keys=["value1","value2"],
             type="AUTO",
         ),
     ],
-        description="transactions from stores worldwide",
-        event_time_info=EventTimeInfo(
+    description="transactions from stores worldwide",
+    event_time_info=EventTimeInfo(
         field="timestamp",
         format="seconds_since_epoch",
         time_zone="UTC",
     ),
-        field_mapping_query=FieldMappingQuery(
+    field_mapping_query=FieldMappingQuery(
         sql="sql",
     ),
-        field_mappings=[
+    field_mappings=[
         FieldMappingV2(
             input_fields=[
                 InputField(
@@ -89,10 +88,10 @@ async def call_api():
             ),
         ),
     ],
-        insert_only=True,
-        name="global-transactions",
-        retention_secs=1000000,
-        sources=[
+    insert_only=True,
+    name="global-transactions",
+    retention_secs=1000000,
+    sources=[
         AzureBlobStorageSourceWrapper(
             azure_blob_storage=SourceAzureBlobStorage(
                 container="server-logs",
@@ -125,12 +124,12 @@ async def call_api():
             integration_name="aws-integration",
         ),
     ],
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Collections->create_azure_blob_storage_collection: %s\n" % e)
-        return
-    pprint(api_response)
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Collections->create_azure_blob_storage_collection: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -202,40 +201,39 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Create azure event hubs collection
-    api_response = rs.Collections.create_azure_event_hubs_collection(
-        name="global-transactions",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Collections->create_azure_event_hubs_collection: %s\n" % e)
+# Create azure event hubs collection
+api_response = rs.Collections.create_azure_event_hubs_collection(
+    name="global-transactions",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Collections->create_azure_event_hubs_collection: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Create azure event hubs collection
-    api_response = await rs.Collections.create_azure_event_hubs_collection(
-        clustering_key=[
+# assumes that execution takes place within an asynchronous context
+# Create azure event hubs collection
+api_response = await rs.Collections.create_azure_event_hubs_collection(
+    clustering_key=[
         FieldPartition(
             field_name="address.city.zipcode",
             keys=["value1","value2"],
             type="AUTO",
         ),
     ],
-        description="transactions from stores worldwide",
-        event_time_info=EventTimeInfo(
+    description="transactions from stores worldwide",
+    event_time_info=EventTimeInfo(
         field="timestamp",
         format="seconds_since_epoch",
         time_zone="UTC",
     ),
-        field_mapping_query=FieldMappingQuery(
+    field_mapping_query=FieldMappingQuery(
         sql="sql",
     ),
-        field_mappings=[
+    field_mappings=[
         FieldMappingV2(
             input_fields=[
                 InputField(
@@ -255,10 +253,10 @@ async def call_api():
             ),
         ),
     ],
-        insert_only=True,
-        name="global-transactions",
-        retention_secs=1000000,
-        sources=[
+    insert_only=True,
+    name="global-transactions",
+    retention_secs=1000000,
+    sources=[
         AzureEventHubsSourceWrapper(
             azure_event_hubs=SourceAzureEventHubs(
                 hub_id="event-hub-1",
@@ -290,12 +288,12 @@ async def call_api():
             integration_name="aws-integration",
         ),
     ],
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Collections->create_azure_event_hubs_collection: %s\n" % e)
-        return
-    pprint(api_response)
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Collections->create_azure_event_hubs_collection: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -367,40 +365,39 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Create azure service bus collection
-    api_response = rs.Collections.create_azure_service_bus_collection(
-        name="global-transactions",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Collections->create_azure_service_bus_collection: %s\n" % e)
+# Create azure service bus collection
+api_response = rs.Collections.create_azure_service_bus_collection(
+    name="global-transactions",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Collections->create_azure_service_bus_collection: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Create azure service bus collection
-    api_response = await rs.Collections.create_azure_service_bus_collection(
-        clustering_key=[
+# assumes that execution takes place within an asynchronous context
+# Create azure service bus collection
+api_response = await rs.Collections.create_azure_service_bus_collection(
+    clustering_key=[
         FieldPartition(
             field_name="address.city.zipcode",
             keys=["value1","value2"],
             type="AUTO",
         ),
     ],
-        description="transactions from stores worldwide",
-        event_time_info=EventTimeInfo(
+    description="transactions from stores worldwide",
+    event_time_info=EventTimeInfo(
         field="timestamp",
         format="seconds_since_epoch",
         time_zone="UTC",
     ),
-        field_mapping_query=FieldMappingQuery(
+    field_mapping_query=FieldMappingQuery(
         sql="sql",
     ),
-        field_mappings=[
+    field_mappings=[
         FieldMappingV2(
             input_fields=[
                 InputField(
@@ -420,10 +417,10 @@ async def call_api():
             ),
         ),
     ],
-        insert_only=True,
-        name="global-transactions",
-        retention_secs=1000000,
-        sources=[
+    insert_only=True,
+    name="global-transactions",
+    retention_secs=1000000,
+    sources=[
         AzureServiceBusSourceWrapper(
             azure_service_bus=SourceAzureServiceBus(
                 subscription="rockset-subscription",
@@ -455,12 +452,12 @@ async def call_api():
             integration_name="aws-integration",
         ),
     ],
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Collections->create_azure_service_bus_collection: %s\n" % e)
-        return
-    pprint(api_response)
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Collections->create_azure_service_bus_collection: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -532,40 +529,39 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Create dynamodb collection
-    api_response = rs.Collections.create_dynamodb_collection(
-        name="global-transactions",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Collections->create_dynamodb_collection: %s\n" % e)
+# Create dynamodb collection
+api_response = rs.Collections.create_dynamodb_collection(
+    name="global-transactions",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Collections->create_dynamodb_collection: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Create dynamodb collection
-    api_response = await rs.Collections.create_dynamodb_collection(
-        clustering_key=[
+# assumes that execution takes place within an asynchronous context
+# Create dynamodb collection
+api_response = await rs.Collections.create_dynamodb_collection(
+    clustering_key=[
         FieldPartition(
             field_name="address.city.zipcode",
             keys=["value1","value2"],
             type="AUTO",
         ),
     ],
-        description="transactions from stores worldwide",
-        event_time_info=EventTimeInfo(
+    description="transactions from stores worldwide",
+    event_time_info=EventTimeInfo(
         field="timestamp",
         format="seconds_since_epoch",
         time_zone="UTC",
     ),
-        field_mapping_query=FieldMappingQuery(
+    field_mapping_query=FieldMappingQuery(
         sql="sql",
     ),
-        field_mappings=[
+    field_mappings=[
         FieldMappingV2(
             input_fields=[
                 InputField(
@@ -585,10 +581,10 @@ async def call_api():
             ),
         ),
     ],
-        insert_only=True,
-        name="global-transactions",
-        retention_secs=1000000,
-        sources=[
+    insert_only=True,
+    name="global-transactions",
+    retention_secs=1000000,
+    sources=[
         DynamodbSourceWrapper(
             dynamodb=SourceDynamoDb(
                 aws_region="us-east-2",
@@ -622,12 +618,12 @@ async def call_api():
             integration_name="aws-integration",
         ),
     ],
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Collections->create_dynamodb_collection: %s\n" % e)
-        return
-    pprint(api_response)
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Collections->create_dynamodb_collection: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -699,40 +695,39 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Create file upload collection
-    api_response = rs.Collections.create_file_upload_collection(
-        name="global-transactions",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Collections->create_file_upload_collection: %s\n" % e)
+# Create file upload collection
+api_response = rs.Collections.create_file_upload_collection(
+    name="global-transactions",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Collections->create_file_upload_collection: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Create file upload collection
-    api_response = await rs.Collections.create_file_upload_collection(
-        clustering_key=[
+# assumes that execution takes place within an asynchronous context
+# Create file upload collection
+api_response = await rs.Collections.create_file_upload_collection(
+    clustering_key=[
         FieldPartition(
             field_name="address.city.zipcode",
             keys=["value1","value2"],
             type="AUTO",
         ),
     ],
-        description="transactions from stores worldwide",
-        event_time_info=EventTimeInfo(
+    description="transactions from stores worldwide",
+    event_time_info=EventTimeInfo(
         field="timestamp",
         format="seconds_since_epoch",
         time_zone="UTC",
     ),
-        field_mapping_query=FieldMappingQuery(
+    field_mapping_query=FieldMappingQuery(
         sql="sql",
     ),
-        field_mappings=[
+    field_mappings=[
         FieldMappingV2(
             input_fields=[
                 InputField(
@@ -752,10 +747,10 @@ async def call_api():
             ),
         ),
     ],
-        insert_only=True,
-        name="global-transactions",
-        retention_secs=1000000,
-        sources=[
+    insert_only=True,
+    name="global-transactions",
+    retention_secs=1000000,
+    sources=[
         FileUploadSourceWrapper(
             file_upload=SourceFileUpload(
                 file_name="file1.json",
@@ -788,12 +783,12 @@ async def call_api():
             integration_name="aws-integration",
         ),
     ],
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Collections->create_file_upload_collection: %s\n" % e)
-        return
-    pprint(api_response)
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Collections->create_file_upload_collection: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -865,40 +860,39 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Create gcs collection
-    api_response = rs.Collections.create_gcs_collection(
-        name="global-transactions",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Collections->create_gcs_collection: %s\n" % e)
+# Create gcs collection
+api_response = rs.Collections.create_gcs_collection(
+    name="global-transactions",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Collections->create_gcs_collection: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Create gcs collection
-    api_response = await rs.Collections.create_gcs_collection(
-        clustering_key=[
+# assumes that execution takes place within an asynchronous context
+# Create gcs collection
+api_response = await rs.Collections.create_gcs_collection(
+    clustering_key=[
         FieldPartition(
             field_name="address.city.zipcode",
             keys=["value1","value2"],
             type="AUTO",
         ),
     ],
-        description="transactions from stores worldwide",
-        event_time_info=EventTimeInfo(
+    description="transactions from stores worldwide",
+    event_time_info=EventTimeInfo(
         field="timestamp",
         format="seconds_since_epoch",
         time_zone="UTC",
     ),
-        field_mapping_query=FieldMappingQuery(
+    field_mapping_query=FieldMappingQuery(
         sql="sql",
     ),
-        field_mappings=[
+    field_mappings=[
         FieldMappingV2(
             input_fields=[
                 InputField(
@@ -918,10 +912,10 @@ async def call_api():
             ),
         ),
     ],
-        insert_only=True,
-        name="global-transactions",
-        retention_secs=1000000,
-        sources=[
+    insert_only=True,
+    name="global-transactions",
+    retention_secs=1000000,
+    sources=[
         GcsSourceWrapper(
             format_params=FormatParams(
                 csv=CsvParams(
@@ -954,12 +948,12 @@ async def call_api():
             integration_name="aws-integration",
         ),
     ],
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Collections->create_gcs_collection: %s\n" % e)
-        return
-    pprint(api_response)
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Collections->create_gcs_collection: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -1031,40 +1025,39 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Create kafka collection
-    api_response = rs.Collections.create_kafka_collection(
-        name="global-transactions",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Collections->create_kafka_collection: %s\n" % e)
+# Create kafka collection
+api_response = rs.Collections.create_kafka_collection(
+    name="global-transactions",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Collections->create_kafka_collection: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Create kafka collection
-    api_response = await rs.Collections.create_kafka_collection(
-        clustering_key=[
+# assumes that execution takes place within an asynchronous context
+# Create kafka collection
+api_response = await rs.Collections.create_kafka_collection(
+    clustering_key=[
         FieldPartition(
             field_name="address.city.zipcode",
             keys=["value1","value2"],
             type="AUTO",
         ),
     ],
-        description="transactions from stores worldwide",
-        event_time_info=EventTimeInfo(
+    description="transactions from stores worldwide",
+    event_time_info=EventTimeInfo(
         field="timestamp",
         format="seconds_since_epoch",
         time_zone="UTC",
     ),
-        field_mapping_query=FieldMappingQuery(
+    field_mapping_query=FieldMappingQuery(
         sql="sql",
     ),
-        field_mappings=[
+    field_mappings=[
         FieldMappingV2(
             input_fields=[
                 InputField(
@@ -1084,10 +1077,10 @@ async def call_api():
             ),
         ),
     ],
-        insert_only=True,
-        name="global-transactions",
-        retention_secs=1000000,
-        sources=[
+    insert_only=True,
+    name="global-transactions",
+    retention_secs=1000000,
+    sources=[
         KafkaSourceWrapper(
             format_params=FormatParams(
                 csv=CsvParams(
@@ -1121,12 +1114,12 @@ async def call_api():
             ),
         ),
     ],
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Collections->create_kafka_collection: %s\n" % e)
-        return
-    pprint(api_response)
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Collections->create_kafka_collection: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -1198,40 +1191,39 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Create kinesis collection
-    api_response = rs.Collections.create_kinesis_collection(
-        name="global-transactions",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Collections->create_kinesis_collection: %s\n" % e)
+# Create kinesis collection
+api_response = rs.Collections.create_kinesis_collection(
+    name="global-transactions",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Collections->create_kinesis_collection: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Create kinesis collection
-    api_response = await rs.Collections.create_kinesis_collection(
-        clustering_key=[
+# assumes that execution takes place within an asynchronous context
+# Create kinesis collection
+api_response = await rs.Collections.create_kinesis_collection(
+    clustering_key=[
         FieldPartition(
             field_name="address.city.zipcode",
             keys=["value1","value2"],
             type="AUTO",
         ),
     ],
-        description="transactions from stores worldwide",
-        event_time_info=EventTimeInfo(
+    description="transactions from stores worldwide",
+    event_time_info=EventTimeInfo(
         field="timestamp",
         format="seconds_since_epoch",
         time_zone="UTC",
     ),
-        field_mapping_query=FieldMappingQuery(
+    field_mapping_query=FieldMappingQuery(
         sql="sql",
     ),
-        field_mappings=[
+    field_mappings=[
         FieldMappingV2(
             input_fields=[
                 InputField(
@@ -1251,10 +1243,10 @@ async def call_api():
             ),
         ),
     ],
-        insert_only=True,
-        name="global-transactions",
-        retention_secs=1000000,
-        sources=[
+    insert_only=True,
+    name="global-transactions",
+    retention_secs=1000000,
+    sources=[
         KinesisSourceWrapper(
             format_params=FormatParams(
                 csv=CsvParams(
@@ -1290,12 +1282,12 @@ async def call_api():
             ),
         ),
     ],
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Collections->create_kinesis_collection: %s\n" % e)
-        return
-    pprint(api_response)
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Collections->create_kinesis_collection: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -1367,40 +1359,39 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Create mongodb collection
-    api_response = rs.Collections.create_mongodb_collection(
-        name="global-transactions",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Collections->create_mongodb_collection: %s\n" % e)
+# Create mongodb collection
+api_response = rs.Collections.create_mongodb_collection(
+    name="global-transactions",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Collections->create_mongodb_collection: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Create mongodb collection
-    api_response = await rs.Collections.create_mongodb_collection(
-        clustering_key=[
+# assumes that execution takes place within an asynchronous context
+# Create mongodb collection
+api_response = await rs.Collections.create_mongodb_collection(
+    clustering_key=[
         FieldPartition(
             field_name="address.city.zipcode",
             keys=["value1","value2"],
             type="AUTO",
         ),
     ],
-        description="transactions from stores worldwide",
-        event_time_info=EventTimeInfo(
+    description="transactions from stores worldwide",
+    event_time_info=EventTimeInfo(
         field="timestamp",
         format="seconds_since_epoch",
         time_zone="UTC",
     ),
-        field_mapping_query=FieldMappingQuery(
+    field_mapping_query=FieldMappingQuery(
         sql="sql",
     ),
-        field_mappings=[
+    field_mappings=[
         FieldMappingV2(
             input_fields=[
                 InputField(
@@ -1420,10 +1411,10 @@ async def call_api():
             ),
         ),
     ],
-        insert_only=True,
-        name="global-transactions",
-        retention_secs=1000000,
-        sources=[
+    insert_only=True,
+    name="global-transactions",
+    retention_secs=1000000,
+    sources=[
         MongodbSourceWrapper(
             format_params=FormatParams(
                 csv=CsvParams(
@@ -1455,12 +1446,12 @@ async def call_api():
             ),
         ),
     ],
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Collections->create_mongodb_collection: %s\n" % e)
-        return
-    pprint(api_response)
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Collections->create_mongodb_collection: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -1532,40 +1523,39 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Create s3 collection
-    api_response = rs.Collections.create_s3_collection(
-        name="global-transactions",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Collections->create_s3_collection: %s\n" % e)
+# Create s3 collection
+api_response = rs.Collections.create_s3_collection(
+    name="global-transactions",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Collections->create_s3_collection: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Create s3 collection
-    api_response = await rs.Collections.create_s3_collection(
-        clustering_key=[
+# assumes that execution takes place within an asynchronous context
+# Create s3 collection
+api_response = await rs.Collections.create_s3_collection(
+    clustering_key=[
         FieldPartition(
             field_name="address.city.zipcode",
             keys=["value1","value2"],
             type="AUTO",
         ),
     ],
-        description="transactions from stores worldwide",
-        event_time_info=EventTimeInfo(
+    description="transactions from stores worldwide",
+    event_time_info=EventTimeInfo(
         field="timestamp",
         format="seconds_since_epoch",
         time_zone="UTC",
     ),
-        field_mapping_query=FieldMappingQuery(
+    field_mapping_query=FieldMappingQuery(
         sql="sql",
     ),
-        field_mappings=[
+    field_mappings=[
         FieldMappingV2(
             input_fields=[
                 InputField(
@@ -1585,10 +1575,10 @@ async def call_api():
             ),
         ),
     ],
-        insert_only=True,
-        name="global-transactions",
-        retention_secs=1000000,
-        sources=[
+    insert_only=True,
+    name="global-transactions",
+    retention_secs=1000000,
+    sources=[
         S3SourceWrapper(
             format_params=FormatParams(
                 csv=CsvParams(
@@ -1622,12 +1612,12 @@ async def call_api():
             ),
         ),
     ],
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Collections->create_s3_collection: %s\n" % e)
-        return
-    pprint(api_response)
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Collections->create_s3_collection: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -1699,30 +1689,29 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Delete Collection
-    api_response = rs.Collections.delete_collection(
-        collection="collection_example",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Collections->delete_collection: %s\n" % e)
+# Delete Collection
+api_response = rs.Collections.delete_collection(
+    collection="collection_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Collections->delete_collection: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Delete Collection
-    api_response = await rs.Collections.delete_collection(
-        collection="collection_example",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Collections->delete_collection: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Delete Collection
+api_response = await rs.Collections.delete_collection(
+    collection="collection_example",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Collections->delete_collection: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -1786,30 +1775,29 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Retrieve Collection
-    api_response = rs.Collections.get_collection(
-        collection="collection_example",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Collections->get_collection: %s\n" % e)
+# Retrieve Collection
+api_response = rs.Collections.get_collection(
+    collection="collection_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Collections->get_collection: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Retrieve Collection
-    api_response = await rs.Collections.get_collection(
-        collection="collection_example",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Collections->get_collection: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Retrieve Collection
+api_response = await rs.Collections.get_collection(
+    collection="collection_example",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Collections->get_collection: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -1873,28 +1861,27 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # List Collections
-    api_response = rs.Collections.list_collections(
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Collections->list_collections: %s\n" % e)
+# List Collections
+api_response = rs.Collections.list_collections(
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Collections->list_collections: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # List Collections
-    api_response = await rs.Collections.list_collections(
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Collections->list_collections: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# List Collections
+api_response = await rs.Collections.list_collections(
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Collections->list_collections: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -1954,28 +1941,27 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # List Collections in Workspace
-    api_response = rs.Collections.workspace_collections(
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Collections->workspace_collections: %s\n" % e)
+# List Collections in Workspace
+api_response = rs.Collections.workspace_collections(
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Collections->workspace_collections: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # List Collections in Workspace
-    api_response = await rs.Collections.workspace_collections(
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Collections->workspace_collections: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# List Collections in Workspace
+api_response = await rs.Collections.workspace_collections(
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Collections->workspace_collections: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 

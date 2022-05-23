@@ -87,7 +87,6 @@ class UpdateIntegrationRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'description': (str, none_type),  # noqa: E501
             'kafka': (KafkaIntegration, none_type),  # noqa: E501
         }
 
@@ -97,7 +96,6 @@ class UpdateIntegrationRequest(ModelNormal):
 
 
     attribute_map = {
-        'description': 'description',  # noqa: E501
         'kafka': 'kafka',  # noqa: E501
     }
 
@@ -142,7 +140,6 @@ class UpdateIntegrationRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            description (str): longer explanation for the integration. [optional]  # noqa: E501
             kafka (KafkaIntegration): [optional]  # noqa: E501
         """
 
@@ -195,7 +192,6 @@ class UpdateIntegrationRequest(ModelNormal):
         """UpdateIntegrationRequest - a model defined in OpenAPI
 
         Keyword Args:
-            description (str): longer explanation for the integration. [optional]  # noqa: E501
             kafka (KafkaIntegration): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be

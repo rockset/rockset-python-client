@@ -25,32 +25,31 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Add Documents
-    api_response = rs.Documents.add_documents(
-        collection="collection_example",
-        data=[{"field":"value"}],
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Documents->add_documents: %s\n" % e)
+# Add Documents
+api_response = rs.Documents.add_documents(
+    collection="collection_example",
+    data=[{"field":"value"}],
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Documents->add_documents: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Add Documents
-    api_response = await rs.Documents.add_documents(
-        collection="collection_example",
-        data=[{"field":"value"}],
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Documents->add_documents: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Add Documents
+api_response = await rs.Documents.add_documents(
+    collection="collection_example",
+    data=[{"field":"value"}],
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Documents->add_documents: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -115,40 +114,39 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Delete Documents
-    api_response = rs.Documents.delete_documents(
-        collection="collection_example",
-        data=[
+# Delete Documents
+api_response = rs.Documents.delete_documents(
+    collection="collection_example",
+    data=[
         DeleteDocumentsRequestData(
             id="2cd61e3b",
         ),
     ],
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Documents->delete_documents: %s\n" % e)
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Documents->delete_documents: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Delete Documents
-    api_response = await rs.Documents.delete_documents(
-        collection="collection_example",
-        data=[
+# assumes that execution takes place within an asynchronous context
+# Delete Documents
+api_response = await rs.Documents.delete_documents(
+    collection="collection_example",
+    data=[
         DeleteDocumentsRequestData(
             id="2cd61e3b",
         ),
     ],
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Documents->delete_documents: %s\n" % e)
-        return
-    pprint(api_response)
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Documents->delete_documents: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -213,15 +211,13 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Patch Documents
-    api_response = rs.Documents.patch_documents(
-        collection="collection_example",
-        data=[
+# Patch Documents
+api_response = rs.Documents.patch_documents(
+    collection="collection_example",
+    data=[
         PatchDocument(
             id="ca2d6832-1bfd-f88f-0620-d2aa27a5d86c",
             patch=[
@@ -234,17 +230,18 @@ try:
             ],
         ),
     ],
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Documents->patch_documents: %s\n" % e)
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Documents->patch_documents: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Patch Documents
-    api_response = await rs.Documents.patch_documents(
-        collection="collection_example",
-        data=[
+# assumes that execution takes place within an asynchronous context
+# Patch Documents
+api_response = await rs.Documents.patch_documents(
+    collection="collection_example",
+    data=[
         PatchDocument(
             id="ca2d6832-1bfd-f88f-0620-d2aa27a5d86c",
             patch=[
@@ -257,12 +254,12 @@ async def call_api():
             ],
         ),
     ],
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Documents->patch_documents: %s\n" % e)
-        return
-    pprint(api_response)
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Documents->patch_documents: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 

@@ -16,6 +16,7 @@ Method | HTTP request | Description
 [**delete_integration**](IntegrationsApi.md#delete_integration) | **DELETE** /v1/orgs/self/integrations/{integration} | Delete Integration
 [**get_integration**](IntegrationsApi.md#get_integration) | **GET** /v1/orgs/self/integrations/{integration} | Retrieve Integration
 [**list_integrations**](IntegrationsApi.md#list_integrations) | **GET** /v1/orgs/self/integrations | List Integrations
+[**update_integration**](IntegrationsApi.md#update_integration) | **PATCH** /v1/orgs/self/integrations/{integration} | Update Integration
 
 
 # **create_azure_blob_storage_integration**
@@ -34,34 +35,33 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Create azure blob storage integration
-    api_response = rs.Integrations.create_azure_blob_storage_integration(
-        name="event-logs",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Integrations->create_azure_blob_storage_integration: %s\n" % e)
+# Create azure blob storage integration
+api_response = rs.Integrations.create_azure_blob_storage_integration(
+    name="event-logs",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Integrations->create_azure_blob_storage_integration: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Create azure blob storage integration
-    api_response = await rs.Integrations.create_azure_blob_storage_integration(
-        azure_blob_storage=AzureBlobStorageIntegration(
+# assumes that execution takes place within an asynchronous context
+# Create azure blob storage integration
+api_response = await rs.Integrations.create_azure_blob_storage_integration(
+    azure_blob_storage=AzureBlobStorageIntegration(
         connection_string="connection_string_example",
     ),
-        description="AWS account with event data for the data science team.",
-        name="event-logs",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Integrations->create_azure_blob_storage_integration: %s\n" % e)
-        return
-    pprint(api_response)
+    description="AWS account with event data for the data science team.",
+    name="event-logs",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Integrations->create_azure_blob_storage_integration: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -126,33 +126,32 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Create azure event hubs integration
-    api_response = rs.Integrations.create_azure_event_hubs_integration(
-        name="event-logs",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Integrations->create_azure_event_hubs_integration: %s\n" % e)
+# Create azure event hubs integration
+api_response = rs.Integrations.create_azure_event_hubs_integration(
+    name="event-logs",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Integrations->create_azure_event_hubs_integration: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Create azure event hubs integration
-    api_response = await rs.Integrations.create_azure_event_hubs_integration(
-        azure_event_hubs=AzureEventHubsIntegration(
+# assumes that execution takes place within an asynchronous context
+# Create azure event hubs integration
+api_response = await rs.Integrations.create_azure_event_hubs_integration(
+    azure_event_hubs=AzureEventHubsIntegration(
     ),
-        description="AWS account with event data for the data science team.",
-        name="event-logs",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Integrations->create_azure_event_hubs_integration: %s\n" % e)
-        return
-    pprint(api_response)
+    description="AWS account with event data for the data science team.",
+    name="event-logs",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Integrations->create_azure_event_hubs_integration: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -217,25 +216,24 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Create dynamodb integration
-    api_response = rs.Integrations.create_dynamodb_integration(
-        name="event-logs",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Integrations->create_dynamodb_integration: %s\n" % e)
+# Create dynamodb integration
+api_response = rs.Integrations.create_dynamodb_integration(
+    name="event-logs",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Integrations->create_dynamodb_integration: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Create dynamodb integration
-    api_response = await rs.Integrations.create_dynamodb_integration(
-        description="AWS account with event data for the data science team.",
-        dynamodb=DynamodbIntegration(
+# assumes that execution takes place within an asynchronous context
+# Create dynamodb integration
+api_response = await rs.Integrations.create_dynamodb_integration(
+    description="AWS account with event data for the data science team.",
+    dynamodb=DynamodbIntegration(
         aws_access_key=AwsAccessKey(
             aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
             aws_secret_access_key="wJal....",
@@ -245,13 +243,13 @@ async def call_api():
         ),
         s3_export_bucket_name="s3_export_bucket_name_example",
     ),
-        name="event-logs",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Integrations->create_dynamodb_integration: %s\n" % e)
-        return
-    pprint(api_response)
+    name="event-logs",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Integrations->create_dynamodb_integration: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -316,36 +314,35 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Create gcs integration
-    api_response = rs.Integrations.create_gcs_integration(
-        name="event-logs",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Integrations->create_gcs_integration: %s\n" % e)
+# Create gcs integration
+api_response = rs.Integrations.create_gcs_integration(
+    name="event-logs",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Integrations->create_gcs_integration: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Create gcs integration
-    api_response = await rs.Integrations.create_gcs_integration(
-        description="AWS account with event data for the data science team.",
-        gcs=GcsIntegration(
+# assumes that execution takes place within an asynchronous context
+# Create gcs integration
+api_response = await rs.Integrations.create_gcs_integration(
+    description="AWS account with event data for the data science team.",
+    gcs=GcsIntegration(
         gcp_service_account=GcpServiceAccount(
             service_account_key_file_json="service_account_key_file_json_example",
         ),
     ),
-        name="event-logs",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Integrations->create_gcs_integration: %s\n" % e)
-        return
-    pprint(api_response)
+    name="event-logs",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Integrations->create_gcs_integration: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -410,25 +407,24 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Create kafka integration
-    api_response = rs.Integrations.create_kafka_integration(
-        name="event-logs",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Integrations->create_kafka_integration: %s\n" % e)
+# Create kafka integration
+api_response = rs.Integrations.create_kafka_integration(
+    name="event-logs",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Integrations->create_kafka_integration: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Create kafka integration
-    api_response = await rs.Integrations.create_kafka_integration(
-        description="AWS account with event data for the data science team.",
-        kafka=KafkaIntegration(
+# assumes that execution takes place within an asynchronous context
+# Create kafka integration
+api_response = await rs.Integrations.create_kafka_integration(
+    description="AWS account with event data for the data science team.",
+    kafka=KafkaIntegration(
         bootstrap_servers="bootstrap_servers_example",
         kafka_data_format="json",
         kafka_topic_names=[
@@ -445,13 +441,13 @@ async def call_api():
         ),
         use_v3=True,
     ),
-        name="event-logs",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Integrations->create_kafka_integration: %s\n" % e)
-        return
-    pprint(api_response)
+    name="event-logs",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Integrations->create_kafka_integration: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -516,25 +512,24 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Create kinesis integration
-    api_response = rs.Integrations.create_kinesis_integration(
-        name="event-logs",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Integrations->create_kinesis_integration: %s\n" % e)
+# Create kinesis integration
+api_response = rs.Integrations.create_kinesis_integration(
+    name="event-logs",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Integrations->create_kinesis_integration: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Create kinesis integration
-    api_response = await rs.Integrations.create_kinesis_integration(
-        description="AWS account with event data for the data science team.",
-        kinesis=KinesisIntegration(
+# assumes that execution takes place within an asynchronous context
+# Create kinesis integration
+api_response = await rs.Integrations.create_kinesis_integration(
+    description="AWS account with event data for the data science team.",
+    kinesis=KinesisIntegration(
         aws_access_key=AwsAccessKey(
             aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
             aws_secret_access_key="wJal....",
@@ -543,13 +538,13 @@ async def call_api():
             aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
         ),
     ),
-        name="event-logs",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Integrations->create_kinesis_integration: %s\n" % e)
-        return
-    pprint(api_response)
+    name="event-logs",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Integrations->create_kinesis_integration: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -614,34 +609,33 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Create mongodb integration
-    api_response = rs.Integrations.create_mongodb_integration(
-        name="event-logs",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Integrations->create_mongodb_integration: %s\n" % e)
+# Create mongodb integration
+api_response = rs.Integrations.create_mongodb_integration(
+    name="event-logs",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Integrations->create_mongodb_integration: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Create mongodb integration
-    api_response = await rs.Integrations.create_mongodb_integration(
-        description="AWS account with event data for the data science team.",
-        mongodb=MongoDbIntegration(
+# assumes that execution takes place within an asynchronous context
+# Create mongodb integration
+api_response = await rs.Integrations.create_mongodb_integration(
+    description="AWS account with event data for the data science team.",
+    mongodb=MongoDbIntegration(
         connection_uri="mongodb+srv://<username>:<password>@server.example.com/",
     ),
-        name="event-logs",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Integrations->create_mongodb_integration: %s\n" % e)
-        return
-    pprint(api_response)
+    name="event-logs",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Integrations->create_mongodb_integration: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -706,26 +700,25 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Create s3 integration
-    api_response = rs.Integrations.create_s3_integration(
-        name="event-logs",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Integrations->create_s3_integration: %s\n" % e)
+# Create s3 integration
+api_response = rs.Integrations.create_s3_integration(
+    name="event-logs",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Integrations->create_s3_integration: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Create s3 integration
-    api_response = await rs.Integrations.create_s3_integration(
-        description="AWS account with event data for the data science team.",
-        name="event-logs",
-        s3=S3Integration(
+# assumes that execution takes place within an asynchronous context
+# Create s3 integration
+api_response = await rs.Integrations.create_s3_integration(
+    description="AWS account with event data for the data science team.",
+    name="event-logs",
+    s3=S3Integration(
         aws_access_key=AwsAccessKey(
             aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
             aws_secret_access_key="wJal....",
@@ -734,12 +727,12 @@ async def call_api():
             aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
         ),
     ),
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Integrations->create_s3_integration: %s\n" % e)
-        return
-    pprint(api_response)
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Integrations->create_s3_integration: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -804,33 +797,32 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Create segment integration
-    api_response = rs.Integrations.create_segment_integration(
-        name="event-logs",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Integrations->create_segment_integration: %s\n" % e)
+# Create segment integration
+api_response = rs.Integrations.create_segment_integration(
+    name="event-logs",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Integrations->create_segment_integration: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Create segment integration
-    api_response = await rs.Integrations.create_segment_integration(
-        description="AWS account with event data for the data science team.",
-        name="event-logs",
-        segment=SegmentIntegration(
+# assumes that execution takes place within an asynchronous context
+# Create segment integration
+api_response = await rs.Integrations.create_segment_integration(
+    description="AWS account with event data for the data science team.",
+    name="event-logs",
+    segment=SegmentIntegration(
     ),
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Integrations->create_segment_integration: %s\n" % e)
-        return
-    pprint(api_response)
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Integrations->create_segment_integration: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -895,30 +887,29 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Delete Integration
-    api_response = rs.Integrations.delete_integration(
-        integration="integration_example",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Integrations->delete_integration: %s\n" % e)
+# Delete Integration
+api_response = rs.Integrations.delete_integration(
+    integration="integration_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Integrations->delete_integration: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Delete Integration
-    api_response = await rs.Integrations.delete_integration(
-        integration="integration_example",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Integrations->delete_integration: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Delete Integration
+api_response = await rs.Integrations.delete_integration(
+    integration="integration_example",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Integrations->delete_integration: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -981,30 +972,29 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Retrieve Integration
-    api_response = rs.Integrations.get_integration(
-        integration="integration_example",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Integrations->get_integration: %s\n" % e)
+# Retrieve Integration
+api_response = rs.Integrations.get_integration(
+    integration="integration_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Integrations->get_integration: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Retrieve Integration
-    api_response = await rs.Integrations.get_integration(
-        integration="integration_example",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Integrations->get_integration: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Retrieve Integration
+api_response = await rs.Integrations.get_integration(
+    integration="integration_example",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Integrations->get_integration: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -1067,28 +1057,27 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # List Integrations
-    api_response = rs.Integrations.list_integrations(
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Integrations->list_integrations: %s\n" % e)
+# List Integrations
+api_response = rs.Integrations.list_integrations(
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Integrations->list_integrations: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # List Integrations
-    api_response = await rs.Integrations.list_integrations(
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Integrations->list_integrations: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# List Integrations
+api_response = await rs.Integrations.list_integrations(
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Integrations->list_integrations: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -1116,6 +1105,109 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | integrations retrieved successfully |  -  |
+**400** | bad request |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+**405** | not allowed |  -  |
+**406** | not acceptable |  -  |
+**408** | request timeout |  -  |
+**415** | not supported |  -  |
+**429** | resource exceeded |  -  |
+**500** | internal error |  -  |
+**501** | not implemented |  -  |
+**502** | bad gateway |  -  |
+**503** | not ready |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update_integration**
+> UpdateIntegrationResponse update_integration(integration, update_integration_request)
+
+Update Integration
+
+Update an existing integration. It is only supported to update a Kafka (Confluent Cloud) integration at the moment.
+
+### Example
+
+* Api Key Authentication (apikey):
+
+```python
+from rockset import *
+from pprint import pprint
+
+# Create an instance of the Rockset client
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
+
+# synchronous example passing only required values which don't have defaults set
+# Update Integration
+api_response = rs.Integrations.update_integration(
+    integration="integration_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Integrations->update_integration: %s\n" % e)
+
+# asynchronous example passing optional values and required values which don't have defaults set
+# assumes that execution takes place within an asynchronous context
+# Update Integration
+api_response = await rs.Integrations.update_integration(
+    integration="integration_example",
+    kafka=KafkaIntegration(
+        bootstrap_servers="bootstrap_servers_example",
+        kafka_data_format="json",
+        kafka_topic_names=[
+            "kafka_topic_names_example",
+        ],
+        schema_registry_config=SchemaRegistryConfig(
+            key="key_example",
+            secret="secret_example",
+            url="url_example",
+        ),
+        security_config=KafkaV3SecurityConfig(
+            api_key="api_key_example",
+            secret="secret_example",
+        ),
+        use_v3=True,
+    ),
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Integrations->update_integration: %s\n" % e)
+    return
+pprint(api_response)
+
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **integration** | **str** |  |
+ **kafka** | [**KafkaIntegration**](KafkaIntegration.md) |  | [optional]
+
+### Return type
+
+[**UpdateIntegrationResponse**](UpdateIntegrationResponse.md)
+
+### Authorization
+
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | integration updated successfully |  -  |
 **400** | bad request |  -  |
 **401** | unauthorized |  -  |
 **403** | forbidden |  -  |

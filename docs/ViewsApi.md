@@ -28,33 +28,32 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Create View
-    api_response = rs.Views.create_view(
-        name="myAwesomeView",
-        query="SELECT * FROM foo",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Views->create_view: %s\n" % e)
+# Create View
+api_response = rs.Views.create_view(
+    name="myAwesomeView",
+    query="SELECT * FROM foo",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Views->create_view: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Create View
-    api_response = await rs.Views.create_view(
-        description="view of awesome collection",
-        name="myAwesomeView",
-        query="SELECT * FROM foo",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Views->create_view: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Create View
+api_response = await rs.Views.create_view(
+    description="view of awesome collection",
+    name="myAwesomeView",
+    query="SELECT * FROM foo",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Views->create_view: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -107,30 +106,29 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Delete View
-    api_response = rs.Views.delete_view(
-        view="view_example",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Views->delete_view: %s\n" % e)
+# Delete View
+api_response = rs.Views.delete_view(
+    view="view_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Views->delete_view: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Delete View
-    api_response = await rs.Views.delete_view(
-        view="view_example",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Views->delete_view: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Delete View
+api_response = await rs.Views.delete_view(
+    view="view_example",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Views->delete_view: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -181,30 +179,29 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Retrieve View
-    api_response = rs.Views.get_view(
-        view="view_example",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Views->get_view: %s\n" % e)
+# Retrieve View
+api_response = rs.Views.get_view(
+    view="view_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Views->get_view: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Retrieve View
-    api_response = await rs.Views.get_view(
-        view="view_example",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Views->get_view: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Retrieve View
+api_response = await rs.Views.get_view(
+    view="view_example",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Views->get_view: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -268,28 +265,27 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # List Views
-    api_response = rs.Views.list_views(
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Views->list_views: %s\n" % e)
+# List Views
+api_response = rs.Views.list_views(
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Views->list_views: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # List Views
-    api_response = await rs.Views.list_views(
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Views->list_views: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# List Views
+api_response = await rs.Views.list_views(
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Views->list_views: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -349,33 +345,32 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Update View
-    api_response = rs.Views.update_view(
-        view="view_example",
-        query="SELECT * FROM foo",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Views->update_view: %s\n" % e)
+# Update View
+api_response = rs.Views.update_view(
+    view="view_example",
+    query="SELECT * FROM foo",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Views->update_view: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Update View
-    api_response = await rs.Views.update_view(
-        view="view_example",
-        description="view of awesome collection",
-        query="SELECT * FROM foo",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Views->update_view: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Update View
+api_response = await rs.Views.update_view(
+    view="view_example",
+    description="view of awesome collection",
+    query="SELECT * FROM foo",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Views->update_view: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -428,28 +423,27 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # List Views in Workspace
-    api_response = rs.Views.workspace_views(
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Views->workspace_views: %s\n" % e)
+# List Views in Workspace
+api_response = rs.Views.workspace_views(
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Views->workspace_views: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # List Views in Workspace
-    api_response = await rs.Views.workspace_views(
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Views->workspace_views: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# List Views in Workspace
+api_response = await rs.Views.workspace_views(
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Views->workspace_views: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 

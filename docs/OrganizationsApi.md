@@ -23,28 +23,27 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Get Organization
-    api_response = rs.Organizations.get_organization(
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Organizations->get_organization: %s\n" % e)
+# Get Organization
+api_response = rs.Organizations.get_organization(
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Organizations->get_organization: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Get Organization
-    api_response = await rs.Organizations.get_organization(
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Organizations->get_organization: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Get Organization
+api_response = await rs.Organizations.get_organization(
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Organizations->get_organization: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 

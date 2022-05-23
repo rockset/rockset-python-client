@@ -28,33 +28,32 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Create Alias
-    api_response = rs.Aliases.create_alias(
-        collections=["commons.foo","prod.demo"],
-        name="aliasName",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Aliases->create_alias: %s\n" % e)
+# Create Alias
+api_response = rs.Aliases.create_alias(
+    collections=["commons.foo","prod.demo"],
+    name="aliasName",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Aliases->create_alias: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Create Alias
-    api_response = await rs.Aliases.create_alias(
-        collections=["commons.foo","prod.demo"],
-        description="version alias",
-        name="aliasName",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Aliases->create_alias: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Create Alias
+api_response = await rs.Aliases.create_alias(
+    collections=["commons.foo","prod.demo"],
+    description="version alias",
+    name="aliasName",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Aliases->create_alias: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -120,30 +119,29 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Delete Alias
-    api_response = rs.Aliases.delete_alias(
-        alias="alias_example",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Aliases->delete_alias: %s\n" % e)
+# Delete Alias
+api_response = rs.Aliases.delete_alias(
+    alias="alias_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Aliases->delete_alias: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Delete Alias
-    api_response = await rs.Aliases.delete_alias(
-        alias="alias_example",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Aliases->delete_alias: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Delete Alias
+api_response = await rs.Aliases.delete_alias(
+    alias="alias_example",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Aliases->delete_alias: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -194,30 +192,29 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Retrieve Alias
-    api_response = rs.Aliases.get_alias(
-        alias="alias_example",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Aliases->get_alias: %s\n" % e)
+# Retrieve Alias
+api_response = rs.Aliases.get_alias(
+    alias="alias_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Aliases->get_alias: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Retrieve Alias
-    api_response = await rs.Aliases.get_alias(
-        alias="alias_example",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Aliases->get_alias: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Retrieve Alias
+api_response = await rs.Aliases.get_alias(
+    alias="alias_example",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Aliases->get_alias: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -281,28 +278,27 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # List Aliases
-    api_response = rs.Aliases.list_aliases(
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Aliases->list_aliases: %s\n" % e)
+# List Aliases
+api_response = rs.Aliases.list_aliases(
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Aliases->list_aliases: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # List Aliases
-    api_response = await rs.Aliases.list_aliases(
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Aliases->list_aliases: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# List Aliases
+api_response = await rs.Aliases.list_aliases(
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Aliases->list_aliases: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -362,33 +358,32 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Update Alias
-    api_response = rs.Aliases.update_alias(
-        alias="alias_example",
-        collections=["commons.foo","prod.demo"],
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Aliases->update_alias: %s\n" % e)
+# Update Alias
+api_response = rs.Aliases.update_alias(
+    alias="alias_example",
+    collections=["commons.foo","prod.demo"],
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Aliases->update_alias: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Update Alias
-    api_response = await rs.Aliases.update_alias(
-        alias="alias_example",
-        collections=["commons.foo","prod.demo"],
-        description="version alias",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Aliases->update_alias: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Update Alias
+api_response = await rs.Aliases.update_alias(
+    alias="alias_example",
+    collections=["commons.foo","prod.demo"],
+    description="version alias",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Aliases->update_alias: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -441,28 +436,27 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # List Aliases in Workspace
-    api_response = rs.Aliases.workspace_aliases(
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Aliases->workspace_aliases: %s\n" % e)
+# List Aliases in Workspace
+api_response = rs.Aliases.workspace_aliases(
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Aliases->workspace_aliases: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # List Aliases in Workspace
-    api_response = await rs.Aliases.workspace_aliases(
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Aliases->workspace_aliases: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# List Aliases in Workspace
+api_response = await rs.Aliases.workspace_aliases(
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Aliases->workspace_aliases: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 

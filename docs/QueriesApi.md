@@ -28,30 +28,29 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Cancel Query
-    api_response = rs.Queries.cancel_query(
-        query_id="queryId_example",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Queries->cancel_query: %s\n" % e)
+# Cancel Query
+api_response = rs.Queries.cancel_query(
+    query_id="queryId_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Queries->cancel_query: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Cancel Query
-    api_response = await rs.Queries.cancel_query(
-        query_id="queryId_example",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Queries->cancel_query: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Cancel Query
+api_response = await rs.Queries.cancel_query(
+    query_id="queryId_example",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Queries->cancel_query: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -114,30 +113,29 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Retrieve Query
-    api_response = rs.Queries.get_query(
-        query_id="queryId_example",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Queries->get_query: %s\n" % e)
+# Retrieve Query
+api_response = rs.Queries.get_query(
+    query_id="queryId_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Queries->get_query: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Retrieve Query
-    api_response = await rs.Queries.get_query(
-        query_id="queryId_example",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Queries->get_query: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Retrieve Query
+api_response = await rs.Queries.get_query(
+    query_id="queryId_example",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Queries->get_query: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -200,30 +198,29 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Retrieve Query Results Page
-    api_response = rs.Queries.get_query_results(
-        query_id="queryId_example",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Queries->get_query_results: %s\n" % e)
+# Retrieve Query Results Page
+api_response = rs.Queries.get_query_results(
+    query_id="queryId_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Queries->get_query_results: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Retrieve Query Results Page
-    api_response = await rs.Queries.get_query_results(
-        query_id="queryId_example",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Queries->get_query_results: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Retrieve Query Results Page
+api_response = await rs.Queries.get_query_results(
+    query_id="queryId_example",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Queries->get_query_results: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -289,28 +286,27 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # List Queries
-    api_response = rs.Queries.list_active_queries(
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Queries->list_active_queries: %s\n" % e)
+# List Queries
+api_response = rs.Queries.list_active_queries(
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Queries->list_active_queries: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # List Queries
-    api_response = await rs.Queries.list_active_queries(
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Queries->list_active_queries: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# List Queries
+api_response = await rs.Queries.list_active_queries(
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Queries->list_active_queries: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -370,14 +366,12 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Execute SQL Query
-    api_response = rs.Queries.query(
-        sql=QueryRequestSql(
+# Execute SQL Query
+api_response = rs.Queries.query(
+    sql=QueryRequestSql(
         default_row_limit=1,
         generate_warnings=True,
         initial_paginate_response_doc_count=1,
@@ -391,21 +385,22 @@ try:
         ],
         query="SELECT * FROM foo where _id = :_id",
     ),
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Queries->query: %s\n" % e)
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Queries->query: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Execute SQL Query
-    api_response = await rs.Queries.query(
-        async_options=AsyncQueryOptions(
+# assumes that execution takes place within an asynchronous context
+# Execute SQL Query
+api_response = await rs.Queries.query(
+    async_options=AsyncQueryOptions(
         client_timeout_ms=1,
         max_initial_results=1,
         timeout_ms=1,
     ),
-        sql=QueryRequestSql(
+    sql=QueryRequestSql(
         default_row_limit=1,
         generate_warnings=True,
         initial_paginate_response_doc_count=1,
@@ -419,12 +414,12 @@ async def call_api():
         ],
         query="SELECT * FROM foo where _id = :_id",
     ),
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Queries->query: %s\n" % e)
-        return
-    pprint(api_response)
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Queries->query: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -488,14 +483,12 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Validate Query
-    api_response = rs.Queries.validate(
-        sql=QueryRequestSql(
+# Validate Query
+api_response = rs.Queries.validate(
+    sql=QueryRequestSql(
         default_row_limit=1,
         generate_warnings=True,
         initial_paginate_response_doc_count=1,
@@ -509,21 +502,22 @@ try:
         ],
         query="SELECT * FROM foo where _id = :_id",
     ),
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling Queries->validate: %s\n" % e)
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Queries->validate: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Validate Query
-    api_response = await rs.Queries.validate(
-        async_options=AsyncQueryOptions(
+# assumes that execution takes place within an asynchronous context
+# Validate Query
+api_response = await rs.Queries.validate(
+    async_options=AsyncQueryOptions(
         client_timeout_ms=1,
         max_initial_results=1,
         timeout_ms=1,
     ),
-        sql=QueryRequestSql(
+    sql=QueryRequestSql(
         default_row_limit=1,
         generate_warnings=True,
         initial_paginate_response_doc_count=1,
@@ -537,12 +531,12 @@ async def call_api():
         ],
         query="SELECT * FROM foo where _id = :_id",
     ),
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling Queries->validate: %s\n" % e)
-        return
-    pprint(api_response)
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Queries->validate: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 

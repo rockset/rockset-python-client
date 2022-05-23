@@ -27,31 +27,30 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Create API Key
-    api_response = rs.APIKeys.create_api_key(
-        name="my-app",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling APIKeys->create_api_key: %s\n" % e)
+# Create API Key
+api_response = rs.APIKeys.create_api_key(
+    name="my-app",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling APIKeys->create_api_key: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Create API Key
-    api_response = await rs.APIKeys.create_api_key(
-        name="my-app",
-        role="string_example",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling APIKeys->create_api_key: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Create API Key
+api_response = await rs.APIKeys.create_api_key(
+    name="my-app",
+    role="string_example",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling APIKeys->create_api_key: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -115,32 +114,31 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Delete API Key
-    api_response = rs.APIKeys.delete_api_key(
-        name="my-key",
-        user="admin@me.com",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling APIKeys->delete_api_key: %s\n" % e)
+# Delete API Key
+api_response = rs.APIKeys.delete_api_key(
+    name="my-key",
+    user="admin@me.com",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling APIKeys->delete_api_key: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Delete API Key
-    api_response = await rs.APIKeys.delete_api_key(
-        name="my-key",
-        user="admin@me.com",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling APIKeys->delete_api_key: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Delete API Key
+api_response = await rs.APIKeys.delete_api_key(
+    name="my-key",
+    user="admin@me.com",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling APIKeys->delete_api_key: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -204,32 +202,31 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Retrieve API Key
-    api_response = rs.APIKeys.get_api_key(
-        user="admin@me.com",
-        name="my-key",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling APIKeys->get_api_key: %s\n" % e)
+# Retrieve API Key
+api_response = rs.APIKeys.get_api_key(
+    user="admin@me.com",
+    name="my-key",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling APIKeys->get_api_key: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Retrieve API Key
-    api_response = await rs.APIKeys.get_api_key(
-        user="admin@me.com",
-        name="my-key",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling APIKeys->get_api_key: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Retrieve API Key
+api_response = await rs.APIKeys.get_api_key(
+    user="admin@me.com",
+    name="my-key",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling APIKeys->get_api_key: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -294,30 +291,29 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # List API Keys
-    api_response = rs.APIKeys.list_api_keys(
-        user="admin@me.com",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling APIKeys->list_api_keys: %s\n" % e)
+# List API Keys
+api_response = rs.APIKeys.list_api_keys(
+    user="admin@me.com",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling APIKeys->list_api_keys: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # List API Keys
-    api_response = await rs.APIKeys.list_api_keys(
-        user="admin@me.com",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling APIKeys->list_api_keys: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# List API Keys
+api_response = await rs.APIKeys.list_api_keys(
+    user="admin@me.com",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling APIKeys->list_api_keys: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
@@ -380,33 +376,32 @@ from rockset import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
-# example passing only required values which don't have defaults set
-rs = RocksetClient(api_key="abc123", host=rockset.Regions.use1a1)
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-try:
-    # Update API Key State
-    api_response = rs.APIKeys.update_api_key(
-        name="my-key",
-        user="admin@me.com",
-    )
-    pprint(api_response)
-except rockset.ApiException as e:
-    print("Exception when calling APIKeys->update_api_key: %s\n" % e)
+# Update API Key State
+api_response = rs.APIKeys.update_api_key(
+    name="my-key",
+    user="admin@me.com",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling APIKeys->update_api_key: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
-async def call_api():
-    # Update API Key State
-    api_response = await rs.APIKeys.update_api_key(
-        name="my-key",
-        user="admin@me.com",
-        state="ACTIVE",
-        async_req=True,
-    )
-    if isinstance(api_response, rockset.ApiException):
-        print("Exception when calling APIKeys->update_api_key: %s\n" % e)
-        return
-    pprint(api_response)
+# assumes that execution takes place within an asynchronous context
+# Update API Key State
+api_response = await rs.APIKeys.update_api_key(
+    name="my-key",
+    user="admin@me.com",
+    state="ACTIVE",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling APIKeys->update_api_key: %s\n" % e)
+    return
+pprint(api_response)
 
 ```
 
