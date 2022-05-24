@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.azure_service_bus_integration import AzureServiceBusIntegration
+from rockset.models import *
 
 
-class TestAzureServiceBusIntegration(unittest.TestCase):
-    """AzureServiceBusIntegration unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testAzureServiceBusIntegration(self):
-        """Test AzureServiceBusIntegration"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = AzureServiceBusIntegration()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_azure_service_bus_integration_init():
+    model = AzureServiceBusIntegration(
+        connection_string="string_example",
+    )

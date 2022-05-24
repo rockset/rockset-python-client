@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.collection import Collection
-
-globals()["Collection"] = Collection
-from rockset.model.create_collection_response import CreateCollectionResponse
+from rockset.models import *
 
 
-class TestCreateCollectionResponse(unittest.TestCase):
-    """CreateCollectionResponse unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testCreateCollectionResponse(self):
-        """Test CreateCollectionResponse"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = CreateCollectionResponse()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_create_collection_response_init():
+    model = CreateCollectionResponse(
+        
+    )

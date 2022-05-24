@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.query_lambda_sql import QueryLambdaSql
-
-globals()["QueryLambdaSql"] = QueryLambdaSql
-from rockset.model.update_query_lambda_request import UpdateQueryLambdaRequest
+from rockset.models import *
 
 
-class TestUpdateQueryLambdaRequest(unittest.TestCase):
-    """UpdateQueryLambdaRequest unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testUpdateQueryLambdaRequest(self):
-        """Test UpdateQueryLambdaRequest"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = UpdateQueryLambdaRequest()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_update_query_lambda_request_init():
+    model = UpdateQueryLambdaRequest(
+        
+    )

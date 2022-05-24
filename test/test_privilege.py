@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.privilege import Privilege
+from rockset.models import *
 
 
-class TestPrivilege(unittest.TestCase):
-    """Privilege unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testPrivilege(self):
-        """Test Privilege"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = Privilege()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_privilege_init():
+    model = Privilege(
+        
+    )

@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.user import User
-
-globals()["User"] = User
-from rockset.model.delete_user_response import DeleteUserResponse
+from rockset.models import *
 
 
-class TestDeleteUserResponse(unittest.TestCase):
-    """DeleteUserResponse unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testDeleteUserResponse(self):
-        """Test DeleteUserResponse"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = DeleteUserResponse()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_delete_user_response_init():
+    model = DeleteUserResponse(
+        
+    )

@@ -9,32 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.query_lambda_sql import QueryLambdaSql
-from rockset.model.query_lambda_stats import QueryLambdaStats
-
-globals()["QueryLambdaSql"] = QueryLambdaSql
-globals()["QueryLambdaStats"] = QueryLambdaStats
-from rockset.model.query_lambda_version import QueryLambdaVersion
+from rockset.models import *
 
 
-class TestQueryLambdaVersion(unittest.TestCase):
-    """QueryLambdaVersion unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testQueryLambdaVersion(self):
-        """Test QueryLambdaVersion"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = QueryLambdaVersion()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_query_lambda_version_init():
+    model = QueryLambdaVersion(
+        
+    )

@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.gcs_integration import GcsIntegration
-
-globals()["GcsIntegration"] = GcsIntegration
-from rockset.model.gcs_integration_creation_request import GcsIntegrationCreationRequest
+from rockset.models import *
 
 
-class TestGcsIntegrationCreationRequest(unittest.TestCase):
-    """GcsIntegrationCreationRequest unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testGcsIntegrationCreationRequest(self):
-        """Test GcsIntegrationCreationRequest"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = GcsIntegrationCreationRequest()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_gcs_integration_creation_request_init():
+    model = GcsIntegrationCreationRequest(
+        name="event-logs",
+    )

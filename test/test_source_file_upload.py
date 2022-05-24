@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.source_file_upload import SourceFileUpload
+from rockset.models import *
 
 
-class TestSourceFileUpload(unittest.TestCase):
-    """SourceFileUpload unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testSourceFileUpload(self):
-        """Test SourceFileUpload"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = SourceFileUpload()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_source_file_upload_init():
+    model = SourceFileUpload(
+        file_name="file1.json",file_size=12345,file_upload_time="2019-01-15T21:48:23Z",
+    )

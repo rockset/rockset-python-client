@@ -30,7 +30,9 @@ from rockset.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from rockset.model.async_query_options import AsyncQueryOptions
     from rockset.model.query_parameter import QueryParameter
+    globals()['AsyncQueryOptions'] = AsyncQueryOptions
     globals()['QueryParameter'] = QueryParameter
 
 
@@ -87,6 +89,7 @@ class ExecuteQueryLambdaRequest(ModelNormal):
         """
         lazy_import()
         return {
+            'async_options': (AsyncQueryOptions, none_type),  # noqa: E501
             'default_row_limit': (int, none_type),  # noqa: E501
             'generate_warnings': (bool, none_type),  # noqa: E501
             'initial_paginate_response_doc_count': (int, none_type),  # noqa: E501
@@ -100,6 +103,7 @@ class ExecuteQueryLambdaRequest(ModelNormal):
 
 
     attribute_map = {
+        'async_options': 'async_options',  # noqa: E501
         'default_row_limit': 'default_row_limit',  # noqa: E501
         'generate_warnings': 'generate_warnings',  # noqa: E501
         'initial_paginate_response_doc_count': 'initial_paginate_response_doc_count',  # noqa: E501
@@ -148,6 +152,7 @@ class ExecuteQueryLambdaRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            async_options (AsyncQueryOptions): [optional]  # noqa: E501
             default_row_limit (int): Row limit to use if no limit specified in the SQL query text. [optional]  # noqa: E501
             generate_warnings (bool): Whether to generate warnings. [optional]  # noqa: E501
             initial_paginate_response_doc_count (int): Number of documents to return in addition to paginating for this query call. Only relevant if `paginate` flag is also set.. [optional]  # noqa: E501
@@ -204,6 +209,7 @@ class ExecuteQueryLambdaRequest(ModelNormal):
         """ExecuteQueryLambdaRequest - a model defined in OpenAPI
 
         Keyword Args:
+            async_options (AsyncQueryOptions): [optional]  # noqa: E501
             default_row_limit (int): Row limit to use if no limit specified in the SQL query text. [optional]  # noqa: E501
             generate_warnings (bool): Whether to generate warnings. [optional]  # noqa: E501
             initial_paginate_response_doc_count (int): Number of documents to return in addition to paginating for this query call. Only relevant if `paginate` flag is also set.. [optional]  # noqa: E501

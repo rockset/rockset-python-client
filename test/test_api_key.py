@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.api_key import ApiKey
+from rockset.models import *
 
 
-class TestApiKey(unittest.TestCase):
-    """ApiKey unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testApiKey(self):
-        """Test ApiKey"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = ApiKey()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_api_key_init():
+    model = ApiKey(
+        key="aB35kDjg*******************************",name="my-key",
+    )

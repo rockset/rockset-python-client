@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.csv_params import CsvParams
+from rockset.models import *
 
 
-class TestCsvParams(unittest.TestCase):
-    """CsvParams unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testCsvParams(self):
-        """Test CsvParams"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = CsvParams()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_csv_params_init():
+    model = CsvParams(
+        
+    )

@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.patch_operation import PatchOperation
+from rockset.models import *
 
 
-class TestPatchOperation(unittest.TestCase):
-    """PatchOperation unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testPatchOperation(self):
-        """Test PatchOperation"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = PatchOperation()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_patch_operation_init():
+    model = PatchOperation(
+        op="ADD",path="/foo/bar",
+    )

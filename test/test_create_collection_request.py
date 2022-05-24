@@ -9,36 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.event_time_info import EventTimeInfo
-from rockset.model.field_mapping_query import FieldMappingQuery
-from rockset.model.field_mapping_v2 import FieldMappingV2
-from rockset.model.field_partition import FieldPartition
-
-globals()["EventTimeInfo"] = EventTimeInfo
-globals()["FieldMappingQuery"] = FieldMappingQuery
-globals()["FieldMappingV2"] = FieldMappingV2
-globals()["FieldPartition"] = FieldPartition
-from rockset.model.create_collection_request import CreateCollectionRequest
+from rockset.models import *
 
 
-class TestCreateCollectionRequest(unittest.TestCase):
-    """CreateCollectionRequest unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testCreateCollectionRequest(self):
-        """Test CreateCollectionRequest"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = CreateCollectionRequest()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_create_collection_request_init():
+    model = CreateCollectionRequest(
+        name="global-transactions",
+    )

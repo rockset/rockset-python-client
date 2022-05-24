@@ -9,32 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.unsubscribe_preference import UnsubscribePreference
-
-globals()["UnsubscribePreference"] = UnsubscribePreference
-from rockset.model.update_unsubscribe_preferences_response import (
-    UpdateUnsubscribePreferencesResponse,
-)
+from rockset.models import *
 
 
-class TestUpdateUnsubscribePreferencesResponse(unittest.TestCase):
-    """UpdateUnsubscribePreferencesResponse unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testUpdateUnsubscribePreferencesResponse(self):
-        """Test UpdateUnsubscribePreferencesResponse"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = UpdateUnsubscribePreferencesResponse()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_update_unsubscribe_preferences_response_init():
+    model = UpdateUnsubscribePreferencesResponse(
+        
+    )

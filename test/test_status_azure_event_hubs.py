@@ -9,32 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.status_azure_event_hubs_partition import (
-    StatusAzureEventHubsPartition,
-)
-
-globals()["StatusAzureEventHubsPartition"] = StatusAzureEventHubsPartition
-from rockset.model.status_azure_event_hubs import StatusAzureEventHubs
+from rockset.models import *
 
 
-class TestStatusAzureEventHubs(unittest.TestCase):
-    """StatusAzureEventHubs unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testStatusAzureEventHubs(self):
-        """Test StatusAzureEventHubs"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = StatusAzureEventHubs()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_status_azure_event_hubs_init():
+    model = StatusAzureEventHubs(
+        
+    )

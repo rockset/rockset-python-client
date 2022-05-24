@@ -9,32 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.azure_blob_storage_integration import AzureBlobStorageIntegration
-
-globals()["AzureBlobStorageIntegration"] = AzureBlobStorageIntegration
-from rockset.model.azure_blob_storage_integration_creation_request import (
-    AzureBlobStorageIntegrationCreationRequest,
-)
+from rockset.models import *
 
 
-class TestAzureBlobStorageIntegrationCreationRequest(unittest.TestCase):
-    """AzureBlobStorageIntegrationCreationRequest unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testAzureBlobStorageIntegrationCreationRequest(self):
-        """Test AzureBlobStorageIntegrationCreationRequest"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = AzureBlobStorageIntegrationCreationRequest()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_azure_blob_storage_integration_creation_request_init():
+    model = AzureBlobStorageIntegrationCreationRequest(
+        name="event-logs",
+    )

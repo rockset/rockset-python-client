@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.query_parameter import QueryParameter
-
-globals()["QueryParameter"] = QueryParameter
-from rockset.model.query_request_sql import QueryRequestSql
+from rockset.models import *
 
 
-class TestQueryRequestSql(unittest.TestCase):
-    """QueryRequestSql unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testQueryRequestSql(self):
-        """Test QueryRequestSql"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = QueryRequestSql()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_query_request_sql_init():
+    model = QueryRequestSql(
+        query="SELECT * FROM foo where _id = :_id",
+    )

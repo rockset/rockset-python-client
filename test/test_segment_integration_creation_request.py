@@ -9,32 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.segment_integration import SegmentIntegration
-
-globals()["SegmentIntegration"] = SegmentIntegration
-from rockset.model.segment_integration_creation_request import (
-    SegmentIntegrationCreationRequest,
-)
+from rockset.models import *
 
 
-class TestSegmentIntegrationCreationRequest(unittest.TestCase):
-    """SegmentIntegrationCreationRequest unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testSegmentIntegrationCreationRequest(self):
-        """Test SegmentIntegrationCreationRequest"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = SegmentIntegrationCreationRequest()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_segment_integration_creation_request_init():
+    model = SegmentIntegrationCreationRequest(
+        name="event-logs",
+    )

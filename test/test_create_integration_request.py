@@ -9,46 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.azure_blob_storage_integration import AzureBlobStorageIntegration
-from rockset.model.azure_event_hubs_integration import AzureEventHubsIntegration
-from rockset.model.dynamodb_integration import DynamodbIntegration
-from rockset.model.gcs_integration import GcsIntegration
-from rockset.model.kafka_integration import KafkaIntegration
-from rockset.model.kinesis_integration import KinesisIntegration
-from rockset.model.mongo_db_integration import MongoDbIntegration
-from rockset.model.s3_integration import S3Integration
-from rockset.model.segment_integration import SegmentIntegration
-
-globals()["AzureBlobStorageIntegration"] = AzureBlobStorageIntegration
-globals()["AzureEventHubsIntegration"] = AzureEventHubsIntegration
-globals()["DynamodbIntegration"] = DynamodbIntegration
-globals()["GcsIntegration"] = GcsIntegration
-globals()["KafkaIntegration"] = KafkaIntegration
-globals()["KinesisIntegration"] = KinesisIntegration
-globals()["MongoDbIntegration"] = MongoDbIntegration
-globals()["S3Integration"] = S3Integration
-globals()["SegmentIntegration"] = SegmentIntegration
-from rockset.model.create_integration_request import CreateIntegrationRequest
+from rockset.models import *
 
 
-class TestCreateIntegrationRequest(unittest.TestCase):
-    """CreateIntegrationRequest unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testCreateIntegrationRequest(self):
-        """Test CreateIntegrationRequest"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = CreateIntegrationRequest()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_create_integration_request_init():
+    model = CreateIntegrationRequest(
+        name="event-logs",
+    )

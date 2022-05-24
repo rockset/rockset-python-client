@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.azure_blob_storage_integration import AzureBlobStorageIntegration
+from rockset.models import *
 
 
-class TestAzureBlobStorageIntegration(unittest.TestCase):
-    """AzureBlobStorageIntegration unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testAzureBlobStorageIntegration(self):
-        """Test AzureBlobStorageIntegration"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = AzureBlobStorageIntegration()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_azure_blob_storage_integration_init():
+    model = AzureBlobStorageIntegration(
+        connection_string="string_example",
+    )

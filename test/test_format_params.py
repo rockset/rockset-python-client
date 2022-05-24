@@ -9,32 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.csv_params import CsvParams
-from rockset.model.xml_params import XmlParams
-
-globals()["CsvParams"] = CsvParams
-globals()["XmlParams"] = XmlParams
-from rockset.model.format_params import FormatParams
+from rockset.models import *
 
 
-class TestFormatParams(unittest.TestCase):
-    """FormatParams unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testFormatParams(self):
-        """Test FormatParams"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = FormatParams()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_format_params_init():
+    model = FormatParams(
+        
+    )

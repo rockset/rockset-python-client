@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.aws_role import AwsRole
+from rockset.models import *
 
 
-class TestAwsRole(unittest.TestCase):
-    """AwsRole unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testAwsRole(self):
-        """Test AwsRole"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = AwsRole()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_aws_role_init():
+    model = AwsRole(
+        aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
+    )

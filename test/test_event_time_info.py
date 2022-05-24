@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.event_time_info import EventTimeInfo
+from rockset.models import *
 
 
-class TestEventTimeInfo(unittest.TestCase):
-    """EventTimeInfo unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testEventTimeInfo(self):
-        """Test EventTimeInfo"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = EventTimeInfo()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_event_time_info_init():
+    model = EventTimeInfo(
+        field="timestamp",
+    )

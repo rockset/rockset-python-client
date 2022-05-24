@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.aws_access_key import AwsAccessKey
+from rockset.models import *
 
 
-class TestAwsAccessKey(unittest.TestCase):
-    """AwsAccessKey unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testAwsAccessKey(self):
-        """Test AwsAccessKey"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = AwsAccessKey()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_aws_access_key_init():
+    model = AwsAccessKey(
+        aws_access_key_id="AKIAIOSFODNN7EXAMPLE",aws_secret_access_key="wJal....",
+    )

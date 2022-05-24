@@ -9,36 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.pagination_info import PaginationInfo
-from rockset.model.query_error import QueryError
-from rockset.model.query_field_type import QueryFieldType
-from rockset.model.query_response_stats import QueryResponseStats
-
-globals()["PaginationInfo"] = PaginationInfo
-globals()["QueryError"] = QueryError
-globals()["QueryFieldType"] = QueryFieldType
-globals()["QueryResponseStats"] = QueryResponseStats
-from rockset.model.query_response import QueryResponse
+from rockset.models import *
 
 
-class TestQueryResponse(unittest.TestCase):
-    """QueryResponse unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testQueryResponse(self):
-        """Test QueryResponse"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = QueryResponse()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_query_response_init():
+    model = QueryResponse(
+        
+    )

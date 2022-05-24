@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.query_parameter import QueryParameter
+from rockset.models import *
 
 
-class TestQueryParameter(unittest.TestCase):
-    """QueryParameter unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testQueryParameter(self):
-        """Test QueryParameter"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = QueryParameter()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_query_parameter_init():
+    model = QueryParameter(
+        name="_id",type="string",value="85beb391",
+    )

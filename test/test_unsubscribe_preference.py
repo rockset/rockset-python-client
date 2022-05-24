@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.unsubscribe_preference import UnsubscribePreference
+from rockset.models import *
 
 
-class TestUnsubscribePreference(unittest.TestCase):
-    """UnsubscribePreference unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testUnsubscribePreference(self):
-        """Test UnsubscribePreference"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = UnsubscribePreference()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_unsubscribe_preference_init():
+    model = UnsubscribePreference(
+        notification_type="create_apikey",
+    )

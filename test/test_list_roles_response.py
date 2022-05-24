@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.role import Role
-
-globals()["Role"] = Role
-from rockset.model.list_roles_response import ListRolesResponse
+from rockset.models import *
 
 
-class TestListRolesResponse(unittest.TestCase):
-    """ListRolesResponse unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testListRolesResponse(self):
-        """Test ListRolesResponse"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = ListRolesResponse()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_list_roles_response_init():
+    model = ListRolesResponse(
+        
+    )

@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.query_info import QueryInfo
-
-globals()["QueryInfo"] = QueryInfo
-from rockset.model.list_queries_response import ListQueriesResponse
+from rockset.models import *
 
 
-class TestListQueriesResponse(unittest.TestCase):
-    """ListQueriesResponse unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testListQueriesResponse(self):
-        """Test ListQueriesResponse"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = ListQueriesResponse()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_list_queries_response_init():
+    model = ListQueriesResponse(
+        
+    )

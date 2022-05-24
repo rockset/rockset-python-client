@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.kafka_v3_security_config import KafkaV3SecurityConfig
+from rockset.models import *
 
 
-class TestKafkaV3SecurityConfig(unittest.TestCase):
-    """KafkaV3SecurityConfig unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testKafkaV3SecurityConfig(self):
-        """Test KafkaV3SecurityConfig"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = KafkaV3SecurityConfig()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_kafka_v3_security_config_init():
+    model = KafkaV3SecurityConfig(
+        
+    )

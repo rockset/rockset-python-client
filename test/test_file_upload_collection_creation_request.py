@@ -9,40 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.event_time_info import EventTimeInfo
-from rockset.model.field_mapping_query import FieldMappingQuery
-from rockset.model.field_mapping_v2 import FieldMappingV2
-from rockset.model.field_partition import FieldPartition
-from rockset.model.file_upload_source_wrapper import FileUploadSourceWrapper
-
-globals()["EventTimeInfo"] = EventTimeInfo
-globals()["FieldMappingQuery"] = FieldMappingQuery
-globals()["FieldMappingV2"] = FieldMappingV2
-globals()["FieldPartition"] = FieldPartition
-globals()["FileUploadSourceWrapper"] = FileUploadSourceWrapper
-from rockset.model.file_upload_collection_creation_request import (
-    FileUploadCollectionCreationRequest,
-)
+from rockset.models import *
 
 
-class TestFileUploadCollectionCreationRequest(unittest.TestCase):
-    """FileUploadCollectionCreationRequest unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testFileUploadCollectionCreationRequest(self):
-        """Test FileUploadCollectionCreationRequest"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = FileUploadCollectionCreationRequest()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_file_upload_collection_creation_request_init():
+    model = FileUploadCollectionCreationRequest(
+        name="global-transactions",
+    )

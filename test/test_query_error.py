@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.query_error import QueryError
+from rockset.models import *
 
 
-class TestQueryError(unittest.TestCase):
-    """QueryError unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testQueryError(self):
-        """Test QueryError"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = QueryError()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_query_error_init():
+    model = QueryError(
+        
+    )

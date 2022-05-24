@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.gcp_service_account import GcpServiceAccount
+from rockset.models import *
 
 
-class TestGcpServiceAccount(unittest.TestCase):
-    """GcpServiceAccount unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testGcpServiceAccount(self):
-        """Test GcpServiceAccount"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = GcpServiceAccount()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_gcp_service_account_init():
+    model = GcpServiceAccount(
+        service_account_key_file_json="string_example",
+    )

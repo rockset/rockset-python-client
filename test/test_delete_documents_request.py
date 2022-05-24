@@ -9,30 +9,14 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.delete_documents_request_data import DeleteDocumentsRequestData
-
-globals()["DeleteDocumentsRequestData"] = DeleteDocumentsRequestData
-from rockset.model.delete_documents_request import DeleteDocumentsRequest
+from rockset.models import *
 
 
-class TestDeleteDocumentsRequest(unittest.TestCase):
-    """DeleteDocumentsRequest unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testDeleteDocumentsRequest(self):
-        """Test DeleteDocumentsRequest"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = DeleteDocumentsRequest()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_delete_documents_request_init():
+    model = DeleteDocumentsRequest(
+        data=[
+        DeleteDocumentsRequestData(
+            id="2cd61e3b",
+        ),
+    ],
+    )

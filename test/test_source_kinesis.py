@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.source_kinesis import SourceKinesis
+from rockset.models import *
 
 
-class TestSourceKinesis(unittest.TestCase):
-    """SourceKinesis unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testSourceKinesis(self):
-        """Test SourceKinesis"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = SourceKinesis()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_source_kinesis_init():
+    model = SourceKinesis(
+        stream_name="click_stream",
+    )

@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.privilege import Privilege
-
-globals()["Privilege"] = Privilege
-from rockset.model.create_role_request import CreateRoleRequest
+from rockset.models import *
 
 
-class TestCreateRoleRequest(unittest.TestCase):
-    """CreateRoleRequest unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testCreateRoleRequest(self):
-        """Test CreateRoleRequest"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = CreateRoleRequest()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_create_role_request_init():
+    model = CreateRoleRequest(
+        
+    )

@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.workspace import Workspace
-
-globals()["Workspace"] = Workspace
-from rockset.model.delete_workspace_response import DeleteWorkspaceResponse
+from rockset.models import *
 
 
-class TestDeleteWorkspaceResponse(unittest.TestCase):
-    """DeleteWorkspaceResponse unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testDeleteWorkspaceResponse(self):
-        """Test DeleteWorkspaceResponse"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = DeleteWorkspaceResponse()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_delete_workspace_response_init():
+    model = DeleteWorkspaceResponse(
+        
+    )

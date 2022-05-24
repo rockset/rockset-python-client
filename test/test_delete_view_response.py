@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.view import View
-
-globals()["View"] = View
-from rockset.model.delete_view_response import DeleteViewResponse
+from rockset.models import *
 
 
-class TestDeleteViewResponse(unittest.TestCase):
-    """DeleteViewResponse unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testDeleteViewResponse(self):
-        """Test DeleteViewResponse"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = DeleteViewResponse()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_delete_view_response_init():
+    model = DeleteViewResponse(
+        
+    )

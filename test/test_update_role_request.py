@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.privilege import Privilege
-
-globals()["Privilege"] = Privilege
-from rockset.model.update_role_request import UpdateRoleRequest
+from rockset.models import *
 
 
-class TestUpdateRoleRequest(unittest.TestCase):
-    """UpdateRoleRequest unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testUpdateRoleRequest(self):
-        """Test UpdateRoleRequest"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = UpdateRoleRequest()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_update_role_request_init():
+    model = UpdateRoleRequest(
+        
+    )

@@ -10,7 +10,7 @@ Name | Type | Description | Notes
 **entities** | **[str]** | list of entities referenced by view. An entity can be a view, alias or collection | [optional] 
 **modified_at** | **str** | ISO-8601 date | [optional] 
 **name** | **str** | name of the view | [optional] 
-**owner_email** | **str** | email of the owner | [optional] 
+**owner_email** | **str** | email of the owner, note: deprecated and will always be null | [optional] 
 **path** | **str** |  | [optional] 
 **query_sql** | **str** | SQL query of the view | [optional] 
 **state** | **str** | state of the view | [optional] 

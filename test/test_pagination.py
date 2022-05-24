@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.pagination import Pagination
+from rockset.models import *
 
 
-class TestPagination(unittest.TestCase):
-    """Pagination unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testPagination(self):
-        """Test Pagination"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = Pagination()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_pagination_init():
+    model = Pagination(
+        
+    )

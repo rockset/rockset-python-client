@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.query_response_stats import QueryResponseStats
+from rockset.models import *
 
 
-class TestQueryResponseStats(unittest.TestCase):
-    """QueryResponseStats unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testQueryResponseStats(self):
-        """Test QueryResponseStats"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = QueryResponseStats()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_query_response_stats_init():
+    model = QueryResponseStats(
+        
+    )

@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.query_info import QueryInfo
-
-globals()["QueryInfo"] = QueryInfo
-from rockset.model.cancel_query_response import CancelQueryResponse
+from rockset.models import *
 
 
-class TestCancelQueryResponse(unittest.TestCase):
-    """CancelQueryResponse unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testCancelQueryResponse(self):
-        """Test CancelQueryResponse"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = CancelQueryResponse()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_cancel_query_response_init():
+    model = CancelQueryResponse(
+        
+    )

@@ -9,32 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.query_lambda_version import QueryLambdaVersion
-
-globals()["QueryLambdaVersion"] = QueryLambdaVersion
-from rockset.model.list_query_lambda_versions_response import (
-    ListQueryLambdaVersionsResponse,
-)
+from rockset.models import *
 
 
-class TestListQueryLambdaVersionsResponse(unittest.TestCase):
-    """ListQueryLambdaVersionsResponse unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testListQueryLambdaVersionsResponse(self):
-        """Test ListQueryLambdaVersionsResponse"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = ListQueryLambdaVersionsResponse()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_list_query_lambda_versions_response_init():
+    model = ListQueryLambdaVersionsResponse(
+        
+    )

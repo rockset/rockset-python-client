@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.query_lambda_stats import QueryLambdaStats
+from rockset.models import *
 
 
-class TestQueryLambdaStats(unittest.TestCase):
-    """QueryLambdaStats unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testQueryLambdaStats(self):
-        """Test QueryLambdaStats"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = QueryLambdaStats()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_query_lambda_stats_init():
+    model = QueryLambdaStats(
+        
+    )

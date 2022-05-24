@@ -19,9 +19,9 @@ def test_create_alias(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Aliases.create_alias(
-                collections=["commons.foo", "prod.demo"],
-                name="aliasName",
-            )
+    collections=["commons.foo","prod.demo"],
+    name="aliasName",
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -31,8 +31,8 @@ def test_delete_alias(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Aliases.delete_alias(
-                alias="alias_example",
-            )
+    alias="alias_example",
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -42,8 +42,8 @@ def test_get_alias(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Aliases.get_alias(
-                alias="alias_example",
-            )
+    alias="alias_example",
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -52,7 +52,8 @@ def test_list_aliases(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Aliases.list_aliases()
+            rs.Aliases.list_aliases(
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -62,9 +63,9 @@ def test_update_alias(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Aliases.update_alias(
-                alias="alias_example",
-                collections=["commons.foo", "prod.demo"],
-            )
+    alias="alias_example",
+    collections=["commons.foo","prod.demo"],
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -73,6 +74,8 @@ def test_workspace_aliases(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Aliases.workspace_aliases()
+            rs.Aliases.workspace_aliases(
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
+

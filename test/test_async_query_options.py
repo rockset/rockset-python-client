@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.async_query_options import AsyncQueryOptions
+from rockset.models import *
 
 
-class TestAsyncQueryOptions(unittest.TestCase):
-    """AsyncQueryOptions unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testAsyncQueryOptions(self):
-        """Test AsyncQueryOptions"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = AsyncQueryOptions()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_async_query_options_init():
+    model = AsyncQueryOptions(
+        
+    )

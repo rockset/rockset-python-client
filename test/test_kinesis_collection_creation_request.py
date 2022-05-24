@@ -9,40 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.event_time_info import EventTimeInfo
-from rockset.model.field_mapping_query import FieldMappingQuery
-from rockset.model.field_mapping_v2 import FieldMappingV2
-from rockset.model.field_partition import FieldPartition
-from rockset.model.kinesis_source_wrapper import KinesisSourceWrapper
-
-globals()["EventTimeInfo"] = EventTimeInfo
-globals()["FieldMappingQuery"] = FieldMappingQuery
-globals()["FieldMappingV2"] = FieldMappingV2
-globals()["FieldPartition"] = FieldPartition
-globals()["KinesisSourceWrapper"] = KinesisSourceWrapper
-from rockset.model.kinesis_collection_creation_request import (
-    KinesisCollectionCreationRequest,
-)
+from rockset.models import *
 
 
-class TestKinesisCollectionCreationRequest(unittest.TestCase):
-    """KinesisCollectionCreationRequest unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testKinesisCollectionCreationRequest(self):
-        """Test KinesisCollectionCreationRequest"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = KinesisCollectionCreationRequest()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_kinesis_collection_creation_request_init():
+    model = KinesisCollectionCreationRequest(
+        name="global-transactions",
+    )

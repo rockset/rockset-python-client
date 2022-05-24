@@ -9,36 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.format_params import FormatParams
-from rockset.model.source_azure_blob_storage import SourceAzureBlobStorage
-from rockset.model.status import Status
-
-globals()["FormatParams"] = FormatParams
-globals()["SourceAzureBlobStorage"] = SourceAzureBlobStorage
-globals()["Status"] = Status
-from rockset.model.azure_blob_storage_source_wrapper import (
-    AzureBlobStorageSourceWrapper,
-)
+from rockset.models import *
 
 
-class TestAzureBlobStorageSourceWrapper(unittest.TestCase):
-    """AzureBlobStorageSourceWrapper unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testAzureBlobStorageSourceWrapper(self):
-        """Test AzureBlobStorageSourceWrapper"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = AzureBlobStorageSourceWrapper()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_azure_blob_storage_source_wrapper_init():
+    model = AzureBlobStorageSourceWrapper(
+        
+    )

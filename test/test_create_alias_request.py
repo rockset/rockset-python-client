@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.create_alias_request import CreateAliasRequest
+from rockset.models import *
 
 
-class TestCreateAliasRequest(unittest.TestCase):
-    """CreateAliasRequest unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testCreateAliasRequest(self):
-        """Test CreateAliasRequest"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = CreateAliasRequest()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_create_alias_request_init():
+    model = CreateAliasRequest(
+        collections=["commons.foo","prod.demo"],name="aliasName",
+    )

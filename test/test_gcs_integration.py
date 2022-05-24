@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.gcp_service_account import GcpServiceAccount
-
-globals()["GcpServiceAccount"] = GcpServiceAccount
-from rockset.model.gcs_integration import GcsIntegration
+from rockset.models import *
 
 
-class TestGcsIntegration(unittest.TestCase):
-    """GcsIntegration unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testGcsIntegration(self):
-        """Test GcsIntegration"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = GcsIntegration()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_gcs_integration_init():
+    model = GcsIntegration(
+        
+    )

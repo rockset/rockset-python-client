@@ -9,32 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.status_dynamo_db import StatusDynamoDb
-from rockset.model.status_dynamo_db_v2 import StatusDynamoDbV2
-
-globals()["StatusDynamoDb"] = StatusDynamoDb
-globals()["StatusDynamoDbV2"] = StatusDynamoDbV2
-from rockset.model.source_dynamo_db import SourceDynamoDb
+from rockset.models import *
 
 
-class TestSourceDynamoDb(unittest.TestCase):
-    """SourceDynamoDb unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testSourceDynamoDb(self):
-        """Test SourceDynamoDb"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = SourceDynamoDb()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_source_dynamo_db_init():
+    model = SourceDynamoDb(
+        table_name="dynamodb_table_name",
+    )

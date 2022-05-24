@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.validate_query_response import ValidateQueryResponse
+from rockset.models import *
 
 
-class TestValidateQueryResponse(unittest.TestCase):
-    """ValidateQueryResponse unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testValidateQueryResponse(self):
-        """Test ValidateQueryResponse"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = ValidateQueryResponse()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_validate_query_response_init():
+    model = ValidateQueryResponse(
+        collections=["commons.foo"],parameters=["foo"],
+    )

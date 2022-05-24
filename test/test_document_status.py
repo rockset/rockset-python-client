@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.error_model import ErrorModel
-
-globals()["ErrorModel"] = ErrorModel
-from rockset.model.document_status import DocumentStatus
+from rockset.models import *
 
 
-class TestDocumentStatus(unittest.TestCase):
-    """DocumentStatus unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testDocumentStatus(self):
-        """Test DocumentStatus"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = DocumentStatus()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_document_status_init():
+    model = DocumentStatus(
+        
+    )

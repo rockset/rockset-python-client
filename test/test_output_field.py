@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.sql_expression import SqlExpression
-
-globals()["SqlExpression"] = SqlExpression
-from rockset.model.output_field import OutputField
+from rockset.models import *
 
 
-class TestOutputField(unittest.TestCase):
-    """OutputField unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testOutputField(self):
-        """Test OutputField"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = OutputField()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_output_field_init():
+    model = OutputField(
+        
+    )

@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.query_lambda import QueryLambda
-
-globals()["QueryLambda"] = QueryLambda
-from rockset.model.delete_query_lambda_response import DeleteQueryLambdaResponse
+from rockset.models import *
 
 
-class TestDeleteQueryLambdaResponse(unittest.TestCase):
-    """DeleteQueryLambdaResponse unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testDeleteQueryLambdaResponse(self):
-        """Test DeleteQueryLambdaResponse"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = DeleteQueryLambdaResponse()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_delete_query_lambda_response_init():
+    model = DeleteQueryLambdaResponse(
+        
+    )

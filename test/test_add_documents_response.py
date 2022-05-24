@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.document_status import DocumentStatus
-
-globals()["DocumentStatus"] = DocumentStatus
-from rockset.model.add_documents_response import AddDocumentsResponse
+from rockset.models import *
 
 
-class TestAddDocumentsResponse(unittest.TestCase):
-    """AddDocumentsResponse unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testAddDocumentsResponse(self):
-        """Test AddDocumentsResponse"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = AddDocumentsResponse()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_add_documents_response_init():
+    model = AddDocumentsResponse(
+        
+    )

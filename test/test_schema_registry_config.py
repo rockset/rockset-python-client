@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.schema_registry_config import SchemaRegistryConfig
+from rockset.models import *
 
 
-class TestSchemaRegistryConfig(unittest.TestCase):
-    """SchemaRegistryConfig unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testSchemaRegistryConfig(self):
-        """Test SchemaRegistryConfig"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = SchemaRegistryConfig()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_schema_registry_config_init():
+    model = SchemaRegistryConfig(
+        
+    )

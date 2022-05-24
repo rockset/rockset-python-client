@@ -9,32 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.aws_access_key import AwsAccessKey
-from rockset.model.aws_role import AwsRole
-
-globals()["AwsAccessKey"] = AwsAccessKey
-globals()["AwsRole"] = AwsRole
-from rockset.model.dynamodb_integration import DynamodbIntegration
+from rockset.models import *
 
 
-class TestDynamodbIntegration(unittest.TestCase):
-    """DynamodbIntegration unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testDynamodbIntegration(self):
-        """Test DynamodbIntegration"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = DynamodbIntegration()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_dynamodb_integration_init():
+    model = DynamodbIntegration(
+        
+    )

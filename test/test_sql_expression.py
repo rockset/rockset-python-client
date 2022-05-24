@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.sql_expression import SqlExpression
+from rockset.models import *
 
 
-class TestSqlExpression(unittest.TestCase):
-    """SqlExpression unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testSqlExpression(self):
-        """Test SqlExpression"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = SqlExpression()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_sql_expression_init():
+    model = SqlExpression(
+        
+    )

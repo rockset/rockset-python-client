@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.alias import Alias
+from rockset.models import *
 
 
-class TestAlias(unittest.TestCase):
-    """Alias unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testAlias(self):
-        """Test Alias"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = Alias()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_alias_init():
+    model = Alias(
+        
+    )

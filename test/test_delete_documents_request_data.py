@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.delete_documents_request_data import DeleteDocumentsRequestData
+from rockset.models import *
 
 
-class TestDeleteDocumentsRequestData(unittest.TestCase):
-    """DeleteDocumentsRequestData unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testDeleteDocumentsRequestData(self):
-        """Test DeleteDocumentsRequestData"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = DeleteDocumentsRequestData()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_delete_documents_request_data_init():
+    model = DeleteDocumentsRequestData(
+        id="2cd61e3b",
+    )

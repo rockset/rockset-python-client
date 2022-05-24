@@ -9,38 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.event_time_info import EventTimeInfo
-from rockset.model.field_mapping_query import FieldMappingQuery
-from rockset.model.field_mapping_v2 import FieldMappingV2
-from rockset.model.field_partition import FieldPartition
-from rockset.model.gcs_source_wrapper import GcsSourceWrapper
-
-globals()["EventTimeInfo"] = EventTimeInfo
-globals()["FieldMappingQuery"] = FieldMappingQuery
-globals()["FieldMappingV2"] = FieldMappingV2
-globals()["FieldPartition"] = FieldPartition
-globals()["GcsSourceWrapper"] = GcsSourceWrapper
-from rockset.model.gcs_collection_creation_request import GcsCollectionCreationRequest
+from rockset.models import *
 
 
-class TestGcsCollectionCreationRequest(unittest.TestCase):
-    """GcsCollectionCreationRequest unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testGcsCollectionCreationRequest(self):
-        """Test GcsCollectionCreationRequest"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = GcsCollectionCreationRequest()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_gcs_collection_creation_request_init():
+    model = GcsCollectionCreationRequest(
+        name="global-transactions",
+    )

@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.update_view_request import UpdateViewRequest
+from rockset.models import *
 
 
-class TestUpdateViewRequest(unittest.TestCase):
-    """UpdateViewRequest unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testUpdateViewRequest(self):
-        """Test UpdateViewRequest"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = UpdateViewRequest()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_update_view_request_init():
+    model = UpdateViewRequest(
+        query="SELECT * FROM foo",
+    )

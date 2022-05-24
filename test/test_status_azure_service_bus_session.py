@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.status_azure_service_bus_session import StatusAzureServiceBusSession
+from rockset.models import *
 
 
-class TestStatusAzureServiceBusSession(unittest.TestCase):
-    """StatusAzureServiceBusSession unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testStatusAzureServiceBusSession(self):
-        """Test StatusAzureServiceBusSession"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = StatusAzureServiceBusSession()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_status_azure_service_bus_session_init():
+    model = StatusAzureServiceBusSession(
+        
+    )

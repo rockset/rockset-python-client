@@ -9,32 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.input_field import InputField
-from rockset.model.output_field import OutputField
-
-globals()["InputField"] = InputField
-globals()["OutputField"] = OutputField
-from rockset.model.field_mapping_v2 import FieldMappingV2
+from rockset.models import *
 
 
-class TestFieldMappingV2(unittest.TestCase):
-    """FieldMappingV2 unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testFieldMappingV2(self):
-        """Test FieldMappingV2"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = FieldMappingV2()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_field_mapping_v2_init():
+    model = FieldMappingV2(
+        
+    )

@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.s3_integration import S3Integration
-
-globals()["S3Integration"] = S3Integration
-from rockset.model.s3_integration_creation_request import S3IntegrationCreationRequest
+from rockset.models import *
 
 
-class TestS3IntegrationCreationRequest(unittest.TestCase):
-    """S3IntegrationCreationRequest unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testS3IntegrationCreationRequest(self):
-        """Test S3IntegrationCreationRequest"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = S3IntegrationCreationRequest()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_s3_integration_creation_request_init():
+    model = S3IntegrationCreationRequest(
+        name="event-logs",
+    )

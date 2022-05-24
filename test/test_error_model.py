@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.error_model import ErrorModel
+from rockset.models import *
 
 
-class TestErrorModel(unittest.TestCase):
-    """ErrorModel unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testErrorModel(self):
-        """Test ErrorModel"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = ErrorModel()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_error_model_init():
+    model = ErrorModel(
+        
+    )

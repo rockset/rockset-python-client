@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.update_virtual_instance_request import UpdateVirtualInstanceRequest
+from rockset.models import *
 
 
-class TestUpdateVirtualInstanceRequest(unittest.TestCase):
-    """UpdateVirtualInstanceRequest unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testUpdateVirtualInstanceRequest(self):
-        """Test UpdateVirtualInstanceRequest"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = UpdateVirtualInstanceRequest()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_update_virtual_instance_request_init():
+    model = UpdateVirtualInstanceRequest(
+        
+    )

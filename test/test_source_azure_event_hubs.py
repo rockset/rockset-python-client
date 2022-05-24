@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.status_azure_event_hubs import StatusAzureEventHubs
-
-globals()["StatusAzureEventHubs"] = StatusAzureEventHubs
-from rockset.model.source_azure_event_hubs import SourceAzureEventHubs
+from rockset.models import *
 
 
-class TestSourceAzureEventHubs(unittest.TestCase):
-    """SourceAzureEventHubs unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testSourceAzureEventHubs(self):
-        """Test SourceAzureEventHubs"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = SourceAzureEventHubs()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_source_azure_event_hubs_init():
+    model = SourceAzureEventHubs(
+        
+    )

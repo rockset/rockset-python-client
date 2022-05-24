@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.create_query_lambda_tag_request import CreateQueryLambdaTagRequest
+from rockset.models import *
 
 
-class TestCreateQueryLambdaTagRequest(unittest.TestCase):
-    """CreateQueryLambdaTagRequest unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testCreateQueryLambdaTagRequest(self):
-        """Test CreateQueryLambdaTagRequest"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = CreateQueryLambdaTagRequest()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_create_query_lambda_tag_request_init():
+    model = CreateQueryLambdaTagRequest(
+        tag_name="production",version="123ABC",
+    )

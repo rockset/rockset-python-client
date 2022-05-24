@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.add_documents_request import AddDocumentsRequest
+from rockset.models import *
 
 
-class TestAddDocumentsRequest(unittest.TestCase):
-    """AddDocumentsRequest unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testAddDocumentsRequest(self):
-        """Test AddDocumentsRequest"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = AddDocumentsRequest()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_add_documents_request_init():
+    model = AddDocumentsRequest(
+        data=[{"field":"value"}],
+    )

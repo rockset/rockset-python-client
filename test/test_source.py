@@ -9,32 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.format_params import FormatParams
-from rockset.model.status import Status
-
-globals()["FormatParams"] = FormatParams
-globals()["Status"] = Status
-from rockset.model.source import Source
+from rockset.models import *
 
 
-class TestSource(unittest.TestCase):
-    """Source unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testSource(self):
-        """Test Source"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = Source()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_source_init():
+    model = Source(
+        
+    )

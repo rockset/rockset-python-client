@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.alias import Alias
-
-globals()["Alias"] = Alias
-from rockset.model.delete_alias_response import DeleteAliasResponse
+from rockset.models import *
 
 
-class TestDeleteAliasResponse(unittest.TestCase):
-    """DeleteAliasResponse unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testDeleteAliasResponse(self):
-        """Test DeleteAliasResponse"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = DeleteAliasResponse()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_delete_alias_response_init():
+    model = DeleteAliasResponse(
+        
+    )

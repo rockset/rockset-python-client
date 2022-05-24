@@ -9,34 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.format_params import FormatParams
-from rockset.model.source_mongo_db import SourceMongoDb
-from rockset.model.status import Status
-
-globals()["FormatParams"] = FormatParams
-globals()["SourceMongoDb"] = SourceMongoDb
-globals()["Status"] = Status
-from rockset.model.mongodb_source_wrapper import MongodbSourceWrapper
+from rockset.models import *
 
 
-class TestMongodbSourceWrapper(unittest.TestCase):
-    """MongodbSourceWrapper unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testMongodbSourceWrapper(self):
-        """Test MongodbSourceWrapper"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = MongodbSourceWrapper()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_mongodb_source_wrapper_init():
+    model = MongodbSourceWrapper(
+        
+    )

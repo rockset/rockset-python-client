@@ -9,32 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.mongo_db_integration import MongoDbIntegration
-
-globals()["MongoDbIntegration"] = MongoDbIntegration
-from rockset.model.mongodb_integration_creation_request import (
-    MongodbIntegrationCreationRequest,
-)
+from rockset.models import *
 
 
-class TestMongodbIntegrationCreationRequest(unittest.TestCase):
-    """MongodbIntegrationCreationRequest unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testMongodbIntegrationCreationRequest(self):
-        """Test MongodbIntegrationCreationRequest"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = MongodbIntegrationCreationRequest()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_mongodb_integration_creation_request_init():
+    model = MongodbIntegrationCreationRequest(
+        name="event-logs",
+    )

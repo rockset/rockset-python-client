@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.status_kafka_partition import StatusKafkaPartition
+from rockset.models import *
 
 
-class TestStatusKafkaPartition(unittest.TestCase):
-    """StatusKafkaPartition unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testStatusKafkaPartition(self):
-        """Test StatusKafkaPartition"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = StatusKafkaPartition()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_status_kafka_partition_init():
+    model = StatusKafkaPartition(
+        
+    )

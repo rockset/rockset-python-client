@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.cluster import Cluster
+from rockset.models import *
 
 
-class TestCluster(unittest.TestCase):
-    """Cluster unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testCluster(self):
-        """Test Cluster"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = Cluster()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_cluster_init():
+    model = Cluster(
+        
+    )

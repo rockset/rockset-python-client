@@ -9,34 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.format_params import FormatParams
-from rockset.model.source_s3 import SourceS3
-from rockset.model.status import Status
-
-globals()["FormatParams"] = FormatParams
-globals()["SourceS3"] = SourceS3
-globals()["Status"] = Status
-from rockset.model.s3_source_wrapper import S3SourceWrapper
+from rockset.models import *
 
 
-class TestS3SourceWrapper(unittest.TestCase):
-    """S3SourceWrapper unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testS3SourceWrapper(self):
-        """Test S3SourceWrapper"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = S3SourceWrapper()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_s3_source_wrapper_init():
+    model = S3SourceWrapper(
+        
+    )

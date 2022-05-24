@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.status_dynamo_db_v2 import StatusDynamoDbV2
+from rockset.models import *
 
 
-class TestStatusDynamoDbV2(unittest.TestCase):
-    """StatusDynamoDbV2 unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testStatusDynamoDbV2(self):
-        """Test StatusDynamoDbV2"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = StatusDynamoDbV2()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_status_dynamo_db_v2_init():
+    model = StatusDynamoDbV2(
+        
+    )

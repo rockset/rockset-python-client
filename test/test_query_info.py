@@ -9,34 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.pagination import Pagination
-from rockset.model.query_error import QueryError
-from rockset.model.stats import Stats
-
-globals()["Pagination"] = Pagination
-globals()["QueryError"] = QueryError
-globals()["Stats"] = Stats
-from rockset.model.query_info import QueryInfo
+from rockset.models import *
 
 
-class TestQueryInfo(unittest.TestCase):
-    """QueryInfo unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testQueryInfo(self):
-        """Test QueryInfo"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = QueryInfo()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_query_info_init():
+    model = QueryInfo(
+        
+    )

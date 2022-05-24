@@ -9,32 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.kinesis_integration import KinesisIntegration
-
-globals()["KinesisIntegration"] = KinesisIntegration
-from rockset.model.kinesis_integration_creation_request import (
-    KinesisIntegrationCreationRequest,
-)
+from rockset.models import *
 
 
-class TestKinesisIntegrationCreationRequest(unittest.TestCase):
-    """KinesisIntegrationCreationRequest unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testKinesisIntegrationCreationRequest(self):
-        """Test KinesisIntegrationCreationRequest"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = KinesisIntegrationCreationRequest()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_kinesis_integration_creation_request_init():
+    model = KinesisIntegrationCreationRequest(
+        name="event-logs",
+    )

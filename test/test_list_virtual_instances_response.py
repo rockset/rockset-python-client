@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.virtual_instance import VirtualInstance
-
-globals()["VirtualInstance"] = VirtualInstance
-from rockset.model.list_virtual_instances_response import ListVirtualInstancesResponse
+from rockset.models import *
 
 
-class TestListVirtualInstancesResponse(unittest.TestCase):
-    """ListVirtualInstancesResponse unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testListVirtualInstancesResponse(self):
-        """Test ListVirtualInstancesResponse"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = ListVirtualInstancesResponse()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_list_virtual_instances_response_init():
+    model = ListVirtualInstancesResponse(
+        
+    )

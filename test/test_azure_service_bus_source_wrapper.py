@@ -9,34 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.format_params import FormatParams
-from rockset.model.source_azure_service_bus import SourceAzureServiceBus
-from rockset.model.status import Status
-
-globals()["FormatParams"] = FormatParams
-globals()["SourceAzureServiceBus"] = SourceAzureServiceBus
-globals()["Status"] = Status
-from rockset.model.azure_service_bus_source_wrapper import AzureServiceBusSourceWrapper
+from rockset.models import *
 
 
-class TestAzureServiceBusSourceWrapper(unittest.TestCase):
-    """AzureServiceBusSourceWrapper unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testAzureServiceBusSourceWrapper(self):
-        """Test AzureServiceBusSourceWrapper"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = AzureServiceBusSourceWrapper()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_azure_service_bus_source_wrapper_init():
+    model = AzureServiceBusSourceWrapper(
+        
+    )

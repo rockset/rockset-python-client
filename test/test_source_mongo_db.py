@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.status_mongo_db import StatusMongoDb
-
-globals()["StatusMongoDb"] = StatusMongoDb
-from rockset.model.source_mongo_db import SourceMongoDb
+from rockset.models import *
 
 
-class TestSourceMongoDb(unittest.TestCase):
-    """SourceMongoDb unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testSourceMongoDb(self):
-        """Test SourceMongoDb"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = SourceMongoDb()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_source_mongo_db_init():
+    model = SourceMongoDb(
+        collection_name="my_collection",database_name="my_database",
+    )

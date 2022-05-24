@@ -9,42 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.azure_blob_storage_source_wrapper import (
-    AzureBlobStorageSourceWrapper,
-)
-from rockset.model.event_time_info import EventTimeInfo
-from rockset.model.field_mapping_query import FieldMappingQuery
-from rockset.model.field_mapping_v2 import FieldMappingV2
-from rockset.model.field_partition import FieldPartition
-
-globals()["AzureBlobStorageSourceWrapper"] = AzureBlobStorageSourceWrapper
-globals()["EventTimeInfo"] = EventTimeInfo
-globals()["FieldMappingQuery"] = FieldMappingQuery
-globals()["FieldMappingV2"] = FieldMappingV2
-globals()["FieldPartition"] = FieldPartition
-from rockset.model.azure_blob_storage_collection_creation_request import (
-    AzureBlobStorageCollectionCreationRequest,
-)
+from rockset.models import *
 
 
-class TestAzureBlobStorageCollectionCreationRequest(unittest.TestCase):
-    """AzureBlobStorageCollectionCreationRequest unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testAzureBlobStorageCollectionCreationRequest(self):
-        """Test AzureBlobStorageCollectionCreationRequest"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = AzureBlobStorageCollectionCreationRequest()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_azure_blob_storage_collection_creation_request_init():
+    model = AzureBlobStorageCollectionCreationRequest(
+        name="global-transactions",
+    )

@@ -9,50 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.azure_blob_storage_integration import AzureBlobStorageIntegration
-from rockset.model.azure_event_hubs_integration import AzureEventHubsIntegration
-from rockset.model.azure_service_bus_integration import AzureServiceBusIntegration
-from rockset.model.collection import Collection
-from rockset.model.dynamodb_integration import DynamodbIntegration
-from rockset.model.gcs_integration import GcsIntegration
-from rockset.model.kafka_integration import KafkaIntegration
-from rockset.model.kinesis_integration import KinesisIntegration
-from rockset.model.mongo_db_integration import MongoDbIntegration
-from rockset.model.s3_integration import S3Integration
-from rockset.model.segment_integration import SegmentIntegration
-
-globals()["AzureBlobStorageIntegration"] = AzureBlobStorageIntegration
-globals()["AzureEventHubsIntegration"] = AzureEventHubsIntegration
-globals()["AzureServiceBusIntegration"] = AzureServiceBusIntegration
-globals()["Collection"] = Collection
-globals()["DynamodbIntegration"] = DynamodbIntegration
-globals()["GcsIntegration"] = GcsIntegration
-globals()["KafkaIntegration"] = KafkaIntegration
-globals()["KinesisIntegration"] = KinesisIntegration
-globals()["MongoDbIntegration"] = MongoDbIntegration
-globals()["S3Integration"] = S3Integration
-globals()["SegmentIntegration"] = SegmentIntegration
-from rockset.model.integration import Integration
+from rockset.models import *
 
 
-class TestIntegration(unittest.TestCase):
-    """Integration unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testIntegration(self):
-        """Test Integration"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = Integration()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_integration_init():
+    model = Integration(
+        created_by="hello@rockset.com",name="event-logs",
+    )

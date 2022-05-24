@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.integration import Integration
-
-globals()["Integration"] = Integration
-from rockset.model.delete_integration_response import DeleteIntegrationResponse
+from rockset.models import *
 
 
-class TestDeleteIntegrationResponse(unittest.TestCase):
-    """DeleteIntegrationResponse unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testDeleteIntegrationResponse(self):
-        """Test DeleteIntegrationResponse"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = DeleteIntegrationResponse()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_delete_integration_response_init():
+    model = DeleteIntegrationResponse(
+        
+    )

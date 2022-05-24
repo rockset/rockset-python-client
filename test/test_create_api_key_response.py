@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.api_key import ApiKey
-
-globals()["ApiKey"] = ApiKey
-from rockset.model.create_api_key_response import CreateApiKeyResponse
+from rockset.models import *
 
 
-class TestCreateApiKeyResponse(unittest.TestCase):
-    """CreateApiKeyResponse unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testCreateApiKeyResponse(self):
-        """Test CreateApiKeyResponse"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = CreateApiKeyResponse()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_create_api_key_response_init():
+    model = CreateApiKeyResponse(
+        
+    )

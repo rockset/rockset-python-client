@@ -1,0 +1,14 @@
+{{>partial_header}}
+
+import sys
+{{#models}}
+{{#model}}
+from {{modelPackage}}s import *
+
+
+def test_{{classFilename}}_init():
+    {{classname}}(
+        {{#requiredVars}}{{^isReadOnly}}{{name}}={{{example}}},{{/isReadOnly}}{{/requiredVars}}
+    )
+{{/model}}
+{{/models}}

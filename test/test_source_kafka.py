@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.status_kafka import StatusKafka
-
-globals()["StatusKafka"] = StatusKafka
-from rockset.model.source_kafka import SourceKafka
+from rockset.models import *
 
 
-class TestSourceKafka(unittest.TestCase):
-    """SourceKafka unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testSourceKafka(self):
-        """Test SourceKafka"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = SourceKafka()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_source_kafka_init():
+    model = SourceKafka(
+        kafka_topic_name="example-topic",
+    )

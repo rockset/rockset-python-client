@@ -9,32 +9,23 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.async_query_options import AsyncQueryOptions
-from rockset.model.query_request_sql import QueryRequestSql
-
-globals()["AsyncQueryOptions"] = AsyncQueryOptions
-globals()["QueryRequestSql"] = QueryRequestSql
-from rockset.model.query_request import QueryRequest
+from rockset.models import *
 
 
-class TestQueryRequest(unittest.TestCase):
-    """QueryRequest unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testQueryRequest(self):
-        """Test QueryRequest"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = QueryRequest()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_query_request_init():
+    model = QueryRequest(
+        sql=QueryRequestSql(
+        default_row_limit=1,
+        generate_warnings=True,
+        initial_paginate_response_doc_count=1,
+        paginate=True,
+        parameters=[
+            QueryParameter(
+                name="_id",
+                type="string",
+                value="85beb391",
+            ),
+        ],
+        query="SELECT * FROM foo where _id = :_id",
+    ),
+    )

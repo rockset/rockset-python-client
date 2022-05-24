@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.azure_event_hubs_integration import AzureEventHubsIntegration
+from rockset.models import *
 
 
-class TestAzureEventHubsIntegration(unittest.TestCase):
-    """AzureEventHubsIntegration unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testAzureEventHubsIntegration(self):
-        """Test AzureEventHubsIntegration"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = AzureEventHubsIntegration()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_azure_event_hubs_integration_init():
+    model = AzureEventHubsIntegration(
+        
+    )

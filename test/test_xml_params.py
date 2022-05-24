@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.xml_params import XmlParams
+from rockset.models import *
 
 
-class TestXmlParams(unittest.TestCase):
-    """XmlParams unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testXmlParams(self):
-        """Test XmlParams"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = XmlParams()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_xml_params_init():
+    model = XmlParams(
+        
+    )

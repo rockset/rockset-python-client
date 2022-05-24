@@ -9,34 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.format_params import FormatParams
-from rockset.model.source_kafka import SourceKafka
-from rockset.model.status import Status
-
-globals()["FormatParams"] = FormatParams
-globals()["SourceKafka"] = SourceKafka
-globals()["Status"] = Status
-from rockset.model.kafka_source_wrapper import KafkaSourceWrapper
+from rockset.models import *
 
 
-class TestKafkaSourceWrapper(unittest.TestCase):
-    """KafkaSourceWrapper unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testKafkaSourceWrapper(self):
-        """Test KafkaSourceWrapper"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = KafkaSourceWrapper()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_kafka_source_wrapper_init():
+    model = KafkaSourceWrapper(
+        
+    )

@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.query_lambda_tag import QueryLambdaTag
-
-globals()["QueryLambdaTag"] = QueryLambdaTag
-from rockset.model.query_lambda_tag_response import QueryLambdaTagResponse
+from rockset.models import *
 
 
-class TestQueryLambdaTagResponse(unittest.TestCase):
-    """QueryLambdaTagResponse unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testQueryLambdaTagResponse(self):
-        """Test QueryLambdaTagResponse"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = QueryLambdaTagResponse()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_query_lambda_tag_response_init():
+    model = QueryLambdaTagResponse(
+        
+    )

@@ -9,34 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.format_params import FormatParams
-from rockset.model.source_kinesis import SourceKinesis
-from rockset.model.status import Status
-
-globals()["FormatParams"] = FormatParams
-globals()["SourceKinesis"] = SourceKinesis
-globals()["Status"] = Status
-from rockset.model.kinesis_source_wrapper import KinesisSourceWrapper
+from rockset.models import *
 
 
-class TestKinesisSourceWrapper(unittest.TestCase):
-    """KinesisSourceWrapper unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testKinesisSourceWrapper(self):
-        """Test KinesisSourceWrapper"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = KinesisSourceWrapper()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_kinesis_source_wrapper_init():
+    model = KinesisSourceWrapper(
+        
+    )

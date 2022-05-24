@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.status_azure_service_bus import StatusAzureServiceBus
-
-globals()["StatusAzureServiceBus"] = StatusAzureServiceBus
-from rockset.model.source_azure_service_bus import SourceAzureServiceBus
+from rockset.models import *
 
 
-class TestSourceAzureServiceBus(unittest.TestCase):
-    """SourceAzureServiceBus unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testSourceAzureServiceBus(self):
-        """Test SourceAzureServiceBus"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = SourceAzureServiceBus()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_source_azure_service_bus_init():
+    model = SourceAzureServiceBus(
+        
+    )

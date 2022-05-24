@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.field_mapping_query import FieldMappingQuery
+from rockset.models import *
 
 
-class TestFieldMappingQuery(unittest.TestCase):
-    """FieldMappingQuery unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testFieldMappingQuery(self):
-        """Test FieldMappingQuery"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = FieldMappingQuery()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_field_mapping_query_init():
+    model = FieldMappingQuery(
+        
+    )

@@ -9,30 +9,26 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.document_status import DocumentStatus
-
-globals()["DocumentStatus"] = DocumentStatus
-from rockset.model.patch_documents_response import PatchDocumentsResponse
+from rockset.models import *
 
 
-class TestPatchDocumentsResponse(unittest.TestCase):
-    """PatchDocumentsResponse unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testPatchDocumentsResponse(self):
-        """Test PatchDocumentsResponse"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = PatchDocumentsResponse()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_patch_documents_response_init():
+    model = PatchDocumentsResponse(
+        data=[
+        DocumentStatus(
+            collection="customers",
+            id="2cd61e3b",
+            error=ErrorModel(
+                column=1,
+                error_id="error_id_example",
+                line=1,
+                message="collection not found",
+                query_id="query_id_example",
+                trace_id="trace_id_example",
+                type="INVALIDINPUT",
+            ),
+            patch_id="486gsg8",
+            status="ADDED",
+        ),
+    ],
+    )

@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.mongo_db_integration import MongoDbIntegration
+from rockset.models import *
 
 
-class TestMongoDbIntegration(unittest.TestCase):
-    """MongoDbIntegration unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testMongoDbIntegration(self):
-        """Test MongoDbIntegration"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = MongoDbIntegration()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_mongo_db_integration_init():
+    model = MongoDbIntegration(
+        connection_uri="mongodb+srv://<username>:<password>@server.example.com/",
+    )

@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.update_api_key_request import UpdateApiKeyRequest
+from rockset.models import *
 
 
-class TestUpdateApiKeyRequest(unittest.TestCase):
-    """UpdateApiKeyRequest unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testUpdateApiKeyRequest(self):
-        """Test UpdateApiKeyRequest"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = UpdateApiKeyRequest()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_update_api_key_request_init():
+    model = UpdateApiKeyRequest(
+        
+    )

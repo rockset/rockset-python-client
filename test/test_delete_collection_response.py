@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.collection import Collection
-
-globals()["Collection"] = Collection
-from rockset.model.delete_collection_response import DeleteCollectionResponse
+from rockset.models import *
 
 
-class TestDeleteCollectionResponse(unittest.TestCase):
-    """DeleteCollectionResponse unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testDeleteCollectionResponse(self):
-        """Test DeleteCollectionResponse"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = DeleteCollectionResponse()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_delete_collection_response_init():
+    model = DeleteCollectionResponse(
+        
+    )

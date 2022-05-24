@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.kafka_integration import KafkaIntegration
-
-globals()["KafkaIntegration"] = KafkaIntegration
-from rockset.model.update_integration_request import UpdateIntegrationRequest
+from rockset.models import *
 
 
-class TestUpdateIntegrationRequest(unittest.TestCase):
-    """UpdateIntegrationRequest unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testUpdateIntegrationRequest(self):
-        """Test UpdateIntegrationRequest"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = UpdateIntegrationRequest()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_update_integration_request_init():
+    model = UpdateIntegrationRequest(
+        
+    )

@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.cluster import Cluster
-
-globals()["Cluster"] = Cluster
-from rockset.model.organization import Organization
+from rockset.models import *
 
 
-class TestOrganization(unittest.TestCase):
-    """Organization unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testOrganization(self):
-        """Test Organization"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = Organization()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_organization_init():
+    model = Organization(
+        
+    )

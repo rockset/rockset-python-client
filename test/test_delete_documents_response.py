@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.document_status import DocumentStatus
-
-globals()["DocumentStatus"] = DocumentStatus
-from rockset.model.delete_documents_response import DeleteDocumentsResponse
+from rockset.models import *
 
 
-class TestDeleteDocumentsResponse(unittest.TestCase):
-    """DeleteDocumentsResponse unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testDeleteDocumentsResponse(self):
-        """Test DeleteDocumentsResponse"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = DeleteDocumentsResponse()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_delete_documents_response_init():
+    model = DeleteDocumentsResponse(
+        
+    )

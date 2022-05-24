@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.field_partition import FieldPartition
+from rockset.models import *
 
 
-class TestFieldPartition(unittest.TestCase):
-    """FieldPartition unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testFieldPartition(self):
-        """Test FieldPartition"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = FieldPartition()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_field_partition_init():
+    model = FieldPartition(
+        
+    )

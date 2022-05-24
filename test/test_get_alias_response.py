@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.alias import Alias
-
-globals()["Alias"] = Alias
-from rockset.model.get_alias_response import GetAliasResponse
+from rockset.models import *
 
 
-class TestGetAliasResponse(unittest.TestCase):
-    """GetAliasResponse unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testGetAliasResponse(self):
-        """Test GetAliasResponse"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = GetAliasResponse()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_get_alias_response_init():
+    model = GetAliasResponse(
+        
+    )

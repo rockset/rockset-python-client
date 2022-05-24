@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.pagination_info import PaginationInfo
-
-globals()["PaginationInfo"] = PaginationInfo
-from rockset.model.query_pagination_response import QueryPaginationResponse
+from rockset.models import *
 
 
-class TestQueryPaginationResponse(unittest.TestCase):
-    """QueryPaginationResponse unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testQueryPaginationResponse(self):
-        """Test QueryPaginationResponse"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = QueryPaginationResponse()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_query_pagination_response_init():
+    model = QueryPaginationResponse(
+        
+    )

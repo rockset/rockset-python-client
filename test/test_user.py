@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.user import User
+from rockset.models import *
 
 
-class TestUser(unittest.TestCase):
-    """User unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testUser(self):
-        """Test User"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = User()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_user_init():
+    model = User(
+        email="hello@rockset.com",
+    )

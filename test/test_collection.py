@@ -9,40 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.alias import Alias
-from rockset.model.collection_stats import CollectionStats
-from rockset.model.field_mapping_query import FieldMappingQuery
-from rockset.model.field_mapping_v2 import FieldMappingV2
-from rockset.model.field_partition import FieldPartition
-from rockset.model.source import Source
-
-globals()["Alias"] = Alias
-globals()["CollectionStats"] = CollectionStats
-globals()["FieldMappingQuery"] = FieldMappingQuery
-globals()["FieldMappingV2"] = FieldMappingV2
-globals()["FieldPartition"] = FieldPartition
-globals()["Source"] = Source
-from rockset.model.collection import Collection
+from rockset.models import *
 
 
-class TestCollection(unittest.TestCase):
-    """Collection unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testCollection(self):
-        """Test Collection"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = Collection()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_collection_init():
+    model = Collection(
+        
+    )

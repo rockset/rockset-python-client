@@ -9,40 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.dynamodb_source_wrapper import DynamodbSourceWrapper
-from rockset.model.event_time_info import EventTimeInfo
-from rockset.model.field_mapping_query import FieldMappingQuery
-from rockset.model.field_mapping_v2 import FieldMappingV2
-from rockset.model.field_partition import FieldPartition
-
-globals()["DynamodbSourceWrapper"] = DynamodbSourceWrapper
-globals()["EventTimeInfo"] = EventTimeInfo
-globals()["FieldMappingQuery"] = FieldMappingQuery
-globals()["FieldMappingV2"] = FieldMappingV2
-globals()["FieldPartition"] = FieldPartition
-from rockset.model.dynamodb_collection_creation_request import (
-    DynamodbCollectionCreationRequest,
-)
+from rockset.models import *
 
 
-class TestDynamodbCollectionCreationRequest(unittest.TestCase):
-    """DynamodbCollectionCreationRequest unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testDynamodbCollectionCreationRequest(self):
-        """Test DynamodbCollectionCreationRequest"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = DynamodbCollectionCreationRequest()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_dynamodb_collection_creation_request_init():
+    model = DynamodbCollectionCreationRequest(
+        name="global-transactions",
+    )

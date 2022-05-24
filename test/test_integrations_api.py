@@ -14,28 +14,24 @@ from rockset.models import *
 from test.conftest import EarlyExit, validate_call
 
 
-def test_create_azure_blob_storage_integration(
-    get_client, mock_request, request_validator
-):
+def test_create_azure_blob_storage_integration(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
             rs.Integrations.create_azure_blob_storage_integration(
-                name="event-logs",
-            )
+    name="event-logs",
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
 
 
-def test_create_azure_event_hubs_integration(
-    get_client, mock_request, request_validator
-):
+def test_create_azure_event_hubs_integration(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
             rs.Integrations.create_azure_event_hubs_integration(
-                name="event-logs",
-            )
+    name="event-logs",
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -45,8 +41,8 @@ def test_create_dynamodb_integration(get_client, mock_request, request_validator
         rs = get_client
         try:
             rs.Integrations.create_dynamodb_integration(
-                name="event-logs",
-            )
+    name="event-logs",
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -56,8 +52,8 @@ def test_create_gcs_integration(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Integrations.create_gcs_integration(
-                name="event-logs",
-            )
+    name="event-logs",
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -67,8 +63,8 @@ def test_create_kafka_integration(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Integrations.create_kafka_integration(
-                name="event-logs",
-            )
+    name="event-logs",
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -78,8 +74,8 @@ def test_create_kinesis_integration(get_client, mock_request, request_validator)
         rs = get_client
         try:
             rs.Integrations.create_kinesis_integration(
-                name="event-logs",
-            )
+    name="event-logs",
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -89,8 +85,8 @@ def test_create_mongodb_integration(get_client, mock_request, request_validator)
         rs = get_client
         try:
             rs.Integrations.create_mongodb_integration(
-                name="event-logs",
-            )
+    name="event-logs",
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -100,8 +96,8 @@ def test_create_s3_integration(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Integrations.create_s3_integration(
-                name="event-logs",
-            )
+    name="event-logs",
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -111,8 +107,8 @@ def test_create_segment_integration(get_client, mock_request, request_validator)
         rs = get_client
         try:
             rs.Integrations.create_segment_integration(
-                name="event-logs",
-            )
+    name="event-logs",
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -122,8 +118,8 @@ def test_delete_integration(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Integrations.delete_integration(
-                integration="integration_example",
-            )
+    integration="integration_example",
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -133,8 +129,8 @@ def test_get_integration(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Integrations.get_integration(
-                integration="integration_example",
-            )
+    integration="integration_example",
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -143,7 +139,8 @@ def test_list_integrations(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Integrations.list_integrations()
+            rs.Integrations.list_integrations(
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -153,7 +150,8 @@ def test_update_integration(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Integrations.update_integration(
-                integration="integration_example",
-            )
+    integration="integration_example",
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
+

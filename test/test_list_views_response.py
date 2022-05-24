@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.view import View
-
-globals()["View"] = View
-from rockset.model.list_views_response import ListViewsResponse
+from rockset.models import *
 
 
-class TestListViewsResponse(unittest.TestCase):
-    """ListViewsResponse unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testListViewsResponse(self):
-        """Test ListViewsResponse"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = ListViewsResponse()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_list_views_response_init():
+    model = ListViewsResponse(
+        
+    )

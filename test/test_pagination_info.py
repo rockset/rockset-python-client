@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.pagination_info import PaginationInfo
+from rockset.models import *
 
 
-class TestPaginationInfo(unittest.TestCase):
-    """PaginationInfo unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testPaginationInfo(self):
-        """Test PaginationInfo"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = PaginationInfo()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_pagination_info_init():
+    model = PaginationInfo(
+        
+    )

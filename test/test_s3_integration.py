@@ -9,32 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.aws_access_key import AwsAccessKey
-from rockset.model.aws_role import AwsRole
-
-globals()["AwsAccessKey"] = AwsAccessKey
-globals()["AwsRole"] = AwsRole
-from rockset.model.s3_integration import S3Integration
+from rockset.models import *
 
 
-class TestS3Integration(unittest.TestCase):
-    """S3Integration unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testS3Integration(self):
-        """Test S3Integration"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = S3Integration()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_s3_integration_init():
+    model = S3Integration(
+        
+    )

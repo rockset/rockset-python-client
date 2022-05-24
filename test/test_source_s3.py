@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.source_s3 import SourceS3
+from rockset.models import *
 
 
-class TestSourceS3(unittest.TestCase):
-    """SourceS3 unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testSourceS3(self):
-        """Test SourceS3"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = SourceS3()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_source_s3_init():
+    model = SourceS3(
+        bucket="s3://customer-account-info",
+    )

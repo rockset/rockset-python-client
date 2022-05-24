@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.create_user_request import CreateUserRequest
+from rockset.models import *
 
 
-class TestCreateUserRequest(unittest.TestCase):
-    """CreateUserRequest unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testCreateUserRequest(self):
-        """Test CreateUserRequest"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = CreateUserRequest()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_create_user_request_init():
+    model = CreateUserRequest(
+        email="hello@rockset.com",roles=["admin","member","read-only"],
+    )

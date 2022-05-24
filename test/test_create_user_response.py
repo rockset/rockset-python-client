@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.user import User
-
-globals()["User"] = User
-from rockset.model.create_user_response import CreateUserResponse
+from rockset.models import *
 
 
-class TestCreateUserResponse(unittest.TestCase):
-    """CreateUserResponse unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testCreateUserResponse(self):
-        """Test CreateUserResponse"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = CreateUserResponse()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_create_user_response_init():
+    model = CreateUserResponse(
+        
+    )

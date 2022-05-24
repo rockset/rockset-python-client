@@ -9,32 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.aws_access_key import AwsAccessKey
-from rockset.model.aws_role import AwsRole
-
-globals()["AwsAccessKey"] = AwsAccessKey
-globals()["AwsRole"] = AwsRole
-from rockset.model.kinesis_integration import KinesisIntegration
+from rockset.models import *
 
 
-class TestKinesisIntegration(unittest.TestCase):
-    """KinesisIntegration unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testKinesisIntegration(self):
-        """Test KinesisIntegration"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = KinesisIntegration()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_kinesis_integration_init():
+    model = KinesisIntegration(
+        
+    )

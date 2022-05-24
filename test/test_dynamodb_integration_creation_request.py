@@ -9,32 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.dynamodb_integration import DynamodbIntegration
-
-globals()["DynamodbIntegration"] = DynamodbIntegration
-from rockset.model.dynamodb_integration_creation_request import (
-    DynamodbIntegrationCreationRequest,
-)
+from rockset.models import *
 
 
-class TestDynamodbIntegrationCreationRequest(unittest.TestCase):
-    """DynamodbIntegrationCreationRequest unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testDynamodbIntegrationCreationRequest(self):
-        """Test DynamodbIntegrationCreationRequest"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = DynamodbIntegrationCreationRequest()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_dynamodb_integration_creation_request_init():
+    model = DynamodbIntegrationCreationRequest(
+        name="event-logs",
+    )

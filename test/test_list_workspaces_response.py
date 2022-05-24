@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.workspace import Workspace
-
-globals()["Workspace"] = Workspace
-from rockset.model.list_workspaces_response import ListWorkspacesResponse
+from rockset.models import *
 
 
-class TestListWorkspacesResponse(unittest.TestCase):
-    """ListWorkspacesResponse unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testListWorkspacesResponse(self):
-        """Test ListWorkspacesResponse"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = ListWorkspacesResponse()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_list_workspaces_response_init():
+    model = ListWorkspacesResponse(
+        
+    )

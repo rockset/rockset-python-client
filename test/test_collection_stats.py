@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.collection_stats import CollectionStats
+from rockset.models import *
 
 
-class TestCollectionStats(unittest.TestCase):
-    """CollectionStats unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testCollectionStats(self):
-        """Test CollectionStats"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = CollectionStats()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_collection_stats_init():
+    model = CollectionStats(
+        
+    )

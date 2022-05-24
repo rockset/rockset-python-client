@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.create_view_request import CreateViewRequest
+from rockset.models import *
 
 
-class TestCreateViewRequest(unittest.TestCase):
-    """CreateViewRequest unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testCreateViewRequest(self):
-        """Test CreateViewRequest"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = CreateViewRequest()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_create_view_request_init():
+    model = CreateViewRequest(
+        name="myAwesomeView",query="SELECT * FROM foo",
+    )

@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.user import User
-
-globals()["User"] = User
-from rockset.model.list_users_response import ListUsersResponse
+from rockset.models import *
 
 
-class TestListUsersResponse(unittest.TestCase):
-    """ListUsersResponse unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testListUsersResponse(self):
-        """Test ListUsersResponse"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = ListUsersResponse()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_list_users_response_init():
+    model = ListUsersResponse(
+        
+    )

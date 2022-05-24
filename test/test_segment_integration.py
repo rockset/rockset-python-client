@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.segment_integration import SegmentIntegration
+from rockset.models import *
 
 
-class TestSegmentIntegration(unittest.TestCase):
-    """SegmentIntegration unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testSegmentIntegration(self):
-        """Test SegmentIntegration"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = SegmentIntegration()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_segment_integration_init():
+    model = SegmentIntegration(
+        
+    )

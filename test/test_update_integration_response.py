@@ -9,30 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.integration import Integration
-
-globals()["Integration"] = Integration
-from rockset.model.update_integration_response import UpdateIntegrationResponse
+from rockset.models import *
 
 
-class TestUpdateIntegrationResponse(unittest.TestCase):
-    """UpdateIntegrationResponse unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testUpdateIntegrationResponse(self):
-        """Test UpdateIntegrationResponse"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = UpdateIntegrationResponse()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_update_integration_response_init():
+    model = UpdateIntegrationResponse(
+        
+    )

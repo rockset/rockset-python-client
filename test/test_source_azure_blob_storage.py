@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.source_azure_blob_storage import SourceAzureBlobStorage
+from rockset.models import *
 
 
-class TestSourceAzureBlobStorage(unittest.TestCase):
-    """SourceAzureBlobStorage unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testSourceAzureBlobStorage(self):
-        """Test SourceAzureBlobStorage"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = SourceAzureBlobStorage()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_source_azure_blob_storage_init():
+    model = SourceAzureBlobStorage(
+        
+    )

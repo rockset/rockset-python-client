@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.input_field import InputField
+from rockset.models import *
 
 
-class TestInputField(unittest.TestCase):
-    """InputField unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testInputField(self):
-        """Test InputField"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = InputField()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_input_field_init():
+    model = InputField(
+        
+    )

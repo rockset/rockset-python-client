@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.create_workspace_request import CreateWorkspaceRequest
+from rockset.models import *
 
 
-class TestCreateWorkspaceRequest(unittest.TestCase):
-    """CreateWorkspaceRequest unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testCreateWorkspaceRequest(self):
-        """Test CreateWorkspaceRequest"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = CreateWorkspaceRequest()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_create_workspace_request_init():
+    model = CreateWorkspaceRequest(
+        name="event_logs",
+    )

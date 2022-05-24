@@ -9,34 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.format_params import FormatParams
-from rockset.model.source_azure_event_hubs import SourceAzureEventHubs
-from rockset.model.status import Status
-
-globals()["FormatParams"] = FormatParams
-globals()["SourceAzureEventHubs"] = SourceAzureEventHubs
-globals()["Status"] = Status
-from rockset.model.azure_event_hubs_source_wrapper import AzureEventHubsSourceWrapper
+from rockset.models import *
 
 
-class TestAzureEventHubsSourceWrapper(unittest.TestCase):
-    """AzureEventHubsSourceWrapper unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testAzureEventHubsSourceWrapper(self):
-        """Test AzureEventHubsSourceWrapper"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = AzureEventHubsSourceWrapper()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_azure_event_hubs_source_wrapper_init():
+    model = AzureEventHubsSourceWrapper(
+        
+    )

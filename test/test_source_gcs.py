@@ -9,27 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.source_gcs import SourceGcs
+from rockset.models import *
 
 
-class TestSourceGcs(unittest.TestCase):
-    """SourceGcs unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testSourceGcs(self):
-        """Test SourceGcs"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = SourceGcs()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_source_gcs_init():
+    model = SourceGcs(
+        
+    )

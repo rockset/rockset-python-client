@@ -9,34 +9,10 @@
 
 
 import sys
-import unittest
-
-import rockset
-from rockset.model.format_params import FormatParams
-from rockset.model.source_dynamo_db import SourceDynamoDb
-from rockset.model.status import Status
-
-globals()["FormatParams"] = FormatParams
-globals()["SourceDynamoDb"] = SourceDynamoDb
-globals()["Status"] = Status
-from rockset.model.dynamodb_source_wrapper import DynamodbSourceWrapper
+from rockset.models import *
 
 
-class TestDynamodbSourceWrapper(unittest.TestCase):
-    """DynamodbSourceWrapper unit test stubs"""
-
-    def setUp(self):
-        pass
-
-    def tearDown(self):
-        pass
-
-    def testDynamodbSourceWrapper(self):
-        """Test DynamodbSourceWrapper"""
-        # FIXME: construct object with mandatory attributes with example values
-        # model = DynamodbSourceWrapper()  # noqa: E501
-        pass
-
-
-if __name__ == "__main__":
-    unittest.main()
+def test_dynamodb_source_wrapper_init():
+    model = DynamodbSourceWrapper(
+        
+    )
