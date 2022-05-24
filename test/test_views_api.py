@@ -19,9 +19,9 @@ def test_create_view(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Views.create_view(
-    name="myAwesomeView",
-    query="SELECT * FROM foo",
-)
+                name="myAwesomeView",
+                query="SELECT * FROM foo",
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -31,8 +31,8 @@ def test_delete_view(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Views.delete_view(
-    view="view_example",
-)
+                view="view_example",
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -42,8 +42,8 @@ def test_get_view(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Views.get_view(
-    view="view_example",
-)
+                view="view_example",
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -52,8 +52,7 @@ def test_list_views(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Views.list_views(
-)
+            rs.Views.list_views()
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -63,9 +62,9 @@ def test_update_view(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Views.update_view(
-    view="view_example",
-    query="SELECT * FROM foo",
-)
+                view="view_example",
+                query="SELECT * FROM foo",
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -74,8 +73,6 @@ def test_workspace_views(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Views.workspace_views(
-)
+            rs.Views.workspace_views()
         except EarlyExit as e:
             validate_call(e, request_validator)
-

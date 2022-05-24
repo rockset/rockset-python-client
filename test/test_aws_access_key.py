@@ -13,6 +13,7 @@ from rockset.models import *
 
 
 def test_aws_access_key_init():
-    model = AwsAccessKey(
-        aws_access_key_id="AKIAIOSFODNN7EXAMPLE",aws_secret_access_key="wJal....",
+    AwsAccessKey(
+        aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
+        aws_secret_access_key="wJal....",
     )

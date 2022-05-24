@@ -19,8 +19,8 @@ def test_get_virtual_instance(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.VirtualInstances.get_virtual_instance(
-    virtual_instance_id="virtualInstanceId_example",
-)
+                virtual_instance_id="virtualInstanceId_example",
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -29,8 +29,7 @@ def test_list_virtual_instances(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.VirtualInstances.list_virtual_instances(
-)
+            rs.VirtualInstances.list_virtual_instances()
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -40,8 +39,7 @@ def test_set_virtual_instance(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.VirtualInstances.set_virtual_instance(
-    virtual_instance_id="virtualInstanceId_example",
-)
+                virtual_instance_id="virtualInstanceId_example",
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
-

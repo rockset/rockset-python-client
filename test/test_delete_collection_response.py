@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_delete_collection_response_init():
-    model = DeleteCollectionResponse(
-        
-    )
+    DeleteCollectionResponse()

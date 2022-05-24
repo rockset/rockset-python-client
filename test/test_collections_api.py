@@ -14,35 +14,41 @@ from rockset.models import *
 from test.conftest import EarlyExit, validate_call
 
 
-def test_create_azure_blob_storage_collection(get_client, mock_request, request_validator):
+def test_create_azure_blob_storage_collection(
+    get_client, mock_request, request_validator
+):
     with mock_request:
         rs = get_client
         try:
             rs.Collections.create_azure_blob_storage_collection(
-    name="global-transactions",
-)
+                name="global-transactions",
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
 
-def test_create_azure_event_hubs_collection(get_client, mock_request, request_validator):
+def test_create_azure_event_hubs_collection(
+    get_client, mock_request, request_validator
+):
     with mock_request:
         rs = get_client
         try:
             rs.Collections.create_azure_event_hubs_collection(
-    name="global-transactions",
-)
+                name="global-transactions",
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
 
-def test_create_azure_service_bus_collection(get_client, mock_request, request_validator):
+def test_create_azure_service_bus_collection(
+    get_client, mock_request, request_validator
+):
     with mock_request:
         rs = get_client
         try:
             rs.Collections.create_azure_service_bus_collection(
-    name="global-transactions",
-)
+                name="global-transactions",
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -52,8 +58,8 @@ def test_create_dynamodb_collection(get_client, mock_request, request_validator)
         rs = get_client
         try:
             rs.Collections.create_dynamodb_collection(
-    name="global-transactions",
-)
+                name="global-transactions",
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -63,8 +69,8 @@ def test_create_file_upload_collection(get_client, mock_request, request_validat
         rs = get_client
         try:
             rs.Collections.create_file_upload_collection(
-    name="global-transactions",
-)
+                name="global-transactions",
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -74,8 +80,8 @@ def test_create_gcs_collection(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Collections.create_gcs_collection(
-    name="global-transactions",
-)
+                name="global-transactions",
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -85,8 +91,8 @@ def test_create_kafka_collection(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Collections.create_kafka_collection(
-    name="global-transactions",
-)
+                name="global-transactions",
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -96,8 +102,8 @@ def test_create_kinesis_collection(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Collections.create_kinesis_collection(
-    name="global-transactions",
-)
+                name="global-transactions",
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -107,8 +113,8 @@ def test_create_mongodb_collection(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Collections.create_mongodb_collection(
-    name="global-transactions",
-)
+                name="global-transactions",
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -118,8 +124,8 @@ def test_create_s3_collection(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Collections.create_s3_collection(
-    name="global-transactions",
-)
+                name="global-transactions",
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -129,8 +135,8 @@ def test_delete_collection(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Collections.delete_collection(
-    collection="collection_example",
-)
+                collection="collection_example",
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -140,8 +146,8 @@ def test_get_collection(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Collections.get_collection(
-    collection="collection_example",
-)
+                collection="collection_example",
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -150,8 +156,7 @@ def test_list_collections(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Collections.list_collections(
-)
+            rs.Collections.list_collections()
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -160,8 +165,6 @@ def test_workspace_collections(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Collections.workspace_collections(
-)
+            rs.Collections.workspace_collections()
         except EarlyExit as e:
             validate_call(e, request_validator)
-

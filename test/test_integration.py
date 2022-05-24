@@ -13,6 +13,7 @@ from rockset.models import *
 
 
 def test_integration_init():
-    model = Integration(
-        created_by="hello@rockset.com",name="event-logs",
+    Integration(
+        created_by="hello@rockset.com",
+        name="event-logs",
     )

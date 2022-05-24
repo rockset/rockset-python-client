@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_query_lambda_sql_init():
-    model = QueryLambdaSql(
+    QueryLambdaSql(
         query="SELECT 'Foo'",
     )

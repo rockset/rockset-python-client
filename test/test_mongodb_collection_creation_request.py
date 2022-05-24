@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_mongodb_collection_creation_request_init():
-    model = MongodbCollectionCreationRequest(
+    MongodbCollectionCreationRequest(
         name="global-transactions",
     )

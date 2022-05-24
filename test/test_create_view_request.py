@@ -13,6 +13,7 @@ from rockset.models import *
 
 
 def test_create_view_request_init():
-    model = CreateViewRequest(
-        name="myAwesomeView",query="SELECT * FROM foo",
+    CreateViewRequest(
+        name="myAwesomeView",
+        query="SELECT * FROM foo",
     )

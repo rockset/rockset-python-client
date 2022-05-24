@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_s3_integration_creation_request_init():
-    model = S3IntegrationCreationRequest(
+    S3IntegrationCreationRequest(
         name="event-logs",
     )

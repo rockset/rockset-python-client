@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_azure_event_hubs_collection_creation_request_init():
-    model = AzureEventHubsCollectionCreationRequest(
+    AzureEventHubsCollectionCreationRequest(
         name="global-transactions",
     )

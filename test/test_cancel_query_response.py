@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_cancel_query_response_init():
-    model = CancelQueryResponse(
-        
-    )
+    CancelQueryResponse()

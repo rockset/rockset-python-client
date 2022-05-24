@@ -19,9 +19,9 @@ def test_create_user(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Users.create_user(
-    email="hello@rockset.com",
-    roles=["admin","member","read-only"],
-)
+                email="hello@rockset.com",
+                roles=["admin", "member", "read-only"],
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -31,8 +31,8 @@ def test_delete_user(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Users.delete_user(
-    user="user_example",
-)
+                user="user_example",
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -41,8 +41,7 @@ def test_get_current_user(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Users.get_current_user(
-)
+            rs.Users.get_current_user()
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -52,8 +51,8 @@ def test_get_user(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Users.get_user(
-    user="user_example",
-)
+                user="user_example",
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -62,8 +61,7 @@ def test_list_unsubscribe_preferences(get_client, mock_request, request_validato
     with mock_request:
         rs = get_client
         try:
-            rs.Users.list_unsubscribe_preferences(
-)
+            rs.Users.list_unsubscribe_preferences()
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -72,8 +70,7 @@ def test_list_users(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Users.list_users(
-)
+            rs.Users.list_users()
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -82,8 +79,6 @@ def test_update_unsubscribe_preferences(get_client, mock_request, request_valida
     with mock_request:
         rs = get_client
         try:
-            rs.Users.update_unsubscribe_preferences(
-)
+            rs.Users.update_unsubscribe_preferences()
         except EarlyExit as e:
             validate_call(e, request_validator)
-

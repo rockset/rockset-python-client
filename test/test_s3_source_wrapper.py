@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_s3_source_wrapper_init():
-    model = S3SourceWrapper(
-        
-    )
+    S3SourceWrapper()

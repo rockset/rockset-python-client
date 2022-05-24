@@ -19,9 +19,9 @@ def test_add_documents(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Documents.add_documents(
-    collection="collection_example",
-    data=[{"field":"value"}],
-)
+                collection="collection_example",
+                data=[{"field": "value"}],
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -31,13 +31,13 @@ def test_delete_documents(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Documents.delete_documents(
-    collection="collection_example",
-    data=[
-        DeleteDocumentsRequestData(
-            id="2cd61e3b",
-        ),
-    ],
-)
+                collection="collection_example",
+                data=[
+                    DeleteDocumentsRequestData(
+                        id="2cd61e3b",
+                    ),
+                ],
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -47,21 +47,20 @@ def test_patch_documents(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Documents.patch_documents(
-    collection="collection_example",
-    data=[
-        PatchDocument(
-            id="ca2d6832-1bfd-f88f-0620-d2aa27a5d86c",
-            patch=[
-                PatchOperation(
-                    _from="_from_example",
-                    op="ADD",
-                    path="/foo/bar",
-                    value={},
-                ),
-            ],
-        ),
-    ],
-)
+                collection="collection_example",
+                data=[
+                    PatchDocument(
+                        id="ca2d6832-1bfd-f88f-0620-d2aa27a5d86c",
+                        patch=[
+                            PatchOperation(
+                                _from="_from_example",
+                                op="ADD",
+                                path="/foo/bar",
+                                value={},
+                            ),
+                        ],
+                    ),
+                ],
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
-

@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_mongo_db_integration_init():
-    model = MongoDbIntegration(
+    MongoDbIntegration(
         connection_uri="mongodb+srv://<username>:<password>@server.example.com/",
     )

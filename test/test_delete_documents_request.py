@@ -13,10 +13,10 @@ from rockset.models import *
 
 
 def test_delete_documents_request_init():
-    model = DeleteDocumentsRequest(
+    DeleteDocumentsRequest(
         data=[
-        DeleteDocumentsRequestData(
-            id="2cd61e3b",
-        ),
-    ],
+            DeleteDocumentsRequestData(
+                id="2cd61e3b",
+            ),
+        ],
     )

@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_status_kafka_init():
-    model = StatusKafka(
-        
-    )
+    StatusKafka()

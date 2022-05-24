@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_organization_response_init():
-    model = OrganizationResponse(
-        
-    )
+    OrganizationResponse()

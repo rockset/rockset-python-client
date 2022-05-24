@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_azure_event_hubs_integration_creation_request_init():
-    model = AzureEventHubsIntegrationCreationRequest(
+    AzureEventHubsIntegrationCreationRequest(
         name="event-logs",
     )

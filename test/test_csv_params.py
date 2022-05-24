@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_csv_params_init():
-    model = CsvParams(
-        
-    )
+    CsvParams()

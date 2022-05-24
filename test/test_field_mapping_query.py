@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_field_mapping_query_init():
-    model = FieldMappingQuery(
-        
-    )
+    FieldMappingQuery()

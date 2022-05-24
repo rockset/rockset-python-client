@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_update_alias_request_init():
-    model = UpdateAliasRequest(
-        collections=["commons.foo","prod.demo"],
+    UpdateAliasRequest(
+        collections=["commons.foo", "prod.demo"],
     )

@@ -854,85 +854,85 @@ class Collections(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.Collections.create_azure_blob_storage_collection(
-    clustering_key=[
-        FieldPartition(
-            field_name="address.city.zipcode",
-            keys=["value1","value2"],
-            type="AUTO",
-        ),
-    ],
-    description="transactions from stores worldwide",
-    event_time_info=EventTimeInfo(
-        field="timestamp",
-        format="seconds_since_epoch",
-        time_zone="UTC",
-    ),
-    field_mapping_query=FieldMappingQuery(
-        sql="sql",
-    ),
-    field_mappings=[
-        FieldMappingV2(
-            input_fields=[
-                InputField(
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Collections.create_azure_blob_storage_collection(
+            clustering_key=[
+                FieldPartition(
                     field_name="address.city.zipcode",
-                    if_missing="SKIP",
-                    is_drop=True,
-                    param="zip",
+                    keys=["value1","value2"],
+                    type="AUTO",
                 ),
             ],
-            name="myTestMapping",
-            output_field=OutputField(
-                field_name="zip_hash",
-                on_error="SKIP",
-                value=SqlExpression(
-                    sql="SHA256()",
-                ),
+            description="transactions from stores worldwide",
+            event_time_info=EventTimeInfo(
+                field="timestamp",
+                format="seconds_since_epoch",
+                time_zone="UTC",
             ),
-        ),
-    ],
-    insert_only=True,
-    name="global-transactions",
-    retention_secs=1000000,
-    sources=[
-        AzureBlobStorageSourceWrapper(
-            azure_blob_storage=SourceAzureBlobStorage(
-                container="server-logs",
-                pattern="prefix/to/**/keys/*.format",
-                prefix="prefix/to/blobs",
+            field_mapping_query=FieldMappingQuery(
+                sql="sql",
             ),
-            format_params=FormatParams(
-                csv=CsvParams(
-                    column_names=["c1","c2","c3"],
-                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
-                    encoding="UTF-8",
-                    escape_char="\\",
-                    first_line_as_column_names=True,
-                    quote_char="\"",
-                    separator=",",
+            field_mappings=[
+                FieldMappingV2(
+                    input_fields=[
+                        InputField(
+                            field_name="address.city.zipcode",
+                            if_missing="SKIP",
+                            is_drop=True,
+                            param="zip",
+                        ),
+                    ],
+                    name="myTestMapping",
+                    output_field=OutputField(
+                        field_name="zip_hash",
+                        on_error="SKIP",
+                        value=SqlExpression(
+                            sql="SHA256()",
+                        ),
+                    ),
                 ),
-                json=True,
-                mssql_dms=True,
-                mysql_dms=True,
-                oracle_dms=True,
-                postgres_dms=True,
-                xml=XmlParams(
-                    attribute_prefix="_attr",
-                    doc_tag="row",
-                    encoding="UTF-8",
-                    root_tag="root",
-                    value_tag="value",
+            ],
+            insert_only=True,
+            name="global-transactions",
+            retention_secs=1000000,
+            sources=[
+                AzureBlobStorageSourceWrapper(
+                    azure_blob_storage=SourceAzureBlobStorage(
+                        container="server-logs",
+                        pattern="prefix/to/**/keys/*.format",
+                        prefix="prefix/to/blobs",
+                    ),
+                    format_params=FormatParams(
+                        csv=CsvParams(
+                            column_names=["c1","c2","c3"],
+                            column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                            encoding="UTF-8",
+                            escape_char="\\",
+                            first_line_as_column_names=True,
+                            quote_char="\"",
+                            separator=",",
+                        ),
+                        json=True,
+                        mssql_dms=True,
+                        mysql_dms=True,
+                        oracle_dms=True,
+                        postgres_dms=True,
+                        xml=XmlParams(
+                            attribute_prefix="_attr",
+                            doc_tag="row",
+                            encoding="UTF-8",
+                            root_tag="root",
+                            value_tag="value",
+                        ),
+                    ),
+                    integration_name="aws-integration",
                 ),
-            ),
-            integration_name="aws-integration",
-        ),
-    ],
-    async_req=True,
-)
-result = await future
-```
+            ],
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -1030,84 +1030,84 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.Collections.create_azure_event_hubs_collection(
-    clustering_key=[
-        FieldPartition(
-            field_name="address.city.zipcode",
-            keys=["value1","value2"],
-            type="AUTO",
-        ),
-    ],
-    description="transactions from stores worldwide",
-    event_time_info=EventTimeInfo(
-        field="timestamp",
-        format="seconds_since_epoch",
-        time_zone="UTC",
-    ),
-    field_mapping_query=FieldMappingQuery(
-        sql="sql",
-    ),
-    field_mappings=[
-        FieldMappingV2(
-            input_fields=[
-                InputField(
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Collections.create_azure_event_hubs_collection(
+            clustering_key=[
+                FieldPartition(
                     field_name="address.city.zipcode",
-                    if_missing="SKIP",
-                    is_drop=True,
-                    param="zip",
+                    keys=["value1","value2"],
+                    type="AUTO",
                 ),
             ],
-            name="myTestMapping",
-            output_field=OutputField(
-                field_name="zip_hash",
-                on_error="SKIP",
-                value=SqlExpression(
-                    sql="SHA256()",
-                ),
+            description="transactions from stores worldwide",
+            event_time_info=EventTimeInfo(
+                field="timestamp",
+                format="seconds_since_epoch",
+                time_zone="UTC",
             ),
-        ),
-    ],
-    insert_only=True,
-    name="global-transactions",
-    retention_secs=1000000,
-    sources=[
-        AzureEventHubsSourceWrapper(
-            azure_event_hubs=SourceAzureEventHubs(
-                hub_id="event-hub-1",
-                offset_reset_policy="EARLIEST",
+            field_mapping_query=FieldMappingQuery(
+                sql="sql",
             ),
-            format_params=FormatParams(
-                csv=CsvParams(
-                    column_names=["c1","c2","c3"],
-                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
-                    encoding="UTF-8",
-                    escape_char="\\",
-                    first_line_as_column_names=True,
-                    quote_char="\"",
-                    separator=",",
+            field_mappings=[
+                FieldMappingV2(
+                    input_fields=[
+                        InputField(
+                            field_name="address.city.zipcode",
+                            if_missing="SKIP",
+                            is_drop=True,
+                            param="zip",
+                        ),
+                    ],
+                    name="myTestMapping",
+                    output_field=OutputField(
+                        field_name="zip_hash",
+                        on_error="SKIP",
+                        value=SqlExpression(
+                            sql="SHA256()",
+                        ),
+                    ),
                 ),
-                json=True,
-                mssql_dms=True,
-                mysql_dms=True,
-                oracle_dms=True,
-                postgres_dms=True,
-                xml=XmlParams(
-                    attribute_prefix="_attr",
-                    doc_tag="row",
-                    encoding="UTF-8",
-                    root_tag="root",
-                    value_tag="value",
+            ],
+            insert_only=True,
+            name="global-transactions",
+            retention_secs=1000000,
+            sources=[
+                AzureEventHubsSourceWrapper(
+                    azure_event_hubs=SourceAzureEventHubs(
+                        hub_id="event-hub-1",
+                        offset_reset_policy="EARLIEST",
+                    ),
+                    format_params=FormatParams(
+                        csv=CsvParams(
+                            column_names=["c1","c2","c3"],
+                            column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                            encoding="UTF-8",
+                            escape_char="\\",
+                            first_line_as_column_names=True,
+                            quote_char="\"",
+                            separator=",",
+                        ),
+                        json=True,
+                        mssql_dms=True,
+                        mysql_dms=True,
+                        oracle_dms=True,
+                        postgres_dms=True,
+                        xml=XmlParams(
+                            attribute_prefix="_attr",
+                            doc_tag="row",
+                            encoding="UTF-8",
+                            root_tag="root",
+                            value_tag="value",
+                        ),
+                    ),
+                    integration_name="aws-integration",
                 ),
-            ),
-            integration_name="aws-integration",
-        ),
-    ],
-    async_req=True,
-)
-result = await future
-```
+            ],
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -1205,84 +1205,84 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.Collections.create_azure_service_bus_collection(
-    clustering_key=[
-        FieldPartition(
-            field_name="address.city.zipcode",
-            keys=["value1","value2"],
-            type="AUTO",
-        ),
-    ],
-    description="transactions from stores worldwide",
-    event_time_info=EventTimeInfo(
-        field="timestamp",
-        format="seconds_since_epoch",
-        time_zone="UTC",
-    ),
-    field_mapping_query=FieldMappingQuery(
-        sql="sql",
-    ),
-    field_mappings=[
-        FieldMappingV2(
-            input_fields=[
-                InputField(
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Collections.create_azure_service_bus_collection(
+            clustering_key=[
+                FieldPartition(
                     field_name="address.city.zipcode",
-                    if_missing="SKIP",
-                    is_drop=True,
-                    param="zip",
+                    keys=["value1","value2"],
+                    type="AUTO",
                 ),
             ],
-            name="myTestMapping",
-            output_field=OutputField(
-                field_name="zip_hash",
-                on_error="SKIP",
-                value=SqlExpression(
-                    sql="SHA256()",
-                ),
+            description="transactions from stores worldwide",
+            event_time_info=EventTimeInfo(
+                field="timestamp",
+                format="seconds_since_epoch",
+                time_zone="UTC",
             ),
-        ),
-    ],
-    insert_only=True,
-    name="global-transactions",
-    retention_secs=1000000,
-    sources=[
-        AzureServiceBusSourceWrapper(
-            azure_service_bus=SourceAzureServiceBus(
-                subscription="rockset-subscription",
-                topic="rockset-topic",
+            field_mapping_query=FieldMappingQuery(
+                sql="sql",
             ),
-            format_params=FormatParams(
-                csv=CsvParams(
-                    column_names=["c1","c2","c3"],
-                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
-                    encoding="UTF-8",
-                    escape_char="\\",
-                    first_line_as_column_names=True,
-                    quote_char="\"",
-                    separator=",",
+            field_mappings=[
+                FieldMappingV2(
+                    input_fields=[
+                        InputField(
+                            field_name="address.city.zipcode",
+                            if_missing="SKIP",
+                            is_drop=True,
+                            param="zip",
+                        ),
+                    ],
+                    name="myTestMapping",
+                    output_field=OutputField(
+                        field_name="zip_hash",
+                        on_error="SKIP",
+                        value=SqlExpression(
+                            sql="SHA256()",
+                        ),
+                    ),
                 ),
-                json=True,
-                mssql_dms=True,
-                mysql_dms=True,
-                oracle_dms=True,
-                postgres_dms=True,
-                xml=XmlParams(
-                    attribute_prefix="_attr",
-                    doc_tag="row",
-                    encoding="UTF-8",
-                    root_tag="root",
-                    value_tag="value",
+            ],
+            insert_only=True,
+            name="global-transactions",
+            retention_secs=1000000,
+            sources=[
+                AzureServiceBusSourceWrapper(
+                    azure_service_bus=SourceAzureServiceBus(
+                        subscription="rockset-subscription",
+                        topic="rockset-topic",
+                    ),
+                    format_params=FormatParams(
+                        csv=CsvParams(
+                            column_names=["c1","c2","c3"],
+                            column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                            encoding="UTF-8",
+                            escape_char="\\",
+                            first_line_as_column_names=True,
+                            quote_char="\"",
+                            separator=",",
+                        ),
+                        json=True,
+                        mssql_dms=True,
+                        mysql_dms=True,
+                        oracle_dms=True,
+                        postgres_dms=True,
+                        xml=XmlParams(
+                            attribute_prefix="_attr",
+                            doc_tag="row",
+                            encoding="UTF-8",
+                            root_tag="root",
+                            value_tag="value",
+                        ),
+                    ),
+                    integration_name="aws-integration",
                 ),
-            ),
-            integration_name="aws-integration",
-        ),
-    ],
-    async_req=True,
-)
-result = await future
-```
+            ],
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -1380,86 +1380,86 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.Collections.create_dynamodb_collection(
-    clustering_key=[
-        FieldPartition(
-            field_name="address.city.zipcode",
-            keys=["value1","value2"],
-            type="AUTO",
-        ),
-    ],
-    description="transactions from stores worldwide",
-    event_time_info=EventTimeInfo(
-        field="timestamp",
-        format="seconds_since_epoch",
-        time_zone="UTC",
-    ),
-    field_mapping_query=FieldMappingQuery(
-        sql="sql",
-    ),
-    field_mappings=[
-        FieldMappingV2(
-            input_fields=[
-                InputField(
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Collections.create_dynamodb_collection(
+            clustering_key=[
+                FieldPartition(
                     field_name="address.city.zipcode",
-                    if_missing="SKIP",
-                    is_drop=True,
-                    param="zip",
+                    keys=["value1","value2"],
+                    type="AUTO",
                 ),
             ],
-            name="myTestMapping",
-            output_field=OutputField(
-                field_name="zip_hash",
-                on_error="SKIP",
-                value=SqlExpression(
-                    sql="SHA256()",
-                ),
+            description="transactions from stores worldwide",
+            event_time_info=EventTimeInfo(
+                field="timestamp",
+                format="seconds_since_epoch",
+                time_zone="UTC",
             ),
-        ),
-    ],
-    insert_only=True,
-    name="global-transactions",
-    retention_secs=1000000,
-    sources=[
-        DynamodbSourceWrapper(
-            dynamodb=SourceDynamoDb(
-                aws_region="us-east-2",
-                rcu=1000,
-                table_name="dynamodb_table_name",
-                use_scan_api=True,
+            field_mapping_query=FieldMappingQuery(
+                sql="sql",
             ),
-            format_params=FormatParams(
-                csv=CsvParams(
-                    column_names=["c1","c2","c3"],
-                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
-                    encoding="UTF-8",
-                    escape_char="\\",
-                    first_line_as_column_names=True,
-                    quote_char="\"",
-                    separator=",",
+            field_mappings=[
+                FieldMappingV2(
+                    input_fields=[
+                        InputField(
+                            field_name="address.city.zipcode",
+                            if_missing="SKIP",
+                            is_drop=True,
+                            param="zip",
+                        ),
+                    ],
+                    name="myTestMapping",
+                    output_field=OutputField(
+                        field_name="zip_hash",
+                        on_error="SKIP",
+                        value=SqlExpression(
+                            sql="SHA256()",
+                        ),
+                    ),
                 ),
-                json=True,
-                mssql_dms=True,
-                mysql_dms=True,
-                oracle_dms=True,
-                postgres_dms=True,
-                xml=XmlParams(
-                    attribute_prefix="_attr",
-                    doc_tag="row",
-                    encoding="UTF-8",
-                    root_tag="root",
-                    value_tag="value",
+            ],
+            insert_only=True,
+            name="global-transactions",
+            retention_secs=1000000,
+            sources=[
+                DynamodbSourceWrapper(
+                    dynamodb=SourceDynamoDb(
+                        aws_region="us-east-2",
+                        rcu=1000,
+                        table_name="dynamodb_table_name",
+                        use_scan_api=True,
+                    ),
+                    format_params=FormatParams(
+                        csv=CsvParams(
+                            column_names=["c1","c2","c3"],
+                            column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                            encoding="UTF-8",
+                            escape_char="\\",
+                            first_line_as_column_names=True,
+                            quote_char="\"",
+                            separator=",",
+                        ),
+                        json=True,
+                        mssql_dms=True,
+                        mysql_dms=True,
+                        oracle_dms=True,
+                        postgres_dms=True,
+                        xml=XmlParams(
+                            attribute_prefix="_attr",
+                            doc_tag="row",
+                            encoding="UTF-8",
+                            root_tag="root",
+                            value_tag="value",
+                        ),
+                    ),
+                    integration_name="aws-integration",
                 ),
-            ),
-            integration_name="aws-integration",
-        ),
-    ],
-    async_req=True,
-)
-result = await future
-```
+            ],
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -1557,85 +1557,85 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.Collections.create_file_upload_collection(
-    clustering_key=[
-        FieldPartition(
-            field_name="address.city.zipcode",
-            keys=["value1","value2"],
-            type="AUTO",
-        ),
-    ],
-    description="transactions from stores worldwide",
-    event_time_info=EventTimeInfo(
-        field="timestamp",
-        format="seconds_since_epoch",
-        time_zone="UTC",
-    ),
-    field_mapping_query=FieldMappingQuery(
-        sql="sql",
-    ),
-    field_mappings=[
-        FieldMappingV2(
-            input_fields=[
-                InputField(
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Collections.create_file_upload_collection(
+            clustering_key=[
+                FieldPartition(
                     field_name="address.city.zipcode",
-                    if_missing="SKIP",
-                    is_drop=True,
-                    param="zip",
+                    keys=["value1","value2"],
+                    type="AUTO",
                 ),
             ],
-            name="myTestMapping",
-            output_field=OutputField(
-                field_name="zip_hash",
-                on_error="SKIP",
-                value=SqlExpression(
-                    sql="SHA256()",
-                ),
+            description="transactions from stores worldwide",
+            event_time_info=EventTimeInfo(
+                field="timestamp",
+                format="seconds_since_epoch",
+                time_zone="UTC",
             ),
-        ),
-    ],
-    insert_only=True,
-    name="global-transactions",
-    retention_secs=1000000,
-    sources=[
-        FileUploadSourceWrapper(
-            file_upload=SourceFileUpload(
-                file_name="file1.json",
-                file_size=12345,
-                file_upload_time="2019-01-15T21:48:23Z",
+            field_mapping_query=FieldMappingQuery(
+                sql="sql",
             ),
-            format_params=FormatParams(
-                csv=CsvParams(
-                    column_names=["c1","c2","c3"],
-                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
-                    encoding="UTF-8",
-                    escape_char="\\",
-                    first_line_as_column_names=True,
-                    quote_char="\"",
-                    separator=",",
+            field_mappings=[
+                FieldMappingV2(
+                    input_fields=[
+                        InputField(
+                            field_name="address.city.zipcode",
+                            if_missing="SKIP",
+                            is_drop=True,
+                            param="zip",
+                        ),
+                    ],
+                    name="myTestMapping",
+                    output_field=OutputField(
+                        field_name="zip_hash",
+                        on_error="SKIP",
+                        value=SqlExpression(
+                            sql="SHA256()",
+                        ),
+                    ),
                 ),
-                json=True,
-                mssql_dms=True,
-                mysql_dms=True,
-                oracle_dms=True,
-                postgres_dms=True,
-                xml=XmlParams(
-                    attribute_prefix="_attr",
-                    doc_tag="row",
-                    encoding="UTF-8",
-                    root_tag="root",
-                    value_tag="value",
+            ],
+            insert_only=True,
+            name="global-transactions",
+            retention_secs=1000000,
+            sources=[
+                FileUploadSourceWrapper(
+                    file_upload=SourceFileUpload(
+                        file_name="file1.json",
+                        file_size=12345,
+                        file_upload_time="2019-01-15T21:48:23Z",
+                    ),
+                    format_params=FormatParams(
+                        csv=CsvParams(
+                            column_names=["c1","c2","c3"],
+                            column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                            encoding="UTF-8",
+                            escape_char="\\",
+                            first_line_as_column_names=True,
+                            quote_char="\"",
+                            separator=",",
+                        ),
+                        json=True,
+                        mssql_dms=True,
+                        mysql_dms=True,
+                        oracle_dms=True,
+                        postgres_dms=True,
+                        xml=XmlParams(
+                            attribute_prefix="_attr",
+                            doc_tag="row",
+                            encoding="UTF-8",
+                            root_tag="root",
+                            value_tag="value",
+                        ),
+                    ),
+                    integration_name="aws-integration",
                 ),
-            ),
-            integration_name="aws-integration",
-        ),
-    ],
-    async_req=True,
-)
-result = await future
-```
+            ],
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -1733,85 +1733,85 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.Collections.create_gcs_collection(
-    clustering_key=[
-        FieldPartition(
-            field_name="address.city.zipcode",
-            keys=["value1","value2"],
-            type="AUTO",
-        ),
-    ],
-    description="transactions from stores worldwide",
-    event_time_info=EventTimeInfo(
-        field="timestamp",
-        format="seconds_since_epoch",
-        time_zone="UTC",
-    ),
-    field_mapping_query=FieldMappingQuery(
-        sql="sql",
-    ),
-    field_mappings=[
-        FieldMappingV2(
-            input_fields=[
-                InputField(
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Collections.create_gcs_collection(
+            clustering_key=[
+                FieldPartition(
                     field_name="address.city.zipcode",
-                    if_missing="SKIP",
-                    is_drop=True,
-                    param="zip",
+                    keys=["value1","value2"],
+                    type="AUTO",
                 ),
             ],
-            name="myTestMapping",
-            output_field=OutputField(
-                field_name="zip_hash",
-                on_error="SKIP",
-                value=SqlExpression(
-                    sql="SHA256()",
-                ),
+            description="transactions from stores worldwide",
+            event_time_info=EventTimeInfo(
+                field="timestamp",
+                format="seconds_since_epoch",
+                time_zone="UTC",
             ),
-        ),
-    ],
-    insert_only=True,
-    name="global-transactions",
-    retention_secs=1000000,
-    sources=[
-        GcsSourceWrapper(
-            format_params=FormatParams(
-                csv=CsvParams(
-                    column_names=["c1","c2","c3"],
-                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
-                    encoding="UTF-8",
-                    escape_char="\\",
-                    first_line_as_column_names=True,
-                    quote_char="\"",
-                    separator=",",
-                ),
-                json=True,
-                mssql_dms=True,
-                mysql_dms=True,
-                oracle_dms=True,
-                postgres_dms=True,
-                xml=XmlParams(
-                    attribute_prefix="_attr",
-                    doc_tag="row",
-                    encoding="UTF-8",
-                    root_tag="root",
-                    value_tag="value",
-                ),
+            field_mapping_query=FieldMappingQuery(
+                sql="sql",
             ),
-            gcs=SourceGcs(
-                bucket="server-logs",
-                pattern="prefix/to/**/keys/*.format",
-                prefix="prefix/to/keys",
-            ),
-            integration_name="aws-integration",
-        ),
-    ],
-    async_req=True,
-)
-result = await future
-```
+            field_mappings=[
+                FieldMappingV2(
+                    input_fields=[
+                        InputField(
+                            field_name="address.city.zipcode",
+                            if_missing="SKIP",
+                            is_drop=True,
+                            param="zip",
+                        ),
+                    ],
+                    name="myTestMapping",
+                    output_field=OutputField(
+                        field_name="zip_hash",
+                        on_error="SKIP",
+                        value=SqlExpression(
+                            sql="SHA256()",
+                        ),
+                    ),
+                ),
+            ],
+            insert_only=True,
+            name="global-transactions",
+            retention_secs=1000000,
+            sources=[
+                GcsSourceWrapper(
+                    format_params=FormatParams(
+                        csv=CsvParams(
+                            column_names=["c1","c2","c3"],
+                            column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                            encoding="UTF-8",
+                            escape_char="\\",
+                            first_line_as_column_names=True,
+                            quote_char="\"",
+                            separator=",",
+                        ),
+                        json=True,
+                        mssql_dms=True,
+                        mysql_dms=True,
+                        oracle_dms=True,
+                        postgres_dms=True,
+                        xml=XmlParams(
+                            attribute_prefix="_attr",
+                            doc_tag="row",
+                            encoding="UTF-8",
+                            root_tag="root",
+                            value_tag="value",
+                        ),
+                    ),
+                    gcs=SourceGcs(
+                        bucket="server-logs",
+                        pattern="prefix/to/**/keys/*.format",
+                        prefix="prefix/to/keys",
+                    ),
+                    integration_name="aws-integration",
+                ),
+            ],
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -1909,86 +1909,86 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.Collections.create_kafka_collection(
-    clustering_key=[
-        FieldPartition(
-            field_name="address.city.zipcode",
-            keys=["value1","value2"],
-            type="AUTO",
-        ),
-    ],
-    description="transactions from stores worldwide",
-    event_time_info=EventTimeInfo(
-        field="timestamp",
-        format="seconds_since_epoch",
-        time_zone="UTC",
-    ),
-    field_mapping_query=FieldMappingQuery(
-        sql="sql",
-    ),
-    field_mappings=[
-        FieldMappingV2(
-            input_fields=[
-                InputField(
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Collections.create_kafka_collection(
+            clustering_key=[
+                FieldPartition(
                     field_name="address.city.zipcode",
-                    if_missing="SKIP",
-                    is_drop=True,
-                    param="zip",
+                    keys=["value1","value2"],
+                    type="AUTO",
                 ),
             ],
-            name="myTestMapping",
-            output_field=OutputField(
-                field_name="zip_hash",
-                on_error="SKIP",
-                value=SqlExpression(
-                    sql="SHA256()",
-                ),
+            description="transactions from stores worldwide",
+            event_time_info=EventTimeInfo(
+                field="timestamp",
+                format="seconds_since_epoch",
+                time_zone="UTC",
             ),
-        ),
-    ],
-    insert_only=True,
-    name="global-transactions",
-    retention_secs=1000000,
-    sources=[
-        KafkaSourceWrapper(
-            format_params=FormatParams(
-                csv=CsvParams(
-                    column_names=["c1","c2","c3"],
-                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
-                    encoding="UTF-8",
-                    escape_char="\\",
-                    first_line_as_column_names=True,
-                    quote_char="\"",
-                    separator=",",
-                ),
-                json=True,
-                mssql_dms=True,
-                mysql_dms=True,
-                oracle_dms=True,
-                postgres_dms=True,
-                xml=XmlParams(
-                    attribute_prefix="_attr",
-                    doc_tag="row",
-                    encoding="UTF-8",
-                    root_tag="root",
-                    value_tag="value",
-                ),
+            field_mapping_query=FieldMappingQuery(
+                sql="sql",
             ),
-            integration_name="aws-integration",
-            kafka=SourceKafka(
-                consumer_group_id="org-collection",
-                kafka_topic_name="example-topic",
-                offset_reset_policy="LATEST",
-                use_v3=True,
-            ),
-        ),
-    ],
-    async_req=True,
-)
-result = await future
-```
+            field_mappings=[
+                FieldMappingV2(
+                    input_fields=[
+                        InputField(
+                            field_name="address.city.zipcode",
+                            if_missing="SKIP",
+                            is_drop=True,
+                            param="zip",
+                        ),
+                    ],
+                    name="myTestMapping",
+                    output_field=OutputField(
+                        field_name="zip_hash",
+                        on_error="SKIP",
+                        value=SqlExpression(
+                            sql="SHA256()",
+                        ),
+                    ),
+                ),
+            ],
+            insert_only=True,
+            name="global-transactions",
+            retention_secs=1000000,
+            sources=[
+                KafkaSourceWrapper(
+                    format_params=FormatParams(
+                        csv=CsvParams(
+                            column_names=["c1","c2","c3"],
+                            column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                            encoding="UTF-8",
+                            escape_char="\\",
+                            first_line_as_column_names=True,
+                            quote_char="\"",
+                            separator=",",
+                        ),
+                        json=True,
+                        mssql_dms=True,
+                        mysql_dms=True,
+                        oracle_dms=True,
+                        postgres_dms=True,
+                        xml=XmlParams(
+                            attribute_prefix="_attr",
+                            doc_tag="row",
+                            encoding="UTF-8",
+                            root_tag="root",
+                            value_tag="value",
+                        ),
+                    ),
+                    integration_name="aws-integration",
+                    kafka=SourceKafka(
+                        consumer_group_id="org-collection",
+                        kafka_topic_name="example-topic",
+                        offset_reset_policy="LATEST",
+                        use_v3=True,
+                    ),
+                ),
+            ],
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -2086,88 +2086,88 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.Collections.create_kinesis_collection(
-    clustering_key=[
-        FieldPartition(
-            field_name="address.city.zipcode",
-            keys=["value1","value2"],
-            type="AUTO",
-        ),
-    ],
-    description="transactions from stores worldwide",
-    event_time_info=EventTimeInfo(
-        field="timestamp",
-        format="seconds_since_epoch",
-        time_zone="UTC",
-    ),
-    field_mapping_query=FieldMappingQuery(
-        sql="sql",
-    ),
-    field_mappings=[
-        FieldMappingV2(
-            input_fields=[
-                InputField(
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Collections.create_kinesis_collection(
+            clustering_key=[
+                FieldPartition(
                     field_name="address.city.zipcode",
-                    if_missing="SKIP",
-                    is_drop=True,
-                    param="zip",
+                    keys=["value1","value2"],
+                    type="AUTO",
                 ),
             ],
-            name="myTestMapping",
-            output_field=OutputField(
-                field_name="zip_hash",
-                on_error="SKIP",
-                value=SqlExpression(
-                    sql="SHA256()",
-                ),
+            description="transactions from stores worldwide",
+            event_time_info=EventTimeInfo(
+                field="timestamp",
+                format="seconds_since_epoch",
+                time_zone="UTC",
             ),
-        ),
-    ],
-    insert_only=True,
-    name="global-transactions",
-    retention_secs=1000000,
-    sources=[
-        KinesisSourceWrapper(
-            format_params=FormatParams(
-                csv=CsvParams(
-                    column_names=["c1","c2","c3"],
-                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
-                    encoding="UTF-8",
-                    escape_char="\\",
-                    first_line_as_column_names=True,
-                    quote_char="\"",
-                    separator=",",
-                ),
-                json=True,
-                mssql_dms=True,
-                mysql_dms=True,
-                oracle_dms=True,
-                postgres_dms=True,
-                xml=XmlParams(
-                    attribute_prefix="_attr",
-                    doc_tag="row",
-                    encoding="UTF-8",
-                    root_tag="root",
-                    value_tag="value",
-                ),
+            field_mapping_query=FieldMappingQuery(
+                sql="sql",
             ),
-            integration_name="aws-integration",
-            kinesis=SourceKinesis(
-                aws_region="us-east-2",
-                dms_primary_key=[
-                    "dms_primary_key_example",
-                ],
-                offset_reset_policy="EARLIEST",
-                stream_name="click_stream",
-            ),
-        ),
-    ],
-    async_req=True,
-)
-result = await future
-```
+            field_mappings=[
+                FieldMappingV2(
+                    input_fields=[
+                        InputField(
+                            field_name="address.city.zipcode",
+                            if_missing="SKIP",
+                            is_drop=True,
+                            param="zip",
+                        ),
+                    ],
+                    name="myTestMapping",
+                    output_field=OutputField(
+                        field_name="zip_hash",
+                        on_error="SKIP",
+                        value=SqlExpression(
+                            sql="SHA256()",
+                        ),
+                    ),
+                ),
+            ],
+            insert_only=True,
+            name="global-transactions",
+            retention_secs=1000000,
+            sources=[
+                KinesisSourceWrapper(
+                    format_params=FormatParams(
+                        csv=CsvParams(
+                            column_names=["c1","c2","c3"],
+                            column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                            encoding="UTF-8",
+                            escape_char="\\",
+                            first_line_as_column_names=True,
+                            quote_char="\"",
+                            separator=",",
+                        ),
+                        json=True,
+                        mssql_dms=True,
+                        mysql_dms=True,
+                        oracle_dms=True,
+                        postgres_dms=True,
+                        xml=XmlParams(
+                            attribute_prefix="_attr",
+                            doc_tag="row",
+                            encoding="UTF-8",
+                            root_tag="root",
+                            value_tag="value",
+                        ),
+                    ),
+                    integration_name="aws-integration",
+                    kinesis=SourceKinesis(
+                        aws_region="us-east-2",
+                        dms_primary_key=[
+                            "dms_primary_key_example",
+                        ],
+                        offset_reset_policy="EARLIEST",
+                        stream_name="click_stream",
+                    ),
+                ),
+            ],
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -2265,84 +2265,84 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.Collections.create_mongodb_collection(
-    clustering_key=[
-        FieldPartition(
-            field_name="address.city.zipcode",
-            keys=["value1","value2"],
-            type="AUTO",
-        ),
-    ],
-    description="transactions from stores worldwide",
-    event_time_info=EventTimeInfo(
-        field="timestamp",
-        format="seconds_since_epoch",
-        time_zone="UTC",
-    ),
-    field_mapping_query=FieldMappingQuery(
-        sql="sql",
-    ),
-    field_mappings=[
-        FieldMappingV2(
-            input_fields=[
-                InputField(
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Collections.create_mongodb_collection(
+            clustering_key=[
+                FieldPartition(
                     field_name="address.city.zipcode",
-                    if_missing="SKIP",
-                    is_drop=True,
-                    param="zip",
+                    keys=["value1","value2"],
+                    type="AUTO",
                 ),
             ],
-            name="myTestMapping",
-            output_field=OutputField(
-                field_name="zip_hash",
-                on_error="SKIP",
-                value=SqlExpression(
-                    sql="SHA256()",
-                ),
+            description="transactions from stores worldwide",
+            event_time_info=EventTimeInfo(
+                field="timestamp",
+                format="seconds_since_epoch",
+                time_zone="UTC",
             ),
-        ),
-    ],
-    insert_only=True,
-    name="global-transactions",
-    retention_secs=1000000,
-    sources=[
-        MongodbSourceWrapper(
-            format_params=FormatParams(
-                csv=CsvParams(
-                    column_names=["c1","c2","c3"],
-                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
-                    encoding="UTF-8",
-                    escape_char="\\",
-                    first_line_as_column_names=True,
-                    quote_char="\"",
-                    separator=",",
-                ),
-                json=True,
-                mssql_dms=True,
-                mysql_dms=True,
-                oracle_dms=True,
-                postgres_dms=True,
-                xml=XmlParams(
-                    attribute_prefix="_attr",
-                    doc_tag="row",
-                    encoding="UTF-8",
-                    root_tag="root",
-                    value_tag="value",
-                ),
+            field_mapping_query=FieldMappingQuery(
+                sql="sql",
             ),
-            integration_name="aws-integration",
-            mongodb=SourceMongoDb(
-                collection_name="my_collection",
-                database_name="my_database",
-            ),
-        ),
-    ],
-    async_req=True,
-)
-result = await future
-```
+            field_mappings=[
+                FieldMappingV2(
+                    input_fields=[
+                        InputField(
+                            field_name="address.city.zipcode",
+                            if_missing="SKIP",
+                            is_drop=True,
+                            param="zip",
+                        ),
+                    ],
+                    name="myTestMapping",
+                    output_field=OutputField(
+                        field_name="zip_hash",
+                        on_error="SKIP",
+                        value=SqlExpression(
+                            sql="SHA256()",
+                        ),
+                    ),
+                ),
+            ],
+            insert_only=True,
+            name="global-transactions",
+            retention_secs=1000000,
+            sources=[
+                MongodbSourceWrapper(
+                    format_params=FormatParams(
+                        csv=CsvParams(
+                            column_names=["c1","c2","c3"],
+                            column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                            encoding="UTF-8",
+                            escape_char="\\",
+                            first_line_as_column_names=True,
+                            quote_char="\"",
+                            separator=",",
+                        ),
+                        json=True,
+                        mssql_dms=True,
+                        mysql_dms=True,
+                        oracle_dms=True,
+                        postgres_dms=True,
+                        xml=XmlParams(
+                            attribute_prefix="_attr",
+                            doc_tag="row",
+                            encoding="UTF-8",
+                            root_tag="root",
+                            value_tag="value",
+                        ),
+                    ),
+                    integration_name="aws-integration",
+                    mongodb=SourceMongoDb(
+                        collection_name="my_collection",
+                        database_name="my_database",
+                    ),
+                ),
+            ],
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -2440,86 +2440,86 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.Collections.create_s3_collection(
-    clustering_key=[
-        FieldPartition(
-            field_name="address.city.zipcode",
-            keys=["value1","value2"],
-            type="AUTO",
-        ),
-    ],
-    description="transactions from stores worldwide",
-    event_time_info=EventTimeInfo(
-        field="timestamp",
-        format="seconds_since_epoch",
-        time_zone="UTC",
-    ),
-    field_mapping_query=FieldMappingQuery(
-        sql="sql",
-    ),
-    field_mappings=[
-        FieldMappingV2(
-            input_fields=[
-                InputField(
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Collections.create_s3_collection(
+            clustering_key=[
+                FieldPartition(
                     field_name="address.city.zipcode",
-                    if_missing="SKIP",
-                    is_drop=True,
-                    param="zip",
+                    keys=["value1","value2"],
+                    type="AUTO",
                 ),
             ],
-            name="myTestMapping",
-            output_field=OutputField(
-                field_name="zip_hash",
-                on_error="SKIP",
-                value=SqlExpression(
-                    sql="SHA256()",
-                ),
+            description="transactions from stores worldwide",
+            event_time_info=EventTimeInfo(
+                field="timestamp",
+                format="seconds_since_epoch",
+                time_zone="UTC",
             ),
-        ),
-    ],
-    insert_only=True,
-    name="global-transactions",
-    retention_secs=1000000,
-    sources=[
-        S3SourceWrapper(
-            format_params=FormatParams(
-                csv=CsvParams(
-                    column_names=["c1","c2","c3"],
-                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
-                    encoding="UTF-8",
-                    escape_char="\\",
-                    first_line_as_column_names=True,
-                    quote_char="\"",
-                    separator=",",
-                ),
-                json=True,
-                mssql_dms=True,
-                mysql_dms=True,
-                oracle_dms=True,
-                postgres_dms=True,
-                xml=XmlParams(
-                    attribute_prefix="_attr",
-                    doc_tag="row",
-                    encoding="UTF-8",
-                    root_tag="root",
-                    value_tag="value",
-                ),
+            field_mapping_query=FieldMappingQuery(
+                sql="sql",
             ),
-            integration_name="aws-integration",
-            s3=SourceS3(
-                bucket="s3://customer-account-info",
-                pattern="prefix/to/**/keys/*.format",
-                prefix="prefix/to/keys",
-                region="us-west-2",
-            ),
-        ),
-    ],
-    async_req=True,
-)
-result = await future
-```
+            field_mappings=[
+                FieldMappingV2(
+                    input_fields=[
+                        InputField(
+                            field_name="address.city.zipcode",
+                            if_missing="SKIP",
+                            is_drop=True,
+                            param="zip",
+                        ),
+                    ],
+                    name="myTestMapping",
+                    output_field=OutputField(
+                        field_name="zip_hash",
+                        on_error="SKIP",
+                        value=SqlExpression(
+                            sql="SHA256()",
+                        ),
+                    ),
+                ),
+            ],
+            insert_only=True,
+            name="global-transactions",
+            retention_secs=1000000,
+            sources=[
+                S3SourceWrapper(
+                    format_params=FormatParams(
+                        csv=CsvParams(
+                            column_names=["c1","c2","c3"],
+                            column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                            encoding="UTF-8",
+                            escape_char="\\",
+                            first_line_as_column_names=True,
+                            quote_char="\"",
+                            separator=",",
+                        ),
+                        json=True,
+                        mssql_dms=True,
+                        mysql_dms=True,
+                        oracle_dms=True,
+                        postgres_dms=True,
+                        xml=XmlParams(
+                            attribute_prefix="_attr",
+                            doc_tag="row",
+                            encoding="UTF-8",
+                            root_tag="root",
+                            value_tag="value",
+                        ),
+                    ),
+                    integration_name="aws-integration",
+                    s3=SourceS3(
+                        bucket="s3://customer-account-info",
+                        pattern="prefix/to/**/keys/*.format",
+                        prefix="prefix/to/keys",
+                        region="us-west-2",
+                    ),
+                ),
+            ],
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -2609,14 +2609,14 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.Collections.delete_collection(
-    collection="collection_example",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Collections.delete_collection(
+            collection="collection_example",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -2698,14 +2698,14 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.Collections.get_collection(
-    collection="collection_example",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Collections.get_collection(
+            collection="collection_example",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -2784,13 +2784,13 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.Collections.list_collections(
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Collections.list_collections(
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -2865,13 +2865,13 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.Collections.workspace_collections(
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Collections.workspace_collections(
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"

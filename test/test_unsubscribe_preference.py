@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_unsubscribe_preference_init():
-    model = UnsubscribePreference(
+    UnsubscribePreference(
         notification_type="create_apikey",
     )

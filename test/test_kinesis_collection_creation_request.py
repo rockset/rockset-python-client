@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_kinesis_collection_creation_request_init():
-    model = KinesisCollectionCreationRequest(
+    KinesisCollectionCreationRequest(
         name="global-transactions",
     )

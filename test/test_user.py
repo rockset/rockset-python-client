@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_user_init():
-    model = User(
+    User(
         email="hello@rockset.com",
     )

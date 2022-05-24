@@ -13,6 +13,8 @@ from rockset.models import *
 
 
 def test_source_file_upload_init():
-    model = SourceFileUpload(
-        file_name="file1.json",file_size=12345,file_upload_time="2019-01-15T21:48:23Z",
+    SourceFileUpload(
+        file_name="file1.json",
+        file_size=12345,
+        file_upload_time="2019-01-15T21:48:23Z",
     )

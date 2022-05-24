@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_azure_service_bus_integration_init():
-    model = AzureServiceBusIntegration(
+    AzureServiceBusIntegration(
         connection_string="string_example",
     )

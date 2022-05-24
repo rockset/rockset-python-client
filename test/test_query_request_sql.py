@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_query_request_sql_init():
-    model = QueryRequestSql(
+    QueryRequestSql(
         query="SELECT * FROM foo where _id = :_id",
     )

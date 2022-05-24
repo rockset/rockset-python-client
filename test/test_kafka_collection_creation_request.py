@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_kafka_collection_creation_request_init():
-    model = KafkaCollectionCreationRequest(
+    KafkaCollectionCreationRequest(
         name="global-transactions",
     )

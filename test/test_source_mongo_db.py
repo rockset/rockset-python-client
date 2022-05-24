@@ -13,6 +13,7 @@ from rockset.models import *
 
 
 def test_source_mongo_db_init():
-    model = SourceMongoDb(
-        collection_name="my_collection",database_name="my_database",
+    SourceMongoDb(
+        collection_name="my_collection",
+        database_name="my_database",
     )

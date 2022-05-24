@@ -13,6 +13,7 @@ from rockset.models import *
 
 
 def test_validate_query_response_init():
-    model = ValidateQueryResponse(
-        collections=["commons.foo"],parameters=["foo"],
+    ValidateQueryResponse(
+        collections=["commons.foo"],
+        parameters=["foo"],
     )

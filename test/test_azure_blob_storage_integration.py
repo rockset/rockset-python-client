@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_azure_blob_storage_integration_init():
-    model = AzureBlobStorageIntegration(
+    AzureBlobStorageIntegration(
         connection_string="string_example",
     )

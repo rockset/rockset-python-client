@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_dynamodb_integration_init():
-    model = DynamodbIntegration(
-        
-    )
+    DynamodbIntegration()

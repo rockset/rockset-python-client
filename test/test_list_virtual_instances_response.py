@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_list_virtual_instances_response_init():
-    model = ListVirtualInstancesResponse(
-        
-    )
+    ListVirtualInstancesResponse()

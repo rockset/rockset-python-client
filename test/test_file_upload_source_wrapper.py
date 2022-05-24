@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_file_upload_source_wrapper_init():
-    model = FileUploadSourceWrapper(
-        
-    )
+    FileUploadSourceWrapper()

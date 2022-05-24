@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_gcp_service_account_init():
-    model = GcpServiceAccount(
+    GcpServiceAccount(
         service_account_key_file_json="string_example",
     )

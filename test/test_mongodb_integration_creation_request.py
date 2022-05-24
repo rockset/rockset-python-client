@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_mongodb_integration_creation_request_init():
-    model = MongodbIntegrationCreationRequest(
+    MongodbIntegrationCreationRequest(
         name="event-logs",
     )

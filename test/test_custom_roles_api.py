@@ -18,8 +18,7 @@ def test_create_role(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.CustomRoles.create_role(
-)
+            rs.CustomRoles.create_role()
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -29,8 +28,8 @@ def test_delete_role(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.CustomRoles.delete_role(
-    role_name="roleName_example",
-)
+                role_name="roleName_example",
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -40,8 +39,8 @@ def test_get_role(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.CustomRoles.get_role(
-    role_name="roleName_example",
-)
+                role_name="roleName_example",
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -50,8 +49,7 @@ def test_list_roles(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.CustomRoles.list_roles(
-)
+            rs.CustomRoles.list_roles()
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -61,8 +59,7 @@ def test_update_role(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.CustomRoles.update_role(
-    role_name="roleName_example",
-)
+                role_name="roleName_example",
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
-

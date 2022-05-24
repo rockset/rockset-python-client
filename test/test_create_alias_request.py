@@ -13,6 +13,7 @@ from rockset.models import *
 
 
 def test_create_alias_request_init():
-    model = CreateAliasRequest(
-        collections=["commons.foo","prod.demo"],name="aliasName",
+    CreateAliasRequest(
+        collections=["commons.foo", "prod.demo"],
+        name="aliasName",
     )

@@ -19,8 +19,8 @@ def test_create_workspace(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Workspaces.create_workspace(
-    name="event_logs",
-)
+                name="event_logs",
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -29,8 +29,7 @@ def test_delete_workspace(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Workspaces.delete_workspace(
-)
+            rs.Workspaces.delete_workspace()
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -39,8 +38,7 @@ def test_get_workspace(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Workspaces.get_workspace(
-)
+            rs.Workspaces.get_workspace()
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -49,8 +47,6 @@ def test_list_workspaces(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Workspaces.list_workspaces(
-)
+            rs.Workspaces.list_workspaces()
         except EarlyExit as e:
             validate_call(e, request_validator)
-

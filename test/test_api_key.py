@@ -13,6 +13,7 @@ from rockset.models import *
 
 
 def test_api_key_init():
-    model = ApiKey(
-        key="aB35kDjg*******************************",name="my-key",
+    ApiKey(
+        key="aB35kDjg*******************************",
+        name="my-key",
     )

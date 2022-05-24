@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_segment_integration_creation_request_init():
-    model = SegmentIntegrationCreationRequest(
+    SegmentIntegrationCreationRequest(
         name="event-logs",
     )

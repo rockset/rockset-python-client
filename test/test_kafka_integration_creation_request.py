@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_kafka_integration_creation_request_init():
-    model = KafkaIntegrationCreationRequest(
+    KafkaIntegrationCreationRequest(
         name="event-logs",
     )

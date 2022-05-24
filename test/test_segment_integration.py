@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_segment_integration_init():
-    model = SegmentIntegration(
-        
-    )
+    SegmentIntegration()

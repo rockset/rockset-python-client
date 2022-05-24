@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_azure_event_hubs_source_wrapper_init():
-    model = AzureEventHubsSourceWrapper(
-        
-    )
+    AzureEventHubsSourceWrapper()

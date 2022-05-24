@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_update_integration_response_init():
-    model = UpdateIntegrationResponse(
-        
-    )
+    UpdateIntegrationResponse()

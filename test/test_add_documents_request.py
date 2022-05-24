@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_add_documents_request_init():
-    model = AddDocumentsRequest(
-        data=[{"field":"value"}],
+    AddDocumentsRequest(
+        data=[{"field": "value"}],
     )

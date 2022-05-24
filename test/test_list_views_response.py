@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_list_views_response_init():
-    model = ListViewsResponse(
-        
-    )
+    ListViewsResponse()

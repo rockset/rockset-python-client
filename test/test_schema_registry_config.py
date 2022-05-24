@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_schema_registry_config_init():
-    model = SchemaRegistryConfig(
-        
-    )
+    SchemaRegistryConfig()

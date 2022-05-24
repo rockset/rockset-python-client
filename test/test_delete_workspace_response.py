@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_delete_workspace_response_init():
-    model = DeleteWorkspaceResponse(
-        
-    )
+    DeleteWorkspaceResponse()

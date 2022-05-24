@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_azure_blob_storage_integration_creation_request_init():
-    model = AzureBlobStorageIntegrationCreationRequest(
+    AzureBlobStorageIntegrationCreationRequest(
         name="event-logs",
     )

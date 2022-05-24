@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_kinesis_integration_creation_request_init():
-    model = KinesisIntegrationCreationRequest(
+    KinesisIntegrationCreationRequest(
         name="event-logs",
     )

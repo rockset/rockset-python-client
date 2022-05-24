@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_query_lambda_tag_init():
-    model = QueryLambdaTag(
-        
-    )
+    QueryLambdaTag()

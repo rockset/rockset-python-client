@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_azure_blob_storage_collection_creation_request_init():
-    model = AzureBlobStorageCollectionCreationRequest(
+    AzureBlobStorageCollectionCreationRequest(
         name="global-transactions",
     )

@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_event_time_info_init():
-    model = EventTimeInfo(
+    EventTimeInfo(
         field="timestamp",
     )

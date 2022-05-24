@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_update_api_key_request_init():
-    model = UpdateApiKeyRequest(
-        
-    )
+    UpdateApiKeyRequest()

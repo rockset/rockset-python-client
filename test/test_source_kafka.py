@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_source_kafka_init():
-    model = SourceKafka(
+    SourceKafka(
         kafka_topic_name="example-topic",
     )

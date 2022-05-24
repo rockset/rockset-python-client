@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_file_upload_collection_creation_request_init():
-    model = FileUploadCollectionCreationRequest(
+    FileUploadCollectionCreationRequest(
         name="global-transactions",
     )

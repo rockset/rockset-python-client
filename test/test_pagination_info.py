@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_pagination_info_init():
-    model = PaginationInfo(
-        
-    )
+    PaginationInfo()

@@ -18,8 +18,6 @@ def test_get_organization(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Organizations.get_organization(
-)
+            rs.Organizations.get_organization()
         except EarlyExit as e:
             validate_call(e, request_validator)
-

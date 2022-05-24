@@ -13,6 +13,7 @@ from rockset.models import *
 
 
 def test_query_field_type_init():
-    model = QueryFieldType(
-        name="_id",type="string",
+    QueryFieldType(
+        name="_id",
+        type="string",
     )

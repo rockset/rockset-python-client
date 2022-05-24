@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_s3_collection_creation_request_init():
-    model = S3CollectionCreationRequest(
+    S3CollectionCreationRequest(
         name="global-transactions",
     )

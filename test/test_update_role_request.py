@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_update_role_request_init():
-    model = UpdateRoleRequest(
-        
-    )
+    UpdateRoleRequest()

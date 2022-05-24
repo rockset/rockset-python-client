@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_gcs_collection_creation_request_init():
-    model = GcsCollectionCreationRequest(
+    GcsCollectionCreationRequest(
         name="global-transactions",
     )

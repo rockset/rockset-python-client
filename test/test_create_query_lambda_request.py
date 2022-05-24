@@ -13,15 +13,16 @@ from rockset.models import *
 
 
 def test_create_query_lambda_request_init():
-    model = CreateQueryLambdaRequest(
-        name="myQueryLambda",sql=QueryLambdaSql(
-        default_parameters=[
-            QueryParameter(
-                name="_id",
-                type="string",
-                value="85beb391",
-            ),
-        ],
-        query="SELECT 'Foo'",
-    ),
+    CreateQueryLambdaRequest(
+        name="myQueryLambda",
+        sql=QueryLambdaSql(
+            default_parameters=[
+                QueryParameter(
+                    name="_id",
+                    type="string",
+                    value="85beb391",
+                ),
+            ],
+            query="SELECT 'Foo'",
+        ),
     )

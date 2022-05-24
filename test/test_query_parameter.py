@@ -13,6 +13,8 @@ from rockset.models import *
 
 
 def test_query_parameter_init():
-    model = QueryParameter(
-        name="_id",type="string",value="85beb391",
+    QueryParameter(
+        name="_id",
+        type="string",
+        value="85beb391",
     )

@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_source_dynamo_db_init():
-    model = SourceDynamoDb(
+    SourceDynamoDb(
         table_name="dynamodb_table_name",
     )

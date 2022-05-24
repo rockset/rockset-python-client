@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_kinesis_source_wrapper_init():
-    model = KinesisSourceWrapper(
-        
-    )
+    KinesisSourceWrapper()

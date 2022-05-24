@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_kafka_source_wrapper_init():
-    model = KafkaSourceWrapper(
-        
-    )
+    KafkaSourceWrapper()

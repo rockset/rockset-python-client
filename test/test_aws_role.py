@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_aws_role_init():
-    model = AwsRole(
+    AwsRole(
         aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
     )

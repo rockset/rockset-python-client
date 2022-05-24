@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_source_kinesis_init():
-    model = SourceKinesis(
+    SourceKinesis(
         stream_name="click_stream",
     )

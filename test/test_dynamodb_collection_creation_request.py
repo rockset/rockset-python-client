@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_dynamodb_collection_creation_request_init():
-    model = DynamodbCollectionCreationRequest(
+    DynamodbCollectionCreationRequest(
         name="global-transactions",
     )

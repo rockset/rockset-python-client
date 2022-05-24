@@ -13,6 +13,7 @@ from rockset.models import *
 
 
 def test_patch_operation_init():
-    model = PatchOperation(
-        op="ADD",path="/foo/bar",
+    PatchOperation(
+        op="ADD",
+        path="/foo/bar",
     )

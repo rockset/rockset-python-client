@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_update_view_request_init():
-    model = UpdateViewRequest(
+    UpdateViewRequest(
         query="SELECT * FROM foo",
     )

@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_kafka_integration_init():
-    model = KafkaIntegration(
-        
-    )
+    KafkaIntegration()

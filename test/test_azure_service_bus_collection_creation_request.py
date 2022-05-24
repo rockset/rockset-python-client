@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_azure_service_bus_collection_creation_request_init():
-    model = AzureServiceBusCollectionCreationRequest(
+    AzureServiceBusCollectionCreationRequest(
         name="global-transactions",
     )

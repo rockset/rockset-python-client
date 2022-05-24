@@ -13,6 +13,6 @@ from rockset.models import *
 
 
 def test_source_s3_init():
-    model = SourceS3(
+    SourceS3(
         bucket="s3://customer-account-info",
     )
