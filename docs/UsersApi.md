@@ -35,6 +35,7 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 # Create User
 api_response = rs.Users.create_user(
     email="hello@rockset.com",
+    roles=["admin","member","read-only"],
 )
 pprint(api_response)
 # Error responses from the server will cause the client to throw an ApiException

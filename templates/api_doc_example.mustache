@@ -19,13 +19,11 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 {{/isReadOnly}}
 {{/isBodyParam}}
 {{#isBodyParam}}
-{{#vars}}
+{{#requiredVars}}
 {{^isReadOnly}}
-{{#required}}
     {{name}}={{#example}}{{{.}}}{{/example}}{{^example}}{{name}}{{/example}},
-{{/required}}
 {{/isReadOnly}}
-{{/vars}}
+{{/requiredVars}}
 {{/isBodyParam}}
 {{/defaultValue}}
 {{/isReadOnly}}

@@ -8,70 +8,77 @@
 """
 
 
-import unittest
+from unittest import mock
 
-import rockset
-from rockset.api.users_api import Users  # noqa: E501
-
-
-class TestUsers(unittest.TestCase):
-    """Users unit test stubs"""
-
-    def setUp(self):
-        self.api = Users()  # noqa: E501
-
-    def tearDown(self):
-        pass
-
-    def test_create_user(self):
-        """Test case for create_user
-
-        Create User  # noqa: E501
-        """
-        pass
-
-    def test_delete_user(self):
-        """Test case for delete_user
-
-        Delete User  # noqa: E501
-        """
-        pass
-
-    def test_get_current_user(self):
-        """Test case for get_current_user
-
-        Retrieve Current User  # noqa: E501
-        """
-        pass
-
-    def test_get_user(self):
-        """Test case for get_user
-
-        Retrieve User  # noqa: E501
-        """
-        pass
-
-    def test_list_unsubscribe_preferences(self):
-        """Test case for list_unsubscribe_preferences
-
-        Retrieve Notification Preferences  # noqa: E501
-        """
-        pass
-
-    def test_list_users(self):
-        """Test case for list_users
-
-        List Users  # noqa: E501
-        """
-        pass
-
-    def test_update_unsubscribe_preferences(self):
-        """Test case for update_unsubscribe_preferences
-
-        Update Notification Preferences  # noqa: E501
-        """
-        pass
+from rockset.models import *
+from test.conftest import EarlyExit, validate_call
 
 
-if __name__ == "__main__":
-    unittest.main()
+def test_create_user(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Users.create_user(
+                email="hello@rockset.com",
+                roles=["admin", "member", "read-only"],
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_delete_user(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Users.delete_user(
+                user="user_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_get_current_user(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Users.get_current_user()
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_get_user(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Users.get_user(
+                user="user_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_list_unsubscribe_preferences(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Users.list_unsubscribe_preferences()
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_list_users(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Users.list_users()
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_update_unsubscribe_preferences(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Users.update_unsubscribe_preferences()
+        except EarlyExit as e:
+            validate_call(e, request_validator)

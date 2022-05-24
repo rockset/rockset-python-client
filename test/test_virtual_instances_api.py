@@ -8,42 +8,38 @@
 """
 
 
-import unittest
+from unittest import mock
 
-import rockset
-from rockset.api.virtual_instances_api import VirtualInstances  # noqa: E501
-
-
-class TestVirtualInstances(unittest.TestCase):
-    """VirtualInstances unit test stubs"""
-
-    def setUp(self):
-        self.api = VirtualInstances()  # noqa: E501
-
-    def tearDown(self):
-        pass
-
-    def test_get_virtual_instance(self):
-        """Test case for get_virtual_instance
-
-        Retrieve Virtual Instance  # noqa: E501
-        """
-        pass
-
-    def test_list_virtual_instances(self):
-        """Test case for list_virtual_instances
-
-        List Virtual Instances  # noqa: E501
-        """
-        pass
-
-    def test_set_virtual_instance(self):
-        """Test case for set_virtual_instance
-
-        Update Virtual Instance  # noqa: E501
-        """
-        pass
+from rockset.models import *
+from test.conftest import EarlyExit, validate_call
 
 
-if __name__ == "__main__":
-    unittest.main()
+def test_get_virtual_instance(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.VirtualInstances.get_virtual_instance(
+                virtual_instance_id="virtualInstanceId_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_list_virtual_instances(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.VirtualInstances.list_virtual_instances()
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_set_virtual_instance(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.VirtualInstances.set_virtual_instance(
+                virtual_instance_id="virtualInstanceId_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)

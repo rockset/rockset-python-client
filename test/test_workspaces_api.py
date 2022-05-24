@@ -8,49 +8,45 @@
 """
 
 
-import unittest
+from unittest import mock
 
-import rockset
-from rockset.api.workspaces_api import Workspaces  # noqa: E501
-
-
-class TestWorkspaces(unittest.TestCase):
-    """Workspaces unit test stubs"""
-
-    def setUp(self):
-        self.api = Workspaces()  # noqa: E501
-
-    def tearDown(self):
-        pass
-
-    def test_create_workspace(self):
-        """Test case for create_workspace
-
-        Create Workspace  # noqa: E501
-        """
-        pass
-
-    def test_delete_workspace(self):
-        """Test case for delete_workspace
-
-        Delete Workspace  # noqa: E501
-        """
-        pass
-
-    def test_get_workspace(self):
-        """Test case for get_workspace
-
-        Retrieve Workspace  # noqa: E501
-        """
-        pass
-
-    def test_list_workspaces(self):
-        """Test case for list_workspaces
-
-        List Workspaces  # noqa: E501
-        """
-        pass
+from rockset.models import *
+from test.conftest import EarlyExit, validate_call
 
 
-if __name__ == "__main__":
-    unittest.main()
+def test_create_workspace(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Workspaces.create_workspace(
+                name="event_logs",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_delete_workspace(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Workspaces.delete_workspace()
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_get_workspace(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Workspaces.get_workspace()
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_list_workspaces(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Workspaces.list_workspaces()
+        except EarlyExit as e:
+            validate_call(e, request_validator)

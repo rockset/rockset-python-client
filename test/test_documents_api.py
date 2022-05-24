@@ -8,42 +8,59 @@
 """
 
 
-import unittest
+from unittest import mock
 
-import rockset
-from rockset.api.documents_api import Documents  # noqa: E501
-
-
-class TestDocuments(unittest.TestCase):
-    """Documents unit test stubs"""
-
-    def setUp(self):
-        self.api = Documents()  # noqa: E501
-
-    def tearDown(self):
-        pass
-
-    def test_add_documents(self):
-        """Test case for add_documents
-
-        Add Documents  # noqa: E501
-        """
-        pass
-
-    def test_delete_documents(self):
-        """Test case for delete_documents
-
-        Delete Documents  # noqa: E501
-        """
-        pass
-
-    def test_patch_documents(self):
-        """Test case for patch_documents
-
-        Patch Documents  # noqa: E501
-        """
-        pass
+from rockset.models import *
+from test.conftest import EarlyExit, validate_call
 
 
-if __name__ == "__main__":
-    unittest.main()
+def test_add_documents(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Documents.add_documents(
+                collection="collection_example",
+                data=[{"field": "value"}],
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_delete_documents(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Documents.delete_documents(
+                collection="collection_example",
+                data=[
+                    DeleteDocumentsRequestData(
+                        id="2cd61e3b",
+                    ),
+                ],
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_patch_documents(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Documents.patch_documents(
+                collection="collection_example",
+                data=[
+                    PatchDocument(
+                        id="ca2d6832-1bfd-f88f-0620-d2aa27a5d86c",
+                        patch=[
+                            PatchOperation(
+                                _from="_from_example",
+                                op="ADD",
+                                path="/foo/bar",
+                                value={},
+                            ),
+                        ],
+                    ),
+                ],
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)

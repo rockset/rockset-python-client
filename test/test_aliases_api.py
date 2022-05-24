@@ -8,63 +8,71 @@
 """
 
 
-import unittest
+from unittest import mock
 
-import rockset
-from rockset.api.aliases_api import Aliases  # noqa: E501
-
-
-class TestAliases(unittest.TestCase):
-    """Aliases unit test stubs"""
-
-    def setUp(self):
-        self.api = Aliases()  # noqa: E501
-
-    def tearDown(self):
-        pass
-
-    def test_create_alias(self):
-        """Test case for create_alias
-
-        Create Alias  # noqa: E501
-        """
-        pass
-
-    def test_delete_alias(self):
-        """Test case for delete_alias
-
-        Delete Alias  # noqa: E501
-        """
-        pass
-
-    def test_get_alias(self):
-        """Test case for get_alias
-
-        Retrieve Alias  # noqa: E501
-        """
-        pass
-
-    def test_list_aliases(self):
-        """Test case for list_aliases
-
-        List Aliases  # noqa: E501
-        """
-        pass
-
-    def test_update_alias(self):
-        """Test case for update_alias
-
-        Update Alias  # noqa: E501
-        """
-        pass
-
-    def test_workspace_aliases(self):
-        """Test case for workspace_aliases
-
-        List Aliases in Workspace  # noqa: E501
-        """
-        pass
+from rockset.models import *
+from test.conftest import EarlyExit, validate_call
 
 
-if __name__ == "__main__":
-    unittest.main()
+def test_create_alias(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Aliases.create_alias(
+                collections=["commons.foo", "prod.demo"],
+                name="aliasName",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_delete_alias(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Aliases.delete_alias(
+                alias="alias_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_get_alias(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Aliases.get_alias(
+                alias="alias_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_list_aliases(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Aliases.list_aliases()
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_update_alias(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Aliases.update_alias(
+                alias="alias_example",
+                collections=["commons.foo", "prod.demo"],
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_workspace_aliases(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Aliases.workspace_aliases()
+        except EarlyExit as e:
+            validate_call(e, request_validator)

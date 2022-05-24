@@ -8,112 +8,152 @@
 """
 
 
-import unittest
+from unittest import mock
 
-import rockset
-from rockset.api.integrations_api import Integrations  # noqa: E501
-
-
-class TestIntegrations(unittest.TestCase):
-    """Integrations unit test stubs"""
-
-    def setUp(self):
-        self.api = Integrations()  # noqa: E501
-
-    def tearDown(self):
-        pass
-
-    def test_create_azure_blob_storage_integration(self):
-        """Test case for create_azure_blob_storage_integration
-
-        Create azure blob storage integration  # noqa: E501
-        """
-        pass
-
-    def test_create_azure_event_hubs_integration(self):
-        """Test case for create_azure_event_hubs_integration
-
-        Create azure event hubs integration  # noqa: E501
-        """
-        pass
-
-    def test_create_dynamodb_integration(self):
-        """Test case for create_dynamodb_integration
-
-        Create dynamodb integration  # noqa: E501
-        """
-        pass
-
-    def test_create_gcs_integration(self):
-        """Test case for create_gcs_integration
-
-        Create gcs integration  # noqa: E501
-        """
-        pass
-
-    def test_create_kafka_integration(self):
-        """Test case for create_kafka_integration
-
-        Create kafka integration  # noqa: E501
-        """
-        pass
-
-    def test_create_kinesis_integration(self):
-        """Test case for create_kinesis_integration
-
-        Create kinesis integration  # noqa: E501
-        """
-        pass
-
-    def test_create_mongodb_integration(self):
-        """Test case for create_mongodb_integration
-
-        Create mongodb integration  # noqa: E501
-        """
-        pass
-
-    def test_create_s3_integration(self):
-        """Test case for create_s3_integration
-
-        Create s3 integration  # noqa: E501
-        """
-        pass
-
-    def test_create_segment_integration(self):
-        """Test case for create_segment_integration
-
-        Create segment integration  # noqa: E501
-        """
-        pass
-
-    def test_delete_integration(self):
-        """Test case for delete_integration
-
-        Delete Integration  # noqa: E501
-        """
-        pass
-
-    def test_get_integration(self):
-        """Test case for get_integration
-
-        Retrieve Integration  # noqa: E501
-        """
-        pass
-
-    def test_list_integrations(self):
-        """Test case for list_integrations
-
-        List Integrations  # noqa: E501
-        """
-        pass
-
-    def test_update_integration(self):
-        """Test case for update_integration
-
-        Update Integration  # noqa: E501
-        """
-        pass
+from rockset.models import *
+from test.conftest import EarlyExit, validate_call
 
 
-if __name__ == "__main__":
-    unittest.main()
+def test_create_azure_blob_storage_integration(
+    get_client, mock_request, request_validator
+):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Integrations.create_azure_blob_storage_integration(
+                name="event-logs",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_create_azure_event_hubs_integration(
+    get_client, mock_request, request_validator
+):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Integrations.create_azure_event_hubs_integration(
+                name="event-logs",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_create_dynamodb_integration(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Integrations.create_dynamodb_integration(
+                name="event-logs",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_create_gcs_integration(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Integrations.create_gcs_integration(
+                name="event-logs",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_create_kafka_integration(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Integrations.create_kafka_integration(
+                name="event-logs",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_create_kinesis_integration(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Integrations.create_kinesis_integration(
+                name="event-logs",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_create_mongodb_integration(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Integrations.create_mongodb_integration(
+                name="event-logs",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_create_s3_integration(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Integrations.create_s3_integration(
+                name="event-logs",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_create_segment_integration(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Integrations.create_segment_integration(
+                name="event-logs",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_delete_integration(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Integrations.delete_integration(
+                integration="integration_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_get_integration(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Integrations.get_integration(
+                integration="integration_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_list_integrations(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Integrations.list_integrations()
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_update_integration(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Integrations.update_integration(
+                integration="integration_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)

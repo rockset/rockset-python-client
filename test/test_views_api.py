@@ -8,63 +8,71 @@
 """
 
 
-import unittest
+from unittest import mock
 
-import rockset
-from rockset.api.views_api import Views  # noqa: E501
-
-
-class TestViews(unittest.TestCase):
-    """Views unit test stubs"""
-
-    def setUp(self):
-        self.api = Views()  # noqa: E501
-
-    def tearDown(self):
-        pass
-
-    def test_create_view(self):
-        """Test case for create_view
-
-        Create View  # noqa: E501
-        """
-        pass
-
-    def test_delete_view(self):
-        """Test case for delete_view
-
-        Delete View  # noqa: E501
-        """
-        pass
-
-    def test_get_view(self):
-        """Test case for get_view
-
-        Retrieve View  # noqa: E501
-        """
-        pass
-
-    def test_list_views(self):
-        """Test case for list_views
-
-        List Views  # noqa: E501
-        """
-        pass
-
-    def test_update_view(self):
-        """Test case for update_view
-
-        Update View  # noqa: E501
-        """
-        pass
-
-    def test_workspace_views(self):
-        """Test case for workspace_views
-
-        List Views in Workspace  # noqa: E501
-        """
-        pass
+from rockset.models import *
+from test.conftest import EarlyExit, validate_call
 
 
-if __name__ == "__main__":
-    unittest.main()
+def test_create_view(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Views.create_view(
+                name="myAwesomeView",
+                query="SELECT * FROM foo",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_delete_view(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Views.delete_view(
+                view="view_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_get_view(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Views.get_view(
+                view="view_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_list_views(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Views.list_views()
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_update_view(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Views.update_view(
+                view="view_example",
+                query="SELECT * FROM foo",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_workspace_views(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Views.workspace_views()
+        except EarlyExit as e:
+            validate_call(e, request_validator)

@@ -11,6 +11,7 @@ from rockset.apis import (
     Aliases,
     APIKeys,
     Collections,
+    CustomRoles,
     Documents,
     Integrations,
     Organizations,
@@ -63,9 +64,13 @@ def wrapper(method):
         try:
             body = req_type(**body_args)
         except ApiTypeError as e:
-            raise ApiValueError(f"Body for the request ({req_type}) could not be created because of an incorrect type: {e}") from e
+            raise ApiValueError(
+                f"Body for the request ({req_type}) could not be created because of an incorrect type: {e}"
+            ) from e
         except TypeError as e:
-            raise ApiValueError(f"Body for the request ({req_type}) could not be created because of a missing argument: {e}") from e
+            raise ApiValueError(
+                f"Body for the request ({req_type}) could not be created because of a missing argument: {e}"
+            ) from e
 
         other_args[body_param_name] = body
 
@@ -102,7 +107,9 @@ def convert_to_rockset_type(v):
         return "datetime"
     elif isinstance(v, datetime.date):
         return "date"
-    raise TypeError("Parameter value of type {} is not supported by Rockset".format(type(v)))
+    raise TypeError(
+        "Parameter value of type {} is not supported by Rockset".format(type(v))
+    )
 
 
 class AliasesApiWrapper(Aliases, metaclass=ApiMetaclass):
@@ -114,6 +121,10 @@ class APIKeysApiWrapper(APIKeys, metaclass=ApiMetaclass):
 
 
 class CollectionsApiWrapper(Collections, metaclass=ApiMetaclass):
+    pass
+
+
+class CustomRolesApiWrapper(CustomRoles, metaclass=ApiMetaclass):
     pass
 
 
@@ -175,7 +186,14 @@ class RocksetClient:
         )
         result = await future
     """
-    def __init__(self, host: Union[str, Regions, DevRegions] = None, api_key: str = None, max_workers: int = 4, config: Configuration = None):
+
+    def __init__(
+        self,
+        host: Union[str, Regions, DevRegions] = None,
+        api_key: str = None,
+        max_workers: int = 4,
+        config: Configuration = None,
+    ):
         """
         Keyword Args:
             host (str, Regions, DevRegions): Base url of the Rockset apiserver that should be used.
@@ -205,7 +223,9 @@ class RocksetClient:
                 host = host[:-1]
 
             if not re.match(APISERVER_PATTERN, host):
-                raise InitializationException("The provided host was invalid and could not be parsed into a valid host.")
+                raise InitializationException(
+                    "The provided host was invalid and could not be parsed into a valid host."
+                )
 
         if not config:
             config = Configuration(host=host, api_key=api_key)
@@ -213,13 +233,16 @@ class RocksetClient:
             config.host = host
 
         if not config.api_key:
-            raise InitializationException("An api key must be provided as a parameter to the RocksetClient or the Configuration object.")
+            raise InitializationException(
+                "An api key must be provided as a parameter to the RocksetClient or the Configuration object."
+            )
 
         self.api_client = ApiClient(config, max_workers=max_workers)
 
         self.Aliases = AliasesApiWrapper(self.api_client)
         self.APIKeys = APIKeysApiWrapper(self.api_client)
         self.Collections = CollectionsApiWrapper(self.api_client)
+        self.CustomRoles = CustomRolesApiWrapper(self.api_client)
         self.Documents = DocumentsApiWrapper(self.api_client)
         self.Integrations = IntegrationsApiWrapper(self.api_client)
         self.Organizations = OrganizationsApiWrapper(self.api_client)
@@ -230,17 +253,22 @@ class RocksetClient:
         self.VirtualInstances = VirtualInstancesApiWrapper(self.api_client)
         self.Workspaces = WorkspacesApiWrapper(self.api_client)
 
-    def sql(self, query: Union[str, Query], params: Dict[str, Any] = None) -> QueryResponse:
+    def sql(
+        self, query: Union[str, Query], params: Dict[str, Any] = None
+    ) -> QueryResponse:
         """Convenience method for making queries.
-        
+
         If parameters are specified with the Query object, the params parameter should not be used.
         The method will automatically handle conversion and calling the API.
-        """ 
+        """
         if isinstance(query, Query):
             query, query_params = query.sql()
             params = query_params or params
 
         if params:
-            params = [QueryParameter(name=param, value=val, type=convert_to_rockset_type(val)) for param, val in params.items()]
-            
+            params = [
+                QueryParameter(name=param, value=val, type=convert_to_rockset_type(val))
+                for param, val in params.items()
+            ]
+
         return self.Queries.query(sql=QueryRequestSql(query=query, parameters=params))
