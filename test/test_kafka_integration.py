@@ -15,9 +15,10 @@ import rockset
 from rockset.model.kafka_v3_security_config import KafkaV3SecurityConfig
 from rockset.model.schema_registry_config import SchemaRegistryConfig
 from rockset.model.status_kafka import StatusKafka
-globals()['KafkaV3SecurityConfig'] = KafkaV3SecurityConfig
-globals()['SchemaRegistryConfig'] = SchemaRegistryConfig
-globals()['StatusKafka'] = StatusKafka
+
+globals()["KafkaV3SecurityConfig"] = KafkaV3SecurityConfig
+globals()["SchemaRegistryConfig"] = SchemaRegistryConfig
+globals()["StatusKafka"] = StatusKafka
 from rockset.model.kafka_integration import KafkaIntegration
 
 
@@ -37,5 +38,5 @@ class TestKafkaIntegration(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

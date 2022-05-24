@@ -15,9 +15,10 @@ import rockset
 from rockset.model.format_params import FormatParams
 from rockset.model.source_kinesis import SourceKinesis
 from rockset.model.status import Status
-globals()['FormatParams'] = FormatParams
-globals()['SourceKinesis'] = SourceKinesis
-globals()['Status'] = Status
+
+globals()["FormatParams"] = FormatParams
+globals()["SourceKinesis"] = SourceKinesis
+globals()["Status"] = Status
 from rockset.model.kinesis_source_wrapper import KinesisSourceWrapper
 
 
@@ -37,5 +38,5 @@ class TestKinesisSourceWrapper(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -11,14 +11,14 @@
 import unittest
 
 import rockset
-from rockset.api.users_api import UsersApi  # noqa: E501
+from rockset.api.users_api import Users  # noqa: E501
 
 
-class TestUsersApi(unittest.TestCase):
-    """UsersApi unit test stubs"""
+class TestUsers(unittest.TestCase):
+    """Users unit test stubs"""
 
     def setUp(self):
-        self.api = UsersApi()  # noqa: E501
+        self.api = Users()  # noqa: E501
 
     def tearDown(self):
         pass
@@ -73,5 +73,5 @@ class TestUsersApi(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

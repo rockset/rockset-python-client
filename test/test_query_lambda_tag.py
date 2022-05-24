@@ -13,7 +13,8 @@ import unittest
 
 import rockset
 from rockset.model.query_lambda_version import QueryLambdaVersion
-globals()['QueryLambdaVersion'] = QueryLambdaVersion
+
+globals()["QueryLambdaVersion"] = QueryLambdaVersion
 from rockset.model.query_lambda_tag import QueryLambdaTag
 
 
@@ -33,5 +34,5 @@ class TestQueryLambdaTag(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

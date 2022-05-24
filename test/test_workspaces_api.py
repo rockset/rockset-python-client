@@ -11,14 +11,14 @@
 import unittest
 
 import rockset
-from rockset.api.workspaces_api import WorkspacesApi  # noqa: E501
+from rockset.api.workspaces_api import Workspaces  # noqa: E501
 
 
-class TestWorkspacesApi(unittest.TestCase):
-    """WorkspacesApi unit test stubs"""
+class TestWorkspaces(unittest.TestCase):
+    """Workspaces unit test stubs"""
 
     def setUp(self):
-        self.api = WorkspacesApi()  # noqa: E501
+        self.api = Workspaces()  # noqa: E501
 
     def tearDown(self):
         pass
@@ -52,5 +52,5 @@ class TestWorkspacesApi(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

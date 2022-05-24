@@ -11,14 +11,14 @@
 import unittest
 
 import rockset
-from rockset.api.integrations_api import IntegrationsApi  # noqa: E501
+from rockset.api.integrations_api import Integrations  # noqa: E501
 
 
-class TestIntegrationsApi(unittest.TestCase):
-    """IntegrationsApi unit test stubs"""
+class TestIntegrations(unittest.TestCase):
+    """Integrations unit test stubs"""
 
     def setUp(self):
-        self.api = IntegrationsApi()  # noqa: E501
+        self.api = Integrations()  # noqa: E501
 
     def tearDown(self):
         pass
@@ -107,6 +107,13 @@ class TestIntegrationsApi(unittest.TestCase):
         """
         pass
 
+    def test_update_integration(self):
+        """Test case for update_integration
 
-if __name__ == '__main__':
+        Update Integration  # noqa: E501
+        """
+        pass
+
+
+if __name__ == "__main__":
     unittest.main()

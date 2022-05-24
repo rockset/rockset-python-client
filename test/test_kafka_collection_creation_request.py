@@ -17,12 +17,15 @@ from rockset.model.field_mapping_query import FieldMappingQuery
 from rockset.model.field_mapping_v2 import FieldMappingV2
 from rockset.model.field_partition import FieldPartition
 from rockset.model.kafka_source_wrapper import KafkaSourceWrapper
-globals()['EventTimeInfo'] = EventTimeInfo
-globals()['FieldMappingQuery'] = FieldMappingQuery
-globals()['FieldMappingV2'] = FieldMappingV2
-globals()['FieldPartition'] = FieldPartition
-globals()['KafkaSourceWrapper'] = KafkaSourceWrapper
-from rockset.model.kafka_collection_creation_request import KafkaCollectionCreationRequest
+
+globals()["EventTimeInfo"] = EventTimeInfo
+globals()["FieldMappingQuery"] = FieldMappingQuery
+globals()["FieldMappingV2"] = FieldMappingV2
+globals()["FieldPartition"] = FieldPartition
+globals()["KafkaSourceWrapper"] = KafkaSourceWrapper
+from rockset.model.kafka_collection_creation_request import (
+    KafkaCollectionCreationRequest,
+)
 
 
 class TestKafkaCollectionCreationRequest(unittest.TestCase):
@@ -41,5 +44,5 @@ class TestKafkaCollectionCreationRequest(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

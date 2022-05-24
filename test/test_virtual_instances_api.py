@@ -11,14 +11,14 @@
 import unittest
 
 import rockset
-from rockset.api.virtual_instances_api import VirtualInstancesApi  # noqa: E501
+from rockset.api.virtual_instances_api import VirtualInstances  # noqa: E501
 
 
-class TestVirtualInstancesApi(unittest.TestCase):
-    """VirtualInstancesApi unit test stubs"""
+class TestVirtualInstances(unittest.TestCase):
+    """VirtualInstances unit test stubs"""
 
     def setUp(self):
-        self.api = VirtualInstancesApi()  # noqa: E501
+        self.api = VirtualInstances()  # noqa: E501
 
     def tearDown(self):
         pass
@@ -45,5 +45,5 @@ class TestVirtualInstancesApi(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

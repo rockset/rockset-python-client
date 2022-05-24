@@ -13,7 +13,8 @@ import unittest
 
 import rockset
 from rockset.model.api_key import ApiKey
-globals()['ApiKey'] = ApiKey
+
+globals()["ApiKey"] = ApiKey
 from rockset.model.update_api_key_response import UpdateApiKeyResponse
 
 
@@ -33,5 +34,5 @@ class TestUpdateApiKeyResponse(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

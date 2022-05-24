@@ -11,14 +11,14 @@
 import unittest
 
 import rockset
-from rockset.api.query_lambdas_api import QueryLambdasApi  # noqa: E501
+from rockset.api.query_lambdas_api import QueryLambdas  # noqa: E501
 
 
-class TestQueryLambdasApi(unittest.TestCase):
-    """QueryLambdasApi unit test stubs"""
+class TestQueryLambdas(unittest.TestCase):
+    """QueryLambdas unit test stubs"""
 
     def setUp(self):
-        self.api = QueryLambdasApi()  # noqa: E501
+        self.api = QueryLambdas()  # noqa: E501
 
     def tearDown(self):
         pass
@@ -122,5 +122,5 @@ class TestQueryLambdasApi(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -11,14 +11,14 @@
 import unittest
 
 import rockset
-from rockset.api.aliases_api import AliasesApi  # noqa: E501
+from rockset.api.aliases_api import Aliases  # noqa: E501
 
 
-class TestAliasesApi(unittest.TestCase):
-    """AliasesApi unit test stubs"""
+class TestAliases(unittest.TestCase):
+    """Aliases unit test stubs"""
 
     def setUp(self):
-        self.api = AliasesApi()  # noqa: E501
+        self.api = Aliases()  # noqa: E501
 
     def tearDown(self):
         pass
@@ -66,5 +66,5 @@ class TestAliasesApi(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -13,7 +13,8 @@ import unittest
 
 import rockset
 from rockset.model.status_kafka import StatusKafka
-globals()['StatusKafka'] = StatusKafka
+
+globals()["StatusKafka"] = StatusKafka
 from rockset.model.source_kafka import SourceKafka
 
 
@@ -33,5 +34,5 @@ class TestSourceKafka(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

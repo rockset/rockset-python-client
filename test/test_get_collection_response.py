@@ -13,7 +13,8 @@ import unittest
 
 import rockset
 from rockset.model.collection import Collection
-globals()['Collection'] = Collection
+
+globals()["Collection"] = Collection
 from rockset.model.get_collection_response import GetCollectionResponse
 
 
@@ -33,5 +34,5 @@ class TestGetCollectionResponse(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

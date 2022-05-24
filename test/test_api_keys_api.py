@@ -11,14 +11,14 @@
 import unittest
 
 import rockset
-from rockset.api.api_keys_api import APIKeysApi  # noqa: E501
+from rockset.api.api_keys_api import APIKeys  # noqa: E501
 
 
-class TestAPIKeysApi(unittest.TestCase):
-    """APIKeysApi unit test stubs"""
+class TestAPIKeys(unittest.TestCase):
+    """APIKeys unit test stubs"""
 
     def setUp(self):
-        self.api = APIKeysApi()  # noqa: E501
+        self.api = APIKeys()  # noqa: E501
 
     def tearDown(self):
         pass
@@ -59,5 +59,5 @@ class TestAPIKeysApi(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

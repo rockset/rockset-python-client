@@ -13,7 +13,8 @@ import unittest
 
 import rockset
 from rockset.model.query_parameter import QueryParameter
-globals()['QueryParameter'] = QueryParameter
+
+globals()["QueryParameter"] = QueryParameter
 from rockset.model.query_request_sql import QueryRequestSql
 
 
@@ -33,5 +34,5 @@ class TestQueryRequestSql(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

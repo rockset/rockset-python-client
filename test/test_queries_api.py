@@ -11,14 +11,14 @@
 import unittest
 
 import rockset
-from rockset.api.queries_api import QueriesApi  # noqa: E501
+from rockset.api.queries_api import Queries  # noqa: E501
 
 
-class TestQueriesApi(unittest.TestCase):
-    """QueriesApi unit test stubs"""
+class TestQueries(unittest.TestCase):
+    """Queries unit test stubs"""
 
     def setUp(self):
-        self.api = QueriesApi()  # noqa: E501
+        self.api = Queries()  # noqa: E501
 
     def tearDown(self):
         pass
@@ -66,5 +66,5 @@ class TestQueriesApi(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

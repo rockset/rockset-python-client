@@ -15,9 +15,10 @@ import rockset
 from rockset.model.format_params import FormatParams
 from rockset.model.source_kafka import SourceKafka
 from rockset.model.status import Status
-globals()['FormatParams'] = FormatParams
-globals()['SourceKafka'] = SourceKafka
-globals()['Status'] = Status
+
+globals()["FormatParams"] = FormatParams
+globals()["SourceKafka"] = SourceKafka
+globals()["Status"] = Status
 from rockset.model.kafka_source_wrapper import KafkaSourceWrapper
 
 
@@ -37,5 +38,5 @@ class TestKafkaSourceWrapper(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

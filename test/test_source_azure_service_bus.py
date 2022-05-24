@@ -13,7 +13,8 @@ import unittest
 
 import rockset
 from rockset.model.status_azure_service_bus import StatusAzureServiceBus
-globals()['StatusAzureServiceBus'] = StatusAzureServiceBus
+
+globals()["StatusAzureServiceBus"] = StatusAzureServiceBus
 from rockset.model.source_azure_service_bus import SourceAzureServiceBus
 
 
@@ -33,5 +34,5 @@ class TestSourceAzureServiceBus(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

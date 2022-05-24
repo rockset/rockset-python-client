@@ -12,7 +12,9 @@ import sys
 import unittest
 
 import rockset
-from rockset.model.status_azure_event_hubs_partition import StatusAzureEventHubsPartition
+from rockset.model.status_azure_event_hubs_partition import (
+    StatusAzureEventHubsPartition,
+)
 
 
 class TestStatusAzureEventHubsPartition(unittest.TestCase):
@@ -31,5 +33,5 @@ class TestStatusAzureEventHubsPartition(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -15,9 +15,10 @@ import rockset
 from rockset.model.format_params import FormatParams
 from rockset.model.source_dynamo_db import SourceDynamoDb
 from rockset.model.status import Status
-globals()['FormatParams'] = FormatParams
-globals()['SourceDynamoDb'] = SourceDynamoDb
-globals()['Status'] = Status
+
+globals()["FormatParams"] = FormatParams
+globals()["SourceDynamoDb"] = SourceDynamoDb
+globals()["Status"] = Status
 from rockset.model.dynamodb_source_wrapper import DynamodbSourceWrapper
 
 
@@ -37,5 +38,5 @@ class TestDynamodbSourceWrapper(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

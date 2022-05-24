@@ -13,7 +13,8 @@ import unittest
 
 import rockset
 from rockset.model.gcp_service_account import GcpServiceAccount
-globals()['GcpServiceAccount'] = GcpServiceAccount
+
+globals()["GcpServiceAccount"] = GcpServiceAccount
 from rockset.model.gcs_integration import GcsIntegration
 
 
@@ -33,5 +34,5 @@ class TestGcsIntegration(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

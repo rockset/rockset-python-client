@@ -13,7 +13,8 @@ import unittest
 
 import rockset
 from rockset.model.query_lambda import QueryLambda
-globals()['QueryLambda'] = QueryLambda
+
+globals()["QueryLambda"] = QueryLambda
 from rockset.model.list_query_lambdas_response import ListQueryLambdasResponse
 
 
@@ -33,5 +34,5 @@ class TestListQueryLambdasResponse(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

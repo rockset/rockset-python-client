@@ -11,14 +11,14 @@
 import unittest
 
 import rockset
-from rockset.api.custom_roles_api import CustomRolesApi  # noqa: E501
+from rockset.api.custom_roles_api import CustomRoles  # noqa: E501
 
 
-class TestCustomRolesApi(unittest.TestCase):
-    """CustomRolesApi unit test stubs"""
+class TestCustomRoles(unittest.TestCase):
+    """CustomRoles unit test stubs"""
 
     def setUp(self):
-        self.api = CustomRolesApi()  # noqa: E501
+        self.api = CustomRoles()  # noqa: E501
 
     def tearDown(self):
         pass
@@ -59,5 +59,5 @@ class TestCustomRolesApi(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

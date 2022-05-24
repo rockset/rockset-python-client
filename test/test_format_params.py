@@ -14,8 +14,9 @@ import unittest
 import rockset
 from rockset.model.csv_params import CsvParams
 from rockset.model.xml_params import XmlParams
-globals()['CsvParams'] = CsvParams
-globals()['XmlParams'] = XmlParams
+
+globals()["CsvParams"] = CsvParams
+globals()["XmlParams"] = XmlParams
 from rockset.model.format_params import FormatParams
 
 
@@ -35,5 +36,5 @@ class TestFormatParams(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

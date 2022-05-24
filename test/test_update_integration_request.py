@@ -13,7 +13,8 @@ import unittest
 
 import rockset
 from rockset.model.kafka_integration import KafkaIntegration
-globals()['KafkaIntegration'] = KafkaIntegration
+
+globals()["KafkaIntegration"] = KafkaIntegration
 from rockset.model.update_integration_request import UpdateIntegrationRequest
 
 
@@ -33,5 +34,5 @@ class TestUpdateIntegrationRequest(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

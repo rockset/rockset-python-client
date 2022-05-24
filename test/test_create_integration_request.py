@@ -21,15 +21,16 @@ from rockset.model.kinesis_integration import KinesisIntegration
 from rockset.model.mongo_db_integration import MongoDbIntegration
 from rockset.model.s3_integration import S3Integration
 from rockset.model.segment_integration import SegmentIntegration
-globals()['AzureBlobStorageIntegration'] = AzureBlobStorageIntegration
-globals()['AzureEventHubsIntegration'] = AzureEventHubsIntegration
-globals()['DynamodbIntegration'] = DynamodbIntegration
-globals()['GcsIntegration'] = GcsIntegration
-globals()['KafkaIntegration'] = KafkaIntegration
-globals()['KinesisIntegration'] = KinesisIntegration
-globals()['MongoDbIntegration'] = MongoDbIntegration
-globals()['S3Integration'] = S3Integration
-globals()['SegmentIntegration'] = SegmentIntegration
+
+globals()["AzureBlobStorageIntegration"] = AzureBlobStorageIntegration
+globals()["AzureEventHubsIntegration"] = AzureEventHubsIntegration
+globals()["DynamodbIntegration"] = DynamodbIntegration
+globals()["GcsIntegration"] = GcsIntegration
+globals()["KafkaIntegration"] = KafkaIntegration
+globals()["KinesisIntegration"] = KinesisIntegration
+globals()["MongoDbIntegration"] = MongoDbIntegration
+globals()["S3Integration"] = S3Integration
+globals()["SegmentIntegration"] = SegmentIntegration
 from rockset.model.create_integration_request import CreateIntegrationRequest
 
 
@@ -49,5 +50,5 @@ class TestCreateIntegrationRequest(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

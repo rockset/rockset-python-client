@@ -11,14 +11,14 @@
 import unittest
 
 import rockset
-from rockset.api.collections_api import CollectionsApi  # noqa: E501
+from rockset.api.collections_api import Collections  # noqa: E501
 
 
-class TestCollectionsApi(unittest.TestCase):
-    """CollectionsApi unit test stubs"""
+class TestCollections(unittest.TestCase):
+    """Collections unit test stubs"""
 
     def setUp(self):
-        self.api = CollectionsApi()  # noqa: E501
+        self.api = Collections()  # noqa: E501
 
     def tearDown(self):
         pass
@@ -122,5 +122,5 @@ class TestCollectionsApi(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

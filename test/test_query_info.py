@@ -15,9 +15,10 @@ import rockset
 from rockset.model.pagination import Pagination
 from rockset.model.query_error import QueryError
 from rockset.model.stats import Stats
-globals()['Pagination'] = Pagination
-globals()['QueryError'] = QueryError
-globals()['Stats'] = Stats
+
+globals()["Pagination"] = Pagination
+globals()["QueryError"] = QueryError
+globals()["Stats"] = Stats
 from rockset.model.query_info import QueryInfo
 
 
@@ -37,5 +38,5 @@ class TestQueryInfo(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

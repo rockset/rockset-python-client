@@ -15,9 +15,10 @@ import rockset
 from rockset.model.format_params import FormatParams
 from rockset.model.source_s3 import SourceS3
 from rockset.model.status import Status
-globals()['FormatParams'] = FormatParams
-globals()['SourceS3'] = SourceS3
-globals()['Status'] = Status
+
+globals()["FormatParams"] = FormatParams
+globals()["SourceS3"] = SourceS3
+globals()["Status"] = Status
 from rockset.model.s3_source_wrapper import S3SourceWrapper
 
 
@@ -37,5 +38,5 @@ class TestS3SourceWrapper(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

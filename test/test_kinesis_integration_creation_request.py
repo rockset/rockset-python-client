@@ -13,8 +13,11 @@ import unittest
 
 import rockset
 from rockset.model.kinesis_integration import KinesisIntegration
-globals()['KinesisIntegration'] = KinesisIntegration
-from rockset.model.kinesis_integration_creation_request import KinesisIntegrationCreationRequest
+
+globals()["KinesisIntegration"] = KinesisIntegration
+from rockset.model.kinesis_integration_creation_request import (
+    KinesisIntegrationCreationRequest,
+)
 
 
 class TestKinesisIntegrationCreationRequest(unittest.TestCase):
@@ -33,5 +36,5 @@ class TestKinesisIntegrationCreationRequest(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

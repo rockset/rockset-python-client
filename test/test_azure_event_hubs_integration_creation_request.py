@@ -13,8 +13,11 @@ import unittest
 
 import rockset
 from rockset.model.azure_event_hubs_integration import AzureEventHubsIntegration
-globals()['AzureEventHubsIntegration'] = AzureEventHubsIntegration
-from rockset.model.azure_event_hubs_integration_creation_request import AzureEventHubsIntegrationCreationRequest
+
+globals()["AzureEventHubsIntegration"] = AzureEventHubsIntegration
+from rockset.model.azure_event_hubs_integration_creation_request import (
+    AzureEventHubsIntegrationCreationRequest,
+)
 
 
 class TestAzureEventHubsIntegrationCreationRequest(unittest.TestCase):
@@ -33,5 +36,5 @@ class TestAzureEventHubsIntegrationCreationRequest(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

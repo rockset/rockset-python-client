@@ -13,7 +13,8 @@ import unittest
 
 import rockset
 from rockset.model.view import View
-globals()['View'] = View
+
+globals()["View"] = View
 from rockset.model.create_view_response import CreateViewResponse
 
 
@@ -33,5 +34,5 @@ class TestCreateViewResponse(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

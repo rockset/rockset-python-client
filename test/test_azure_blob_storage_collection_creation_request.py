@@ -12,17 +12,22 @@ import sys
 import unittest
 
 import rockset
-from rockset.model.azure_blob_storage_source_wrapper import AzureBlobStorageSourceWrapper
+from rockset.model.azure_blob_storage_source_wrapper import (
+    AzureBlobStorageSourceWrapper,
+)
 from rockset.model.event_time_info import EventTimeInfo
 from rockset.model.field_mapping_query import FieldMappingQuery
 from rockset.model.field_mapping_v2 import FieldMappingV2
 from rockset.model.field_partition import FieldPartition
-globals()['AzureBlobStorageSourceWrapper'] = AzureBlobStorageSourceWrapper
-globals()['EventTimeInfo'] = EventTimeInfo
-globals()['FieldMappingQuery'] = FieldMappingQuery
-globals()['FieldMappingV2'] = FieldMappingV2
-globals()['FieldPartition'] = FieldPartition
-from rockset.model.azure_blob_storage_collection_creation_request import AzureBlobStorageCollectionCreationRequest
+
+globals()["AzureBlobStorageSourceWrapper"] = AzureBlobStorageSourceWrapper
+globals()["EventTimeInfo"] = EventTimeInfo
+globals()["FieldMappingQuery"] = FieldMappingQuery
+globals()["FieldMappingV2"] = FieldMappingV2
+globals()["FieldPartition"] = FieldPartition
+from rockset.model.azure_blob_storage_collection_creation_request import (
+    AzureBlobStorageCollectionCreationRequest,
+)
 
 
 class TestAzureBlobStorageCollectionCreationRequest(unittest.TestCase):
@@ -41,5 +46,5 @@ class TestAzureBlobStorageCollectionCreationRequest(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
