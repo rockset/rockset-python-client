@@ -13,8 +13,11 @@ import unittest
 
 import rockset
 from rockset.model.dynamodb_integration import DynamodbIntegration
-globals()['DynamodbIntegration'] = DynamodbIntegration
-from rockset.model.dynamodb_integration_creation_request import DynamodbIntegrationCreationRequest
+
+globals()["DynamodbIntegration"] = DynamodbIntegration
+from rockset.model.dynamodb_integration_creation_request import (
+    DynamodbIntegrationCreationRequest,
+)
 
 
 class TestDynamodbIntegrationCreationRequest(unittest.TestCase):
@@ -33,5 +36,5 @@ class TestDynamodbIntegrationCreationRequest(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

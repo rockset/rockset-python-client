@@ -17,12 +17,15 @@ from rockset.model.event_time_info import EventTimeInfo
 from rockset.model.field_mapping_query import FieldMappingQuery
 from rockset.model.field_mapping_v2 import FieldMappingV2
 from rockset.model.field_partition import FieldPartition
-globals()['AzureEventHubsSourceWrapper'] = AzureEventHubsSourceWrapper
-globals()['EventTimeInfo'] = EventTimeInfo
-globals()['FieldMappingQuery'] = FieldMappingQuery
-globals()['FieldMappingV2'] = FieldMappingV2
-globals()['FieldPartition'] = FieldPartition
-from rockset.model.azure_event_hubs_collection_creation_request import AzureEventHubsCollectionCreationRequest
+
+globals()["AzureEventHubsSourceWrapper"] = AzureEventHubsSourceWrapper
+globals()["EventTimeInfo"] = EventTimeInfo
+globals()["FieldMappingQuery"] = FieldMappingQuery
+globals()["FieldMappingV2"] = FieldMappingV2
+globals()["FieldPartition"] = FieldPartition
+from rockset.model.azure_event_hubs_collection_creation_request import (
+    AzureEventHubsCollectionCreationRequest,
+)
 
 
 class TestAzureEventHubsCollectionCreationRequest(unittest.TestCase):
@@ -41,5 +44,5 @@ class TestAzureEventHubsCollectionCreationRequest(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

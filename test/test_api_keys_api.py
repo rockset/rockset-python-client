@@ -8,56 +8,65 @@
 """
 
 
-import unittest
+from unittest import mock
 
-import rockset
-from rockset.api.api_keys_api import APIKeysApi  # noqa: E501
-
-
-class TestAPIKeysApi(unittest.TestCase):
-    """APIKeysApi unit test stubs"""
-
-    def setUp(self):
-        self.api = APIKeysApi()  # noqa: E501
-
-    def tearDown(self):
-        pass
-
-    def test_create_api_key(self):
-        """Test case for create_api_key
-
-        Create API Key  # noqa: E501
-        """
-        pass
-
-    def test_delete_api_key(self):
-        """Test case for delete_api_key
-
-        Delete API Key  # noqa: E501
-        """
-        pass
-
-    def test_get_api_key(self):
-        """Test case for get_api_key
-
-        Retrieve API Key  # noqa: E501
-        """
-        pass
-
-    def test_list_api_keys(self):
-        """Test case for list_api_keys
-
-        List API Keys  # noqa: E501
-        """
-        pass
-
-    def test_update_api_key(self):
-        """Test case for update_api_key
-
-        Update API Key State  # noqa: E501
-        """
-        pass
+from rockset.models import *
+from test.conftest import EarlyExit, validate_call
 
 
-if __name__ == '__main__':
-    unittest.main()
+def test_create_api_key(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.APIKeys.create_api_key(
+                name="my-app",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_delete_api_key(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.APIKeys.delete_api_key(
+                name="my-key",
+                user="admin@me.com",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_get_api_key(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.APIKeys.get_api_key(
+                user="admin@me.com",
+                name="my-key",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_list_api_keys(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.APIKeys.list_api_keys(
+                user="admin@me.com",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_update_api_key(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.APIKeys.update_api_key(
+                name="my-key",
+                user="admin@me.com",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)

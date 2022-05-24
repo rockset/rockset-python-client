@@ -17,11 +17,12 @@ from rockset.model.field_mapping_query import FieldMappingQuery
 from rockset.model.field_mapping_v2 import FieldMappingV2
 from rockset.model.field_partition import FieldPartition
 from rockset.model.gcs_source_wrapper import GcsSourceWrapper
-globals()['EventTimeInfo'] = EventTimeInfo
-globals()['FieldMappingQuery'] = FieldMappingQuery
-globals()['FieldMappingV2'] = FieldMappingV2
-globals()['FieldPartition'] = FieldPartition
-globals()['GcsSourceWrapper'] = GcsSourceWrapper
+
+globals()["EventTimeInfo"] = EventTimeInfo
+globals()["FieldMappingQuery"] = FieldMappingQuery
+globals()["FieldMappingV2"] = FieldMappingV2
+globals()["FieldPartition"] = FieldPartition
+globals()["GcsSourceWrapper"] = GcsSourceWrapper
 from rockset.model.gcs_collection_creation_request import GcsCollectionCreationRequest
 
 
@@ -41,5 +42,5 @@ class TestGcsCollectionCreationRequest(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

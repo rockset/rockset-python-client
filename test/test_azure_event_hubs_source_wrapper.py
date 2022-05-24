@@ -15,9 +15,10 @@ import rockset
 from rockset.model.format_params import FormatParams
 from rockset.model.source_azure_event_hubs import SourceAzureEventHubs
 from rockset.model.status import Status
-globals()['FormatParams'] = FormatParams
-globals()['SourceAzureEventHubs'] = SourceAzureEventHubs
-globals()['Status'] = Status
+
+globals()["FormatParams"] = FormatParams
+globals()["SourceAzureEventHubs"] = SourceAzureEventHubs
+globals()["Status"] = Status
 from rockset.model.azure_event_hubs_source_wrapper import AzureEventHubsSourceWrapper
 
 
@@ -37,5 +38,5 @@ class TestAzureEventHubsSourceWrapper(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

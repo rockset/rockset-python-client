@@ -1,0 +1,37 @@
+{{>partial_header}}
+
+from unittest import mock
+
+from {{packageName}}.models import *
+from test.conftest import EarlyExit, validate_call
+
+{{#operations}}{{#operation}}
+def test_{{operationId}}(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.{{classname}}.{{operationId}}(
+{{#requiredParams}}
+{{^isReadOnly}}
+{{^defaultValue}}
+{{^isBodyParam}}
+{{^isReadOnly}}
+    {{paramName}}={{#example}}{{{.}}}{{/example}}{{^example}}{{paramName}}{{/example}},
+{{/isReadOnly}}
+{{/isBodyParam}}
+{{#isBodyParam}}
+{{#requiredVars}}
+{{^isReadOnly}}
+    {{name}}={{#example}}{{{.}}}{{/example}}{{^example}}{{name}}{{/example}},
+{{/isReadOnly}}
+{{/requiredVars}}
+{{/isBodyParam}}
+{{/defaultValue}}
+{{/isReadOnly}}
+{{/requiredParams}}
+)
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+{{/operation}}
+{{/operations}}

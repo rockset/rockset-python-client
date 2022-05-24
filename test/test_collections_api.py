@@ -8,119 +8,163 @@
 """
 
 
-import unittest
+from unittest import mock
 
-import rockset
-from rockset.api.collections_api import CollectionsApi  # noqa: E501
-
-
-class TestCollectionsApi(unittest.TestCase):
-    """CollectionsApi unit test stubs"""
-
-    def setUp(self):
-        self.api = CollectionsApi()  # noqa: E501
-
-    def tearDown(self):
-        pass
-
-    def test_create_azure_blob_storage_collection(self):
-        """Test case for create_azure_blob_storage_collection
-
-        Create azure blob storage collection  # noqa: E501
-        """
-        pass
-
-    def test_create_azure_event_hubs_collection(self):
-        """Test case for create_azure_event_hubs_collection
-
-        Create azure event hubs collection  # noqa: E501
-        """
-        pass
-
-    def test_create_azure_service_bus_collection(self):
-        """Test case for create_azure_service_bus_collection
-
-        Create azure service bus collection  # noqa: E501
-        """
-        pass
-
-    def test_create_dynamodb_collection(self):
-        """Test case for create_dynamodb_collection
-
-        Create dynamodb collection  # noqa: E501
-        """
-        pass
-
-    def test_create_file_upload_collection(self):
-        """Test case for create_file_upload_collection
-
-        Create file upload collection  # noqa: E501
-        """
-        pass
-
-    def test_create_gcs_collection(self):
-        """Test case for create_gcs_collection
-
-        Create gcs collection  # noqa: E501
-        """
-        pass
-
-    def test_create_kafka_collection(self):
-        """Test case for create_kafka_collection
-
-        Create kafka collection  # noqa: E501
-        """
-        pass
-
-    def test_create_kinesis_collection(self):
-        """Test case for create_kinesis_collection
-
-        Create kinesis collection  # noqa: E501
-        """
-        pass
-
-    def test_create_mongodb_collection(self):
-        """Test case for create_mongodb_collection
-
-        Create mongodb collection  # noqa: E501
-        """
-        pass
-
-    def test_create_s3_collection(self):
-        """Test case for create_s3_collection
-
-        Create s3 collection  # noqa: E501
-        """
-        pass
-
-    def test_delete_collection(self):
-        """Test case for delete_collection
-
-        Delete Collection  # noqa: E501
-        """
-        pass
-
-    def test_get_collection(self):
-        """Test case for get_collection
-
-        Retrieve Collection  # noqa: E501
-        """
-        pass
-
-    def test_list_collections(self):
-        """Test case for list_collections
-
-        List Collections  # noqa: E501
-        """
-        pass
-
-    def test_workspace_collections(self):
-        """Test case for workspace_collections
-
-        List Collections in Workspace  # noqa: E501
-        """
-        pass
+from rockset.models import *
+from test.conftest import EarlyExit, validate_call
 
 
-if __name__ == '__main__':
-    unittest.main()
+def test_create_azure_blob_storage_collection(
+    get_client, mock_request, request_validator
+):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Collections.create_azure_blob_storage_collection(
+                name="global-transactions",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_create_azure_event_hubs_collection(
+    get_client, mock_request, request_validator
+):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Collections.create_azure_event_hubs_collection(
+                name="global-transactions",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_create_azure_service_bus_collection(
+    get_client, mock_request, request_validator
+):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Collections.create_azure_service_bus_collection(
+                name="global-transactions",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_create_dynamodb_collection(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Collections.create_dynamodb_collection(
+                name="global-transactions",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_create_file_upload_collection(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Collections.create_file_upload_collection(
+                name="global-transactions",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_create_gcs_collection(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Collections.create_gcs_collection(
+                name="global-transactions",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_create_kafka_collection(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Collections.create_kafka_collection(
+                name="global-transactions",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_create_kinesis_collection(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Collections.create_kinesis_collection(
+                name="global-transactions",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_create_mongodb_collection(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Collections.create_mongodb_collection(
+                name="global-transactions",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_create_s3_collection(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Collections.create_s3_collection(
+                name="global-transactions",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_delete_collection(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Collections.delete_collection(
+                collection="collection_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_get_collection(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Collections.get_collection(
+                collection="collection_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_list_collections(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Collections.list_collections()
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_workspace_collections(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Collections.workspace_collections()
+        except EarlyExit as e:
+            validate_call(e, request_validator)

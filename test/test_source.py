@@ -14,8 +14,9 @@ import unittest
 import rockset
 from rockset.model.format_params import FormatParams
 from rockset.model.status import Status
-globals()['FormatParams'] = FormatParams
-globals()['Status'] = Status
+
+globals()["FormatParams"] = FormatParams
+globals()["Status"] = Status
 from rockset.model.source import Source
 
 
@@ -35,5 +36,5 @@ class TestSource(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

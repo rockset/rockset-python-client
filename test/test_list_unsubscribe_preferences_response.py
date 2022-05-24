@@ -13,8 +13,11 @@ import unittest
 
 import rockset
 from rockset.model.unsubscribe_preference import UnsubscribePreference
-globals()['UnsubscribePreference'] = UnsubscribePreference
-from rockset.model.list_unsubscribe_preferences_response import ListUnsubscribePreferencesResponse
+
+globals()["UnsubscribePreference"] = UnsubscribePreference
+from rockset.model.list_unsubscribe_preferences_response import (
+    ListUnsubscribePreferencesResponse,
+)
 
 
 class TestListUnsubscribePreferencesResponse(unittest.TestCase):
@@ -33,5 +36,5 @@ class TestListUnsubscribePreferencesResponse(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

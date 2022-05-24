@@ -15,9 +15,10 @@ import rockset
 from rockset.model.format_params import FormatParams
 from rockset.model.source_mongo_db import SourceMongoDb
 from rockset.model.status import Status
-globals()['FormatParams'] = FormatParams
-globals()['SourceMongoDb'] = SourceMongoDb
-globals()['Status'] = Status
+
+globals()["FormatParams"] = FormatParams
+globals()["SourceMongoDb"] = SourceMongoDb
+globals()["Status"] = Status
 from rockset.model.mongodb_source_wrapper import MongodbSourceWrapper
 
 
@@ -37,5 +38,5 @@ class TestMongodbSourceWrapper(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

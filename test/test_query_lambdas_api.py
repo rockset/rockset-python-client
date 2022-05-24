@@ -8,119 +8,175 @@
 """
 
 
-import unittest
+from unittest import mock
 
-import rockset
-from rockset.api.query_lambdas_api import QueryLambdasApi  # noqa: E501
-
-
-class TestQueryLambdasApi(unittest.TestCase):
-    """QueryLambdasApi unit test stubs"""
-
-    def setUp(self):
-        self.api = QueryLambdasApi()  # noqa: E501
-
-    def tearDown(self):
-        pass
-
-    def test_create_query_lambda(self):
-        """Test case for create_query_lambda
-
-        Create Query Lambda  # noqa: E501
-        """
-        pass
-
-    def test_create_query_lambda_tag(self):
-        """Test case for create_query_lambda_tag
-
-        Create Query Lambda Tag  # noqa: E501
-        """
-        pass
-
-    def test_delete_query_lambda(self):
-        """Test case for delete_query_lambda
-
-        Delete Query Lambda  # noqa: E501
-        """
-        pass
-
-    def test_delete_query_lambda_tag(self):
-        """Test case for delete_query_lambda_tag
-
-        Delete Query Lambda Tag Version  # noqa: E501
-        """
-        pass
-
-    def test_delete_query_lambda_version(self):
-        """Test case for delete_query_lambda_version
-
-        Delete Query Lambda Version  # noqa: E501
-        """
-        pass
-
-    def test_execute_query_lambda(self):
-        """Test case for execute_query_lambda
-
-        Execute Query Lambda By Version  # noqa: E501
-        """
-        pass
-
-    def test_execute_query_lambda_by_tag(self):
-        """Test case for execute_query_lambda_by_tag
-
-        Execute Query Lambda By Tag  # noqa: E501
-        """
-        pass
-
-    def test_get_query_lambda_tag_version(self):
-        """Test case for get_query_lambda_tag_version
-
-        Retrieve Query Lambda Tag  # noqa: E501
-        """
-        pass
-
-    def test_get_query_lambda_version(self):
-        """Test case for get_query_lambda_version
-
-        Retrieve Query Lambda Version  # noqa: E501
-        """
-        pass
-
-    def test_list_all_query_lambdas(self):
-        """Test case for list_all_query_lambdas
-
-        List Query Lambdas  # noqa: E501
-        """
-        pass
-
-    def test_list_query_lambda_tags(self):
-        """Test case for list_query_lambda_tags
-
-        List Query Lambda Tags  # noqa: E501
-        """
-        pass
-
-    def test_list_query_lambda_versions(self):
-        """Test case for list_query_lambda_versions
-
-        List Query Lambda Versions  # noqa: E501
-        """
-        pass
-
-    def test_list_query_lambdas_in_workspace(self):
-        """Test case for list_query_lambdas_in_workspace
-
-        List Query Lambdas in Workspace  # noqa: E501
-        """
-        pass
-
-    def test_update_query_lambda(self):
-        """Test case for update_query_lambda
-
-        Update Query Lambda  # noqa: E501
-        """
-        pass
+from rockset.models import *
+from test.conftest import EarlyExit, validate_call
 
 
-if __name__ == '__main__':
-    unittest.main()
+def test_create_query_lambda(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.QueryLambdas.create_query_lambda(
+                name="myQueryLambda",
+                sql=QueryLambdaSql(
+                    default_parameters=[
+                        QueryParameter(
+                            name="_id",
+                            type="string",
+                            value="85beb391",
+                        ),
+                    ],
+                    query="SELECT 'Foo'",
+                ),
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_create_query_lambda_tag(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.QueryLambdas.create_query_lambda_tag(
+                query_lambda="queryLambda_example",
+                tag_name="production",
+                version="123ABC",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_delete_query_lambda(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.QueryLambdas.delete_query_lambda(
+                query_lambda="queryLambda_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_delete_query_lambda_tag(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.QueryLambdas.delete_query_lambda_tag(
+                query_lambda="queryLambda_example",
+                tag="tag_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_delete_query_lambda_version(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.QueryLambdas.delete_query_lambda_version(
+                query_lambda="queryLambda_example",
+                version="version_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_execute_query_lambda(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.QueryLambdas.execute_query_lambda(
+                query_lambda="queryLambda_example",
+                version="version_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_execute_query_lambda_by_tag(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.QueryLambdas.execute_query_lambda_by_tag(
+                query_lambda="queryLambda_example",
+                tag="tag_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_get_query_lambda_tag_version(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.QueryLambdas.get_query_lambda_tag_version(
+                query_lambda="queryLambda_example",
+                tag="tag_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_get_query_lambda_version(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.QueryLambdas.get_query_lambda_version(
+                query_lambda="queryLambda_example",
+                version="version_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_list_all_query_lambdas(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.QueryLambdas.list_all_query_lambdas()
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_list_query_lambda_tags(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.QueryLambdas.list_query_lambda_tags(
+                query_lambda="queryLambda_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_list_query_lambda_versions(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.QueryLambdas.list_query_lambda_versions(
+                query_lambda="queryLambda_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_list_query_lambdas_in_workspace(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.QueryLambdas.list_query_lambdas_in_workspace()
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_update_query_lambda(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.QueryLambdas.update_query_lambda(
+                query_lambda="queryLambda_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)

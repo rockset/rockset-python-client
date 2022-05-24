@@ -15,9 +15,10 @@ import rockset
 from rockset.model.format_params import FormatParams
 from rockset.model.source_file_upload import SourceFileUpload
 from rockset.model.status import Status
-globals()['FormatParams'] = FormatParams
-globals()['SourceFileUpload'] = SourceFileUpload
-globals()['Status'] = Status
+
+globals()["FormatParams"] = FormatParams
+globals()["SourceFileUpload"] = SourceFileUpload
+globals()["Status"] = Status
 from rockset.model.file_upload_source_wrapper import FileUploadSourceWrapper
 
 
@@ -37,5 +38,5 @@ class TestFileUploadSourceWrapper(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

@@ -8,63 +8,97 @@
 """
 
 
-import unittest
+from unittest import mock
 
-import rockset
-from rockset.api.queries_api import QueriesApi  # noqa: E501
-
-
-class TestQueriesApi(unittest.TestCase):
-    """QueriesApi unit test stubs"""
-
-    def setUp(self):
-        self.api = QueriesApi()  # noqa: E501
-
-    def tearDown(self):
-        pass
-
-    def test_cancel_query(self):
-        """Test case for cancel_query
-
-        Cancel Query  # noqa: E501
-        """
-        pass
-
-    def test_get_query(self):
-        """Test case for get_query
-
-        Retrieve Query  # noqa: E501
-        """
-        pass
-
-    def test_get_query_results(self):
-        """Test case for get_query_results
-
-        Retrieve Query Results Page  # noqa: E501
-        """
-        pass
-
-    def test_list_active_queries(self):
-        """Test case for list_active_queries
-
-        List Queries  # noqa: E501
-        """
-        pass
-
-    def test_query(self):
-        """Test case for query
-
-        Execute SQL Query  # noqa: E501
-        """
-        pass
-
-    def test_validate(self):
-        """Test case for validate
-
-        Validate Query  # noqa: E501
-        """
-        pass
+from rockset.models import *
+from test.conftest import EarlyExit, validate_call
 
 
-if __name__ == '__main__':
-    unittest.main()
+def test_cancel_query(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Queries.cancel_query(
+                query_id="queryId_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_get_query(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Queries.get_query(
+                query_id="queryId_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_get_query_results(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Queries.get_query_results(
+                query_id="queryId_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_list_active_queries(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Queries.list_active_queries()
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_query(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Queries.query(
+                sql=QueryRequestSql(
+                    default_row_limit=1,
+                    generate_warnings=True,
+                    initial_paginate_response_doc_count=1,
+                    paginate=True,
+                    parameters=[
+                        QueryParameter(
+                            name="_id",
+                            type="string",
+                            value="85beb391",
+                        ),
+                    ],
+                    query="SELECT * FROM foo where _id = :_id",
+                ),
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_validate(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Queries.validate(
+                sql=QueryRequestSql(
+                    default_row_limit=1,
+                    generate_warnings=True,
+                    initial_paginate_response_doc_count=1,
+                    paginate=True,
+                    parameters=[
+                        QueryParameter(
+                            name="_id",
+                            type="string",
+                            value="85beb391",
+                        ),
+                    ],
+                    query="SELECT * FROM foo where _id = :_id",
+                ),
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)

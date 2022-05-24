@@ -13,8 +13,11 @@ import unittest
 
 import rockset
 from rockset.model.azure_blob_storage_integration import AzureBlobStorageIntegration
-globals()['AzureBlobStorageIntegration'] = AzureBlobStorageIntegration
-from rockset.model.azure_blob_storage_integration_creation_request import AzureBlobStorageIntegrationCreationRequest
+
+globals()["AzureBlobStorageIntegration"] = AzureBlobStorageIntegration
+from rockset.model.azure_blob_storage_integration_creation_request import (
+    AzureBlobStorageIntegrationCreationRequest,
+)
 
 
 class TestAzureBlobStorageIntegrationCreationRequest(unittest.TestCase):
@@ -33,5 +36,5 @@ class TestAzureBlobStorageIntegrationCreationRequest(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

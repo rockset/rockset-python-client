@@ -13,7 +13,8 @@ import unittest
 
 import rockset
 from rockset.model.virtual_instance import VirtualInstance
-globals()['VirtualInstance'] = VirtualInstance
+
+globals()["VirtualInstance"] = VirtualInstance
 from rockset.model.update_virtual_instance_response import UpdateVirtualInstanceResponse
 
 
@@ -33,5 +34,5 @@ class TestUpdateVirtualInstanceResponse(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

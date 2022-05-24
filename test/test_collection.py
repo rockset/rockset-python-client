@@ -18,12 +18,13 @@ from rockset.model.field_mapping_query import FieldMappingQuery
 from rockset.model.field_mapping_v2 import FieldMappingV2
 from rockset.model.field_partition import FieldPartition
 from rockset.model.source import Source
-globals()['Alias'] = Alias
-globals()['CollectionStats'] = CollectionStats
-globals()['FieldMappingQuery'] = FieldMappingQuery
-globals()['FieldMappingV2'] = FieldMappingV2
-globals()['FieldPartition'] = FieldPartition
-globals()['Source'] = Source
+
+globals()["Alias"] = Alias
+globals()["CollectionStats"] = CollectionStats
+globals()["FieldMappingQuery"] = FieldMappingQuery
+globals()["FieldMappingV2"] = FieldMappingV2
+globals()["FieldPartition"] = FieldPartition
+globals()["Source"] = Source
 from rockset.model.collection import Collection
 
 
@@ -43,5 +44,5 @@ class TestCollection(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

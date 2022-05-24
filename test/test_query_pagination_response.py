@@ -13,7 +13,8 @@ import unittest
 
 import rockset
 from rockset.model.pagination_info import PaginationInfo
-globals()['PaginationInfo'] = PaginationInfo
+
+globals()["PaginationInfo"] = PaginationInfo
 from rockset.model.query_pagination_response import QueryPaginationResponse
 
 
@@ -33,5 +34,5 @@ class TestQueryPaginationResponse(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

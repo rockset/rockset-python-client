@@ -13,7 +13,8 @@ import unittest
 
 import rockset
 from rockset.model.status_mongo_db import StatusMongoDb
-globals()['StatusMongoDb'] = StatusMongoDb
+
+globals()["StatusMongoDb"] = StatusMongoDb
 from rockset.model.source_mongo_db import SourceMongoDb
 
 
@@ -33,5 +34,5 @@ class TestSourceMongoDb(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

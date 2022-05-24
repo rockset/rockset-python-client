@@ -8,28 +8,16 @@
 """
 
 
-import unittest
+from unittest import mock
 
-import rockset
-from rockset.api.organizations_api import OrganizationsApi  # noqa: E501
-
-
-class TestOrganizationsApi(unittest.TestCase):
-    """OrganizationsApi unit test stubs"""
-
-    def setUp(self):
-        self.api = OrganizationsApi()  # noqa: E501
-
-    def tearDown(self):
-        pass
-
-    def test_get_organization(self):
-        """Test case for get_organization
-
-        Get Organization  # noqa: E501
-        """
-        pass
+from rockset.models import *
+from test.conftest import EarlyExit, validate_call
 
 
-if __name__ == '__main__':
-    unittest.main()
+def test_get_organization(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Organizations.get_organization()
+        except EarlyExit as e:
+            validate_call(e, request_validator)

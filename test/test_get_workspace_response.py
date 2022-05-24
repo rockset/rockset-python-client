@@ -13,7 +13,8 @@ import unittest
 
 import rockset
 from rockset.model.workspace import Workspace
-globals()['Workspace'] = Workspace
+
+globals()["Workspace"] = Workspace
 from rockset.model.get_workspace_response import GetWorkspaceResponse
 
 
@@ -33,5 +34,5 @@ class TestGetWorkspaceResponse(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

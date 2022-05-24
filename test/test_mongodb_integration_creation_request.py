@@ -13,8 +13,11 @@ import unittest
 
 import rockset
 from rockset.model.mongo_db_integration import MongoDbIntegration
-globals()['MongoDbIntegration'] = MongoDbIntegration
-from rockset.model.mongodb_integration_creation_request import MongodbIntegrationCreationRequest
+
+globals()["MongoDbIntegration"] = MongoDbIntegration
+from rockset.model.mongodb_integration_creation_request import (
+    MongodbIntegrationCreationRequest,
+)
 
 
 class TestMongodbIntegrationCreationRequest(unittest.TestCase):
@@ -33,5 +36,5 @@ class TestMongodbIntegrationCreationRequest(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

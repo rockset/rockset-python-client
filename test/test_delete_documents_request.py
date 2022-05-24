@@ -13,7 +13,8 @@ import unittest
 
 import rockset
 from rockset.model.delete_documents_request_data import DeleteDocumentsRequestData
-globals()['DeleteDocumentsRequestData'] = DeleteDocumentsRequestData
+
+globals()["DeleteDocumentsRequestData"] = DeleteDocumentsRequestData
 from rockset.model.delete_documents_request import DeleteDocumentsRequest
 
 
@@ -33,5 +34,5 @@ class TestDeleteDocumentsRequest(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

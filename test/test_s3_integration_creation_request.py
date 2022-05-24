@@ -13,7 +13,8 @@ import unittest
 
 import rockset
 from rockset.model.s3_integration import S3Integration
-globals()['S3Integration'] = S3Integration
+
+globals()["S3Integration"] = S3Integration
 from rockset.model.s3_integration_creation_request import S3IntegrationCreationRequest
 
 
@@ -33,5 +34,5 @@ class TestS3IntegrationCreationRequest(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

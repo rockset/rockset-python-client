@@ -13,7 +13,8 @@ import unittest
 
 import rockset
 from rockset.model.integration import Integration
-globals()['Integration'] = Integration
+
+globals()["Integration"] = Integration
 from rockset.model.list_integrations_response import ListIntegrationsResponse
 
 
@@ -33,5 +34,5 @@ class TestListIntegrationsResponse(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

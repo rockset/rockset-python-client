@@ -13,8 +13,11 @@ import unittest
 
 import rockset
 from rockset.model.segment_integration import SegmentIntegration
-globals()['SegmentIntegration'] = SegmentIntegration
-from rockset.model.segment_integration_creation_request import SegmentIntegrationCreationRequest
+
+globals()["SegmentIntegration"] = SegmentIntegration
+from rockset.model.segment_integration_creation_request import (
+    SegmentIntegrationCreationRequest,
+)
 
 
 class TestSegmentIntegrationCreationRequest(unittest.TestCase):
@@ -33,5 +36,5 @@ class TestSegmentIntegrationCreationRequest(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

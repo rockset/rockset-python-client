@@ -13,7 +13,8 @@ import unittest
 
 import rockset
 from rockset.model.query_info import QueryInfo
-globals()['QueryInfo'] = QueryInfo
+
+globals()["QueryInfo"] = QueryInfo
 from rockset.model.cancel_query_response import CancelQueryResponse
 
 
@@ -33,5 +34,5 @@ class TestCancelQueryResponse(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

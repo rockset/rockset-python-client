@@ -13,7 +13,8 @@ import unittest
 
 import rockset
 from rockset.model.patch_operation import PatchOperation
-globals()['PatchOperation'] = PatchOperation
+
+globals()["PatchOperation"] = PatchOperation
 from rockset.model.patch_document import PatchDocument
 
 
@@ -33,5 +34,5 @@ class TestPatchDocument(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

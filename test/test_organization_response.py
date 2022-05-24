@@ -13,7 +13,8 @@ import unittest
 
 import rockset
 from rockset.model.organization import Organization
-globals()['Organization'] = Organization
+
+globals()["Organization"] = Organization
 from rockset.model.organization_response import OrganizationResponse
 
 
@@ -33,5 +34,5 @@ class TestOrganizationResponse(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

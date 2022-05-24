@@ -13,8 +13,11 @@ import unittest
 
 import rockset
 from rockset.model.kafka_integration import KafkaIntegration
-globals()['KafkaIntegration'] = KafkaIntegration
-from rockset.model.kafka_integration_creation_request import KafkaIntegrationCreationRequest
+
+globals()["KafkaIntegration"] = KafkaIntegration
+from rockset.model.kafka_integration_creation_request import (
+    KafkaIntegrationCreationRequest,
+)
 
 
 class TestKafkaIntegrationCreationRequest(unittest.TestCase):
@@ -33,5 +36,5 @@ class TestKafkaIntegrationCreationRequest(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

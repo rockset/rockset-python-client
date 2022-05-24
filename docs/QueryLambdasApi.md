@@ -42,6 +42,16 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 # Create Query Lambda
 api_response = rs.QueryLambdas.create_query_lambda(
     name="myQueryLambda",
+    sql=QueryLambdaSql(
+        default_parameters=[
+            QueryParameter(
+                name="_id",
+                type="string",
+                value="85beb391",
+            ),
+        ],
+        query="SELECT 'Foo'",
+    ),
 )
 pprint(api_response)
 # Error responses from the server will cause the client to throw an ApiException

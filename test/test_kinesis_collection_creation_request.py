@@ -16,13 +16,16 @@ from rockset.model.event_time_info import EventTimeInfo
 from rockset.model.field_mapping_query import FieldMappingQuery
 from rockset.model.field_mapping_v2 import FieldMappingV2
 from rockset.model.field_partition import FieldPartition
-from rockset.model.kinesis_storage_source_wrapper import KinesisStorageSourceWrapper
-globals()['EventTimeInfo'] = EventTimeInfo
-globals()['FieldMappingQuery'] = FieldMappingQuery
-globals()['FieldMappingV2'] = FieldMappingV2
-globals()['FieldPartition'] = FieldPartition
-globals()['KinesisStorageSourceWrapper'] = KinesisStorageSourceWrapper
-from rockset.model.kinesis_collection_creation_request import KinesisCollectionCreationRequest
+from rockset.model.kinesis_source_wrapper import KinesisSourceWrapper
+
+globals()["EventTimeInfo"] = EventTimeInfo
+globals()["FieldMappingQuery"] = FieldMappingQuery
+globals()["FieldMappingV2"] = FieldMappingV2
+globals()["FieldPartition"] = FieldPartition
+globals()["KinesisSourceWrapper"] = KinesisSourceWrapper
+from rockset.model.kinesis_collection_creation_request import (
+    KinesisCollectionCreationRequest,
+)
 
 
 class TestKinesisCollectionCreationRequest(unittest.TestCase):
@@ -41,5 +44,5 @@ class TestKinesisCollectionCreationRequest(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

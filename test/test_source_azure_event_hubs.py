@@ -13,7 +13,8 @@ import unittest
 
 import rockset
 from rockset.model.status_azure_event_hubs import StatusAzureEventHubs
-globals()['StatusAzureEventHubs'] = StatusAzureEventHubs
+
+globals()["StatusAzureEventHubs"] = StatusAzureEventHubs
 from rockset.model.source_azure_event_hubs import SourceAzureEventHubs
 
 
@@ -33,5 +34,5 @@ class TestSourceAzureEventHubs(unittest.TestCase):
         pass
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()
