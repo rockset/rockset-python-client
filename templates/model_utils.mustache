@@ -1253,22 +1253,29 @@ def validate_and_convert_types(input_value, required_types_mixed, path_to_item,
     input_class_simple = get_simple_class(input_value)
     valid_type = is_valid_type(input_class_simple, valid_classes)
     if not valid_type:
-        if configuration:
-            # if input_value is not valid_type try to convert it
-            converted_instance = attempt_convert_item(
-                input_value,
-                valid_classes,
-                path_to_item,
-                configuration,
-                spec_property_naming,
-                key_type=False,
-                must_convert=True,
-                check_type=_check_type
-            )
-            return converted_instance
-        else:
-            raise get_type_error(input_value, path_to_item, valid_classes,
-                                 key_type=False)
+        # Allow for user to pass in dictionaries instead of initialized models
+        # todo: support multiple type options, not needed right now
+        if issubclass(valid_classes[0], OpenApiModel) and isinstance(input_value, dict):
+            input_value = valid_classes[0](**input_value)
+            valid_type = True
+        
+        if not valid_type:
+            if configuration:
+                # if input_value is not valid_type try to convert it
+                converted_instance = attempt_convert_item(
+                    input_value,
+                    valid_classes,
+                    path_to_item,
+                    configuration,
+                    spec_property_naming,
+                    key_type=False,
+                    must_convert=True,
+                    check_type=_check_type
+                )
+                return converted_instance
+            else:
+                raise get_type_error(input_value, path_to_item, valid_classes,
+                                    key_type=False)
 
     # input_value's type is in valid_classes
     if len(valid_classes) > 1 and configuration:
