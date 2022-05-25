@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_kinesis_source_wrapper_init():
-    KinesisSourceWrapper()
+    KinesisSourceWrapper(
+        stream_name="click_stream",
+    )

@@ -79,6 +79,12 @@ def test_update_unsubscribe_preferences(get_client, mock_request, request_valida
     with mock_request:
         rs = get_client
         try:
-            rs.Users.update_unsubscribe_preferences()
+            rs.Users.update_unsubscribe_preferences(
+                data=[
+                    UnsubscribePreference(
+                        notification_type="create_apikey",
+                    ),
+                ],
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)

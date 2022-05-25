@@ -61,6 +61,11 @@ def test_query(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Queries.query(
+                async_options=AsyncQueryOptions(
+                    client_timeout_ms=1,
+                    max_initial_results=1,
+                    timeout_ms=1,
+                ),
                 sql=QueryRequestSql(
                     default_row_limit=1,
                     generate_warnings=True,
@@ -85,6 +90,11 @@ def test_validate(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Queries.validate(
+                async_options=AsyncQueryOptions(
+                    client_timeout_ms=1,
+                    max_initial_results=1,
+                    timeout_ms=1,
+                ),
                 sql=QueryRequestSql(
                     default_row_limit=1,
                     generate_warnings=True,

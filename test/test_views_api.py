@@ -19,6 +19,7 @@ def test_create_view(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Views.create_view(
+                description="view of awesome collection",
                 name="myAwesomeView",
                 query="SELECT * FROM foo",
             )
@@ -63,6 +64,7 @@ def test_update_view(get_client, mock_request, request_validator):
         try:
             rs.Views.update_view(
                 view="view_example",
+                description="view of awesome collection",
                 query="SELECT * FROM foo",
             )
         except EarlyExit as e:

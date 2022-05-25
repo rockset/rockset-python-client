@@ -426,7 +426,7 @@ api_response = await rs.Integrations.create_kafka_integration(
     description="AWS account with event data for the data science team.",
     kafka=KafkaIntegration(
         bootstrap_servers="bootstrap_servers_example",
-        kafka_data_format="json",
+        kafka_data_format="JSON",
         kafka_topic_names=[
             "kafka_topic_names_example",
         ],
@@ -1156,7 +1156,7 @@ api_response = await rs.Integrations.update_integration(
     integration="integration_example",
     kafka=KafkaIntegration(
         bootstrap_servers="bootstrap_servers_example",
-        kafka_data_format="json",
+        kafka_data_format="JSON",
         kafka_topic_names=[
             "kafka_topic_names_example",
         ],

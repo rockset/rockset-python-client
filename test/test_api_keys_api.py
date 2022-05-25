@@ -20,6 +20,7 @@ def test_create_api_key(get_client, mock_request, request_validator):
         try:
             rs.APIKeys.create_api_key(
                 name="my-app",
+                role="string_example",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
@@ -67,6 +68,7 @@ def test_update_api_key(get_client, mock_request, request_validator):
             rs.APIKeys.update_api_key(
                 name="my-key",
                 user="admin@me.com",
+                state="ACTIVE",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)

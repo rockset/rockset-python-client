@@ -18,7 +18,17 @@ def test_create_role(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.CustomRoles.create_role()
+            rs.CustomRoles.create_role(
+                description="Role with read and write privileges to all collections.",
+                privileges=[
+                    Privilege(
+                        action="CREATE_COLLECTION_WS",
+                        cluster="*ALL*",
+                        resource_name="commons",
+                    ),
+                ],
+                role_name="read_write",
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -60,6 +70,14 @@ def test_update_role(get_client, mock_request, request_validator):
         try:
             rs.CustomRoles.update_role(
                 role_name="roleName_example",
+                description="Role with read and write privileges to all collections.",
+                privileges=[
+                    Privilege(
+                        action="CREATE_COLLECTION_WS",
+                        cluster="*ALL*",
+                        resource_name="commons",
+                    ),
+                ],
             )
         except EarlyExit as e:
             validate_call(e, request_validator)

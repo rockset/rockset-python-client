@@ -30,5 +30,4 @@ from rockset.exceptions import BadRequestException
 
 from rockset.rockset_client import DevRegions, Regions, RocksetClient
 from rockset.document import Document
-from rockset.query_builder import Q, F, P, ParamDict
 from rockset.query_paginator import QueryPaginator

@@ -1117,7 +1117,7 @@ class Integrations(object):
             description="AWS account with event data for the data science team.",
             kafka=KafkaIntegration(
                 bootstrap_servers="bootstrap_servers_example",
-                kafka_data_format="json",
+                kafka_data_format="JSON",
                 kafka_topic_names=[
                     "kafka_topic_names_example",
                 ],
@@ -1855,7 +1855,7 @@ class Integrations(object):
             integration="integration_example",
             kafka=KafkaIntegration(
                 bootstrap_servers="bootstrap_servers_example",
-                kafka_data_format="json",
+                kafka_data_format="JSON",
                 kafka_topic_names=[
                     "kafka_topic_names_example",
                 ],

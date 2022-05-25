@@ -40,6 +40,9 @@ def test_set_virtual_instance(get_client, mock_request, request_validator):
         try:
             rs.VirtualInstances.set_virtual_instance(
                 virtual_instance_id="virtualInstanceId_example",
+                monitoring_enabled=True,
+                new_size="LARGE",
+                new_type="FREE",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)

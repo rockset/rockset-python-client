@@ -25,7 +25,7 @@ def test_patch_documents_response_init():
                     message="collection not found",
                     query_id="query_id_example",
                     trace_id="trace_id_example",
-                    type="InvalidInput",
+                    type="INVALIDINPUT",
                 ),
                 patch_id="486gsg8",
                 status="ADDED",

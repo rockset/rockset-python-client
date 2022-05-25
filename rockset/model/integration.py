@@ -77,7 +77,7 @@ class Integration(ModelNormal):
       additional_properties_type (tuple): A tuple of classes accepted
           as additional properties values.
     """
-
+    
     allowed_values = {
     }
 

@@ -19,6 +19,7 @@ def test_create_query_lambda(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.QueryLambdas.create_query_lambda(
+                description="production version foo",
                 name="myQueryLambda",
                 sql=QueryLambdaSql(
                     default_parameters=[
@@ -177,6 +178,17 @@ def test_update_query_lambda(get_client, mock_request, request_validator):
         try:
             rs.QueryLambdas.update_query_lambda(
                 query_lambda="queryLambda_example",
+                description="production version foo",
+                sql=QueryLambdaSql(
+                    default_parameters=[
+                        QueryParameter(
+                            name="_id",
+                            type="string",
+                            value="85beb391",
+                        ),
+                    ],
+                    query="SELECT 'Foo'",
+                ),
             )
         except EarlyExit as e:
             validate_call(e, request_validator)

@@ -31,11 +31,9 @@ from rockset.exceptions import ApiAttributeError
 
 def lazy_import():
     from rockset.model.format_params import FormatParams
-    from rockset.model.source_azure_event_hubs import SourceAzureEventHubs
-    from rockset.model.status import Status
+    from rockset.model.status_azure_event_hubs import StatusAzureEventHubs
     globals()['FormatParams'] = FormatParams
-    globals()['SourceAzureEventHubs'] = SourceAzureEventHubs
-    globals()['Status'] = Status
+    globals()['StatusAzureEventHubs'] = StatusAzureEventHubs
 
 
 class AzureEventHubsSourceWrapper(ModelNormal):
@@ -61,8 +59,13 @@ class AzureEventHubsSourceWrapper(ModelNormal):
       additional_properties_type (tuple): A tuple of classes accepted
           as additional properties values.
     """
-
+    inner_field = "azure_event_hubs"
+    inner_properties = ["hub_id", "offset_reset_policy", "status"]
     allowed_values = {
+        ('offset_reset_policy',): {
+            'LATEST': "LATEST",
+            'EARLIEST': "EARLIEST",
+        },
     }
 
     validations = {
@@ -91,10 +94,11 @@ class AzureEventHubsSourceWrapper(ModelNormal):
         """
         lazy_import()
         return {
-            'azure_event_hubs': (SourceAzureEventHubs, none_type),  # noqa: E501
             'format_params': (FormatParams, none_type),  # noqa: E501
             'integration_name': (str, none_type),  # noqa: E501
             'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
+            'hub_id': (str, none_type),  # noqa: E501
+            'offset_reset_policy': (str, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -103,10 +107,11 @@ class AzureEventHubsSourceWrapper(ModelNormal):
 
 
     attribute_map = {
-        'azure_event_hubs': 'azure_event_hubs',  # noqa: E501
         'format_params': 'format_params',  # noqa: E501
         'integration_name': 'integration_name',  # noqa: E501
         'status': 'status',  # noqa: E501
+        'hub_id': 'hub_id',  # noqa: E501
+        'offset_reset_policy': 'offset_reset_policy',  # noqa: E501
     }
 
     read_only_vars = {
@@ -151,10 +156,11 @@ class AzureEventHubsSourceWrapper(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            azure_event_hubs (SourceAzureEventHubs): [optional]  # noqa: E501
             format_params (FormatParams): [optional]  # noqa: E501
             integration_name (str): name of integration to use. [optional]  # noqa: E501
             status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
+            hub_id (str): name of the hub which rockset should ingest from. [optional]  # noqa: E501
+            offset_reset_policy (str): The offset reset policy.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -206,9 +212,10 @@ class AzureEventHubsSourceWrapper(ModelNormal):
         """AzureEventHubsSourceWrapper - a model defined in OpenAPI
 
         Keyword Args:
-            azure_event_hubs (SourceAzureEventHubs): [optional]  # noqa: E501
             format_params (FormatParams): [optional]  # noqa: E501
             integration_name (str): name of integration to use. [optional]  # noqa: E501
+            hub_id (str): name of the hub which rockset should ingest from. [optional]  # noqa: E501
+            offset_reset_policy (str): The offset reset policy.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

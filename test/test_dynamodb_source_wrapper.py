@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_dynamodb_source_wrapper_init():
-    DynamodbSourceWrapper()
+    DynamodbSourceWrapper(
+        table_name="dynamodb_table_name",
+    )

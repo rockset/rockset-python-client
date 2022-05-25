@@ -13,4 +13,7 @@ from rockset.models import *
 
 
 def test_mongodb_source_wrapper_init():
-    MongodbSourceWrapper()
+    MongodbSourceWrapper(
+        collection_name="my_collection",
+        database_name="my_database",
+    )

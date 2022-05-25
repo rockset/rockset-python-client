@@ -45,7 +45,7 @@ api_response = await rs.CustomRoles.create_role(
     description="Role with read and write privileges to all collections.",
     privileges=[
         Privilege(
-            action="Create collection",
+            action="CREATE_COLLECTION_WS",
             cluster="*ALL*",
             resource_name="commons",
         ),
@@ -391,7 +391,7 @@ api_response = await rs.CustomRoles.update_role(
     description="Role with read and write privileges to all collections.",
     privileges=[
         Privilege(
-            action="Create collection",
+            action="CREATE_COLLECTION_WS",
             cluster="*ALL*",
             resource_name="commons",
         ),

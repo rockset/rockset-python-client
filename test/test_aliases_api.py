@@ -20,6 +20,7 @@ def test_create_alias(get_client, mock_request, request_validator):
         try:
             rs.Aliases.create_alias(
                 collections=["commons.foo", "prod.demo"],
+                description="version alias",
                 name="aliasName",
             )
         except EarlyExit as e:
@@ -64,6 +65,7 @@ def test_update_alias(get_client, mock_request, request_validator):
             rs.Aliases.update_alias(
                 alias="alias_example",
                 collections=["commons.foo", "prod.demo"],
+                description="version alias",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)

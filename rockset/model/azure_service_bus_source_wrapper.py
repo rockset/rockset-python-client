@@ -31,11 +31,9 @@ from rockset.exceptions import ApiAttributeError
 
 def lazy_import():
     from rockset.model.format_params import FormatParams
-    from rockset.model.source_azure_service_bus import SourceAzureServiceBus
-    from rockset.model.status import Status
+    from rockset.model.status_azure_service_bus import StatusAzureServiceBus
     globals()['FormatParams'] = FormatParams
-    globals()['SourceAzureServiceBus'] = SourceAzureServiceBus
-    globals()['Status'] = Status
+    globals()['StatusAzureServiceBus'] = StatusAzureServiceBus
 
 
 class AzureServiceBusSourceWrapper(ModelNormal):
@@ -61,7 +59,8 @@ class AzureServiceBusSourceWrapper(ModelNormal):
       additional_properties_type (tuple): A tuple of classes accepted
           as additional properties values.
     """
-
+    inner_field = "azure_service_bus"
+    inner_properties = ["status", "subscription", "topic"]
     allowed_values = {
     }
 
@@ -91,10 +90,11 @@ class AzureServiceBusSourceWrapper(ModelNormal):
         """
         lazy_import()
         return {
-            'azure_service_bus': (SourceAzureServiceBus, none_type),  # noqa: E501
             'format_params': (FormatParams, none_type),  # noqa: E501
             'integration_name': (str, none_type),  # noqa: E501
             'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
+            'subscription': (str, none_type),  # noqa: E501
+            'topic': (str, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -103,10 +103,11 @@ class AzureServiceBusSourceWrapper(ModelNormal):
 
 
     attribute_map = {
-        'azure_service_bus': 'azure_service_bus',  # noqa: E501
         'format_params': 'format_params',  # noqa: E501
         'integration_name': 'integration_name',  # noqa: E501
         'status': 'status',  # noqa: E501
+        'subscription': 'subscription',  # noqa: E501
+        'topic': 'topic',  # noqa: E501
     }
 
     read_only_vars = {
@@ -151,10 +152,11 @@ class AzureServiceBusSourceWrapper(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            azure_service_bus (SourceAzureServiceBus): [optional]  # noqa: E501
             format_params (FormatParams): [optional]  # noqa: E501
             integration_name (str): name of integration to use. [optional]  # noqa: E501
             status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
+            subscription (str): the subscription to read from the topic. [optional]  # noqa: E501
+            topic (str): name of the topic which rockset should ingest from. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -206,9 +208,10 @@ class AzureServiceBusSourceWrapper(ModelNormal):
         """AzureServiceBusSourceWrapper - a model defined in OpenAPI
 
         Keyword Args:
-            azure_service_bus (SourceAzureServiceBus): [optional]  # noqa: E501
             format_params (FormatParams): [optional]  # noqa: E501
             integration_name (str): name of integration to use. [optional]  # noqa: E501
+            subscription (str): the subscription to read from the topic. [optional]  # noqa: E501
+            topic (str): name of the topic which rockset should ingest from. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

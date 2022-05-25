@@ -318,7 +318,7 @@ class CustomRoles(object):
             description="Role with read and write privileges to all collections.",
             privileges=[
                 Privilege(
-                    action="Create collection",
+                    action="CREATE_COLLECTION_WS",
                     cluster="*ALL*",
                     resource_name="commons",
                 ),
@@ -665,7 +665,7 @@ class CustomRoles(object):
             description="Role with read and write privileges to all collections.",
             privileges=[
                 Privilege(
-                    action="Create collection",
+                    action="CREATE_COLLECTION_WS",
                     cluster="*ALL*",
                     resource_name="commons",
                 ),

@@ -25,7 +25,6 @@ from rockset.apis import (
 from rockset.configuration import Configuration
 from rockset.exceptions import ApiTypeError, ApiValueError, InitializationException
 from rockset.models import QueryParameter, QueryRequestSql, QueryResponse
-from rockset.query_builder import Query
 
 
 APISERVER_PATTERN = re.compile(r"^https:\/\/(\w|-|\.)+\.rockset\.com$")

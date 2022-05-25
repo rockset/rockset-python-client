@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_s3_source_wrapper_init():
-    S3SourceWrapper()
+    S3SourceWrapper(
+        bucket="s3://customer-account-info",
+    )

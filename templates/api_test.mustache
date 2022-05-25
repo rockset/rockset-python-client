@@ -20,11 +20,11 @@ def test_{{operationId}}(get_client, mock_request, request_validator):
 {{/isReadOnly}}
 {{/isBodyParam}}
 {{#isBodyParam}}
-{{#requiredVars}}
+{{#vars}}
 {{^isReadOnly}}
     {{name}}={{#example}}{{{.}}}{{/example}}{{^example}}{{name}}{{/example}},
 {{/isReadOnly}}
-{{/requiredVars}}
+{{/vars}}
 {{/isBodyParam}}
 {{/defaultValue}}
 {{/isReadOnly}}

@@ -19,6 +19,7 @@ def test_create_workspace(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Workspaces.create_workspace(
+                description="Datasets of system logs for the ops team.",
                 name="event_logs",
             )
         except EarlyExit as e:

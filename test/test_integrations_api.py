@@ -21,6 +21,10 @@ def test_create_azure_blob_storage_integration(
         rs = get_client
         try:
             rs.Integrations.create_azure_blob_storage_integration(
+                azure_blob_storage=AzureBlobStorageIntegration(
+                    connection_string="connection_string_example",
+                ),
+                description="AWS account with event data for the data science team.",
                 name="event-logs",
             )
         except EarlyExit as e:
@@ -34,6 +38,8 @@ def test_create_azure_event_hubs_integration(
         rs = get_client
         try:
             rs.Integrations.create_azure_event_hubs_integration(
+                azure_event_hubs=AzureEventHubsIntegration(),
+                description="AWS account with event data for the data science team.",
                 name="event-logs",
             )
         except EarlyExit as e:
@@ -45,6 +51,17 @@ def test_create_dynamodb_integration(get_client, mock_request, request_validator
         rs = get_client
         try:
             rs.Integrations.create_dynamodb_integration(
+                description="AWS account with event data for the data science team.",
+                dynamodb=DynamodbIntegration(
+                    aws_access_key=AwsAccessKey(
+                        aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
+                        aws_secret_access_key="wJal....",
+                    ),
+                    aws_role=AwsRole(
+                        aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
+                    ),
+                    s3_export_bucket_name="s3_export_bucket_name_example",
+                ),
                 name="event-logs",
             )
         except EarlyExit as e:
@@ -56,6 +73,12 @@ def test_create_gcs_integration(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Integrations.create_gcs_integration(
+                description="AWS account with event data for the data science team.",
+                gcs=GcsIntegration(
+                    gcp_service_account=GcpServiceAccount(
+                        service_account_key_file_json="service_account_key_file_json_example",
+                    ),
+                ),
                 name="event-logs",
             )
         except EarlyExit as e:
@@ -67,6 +90,24 @@ def test_create_kafka_integration(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Integrations.create_kafka_integration(
+                description="AWS account with event data for the data science team.",
+                kafka=KafkaIntegration(
+                    bootstrap_servers="bootstrap_servers_example",
+                    kafka_data_format="JSON",
+                    kafka_topic_names=[
+                        "kafka_topic_names_example",
+                    ],
+                    schema_registry_config=SchemaRegistryConfig(
+                        key="key_example",
+                        secret="secret_example",
+                        url="url_example",
+                    ),
+                    security_config=KafkaV3SecurityConfig(
+                        api_key="api_key_example",
+                        secret="secret_example",
+                    ),
+                    use_v3=True,
+                ),
                 name="event-logs",
             )
         except EarlyExit as e:
@@ -78,6 +119,16 @@ def test_create_kinesis_integration(get_client, mock_request, request_validator)
         rs = get_client
         try:
             rs.Integrations.create_kinesis_integration(
+                description="AWS account with event data for the data science team.",
+                kinesis=KinesisIntegration(
+                    aws_access_key=AwsAccessKey(
+                        aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
+                        aws_secret_access_key="wJal....",
+                    ),
+                    aws_role=AwsRole(
+                        aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
+                    ),
+                ),
                 name="event-logs",
             )
         except EarlyExit as e:
@@ -89,6 +140,10 @@ def test_create_mongodb_integration(get_client, mock_request, request_validator)
         rs = get_client
         try:
             rs.Integrations.create_mongodb_integration(
+                description="AWS account with event data for the data science team.",
+                mongodb=MongoDbIntegration(
+                    connection_uri="mongodb+srv://<username>:<password>@server.example.com/",
+                ),
                 name="event-logs",
             )
         except EarlyExit as e:
@@ -100,7 +155,17 @@ def test_create_s3_integration(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Integrations.create_s3_integration(
+                description="AWS account with event data for the data science team.",
                 name="event-logs",
+                s3=S3Integration(
+                    aws_access_key=AwsAccessKey(
+                        aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
+                        aws_secret_access_key="wJal....",
+                    ),
+                    aws_role=AwsRole(
+                        aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
+                    ),
+                ),
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
@@ -111,7 +176,9 @@ def test_create_segment_integration(get_client, mock_request, request_validator)
         rs = get_client
         try:
             rs.Integrations.create_segment_integration(
+                description="AWS account with event data for the data science team.",
                 name="event-logs",
+                segment=SegmentIntegration(),
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
@@ -154,6 +221,23 @@ def test_update_integration(get_client, mock_request, request_validator):
         try:
             rs.Integrations.update_integration(
                 integration="integration_example",
+                kafka=KafkaIntegration(
+                    bootstrap_servers="bootstrap_servers_example",
+                    kafka_data_format="JSON",
+                    kafka_topic_names=[
+                        "kafka_topic_names_example",
+                    ],
+                    schema_registry_config=SchemaRegistryConfig(
+                        key="key_example",
+                        secret="secret_example",
+                        url="url_example",
+                    ),
+                    security_config=KafkaV3SecurityConfig(
+                        api_key="api_key_example",
+                        secret="secret_example",
+                    ),
+                    use_v3=True,
+                ),
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
