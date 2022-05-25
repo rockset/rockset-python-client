@@ -48,20 +48,6 @@ except rockset.ApiException as e:
     print("Exception when calling ApiKey->create_api_key: %s\n" % e)
 ```
 
-It is recommended that you write a standard query even when using rs.sql(). However, the query builder from the old Rockset python client has been included in order to make it easier to migrate to the new client. The query builder should be considered as deprecated. See the docstrings within rockset.query_builder.py for more query builder usage information.
-
-```python
-import rockset
-
-rs = rockset.RocksetClient(host=rockset.Regions.use1a1, api_key="APIKEY")
-try:
-    query = rockset.Q("_events").where(rockset.F["kind"] == rockset.P["event_type"]).limit(100)
-    query.P = {"event_type": "INGEST"}
-    res = rs.sql(query=query)
-except rockset.ApiException as e:
-    print("Exception when calling ApiKey->create_api_key: %s\n" % e)
-```
-
 ### Pagination
 
 Query pagination can be achieved by using the normal API call (rs.Queries.get_query_results()) or by using the QueryPaginator class as an iterator. The QueryPaginator should be initialized by passing in a client object and a QueryResponse object. The QueryResponse object could be the result of any call that returns this object ([query](docs/Queries.md#query), [get_query](docs/Queries.md#get_query), [execute_query_lambda](docs/QueryLambdas.md#execute_query_lambda), [execute_query_lambda_by_tag](docs/QueryLambdas.md#execute_query_lambda_by_tag)). You will then be able to use the QueryPaginator object like you would any other iterator.

@@ -253,18 +253,8 @@ class RocksetClient:
         self.VirtualInstances = VirtualInstancesApiWrapper(self.api_client)
         self.Workspaces = WorkspacesApiWrapper(self.api_client)
 
-    def sql(
-        self, query: Union[str, Query], params: Dict[str, Any] = None
-    ) -> QueryResponse:
-        """Convenience method for making queries.
-
-        If parameters are specified with the Query object, the params parameter should not be used.
-        The method will automatically handle conversion and calling the API.
-        """
-        if isinstance(query, Query):
-            query, query_params = query.sql()
-            params = query_params or params
-
+    def sql(self, query: str, params: Dict[str, Any] = None) -> QueryResponse:
+        """Convenience method for making queries."""
         if params:
             params = [
                 QueryParameter(name=param, value=val, type=convert_to_rockset_type(val))
