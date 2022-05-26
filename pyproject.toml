@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "rockset-v2-alpha"
+name = "rockset-v2-internal"
 version = "0.1.0"
-description = "The python client for the Rockset API."
+description = "The python client for the Rockset API - renamed package for internal usage alongside the old client."
 authors = ["Rockset <support@rockset.com>"]
 packages = [
-    {include = "rockset"}
+    {include = "rockset_v2"}
 ]
 documentation = "https://rockset.com/docs/client/python"
 repository = "https://github.com/rockset/rockset-python-client"
