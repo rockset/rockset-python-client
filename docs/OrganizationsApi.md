@@ -4,11 +4,11 @@ All URIs are relative to *https://api.rs2.usw2.rockset.com* or the apiserver pro
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_organization**](OrganizationsApi.md#get_organization) | **GET** /v1/orgs/self | Get Organization
+[**get**](OrganizationsApi.md#get) | **GET** /v1/orgs/self | Get Organization
 
 
-# **get_organization**
-> OrganizationResponse get_organization()
+# **get**
+> OrganizationResponse get()
 
 Get Organization
 
@@ -27,21 +27,21 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 # Get Organization
-api_response = rs.Organizations.get_organization(
+api_response = rs.Organizations.get(
 )
 pprint(api_response)
 # Error responses from the server will cause the client to throw an ApiException
 # except ApiException as e:
-#     print("Exception when calling Organizations->get_organization: %s\n" % e)
+#     print("Exception when calling Organizations->get: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 # assumes that execution takes place within an asynchronous context
 # Get Organization
-api_response = await rs.Organizations.get_organization(
+api_response = await rs.Organizations.get(
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
-    print("Exception when calling Organizations->get_organization: %s\n" % e)
+    print("Exception when calling Organizations->get: %s\n" % e)
     return
 pprint(api_response)
 

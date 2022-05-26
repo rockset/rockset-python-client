@@ -44,14 +44,14 @@ class Workspaces(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-        self.create_workspace_endpoint = _Endpoint(
+        self.create_endpoint = _Endpoint(
             settings={
                 'response_type': (CreateWorkspaceResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/ws',
-                'operation_id': 'create_workspace',
+                'operation_id': 'create',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -95,14 +95,14 @@ class Workspaces(object):
             },
             api_client=api_client
         )
-        self.delete_workspace_endpoint = _Endpoint(
+        self.delete_endpoint = _Endpoint(
             settings={
                 'response_type': (DeleteWorkspaceResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}',
-                'operation_id': 'delete_workspace',
+                'operation_id': 'delete',
                 'http_method': 'DELETE',
                 'servers': None,
             },
@@ -146,14 +146,14 @@ class Workspaces(object):
             },
             api_client=api_client
         )
-        self.get_workspace_endpoint = _Endpoint(
+        self.get_endpoint = _Endpoint(
             settings={
                 'response_type': (GetWorkspaceResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}',
-                'operation_id': 'get_workspace',
+                'operation_id': 'get',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -197,14 +197,14 @@ class Workspaces(object):
             },
             api_client=api_client
         )
-        self.list_workspaces_endpoint = _Endpoint(
+        self.list_endpoint = _Endpoint(
             settings={
                 'response_type': (ListWorkspacesResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/ws',
-                'operation_id': 'list_workspaces',
+                'operation_id': 'list',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -242,7 +242,7 @@ class Workspaces(object):
             api_client=api_client
         )
 
-    def create_workspace(
+    def create(
         self,
         *,
         name: str,
@@ -257,7 +257,7 @@ class Workspaces(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Workspaces.create_workspace(
+        future = rs.Workspaces.create(
             description="Datasets of system logs for the ops team.",
             name="event_logs",
             async_req=True,
@@ -328,9 +328,9 @@ class Workspaces(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['create_workspace_request'] = \
             kwargs['create_workspace_request']
-        return self.create_workspace_endpoint.call_with_http_info(**kwargs)
+        return self.create_endpoint.call_with_http_info(**kwargs)
 
-    def delete_workspace(
+    def delete(
         self,
         *,
         workspace = "commons",
@@ -344,7 +344,7 @@ class Workspaces(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Workspaces.delete_workspace(
+        future = rs.Workspaces.delete(
             async_req=True,
         )
         result = await future
@@ -412,9 +412,9 @@ class Workspaces(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['workspace'] = \
             workspace
-        return self.delete_workspace_endpoint.call_with_http_info(**kwargs)
+        return self.delete_endpoint.call_with_http_info(**kwargs)
 
-    def get_workspace(
+    def get(
         self,
         *,
         workspace = "commons",
@@ -428,7 +428,7 @@ class Workspaces(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Workspaces.get_workspace(
+        future = rs.Workspaces.get(
             async_req=True,
         )
         result = await future
@@ -496,9 +496,9 @@ class Workspaces(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['workspace'] = \
             workspace
-        return self.get_workspace_endpoint.call_with_http_info(**kwargs)
+        return self.get_endpoint.call_with_http_info(**kwargs)
 
-    def list_workspaces(
+    def list(
         self,
         **kwargs
     ) -> typing.Union[ListWorkspacesResponse, asyncio.Future]:
@@ -510,7 +510,7 @@ class Workspaces(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Workspaces.list_workspaces(
+        future = rs.Workspaces.list(
             async_req=True,
         )
         result = await future
@@ -575,10 +575,10 @@ class Workspaces(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        return self.list_workspaces_endpoint.call_with_http_info(**kwargs)
+        return self.list_endpoint.call_with_http_info(**kwargs)
 
 
     body_params_dict = dict()
     return_types_dict = dict()
-    body_params_dict['create_workspace'] = 'create_workspace_request'
-    return_types_dict['create_workspace'] = CreateWorkspaceRequest
+    body_params_dict['create'] = 'create_workspace_request'
+    return_types_dict['create'] = CreateWorkspaceRequest

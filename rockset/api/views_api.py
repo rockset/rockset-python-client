@@ -46,14 +46,14 @@ class Views(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-        self.create_view_endpoint = _Endpoint(
+        self.create_endpoint = _Endpoint(
             settings={
                 'response_type': (CreateViewResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/views',
-                'operation_id': 'create_view',
+                'operation_id': 'create',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -103,14 +103,14 @@ class Views(object):
             },
             api_client=api_client
         )
-        self.delete_view_endpoint = _Endpoint(
+        self.delete_endpoint = _Endpoint(
             settings={
                 'response_type': (DeleteViewResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/views/{view}',
-                'operation_id': 'delete_view',
+                'operation_id': 'delete',
                 'http_method': 'DELETE',
                 'servers': None,
             },
@@ -160,14 +160,14 @@ class Views(object):
             },
             api_client=api_client
         )
-        self.get_view_endpoint = _Endpoint(
+        self.get_endpoint = _Endpoint(
             settings={
                 'response_type': (GetViewResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/views/{view}',
-                'operation_id': 'get_view',
+                'operation_id': 'get',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -217,14 +217,14 @@ class Views(object):
             },
             api_client=api_client
         )
-        self.list_views_endpoint = _Endpoint(
+        self.list_endpoint = _Endpoint(
             settings={
                 'response_type': (ListViewsResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/views',
-                'operation_id': 'list_views',
+                'operation_id': 'list',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -261,14 +261,14 @@ class Views(object):
             },
             api_client=api_client
         )
-        self.update_view_endpoint = _Endpoint(
+        self.update_endpoint = _Endpoint(
             settings={
                 'response_type': (UpdateViewResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/views/{view}',
-                'operation_id': 'update_view',
+                'operation_id': 'update',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -376,7 +376,7 @@ class Views(object):
             api_client=api_client
         )
 
-    def create_view(
+    def create(
         self,
         *,
         name: str,
@@ -393,7 +393,7 @@ class Views(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Views.create_view(
+        future = rs.Views.create(
             description="view of awesome collection",
             name="myAwesomeView",
             query="SELECT * FROM foo",
@@ -469,9 +469,9 @@ class Views(object):
             workspace
         kwargs['create_view_request'] = \
             kwargs['create_view_request']
-        return self.create_view_endpoint.call_with_http_info(**kwargs)
+        return self.create_endpoint.call_with_http_info(**kwargs)
 
-    def delete_view(
+    def delete(
         self,
         *,
         view: str,
@@ -486,7 +486,7 @@ class Views(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Views.delete_view(
+        future = rs.Views.delete(
             view="view_example",
             async_req=True,
         )
@@ -558,9 +558,9 @@ class Views(object):
             workspace
         kwargs['view'] = \
             view
-        return self.delete_view_endpoint.call_with_http_info(**kwargs)
+        return self.delete_endpoint.call_with_http_info(**kwargs)
 
-    def get_view(
+    def get(
         self,
         *,
         view: str,
@@ -575,7 +575,7 @@ class Views(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Views.get_view(
+        future = rs.Views.get(
             view="view_example",
             async_req=True,
         )
@@ -647,9 +647,9 @@ class Views(object):
             workspace
         kwargs['view'] = \
             view
-        return self.get_view_endpoint.call_with_http_info(**kwargs)
+        return self.get_endpoint.call_with_http_info(**kwargs)
 
-    def list_views(
+    def list(
         self,
         **kwargs
     ) -> typing.Union[ListViewsResponse, asyncio.Future]:
@@ -661,7 +661,7 @@ class Views(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Views.list_views(
+        future = rs.Views.list(
             async_req=True,
         )
         result = await future
@@ -726,9 +726,9 @@ class Views(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        return self.list_views_endpoint.call_with_http_info(**kwargs)
+        return self.list_endpoint.call_with_http_info(**kwargs)
 
-    def update_view(
+    def update(
         self,
         *,
         view: str,
@@ -745,7 +745,7 @@ class Views(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Views.update_view(
+        future = rs.Views.update(
             view="view_example",
             description="view of awesome collection",
             query="SELECT * FROM foo",
@@ -823,7 +823,7 @@ class Views(object):
             view
         kwargs['update_view_request'] = \
             kwargs['update_view_request']
-        return self.update_view_endpoint.call_with_http_info(**kwargs)
+        return self.update_endpoint.call_with_http_info(**kwargs)
 
     def workspace_views(
         self,
@@ -912,7 +912,7 @@ class Views(object):
 
     body_params_dict = dict()
     return_types_dict = dict()
-    body_params_dict['create_view'] = 'create_view_request'
-    return_types_dict['create_view'] = CreateViewRequest
-    body_params_dict['update_view'] = 'update_view_request'
-    return_types_dict['update_view'] = UpdateViewRequest
+    body_params_dict['create'] = 'create_view_request'
+    return_types_dict['create'] = CreateViewRequest
+    body_params_dict['update'] = 'update_view_request'
+    return_types_dict['update'] = UpdateViewRequest

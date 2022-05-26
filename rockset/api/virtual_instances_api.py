@@ -43,14 +43,14 @@ class VirtualInstances(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-        self.get_virtual_instance_endpoint = _Endpoint(
+        self.get_endpoint = _Endpoint(
             settings={
                 'response_type': (GetVirtualInstanceResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/virtualinstances/{virtualInstanceId}',
-                'operation_id': 'get_virtual_instance',
+                'operation_id': 'get',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -94,14 +94,14 @@ class VirtualInstances(object):
             },
             api_client=api_client
         )
-        self.list_virtual_instances_endpoint = _Endpoint(
+        self.list_endpoint = _Endpoint(
             settings={
                 'response_type': (ListVirtualInstancesResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/virtualinstances',
-                'operation_id': 'list_virtual_instances',
+                'operation_id': 'list',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -196,7 +196,7 @@ class VirtualInstances(object):
             api_client=api_client
         )
 
-    def get_virtual_instance(
+    def get(
         self,
         *,
         virtual_instance_id: str,
@@ -210,7 +210,7 @@ class VirtualInstances(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.VirtualInstances.get_virtual_instance(
+        future = rs.VirtualInstances.get(
             virtual_instance_id="virtualInstanceId_example",
             async_req=True,
         )
@@ -279,9 +279,9 @@ class VirtualInstances(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['virtual_instance_id'] = \
             virtual_instance_id
-        return self.get_virtual_instance_endpoint.call_with_http_info(**kwargs)
+        return self.get_endpoint.call_with_http_info(**kwargs)
 
-    def list_virtual_instances(
+    def list(
         self,
         **kwargs
     ) -> typing.Union[ListVirtualInstancesResponse, asyncio.Future]:
@@ -293,7 +293,7 @@ class VirtualInstances(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.VirtualInstances.list_virtual_instances(
+        future = rs.VirtualInstances.list(
             async_req=True,
         )
         result = await future
@@ -358,7 +358,7 @@ class VirtualInstances(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        return self.list_virtual_instances_endpoint.call_with_http_info(**kwargs)
+        return self.list_endpoint.call_with_http_info(**kwargs)
 
     def set_virtual_instance(
         self,

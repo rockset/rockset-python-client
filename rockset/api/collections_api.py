@@ -623,14 +623,14 @@ class Collections(object):
             },
             api_client=api_client
         )
-        self.delete_collection_endpoint = _Endpoint(
+        self.delete_endpoint = _Endpoint(
             settings={
                 'response_type': (DeleteCollectionResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}',
-                'operation_id': 'delete_collection',
+                'operation_id': 'delete',
                 'http_method': 'DELETE',
                 'servers': None,
             },
@@ -680,14 +680,14 @@ class Collections(object):
             },
             api_client=api_client
         )
-        self.get_collection_endpoint = _Endpoint(
+        self.get_endpoint = _Endpoint(
             settings={
                 'response_type': (GetCollectionResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}',
-                'operation_id': 'get_collection',
+                'operation_id': 'get',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -737,14 +737,14 @@ class Collections(object):
             },
             api_client=api_client
         )
-        self.list_collections_endpoint = _Endpoint(
+        self.list_endpoint = _Endpoint(
             settings={
                 'response_type': (ListCollectionsResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/collections',
-                'operation_id': 'list_collections',
+                'operation_id': 'list',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -2576,7 +2576,7 @@ class Collections(object):
             kwargs['s3_collection_creation_request']
         return self.create_s3_collection_endpoint.call_with_http_info(**kwargs)
 
-    def delete_collection(
+    def delete(
         self,
         *,
         collection: str,
@@ -2591,7 +2591,7 @@ class Collections(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Collections.delete_collection(
+        future = rs.Collections.delete(
             collection="collection_example",
             async_req=True,
         )
@@ -2663,9 +2663,9 @@ class Collections(object):
             workspace
         kwargs['collection'] = \
             collection
-        return self.delete_collection_endpoint.call_with_http_info(**kwargs)
+        return self.delete_endpoint.call_with_http_info(**kwargs)
 
-    def get_collection(
+    def get(
         self,
         *,
         collection: str,
@@ -2680,7 +2680,7 @@ class Collections(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Collections.get_collection(
+        future = rs.Collections.get(
             collection="collection_example",
             async_req=True,
         )
@@ -2752,9 +2752,9 @@ class Collections(object):
             workspace
         kwargs['collection'] = \
             collection
-        return self.get_collection_endpoint.call_with_http_info(**kwargs)
+        return self.get_endpoint.call_with_http_info(**kwargs)
 
-    def list_collections(
+    def list(
         self,
         **kwargs
     ) -> typing.Union[ListCollectionsResponse, asyncio.Future]:
@@ -2766,7 +2766,7 @@ class Collections(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Collections.list_collections(
+        future = rs.Collections.list(
             async_req=True,
         )
         result = await future
@@ -2831,7 +2831,7 @@ class Collections(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        return self.list_collections_endpoint.call_with_http_info(**kwargs)
+        return self.list_endpoint.call_with_http_info(**kwargs)
 
     def workspace_collections(
         self,

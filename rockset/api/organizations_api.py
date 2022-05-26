@@ -40,14 +40,14 @@ class Organizations(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-        self.get_organization_endpoint = _Endpoint(
+        self.get_endpoint = _Endpoint(
             settings={
                 'response_type': (OrganizationResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self',
-                'operation_id': 'get_organization',
+                'operation_id': 'get',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -85,7 +85,7 @@ class Organizations(object):
             api_client=api_client
         )
 
-    def get_organization(
+    def get(
         self,
         **kwargs
     ) -> typing.Union[OrganizationResponse, asyncio.Future]:
@@ -97,7 +97,7 @@ class Organizations(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Organizations.get_organization(
+        future = rs.Organizations.get(
             async_req=True,
         )
         result = await future
@@ -162,7 +162,7 @@ class Organizations(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        return self.get_organization_endpoint.call_with_http_info(**kwargs)
+        return self.get_endpoint.call_with_http_info(**kwargs)
 
 
     body_params_dict = dict()

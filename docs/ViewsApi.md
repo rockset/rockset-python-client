@@ -4,16 +4,16 @@ All URIs are relative to *https://api.rs2.usw2.rockset.com* or the apiserver pro
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_view**](ViewsApi.md#create_view) | **POST** /v1/orgs/self/ws/{workspace}/views | Create View
-[**delete_view**](ViewsApi.md#delete_view) | **DELETE** /v1/orgs/self/ws/{workspace}/views/{view} | Delete View
-[**get_view**](ViewsApi.md#get_view) | **GET** /v1/orgs/self/ws/{workspace}/views/{view} | Retrieve View
-[**list_views**](ViewsApi.md#list_views) | **GET** /v1/orgs/self/views | List Views
-[**update_view**](ViewsApi.md#update_view) | **POST** /v1/orgs/self/ws/{workspace}/views/{view} | Update View
+[**create**](ViewsApi.md#create) | **POST** /v1/orgs/self/ws/{workspace}/views | Create View
+[**delete**](ViewsApi.md#delete) | **DELETE** /v1/orgs/self/ws/{workspace}/views/{view} | Delete View
+[**get**](ViewsApi.md#get) | **GET** /v1/orgs/self/ws/{workspace}/views/{view} | Retrieve View
+[**list**](ViewsApi.md#list) | **GET** /v1/orgs/self/views | List Views
+[**update**](ViewsApi.md#update) | **POST** /v1/orgs/self/ws/{workspace}/views/{view} | Update View
 [**workspace_views**](ViewsApi.md#workspace_views) | **GET** /v1/orgs/self/ws/{workspace}/views | List Views in Workspace
 
 
-# **create_view**
-> CreateViewResponse create_view(create_view_request)
+# **create**
+> CreateViewResponse create(create_view_request)
 
 Create View
 
@@ -32,26 +32,26 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 # Create View
-api_response = rs.Views.create_view(
+api_response = rs.Views.create(
     name="myAwesomeView",
     query="SELECT * FROM foo",
 )
 pprint(api_response)
 # Error responses from the server will cause the client to throw an ApiException
 # except ApiException as e:
-#     print("Exception when calling Views->create_view: %s\n" % e)
+#     print("Exception when calling Views->create: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 # assumes that execution takes place within an asynchronous context
 # Create View
-api_response = await rs.Views.create_view(
+api_response = await rs.Views.create(
     description="view of awesome collection",
     name="myAwesomeView",
     query="SELECT * FROM foo",
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
-    print("Exception when calling Views->create_view: %s\n" % e)
+    print("Exception when calling Views->create: %s\n" % e)
     return
 pprint(api_response)
 
@@ -90,8 +90,8 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **delete_view**
-> DeleteViewResponse delete_view(view)
+# **delete**
+> DeleteViewResponse delete(view)
 
 Delete View
 
@@ -110,23 +110,23 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 # Delete View
-api_response = rs.Views.delete_view(
+api_response = rs.Views.delete(
     view="view_example",
 )
 pprint(api_response)
 # Error responses from the server will cause the client to throw an ApiException
 # except ApiException as e:
-#     print("Exception when calling Views->delete_view: %s\n" % e)
+#     print("Exception when calling Views->delete: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 # assumes that execution takes place within an asynchronous context
 # Delete View
-api_response = await rs.Views.delete_view(
+api_response = await rs.Views.delete(
     view="view_example",
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
-    print("Exception when calling Views->delete_view: %s\n" % e)
+    print("Exception when calling Views->delete: %s\n" % e)
     return
 pprint(api_response)
 
@@ -163,8 +163,8 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_view**
-> GetViewResponse get_view(view)
+# **get**
+> GetViewResponse get(view)
 
 Retrieve View
 
@@ -183,23 +183,23 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 # Retrieve View
-api_response = rs.Views.get_view(
+api_response = rs.Views.get(
     view="view_example",
 )
 pprint(api_response)
 # Error responses from the server will cause the client to throw an ApiException
 # except ApiException as e:
-#     print("Exception when calling Views->get_view: %s\n" % e)
+#     print("Exception when calling Views->get: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 # assumes that execution takes place within an asynchronous context
 # Retrieve View
-api_response = await rs.Views.get_view(
+api_response = await rs.Views.get(
     view="view_example",
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
-    print("Exception when calling Views->get_view: %s\n" % e)
+    print("Exception when calling Views->get: %s\n" % e)
     return
 pprint(api_response)
 
@@ -249,8 +249,8 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **list_views**
-> ListViewsResponse list_views()
+# **list**
+> ListViewsResponse list()
 
 List Views
 
@@ -269,21 +269,21 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 # List Views
-api_response = rs.Views.list_views(
+api_response = rs.Views.list(
 )
 pprint(api_response)
 # Error responses from the server will cause the client to throw an ApiException
 # except ApiException as e:
-#     print("Exception when calling Views->list_views: %s\n" % e)
+#     print("Exception when calling Views->list: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 # assumes that execution takes place within an asynchronous context
 # List Views
-api_response = await rs.Views.list_views(
+api_response = await rs.Views.list(
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
-    print("Exception when calling Views->list_views: %s\n" % e)
+    print("Exception when calling Views->list: %s\n" % e)
     return
 pprint(api_response)
 
@@ -329,8 +329,8 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **update_view**
-> UpdateViewResponse update_view(view, update_view_request)
+# **update**
+> UpdateViewResponse update(view, update_view_request)
 
 Update View
 
@@ -349,26 +349,26 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 # Update View
-api_response = rs.Views.update_view(
+api_response = rs.Views.update(
     view="view_example",
     query="SELECT * FROM foo",
 )
 pprint(api_response)
 # Error responses from the server will cause the client to throw an ApiException
 # except ApiException as e:
-#     print("Exception when calling Views->update_view: %s\n" % e)
+#     print("Exception when calling Views->update: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 # assumes that execution takes place within an asynchronous context
 # Update View
-api_response = await rs.Views.update_view(
+api_response = await rs.Views.update(
     view="view_example",
     description="view of awesome collection",
     query="SELECT * FROM foo",
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
-    print("Exception when calling Views->update_view: %s\n" % e)
+    print("Exception when calling Views->update: %s\n" % e)
     return
 pprint(api_response)
 

@@ -14,11 +14,11 @@ from rockset.models import *
 from test.conftest import EarlyExit, validate_call
 
 
-def test_create_view(get_client, mock_request, request_validator):
+def test_create(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Views.create_view(
+            rs.Views.create(
                 description="view of awesome collection",
                 name="myAwesomeView",
                 query="SELECT * FROM foo",
@@ -27,42 +27,42 @@ def test_create_view(get_client, mock_request, request_validator):
             validate_call(e, request_validator)
 
 
-def test_delete_view(get_client, mock_request, request_validator):
+def test_delete(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Views.delete_view(
+            rs.Views.delete(
                 view="view_example",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
 
-def test_get_view(get_client, mock_request, request_validator):
+def test_get(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Views.get_view(
+            rs.Views.get(
                 view="view_example",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
 
-def test_list_views(get_client, mock_request, request_validator):
+def test_list(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Views.list_views()
+            rs.Views.list()
         except EarlyExit as e:
             validate_call(e, request_validator)
 
 
-def test_update_view(get_client, mock_request, request_validator):
+def test_update(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Views.update_view(
+            rs.Views.update(
                 view="view_example",
                 description="view of awesome collection",
                 query="SELECT * FROM foo",

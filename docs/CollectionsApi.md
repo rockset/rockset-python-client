@@ -14,9 +14,9 @@ Method | HTTP request | Description
 [**create_kinesis_collection**](CollectionsApi.md#create_kinesis_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create kinesis collection
 [**create_mongodb_collection**](CollectionsApi.md#create_mongodb_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create mongodb collection
 [**create_s3_collection**](CollectionsApi.md#create_s3_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create s3 collection
-[**delete_collection**](CollectionsApi.md#delete_collection) | **DELETE** /v1/orgs/self/ws/{workspace}/collections/{collection} | Delete Collection
-[**get_collection**](CollectionsApi.md#get_collection) | **GET** /v1/orgs/self/ws/{workspace}/collections/{collection} | Retrieve Collection
-[**list_collections**](CollectionsApi.md#list_collections) | **GET** /v1/orgs/self/collections | List Collections
+[**delete**](CollectionsApi.md#delete) | **DELETE** /v1/orgs/self/ws/{workspace}/collections/{collection} | Delete Collection
+[**get**](CollectionsApi.md#get) | **GET** /v1/orgs/self/ws/{workspace}/collections/{collection} | Retrieve Collection
+[**list**](CollectionsApi.md#list) | **GET** /v1/orgs/self/collections | List Collections
 [**workspace_collections**](CollectionsApi.md#workspace_collections) | **GET** /v1/orgs/self/ws/{workspace}/collections | List Collections in Workspace
 
 
@@ -1653,8 +1653,8 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **delete_collection**
-> DeleteCollectionResponse delete_collection(collection)
+# **delete**
+> DeleteCollectionResponse delete(collection)
 
 Delete Collection
 
@@ -1673,23 +1673,23 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 # Delete Collection
-api_response = rs.Collections.delete_collection(
+api_response = rs.Collections.delete(
     collection="collection_example",
 )
 pprint(api_response)
 # Error responses from the server will cause the client to throw an ApiException
 # except ApiException as e:
-#     print("Exception when calling Collections->delete_collection: %s\n" % e)
+#     print("Exception when calling Collections->delete: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 # assumes that execution takes place within an asynchronous context
 # Delete Collection
-api_response = await rs.Collections.delete_collection(
+api_response = await rs.Collections.delete(
     collection="collection_example",
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
-    print("Exception when calling Collections->delete_collection: %s\n" % e)
+    print("Exception when calling Collections->delete: %s\n" % e)
     return
 pprint(api_response)
 
@@ -1739,8 +1739,8 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_collection**
-> GetCollectionResponse get_collection(collection)
+# **get**
+> GetCollectionResponse get(collection)
 
 Retrieve Collection
 
@@ -1759,23 +1759,23 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 # Retrieve Collection
-api_response = rs.Collections.get_collection(
+api_response = rs.Collections.get(
     collection="collection_example",
 )
 pprint(api_response)
 # Error responses from the server will cause the client to throw an ApiException
 # except ApiException as e:
-#     print("Exception when calling Collections->get_collection: %s\n" % e)
+#     print("Exception when calling Collections->get: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 # assumes that execution takes place within an asynchronous context
 # Retrieve Collection
-api_response = await rs.Collections.get_collection(
+api_response = await rs.Collections.get(
     collection="collection_example",
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
-    print("Exception when calling Collections->get_collection: %s\n" % e)
+    print("Exception when calling Collections->get: %s\n" % e)
     return
 pprint(api_response)
 
@@ -1825,8 +1825,8 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **list_collections**
-> ListCollectionsResponse list_collections()
+# **list**
+> ListCollectionsResponse list()
 
 List Collections
 
@@ -1845,21 +1845,21 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 # List Collections
-api_response = rs.Collections.list_collections(
+api_response = rs.Collections.list(
 )
 pprint(api_response)
 # Error responses from the server will cause the client to throw an ApiException
 # except ApiException as e:
-#     print("Exception when calling Collections->list_collections: %s\n" % e)
+#     print("Exception when calling Collections->list: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 # assumes that execution takes place within an asynchronous context
 # List Collections
-api_response = await rs.Collections.list_collections(
+api_response = await rs.Collections.list(
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
-    print("Exception when calling Collections->list_collections: %s\n" % e)
+    print("Exception when calling Collections->list: %s\n" % e)
     return
 pprint(api_response)
 

@@ -43,14 +43,14 @@ class CustomRoles(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-        self.create_role_endpoint = _Endpoint(
+        self.create_endpoint = _Endpoint(
             settings={
                 'response_type': (RoleResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/roles',
-                'operation_id': 'create_role',
+                'operation_id': 'create',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -94,14 +94,14 @@ class CustomRoles(object):
             },
             api_client=api_client
         )
-        self.delete_role_endpoint = _Endpoint(
+        self.delete_endpoint = _Endpoint(
             settings={
                 'response_type': (RoleResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/roles/{roleName}',
-                'operation_id': 'delete_role',
+                'operation_id': 'delete',
                 'http_method': 'DELETE',
                 'servers': None,
             },
@@ -145,14 +145,14 @@ class CustomRoles(object):
             },
             api_client=api_client
         )
-        self.get_role_endpoint = _Endpoint(
+        self.get_endpoint = _Endpoint(
             settings={
                 'response_type': (RoleResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/roles/{roleName}',
-                'operation_id': 'get_role',
+                'operation_id': 'get',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -196,14 +196,14 @@ class CustomRoles(object):
             },
             api_client=api_client
         )
-        self.list_roles_endpoint = _Endpoint(
+        self.list_endpoint = _Endpoint(
             settings={
                 'response_type': (ListRolesResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/roles',
-                'operation_id': 'list_roles',
+                'operation_id': 'list',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -240,14 +240,14 @@ class CustomRoles(object):
             },
             api_client=api_client
         )
-        self.update_role_endpoint = _Endpoint(
+        self.update_endpoint = _Endpoint(
             settings={
                 'response_type': (RoleResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/roles/{roleName}',
-                'operation_id': 'update_role',
+                'operation_id': 'update',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -298,7 +298,7 @@ class CustomRoles(object):
             api_client=api_client
         )
 
-    def create_role(
+    def create(
         self,
         *,
         description: str = None,
@@ -314,7 +314,7 @@ class CustomRoles(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.CustomRoles.create_role(
+        future = rs.CustomRoles.create(
             description="Role with read and write privileges to all collections.",
             privileges=[
                 Privilege(
@@ -393,9 +393,9 @@ class CustomRoles(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['create_role_request'] = \
             kwargs['create_role_request']
-        return self.create_role_endpoint.call_with_http_info(**kwargs)
+        return self.create_endpoint.call_with_http_info(**kwargs)
 
-    def delete_role(
+    def delete(
         self,
         *,
         role_name: str,
@@ -409,7 +409,7 @@ class CustomRoles(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.CustomRoles.delete_role(
+        future = rs.CustomRoles.delete(
             role_name="roleName_example",
             async_req=True,
         )
@@ -478,9 +478,9 @@ class CustomRoles(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['role_name'] = \
             role_name
-        return self.delete_role_endpoint.call_with_http_info(**kwargs)
+        return self.delete_endpoint.call_with_http_info(**kwargs)
 
-    def get_role(
+    def get(
         self,
         *,
         role_name: str,
@@ -494,7 +494,7 @@ class CustomRoles(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.CustomRoles.get_role(
+        future = rs.CustomRoles.get(
             role_name="roleName_example",
             async_req=True,
         )
@@ -563,9 +563,9 @@ class CustomRoles(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['role_name'] = \
             role_name
-        return self.get_role_endpoint.call_with_http_info(**kwargs)
+        return self.get_endpoint.call_with_http_info(**kwargs)
 
-    def list_roles(
+    def list(
         self,
         **kwargs
     ) -> typing.Union[ListRolesResponse, asyncio.Future]:
@@ -577,7 +577,7 @@ class CustomRoles(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.CustomRoles.list_roles(
+        future = rs.CustomRoles.list(
             async_req=True,
         )
         result = await future
@@ -642,9 +642,9 @@ class CustomRoles(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        return self.list_roles_endpoint.call_with_http_info(**kwargs)
+        return self.list_endpoint.call_with_http_info(**kwargs)
 
-    def update_role(
+    def update(
         self,
         *,
         role_name: str,
@@ -660,7 +660,7 @@ class CustomRoles(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.CustomRoles.update_role(
+        future = rs.CustomRoles.update(
             role_name="roleName_example",
             description="Role with read and write privileges to all collections.",
             privileges=[
@@ -741,12 +741,12 @@ class CustomRoles(object):
             role_name
         kwargs['update_role_request'] = \
             kwargs['update_role_request']
-        return self.update_role_endpoint.call_with_http_info(**kwargs)
+        return self.update_endpoint.call_with_http_info(**kwargs)
 
 
     body_params_dict = dict()
     return_types_dict = dict()
-    body_params_dict['create_role'] = 'create_role_request'
-    return_types_dict['create_role'] = CreateRoleRequest
-    body_params_dict['update_role'] = 'update_role_request'
-    return_types_dict['update_role'] = UpdateRoleRequest
+    body_params_dict['create'] = 'create_role_request'
+    return_types_dict['create'] = CreateRoleRequest
+    body_params_dict['update'] = 'update_role_request'
+    return_types_dict['update'] = UpdateRoleRequest

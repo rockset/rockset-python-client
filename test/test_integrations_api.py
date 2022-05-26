@@ -14,13 +14,11 @@ from rockset.models import *
 from test.conftest import EarlyExit, validate_call
 
 
-def test_create_azure_blob_storage_integration(
-    get_client, mock_request, request_validator
-):
+def test_create(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Integrations.create_azure_blob_storage_integration(
+            rs.Integrations.create(
                 azure_blob_storage=AzureBlobStorageIntegration(
                     connection_string="connection_string_example",
                 ),
@@ -31,13 +29,11 @@ def test_create_azure_blob_storage_integration(
             validate_call(e, request_validator)
 
 
-def test_create_azure_event_hubs_integration(
-    get_client, mock_request, request_validator
-):
+def test_create_0(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Integrations.create_azure_event_hubs_integration(
+            rs.Integrations.create_0(
                 azure_event_hubs=AzureEventHubsIntegration(),
                 description="AWS account with event data for the data science team.",
                 name="event-logs",
@@ -46,11 +42,11 @@ def test_create_azure_event_hubs_integration(
             validate_call(e, request_validator)
 
 
-def test_create_dynamodb_integration(get_client, mock_request, request_validator):
+def test_create_1(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Integrations.create_dynamodb_integration(
+            rs.Integrations.create_1(
                 description="AWS account with event data for the data science team.",
                 dynamodb=DynamodbIntegration(
                     aws_access_key=AwsAccessKey(
@@ -68,11 +64,11 @@ def test_create_dynamodb_integration(get_client, mock_request, request_validator
             validate_call(e, request_validator)
 
 
-def test_create_gcs_integration(get_client, mock_request, request_validator):
+def test_create_2(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Integrations.create_gcs_integration(
+            rs.Integrations.create_2(
                 description="AWS account with event data for the data science team.",
                 gcs=GcsIntegration(
                     gcp_service_account=GcpServiceAccount(
@@ -85,11 +81,11 @@ def test_create_gcs_integration(get_client, mock_request, request_validator):
             validate_call(e, request_validator)
 
 
-def test_create_kafka_integration(get_client, mock_request, request_validator):
+def test_create_3(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Integrations.create_kafka_integration(
+            rs.Integrations.create_3(
                 description="AWS account with event data for the data science team.",
                 kafka=KafkaIntegration(
                     bootstrap_servers="bootstrap_servers_example",
@@ -114,11 +110,11 @@ def test_create_kafka_integration(get_client, mock_request, request_validator):
             validate_call(e, request_validator)
 
 
-def test_create_kinesis_integration(get_client, mock_request, request_validator):
+def test_create_4(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Integrations.create_kinesis_integration(
+            rs.Integrations.create_4(
                 description="AWS account with event data for the data science team.",
                 kinesis=KinesisIntegration(
                     aws_access_key=AwsAccessKey(
@@ -135,11 +131,11 @@ def test_create_kinesis_integration(get_client, mock_request, request_validator)
             validate_call(e, request_validator)
 
 
-def test_create_mongodb_integration(get_client, mock_request, request_validator):
+def test_create_5(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Integrations.create_mongodb_integration(
+            rs.Integrations.create_5(
                 description="AWS account with event data for the data science team.",
                 mongodb=MongoDbIntegration(
                     connection_uri="mongodb+srv://<username>:<password>@server.example.com/",
@@ -150,11 +146,11 @@ def test_create_mongodb_integration(get_client, mock_request, request_validator)
             validate_call(e, request_validator)
 
 
-def test_create_s3_integration(get_client, mock_request, request_validator):
+def test_create_6(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Integrations.create_s3_integration(
+            rs.Integrations.create_6(
                 description="AWS account with event data for the data science team.",
                 name="event-logs",
                 s3=S3Integration(
@@ -171,11 +167,11 @@ def test_create_s3_integration(get_client, mock_request, request_validator):
             validate_call(e, request_validator)
 
 
-def test_create_segment_integration(get_client, mock_request, request_validator):
+def test_create_7(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Integrations.create_segment_integration(
+            rs.Integrations.create_7(
                 description="AWS account with event data for the data science team.",
                 name="event-logs",
                 segment=SegmentIntegration(),
@@ -184,42 +180,42 @@ def test_create_segment_integration(get_client, mock_request, request_validator)
             validate_call(e, request_validator)
 
 
-def test_delete_integration(get_client, mock_request, request_validator):
+def test_delete(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Integrations.delete_integration(
+            rs.Integrations.delete(
                 integration="integration_example",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
 
-def test_get_integration(get_client, mock_request, request_validator):
+def test_get(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Integrations.get_integration(
+            rs.Integrations.get(
                 integration="integration_example",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
 
-def test_list_integrations(get_client, mock_request, request_validator):
+def test_list(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Integrations.list_integrations()
+            rs.Integrations.list()
         except EarlyExit as e:
             validate_call(e, request_validator)
 
 
-def test_update_integration(get_client, mock_request, request_validator):
+def test_update(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Integrations.update_integration(
+            rs.Integrations.update(
                 integration="integration_example",
                 kafka=KafkaIntegration(
                     bootstrap_servers="bootstrap_servers_example",
