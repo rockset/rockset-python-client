@@ -4,15 +4,15 @@ All URIs are relative to *https://api.rs2.usw2.rockset.com* or the apiserver pro
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create_role**](CustomRolesApi.md#create_role) | **POST** /v1/orgs/self/roles | Create a Role
-[**delete_role**](CustomRolesApi.md#delete_role) | **DELETE** /v1/orgs/self/roles/{roleName} | Delete a Role
-[**get_role**](CustomRolesApi.md#get_role) | **GET** /v1/orgs/self/roles/{roleName} | Retrieve role
-[**list_roles**](CustomRolesApi.md#list_roles) | **GET** /v1/orgs/self/roles | List Roles
-[**update_role**](CustomRolesApi.md#update_role) | **POST** /v1/orgs/self/roles/{roleName} | Update a Role
+[**create**](CustomRolesApi.md#create) | **POST** /v1/orgs/self/roles | Create a Role
+[**delete**](CustomRolesApi.md#delete) | **DELETE** /v1/orgs/self/roles/{roleName} | Delete a Role
+[**get**](CustomRolesApi.md#get) | **GET** /v1/orgs/self/roles/{roleName} | Retrieve role
+[**list**](CustomRolesApi.md#list) | **GET** /v1/orgs/self/roles | List Roles
+[**update**](CustomRolesApi.md#update) | **POST** /v1/orgs/self/roles/{roleName} | Update a Role
 
 
-# **create_role**
-> RoleResponse create_role(create_role_request)
+# **create**
+> RoleResponse create(create_role_request)
 
 Create a Role
 
@@ -31,17 +31,17 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 # Create a Role
-api_response = rs.CustomRoles.create_role(
+api_response = rs.CustomRoles.create(
 )
 pprint(api_response)
 # Error responses from the server will cause the client to throw an ApiException
 # except ApiException as e:
-#     print("Exception when calling CustomRoles->create_role: %s\n" % e)
+#     print("Exception when calling CustomRoles->create: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 # assumes that execution takes place within an asynchronous context
 # Create a Role
-api_response = await rs.CustomRoles.create_role(
+api_response = await rs.CustomRoles.create(
     description="Role with read and write privileges to all collections.",
     privileges=[
         Privilege(
@@ -54,7 +54,7 @@ api_response = await rs.CustomRoles.create_role(
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
-    print("Exception when calling CustomRoles->create_role: %s\n" % e)
+    print("Exception when calling CustomRoles->create: %s\n" % e)
     return
 pprint(api_response)
 
@@ -105,8 +105,8 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **delete_role**
-> RoleResponse delete_role(role_name)
+# **delete**
+> RoleResponse delete(role_name)
 
 Delete a Role
 
@@ -125,23 +125,23 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 # Delete a Role
-api_response = rs.CustomRoles.delete_role(
+api_response = rs.CustomRoles.delete(
     role_name="roleName_example",
 )
 pprint(api_response)
 # Error responses from the server will cause the client to throw an ApiException
 # except ApiException as e:
-#     print("Exception when calling CustomRoles->delete_role: %s\n" % e)
+#     print("Exception when calling CustomRoles->delete: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 # assumes that execution takes place within an asynchronous context
 # Delete a Role
-api_response = await rs.CustomRoles.delete_role(
+api_response = await rs.CustomRoles.delete(
     role_name="roleName_example",
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
-    print("Exception when calling CustomRoles->delete_role: %s\n" % e)
+    print("Exception when calling CustomRoles->delete: %s\n" % e)
     return
 pprint(api_response)
 
@@ -190,8 +190,8 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_role**
-> RoleResponse get_role(role_name)
+# **get**
+> RoleResponse get(role_name)
 
 Retrieve role
 
@@ -210,23 +210,23 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 # Retrieve role
-api_response = rs.CustomRoles.get_role(
+api_response = rs.CustomRoles.get(
     role_name="roleName_example",
 )
 pprint(api_response)
 # Error responses from the server will cause the client to throw an ApiException
 # except ApiException as e:
-#     print("Exception when calling CustomRoles->get_role: %s\n" % e)
+#     print("Exception when calling CustomRoles->get: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 # assumes that execution takes place within an asynchronous context
 # Retrieve role
-api_response = await rs.CustomRoles.get_role(
+api_response = await rs.CustomRoles.get(
     role_name="roleName_example",
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
-    print("Exception when calling CustomRoles->get_role: %s\n" % e)
+    print("Exception when calling CustomRoles->get: %s\n" % e)
     return
 pprint(api_response)
 
@@ -275,8 +275,8 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **list_roles**
-> ListRolesResponse list_roles()
+# **list**
+> ListRolesResponse list()
 
 List Roles
 
@@ -295,21 +295,21 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 # List Roles
-api_response = rs.CustomRoles.list_roles(
+api_response = rs.CustomRoles.list(
 )
 pprint(api_response)
 # Error responses from the server will cause the client to throw an ApiException
 # except ApiException as e:
-#     print("Exception when calling CustomRoles->list_roles: %s\n" % e)
+#     print("Exception when calling CustomRoles->list: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 # assumes that execution takes place within an asynchronous context
 # List Roles
-api_response = await rs.CustomRoles.list_roles(
+api_response = await rs.CustomRoles.list(
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
-    print("Exception when calling CustomRoles->list_roles: %s\n" % e)
+    print("Exception when calling CustomRoles->list: %s\n" % e)
     return
 pprint(api_response)
 
@@ -355,8 +355,8 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **update_role**
-> RoleResponse update_role(role_name, update_role_request)
+# **update**
+> RoleResponse update(role_name, update_role_request)
 
 Update a Role
 
@@ -375,18 +375,18 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 # Update a Role
-api_response = rs.CustomRoles.update_role(
+api_response = rs.CustomRoles.update(
     role_name="roleName_example",
 )
 pprint(api_response)
 # Error responses from the server will cause the client to throw an ApiException
 # except ApiException as e:
-#     print("Exception when calling CustomRoles->update_role: %s\n" % e)
+#     print("Exception when calling CustomRoles->update: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 # assumes that execution takes place within an asynchronous context
 # Update a Role
-api_response = await rs.CustomRoles.update_role(
+api_response = await rs.CustomRoles.update(
     role_name="roleName_example",
     description="Role with read and write privileges to all collections.",
     privileges=[
@@ -399,7 +399,7 @@ api_response = await rs.CustomRoles.update_role(
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
-    print("Exception when calling CustomRoles->update_role: %s\n" % e)
+    print("Exception when calling CustomRoles->update: %s\n" % e)
     return
 pprint(api_response)
 

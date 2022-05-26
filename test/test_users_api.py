@@ -14,11 +14,11 @@ from rockset.models import *
 from test.conftest import EarlyExit, validate_call
 
 
-def test_create_user(get_client, mock_request, request_validator):
+def test_create(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Users.create_user(
+            rs.Users.create(
                 email="hello@rockset.com",
                 roles=["admin", "member", "read-only"],
             )
@@ -37,6 +37,17 @@ def test_delete_user(get_client, mock_request, request_validator):
             validate_call(e, request_validator)
 
 
+def test_get(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Users.get(
+                user="user_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
 def test_get_current_user(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
@@ -46,13 +57,11 @@ def test_get_current_user(get_client, mock_request, request_validator):
             validate_call(e, request_validator)
 
 
-def test_get_user(get_client, mock_request, request_validator):
+def test_list(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Users.get_user(
-                user="user_example",
-            )
+            rs.Users.list()
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -62,15 +71,6 @@ def test_list_unsubscribe_preferences(get_client, mock_request, request_validato
         rs = get_client
         try:
             rs.Users.list_unsubscribe_preferences()
-        except EarlyExit as e:
-            validate_call(e, request_validator)
-
-
-def test_list_users(get_client, mock_request, request_validator):
-    with mock_request:
-        rs = get_client
-        try:
-            rs.Users.list_users()
         except EarlyExit as e:
             validate_call(e, request_validator)
 

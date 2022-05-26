@@ -69,20 +69,24 @@ for page in rockset.QueryPaginator(
     print(page)
 ```
 
+## Optional Models
+
+When making requests, certain parameters will oftentimes be instances of classes (eg. rockset.models.QueryRequestSql). Since importing and instantiating these objects can be verbose, you always have the option of passing in a dictionary instead of a model.
+
 ## Documentation for API Endpoints
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*APIKeys* | [**create_api_key**](docs/APIKeysApi.md#create_api_key) | **POST** /v1/orgs/self/users/self/apikeys | Create API Key
-*APIKeys* | [**delete_api_key**](docs/APIKeysApi.md#delete_api_key) | **DELETE** /v1/orgs/self/users/{user}/apikeys/{name} | Delete API Key
-*APIKeys* | [**get_api_key**](docs/APIKeysApi.md#get_api_key) | **GET** /v1/orgs/self/users/{user}/apikeys/{name} | Retrieve API Key
-*APIKeys* | [**list_api_keys**](docs/APIKeysApi.md#list_api_keys) | **GET** /v1/orgs/self/users/{user}/apikeys | List API Keys
-*APIKeys* | [**update_api_key**](docs/APIKeysApi.md#update_api_key) | **POST** /v1/orgs/self/users/{user}/apikeys/{name} | Update API Key State
-*Aliases* | [**create_alias**](docs/AliasesApi.md#create_alias) | **POST** /v1/orgs/self/ws/{workspace}/aliases | Create Alias
-*Aliases* | [**delete_alias**](docs/AliasesApi.md#delete_alias) | **DELETE** /v1/orgs/self/ws/{workspace}/aliases/{alias} | Delete Alias
-*Aliases* | [**get_alias**](docs/AliasesApi.md#get_alias) | **GET** /v1/orgs/self/ws/{workspace}/aliases/{alias} | Retrieve Alias
-*Aliases* | [**list_aliases**](docs/AliasesApi.md#list_aliases) | **GET** /v1/orgs/self/aliases | List Aliases
-*Aliases* | [**update_alias**](docs/AliasesApi.md#update_alias) | **POST** /v1/orgs/self/ws/{workspace}/aliases/{alias} | Update Alias
+*APIKeys* | [**create**](docs/APIKeysApi.md#create) | **POST** /v1/orgs/self/users/self/apikeys | Create API Key
+*APIKeys* | [**delete**](docs/APIKeysApi.md#delete) | **DELETE** /v1/orgs/self/users/{user}/apikeys/{name} | Delete API Key
+*APIKeys* | [**get**](docs/APIKeysApi.md#get) | **GET** /v1/orgs/self/users/{user}/apikeys/{name} | Retrieve API Key
+*APIKeys* | [**list**](docs/APIKeysApi.md#list) | **GET** /v1/orgs/self/users/{user}/apikeys | List API Keys
+*APIKeys* | [**update**](docs/APIKeysApi.md#update) | **POST** /v1/orgs/self/users/{user}/apikeys/{name} | Update API Key State
+*Aliases* | [**create**](docs/AliasesApi.md#create) | **POST** /v1/orgs/self/ws/{workspace}/aliases | Create Alias
+*Aliases* | [**delete**](docs/AliasesApi.md#delete) | **DELETE** /v1/orgs/self/ws/{workspace}/aliases/{alias} | Delete Alias
+*Aliases* | [**get**](docs/AliasesApi.md#get) | **GET** /v1/orgs/self/ws/{workspace}/aliases/{alias} | Retrieve Alias
+*Aliases* | [**list**](docs/AliasesApi.md#list) | **GET** /v1/orgs/self/aliases | List Aliases
+*Aliases* | [**update**](docs/AliasesApi.md#update) | **POST** /v1/orgs/self/ws/{workspace}/aliases/{alias} | Update Alias
 *Aliases* | [**workspace_aliases**](docs/AliasesApi.md#workspace_aliases) | **GET** /v1/orgs/self/ws/{workspace}/aliases | List Aliases in Workspace
 *Collections* | [**create_azure_blob_storage_collection**](docs/CollectionsApi.md#create_azure_blob_storage_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create azure blob storage collection
 *Collections* | [**create_azure_event_hubs_collection**](docs/CollectionsApi.md#create_azure_event_hubs_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create azure event hubs collection
@@ -94,32 +98,32 @@ Class | Method | HTTP request | Description
 *Collections* | [**create_kinesis_collection**](docs/CollectionsApi.md#create_kinesis_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create kinesis collection
 *Collections* | [**create_mongodb_collection**](docs/CollectionsApi.md#create_mongodb_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create mongodb collection
 *Collections* | [**create_s3_collection**](docs/CollectionsApi.md#create_s3_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create s3 collection
-*Collections* | [**delete_collection**](docs/CollectionsApi.md#delete_collection) | **DELETE** /v1/orgs/self/ws/{workspace}/collections/{collection} | Delete Collection
-*Collections* | [**get_collection**](docs/CollectionsApi.md#get_collection) | **GET** /v1/orgs/self/ws/{workspace}/collections/{collection} | Retrieve Collection
-*Collections* | [**list_collections**](docs/CollectionsApi.md#list_collections) | **GET** /v1/orgs/self/collections | List Collections
+*Collections* | [**delete**](docs/CollectionsApi.md#delete) | **DELETE** /v1/orgs/self/ws/{workspace}/collections/{collection} | Delete Collection
+*Collections* | [**get**](docs/CollectionsApi.md#get) | **GET** /v1/orgs/self/ws/{workspace}/collections/{collection} | Retrieve Collection
+*Collections* | [**list**](docs/CollectionsApi.md#list) | **GET** /v1/orgs/self/collections | List Collections
 *Collections* | [**workspace_collections**](docs/CollectionsApi.md#workspace_collections) | **GET** /v1/orgs/self/ws/{workspace}/collections | List Collections in Workspace
-*CustomRoles* | [**create_role**](docs/CustomRolesApi.md#create_role) | **POST** /v1/orgs/self/roles | Create a Role
-*CustomRoles* | [**delete_role**](docs/CustomRolesApi.md#delete_role) | **DELETE** /v1/orgs/self/roles/{roleName} | Delete a Role
-*CustomRoles* | [**get_role**](docs/CustomRolesApi.md#get_role) | **GET** /v1/orgs/self/roles/{roleName} | Retrieve role
-*CustomRoles* | [**list_roles**](docs/CustomRolesApi.md#list_roles) | **GET** /v1/orgs/self/roles | List Roles
-*CustomRoles* | [**update_role**](docs/CustomRolesApi.md#update_role) | **POST** /v1/orgs/self/roles/{roleName} | Update a Role
+*CustomRoles* | [**create**](docs/CustomRolesApi.md#create) | **POST** /v1/orgs/self/roles | Create a Role
+*CustomRoles* | [**delete**](docs/CustomRolesApi.md#delete) | **DELETE** /v1/orgs/self/roles/{roleName} | Delete a Role
+*CustomRoles* | [**get**](docs/CustomRolesApi.md#get) | **GET** /v1/orgs/self/roles/{roleName} | Retrieve role
+*CustomRoles* | [**list**](docs/CustomRolesApi.md#list) | **GET** /v1/orgs/self/roles | List Roles
+*CustomRoles* | [**update**](docs/CustomRolesApi.md#update) | **POST** /v1/orgs/self/roles/{roleName} | Update a Role
 *Documents* | [**add_documents**](docs/DocumentsApi.md#add_documents) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/docs | Add Documents
 *Documents* | [**delete_documents**](docs/DocumentsApi.md#delete_documents) | **DELETE** /v1/orgs/self/ws/{workspace}/collections/{collection}/docs | Delete Documents
 *Documents* | [**patch_documents**](docs/DocumentsApi.md#patch_documents) | **PATCH** /v1/orgs/self/ws/{workspace}/collections/{collection}/docs | Patch Documents
-*Integrations* | [**create_azure_blob_storage_integration**](docs/IntegrationsApi.md#create_azure_blob_storage_integration) | **POST** /v1/orgs/self/integrations | Create azure blob storage integration
-*Integrations* | [**create_azure_event_hubs_integration**](docs/IntegrationsApi.md#create_azure_event_hubs_integration) | **POST** /v1/orgs/self/integrations | Create azure event hubs integration
-*Integrations* | [**create_dynamodb_integration**](docs/IntegrationsApi.md#create_dynamodb_integration) | **POST** /v1/orgs/self/integrations | Create dynamodb integration
-*Integrations* | [**create_gcs_integration**](docs/IntegrationsApi.md#create_gcs_integration) | **POST** /v1/orgs/self/integrations | Create gcs integration
-*Integrations* | [**create_kafka_integration**](docs/IntegrationsApi.md#create_kafka_integration) | **POST** /v1/orgs/self/integrations | Create kafka integration
-*Integrations* | [**create_kinesis_integration**](docs/IntegrationsApi.md#create_kinesis_integration) | **POST** /v1/orgs/self/integrations | Create kinesis integration
-*Integrations* | [**create_mongodb_integration**](docs/IntegrationsApi.md#create_mongodb_integration) | **POST** /v1/orgs/self/integrations | Create mongodb integration
-*Integrations* | [**create_s3_integration**](docs/IntegrationsApi.md#create_s3_integration) | **POST** /v1/orgs/self/integrations | Create s3 integration
-*Integrations* | [**create_segment_integration**](docs/IntegrationsApi.md#create_segment_integration) | **POST** /v1/orgs/self/integrations | Create segment integration
-*Integrations* | [**delete_integration**](docs/IntegrationsApi.md#delete_integration) | **DELETE** /v1/orgs/self/integrations/{integration} | Delete Integration
-*Integrations* | [**get_integration**](docs/IntegrationsApi.md#get_integration) | **GET** /v1/orgs/self/integrations/{integration} | Retrieve Integration
-*Integrations* | [**list_integrations**](docs/IntegrationsApi.md#list_integrations) | **GET** /v1/orgs/self/integrations | List Integrations
-*Integrations* | [**update_integration**](docs/IntegrationsApi.md#update_integration) | **PATCH** /v1/orgs/self/integrations/{integration} | Update Integration
-*Organizations* | [**get_organization**](docs/OrganizationsApi.md#get_organization) | **GET** /v1/orgs/self | Get Organization
+*Integrations* | [**create**](docs/IntegrationsApi.md#create) | **POST** /v1/orgs/self/integrations | Create azure blob storage integration
+*Integrations* | [**create_0**](docs/IntegrationsApi.md#create_0) | **POST** /v1/orgs/self/integrations | Create azure event hubs integration
+*Integrations* | [**create_1**](docs/IntegrationsApi.md#create_1) | **POST** /v1/orgs/self/integrations | Create dynamodb integration
+*Integrations* | [**create_2**](docs/IntegrationsApi.md#create_2) | **POST** /v1/orgs/self/integrations | Create gcs integration
+*Integrations* | [**create_3**](docs/IntegrationsApi.md#create_3) | **POST** /v1/orgs/self/integrations | Create kafka integration
+*Integrations* | [**create_4**](docs/IntegrationsApi.md#create_4) | **POST** /v1/orgs/self/integrations | Create kinesis integration
+*Integrations* | [**create_5**](docs/IntegrationsApi.md#create_5) | **POST** /v1/orgs/self/integrations | Create mongodb integration
+*Integrations* | [**create_6**](docs/IntegrationsApi.md#create_6) | **POST** /v1/orgs/self/integrations | Create s3 integration
+*Integrations* | [**create_7**](docs/IntegrationsApi.md#create_7) | **POST** /v1/orgs/self/integrations | Create segment integration
+*Integrations* | [**delete**](docs/IntegrationsApi.md#delete) | **DELETE** /v1/orgs/self/integrations/{integration} | Delete Integration
+*Integrations* | [**get**](docs/IntegrationsApi.md#get) | **GET** /v1/orgs/self/integrations/{integration} | Retrieve Integration
+*Integrations* | [**list**](docs/IntegrationsApi.md#list) | **GET** /v1/orgs/self/integrations | List Integrations
+*Integrations* | [**update**](docs/IntegrationsApi.md#update) | **PATCH** /v1/orgs/self/integrations/{integration} | Update Integration
+*Organizations* | [**get**](docs/OrganizationsApi.md#get) | **GET** /v1/orgs/self | Get Organization
 *Queries* | [**cancel_query**](docs/QueriesApi.md#cancel_query) | **DELETE** /v1/orgs/self/queries/{queryId} | Cancel Query
 *Queries* | [**get_query**](docs/QueriesApi.md#get_query) | **GET** /v1/orgs/self/queries/{queryId} | Retrieve Query
 *Queries* | [**get_query_results**](docs/QueriesApi.md#get_query_results) | **GET** /v1/orgs/self/queries/{queryId}/pages | Retrieve Query Results Page
@@ -140,26 +144,26 @@ Class | Method | HTTP request | Description
 *QueryLambdas* | [**list_query_lambda_versions**](docs/QueryLambdasApi.md#list_query_lambda_versions) | **GET** /v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/versions | List Query Lambda Versions
 *QueryLambdas* | [**list_query_lambdas_in_workspace**](docs/QueryLambdasApi.md#list_query_lambdas_in_workspace) | **GET** /v1/orgs/self/ws/{workspace}/lambdas | List Query Lambdas in Workspace
 *QueryLambdas* | [**update_query_lambda**](docs/QueryLambdasApi.md#update_query_lambda) | **POST** /v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/versions | Update Query Lambda
-*Users* | [**create_user**](docs/UsersApi.md#create_user) | **POST** /v1/orgs/self/users | Create User
+*Users* | [**create**](docs/UsersApi.md#create) | **POST** /v1/orgs/self/users | Create User
 *Users* | [**delete_user**](docs/UsersApi.md#delete_user) | **DELETE** /v1/orgs/self/users/{user} | Delete User
+*Users* | [**get**](docs/UsersApi.md#get) | **GET** /v1/orgs/self/users/{user} | Retrieve User
 *Users* | [**get_current_user**](docs/UsersApi.md#get_current_user) | **GET** /v1/orgs/self/users/self | Retrieve Current User
-*Users* | [**get_user**](docs/UsersApi.md#get_user) | **GET** /v1/orgs/self/users/{user} | Retrieve User
+*Users* | [**list**](docs/UsersApi.md#list) | **GET** /v1/orgs/self/users | List Users
 *Users* | [**list_unsubscribe_preferences**](docs/UsersApi.md#list_unsubscribe_preferences) | **GET** /v1/orgs/self/users/self/preferences | Retrieve Notification Preferences
-*Users* | [**list_users**](docs/UsersApi.md#list_users) | **GET** /v1/orgs/self/users | List Users
 *Users* | [**update_unsubscribe_preferences**](docs/UsersApi.md#update_unsubscribe_preferences) | **POST** /v1/orgs/self/users/self/preferences | Update Notification Preferences
-*Views* | [**create_view**](docs/ViewsApi.md#create_view) | **POST** /v1/orgs/self/ws/{workspace}/views | Create View
-*Views* | [**delete_view**](docs/ViewsApi.md#delete_view) | **DELETE** /v1/orgs/self/ws/{workspace}/views/{view} | Delete View
-*Views* | [**get_view**](docs/ViewsApi.md#get_view) | **GET** /v1/orgs/self/ws/{workspace}/views/{view} | Retrieve View
-*Views* | [**list_views**](docs/ViewsApi.md#list_views) | **GET** /v1/orgs/self/views | List Views
-*Views* | [**update_view**](docs/ViewsApi.md#update_view) | **POST** /v1/orgs/self/ws/{workspace}/views/{view} | Update View
+*Views* | [**create**](docs/ViewsApi.md#create) | **POST** /v1/orgs/self/ws/{workspace}/views | Create View
+*Views* | [**delete**](docs/ViewsApi.md#delete) | **DELETE** /v1/orgs/self/ws/{workspace}/views/{view} | Delete View
+*Views* | [**get**](docs/ViewsApi.md#get) | **GET** /v1/orgs/self/ws/{workspace}/views/{view} | Retrieve View
+*Views* | [**list**](docs/ViewsApi.md#list) | **GET** /v1/orgs/self/views | List Views
+*Views* | [**update**](docs/ViewsApi.md#update) | **POST** /v1/orgs/self/ws/{workspace}/views/{view} | Update View
 *Views* | [**workspace_views**](docs/ViewsApi.md#workspace_views) | **GET** /v1/orgs/self/ws/{workspace}/views | List Views in Workspace
-*VirtualInstances* | [**get_virtual_instance**](docs/VirtualInstancesApi.md#get_virtual_instance) | **GET** /v1/orgs/self/virtualinstances/{virtualInstanceId} | Retrieve Virtual Instance
-*VirtualInstances* | [**list_virtual_instances**](docs/VirtualInstancesApi.md#list_virtual_instances) | **GET** /v1/orgs/self/virtualinstances | List Virtual Instances
+*VirtualInstances* | [**get**](docs/VirtualInstancesApi.md#get) | **GET** /v1/orgs/self/virtualinstances/{virtualInstanceId} | Retrieve Virtual Instance
+*VirtualInstances* | [**list**](docs/VirtualInstancesApi.md#list) | **GET** /v1/orgs/self/virtualinstances | List Virtual Instances
 *VirtualInstances* | [**set_virtual_instance**](docs/VirtualInstancesApi.md#set_virtual_instance) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId} | Update Virtual Instance
-*Workspaces* | [**create_workspace**](docs/WorkspacesApi.md#create_workspace) | **POST** /v1/orgs/self/ws | Create Workspace
-*Workspaces* | [**delete_workspace**](docs/WorkspacesApi.md#delete_workspace) | **DELETE** /v1/orgs/self/ws/{workspace} | Delete Workspace
-*Workspaces* | [**get_workspace**](docs/WorkspacesApi.md#get_workspace) | **GET** /v1/orgs/self/ws/{workspace} | Retrieve Workspace
-*Workspaces* | [**list_workspaces**](docs/WorkspacesApi.md#list_workspaces) | **GET** /v1/orgs/self/ws | List Workspaces
+*Workspaces* | [**create**](docs/WorkspacesApi.md#create) | **POST** /v1/orgs/self/ws | Create Workspace
+*Workspaces* | [**delete**](docs/WorkspacesApi.md#delete) | **DELETE** /v1/orgs/self/ws/{workspace} | Delete Workspace
+*Workspaces* | [**get**](docs/WorkspacesApi.md#get) | **GET** /v1/orgs/self/ws/{workspace} | Retrieve Workspace
+*Workspaces* | [**list**](docs/WorkspacesApi.md#list) | **GET** /v1/orgs/self/ws | List Workspaces
 
 
 ## Documentation For Models

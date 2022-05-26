@@ -14,11 +14,11 @@ from rockset.models import *
 from test.conftest import EarlyExit, validate_call
 
 
-def test_create_workspace(get_client, mock_request, request_validator):
+def test_create(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Workspaces.create_workspace(
+            rs.Workspaces.create(
                 description="Datasets of system logs for the ops team.",
                 name="event_logs",
             )
@@ -26,28 +26,28 @@ def test_create_workspace(get_client, mock_request, request_validator):
             validate_call(e, request_validator)
 
 
-def test_delete_workspace(get_client, mock_request, request_validator):
+def test_delete(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Workspaces.delete_workspace()
+            rs.Workspaces.delete()
         except EarlyExit as e:
             validate_call(e, request_validator)
 
 
-def test_get_workspace(get_client, mock_request, request_validator):
+def test_get(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Workspaces.get_workspace()
+            rs.Workspaces.get()
         except EarlyExit as e:
             validate_call(e, request_validator)
 
 
-def test_list_workspaces(get_client, mock_request, request_validator):
+def test_list(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Workspaces.list_workspaces()
+            rs.Workspaces.list()
         except EarlyExit as e:
             validate_call(e, request_validator)

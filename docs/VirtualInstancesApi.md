@@ -4,13 +4,13 @@ All URIs are relative to *https://api.rs2.usw2.rockset.com* or the apiserver pro
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**get_virtual_instance**](VirtualInstancesApi.md#get_virtual_instance) | **GET** /v1/orgs/self/virtualinstances/{virtualInstanceId} | Retrieve Virtual Instance
-[**list_virtual_instances**](VirtualInstancesApi.md#list_virtual_instances) | **GET** /v1/orgs/self/virtualinstances | List Virtual Instances
+[**get**](VirtualInstancesApi.md#get) | **GET** /v1/orgs/self/virtualinstances/{virtualInstanceId} | Retrieve Virtual Instance
+[**list**](VirtualInstancesApi.md#list) | **GET** /v1/orgs/self/virtualinstances | List Virtual Instances
 [**set_virtual_instance**](VirtualInstancesApi.md#set_virtual_instance) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId} | Update Virtual Instance
 
 
-# **get_virtual_instance**
-> GetVirtualInstanceResponse get_virtual_instance(virtual_instance_id)
+# **get**
+> GetVirtualInstanceResponse get(virtual_instance_id)
 
 Retrieve Virtual Instance
 
@@ -29,23 +29,23 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 # Retrieve Virtual Instance
-api_response = rs.VirtualInstances.get_virtual_instance(
+api_response = rs.VirtualInstances.get(
     virtual_instance_id="virtualInstanceId_example",
 )
 pprint(api_response)
 # Error responses from the server will cause the client to throw an ApiException
 # except ApiException as e:
-#     print("Exception when calling VirtualInstances->get_virtual_instance: %s\n" % e)
+#     print("Exception when calling VirtualInstances->get: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 # assumes that execution takes place within an asynchronous context
 # Retrieve Virtual Instance
-api_response = await rs.VirtualInstances.get_virtual_instance(
+api_response = await rs.VirtualInstances.get(
     virtual_instance_id="virtualInstanceId_example",
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
-    print("Exception when calling VirtualInstances->get_virtual_instance: %s\n" % e)
+    print("Exception when calling VirtualInstances->get: %s\n" % e)
     return
 pprint(api_response)
 
@@ -94,8 +94,8 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **list_virtual_instances**
-> ListVirtualInstancesResponse list_virtual_instances()
+# **list**
+> ListVirtualInstancesResponse list()
 
 List Virtual Instances
 
@@ -114,21 +114,21 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 # List Virtual Instances
-api_response = rs.VirtualInstances.list_virtual_instances(
+api_response = rs.VirtualInstances.list(
 )
 pprint(api_response)
 # Error responses from the server will cause the client to throw an ApiException
 # except ApiException as e:
-#     print("Exception when calling VirtualInstances->list_virtual_instances: %s\n" % e)
+#     print("Exception when calling VirtualInstances->list: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 # assumes that execution takes place within an asynchronous context
 # List Virtual Instances
-api_response = await rs.VirtualInstances.list_virtual_instances(
+api_response = await rs.VirtualInstances.list(
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
-    print("Exception when calling VirtualInstances->list_virtual_instances: %s\n" % e)
+    print("Exception when calling VirtualInstances->list: %s\n" % e)
     return
 pprint(api_response)
 

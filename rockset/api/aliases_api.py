@@ -45,14 +45,14 @@ class Aliases(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-        self.create_alias_endpoint = _Endpoint(
+        self.create_endpoint = _Endpoint(
             settings={
                 'response_type': (CreateAliasResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/aliases',
-                'operation_id': 'create_alias',
+                'operation_id': 'create',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -102,14 +102,14 @@ class Aliases(object):
             },
             api_client=api_client
         )
-        self.delete_alias_endpoint = _Endpoint(
+        self.delete_endpoint = _Endpoint(
             settings={
                 'response_type': (DeleteAliasResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/aliases/{alias}',
-                'operation_id': 'delete_alias',
+                'operation_id': 'delete',
                 'http_method': 'DELETE',
                 'servers': None,
             },
@@ -159,14 +159,14 @@ class Aliases(object):
             },
             api_client=api_client
         )
-        self.get_alias_endpoint = _Endpoint(
+        self.get_endpoint = _Endpoint(
             settings={
                 'response_type': (GetAliasResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/aliases/{alias}',
-                'operation_id': 'get_alias',
+                'operation_id': 'get',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -216,14 +216,14 @@ class Aliases(object):
             },
             api_client=api_client
         )
-        self.list_aliases_endpoint = _Endpoint(
+        self.list_endpoint = _Endpoint(
             settings={
                 'response_type': (ListAliasesResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/aliases',
-                'operation_id': 'list_aliases',
+                'operation_id': 'list',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -260,14 +260,14 @@ class Aliases(object):
             },
             api_client=api_client
         )
-        self.update_alias_endpoint = _Endpoint(
+        self.update_endpoint = _Endpoint(
             settings={
                 'response_type': (GetAliasResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/aliases/{alias}',
-                'operation_id': 'update_alias',
+                'operation_id': 'update',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -375,7 +375,7 @@ class Aliases(object):
             api_client=api_client
         )
 
-    def create_alias(
+    def create(
         self,
         *,
         collections: typing.Sequence[str],
@@ -392,7 +392,7 @@ class Aliases(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Aliases.create_alias(
+        future = rs.Aliases.create(
             collections=["commons.foo","prod.demo"],
             description="version alias",
             name="aliasName",
@@ -468,9 +468,9 @@ class Aliases(object):
             workspace
         kwargs['create_alias_request'] = \
             kwargs['create_alias_request']
-        return self.create_alias_endpoint.call_with_http_info(**kwargs)
+        return self.create_endpoint.call_with_http_info(**kwargs)
 
-    def delete_alias(
+    def delete(
         self,
         *,
         alias: str,
@@ -485,7 +485,7 @@ class Aliases(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Aliases.delete_alias(
+        future = rs.Aliases.delete(
             alias="alias_example",
             async_req=True,
         )
@@ -557,9 +557,9 @@ class Aliases(object):
             workspace
         kwargs['alias'] = \
             alias
-        return self.delete_alias_endpoint.call_with_http_info(**kwargs)
+        return self.delete_endpoint.call_with_http_info(**kwargs)
 
-    def get_alias(
+    def get(
         self,
         *,
         alias: str,
@@ -574,7 +574,7 @@ class Aliases(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Aliases.get_alias(
+        future = rs.Aliases.get(
             alias="alias_example",
             async_req=True,
         )
@@ -646,9 +646,9 @@ class Aliases(object):
             workspace
         kwargs['alias'] = \
             alias
-        return self.get_alias_endpoint.call_with_http_info(**kwargs)
+        return self.get_endpoint.call_with_http_info(**kwargs)
 
-    def list_aliases(
+    def list(
         self,
         **kwargs
     ) -> typing.Union[ListAliasesResponse, asyncio.Future]:
@@ -660,7 +660,7 @@ class Aliases(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Aliases.list_aliases(
+        future = rs.Aliases.list(
             async_req=True,
         )
         result = await future
@@ -725,9 +725,9 @@ class Aliases(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        return self.list_aliases_endpoint.call_with_http_info(**kwargs)
+        return self.list_endpoint.call_with_http_info(**kwargs)
 
-    def update_alias(
+    def update(
         self,
         *,
         alias: str,
@@ -744,7 +744,7 @@ class Aliases(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Aliases.update_alias(
+        future = rs.Aliases.update(
             alias="alias_example",
             collections=["commons.foo","prod.demo"],
             description="version alias",
@@ -822,7 +822,7 @@ class Aliases(object):
             alias
         kwargs['update_alias_request'] = \
             kwargs['update_alias_request']
-        return self.update_alias_endpoint.call_with_http_info(**kwargs)
+        return self.update_endpoint.call_with_http_info(**kwargs)
 
     def workspace_aliases(
         self,
@@ -911,7 +911,7 @@ class Aliases(object):
 
     body_params_dict = dict()
     return_types_dict = dict()
-    body_params_dict['create_alias'] = 'create_alias_request'
-    return_types_dict['create_alias'] = CreateAliasRequest
-    body_params_dict['update_alias'] = 'update_alias_request'
-    return_types_dict['update_alias'] = UpdateAliasRequest
+    body_params_dict['create'] = 'create_alias_request'
+    return_types_dict['create'] = CreateAliasRequest
+    body_params_dict['update'] = 'update_alias_request'
+    return_types_dict['update'] = UpdateAliasRequest

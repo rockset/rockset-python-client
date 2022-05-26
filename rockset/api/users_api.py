@@ -47,14 +47,14 @@ class Users(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-        self.create_user_endpoint = _Endpoint(
+        self.create_endpoint = _Endpoint(
             settings={
                 'response_type': (CreateUserResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/users',
-                'operation_id': 'create_user',
+                'operation_id': 'create',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -149,6 +149,57 @@ class Users(object):
             },
             api_client=api_client
         )
+        self.get_endpoint = _Endpoint(
+            settings={
+                'response_type': (User,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/users/{user}',
+                'operation_id': 'get',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'user',
+                ],
+                'required': [
+                    'user',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'user':
+                        (str,),
+                },
+                'attribute_map': {
+                    'user': 'user',
+                },
+                'location_map': {
+                    'user': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
         self.get_current_user_endpoint = _Endpoint(
             settings={
                 'response_type': (User,),
@@ -193,65 +244,14 @@ class Users(object):
             },
             api_client=api_client
         )
-        self.get_user_endpoint = _Endpoint(
+        self.list_endpoint = _Endpoint(
             settings={
-                'response_type': (User,),
+                'response_type': (ListUsersResponse,),
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/users/{user}',
-                'operation_id': 'get_user',
-                'http_method': 'GET',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'user',
-                ],
-                'required': [
-                    'user',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'user':
-                        (str,),
-                },
-                'attribute_map': {
-                    'user': 'user',
-                },
-                'location_map': {
-                    'user': 'path',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
-            },
-            api_client=api_client
-        )
-        self.list_unsubscribe_preferences_endpoint = _Endpoint(
-            settings={
-                'response_type': (ListUnsubscribePreferencesResponse,),
-                'auth': [
-                    'apikey'
-                ],
-                'endpoint_path': '/v1/orgs/self/users/self/preferences',
-                'operation_id': 'list_unsubscribe_preferences',
+                'endpoint_path': '/v1/orgs/self/users',
+                'operation_id': 'list',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -288,14 +288,14 @@ class Users(object):
             },
             api_client=api_client
         )
-        self.list_users_endpoint = _Endpoint(
+        self.list_unsubscribe_preferences_endpoint = _Endpoint(
             settings={
-                'response_type': (ListUsersResponse,),
+                'response_type': (ListUnsubscribePreferencesResponse,),
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/users',
-                'operation_id': 'list_users',
+                'endpoint_path': '/v1/orgs/self/users/self/preferences',
+                'operation_id': 'list_unsubscribe_preferences',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -384,7 +384,7 @@ class Users(object):
             api_client=api_client
         )
 
-    def create_user(
+    def create(
         self,
         *,
         email: str,
@@ -399,7 +399,7 @@ class Users(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Users.create_user(
+        future = rs.Users.create(
             email="hello@rockset.com",
             roles=["admin","member","read-only"],
             async_req=True,
@@ -470,7 +470,7 @@ class Users(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['create_user_request'] = \
             kwargs['create_user_request']
-        return self.create_user_endpoint.call_with_http_info(**kwargs)
+        return self.create_endpoint.call_with_http_info(**kwargs)
 
     def delete_user(
         self,
@@ -557,6 +557,91 @@ class Users(object):
             user
         return self.delete_user_endpoint.call_with_http_info(**kwargs)
 
+    def get(
+        self,
+        *,
+        user: str,
+        **kwargs
+    ) -> typing.Union[User, asyncio.Future]:
+        """Retrieve User  # noqa: E501
+
+        Retrieve user by email.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Users.get(
+            user="user_example",
+            async_req=True,
+        )
+        result = await future
+        ```
+
+        Keyword Args:
+            user (str): user email. [required]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            User
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['user'] = \
+            user
+        return self.get_endpoint.call_with_http_info(**kwargs)
+
     def get_current_user(
         self,
         **kwargs
@@ -636,29 +721,25 @@ class Users(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         return self.get_current_user_endpoint.call_with_http_info(**kwargs)
 
-    def get_user(
+    def list(
         self,
-        *,
-        user: str,
         **kwargs
-    ) -> typing.Union[User, asyncio.Future]:
-        """Retrieve User  # noqa: E501
+    ) -> typing.Union[ListUsersResponse, asyncio.Future]:
+        """List Users  # noqa: E501
 
-        Retrieve user by email.  # noqa: E501
+        Retrieve all users for an organization.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Users.get_user(
-            user="user_example",
+        future = rs.Users.list(
             async_req=True,
         )
         result = await future
         ```
 
         Keyword Args:
-            user (str): user email. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -690,7 +771,7 @@ class Users(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            User
+            ListUsersResponse
                 If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
@@ -717,9 +798,7 @@ class Users(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['user'] = \
-            user
-        return self.get_user_endpoint.call_with_http_info(**kwargs)
+        return self.list_endpoint.call_with_http_info(**kwargs)
 
     def list_unsubscribe_preferences(
         self,
@@ -799,85 +878,6 @@ class Users(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         return self.list_unsubscribe_preferences_endpoint.call_with_http_info(**kwargs)
-
-    def list_users(
-        self,
-        **kwargs
-    ) -> typing.Union[ListUsersResponse, asyncio.Future]:
-        """List Users  # noqa: E501
-
-        Retrieve all users for an organization.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Users.list_users(
-            async_req=True,
-        )
-        result = await future
-        ```
-
-        Keyword Args:
-            _return_http_data_only (bool): response data without head status
-                code and headers. Default is True.
-            _preload_content (bool): if False, the urllib3.HTTPResponse object
-                will be returned without reading/decoding response data.
-                Default is True.
-            _request_timeout (int/float/tuple): timeout setting for this request. If
-                one number provided, it will be total request timeout. It can also
-                be a pair (tuple) of (connection, read) timeouts.
-                Default is None.
-            _check_input_type (bool): specifies if type checking
-                should be done one the data sent to the server.
-                Default is True.
-            _check_return_type (bool): specifies if type checking
-                should be done on the data received from the server.
-                If False, the client will also not convert nested inner objects
-                into the respective model types (the outermost object
-                is still converted to the model).
-                Default is True.
-            _spec_property_naming (bool): True if the variable names in the input data
-                are serialized names, as specified in the OpenAPI document.
-                False if the variable names in the input data
-                are pythonic names, e.g. snake case (default)
-            _content_type (str/None): force body content-type.
-                Default is None and content-type will be predicted by allowed
-                content-types and body.
-            _host_index (int/None): specifies the index of the server
-                that we want to use.
-                Default is read from the configuration.
-            async_req (bool): execute request asynchronously
-
-        Returns:
-            ListUsersResponse
-                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
-        """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        return self.list_users_endpoint.call_with_http_info(**kwargs)
 
     def update_unsubscribe_preferences(
         self,
@@ -971,7 +971,7 @@ class Users(object):
 
     body_params_dict = dict()
     return_types_dict = dict()
-    body_params_dict['create_user'] = 'create_user_request'
-    return_types_dict['create_user'] = CreateUserRequest
+    body_params_dict['create'] = 'create_user_request'
+    return_types_dict['create'] = CreateUserRequest
     body_params_dict['update_unsubscribe_preferences'] = 'update_unsubscribe_preferences_request'
     return_types_dict['update_unsubscribe_preferences'] = UpdateUnsubscribePreferencesRequest

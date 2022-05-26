@@ -7,7 +7,7 @@ import {{{packageName}}}
 {{#operation}}
 {{#-first}}
 
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
+# Defining the host is optional and defaults to https://api.usw2a1.rockset.com
 rs = {{{packageName}}}.RocksetClient(host=rockset.Regions.use1a1, api_key="APIKEY")
 try:
     rs.APIKeys.create_api_key(name="api-key-name", role="member")
@@ -20,6 +20,10 @@ except {{{packageName}}}.ApiException as e:
 {{/apis}}
 {{/apiInfo}}
 ```
+
+## Optional Models
+
+When making requests, certain parameters will oftentimes be instances of classes (eg. rockset.models.QueryRequestSql). Since importing and instantiating these objects can be verbose, you always have the option of passing in a dictionary instead of a model.
 
 ## Queries
 
@@ -55,6 +59,10 @@ for page in rockset.QueryPaginator(
 ):
     print(page)
 ```
+
+## Optional Models
+
+When making requests, certain parameters will oftentimes be instances of classes (eg. rockset.models.QueryRequestSql). Since importing and instantiating these objects can be verbose, you always have the option of passing in a dictionary instead of a model.
 
 ## Documentation for API Endpoints
 

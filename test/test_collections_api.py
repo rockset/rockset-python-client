@@ -823,33 +823,33 @@ def test_create_s3_collection(get_client, mock_request, request_validator):
             validate_call(e, request_validator)
 
 
-def test_delete_collection(get_client, mock_request, request_validator):
+def test_delete(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Collections.delete_collection(
+            rs.Collections.delete(
                 collection="collection_example",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
 
-def test_get_collection(get_client, mock_request, request_validator):
+def test_get(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Collections.get_collection(
+            rs.Collections.get(
                 collection="collection_example",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
 
-def test_list_collections(get_client, mock_request, request_validator):
+def test_list(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Collections.list_collections()
+            rs.Collections.list()
         except EarlyExit as e:
             validate_call(e, request_validator)
 

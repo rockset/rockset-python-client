@@ -1,3 +1,8 @@
+### v0.1.0
+    - Rename standard operations
+    - Allow for dictionaries to be passed in instead of fully-instantiated objects
+    - Simplify collection source object structure
+
 ### v0.0.17
     - Fix bug where query parameters were not being propagated to the actual call.
     - Add the QueryPaginator class which can be used as an iterator for paginated queries.

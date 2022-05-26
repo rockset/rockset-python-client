@@ -46,14 +46,14 @@ class APIKeys(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-        self.create_api_key_endpoint = _Endpoint(
+        self.create_endpoint = _Endpoint(
             settings={
                 'response_type': (CreateApiKeyResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/users/self/apikeys',
-                'operation_id': 'create_api_key',
+                'operation_id': 'create',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -97,14 +97,14 @@ class APIKeys(object):
             },
             api_client=api_client
         )
-        self.delete_api_key_endpoint = _Endpoint(
+        self.delete_endpoint = _Endpoint(
             settings={
                 'response_type': (DeleteApiKeyResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/users/{user}/apikeys/{name}',
-                'operation_id': 'delete_api_key',
+                'operation_id': 'delete',
                 'http_method': 'DELETE',
                 'servers': None,
             },
@@ -154,14 +154,14 @@ class APIKeys(object):
             },
             api_client=api_client
         )
-        self.get_api_key_endpoint = _Endpoint(
+        self.get_endpoint = _Endpoint(
             settings={
                 'response_type': (GetApiKeyResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/users/{user}/apikeys/{name}',
-                'operation_id': 'get_api_key',
+                'operation_id': 'get',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -216,14 +216,14 @@ class APIKeys(object):
             },
             api_client=api_client
         )
-        self.list_api_keys_endpoint = _Endpoint(
+        self.list_endpoint = _Endpoint(
             settings={
                 'response_type': (ListApiKeysResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/users/{user}/apikeys',
-                'operation_id': 'list_api_keys',
+                'operation_id': 'list',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -267,14 +267,14 @@ class APIKeys(object):
             },
             api_client=api_client
         )
-        self.update_api_key_endpoint = _Endpoint(
+        self.update_endpoint = _Endpoint(
             settings={
                 'response_type': (UpdateApiKeyResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/users/{user}/apikeys/{name}',
-                'operation_id': 'update_api_key',
+                'operation_id': 'update',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -331,7 +331,7 @@ class APIKeys(object):
             api_client=api_client
         )
 
-    def create_api_key(
+    def create(
         self,
         *,
         name: str,
@@ -346,7 +346,7 @@ class APIKeys(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.APIKeys.create_api_key(
+        future = rs.APIKeys.create(
             name="my-app",
             role="string_example",
             async_req=True,
@@ -417,9 +417,9 @@ class APIKeys(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['create_api_key_request'] = \
             kwargs['create_api_key_request']
-        return self.create_api_key_endpoint.call_with_http_info(**kwargs)
+        return self.create_endpoint.call_with_http_info(**kwargs)
 
-    def delete_api_key(
+    def delete(
         self,
         *,
         name: str,
@@ -434,7 +434,7 @@ class APIKeys(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.APIKeys.delete_api_key(
+        future = rs.APIKeys.delete(
             name="my-key",
             user="admin@me.com",
             async_req=True,
@@ -507,9 +507,9 @@ class APIKeys(object):
             name
         kwargs['user'] = \
             user
-        return self.delete_api_key_endpoint.call_with_http_info(**kwargs)
+        return self.delete_endpoint.call_with_http_info(**kwargs)
 
-    def get_api_key(
+    def get(
         self,
         *,
         user: str,
@@ -525,7 +525,7 @@ class APIKeys(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.APIKeys.get_api_key(
+        future = rs.APIKeys.get(
             user="admin@me.com",
             name="my-key",
             async_req=True,
@@ -602,9 +602,9 @@ class APIKeys(object):
         if reveal is not None:
             kwargs['reveal'] = \
                 reveal
-        return self.get_api_key_endpoint.call_with_http_info(**kwargs)
+        return self.get_endpoint.call_with_http_info(**kwargs)
 
-    def list_api_keys(
+    def list(
         self,
         *,
         user: str,
@@ -618,7 +618,7 @@ class APIKeys(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.APIKeys.list_api_keys(
+        future = rs.APIKeys.list(
             user="admin@me.com",
             async_req=True,
         )
@@ -687,9 +687,9 @@ class APIKeys(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['user'] = \
             user
-        return self.list_api_keys_endpoint.call_with_http_info(**kwargs)
+        return self.list_endpoint.call_with_http_info(**kwargs)
 
-    def update_api_key(
+    def update(
         self,
         *,
         name: str,
@@ -705,7 +705,7 @@ class APIKeys(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.APIKeys.update_api_key(
+        future = rs.APIKeys.update(
             name="my-key",
             user="admin@me.com",
             state="ACTIVE",
@@ -782,12 +782,12 @@ class APIKeys(object):
             user
         kwargs['update_api_key_request'] = \
             kwargs['update_api_key_request']
-        return self.update_api_key_endpoint.call_with_http_info(**kwargs)
+        return self.update_endpoint.call_with_http_info(**kwargs)
 
 
     body_params_dict = dict()
     return_types_dict = dict()
-    body_params_dict['create_api_key'] = 'create_api_key_request'
-    return_types_dict['create_api_key'] = CreateApiKeyRequest
-    body_params_dict['update_api_key'] = 'update_api_key_request'
-    return_types_dict['update_api_key'] = UpdateApiKeyRequest
+    body_params_dict['create'] = 'create_api_key_request'
+    return_types_dict['create'] = CreateApiKeyRequest
+    body_params_dict['update'] = 'update_api_key_request'
+    return_types_dict['update'] = UpdateApiKeyRequest

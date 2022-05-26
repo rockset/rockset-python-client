@@ -14,11 +14,11 @@ from rockset.models import *
 from test.conftest import EarlyExit, validate_call
 
 
-def test_create_alias(get_client, mock_request, request_validator):
+def test_create(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Aliases.create_alias(
+            rs.Aliases.create(
                 collections=["commons.foo", "prod.demo"],
                 description="version alias",
                 name="aliasName",
@@ -27,42 +27,42 @@ def test_create_alias(get_client, mock_request, request_validator):
             validate_call(e, request_validator)
 
 
-def test_delete_alias(get_client, mock_request, request_validator):
+def test_delete(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Aliases.delete_alias(
+            rs.Aliases.delete(
                 alias="alias_example",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
 
-def test_get_alias(get_client, mock_request, request_validator):
+def test_get(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Aliases.get_alias(
+            rs.Aliases.get(
                 alias="alias_example",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
 
-def test_list_aliases(get_client, mock_request, request_validator):
+def test_list(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Aliases.list_aliases()
+            rs.Aliases.list()
         except EarlyExit as e:
             validate_call(e, request_validator)
 
 
-def test_update_alias(get_client, mock_request, request_validator):
+def test_update(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Aliases.update_alias(
+            rs.Aliases.update(
                 alias="alias_example",
                 collections=["commons.foo", "prod.demo"],
                 description="version alias",

@@ -14,10 +14,10 @@ from rockset.models import *
 from test.conftest import EarlyExit, validate_call
 
 
-def test_get_organization(get_client, mock_request, request_validator):
+def test_get(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Organizations.get_organization()
+            rs.Organizations.get()
         except EarlyExit as e:
             validate_call(e, request_validator)

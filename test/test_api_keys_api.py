@@ -14,11 +14,11 @@ from rockset.models import *
 from test.conftest import EarlyExit, validate_call
 
 
-def test_create_api_key(get_client, mock_request, request_validator):
+def test_create(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.APIKeys.create_api_key(
+            rs.APIKeys.create(
                 name="my-app",
                 role="string_example",
             )
@@ -26,11 +26,11 @@ def test_create_api_key(get_client, mock_request, request_validator):
             validate_call(e, request_validator)
 
 
-def test_delete_api_key(get_client, mock_request, request_validator):
+def test_delete(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.APIKeys.delete_api_key(
+            rs.APIKeys.delete(
                 name="my-key",
                 user="admin@me.com",
             )
@@ -38,11 +38,11 @@ def test_delete_api_key(get_client, mock_request, request_validator):
             validate_call(e, request_validator)
 
 
-def test_get_api_key(get_client, mock_request, request_validator):
+def test_get(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.APIKeys.get_api_key(
+            rs.APIKeys.get(
                 user="admin@me.com",
                 name="my-key",
             )
@@ -50,22 +50,22 @@ def test_get_api_key(get_client, mock_request, request_validator):
             validate_call(e, request_validator)
 
 
-def test_list_api_keys(get_client, mock_request, request_validator):
+def test_list(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.APIKeys.list_api_keys(
+            rs.APIKeys.list(
                 user="admin@me.com",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
 
-def test_update_api_key(get_client, mock_request, request_validator):
+def test_update(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.APIKeys.update_api_key(
+            rs.APIKeys.update(
                 name="my-key",
                 user="admin@me.com",
                 state="ACTIVE",
