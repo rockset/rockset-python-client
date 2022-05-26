@@ -22,7 +22,7 @@ Create a new workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
+from rockset_v2 import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -109,7 +109,7 @@ Remove a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
+from rockset_v2 import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -192,7 +192,7 @@ Get information about a single workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
+from rockset_v2 import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -275,7 +275,7 @@ List all workspaces in an organization.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
+from rockset_v2 import *
 from pprint import pprint
 
 # Create an instance of the Rockset client

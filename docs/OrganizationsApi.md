@@ -19,7 +19,7 @@ Retrieve information about current organization.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
+from rockset_v2 import *
 from pprint import pprint
 
 # Create an instance of the Rockset client

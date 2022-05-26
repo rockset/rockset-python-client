@@ -21,7 +21,7 @@ Get details about a virtual instance.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
+from rockset_v2 import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -106,7 +106,7 @@ Retrieve all virtual instances in an organization.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
+from rockset_v2 import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -186,7 +186,7 @@ Update the properties of a virtual instance.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
+from rockset_v2 import *
 from pprint import pprint
 
 # Create an instance of the Rockset client

@@ -32,7 +32,7 @@ Create new collection in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
+from rockset_v2 import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -195,7 +195,7 @@ Create new collection in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
+from rockset_v2 import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -357,7 +357,7 @@ Create new collection in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
+from rockset_v2 import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -519,7 +519,7 @@ Create new collection in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
+from rockset_v2 import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -683,7 +683,7 @@ Create new collection in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
+from rockset_v2 import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -846,7 +846,7 @@ Create new collection in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
+from rockset_v2 import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1009,7 +1009,7 @@ Create new collection in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
+from rockset_v2 import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1173,7 +1173,7 @@ Create new collection in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
+from rockset_v2 import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1339,7 +1339,7 @@ Create new collection in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
+from rockset_v2 import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1501,7 +1501,7 @@ Create new collection in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
+from rockset_v2 import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1665,7 +1665,7 @@ Delete a collection and all its documents from Rockset.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
+from rockset_v2 import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1751,7 +1751,7 @@ Get details about a collection.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
+from rockset_v2 import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1837,7 +1837,7 @@ Retrieve all collections in an organization.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
+from rockset_v2 import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1917,7 +1917,7 @@ Retrieve all collections in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
+from rockset_v2 import *
 from pprint import pprint
 
 # Create an instance of the Rockset client

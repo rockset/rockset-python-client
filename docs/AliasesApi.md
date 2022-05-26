@@ -24,7 +24,7 @@ Create new alias in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
+from rockset_v2 import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -115,7 +115,7 @@ Delete an alias.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
+from rockset_v2 import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -188,7 +188,7 @@ Get details about an alias
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
+from rockset_v2 import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -274,7 +274,7 @@ Retrieve all aliases in an organization
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
+from rockset_v2 import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -354,7 +354,7 @@ Update alias in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
+from rockset_v2 import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -432,7 +432,7 @@ Retrieve all aliases in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
+from rockset_v2 import *
 from pprint import pprint
 
 # Create an instance of the Rockset client

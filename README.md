@@ -15,8 +15,9 @@ pip install rockset-v2-alpha
 ```
 
 Then import the package:
+
 ```python
-import rockset
+import rockset_v2
 ```
 
 ## Getting Started
@@ -24,13 +25,13 @@ import rockset
 Please follow the [installation procedure](#installation--usage) and then run the following:
 
 ```python
-import rockset
+import rockset_v2
 
 # Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
-rs = rockset.RocksetClient(host=rockset.Regions.use1a1, api_key="APIKEY")
+rs = rockset_v2.RocksetClient(host=rockset_v2.Regions.use1a1, api_key="APIKEY")
 try:
     rs.APIKeys.create_api_key(name="api-key-name", role="member")
-except rockset.ApiException as e:
+except rockset_v2.ApiException as e:
     print("Exception when calling ApiKey->create_api_key: %s\n" % e)
 ```
 
@@ -39,12 +40,12 @@ except rockset.ApiException as e:
 Queries can be made be either calling the regular client [**query method**](docs/Queries.md#query) or by using the convenience method (rs.sql). The convenience method currently does not support all the options of the regular call. If you need these more advanced features, you should use the regular call.
 
 ```python
-import rockset
+import rockset_v2
 
-rs = rockset.RocksetClient(host=rockset.Regions.use1a1, api_key="APIKEY")
+rs = rockset_v2.RocksetClient(host=rockset_v2.Regions.use1a1, api_key="APIKEY")
 try:
     res = rs.sql(query="SELECT * FROM _events WHERE kind=:event_type LIMIT 100", params={"event_type", "INGEST"})
-except rockset.ApiException as e:
+except rockset_v2.ApiException as e:
     print("Exception when calling ApiKey->create_api_key: %s\n" % e)
 ```
 
@@ -53,13 +54,13 @@ except rockset.ApiException as e:
 Query pagination can be achieved by using the normal API call (rs.Queries.get_query_results()) or by using the QueryPaginator class as an iterator. The QueryPaginator should be initialized by passing in a client object and a QueryResponse object. The QueryResponse object could be the result of any call that returns this object ([query](docs/Queries.md#query), [get_query](docs/Queries.md#get_query), [execute_query_lambda](docs/QueryLambdas.md#execute_query_lambda), [execute_query_lambda_by_tag](docs/QueryLambdas.md#execute_query_lambda_by_tag)). You will then be able to use the QueryPaginator object like you would any other iterator.
 
 ```python
-import rockset
+import rockset_v2
 
-rs = rockset.RocksetClient(host=rockset.Regions.use1a1, api_key="APIKEY")
-for page in rockset.QueryPaginator(
+rs = rockset_v2.RocksetClient(host=rockset_v2.Regions.use1a1, api_key="APIKEY")
+for page in rockset_v2.QueryPaginator(
     rs,
     rs.Queries.query(
-        sql=rockset.models.QueryRequestSql(
+        sql=rockset_v2.models.QueryRequestSql(
             query="SELECT * FROM _events LIMIT 500",
             paginate=True,
             initial_paginate_response_doc_count=100,

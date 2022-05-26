@@ -10,8 +10,8 @@ from openapi_core import create_spec
 from openapi_core.validation.request.datatypes import OpenAPIRequest, RequestParameters
 from openapi_core.validation.request.validators import RequestValidator
 
-from rockset import RocksetClient, Regions
-from rockset.rest import RESTClientObject
+from rockset_v2 import RocksetClient, Regions
+from rockset_v2.rest import RESTClientObject
 
 
 REGION = Regions.rs2
