@@ -26,13 +26,17 @@ Please follow the [installation procedure](#installation--usage) and then run th
 ```python
 import rockset
 
-# Defining the host is optional and defaults to https://api.rs2.usw2.rockset.com
+# Defining the host is optional and defaults to https://api.usw2a1.rockset.com
 rs = rockset.RocksetClient(host=rockset.Regions.use1a1, api_key="APIKEY")
 try:
     rs.APIKeys.create_api_key(name="api-key-name", role="member")
 except rockset.ApiException as e:
     print("Exception when calling ApiKey->create_api_key: %s\n" % e)
 ```
+
+## Optional Models
+
+When making requests, certain parameters will oftentimes be instances of classes (eg. rockset.models.QueryRequestSql). Since importing and instantiating these objects can be verbose, you always have the option of passing in a dictionary instead of a model.
 
 ## Queries
 

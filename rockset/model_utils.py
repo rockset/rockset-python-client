@@ -1529,7 +1529,8 @@ def is_valid_type(input_class_simple, valid_classes):
 
 
 def validate_and_convert_types(input_value, required_types_mixed, path_to_item,
-                               spec_property_naming, _check_type, configuration=None, is_from_server=False):
+                               spec_property_naming, _check_type, configuration=None, is_from_server=False,
+                               preparing_request=False):
     """Raises a TypeError is there is a problem, otherwise returns value
 
     Args:
@@ -1572,7 +1573,7 @@ def validate_and_convert_types(input_value, required_types_mixed, path_to_item,
     if not valid_type:
         # Allow for user to pass in dictionaries instead of initialized models
         # todo: support multiple type options, not needed right now
-        if issubclass(valid_classes[0], OpenApiModel) and isinstance(input_value, dict):
+        if preparing_request and issubclass(valid_classes[0], OpenApiModel) and isinstance(input_value, dict):
             input_value = valid_classes[0](**input_value)
             valid_type = True
         
