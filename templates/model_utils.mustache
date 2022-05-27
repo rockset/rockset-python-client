@@ -1319,7 +1319,8 @@ def validate_and_convert_types(input_value, required_types_mixed, path_to_item,
                 inner_path,
                 spec_property_naming,
                 _check_type,
-                configuration=configuration
+                configuration=configuration,
+                preparing_request=preparing_request,
             )
     elif isinstance(input_value, dict):
         if input_value == {}:
@@ -1337,7 +1338,8 @@ def validate_and_convert_types(input_value, required_types_mixed, path_to_item,
                 inner_path,
                 spec_property_naming,
                 _check_type,
-                configuration=configuration
+                configuration=configuration,
+                preparing_request=preparing_request,
             )
     return input_value
 
