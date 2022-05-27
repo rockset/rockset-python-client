@@ -1,3 +1,6 @@
+### v0.1.2
+    - Fix recursive version of deserialization bug
+
 ### v0.1.1
     - Fix for deserialization bug
 

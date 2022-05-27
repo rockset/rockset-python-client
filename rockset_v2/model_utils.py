@@ -155,7 +155,7 @@ class OpenApiModel(object):
         if self._check_type:
             value = validate_and_convert_types(
                 value, required_types_mixed, path_to_item, self._spec_property_naming,
-                self._check_type, configuration=self._configuration)
+                self._check_type, configuration=self._configuration, preparing_request=True)
         if (name,) in self.allowed_values:
             check_allowed_values(
                 self.allowed_values,
@@ -1636,7 +1636,8 @@ def validate_and_convert_types(input_value, required_types_mixed, path_to_item,
                 inner_path,
                 spec_property_naming,
                 _check_type,
-                configuration=configuration
+                configuration=configuration,
+                preparing_request=preparing_request,
             )
     elif isinstance(input_value, dict):
         if input_value == {}:
@@ -1654,7 +1655,8 @@ def validate_and_convert_types(input_value, required_types_mixed, path_to_item,
                 inner_path,
                 spec_property_naming,
                 _check_type,
-                configuration=configuration
+                configuration=configuration,
+                preparing_request=preparing_request,
             )
     return input_value
 
