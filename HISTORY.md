@@ -1,3 +1,6 @@
+### v0.1.1
+    - Fix for deserialization bug
+
 ### v0.1.0
     - Rename standard operations
     - Allow for dictionaries to be passed in instead of fully-instantiated objects

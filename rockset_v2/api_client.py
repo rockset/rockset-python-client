@@ -693,7 +693,8 @@ class Endpoint(object):
                 [key],
                 kwargs['_spec_property_naming'],
                 kwargs['_check_input_type'],
-                configuration=self.api_client.configuration
+                configuration=self.api_client.configuration,
+                preparing_request=True,
             )
             kwargs[key] = fixed_val
 
