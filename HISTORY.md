@@ -1,3 +1,6 @@
+### v0.1.5
+    - Use init during preparation
+
 ### v0.1.4
     - Delete old models
 
