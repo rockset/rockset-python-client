@@ -1,3 +1,6 @@
+### v0.1.4
+    - Delete old models
+
 ### v0.1.3
     - Fix for read-only deserialization
 
