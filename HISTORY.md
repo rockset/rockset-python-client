@@ -1,3 +1,6 @@
+### v0.1.6
+    - Use init during preparation
+
 ### v0.1.5
     - Add query_response.py back
 
