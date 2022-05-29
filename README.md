@@ -149,7 +149,7 @@ Class | Method | HTTP request | Description
 *QueryLambdas* | [**list_query_lambdas_in_workspace**](docs/QueryLambdasApi.md#list_query_lambdas_in_workspace) | **GET** /v1/orgs/self/ws/{workspace}/lambdas | List Query Lambdas in Workspace
 *QueryLambdas* | [**update_query_lambda**](docs/QueryLambdasApi.md#update_query_lambda) | **POST** /v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/versions | Update Query Lambda
 *Users* | [**create**](docs/UsersApi.md#create) | **POST** /v1/orgs/self/users | Create User
-*Users* | [**delete_user**](docs/UsersApi.md#delete_user) | **DELETE** /v1/orgs/self/users/{user} | Delete User
+*Users* | [**delete**](docs/UsersApi.md#delete) | **DELETE** /v1/orgs/self/users/{user} | Delete User
 *Users* | [**get**](docs/UsersApi.md#get) | **GET** /v1/orgs/self/users/{user} | Retrieve User
 *Users* | [**get_current_user**](docs/UsersApi.md#get_current_user) | **GET** /v1/orgs/self/users/self | Retrieve Current User
 *Users* | [**list**](docs/UsersApi.md#list) | **GET** /v1/orgs/self/users | List Users

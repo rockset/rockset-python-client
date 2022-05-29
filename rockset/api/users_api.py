@@ -98,14 +98,14 @@ class Users(object):
             },
             api_client=api_client
         )
-        self.delete_user_endpoint = _Endpoint(
+        self.delete_endpoint = _Endpoint(
             settings={
                 'response_type': (DeleteUserResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/users/{user}',
-                'operation_id': 'delete_user',
+                'operation_id': 'delete',
                 'http_method': 'DELETE',
                 'servers': None,
             },
@@ -472,7 +472,7 @@ class Users(object):
             kwargs['create_user_request']
         return self.create_endpoint.call_with_http_info(**kwargs)
 
-    def delete_user(
+    def delete(
         self,
         *,
         user: str,
@@ -486,7 +486,7 @@ class Users(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Users.delete_user(
+        future = rs.Users.delete(
             user="user_example",
             async_req=True,
         )
@@ -555,7 +555,7 @@ class Users(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['user'] = \
             user
-        return self.delete_user_endpoint.call_with_http_info(**kwargs)
+        return self.delete_endpoint.call_with_http_info(**kwargs)
 
     def get(
         self,

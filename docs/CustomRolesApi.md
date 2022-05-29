@@ -1,6 +1,6 @@
 # rockset.CustomRoles
 
-All URIs are relative to *https://api.rs2.usw2.rockset.com* or the apiserver provided when initializing RocksetClient
+All URIs are relative to *https://api.usw2a1.rockset.com* or the apiserver provided when initializing RocksetClient
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------

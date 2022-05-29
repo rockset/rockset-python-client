@@ -26,11 +26,11 @@ def test_create(get_client, mock_request, request_validator):
             validate_call(e, request_validator)
 
 
-def test_delete_user(get_client, mock_request, request_validator):
+def test_delete(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Users.delete_user(
+            rs.Users.delete(
                 user="user_example",
             )
         except EarlyExit as e:
