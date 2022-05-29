@@ -1,3 +1,6 @@
+### v0.1.6
+     - Allow nulls for values without removing
+
 ### v0.1.5
     - Use init during preparation
 
