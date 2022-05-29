@@ -1,3 +1,9 @@
+### v0.1.8
+    - Change delete users to use short name
+
+### v0.1.7
+    - Skipped
+
 ### v0.1.6
      - Allow nulls for values without removing
 

@@ -1,11 +1,11 @@
 # rockset.Users
 
-All URIs are relative to *https://api.rs2.usw2.rockset.com* or the apiserver provided when initializing RocksetClient
+All URIs are relative to *https://api.usw2a1.rockset.com* or the apiserver provided when initializing RocksetClient
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create**](UsersApi.md#create) | **POST** /v1/orgs/self/users | Create User
-[**delete_user**](UsersApi.md#delete_user) | **DELETE** /v1/orgs/self/users/{user} | Delete User
+[**delete**](UsersApi.md#delete) | **DELETE** /v1/orgs/self/users/{user} | Delete User
 [**get**](UsersApi.md#get) | **GET** /v1/orgs/self/users/{user} | Retrieve User
 [**get_current_user**](UsersApi.md#get_current_user) | **GET** /v1/orgs/self/users/self | Retrieve Current User
 [**list**](UsersApi.md#list) | **GET** /v1/orgs/self/users | List Users
@@ -101,8 +101,8 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **delete_user**
-> DeleteUserResponse delete_user(user)
+# **delete**
+> DeleteUserResponse delete(user)
 
 Delete User
 
@@ -121,23 +121,23 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 # Delete User
-api_response = rs.Users.delete_user(
+api_response = rs.Users.delete(
     user="user_example",
 )
 pprint(api_response)
 # Error responses from the server will cause the client to throw an ApiException
 # except ApiException as e:
-#     print("Exception when calling Users->delete_user: %s\n" % e)
+#     print("Exception when calling Users->delete: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 # assumes that execution takes place within an asynchronous context
 # Delete User
-api_response = await rs.Users.delete_user(
+api_response = await rs.Users.delete(
     user="user_example",
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
-    print("Exception when calling Users->delete_user: %s\n" % e)
+    print("Exception when calling Users->delete: %s\n" % e)
     return
 pprint(api_response)
 
