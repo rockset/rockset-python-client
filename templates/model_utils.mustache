@@ -552,14 +552,15 @@ def check_allowed_values(allowed_values, input_variable_path, input_values):
         )
     elif (not isinstance(input_values, (list, dict))
             and input_values not in these_allowed_values):
-        raise ApiValueError(
-            "Invalid value for `%s` (%s), must be one of %s" %
-            (
-                input_variable_path[0],
-                input_values,
-                these_allowed_values
+        if input_values is not None:
+            raise ApiValueError(
+                "Invalid value for `%s` (%s), must be one of %s" %
+                (
+                    input_variable_path[0],
+                    input_values,
+                    these_allowed_values
+                )
             )
-        )
 
 
 def is_json_validation_enabled(schema_keyword, configuration=None):
