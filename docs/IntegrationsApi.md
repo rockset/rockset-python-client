@@ -1,6 +1,6 @@
 # rockset.Integrations
 
-All URIs are relative to *https://api.usw2a1.rockset.com* or the apiserver provided when initializing RocksetClient
+All URIs are relative to *https://api.use1a1.rockset.com* or the apiserver provided when initializing RocksetClient
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -16,7 +16,6 @@ Method | HTTP request | Description
 [**delete**](IntegrationsApi.md#delete) | **DELETE** /v1/orgs/self/integrations/{integration} | Delete Integration
 [**get**](IntegrationsApi.md#get) | **GET** /v1/orgs/self/integrations/{integration} | Retrieve Integration
 [**list**](IntegrationsApi.md#list) | **GET** /v1/orgs/self/integrations | List Integrations
-[**update**](IntegrationsApi.md#update) | **PATCH** /v1/orgs/self/integrations/{integration} | Update Integration
 
 
 # **create**
@@ -1105,109 +1104,6 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | integrations retrieved successfully |  -  |
-**400** | bad request |  -  |
-**401** | unauthorized |  -  |
-**403** | forbidden |  -  |
-**404** | not found |  -  |
-**405** | not allowed |  -  |
-**406** | not acceptable |  -  |
-**408** | request timeout |  -  |
-**415** | not supported |  -  |
-**429** | resource exceeded |  -  |
-**500** | internal error |  -  |
-**501** | not implemented |  -  |
-**502** | bad gateway |  -  |
-**503** | not ready |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **update**
-> UpdateIntegrationResponse update(integration, update_integration_request)
-
-Update Integration
-
-Update an existing integration. It is only supported to update a Kafka (Confluent Cloud) integration at the moment.
-
-### Example
-
-* Api Key Authentication (apikey):
-
-```python
-from rockset import *
-from pprint import pprint
-
-# Create an instance of the Rockset client
-rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
-
-# synchronous example passing only required values which don't have defaults set
-# Update Integration
-api_response = rs.Integrations.update(
-    integration="integration_example",
-)
-pprint(api_response)
-# Error responses from the server will cause the client to throw an ApiException
-# except ApiException as e:
-#     print("Exception when calling Integrations->update: %s\n" % e)
-
-# asynchronous example passing optional values and required values which don't have defaults set
-# assumes that execution takes place within an asynchronous context
-# Update Integration
-api_response = await rs.Integrations.update(
-    integration="integration_example",
-    kafka=KafkaIntegration(
-        bootstrap_servers="bootstrap_servers_example",
-        kafka_data_format="JSON",
-        kafka_topic_names=[
-            "kafka_topic_names_example",
-        ],
-        schema_registry_config=SchemaRegistryConfig(
-            key="key_example",
-            secret="secret_example",
-            url="url_example",
-        ),
-        security_config=KafkaV3SecurityConfig(
-            api_key="api_key_example",
-            secret="secret_example",
-        ),
-        use_v3=True,
-    ),
-    async_req=True,
-)
-if isinstance(api_response, rockset.ApiException):
-    print("Exception when calling Integrations->update: %s\n" % e)
-    return
-pprint(api_response)
-
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **integration** | **str** |  |
- **kafka** | [**KafkaIntegration**](KafkaIntegration.md) |  | [optional]
-
-### Return type
-
-[**UpdateIntegrationResponse**](UpdateIntegrationResponse.md)
-
-### Authorization
-
-All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
-
-
-### HTTP request headers
-
- - **Content-Type**: application/json
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | integration updated successfully |  -  |
 **400** | bad request |  -  |
 **401** | unauthorized |  -  |
 **403** | forbidden |  -  |

@@ -77,6 +77,16 @@ for page in rockset.QueryPaginator(
 
 When making requests, certain parameters will oftentimes be instances of classes (eg. rockset.models.QueryRequestSql). Since importing and instantiating these objects can be verbose, you always have the option of passing in a dictionary instead of a model.
 
+## Migration Guide
+
+Migration to the new client should generally be a simple process. The most important thing to note is that the query builder has been deprecated and is not included in this client.
+
+Most of the other differences between this client and the older version are small:
+- The main client class is called 'RocksetClient' rather than 'Client'
+- The parameter which is used to specify the apiserver location is 'host' rather than 'api_server'
+- Some of the endpoints and their parameters have been renamed (see documentation for each endpoint)
+
+
 ## Documentation for API Endpoints
 
 Class | Method | HTTP request | Description
@@ -126,7 +136,6 @@ Class | Method | HTTP request | Description
 *Integrations* | [**delete**](docs/IntegrationsApi.md#delete) | **DELETE** /v1/orgs/self/integrations/{integration} | Delete Integration
 *Integrations* | [**get**](docs/IntegrationsApi.md#get) | **GET** /v1/orgs/self/integrations/{integration} | Retrieve Integration
 *Integrations* | [**list**](docs/IntegrationsApi.md#list) | **GET** /v1/orgs/self/integrations | List Integrations
-*Integrations* | [**update**](docs/IntegrationsApi.md#update) | **PATCH** /v1/orgs/self/integrations/{integration} | Update Integration
 *Organizations* | [**get**](docs/OrganizationsApi.md#get) | **GET** /v1/orgs/self | Get Organization
 *Queries* | [**cancel_query**](docs/QueriesApi.md#cancel_query) | **DELETE** /v1/orgs/self/queries/{queryId} | Cancel Query
 *Queries* | [**get_query**](docs/QueriesApi.md#get_query) | **GET** /v1/orgs/self/queries/{queryId} | Retrieve Query
@@ -340,8 +349,6 @@ Class | Method | HTTP request | Description
  - [UpdateAliasRequest](docs/UpdateAliasRequest.md)
  - [UpdateApiKeyRequest](docs/UpdateApiKeyRequest.md)
  - [UpdateApiKeyResponse](docs/UpdateApiKeyResponse.md)
- - [UpdateIntegrationRequest](docs/UpdateIntegrationRequest.md)
- - [UpdateIntegrationResponse](docs/UpdateIntegrationResponse.md)
  - [UpdateQueryLambdaRequest](docs/UpdateQueryLambdaRequest.md)
  - [UpdateRoleRequest](docs/UpdateRoleRequest.md)
  - [UpdateUnsubscribePreferencesRequest](docs/UpdateUnsubscribePreferencesRequest.md)
