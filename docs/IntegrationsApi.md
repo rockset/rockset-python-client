@@ -1,6 +1,6 @@
 # rockset.Integrations
 
-All URIs are relative to *https://api.usw2a1.rockset.com* or the apiserver provided when initializing RocksetClient
+All URIs are relative to *https://api.use1a1.rockset.com* or the apiserver provided when initializing RocksetClient
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
@@ -16,7 +16,6 @@ Method | HTTP request | Description
 [**delete**](IntegrationsApi.md#delete) | **DELETE** /v1/orgs/self/integrations/{integration} | Delete Integration
 [**get**](IntegrationsApi.md#get) | **GET** /v1/orgs/self/integrations/{integration} | Retrieve Integration
 [**list**](IntegrationsApi.md#list) | **GET** /v1/orgs/self/integrations | List Integrations
-[**update**](IntegrationsApi.md#update) | **PATCH** /v1/orgs/self/integrations/{integration} | Update Integration
 
 
 # **create**
@@ -1121,6 +1120,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<<<<<<< HEAD
 # **update**
 > UpdateIntegrationResponse update(integration, update_integration_request)
 
@@ -1224,3 +1224,5 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+=======
+>>>>>>> 1969898 (Use us-east-1 as default region.)

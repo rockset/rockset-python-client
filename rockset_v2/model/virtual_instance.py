@@ -142,9 +142,7 @@ class VirtualInstance(ModelNormal):
             'default_pod_count': (int, none_type),  # noqa: E501
             'desired_size': (str, none_type),  # noqa: E501
             'desired_type': (str, none_type),  # noqa: E501
-            'estimated_switch_duration_minutes': (int, none_type),  # noqa: E501
             'id': (str, none_type),  # noqa: E501
-            'last_updated': (str, none_type),  # noqa: E501
             'monitoring_enabled': (bool, none_type),  # noqa: E501
             'scaled_pod_count': (int, none_type),  # noqa: E501
             'state': (str, none_type),  # noqa: E501
@@ -161,9 +159,7 @@ class VirtualInstance(ModelNormal):
         'default_pod_count': 'default_pod_count',  # noqa: E501
         'desired_size': 'desired_size',  # noqa: E501
         'desired_type': 'desired_type',  # noqa: E501
-        'estimated_switch_duration_minutes': 'estimated_switch_duration_minutes',  # noqa: E501
         'id': 'id',  # noqa: E501
-        'last_updated': 'last_updated',  # noqa: E501
         'monitoring_enabled': 'monitoring_enabled',  # noqa: E501
         'scaled_pod_count': 'scaled_pod_count',  # noqa: E501
         'state': 'state',  # noqa: E501
@@ -217,9 +213,7 @@ class VirtualInstance(ModelNormal):
             default_pod_count (int): [optional]  # noqa: E501
             desired_size (str): virtual instance desired size. [optional]  # noqa: E501
             desired_type (str): [optional]  # noqa: E501
-            estimated_switch_duration_minutes (int): estimated duration in minutes of last virtual instance size update. [optional]  # noqa: E501
             id (str): unique identifier for virtual instance. [optional]  # noqa: E501
-            last_updated (str): ISO-8601 date of when virtual instance size was last updated. [optional]  # noqa: E501
             monitoring_enabled (bool): [optional]  # noqa: E501
             scaled_pod_count (int): [optional]  # noqa: E501
             state (str): virtual instance state. [optional]  # noqa: E501
@@ -277,9 +271,7 @@ class VirtualInstance(ModelNormal):
             current_type (str): [optional]  # noqa: E501
             default_pod_count (int): [optional]  # noqa: E501
             desired_type (str): [optional]  # noqa: E501
-            estimated_switch_duration_minutes (int): estimated duration in minutes of last virtual instance size update. [optional]  # noqa: E501
             id (str): unique identifier for virtual instance. [optional]  # noqa: E501
-            last_updated (str): ISO-8601 date of when virtual instance size was last updated. [optional]  # noqa: E501
             monitoring_enabled (bool): [optional]  # noqa: E501
             scaled_pod_count (int): [optional]  # noqa: E501
             state (str): virtual instance state. [optional]  # noqa: E501

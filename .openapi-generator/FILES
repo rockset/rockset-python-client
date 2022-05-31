@@ -176,8 +176,6 @@ docs/UnsubscribePreference.md
 docs/UpdateAliasRequest.md
 docs/UpdateApiKeyRequest.md
 docs/UpdateApiKeyResponse.md
-docs/UpdateIntegrationRequest.md
-docs/UpdateIntegrationResponse.md
 docs/UpdateQueryLambdaRequest.md
 docs/UpdateRoleRequest.md
 docs/UpdateUnsubscribePreferencesRequest.md
@@ -379,8 +377,6 @@ rockset/model/unsubscribe_preference.py
 rockset/model/update_alias_request.py
 rockset/model/update_api_key_request.py
 rockset/model/update_api_key_response.py
-rockset/model/update_integration_request.py
-rockset/model/update_integration_response.py
 rockset/model/update_query_lambda_request.py
 rockset/model/update_role_request.py
 rockset/model/update_unsubscribe_preferences_request.py
@@ -576,8 +572,6 @@ test/test_unsubscribe_preference.py
 test/test_update_alias_request.py
 test/test_update_api_key_request.py
 test/test_update_api_key_response.py
-test/test_update_integration_request.py
-test/test_update_integration_response.py
 test/test_update_query_lambda_request.py
 test/test_update_role_request.py
 test/test_update_unsubscribe_preferences_request.py

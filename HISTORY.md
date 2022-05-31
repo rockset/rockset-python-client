@@ -1,3 +1,6 @@
+### v0.1.9
+    - Use us-east-1 as default region
+
 ### v0.1.8
     - Change delete users to use short name
 

@@ -209,31 +209,3 @@ def test_list(get_client, mock_request, request_validator):
             rs.Integrations.list()
         except EarlyExit as e:
             validate_call(e, request_validator)
-
-
-def test_update(get_client, mock_request, request_validator):
-    with mock_request:
-        rs = get_client
-        try:
-            rs.Integrations.update(
-                integration="integration_example",
-                kafka=KafkaIntegration(
-                    bootstrap_servers="bootstrap_servers_example",
-                    kafka_data_format="JSON",
-                    kafka_topic_names=[
-                        "kafka_topic_names_example",
-                    ],
-                    schema_registry_config=SchemaRegistryConfig(
-                        key="key_example",
-                        secret="secret_example",
-                        url="url_example",
-                    ),
-                    security_config=KafkaV3SecurityConfig(
-                        api_key="api_key_example",
-                        secret="secret_example",
-                    ),
-                    use_v3=True,
-                ),
-            )
-        except EarlyExit as e:
-            validate_call(e, request_validator)
