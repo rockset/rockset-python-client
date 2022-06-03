@@ -124,15 +124,15 @@ Class | Method | HTTP request | Description
 *Documents* | [**add_documents**](docs/DocumentsApi.md#add_documents) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/docs | Add Documents
 *Documents* | [**delete_documents**](docs/DocumentsApi.md#delete_documents) | **DELETE** /v1/orgs/self/ws/{workspace}/collections/{collection}/docs | Delete Documents
 *Documents* | [**patch_documents**](docs/DocumentsApi.md#patch_documents) | **PATCH** /v1/orgs/self/ws/{workspace}/collections/{collection}/docs | Patch Documents
-*Integrations* | [**create**](docs/IntegrationsApi.md#create) | **POST** /v1/orgs/self/integrations | Create azure blob storage integration
-*Integrations* | [**create_0**](docs/IntegrationsApi.md#create_0) | **POST** /v1/orgs/self/integrations | Create azure event hubs integration
-*Integrations* | [**create_1**](docs/IntegrationsApi.md#create_1) | **POST** /v1/orgs/self/integrations | Create dynamodb integration
-*Integrations* | [**create_2**](docs/IntegrationsApi.md#create_2) | **POST** /v1/orgs/self/integrations | Create gcs integration
-*Integrations* | [**create_3**](docs/IntegrationsApi.md#create_3) | **POST** /v1/orgs/self/integrations | Create kafka integration
-*Integrations* | [**create_4**](docs/IntegrationsApi.md#create_4) | **POST** /v1/orgs/self/integrations | Create kinesis integration
-*Integrations* | [**create_5**](docs/IntegrationsApi.md#create_5) | **POST** /v1/orgs/self/integrations | Create mongodb integration
-*Integrations* | [**create_6**](docs/IntegrationsApi.md#create_6) | **POST** /v1/orgs/self/integrations | Create s3 integration
-*Integrations* | [**create_7**](docs/IntegrationsApi.md#create_7) | **POST** /v1/orgs/self/integrations | Create segment integration
+*Integrations* | [**create_azure_blob_storage_integration**](docs/IntegrationsApi.md#create_azure_blob_storage_integration) | **POST** /v1/orgs/self/integrations | Create azure blob storage integration
+*Integrations* | [**create_azure_event_hubs_integration**](docs/IntegrationsApi.md#create_azure_event_hubs_integration) | **POST** /v1/orgs/self/integrations | Create azure event hubs integration
+*Integrations* | [**create_dynamodb_integration**](docs/IntegrationsApi.md#create_dynamodb_integration) | **POST** /v1/orgs/self/integrations | Create dynamodb integration
+*Integrations* | [**create_gcs_integration**](docs/IntegrationsApi.md#create_gcs_integration) | **POST** /v1/orgs/self/integrations | Create gcs integration
+*Integrations* | [**create_kafka_integration**](docs/IntegrationsApi.md#create_kafka_integration) | **POST** /v1/orgs/self/integrations | Create kafka integration
+*Integrations* | [**create_kinesis_integration**](docs/IntegrationsApi.md#create_kinesis_integration) | **POST** /v1/orgs/self/integrations | Create kinesis integration
+*Integrations* | [**create_mongodb_integration**](docs/IntegrationsApi.md#create_mongodb_integration) | **POST** /v1/orgs/self/integrations | Create mongodb integration
+*Integrations* | [**create_s3_integration**](docs/IntegrationsApi.md#create_s3_integration) | **POST** /v1/orgs/self/integrations | Create s3 integration
+*Integrations* | [**create_segment_integration**](docs/IntegrationsApi.md#create_segment_integration) | **POST** /v1/orgs/self/integrations | Create segment integration
 *Integrations* | [**delete**](docs/IntegrationsApi.md#delete) | **DELETE** /v1/orgs/self/integrations/{integration} | Delete Integration
 *Integrations* | [**get**](docs/IntegrationsApi.md#get) | **GET** /v1/orgs/self/integrations/{integration} | Retrieve Integration
 *Integrations* | [**list**](docs/IntegrationsApi.md#list) | **GET** /v1/orgs/self/integrations | List Integrations

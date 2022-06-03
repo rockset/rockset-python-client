@@ -52,14 +52,14 @@ class Integrations(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-        self.create_endpoint = _Endpoint(
+        self.create_azure_blob_storage_integration_endpoint = _Endpoint(
             settings={
                 'response_type': (CreateIntegrationResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/integrations',
-                'operation_id': 'create',
+                'operation_id': 'create_azure_blob_storage_integration',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -103,14 +103,14 @@ class Integrations(object):
             },
             api_client=api_client
         )
-        self.create_0_endpoint = _Endpoint(
+        self.create_azure_event_hubs_integration_endpoint = _Endpoint(
             settings={
                 'response_type': (CreateIntegrationResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/integrations',
-                'operation_id': 'create_0',
+                'operation_id': 'create_azure_event_hubs_integration',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -154,14 +154,14 @@ class Integrations(object):
             },
             api_client=api_client
         )
-        self.create_1_endpoint = _Endpoint(
+        self.create_dynamodb_integration_endpoint = _Endpoint(
             settings={
                 'response_type': (CreateIntegrationResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/integrations',
-                'operation_id': 'create_1',
+                'operation_id': 'create_dynamodb_integration',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -205,14 +205,14 @@ class Integrations(object):
             },
             api_client=api_client
         )
-        self.create_2_endpoint = _Endpoint(
+        self.create_gcs_integration_endpoint = _Endpoint(
             settings={
                 'response_type': (CreateIntegrationResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/integrations',
-                'operation_id': 'create_2',
+                'operation_id': 'create_gcs_integration',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -256,14 +256,14 @@ class Integrations(object):
             },
             api_client=api_client
         )
-        self.create_3_endpoint = _Endpoint(
+        self.create_kafka_integration_endpoint = _Endpoint(
             settings={
                 'response_type': (CreateIntegrationResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/integrations',
-                'operation_id': 'create_3',
+                'operation_id': 'create_kafka_integration',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -307,14 +307,14 @@ class Integrations(object):
             },
             api_client=api_client
         )
-        self.create_4_endpoint = _Endpoint(
+        self.create_kinesis_integration_endpoint = _Endpoint(
             settings={
                 'response_type': (CreateIntegrationResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/integrations',
-                'operation_id': 'create_4',
+                'operation_id': 'create_kinesis_integration',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -358,14 +358,14 @@ class Integrations(object):
             },
             api_client=api_client
         )
-        self.create_5_endpoint = _Endpoint(
+        self.create_mongodb_integration_endpoint = _Endpoint(
             settings={
                 'response_type': (CreateIntegrationResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/integrations',
-                'operation_id': 'create_5',
+                'operation_id': 'create_mongodb_integration',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -409,14 +409,14 @@ class Integrations(object):
             },
             api_client=api_client
         )
-        self.create_6_endpoint = _Endpoint(
+        self.create_s3_integration_endpoint = _Endpoint(
             settings={
                 'response_type': (CreateIntegrationResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/integrations',
-                'operation_id': 'create_6',
+                'operation_id': 'create_s3_integration',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -460,14 +460,14 @@ class Integrations(object):
             },
             api_client=api_client
         )
-        self.create_7_endpoint = _Endpoint(
+        self.create_segment_integration_endpoint = _Endpoint(
             settings={
                 'response_type': (CreateIntegrationResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/integrations',
-                'operation_id': 'create_7',
+                'operation_id': 'create_segment_integration',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -658,7 +658,7 @@ class Integrations(object):
             api_client=api_client
         )
 
-    def create(
+    def create_azure_blob_storage_integration(
         self,
         *,
         name: str,
@@ -674,7 +674,7 @@ class Integrations(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Integrations.create(
+        future = rs.Integrations.create_azure_blob_storage_integration(
             azure_blob_storage=AzureBlobStorageIntegration(
                 connection_string="connection_string_example",
             ),
@@ -749,9 +749,9 @@ class Integrations(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['azure_blob_storage_integration_creation_request'] = \
             kwargs['azure_blob_storage_integration_creation_request']
-        return self.create_endpoint.call_with_http_info(**kwargs)
+        return self.create_azure_blob_storage_integration_endpoint.call_with_http_info(**kwargs)
 
-    def create_0(
+    def create_azure_event_hubs_integration(
         self,
         *,
         name: str,
@@ -767,7 +767,7 @@ class Integrations(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Integrations.create_0(
+        future = rs.Integrations.create_azure_event_hubs_integration(
             azure_event_hubs=AzureEventHubsIntegration(
             ),
             description="AWS account with event data for the data science team.",
@@ -841,9 +841,9 @@ class Integrations(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['azure_event_hubs_integration_creation_request'] = \
             kwargs['azure_event_hubs_integration_creation_request']
-        return self.create_0_endpoint.call_with_http_info(**kwargs)
+        return self.create_azure_event_hubs_integration_endpoint.call_with_http_info(**kwargs)
 
-    def create_1(
+    def create_dynamodb_integration(
         self,
         *,
         name: str,
@@ -859,7 +859,7 @@ class Integrations(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Integrations.create_1(
+        future = rs.Integrations.create_dynamodb_integration(
             description="AWS account with event data for the data science team.",
             dynamodb=DynamodbIntegration(
                 aws_access_key=AwsAccessKey(
@@ -941,9 +941,9 @@ class Integrations(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['dynamodb_integration_creation_request'] = \
             kwargs['dynamodb_integration_creation_request']
-        return self.create_1_endpoint.call_with_http_info(**kwargs)
+        return self.create_dynamodb_integration_endpoint.call_with_http_info(**kwargs)
 
-    def create_2(
+    def create_gcs_integration(
         self,
         *,
         name: str,
@@ -959,7 +959,7 @@ class Integrations(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Integrations.create_2(
+        future = rs.Integrations.create_gcs_integration(
             description="AWS account with event data for the data science team.",
             gcs=GcsIntegration(
                 gcp_service_account=GcpServiceAccount(
@@ -1036,9 +1036,9 @@ class Integrations(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['gcs_integration_creation_request'] = \
             kwargs['gcs_integration_creation_request']
-        return self.create_2_endpoint.call_with_http_info(**kwargs)
+        return self.create_gcs_integration_endpoint.call_with_http_info(**kwargs)
 
-    def create_3(
+    def create_kafka_integration(
         self,
         *,
         name: str,
@@ -1054,7 +1054,7 @@ class Integrations(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Integrations.create_3(
+        future = rs.Integrations.create_kafka_integration(
             description="AWS account with event data for the data science team.",
             kafka=KafkaIntegration(
                 bootstrap_servers="bootstrap_servers_example",
@@ -1143,9 +1143,9 @@ class Integrations(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['kafka_integration_creation_request'] = \
             kwargs['kafka_integration_creation_request']
-        return self.create_3_endpoint.call_with_http_info(**kwargs)
+        return self.create_kafka_integration_endpoint.call_with_http_info(**kwargs)
 
-    def create_4(
+    def create_kinesis_integration(
         self,
         *,
         name: str,
@@ -1161,7 +1161,7 @@ class Integrations(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Integrations.create_4(
+        future = rs.Integrations.create_kinesis_integration(
             description="AWS account with event data for the data science team.",
             kinesis=KinesisIntegration(
                 aws_access_key=AwsAccessKey(
@@ -1242,9 +1242,9 @@ class Integrations(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['kinesis_integration_creation_request'] = \
             kwargs['kinesis_integration_creation_request']
-        return self.create_4_endpoint.call_with_http_info(**kwargs)
+        return self.create_kinesis_integration_endpoint.call_with_http_info(**kwargs)
 
-    def create_5(
+    def create_mongodb_integration(
         self,
         *,
         name: str,
@@ -1260,7 +1260,7 @@ class Integrations(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Integrations.create_5(
+        future = rs.Integrations.create_mongodb_integration(
             description="AWS account with event data for the data science team.",
             mongodb=MongoDbIntegration(
                 connection_uri="mongodb+srv://<username>:<password>@server.example.com/",
@@ -1335,9 +1335,9 @@ class Integrations(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['mongodb_integration_creation_request'] = \
             kwargs['mongodb_integration_creation_request']
-        return self.create_5_endpoint.call_with_http_info(**kwargs)
+        return self.create_mongodb_integration_endpoint.call_with_http_info(**kwargs)
 
-    def create_6(
+    def create_s3_integration(
         self,
         *,
         name: str,
@@ -1353,7 +1353,7 @@ class Integrations(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Integrations.create_6(
+        future = rs.Integrations.create_s3_integration(
             description="AWS account with event data for the data science team.",
             name="event-logs",
             s3=S3Integration(
@@ -1434,9 +1434,9 @@ class Integrations(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['s3_integration_creation_request'] = \
             kwargs['s3_integration_creation_request']
-        return self.create_6_endpoint.call_with_http_info(**kwargs)
+        return self.create_s3_integration_endpoint.call_with_http_info(**kwargs)
 
-    def create_7(
+    def create_segment_integration(
         self,
         *,
         name: str,
@@ -1452,7 +1452,7 @@ class Integrations(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Integrations.create_7(
+        future = rs.Integrations.create_segment_integration(
             description="AWS account with event data for the data science team.",
             name="event-logs",
             segment=SegmentIntegration(
@@ -1526,7 +1526,7 @@ class Integrations(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['segment_integration_creation_request'] = \
             kwargs['segment_integration_creation_request']
-        return self.create_7_endpoint.call_with_http_info(**kwargs)
+        return self.create_segment_integration_endpoint.call_with_http_info(**kwargs)
 
     def delete(
         self,
@@ -1780,21 +1780,21 @@ class Integrations(object):
 
     body_params_dict = dict()
     return_types_dict = dict()
-    body_params_dict['create'] = 'azure_blob_storage_integration_creation_request'
-    return_types_dict['create'] = AzureBlobStorageIntegrationCreationRequest
-    body_params_dict['create_0'] = 'azure_event_hubs_integration_creation_request'
-    return_types_dict['create_0'] = AzureEventHubsIntegrationCreationRequest
-    body_params_dict['create_1'] = 'dynamodb_integration_creation_request'
-    return_types_dict['create_1'] = DynamodbIntegrationCreationRequest
-    body_params_dict['create_2'] = 'gcs_integration_creation_request'
-    return_types_dict['create_2'] = GcsIntegrationCreationRequest
-    body_params_dict['create_3'] = 'kafka_integration_creation_request'
-    return_types_dict['create_3'] = KafkaIntegrationCreationRequest
-    body_params_dict['create_4'] = 'kinesis_integration_creation_request'
-    return_types_dict['create_4'] = KinesisIntegrationCreationRequest
-    body_params_dict['create_5'] = 'mongodb_integration_creation_request'
-    return_types_dict['create_5'] = MongodbIntegrationCreationRequest
-    body_params_dict['create_6'] = 's3_integration_creation_request'
-    return_types_dict['create_6'] = S3IntegrationCreationRequest
-    body_params_dict['create_7'] = 'segment_integration_creation_request'
-    return_types_dict['create_7'] = SegmentIntegrationCreationRequest
+    body_params_dict['create_azure_blob_storage_integration'] = 'azure_blob_storage_integration_creation_request'
+    return_types_dict['create_azure_blob_storage_integration'] = AzureBlobStorageIntegrationCreationRequest
+    body_params_dict['create_azure_event_hubs_integration'] = 'azure_event_hubs_integration_creation_request'
+    return_types_dict['create_azure_event_hubs_integration'] = AzureEventHubsIntegrationCreationRequest
+    body_params_dict['create_dynamodb_integration'] = 'dynamodb_integration_creation_request'
+    return_types_dict['create_dynamodb_integration'] = DynamodbIntegrationCreationRequest
+    body_params_dict['create_gcs_integration'] = 'gcs_integration_creation_request'
+    return_types_dict['create_gcs_integration'] = GcsIntegrationCreationRequest
+    body_params_dict['create_kafka_integration'] = 'kafka_integration_creation_request'
+    return_types_dict['create_kafka_integration'] = KafkaIntegrationCreationRequest
+    body_params_dict['create_kinesis_integration'] = 'kinesis_integration_creation_request'
+    return_types_dict['create_kinesis_integration'] = KinesisIntegrationCreationRequest
+    body_params_dict['create_mongodb_integration'] = 'mongodb_integration_creation_request'
+    return_types_dict['create_mongodb_integration'] = MongodbIntegrationCreationRequest
+    body_params_dict['create_s3_integration'] = 's3_integration_creation_request'
+    return_types_dict['create_s3_integration'] = S3IntegrationCreationRequest
+    body_params_dict['create_segment_integration'] = 'segment_integration_creation_request'
+    return_types_dict['create_segment_integration'] = SegmentIntegrationCreationRequest

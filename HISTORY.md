@@ -1,3 +1,6 @@
+### v0.1.10
+    - Undo renaming of integration creation operations
+
 ### v0.1.9
     - Use us-east-1 as default region
 
