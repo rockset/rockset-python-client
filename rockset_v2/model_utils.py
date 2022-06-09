@@ -1575,7 +1575,10 @@ def validate_and_convert_types(input_value, required_types_mixed, path_to_item,
         # Allow for user to pass in dictionaries instead of initialized models
         # todo: support multiple type options, not needed right now
         if preparing_request and issubclass(valid_classes[0], OpenApiModel) and isinstance(input_value, dict):
-            input_value = valid_classes[0](**input_value)
+            try:
+                input_value = valid_classes[0](**input_value)
+            except TypeError as e:
+                raise TypeError(f"Model {valid_classes[0]} could not be created from provided dict: {e}") from e
             valid_type = True
         
         if not valid_type:

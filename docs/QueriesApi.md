@@ -98,7 +98,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get_query**
-> QueryResponse get_query(query_id)
+> GetQueryResponse get_query(query_id)
 
 Retrieve Query
 
@@ -148,7 +148,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**QueryResponse**](QueryResponse.md)
+[**GetQueryResponse**](GetQueryResponse.md)
 
 ### Authorization
 

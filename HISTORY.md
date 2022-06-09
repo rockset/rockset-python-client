@@ -1,3 +1,8 @@
+### v0.1.11
+    - Add Snowflake integration and collection
+    - Other miscellaneous updates to match the API
+    - Improve error message raised when trying to cast dictionaries as models
+
 ### v0.1.10
     - Undo renaming of integration creation operations
 

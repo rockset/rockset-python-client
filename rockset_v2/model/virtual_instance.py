@@ -57,6 +57,7 @@ class VirtualInstance(ModelNormal):
     allowed_values = {
         ('current_size',): {
             'FREE': "FREE",
+            'NANO': "NANO",
             'SHARED': "SHARED",
             'SMALL': "SMALL",
             'MEDIUM': "MEDIUM",
@@ -69,6 +70,7 @@ class VirtualInstance(ModelNormal):
         },
         ('current_type',): {
             'FREE': "FREE",
+            'NANO': "NANO",
             'SHARED': "SHARED",
             'SMALL': "SMALL",
             'MEDIUM': "MEDIUM",
@@ -81,6 +83,7 @@ class VirtualInstance(ModelNormal):
         },
         ('desired_size',): {
             'FREE': "FREE",
+            'NANO': "NANO",
             'SHARED': "SHARED",
             'SMALL': "SMALL",
             'MEDIUM': "MEDIUM",
@@ -93,6 +96,7 @@ class VirtualInstance(ModelNormal):
         },
         ('desired_type',): {
             'FREE': "FREE",
+            'NANO': "NANO",
             'SHARED': "SHARED",
             'SMALL': "SMALL",
             'MEDIUM': "MEDIUM",

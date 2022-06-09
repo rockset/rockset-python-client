@@ -14,7 +14,7 @@ from rockset_v2 import RocksetClient, Regions
 from rockset_v2.rest import RESTClientObject
 
 
-REGION = Regions.rs2
+REGION = Regions.use1a1
 
 
 @pytest.fixture(scope="package")
