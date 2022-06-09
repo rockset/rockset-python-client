@@ -66,7 +66,7 @@ class QueryInfo(ModelNormal):
         ('status',): {
             'QUEUED': "QUEUED",
             'RUNNING': "RUNNING",
-            'COMPLETE': "COMPLETE",
+            'COMPLETED': "COMPLETED",
             'ERROR': "ERROR",
             'CANCELLED': "CANCELLED",
         },

@@ -184,6 +184,33 @@ def test_create_segment_integration(get_client, mock_request, request_validator)
             validate_call(e, request_validator)
 
 
+def test_create_snowflake_integration(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Integrations.create_snowflake_integration(
+                description="AWS account with event data for the data science team.",
+                name="event-logs",
+                snowflake=SnowflakeIntegration(
+                    aws_access_key=AwsAccessKey(
+                        aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
+                        aws_secret_access_key="wJal....",
+                    ),
+                    aws_role=AwsRole(
+                        aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
+                    ),
+                    default_warehouse="default_warehouse_example",
+                    password="password_example",
+                    s3_export_path="s3://bucket/prefix",
+                    snowflake_url="acme-marketing-test-account.snowflakecomputing.com",
+                    user_role="user_role_example",
+                    username="username_example",
+                ),
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
 def test_delete(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client

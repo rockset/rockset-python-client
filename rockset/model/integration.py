@@ -41,6 +41,7 @@ def lazy_import():
     from rockset.model.mongo_db_integration import MongoDbIntegration
     from rockset.model.s3_integration import S3Integration
     from rockset.model.segment_integration import SegmentIntegration
+    from rockset.model.snowflake_integration import SnowflakeIntegration
     globals()['AzureBlobStorageIntegration'] = AzureBlobStorageIntegration
     globals()['AzureEventHubsIntegration'] = AzureEventHubsIntegration
     globals()['AzureServiceBusIntegration'] = AzureServiceBusIntegration
@@ -52,6 +53,7 @@ def lazy_import():
     globals()['MongoDbIntegration'] = MongoDbIntegration
     globals()['S3Integration'] = S3Integration
     globals()['SegmentIntegration'] = SegmentIntegration
+    globals()['SnowflakeIntegration'] = SnowflakeIntegration
 
 
 class Integration(ModelNormal):
@@ -122,6 +124,7 @@ class Integration(ModelNormal):
             'mongodb': (MongoDbIntegration, none_type),  # noqa: E501
             's3': (S3Integration, none_type),  # noqa: E501
             'segment': (SegmentIntegration, none_type),  # noqa: E501
+            'snowflake': (SnowflakeIntegration, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -145,6 +148,7 @@ class Integration(ModelNormal):
         'mongodb': 'mongodb',  # noqa: E501
         's3': 's3',  # noqa: E501
         'segment': 'segment',  # noqa: E501
+        'snowflake': 'snowflake',  # noqa: E501
     }
 
     read_only_vars = {
@@ -205,6 +209,7 @@ class Integration(ModelNormal):
             mongodb (MongoDbIntegration): [optional]  # noqa: E501
             s3 (S3Integration): [optional]  # noqa: E501
             segment (SegmentIntegration): [optional]  # noqa: E501
+            snowflake (SnowflakeIntegration): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -273,6 +278,7 @@ class Integration(ModelNormal):
             mongodb (MongoDbIntegration): [optional]  # noqa: E501
             s3 (S3Integration): [optional]  # noqa: E501
             segment (SegmentIntegration): [optional]  # noqa: E501
+            snowflake (SnowflakeIntegration): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

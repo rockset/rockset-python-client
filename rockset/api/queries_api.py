@@ -26,6 +26,7 @@ from rockset.model_utils import (  # noqa: F401
 )
 from rockset.model.cancel_query_response import CancelQueryResponse
 from rockset.model.error_model import ErrorModel
+from rockset.model.get_query_response import GetQueryResponse
 from rockset.model.list_queries_response import ListQueriesResponse
 from rockset.model.query_pagination_response import QueryPaginationResponse
 from rockset.model.query_request import QueryRequest
@@ -98,7 +99,7 @@ class Queries(object):
         )
         self.get_query_endpoint = _Endpoint(
             settings={
-                'response_type': (QueryResponse,),
+                'response_type': (GetQueryResponse,),
                 'auth': [
                     'apikey'
                 ],
@@ -450,7 +451,7 @@ class Queries(object):
         *,
         query_id: str,
         **kwargs
-    ) -> typing.Union[QueryResponse, asyncio.Future]:
+    ) -> typing.Union[GetQueryResponse, asyncio.Future]:
         """Retrieve Query  # noqa: E501
 
         Returns information about a query.  # noqa: E501
@@ -499,7 +500,7 @@ class Queries(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            QueryResponse
+            GetQueryResponse
                 If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(

@@ -112,6 +112,7 @@ Class | Method | HTTP request | Description
 *Collections* | [**create_kinesis_collection**](docs/CollectionsApi.md#create_kinesis_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create kinesis collection
 *Collections* | [**create_mongodb_collection**](docs/CollectionsApi.md#create_mongodb_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create mongodb collection
 *Collections* | [**create_s3_collection**](docs/CollectionsApi.md#create_s3_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create s3 collection
+*Collections* | [**create_snowflake_collection**](docs/CollectionsApi.md#create_snowflake_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create snowflake collection
 *Collections* | [**delete**](docs/CollectionsApi.md#delete) | **DELETE** /v1/orgs/self/ws/{workspace}/collections/{collection} | Delete Collection
 *Collections* | [**get**](docs/CollectionsApi.md#get) | **GET** /v1/orgs/self/ws/{workspace}/collections/{collection} | Retrieve Collection
 *Collections* | [**list**](docs/CollectionsApi.md#list) | **GET** /v1/orgs/self/collections | List Collections
@@ -133,6 +134,7 @@ Class | Method | HTTP request | Description
 *Integrations* | [**create_mongodb_integration**](docs/IntegrationsApi.md#create_mongodb_integration) | **POST** /v1/orgs/self/integrations | Create mongodb integration
 *Integrations* | [**create_s3_integration**](docs/IntegrationsApi.md#create_s3_integration) | **POST** /v1/orgs/self/integrations | Create s3 integration
 *Integrations* | [**create_segment_integration**](docs/IntegrationsApi.md#create_segment_integration) | **POST** /v1/orgs/self/integrations | Create segment integration
+*Integrations* | [**create_snowflake_integration**](docs/IntegrationsApi.md#create_snowflake_integration) | **POST** /v1/orgs/self/integrations | Create snowflake integration
 *Integrations* | [**delete**](docs/IntegrationsApi.md#delete) | **DELETE** /v1/orgs/self/integrations/{integration} | Delete Integration
 *Integrations* | [**get**](docs/IntegrationsApi.md#get) | **GET** /v1/orgs/self/integrations/{integration} | Retrieve Integration
 *Integrations* | [**list**](docs/IntegrationsApi.md#list) | **GET** /v1/orgs/self/integrations | List Integrations
@@ -255,6 +257,7 @@ Class | Method | HTTP request | Description
  - [GetApiKeyResponse](docs/GetApiKeyResponse.md)
  - [GetCollectionResponse](docs/GetCollectionResponse.md)
  - [GetIntegrationResponse](docs/GetIntegrationResponse.md)
+ - [GetQueryResponse](docs/GetQueryResponse.md)
  - [GetViewResponse](docs/GetViewResponse.md)
  - [GetVirtualInstanceResponse](docs/GetVirtualInstanceResponse.md)
  - [GetWorkspaceResponse](docs/GetWorkspaceResponse.md)
@@ -322,6 +325,10 @@ Class | Method | HTTP request | Description
  - [SchemaRegistryConfig](docs/SchemaRegistryConfig.md)
  - [SegmentIntegration](docs/SegmentIntegration.md)
  - [SegmentIntegrationCreationRequest](docs/SegmentIntegrationCreationRequest.md)
+ - [SnowflakeCollectionCreationRequest](docs/SnowflakeCollectionCreationRequest.md)
+ - [SnowflakeIntegration](docs/SnowflakeIntegration.md)
+ - [SnowflakeIntegrationCreationRequest](docs/SnowflakeIntegrationCreationRequest.md)
+ - [SnowflakeSourceWrapper](docs/SnowflakeSourceWrapper.md)
  - [Source](docs/Source.md)
  - [SourceAzureBlobStorage](docs/SourceAzureBlobStorage.md)
  - [SourceAzureEventHubs](docs/SourceAzureEventHubs.md)
@@ -333,6 +340,7 @@ Class | Method | HTTP request | Description
  - [SourceKinesis](docs/SourceKinesis.md)
  - [SourceMongoDb](docs/SourceMongoDb.md)
  - [SourceS3](docs/SourceS3.md)
+ - [SourceSnowflake](docs/SourceSnowflake.md)
  - [SqlExpression](docs/SqlExpression.md)
  - [Stats](docs/Stats.md)
  - [Status](docs/Status.md)
@@ -345,6 +353,7 @@ Class | Method | HTTP request | Description
  - [StatusKafka](docs/StatusKafka.md)
  - [StatusKafkaPartition](docs/StatusKafkaPartition.md)
  - [StatusMongoDb](docs/StatusMongoDb.md)
+ - [StatusSnowflake](docs/StatusSnowflake.md)
  - [UnsubscribePreference](docs/UnsubscribePreference.md)
  - [UpdateAliasRequest](docs/UpdateAliasRequest.md)
  - [UpdateApiKeyRequest](docs/UpdateApiKeyRequest.md)

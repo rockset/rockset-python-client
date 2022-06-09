@@ -78,6 +78,7 @@ docs/GetAliasResponse.md
 docs/GetApiKeyResponse.md
 docs/GetCollectionResponse.md
 docs/GetIntegrationResponse.md
+docs/GetQueryResponse.md
 docs/GetViewResponse.md
 docs/GetVirtualInstanceResponse.md
 docs/GetWorkspaceResponse.md
@@ -149,6 +150,10 @@ docs/S3SourceWrapper.md
 docs/SchemaRegistryConfig.md
 docs/SegmentIntegration.md
 docs/SegmentIntegrationCreationRequest.md
+docs/SnowflakeCollectionCreationRequest.md
+docs/SnowflakeIntegration.md
+docs/SnowflakeIntegrationCreationRequest.md
+docs/SnowflakeSourceWrapper.md
 docs/Source.md
 docs/SourceAzureBlobStorage.md
 docs/SourceAzureEventHubs.md
@@ -160,6 +165,7 @@ docs/SourceKafka.md
 docs/SourceKinesis.md
 docs/SourceMongoDb.md
 docs/SourceS3.md
+docs/SourceSnowflake.md
 docs/SqlExpression.md
 docs/Stats.md
 docs/Status.md
@@ -172,6 +178,7 @@ docs/StatusDynamoDbV2.md
 docs/StatusKafka.md
 docs/StatusKafkaPartition.md
 docs/StatusMongoDb.md
+docs/StatusSnowflake.md
 docs/UnsubscribePreference.md
 docs/UpdateAliasRequest.md
 docs/UpdateApiKeyRequest.md
@@ -284,6 +291,7 @@ rockset/model/get_alias_response.py
 rockset/model/get_api_key_response.py
 rockset/model/get_collection_response.py
 rockset/model/get_integration_response.py
+rockset/model/get_query_response.py
 rockset/model/get_view_response.py
 rockset/model/get_virtual_instance_response.py
 rockset/model/get_workspace_response.py
@@ -350,6 +358,10 @@ rockset/model/s3_source_wrapper.py
 rockset/model/schema_registry_config.py
 rockset/model/segment_integration.py
 rockset/model/segment_integration_creation_request.py
+rockset/model/snowflake_collection_creation_request.py
+rockset/model/snowflake_integration.py
+rockset/model/snowflake_integration_creation_request.py
+rockset/model/snowflake_source_wrapper.py
 rockset/model/source.py
 rockset/model/source_azure_blob_storage.py
 rockset/model/source_azure_event_hubs.py
@@ -361,6 +373,7 @@ rockset/model/source_kafka.py
 rockset/model/source_kinesis.py
 rockset/model/source_mongo_db.py
 rockset/model/source_s3.py
+rockset/model/source_snowflake.py
 rockset/model/sql_expression.py
 rockset/model/stats.py
 rockset/model/status.py
@@ -373,6 +386,7 @@ rockset/model/status_dynamo_db_v2.py
 rockset/model/status_kafka.py
 rockset/model/status_kafka_partition.py
 rockset/model/status_mongo_db.py
+rockset/model/status_snowflake.py
 rockset/model/unsubscribe_preference.py
 rockset/model/update_alias_request.py
 rockset/model/update_api_key_request.py
@@ -474,6 +488,7 @@ test/test_get_alias_response.py
 test/test_get_api_key_response.py
 test/test_get_collection_response.py
 test/test_get_integration_response.py
+test/test_get_query_response.py
 test/test_get_view_response.py
 test/test_get_virtual_instance_response.py
 test/test_get_workspace_response.py
@@ -545,6 +560,10 @@ test/test_s3_source_wrapper.py
 test/test_schema_registry_config.py
 test/test_segment_integration.py
 test/test_segment_integration_creation_request.py
+test/test_snowflake_collection_creation_request.py
+test/test_snowflake_integration.py
+test/test_snowflake_integration_creation_request.py
+test/test_snowflake_source_wrapper.py
 test/test_source.py
 test/test_source_azure_blob_storage.py
 test/test_source_azure_event_hubs.py
@@ -556,6 +575,7 @@ test/test_source_kafka.py
 test/test_source_kinesis.py
 test/test_source_mongo_db.py
 test/test_source_s3.py
+test/test_source_snowflake.py
 test/test_sql_expression.py
 test/test_stats.py
 test/test_status.py
@@ -568,6 +588,7 @@ test/test_status_dynamo_db_v2.py
 test/test_status_kafka.py
 test/test_status_kafka_partition.py
 test/test_status_mongo_db.py
+test/test_status_snowflake.py
 test/test_unsubscribe_preference.py
 test/test_update_alias_request.py
 test/test_update_api_key_request.py

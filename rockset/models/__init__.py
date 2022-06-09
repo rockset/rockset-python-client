@@ -83,6 +83,7 @@ from rockset.model.get_alias_response import GetAliasResponse
 from rockset.model.get_api_key_response import GetApiKeyResponse
 from rockset.model.get_collection_response import GetCollectionResponse
 from rockset.model.get_integration_response import GetIntegrationResponse
+from rockset.model.get_query_response import GetQueryResponse
 from rockset.model.get_view_response import GetViewResponse
 from rockset.model.get_virtual_instance_response import GetVirtualInstanceResponse
 from rockset.model.get_workspace_response import GetWorkspaceResponse
@@ -150,6 +151,10 @@ from rockset.model.s3_source_wrapper import S3SourceWrapper
 from rockset.model.schema_registry_config import SchemaRegistryConfig
 from rockset.model.segment_integration import SegmentIntegration
 from rockset.model.segment_integration_creation_request import SegmentIntegrationCreationRequest
+from rockset.model.snowflake_collection_creation_request import SnowflakeCollectionCreationRequest
+from rockset.model.snowflake_integration import SnowflakeIntegration
+from rockset.model.snowflake_integration_creation_request import SnowflakeIntegrationCreationRequest
+from rockset.model.snowflake_source_wrapper import SnowflakeSourceWrapper
 from rockset.model.source import Source
 from rockset.model.source_azure_blob_storage import SourceAzureBlobStorage
 from rockset.model.source_azure_event_hubs import SourceAzureEventHubs
@@ -161,6 +166,7 @@ from rockset.model.source_kafka import SourceKafka
 from rockset.model.source_kinesis import SourceKinesis
 from rockset.model.source_mongo_db import SourceMongoDb
 from rockset.model.source_s3 import SourceS3
+from rockset.model.source_snowflake import SourceSnowflake
 from rockset.model.sql_expression import SqlExpression
 from rockset.model.stats import Stats
 from rockset.model.status import Status
@@ -173,6 +179,7 @@ from rockset.model.status_dynamo_db_v2 import StatusDynamoDbV2
 from rockset.model.status_kafka import StatusKafka
 from rockset.model.status_kafka_partition import StatusKafkaPartition
 from rockset.model.status_mongo_db import StatusMongoDb
+from rockset.model.status_snowflake import StatusSnowflake
 from rockset.model.unsubscribe_preference import UnsubscribePreference
 from rockset.model.update_alias_request import UpdateAliasRequest
 from rockset.model.update_api_key_request import UpdateApiKeyRequest

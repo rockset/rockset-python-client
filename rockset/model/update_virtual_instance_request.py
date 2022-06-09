@@ -57,6 +57,7 @@ class UpdateVirtualInstanceRequest(ModelNormal):
     allowed_values = {
         ('new_size',): {
             'FREE': "FREE",
+            'NANO': "NANO",
             'SHARED': "SHARED",
             'SMALL': "SMALL",
             'MEDIUM': "MEDIUM",
@@ -69,6 +70,7 @@ class UpdateVirtualInstanceRequest(ModelNormal):
         },
         ('new_type',): {
             'FREE': "FREE",
+            'NANO': "NANO",
             'SHARED': "SHARED",
             'SMALL': "SMALL",
             'MEDIUM': "MEDIUM",
