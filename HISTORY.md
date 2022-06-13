@@ -1,3 +1,6 @@
+### v0.1.12
+    - Fix bug with non-string parameters passed to RocksetClient.sql 
+
 ### v0.1.11
     - Add Snowflake integration and collection
     - Other miscellaneous updates to match the API

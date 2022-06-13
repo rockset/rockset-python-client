@@ -256,7 +256,9 @@ class RocksetClient:
         """Convenience method for making queries."""
         if params:
             params = [
-                QueryParameter(name=param, value=val, type=convert_to_rockset_type(val))
+                QueryParameter(
+                    name=param, value=str(val), type=convert_to_rockset_type(val)
+                )
                 for param, val in params.items()
             ]
 
