@@ -27,7 +27,7 @@ Please follow the [installation procedure](#installation--usage) and then run th
 ```python
 import rockset_v2
 
-# Defining the host is optional and defaults to https://api.usw2a1.rockset.com
+# Defining the host is optional and defaults to *https://api.use1a1.rockset.com*
 rs = rockset_v2.RocksetClient(host=rockset_v2.Regions.use1a1, api_key="APIKEY")
 try:
     rs.APIKeys.create_api_key(name="api-key-name", role="member")
