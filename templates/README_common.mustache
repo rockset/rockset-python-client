@@ -7,7 +7,7 @@ import {{{packageName}}}
 {{#operation}}
 {{#-first}}
 
-# Defining the host is optional and defaults to https://api.usw2a1.rockset.com
+# Defining the host is optional and defaults to *{{basePath}}*
 rs = {{{packageName}}}.RocksetClient(host=rockset.Regions.use1a1, api_key="APIKEY")
 try:
     rs.APIKeys.create_api_key(name="api-key-name", role="member")
