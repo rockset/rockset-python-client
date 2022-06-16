@@ -6,7 +6,6 @@ Notification preferences for the user.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **notification_type** | **str** | The type of notification to be unsubscribed from. | 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

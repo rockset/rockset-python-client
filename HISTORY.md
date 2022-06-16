@@ -1,3 +1,7 @@
+### v0.1.13
+    - Remove additionalProperties by default
+    - Move client-specific swagger specs to this repo
+
 ### v0.1.12
     - Fix bug with non-string parameters passed to RocksetClient.sql 
 
