@@ -24,8 +24,15 @@ def get_client():
 
 @pytest.fixture(scope="package")
 def request_validator():
-    with open("/data/home/julius/rs/swagger/openapi-generated.yaml", "r") as spec_file:
+    with open("swagger/openapi-generated.yaml", "r") as spec_file:
         spec_dict = yaml.safe_load(spec_file)
+
+    # The default for additionalProperties in OpenAPI 3 is True
+    # additionalProperties should not be allowed under normal circumstances
+    for obj in spec_dict["components"]["schemas"].values():
+        if "additionalProperties" not in obj:
+            obj["additionalProperties"] = False
+
     spec = create_spec(spec_dict)
     return RequestValidator(spec)
 

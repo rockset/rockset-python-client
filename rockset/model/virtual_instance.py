@@ -120,13 +120,7 @@ class VirtualInstance(ModelNormal):
     validations = {
     }
 
-    @cached_property
-    def additional_properties_type():
-        """
-        This must be a method because a model may have properties that are
-        of type self, this must run after the class is loaded
-        """
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+    additional_properties_type = None
 
     _nullable = False
 
@@ -144,6 +138,7 @@ class VirtualInstance(ModelNormal):
             'current_size': (str, none_type),  # noqa: E501
             'current_type': (str, none_type),  # noqa: E501
             'default_pod_count': (int, none_type),  # noqa: E501
+            'default_vi': (bool, none_type),  # noqa: E501
             'desired_size': (str, none_type),  # noqa: E501
             'desired_type': (str, none_type),  # noqa: E501
             'id': (str, none_type),  # noqa: E501
@@ -161,6 +156,7 @@ class VirtualInstance(ModelNormal):
         'current_size': 'current_size',  # noqa: E501
         'current_type': 'current_type',  # noqa: E501
         'default_pod_count': 'default_pod_count',  # noqa: E501
+        'default_vi': 'default_vi',  # noqa: E501
         'desired_size': 'desired_size',  # noqa: E501
         'desired_type': 'desired_type',  # noqa: E501
         'id': 'id',  # noqa: E501
@@ -215,6 +211,7 @@ class VirtualInstance(ModelNormal):
             current_size (str): virtual instance current size. [optional]  # noqa: E501
             current_type (str): [optional]  # noqa: E501
             default_pod_count (int): [optional]  # noqa: E501
+            default_vi (bool): [optional]  # noqa: E501
             desired_size (str): virtual instance desired size. [optional]  # noqa: E501
             desired_type (str): [optional]  # noqa: E501
             id (str): unique identifier for virtual instance. [optional]  # noqa: E501
@@ -274,6 +271,7 @@ class VirtualInstance(ModelNormal):
         Keyword Args:
             current_type (str): [optional]  # noqa: E501
             default_pod_count (int): [optional]  # noqa: E501
+            default_vi (bool): [optional]  # noqa: E501
             desired_type (str): [optional]  # noqa: E501
             id (str): unique identifier for virtual instance. [optional]  # noqa: E501
             monitoring_enabled (bool): [optional]  # noqa: E501

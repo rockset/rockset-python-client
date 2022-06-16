@@ -92,14 +92,7 @@ class Collection(ModelNormal):
         },
     }
 
-    @cached_property
-    def additional_properties_type():
-        """
-        This must be a method because a model may have properties that are
-        of type self, this must run after the class is loaded
-        """
-        lazy_import()
-        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
+    additional_properties_type = None
 
     _nullable = False
 
@@ -124,6 +117,7 @@ class Collection(ModelNormal):
             'field_mappings': ([FieldMappingV2], none_type),  # noqa: E501
             'insert_only': (bool, none_type),  # noqa: E501
             'name': (str, none_type),  # noqa: E501
+            'read_only': (bool, none_type),  # noqa: E501
             'retention_secs': (int, none_type),  # noqa: E501
             'sources': ([Source], none_type),  # noqa: E501
             'stats': (CollectionStats, none_type),  # noqa: E501
@@ -146,6 +140,7 @@ class Collection(ModelNormal):
         'field_mappings': 'field_mappings',  # noqa: E501
         'insert_only': 'insert_only',  # noqa: E501
         'name': 'name',  # noqa: E501
+        'read_only': 'read_only',  # noqa: E501
         'retention_secs': 'retention_secs',  # noqa: E501
         'sources': 'sources',  # noqa: E501
         'stats': 'stats',  # noqa: E501
@@ -203,6 +198,7 @@ class Collection(ModelNormal):
             field_mappings ([FieldMappingV2]): list of mappings applied on all documents in a collection. [optional]  # noqa: E501
             insert_only (bool): Whether the collection is insert only or not. [optional]  # noqa: E501
             name (str): unique identifer for collection, can contain alphanumeric or dash characters. [optional]  # noqa: E501
+            read_only (bool): Whether the collection is read-only or not. [optional]  # noqa: E501
             retention_secs (int): number of seconds after which data is purged based on event time. [optional]  # noqa: E501
             sources ([Source]): list of sources from which collection ingests. [optional]  # noqa: E501
             stats (CollectionStats): [optional]  # noqa: E501
@@ -268,6 +264,7 @@ class Collection(ModelNormal):
             field_mappings ([FieldMappingV2]): list of mappings applied on all documents in a collection. [optional]  # noqa: E501
             insert_only (bool): Whether the collection is insert only or not. [optional]  # noqa: E501
             name (str): unique identifer for collection, can contain alphanumeric or dash characters. [optional]  # noqa: E501
+            read_only (bool): Whether the collection is read-only or not. [optional]  # noqa: E501
             retention_secs (int): number of seconds after which data is purged based on event time. [optional]  # noqa: E501
             sources ([Source]): list of sources from which collection ingests. [optional]  # noqa: E501
             stats (CollectionStats): [optional]  # noqa: E501

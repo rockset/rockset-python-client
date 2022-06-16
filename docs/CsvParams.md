@@ -11,7 +11,6 @@ Name | Type | Description | Notes
 **first_line_as_column_names** | **bool** | If the first line in every object specifies the column names | [optional] 
 **quote_char** | **str** | character within which a cell value is enclosed,null character if no such character, default is &#39;\&quot;&#39; | [optional] 
 **separator** | **str** | a single character that is the column separator | [optional] 
-**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
