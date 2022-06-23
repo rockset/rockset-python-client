@@ -38,6 +38,25 @@ except rockset.ApiException as e:
 
 When making requests, certain parameters will oftentimes be instances of classes (eg. rockset.models.QueryRequestSql). Since importing and instantiating these objects can be verbose, you always have the option of passing in a dictionary instead of a model.
 
+```python
+from rockset import RocksetClient
+
+rs = RocksetClient(api_key=APIKEY)
+try:
+    res = rs.Queries.query(
+        async_options={
+            "client_timeout_ms": 1,
+            "max_initial_results": 1,
+            "timeout_ms": 1,
+        },
+        sql={
+            "query": "SELECT * FROM foo where _id = :_id",
+        },
+    )
+except rockset.ApiException as e:
+    print("Exception when querying: %s\n" % e)
+```
+
 ## Queries
 
 Queries can be made be either calling the regular client [**query method**](docs/Queries.md#query) or by using the convenience method (rs.sql). The convenience method currently does not support all the options of the regular call. If you need these more advanced features, you should use the regular call.
@@ -49,7 +68,7 @@ rs = rockset.RocksetClient(host=rockset.Regions.use1a1, api_key="APIKEY")
 try:
     res = rs.sql(query="SELECT * FROM _events WHERE kind=:event_type LIMIT 100", params={"event_type", "INGEST"})
 except rockset.ApiException as e:
-    print("Exception when calling ApiKey->create_api_key: %s\n" % e)
+    print("Exception when querying: %s\n" % e)
 ```
 
 ### Pagination
@@ -72,10 +91,6 @@ for page in rockset.QueryPaginator(
 ):
     print(page)
 ```
-
-## Optional Models
-
-When making requests, certain parameters will oftentimes be instances of classes (eg. rockset.models.QueryRequestSql). Since importing and instantiating these objects can be verbose, you always have the option of passing in a dictionary instead of a model.
 
 ## Migration Guide
 
