@@ -30,7 +30,7 @@ import rockset_v2
 # Defining the host is optional and defaults to *https://api.use1a1.rockset.com*
 rs = rockset_v2.RocksetClient(host=rockset_v2.Regions.use1a1, api_key="APIKEY")
 try:
-    rs.APIKeys.create_api_key(name="api-key-name", role="member")
+    rs.APIKeys.create(name="api-key-name", role="member")
 except rockset_v2.ApiException as e:
     print("Exception when calling ApiKey->create_api_key: %s\n" % e)
 ```
