@@ -107,6 +107,7 @@ from rockset_v2.model.get_alias_response import GetAliasResponse
 from rockset_v2.model.get_api_key_response import GetApiKeyResponse
 from rockset_v2.model.get_collection_response import GetCollectionResponse
 from rockset_v2.model.get_integration_response import GetIntegrationResponse
+from rockset_v2.model.get_query_response import GetQueryResponse
 from rockset_v2.model.get_view_response import GetViewResponse
 from rockset_v2.model.get_virtual_instance_response import GetVirtualInstanceResponse
 from rockset_v2.model.get_workspace_response import GetWorkspaceResponse
@@ -196,7 +197,13 @@ from rockset_v2.model.segment_integration import SegmentIntegration
 from rockset_v2.model.segment_integration_creation_request import (
     SegmentIntegrationCreationRequest,
 )
+from rockset_v2.model.snowflake_collection_creation_request import (
+    SnowflakeCollectionCreationRequest,
+)
 from rockset_v2.model.snowflake_integration import SnowflakeIntegration
+from rockset_v2.model.snowflake_integration_creation_request import (
+    SnowflakeIntegrationCreationRequest,
+)
 from rockset_v2.model.snowflake_source_wrapper import SnowflakeSourceWrapper
 from rockset_v2.model.source import Source
 from rockset_v2.model.source_azure_blob_storage import SourceAzureBlobStorage
@@ -209,6 +216,7 @@ from rockset_v2.model.source_kafka import SourceKafka
 from rockset_v2.model.source_kinesis import SourceKinesis
 from rockset_v2.model.source_mongo_db import SourceMongoDb
 from rockset_v2.model.source_s3 import SourceS3
+from rockset_v2.model.source_snowflake import SourceSnowflake
 from rockset_v2.model.sql_expression import SqlExpression
 from rockset_v2.model.stats import Stats
 from rockset_v2.model.status import Status
@@ -225,6 +233,7 @@ from rockset_v2.model.status_dynamo_db_v2 import StatusDynamoDbV2
 from rockset_v2.model.status_kafka import StatusKafka
 from rockset_v2.model.status_kafka_partition import StatusKafkaPartition
 from rockset_v2.model.status_mongo_db import StatusMongoDb
+from rockset_v2.model.status_snowflake import StatusSnowflake
 from rockset_v2.model.unsubscribe_preference import UnsubscribePreference
 from rockset_v2.model.update_alias_request import UpdateAliasRequest
 from rockset_v2.model.update_api_key_request import UpdateApiKeyRequest

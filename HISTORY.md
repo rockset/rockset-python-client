@@ -1,3 +1,6 @@
+### v0.1.15
+    - Reenable additionalProperties temporarily
+
 ### v0.1.14
     - Fix rebase error
 

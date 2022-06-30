@@ -64,7 +64,13 @@ class ApiKey(ModelNormal):
     validations = {
     }
 
-    additional_properties_type = None
+    @cached_property
+    def additional_properties_type():
+        """
+        This must be a method because a model may have properties that are
+        of type self, this must run after the class is loaded
+        """
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -83,6 +89,7 @@ class ApiKey(ModelNormal):
             'name': (str,),  # noqa: E501
             'created_at': (str, none_type),  # noqa: E501
             'created_by': (str, none_type),  # noqa: E501
+            'expiry_time': (str, none_type),  # noqa: E501
             'last_access_time': (str, none_type),  # noqa: E501
             'role': (str, none_type),  # noqa: E501
             'state': (str, none_type),  # noqa: E501
@@ -98,6 +105,7 @@ class ApiKey(ModelNormal):
         'name': 'name',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
         'created_by': 'created_by',  # noqa: E501
+        'expiry_time': 'expiry_time',  # noqa: E501
         'last_access_time': 'last_access_time',  # noqa: E501
         'role': 'role',  # noqa: E501
         'state': 'state',  # noqa: E501
@@ -150,6 +158,7 @@ class ApiKey(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             created_at (str): Date that API key was created (ISO-8601 format).. [optional]  # noqa: E501
             created_by (str): Email of API key owner.. [optional]  # noqa: E501
+            expiry_time (str): The expiration date of this API key.. [optional]  # noqa: E501
             last_access_time (str): Date that API key was most recently used (ISO-8601 format).. [optional]  # noqa: E501
             role (str): Role specifying access control. If not specified, API key will have access to all of the associated user's roles.. [optional]  # noqa: E501
             state (str): current state of this key. [optional]  # noqa: E501
@@ -210,6 +219,7 @@ class ApiKey(ModelNormal):
             name (str): Name of the API key.
             created_at (str): Date that API key was created (ISO-8601 format).. [optional]  # noqa: E501
             created_by (str): Email of API key owner.. [optional]  # noqa: E501
+            expiry_time (str): The expiration date of this API key.. [optional]  # noqa: E501
             last_access_time (str): Date that API key was most recently used (ISO-8601 format).. [optional]  # noqa: E501
             role (str): Role specifying access control. If not specified, API key will have access to all of the associated user's roles.. [optional]  # noqa: E501
             state (str): current state of this key. [optional]  # noqa: E501
