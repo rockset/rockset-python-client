@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **insert_only** | **bool** | If true disallows updates and deletes, but makes indexing more efficient | [optional] 
 **retention_secs** | **int** | number of seconds after which data is purged, based on event time | [optional] 
 **sources** | [**[KinesisSourceWrapper]**](KinesisSourceWrapper.md) | List of sources from which to ingest data | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

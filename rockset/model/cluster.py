@@ -57,14 +57,19 @@ class Cluster(ModelNormal):
     allowed_values = {
         ('cluster_type',): {
             'PUBLIC': "PUBLIC",
-            'PRIVATE': "PRIVATE",
         },
     }
 
     validations = {
     }
 
-    additional_properties_type = None
+    @cached_property
+    def additional_properties_type():
+        """
+        This must be a method because a model may have properties that are
+        of type self, this must run after the class is loaded
+        """
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 
@@ -144,7 +149,7 @@ class Cluster(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             apiserver_url (str): api server url for cluster. [optional]  # noqa: E501
             aws_region (str): aws region. [optional]  # noqa: E501
-            cluster_type (str): cluster type. [optional]  # noqa: E501
+            cluster_type (str): cluster type. [optional] if omitted the server will use the default value of "PUBLIC"  # noqa: E501
             domain (str): domain of org using cluster. [optional]  # noqa: E501
             id (str): unique identifier for the cluster. [optional]  # noqa: E501
             top_level_domain (str): top level domain of org using cluster. [optional]  # noqa: E501
@@ -201,7 +206,7 @@ class Cluster(ModelNormal):
         Keyword Args:
             apiserver_url (str): api server url for cluster. [optional]  # noqa: E501
             aws_region (str): aws region. [optional]  # noqa: E501
-            cluster_type (str): cluster type. [optional]  # noqa: E501
+            cluster_type (str): cluster type. [optional] if omitted the server will use the default value of "PUBLIC"  # noqa: E501
             domain (str): domain of org using cluster. [optional]  # noqa: E501
             id (str): unique identifier for the cluster. [optional]  # noqa: E501
             top_level_domain (str): top level domain of org using cluster. [optional]  # noqa: E501

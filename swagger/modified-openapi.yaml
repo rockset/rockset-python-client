@@ -15,7 +15,6 @@ components:
       required: true
   schemas:
     AddDocumentsRequest:
-      additionalProperties: false
       properties:
         data:
           description: Array of documents to be added to the collection.
@@ -28,7 +27,6 @@ components:
         - data
       type: object
     AddDocumentsResponse:
-      additionalProperties: false
       properties:
         data:
           description: information about the added documents
@@ -37,7 +35,6 @@ components:
           type: array
       type: object
     Alias:
-      additionalProperties: false
       properties:
         collections:
           description: list of fully qualified collection names referenced by alias
@@ -80,7 +77,6 @@ components:
           type: string
       type: object
     ApiKey:
-      additionalProperties: false
       description:
         API keys are used to authenticate requests to Rockset's API. An
         API key is tied to the user who creates it.
@@ -92,6 +88,10 @@ components:
         created_by:
           description: Email of API key owner.
           example: test@example.com
+          type: string
+        expiry_time:
+          description: The expiration date of this API key.
+          example: "2001-08-28T00:23:41Z"
           type: string
         key:
           description: API key string of 64 alphanumeric characters.
@@ -123,7 +123,6 @@ components:
         - name
       type: object
     AsyncQueryOptions:
-      additionalProperties: false
       properties:
         client_timeout_ms:
           description:
@@ -149,7 +148,6 @@ components:
           type: integer
       type: object
     AwsAccessKey:
-      additionalProperties: false
       properties:
         aws_access_key_id:
           description: AWS access key ID
@@ -164,7 +162,6 @@ components:
         - aws_secret_access_key
       type: object
     AwsRole:
-      additionalProperties: false
       properties:
         aws_role_arn:
           description: ARN of rockset-role created in your account
@@ -174,7 +171,6 @@ components:
         - aws_role_arn
       type: object
     AzureBlobStorageCollectionCreationRequest:
-      additionalProperties: false
       properties:
         clustering_key:
           description: list of clustering fields
@@ -223,7 +219,6 @@ components:
         - name
       type: object
     AzureBlobStorageIntegration:
-      additionalProperties: false
       properties:
         connection_string:
           description: credentials for Azure Blob Storage
@@ -232,7 +227,6 @@ components:
         - connection_string
       type: object
     AzureBlobStorageIntegrationCreationRequest:
-      additionalProperties: false
       properties:
         azure_blob_storage:
           $ref: "#/components/schemas/AzureBlobStorageIntegration"
@@ -249,7 +243,6 @@ components:
         - name
       type: object
     AzureBlobStorageSourceWrapper:
-      additionalProperties: false
       description: Details about the data source for the given collection.
       properties:
         azure_blob_storage:
@@ -269,7 +262,6 @@ components:
       type: object
       x-inner-field: azure_blob_storage
     AzureEventHubsCollectionCreationRequest:
-      additionalProperties: false
       properties:
         clustering_key:
           description: list of clustering fields
@@ -318,7 +310,6 @@ components:
         - name
       type: object
     AzureEventHubsIntegration:
-      additionalProperties: false
       properties:
         connection_string:
           description: azure event hubs connection string
@@ -326,7 +317,6 @@ components:
           type: string
       type: object
     AzureEventHubsIntegrationCreationRequest:
-      additionalProperties: false
       properties:
         azure_event_hubs:
           $ref: "#/components/schemas/AzureEventHubsIntegration"
@@ -342,7 +332,6 @@ components:
         - name
       type: object
     AzureEventHubsSourceWrapper:
-      additionalProperties: false
       description: Details about the data source for the given collection.
       properties:
         azure_event_hubs:
@@ -362,7 +351,6 @@ components:
       type: object
       x-inner-field: azure_event_hubs
     AzureServiceBusCollectionCreationRequest:
-      additionalProperties: false
       properties:
         clustering_key:
           description: list of clustering fields
@@ -411,7 +399,6 @@ components:
         - name
       type: object
     AzureServiceBusIntegration:
-      additionalProperties: false
       properties:
         connection_string:
           description: credentials for the Azure Service Bus
@@ -420,7 +407,6 @@ components:
         - connection_string
       type: object
     AzureServiceBusSourceWrapper:
-      additionalProperties: false
       description: Details about the data source for the given collection.
       properties:
         azure_service_bus:
@@ -440,13 +426,11 @@ components:
       type: object
       x-inner-field: azure_service_bus
     CancelQueryResponse:
-      additionalProperties: false
       properties:
         data:
           $ref: "#/components/schemas/QueryInfo"
       type: object
     Cluster:
-      additionalProperties: false
       properties:
         apiserver_url:
           description: api server url for cluster
@@ -460,7 +444,6 @@ components:
           description: cluster type
           enum:
             - PUBLIC
-            - PRIVATE
           example: PRIVATE
           type: string
         domain:
@@ -477,7 +460,6 @@ components:
           type: string
       type: object
     Collection:
-      additionalProperties: false
       properties:
         aliases:
           description: list of aliases for a collection
@@ -559,7 +541,6 @@ components:
           type: string
       type: object
     CollectionStats:
-      additionalProperties: false
       properties:
         bulk_bytes_inserted:
           description: total number of bytes inserted into the collection during bulk
@@ -645,7 +626,6 @@ components:
           type: integer
       type: object
     CreateAliasRequest:
-      additionalProperties: false
       properties:
         collections:
           description: list of fully qualified collection names referenced by alias
@@ -668,14 +648,12 @@ components:
         - name
       type: object
     CreateAliasResponse:
-      additionalProperties: false
       properties:
         data:
           $ref: "#/components/schemas/Alias"
           description: alias that was created
       type: object
     CreateApiKeyRequest:
-      additionalProperties: false
       properties:
         name:
           description: Name for this API key.
@@ -687,14 +665,12 @@ components:
         - name
       type: object
     CreateApiKeyResponse:
-      additionalProperties: false
       properties:
         data:
           $ref: "#/components/schemas/ApiKey"
           description: The API key that was created.
       type: object
     CreateCollectionRequest:
-      additionalProperties: false
       properties:
         clustering_key:
           description: list of clustering fields
@@ -738,14 +714,12 @@ components:
         - name
       type: object
     CreateCollectionResponse:
-      additionalProperties: false
       properties:
         data:
           $ref: "#/components/schemas/Collection"
           description: collection that was created
       type: object
     CreateIntegrationRequest:
-      additionalProperties: false
       properties:
         azure_blob_storage:
           $ref: "#/components/schemas/AzureBlobStorageIntegration"
@@ -789,14 +763,12 @@ components:
         - name
       type: object
     CreateIntegrationResponse:
-      additionalProperties: false
       properties:
         data:
           $ref: "#/components/schemas/Integration"
           description: integration object that was created
       type: object
     CreateQueryLambdaRequest:
-      additionalProperties: false
       properties:
         description:
           description: optional description
@@ -814,7 +786,6 @@ components:
         - sql
       type: object
     CreateQueryLambdaTagRequest:
-      additionalProperties: false
       properties:
         tag_name:
           description: name of Query Lambda tag
@@ -829,7 +800,6 @@ components:
         - version
       type: object
     CreateRoleRequest:
-      additionalProperties: false
       properties:
         description:
           description: Description for the role.
@@ -846,7 +816,6 @@ components:
           type: string
       type: object
     CreateUserRequest:
-      additionalProperties: false
       properties:
         email:
           description: user email, must be unique
@@ -866,14 +835,12 @@ components:
         - roles
       type: object
     CreateUserResponse:
-      additionalProperties: false
       properties:
         data:
           $ref: "#/components/schemas/User"
           description: user that was created
       type: object
     CreateViewRequest:
-      additionalProperties: false
       properties:
         description:
           description: optional description
@@ -892,14 +859,12 @@ components:
         - query
       type: object
     CreateViewResponse:
-      additionalProperties: false
       properties:
         data:
           $ref: "#/components/schemas/View"
           description: view that was updated
       type: object
     CreateWorkspaceRequest:
-      additionalProperties: false
       properties:
         description:
           description: longer explanation for the workspace
@@ -913,14 +878,12 @@ components:
         - name
       type: object
     CreateWorkspaceResponse:
-      additionalProperties: false
       properties:
         data:
           $ref: "#/components/schemas/Workspace"
           description: the workspace that was created
       type: object
     CsvParams:
-      additionalProperties: false
       properties:
         columnNames:
           description: names of columns
@@ -979,28 +942,24 @@ components:
           type: string
       type: object
     DeleteAliasResponse:
-      additionalProperties: false
       properties:
         data:
           $ref: "#/components/schemas/Alias"
           description: alias that was deleted
       type: object
     DeleteApiKeyResponse:
-      additionalProperties: false
       properties:
         data:
           $ref: "#/components/schemas/ApiKey"
           description: The API key that was deleted.
       type: object
     DeleteCollectionResponse:
-      additionalProperties: false
       properties:
         data:
           $ref: "#/components/schemas/Collection"
           description: collection that was deleted
       type: object
     DeleteDocumentsRequest:
-      additionalProperties: false
       properties:
         data:
           description: Array of IDs of documents to be deleted
@@ -1011,7 +970,6 @@ components:
         - data
       type: object
     DeleteDocumentsRequestData:
-      additionalProperties: false
       properties:
         _id:
           description: unique document ID
@@ -1021,7 +979,6 @@ components:
         - _id
       type: object
     DeleteDocumentsResponse:
-      additionalProperties: false
       properties:
         data:
           description: information about deleted documents
@@ -1030,42 +987,36 @@ components:
           type: array
       type: object
     DeleteIntegrationResponse:
-      additionalProperties: false
       properties:
         data:
           $ref: "#/components/schemas/Integration"
           description: integration object that was deleted
       type: object
     DeleteQueryLambdaResponse:
-      additionalProperties: false
       properties:
         data:
           $ref: "#/components/schemas/QueryLambda"
           description: Query Lambda details
       type: object
     DeleteUserResponse:
-      additionalProperties: false
       properties:
         data:
           $ref: "#/components/schemas/User"
           description: user object that was deleted
       type: object
     DeleteViewResponse:
-      additionalProperties: false
       properties:
         data:
           $ref: "#/components/schemas/View"
           description: view that was deleted
       type: object
     DeleteWorkspaceResponse:
-      additionalProperties: false
       properties:
         data:
           $ref: "#/components/schemas/Workspace"
           description: the workspace that was deleted
       type: object
     DocumentStatus:
-      additionalProperties: false
       properties:
         _collection:
           description: collection name
@@ -1094,7 +1045,6 @@ components:
           type: string
       type: object
     DynamodbCollectionCreationRequest:
-      additionalProperties: false
       properties:
         clustering_key:
           description: list of clustering fields
@@ -1143,7 +1093,6 @@ components:
         - name
       type: object
     DynamodbIntegration:
-      additionalProperties: false
       properties:
         aws_access_key:
           $ref: "#/components/schemas/AwsAccessKey"
@@ -1155,7 +1104,6 @@ components:
           type: string
       type: object
     DynamodbIntegrationCreationRequest:
-      additionalProperties: false
       properties:
         description:
           description: longer explanation for the integration
@@ -1174,7 +1122,6 @@ components:
         - name
       type: object
     DynamodbSourceWrapper:
-      additionalProperties: false
       description: Details about the data source for the given collection.
       properties:
         dynamodb:
@@ -1195,7 +1142,6 @@ components:
       type: object
       x-inner-field: dynamodb
     ErrorModel:
-      additionalProperties: false
       description: Describes details about an error
       properties:
         column:
@@ -1250,7 +1196,6 @@ components:
           type: string
       type: object
     EventTimeInfo:
-      additionalProperties: false
       properties:
         field:
           description: name of the field containing event time
@@ -1270,7 +1215,6 @@ components:
         - field
       type: object
     ExecuteQueryLambdaRequest:
-      additionalProperties: false
       properties:
         async_options:
           $ref: "#/components/schemas/AsyncQueryOptions"
@@ -1300,11 +1244,9 @@ components:
           type: array
       type: object
     FieldMapping:
-      additionalProperties: false
       properties: {}
       type: object
     FieldMappingQuery:
-      additionalProperties: false
       properties:
         sql:
           description: SELECT * EXCEPT (name), SHA256(name) AS name_anon FROM _input
@@ -1312,7 +1254,6 @@ components:
           type: string
       type: object
     FieldMappingV2:
-      additionalProperties: false
       properties:
         input_fields:
           description: A List of InputField for this mapping
@@ -1334,7 +1275,6 @@ components:
           description: An OutputField for this mapping
       type: object
     FieldPartition:
-      additionalProperties: false
       properties:
         field_name:
           description: The name of a field, parsed as a SQL qualified name
@@ -1358,7 +1298,6 @@ components:
           type: string
       type: object
     FileUploadCollectionCreationRequest:
-      additionalProperties: false
       properties:
         clustering_key:
           description: list of clustering fields
@@ -1407,7 +1346,6 @@ components:
         - name
       type: object
     FileUploadSourceWrapper:
-      additionalProperties: false
       description: Details about the data source for the given collection.
       properties:
         file_upload:
@@ -1428,7 +1366,6 @@ components:
       type: object
       x-inner-field: file_upload
     FormatParams:
-      additionalProperties: false
       properties:
         csv:
           $ref: "#/components/schemas/CsvParams"
@@ -1448,7 +1385,6 @@ components:
           $ref: "#/components/schemas/XmlParams"
       type: object
     GcpServiceAccount:
-      additionalProperties: false
       properties:
         service_account_key_file_json:
           description: Contents of JSON Service Account key file
@@ -1457,7 +1393,6 @@ components:
         - service_account_key_file_json
       type: object
     GcsCollectionCreationRequest:
-      additionalProperties: false
       properties:
         clustering_key:
           description: list of clustering fields
@@ -1506,14 +1441,12 @@ components:
         - name
       type: object
     GcsIntegration:
-      additionalProperties: false
       properties:
         gcp_service_account:
           $ref: "#/components/schemas/GcpServiceAccount"
           description: credentials for an AWS key integration
       type: object
     GcsIntegrationCreationRequest:
-      additionalProperties: false
       properties:
         description:
           description: longer explanation for the integration
@@ -1530,7 +1463,6 @@ components:
         - name
       type: object
     GcsSourceWrapper:
-      additionalProperties: false
       description: Details about the data source for the given collection.
       properties:
         format_params:
@@ -1551,35 +1483,30 @@ components:
       type: object
       x-inner-field: gcs
     GetAliasResponse:
-      additionalProperties: false
       properties:
         data:
           $ref: "#/components/schemas/Alias"
           description: alias that was requested
       type: object
     GetApiKeyResponse:
-      additionalProperties: false
       properties:
         data:
           $ref: "#/components/schemas/ApiKey"
           description: The requested API key object.
       type: object
     GetCollectionResponse:
-      additionalProperties: false
       properties:
         data:
           $ref: "#/components/schemas/Collection"
           description: collection that was requested
       type: object
     GetIntegrationResponse:
-      additionalProperties: false
       properties:
         data:
           $ref: "#/components/schemas/Integration"
           description: integration object
       type: object
     GetQueryResponse:
-      additionalProperties: false
       properties:
         data:
           $ref: "#/components/schemas/QueryInfo"
@@ -1590,28 +1517,24 @@ components:
           type: string
       type: object
     GetViewResponse:
-      additionalProperties: false
       properties:
         data:
           $ref: "#/components/schemas/View"
           description: view that was requested
       type: object
     GetVirtualInstanceResponse:
-      additionalProperties: false
       properties:
         data:
           $ref: "#/components/schemas/VirtualInstance"
           description: virtual instance that was requested
       type: object
     GetWorkspaceResponse:
-      additionalProperties: false
       properties:
         data:
           $ref: "#/components/schemas/Workspace"
           description: the workspace that was requested
       type: object
     InputField:
-      additionalProperties: false
       properties:
         field_name:
           description: The name of a field, parsed as a SQL qualified name
@@ -1634,7 +1557,6 @@ components:
           type: string
       type: object
     Integration:
-      additionalProperties: false
       description:
         Integrations that can be associated with data sources to create
         collections. Only one type of integration may be specified.
@@ -1700,7 +1622,6 @@ components:
         - name
       type: object
     KafkaCollectionCreationRequest:
-      additionalProperties: false
       properties:
         clustering_key:
           description: list of clustering fields
@@ -1749,7 +1670,6 @@ components:
         - name
       type: object
     KafkaIntegration:
-      additionalProperties: false
       properties:
         bootstrap_servers:
           type: string
@@ -1787,7 +1707,6 @@ components:
           type: boolean
       type: object
     KafkaIntegrationCreationRequest:
-      additionalProperties: false
       properties:
         description:
           description: longer explanation for the integration
@@ -1803,7 +1722,6 @@ components:
         - name
       type: object
     KafkaSourceWrapper:
-      additionalProperties: false
       description: Details about the data source for the given collection.
       properties:
         format_params:
@@ -1824,7 +1742,6 @@ components:
       type: object
       x-inner-field: kafka
     KafkaV3SecurityConfig:
-      additionalProperties: false
       properties:
         api_key:
           type: string
@@ -1832,7 +1749,6 @@ components:
           type: string
       type: object
     KinesisCollectionCreationRequest:
-      additionalProperties: false
       properties:
         clustering_key:
           description: list of clustering fields
@@ -1881,7 +1797,6 @@ components:
         - name
       type: object
     KinesisIntegration:
-      additionalProperties: false
       properties:
         aws_access_key:
           $ref: "#/components/schemas/AwsAccessKey"
@@ -1891,7 +1806,6 @@ components:
           description: details of an AWS cross-account role integration
       type: object
     KinesisIntegrationCreationRequest:
-      additionalProperties: false
       properties:
         description:
           description: longer explanation for the integration
@@ -1910,7 +1824,6 @@ components:
         - name
       type: object
     KinesisSourceWrapper:
-      additionalProperties: false
       description: Details about the data source for the given collection.
       properties:
         format_params:
@@ -1931,7 +1844,6 @@ components:
       type: object
       x-inner-field: kinesis
     ListAliasesResponse:
-      additionalProperties: false
       properties:
         data:
           description: list of all aliases
@@ -1940,7 +1852,6 @@ components:
           type: array
       type: object
     ListApiKeysResponse:
-      additionalProperties: false
       properties:
         data:
           description: List of API key objects.
@@ -1949,7 +1860,6 @@ components:
           type: array
       type: object
     ListCollectionsResponse:
-      additionalProperties: false
       properties:
         data:
           description: list of all collections
@@ -1958,7 +1868,6 @@ components:
           type: array
       type: object
     ListIntegrationsResponse:
-      additionalProperties: false
       properties:
         data:
           description: list of integration objects
@@ -1967,7 +1876,6 @@ components:
           type: array
       type: object
     ListQueriesResponse:
-      additionalProperties: false
       properties:
         data:
           items:
@@ -1975,7 +1883,6 @@ components:
           type: array
       type: object
     ListQueryLambdaTagsResponse:
-      additionalProperties: false
       properties:
         data:
           description: list of all tags associated with a Query Lambda
@@ -1984,7 +1891,6 @@ components:
           type: array
       type: object
     ListQueryLambdaVersionsResponse:
-      additionalProperties: false
       properties:
         data:
           description: list of all versions for a particular Query Lambda
@@ -1993,7 +1899,6 @@ components:
           type: array
       type: object
     ListQueryLambdasResponse:
-      additionalProperties: false
       properties:
         data:
           description: list of all Query Lambdas
@@ -2002,7 +1907,6 @@ components:
           type: array
       type: object
     ListRolesResponse:
-      additionalProperties: false
       properties:
         data:
           description: List of all roles.
@@ -2011,7 +1915,6 @@ components:
           type: array
       type: object
     ListUnsubscribePreferencesResponse:
-      additionalProperties: false
       properties:
         data:
           description: List of notification preferences
@@ -2020,7 +1923,6 @@ components:
           type: array
       type: object
     ListUsersResponse:
-      additionalProperties: false
       properties:
         data:
           description: list of users
@@ -2029,7 +1931,6 @@ components:
           type: array
       type: object
     ListViewsResponse:
-      additionalProperties: false
       properties:
         data:
           description: list of all views
@@ -2038,7 +1939,6 @@ components:
           type: array
       type: object
     ListVirtualInstancesResponse:
-      additionalProperties: false
       properties:
         data:
           description: list of all virtual instances
@@ -2047,7 +1947,6 @@ components:
           type: array
       type: object
     ListWorkspacesResponse:
-      additionalProperties: false
       properties:
         data:
           description: list of workspaces
@@ -2056,7 +1955,6 @@ components:
           type: array
       type: object
     MongoDbIntegration:
-      additionalProperties: false
       properties:
         connection_uri:
           description: MongoDB connection URI string
@@ -2066,7 +1964,6 @@ components:
         - connection_uri
       type: object
     MongodbCollectionCreationRequest:
-      additionalProperties: false
       properties:
         clustering_key:
           description: list of clustering fields
@@ -2115,7 +2012,6 @@ components:
         - name
       type: object
     MongodbIntegrationCreationRequest:
-      additionalProperties: false
       properties:
         description:
           description: longer explanation for the integration
@@ -2132,7 +2028,6 @@ components:
         - name
       type: object
     MongodbSourceWrapper:
-      additionalProperties: false
       description: Details about the data source for the given collection.
       properties:
         format_params:
@@ -2153,7 +2048,6 @@ components:
       type: object
       x-inner-field: mongodb
     Organization:
-      additionalProperties: false
       description: An organization in Rockset is a container for users and collections.
       properties:
         clusters:
@@ -2185,14 +2079,12 @@ components:
           type: string
       type: object
     OrganizationResponse:
-      additionalProperties: false
       properties:
         data:
           $ref: "#/components/schemas/Organization"
           description: Organization object
       type: object
     OutputField:
-      additionalProperties: false
       properties:
         field_name:
           description: "The name of a field, parsed as a SQL qualified name "
@@ -2211,7 +2103,6 @@ components:
           example: SHA256(:zip)
       type: object
     Pagination:
-      additionalProperties: false
       properties:
         start_cursor:
           description:
@@ -2221,7 +2112,6 @@ components:
           type: string
       type: object
     PaginationInfo:
-      additionalProperties: false
       properties:
         current_page_doc_count:
           description: Number of documents returned in this result set
@@ -2248,7 +2138,6 @@ components:
           type: string
       type: object
     PatchDocument:
-      additionalProperties: false
       properties:
         _id:
           description: Unique ID of the document to be patched.
@@ -2264,7 +2153,6 @@ components:
         - patch
       type: object
     PatchDocumentsRequest:
-      additionalProperties: false
       properties:
         data:
           description: List of patches to be applied.
@@ -2275,7 +2163,6 @@ components:
         - data
       type: object
     PatchDocumentsResponse:
-      additionalProperties: false
       properties:
         data:
           items:
@@ -2285,7 +2172,6 @@ components:
         - data
       type: object
     PatchOperation:
-      additionalProperties: false
       properties:
         from:
           description:
@@ -2324,7 +2210,6 @@ components:
         - path
       type: object
     Privilege:
-      additionalProperties: false
       properties:
         action:
           description: The action allowed by this privilege.
@@ -2339,6 +2224,7 @@ components:
             - UPDATE_BILLING_GLOBAL
             - UPDATE_SETTINGS_GLOBAL
             - GET_METRICS_GLOBAL
+            - CREATE_VI_GLOBAL
             - UPDATE_VI_GLOBAL
             - LIST_VI_GLOBAL
             - CREATE_WS_GLOBAL
@@ -2385,7 +2271,6 @@ components:
           type: string
       type: object
     QueryError:
-      additionalProperties: false
       properties:
         message:
           description:
@@ -2406,7 +2291,6 @@ components:
           type: string
       type: object
     QueryFieldType:
-      additionalProperties: false
       properties:
         name:
           description: name of the field
@@ -2421,7 +2305,6 @@ components:
         - type
       type: object
     QueryInfo:
-      additionalProperties: false
       properties:
         executed_by:
           description: User ID who executed the query
@@ -2473,7 +2356,6 @@ components:
           type: string
       type: object
     QueryLambda:
-      additionalProperties: false
       properties:
         collections:
           description: collections/aliases queried by underlying SQL query
@@ -2506,7 +2388,6 @@ components:
           type: string
       type: object
     QueryLambdaSql:
-      additionalProperties: false
       properties:
         default_parameters:
           description: default parameters for this Query Lambda
@@ -2521,7 +2402,6 @@ components:
         - query
       type: object
     QueryLambdaStats:
-      additionalProperties: false
       properties:
         last_executed:
           description: ISO-8601 date
@@ -2541,7 +2421,6 @@ components:
           type: string
       type: object
     QueryLambdaTag:
-      additionalProperties: false
       properties:
         tag_name:
           description: name of Query Lambda tag
@@ -2553,14 +2432,12 @@ components:
           example: b1d7c9a34b50cd
       type: object
     QueryLambdaTagResponse:
-      additionalProperties: false
       properties:
         data:
           $ref: "#/components/schemas/QueryLambdaTag"
           description: updated Query Lambda tag
       type: object
     QueryLambdaVersion:
-      additionalProperties: false
       properties:
         collections:
           description: collections queried by underlying SQL query
@@ -2606,14 +2483,12 @@ components:
           type: string
       type: object
     QueryLambdaVersionResponse:
-      additionalProperties: false
       properties:
         data:
           $ref: "#/components/schemas/QueryLambdaVersion"
           description: Query Lambda version details
       type: object
     QueryPaginationResponse:
-      additionalProperties: false
       properties:
         pagination:
           $ref: "#/components/schemas/PaginationInfo"
@@ -2629,7 +2504,6 @@ components:
           type: integer
       type: object
     QueryParameter:
-      additionalProperties: false
       properties:
         name:
           description: name of the field
@@ -2649,7 +2523,6 @@ components:
         - value
       type: object
     QueryRequest:
-      additionalProperties: false
       properties:
         async_options:
           $ref: "#/components/schemas/AsyncQueryOptions"
@@ -2661,7 +2534,6 @@ components:
         - sql
       type: object
     QueryRequestSql:
-      additionalProperties: false
       properties:
         default_row_limit:
           description:
@@ -2698,7 +2570,6 @@ components:
         - query
       type: object
     QueryResponse:
-      additionalProperties: false
       properties:
         collections:
           description: List of collections referenced in the query.
@@ -2756,7 +2627,6 @@ components:
           type: array
       type: object
     QueryResponseStats:
-      additionalProperties: false
       properties:
         elapsed_time_ms:
           description: query time in milliseconds
@@ -2770,7 +2640,6 @@ components:
           type: integer
       type: object
     Role:
-      additionalProperties: false
       properties:
         created_at:
           description: ISO-8601 date of when the role was created.
@@ -2799,13 +2668,11 @@ components:
           type: string
       type: object
     RoleResponse:
-      additionalProperties: false
       properties:
         data:
           $ref: "#/components/schemas/Role"
       type: object
     S3CollectionCreationRequest:
-      additionalProperties: false
       properties:
         clustering_key:
           description: list of clustering fields
@@ -2854,7 +2721,6 @@ components:
         - name
       type: object
     S3Integration:
-      additionalProperties: false
       properties:
         aws_access_key:
           $ref: "#/components/schemas/AwsAccessKey"
@@ -2864,7 +2730,6 @@ components:
           description: details of an AWS cross-account role integration
       type: object
     S3IntegrationCreationRequest:
-      additionalProperties: false
       properties:
         description:
           description: longer explanation for the integration
@@ -2881,7 +2746,6 @@ components:
         - name
       type: object
     S3SourceWrapper:
-      additionalProperties: false
       description: Details about the data source for the given collection.
       properties:
         format_params:
@@ -2902,7 +2766,6 @@ components:
       type: object
       x-inner-field: s3
     SchemaRegistryConfig:
-      additionalProperties: false
       properties:
         key:
           description: The secure API key for schema registry
@@ -2915,7 +2778,6 @@ components:
           type: string
       type: object
     SegmentIntegration:
-      additionalProperties: false
       properties:
         connection_string:
           description: segment connection string
@@ -2923,7 +2785,6 @@ components:
           type: string
       type: object
     SegmentIntegrationCreationRequest:
-      additionalProperties: false
       properties:
         description:
           description: longer explanation for the integration
@@ -2939,7 +2800,6 @@ components:
         - name
       type: object
     SnowflakeCollectionCreationRequest:
-      additionalProperties: false
       properties:
         clustering_key:
           description: list of clustering fields
@@ -2988,7 +2848,6 @@ components:
         - name
       type: object
     SnowflakeIntegration:
-      additionalProperties: false
       properties:
         aws_access_key:
           $ref: "#/components/schemas/AwsAccessKey"
@@ -3028,7 +2887,6 @@ components:
         - username
       type: object
     SnowflakeIntegrationCreationRequest:
-      additionalProperties: false
       properties:
         description:
           description: longer explanation for the integration
@@ -3044,7 +2902,6 @@ components:
         - name
       type: object
     SnowflakeSourceWrapper:
-      additionalProperties: false
       description: Details about the data source for the given collection.
       properties:
         format_params:
@@ -3065,7 +2922,6 @@ components:
       type: object
       x-inner-field: snowflake
     Source:
-      additionalProperties: false
       description:
         "Details about the data source for the given collection. Only one
         of the following fields are allowed to be defined. Only collections can act
@@ -3085,7 +2941,6 @@ components:
           readOnly: true
       type: object
     SourceAzureBlobStorage:
-      additionalProperties: false
       properties:
         blob_bytes_total:
           format: int64
@@ -3115,7 +2970,6 @@ components:
           type: string
       type: object
     SourceAzureEventHubs:
-      additionalProperties: false
       properties:
         hub_id:
           description: name of the hub which rockset should ingest from
@@ -3135,7 +2989,6 @@ components:
           readOnly: true
       type: object
     SourceAzureServiceBus:
-      additionalProperties: false
       properties:
         status:
           allOf:
@@ -3152,7 +3005,6 @@ components:
           type: string
       type: object
     SourceDynamoDb:
-      additionalProperties: false
       properties:
         aws_region:
           description:
@@ -3186,7 +3038,6 @@ components:
         - table_name
       type: object
     SourceFileUpload:
-      additionalProperties: false
       properties:
         file_name:
           description: name of the file
@@ -3207,7 +3058,6 @@ components:
         - file_upload_time
       type: object
     SourceGcs:
-      additionalProperties: false
       properties:
         bucket:
           description: name of GCS bucket you want to ingest from
@@ -3237,7 +3087,6 @@ components:
           type: string
       type: object
     SourceKafka:
-      additionalProperties: false
       properties:
         consumer_group_id:
           description: The Kafka consumer group Id being used
@@ -3263,7 +3112,6 @@ components:
         - kafka_topic_name
       type: object
     SourceKinesis:
-      additionalProperties: false
       properties:
         aws_region:
           description:
@@ -3293,7 +3141,6 @@ components:
         - stream_name
       type: object
     SourceMongoDb:
-      additionalProperties: false
       properties:
         collection_name:
           description: MongoDB collection name
@@ -3313,7 +3160,6 @@ components:
         - database_name
       type: object
     SourceS3:
-      additionalProperties: false
       properties:
         bucket:
           description: address of S3 bucket containing data
@@ -3359,7 +3205,6 @@ components:
         - prefixes
       type: object
     SourceSnowflake:
-      additionalProperties: false
       properties:
         database:
           description: name of the snowflake database
@@ -3388,7 +3233,6 @@ components:
         - table_name
       type: object
     SqlExpression:
-      additionalProperties: false
       properties:
         sql:
           description: The name of a sql function
@@ -3396,7 +3240,6 @@ components:
           type: string
       type: object
     Stats:
-      additionalProperties: false
       properties:
         elapsed_time_ms:
           description:
@@ -3426,7 +3269,6 @@ components:
           type: integer
       type: object
     Status:
-      additionalProperties: false
       properties:
         last_processed_at:
           description: ISO-8601 date when source was last processed
@@ -3459,7 +3301,6 @@ components:
           type: integer
       type: object
     StatusAzureEventHubs:
-      additionalProperties: false
       properties:
         last_consumed_time:
           description: Time at which the last document was consumed
@@ -3485,7 +3326,6 @@ components:
           type: string
       type: object
     StatusAzureEventHubsPartition:
-      additionalProperties: false
       properties:
         offset_lag:
           description: Per partition lag for offset
@@ -3504,7 +3344,6 @@ components:
           type: integer
       type: object
     StatusAzureServiceBus:
-      additionalProperties: false
       properties:
         first_processed_at:
           description: Service Bus first message processed time in ISO-8601 format
@@ -3522,7 +3361,6 @@ components:
           type: object
       type: object
     StatusAzureServiceBusSession:
-      additionalProperties: false
       properties:
         last_processed:
           description:
@@ -3537,7 +3375,6 @@ components:
           type: integer
       type: object
     StatusDynamoDb:
-      additionalProperties: false
       properties:
         scan_end_time:
           description: DynamoDb scan end time
@@ -3571,7 +3408,6 @@ components:
           type: string
       type: object
     StatusDynamoDbV2:
-      additionalProperties: false
       properties:
         initial_dump_completion_percentage:
           example: 0.73
@@ -3593,7 +3429,6 @@ components:
           type: string
       type: object
     StatusKafka:
-      additionalProperties: false
       properties:
         kafka_partitions:
           description: Status info per partition
@@ -3619,7 +3454,6 @@ components:
           type: string
       type: object
     StatusKafkaPartition:
-      additionalProperties: false
       properties:
         offset_lag:
           description: Per partition lag for offset
@@ -3638,7 +3472,6 @@ components:
           type: integer
       type: object
     StatusMongoDb:
-      additionalProperties: false
       properties:
         scan_end_time:
           description: MongoDB scan end time
@@ -3695,7 +3528,6 @@ components:
           type: integer
       type: object
     StatusSnowflake:
-      additionalProperties: false
       properties:
         state:
           description: state of current ingest for this table
@@ -3708,7 +3540,6 @@ components:
           type: string
       type: object
     UnsubscribePreference:
-      additionalProperties: false
       description: Notification preferences for the user.
       properties:
         notificationType:
@@ -3719,7 +3550,6 @@ components:
         - notificationType
       type: object
     UpdateAliasRequest:
-      additionalProperties: false
       properties:
         collections:
           description: list of fully qualified collection names referenced by alias
@@ -3737,7 +3567,6 @@ components:
         - collections
       type: object
     UpdateApiKeyRequest:
-      additionalProperties: false
       properties:
         state:
           description: State that the api key should be set to.
@@ -3748,14 +3577,12 @@ components:
           type: string
       type: object
     UpdateApiKeyResponse:
-      additionalProperties: false
       properties:
         data:
           $ref: "#/components/schemas/ApiKey"
           description: The API key that was updated.
       type: object
     UpdateQueryLambdaRequest:
-      additionalProperties: false
       properties:
         description:
           description: optional description
@@ -3766,7 +3593,6 @@ components:
           description: Query Lambda SQL query
       type: object
     UpdateRoleRequest:
-      additionalProperties: false
       properties:
         description:
           description: Description for the role.
@@ -3779,7 +3605,6 @@ components:
           type: array
       type: object
     UpdateUnsubscribePreferencesRequest:
-      additionalProperties: false
       properties:
         data:
           description: List of notification preferences
@@ -3788,7 +3613,6 @@ components:
           type: array
       type: object
     UpdateUnsubscribePreferencesResponse:
-      additionalProperties: false
       properties:
         data:
           description: List of notification preferences
@@ -3797,7 +3621,6 @@ components:
           type: array
       type: object
     UpdateViewRequest:
-      additionalProperties: false
       properties:
         description:
           description: optional description
@@ -3811,14 +3634,12 @@ components:
         - query
       type: object
     UpdateViewResponse:
-      additionalProperties: false
       properties:
         data:
           $ref: "#/components/schemas/View"
           description: view that was updated
       type: object
     UpdateVirtualInstanceRequest:
-      additionalProperties: false
       properties:
         monitoring_enabled:
           type: boolean
@@ -3854,14 +3675,12 @@ components:
           type: string
       type: object
     UpdateVirtualInstanceResponse:
-      additionalProperties: false
       properties:
         data:
           $ref: "#/components/schemas/VirtualInstance"
           description: virtual instance that was switched
       type: object
     User:
-      additionalProperties: false
       properties:
         created_at:
           description: ISO-8601 date
@@ -3896,7 +3715,6 @@ components:
         - email
       type: object
     ValidateQueryResponse:
-      additionalProperties: false
       properties:
         collections:
           description: list of collections specified in query
@@ -3917,7 +3735,6 @@ components:
         - parameters
       type: object
     View:
-      additionalProperties: false
       properties:
         created_at:
           description: ISO-8601 date
@@ -3974,7 +3791,6 @@ components:
           type: string
       type: object
     VirtualInstance:
-      additionalProperties: false
       properties:
         current_size:
           description: virtual instance current size
@@ -4065,7 +3881,6 @@ components:
           type: string
       type: object
     Workspace:
-      additionalProperties: false
       description: Workspaces are organizational containers for collections.
       properties:
         collection_count:
@@ -4091,7 +3906,6 @@ components:
           type: string
       type: object
     XmlParams:
-      additionalProperties: false
       properties:
         attribute_prefix:
           description: tag to differentiate between attributes and elements

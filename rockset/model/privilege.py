@@ -66,6 +66,7 @@ class Privilege(ModelNormal):
             'UPDATE_BILLING_GLOBAL': "UPDATE_BILLING_GLOBAL",
             'UPDATE_SETTINGS_GLOBAL': "UPDATE_SETTINGS_GLOBAL",
             'GET_METRICS_GLOBAL': "GET_METRICS_GLOBAL",
+            'CREATE_VI_GLOBAL': "CREATE_VI_GLOBAL",
             'UPDATE_VI_GLOBAL': "UPDATE_VI_GLOBAL",
             'LIST_VI_GLOBAL': "LIST_VI_GLOBAL",
             'CREATE_WS_GLOBAL': "CREATE_WS_GLOBAL",
@@ -102,7 +103,13 @@ class Privilege(ModelNormal):
     validations = {
     }
 
-    additional_properties_type = None
+    @cached_property
+    def additional_properties_type():
+        """
+        This must be a method because a model may have properties that are
+        of type self, this must run after the class is loaded
+        """
+        return (bool, date, datetime, dict, float, int, list, str, none_type,)  # noqa: E501
 
     _nullable = False
 

@@ -40,6 +40,10 @@ except rockset.ApiException as e:
 
 When making requests, certain parameters will oftentimes be instances of classes (eg. rockset.models.QueryRequestSql). Since importing and instantiating these objects can be verbose, you always have the option of passing in a dictionary instead of a model.
 
+## Queries
+
+Queries can be made be either calling the regular client [**query method**](docs/Queries.md#query) or by using the convenience method (rs.sql). The convenience method currently does not support all the options of the regular call. If you need these more advanced features, you should use the regular call.
+
 ```python
 from rockset import RocksetClient
 
@@ -58,10 +62,6 @@ try:
 except rockset.ApiException as e:
     print("Exception when querying: %s\n" % e)
 ```
-
-## Queries
-
-Queries can be made be either calling the regular client [**query method**](docs/Queries.md#query) or by using the convenience method (rs.sql). The convenience method currently does not support all the options of the regular call. If you need these more advanced features, you should use the regular call.
 
 ```python
 import rockset

@@ -6829,6 +6829,10 @@ components:
           description: Email of API key owner.
           example: test@example.com
           type: string
+        expiry_time:
+          description: The expiration date of this API key.
+          example: "2001-08-28T00:23:41Z"
+          type: string
         key:
           description: API key string of 64 alphanumeric characters.
           example: aB35kDjg*******************************
@@ -6951,7 +6955,6 @@ components:
           description: cluster type
           enum:
             - PUBLIC
-            - PRIVATE
           example: PRIVATE
           type: string
         domain:
@@ -8222,6 +8225,7 @@ components:
             - UPDATE_BILLING_GLOBAL
             - UPDATE_SETTINGS_GLOBAL
             - GET_METRICS_GLOBAL
+            - CREATE_VI_GLOBAL
             - UPDATE_VI_GLOBAL
             - LIST_VI_GLOBAL
             - CREATE_WS_GLOBAL
