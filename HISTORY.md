@@ -1,3 +1,6 @@
+### v0.1.14
+    - Fix rebase error
+
 ### v0.1.13
     - Remove additionalProperties by default
     - Move client-specific swagger specs to this repo

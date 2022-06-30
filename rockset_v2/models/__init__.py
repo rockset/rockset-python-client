@@ -16,17 +16,31 @@ from rockset_v2.model.api_key import ApiKey
 from rockset_v2.model.async_query_options import AsyncQueryOptions
 from rockset_v2.model.aws_access_key import AwsAccessKey
 from rockset_v2.model.aws_role import AwsRole
-from rockset_v2.model.azure_blob_storage_collection_creation_request import AzureBlobStorageCollectionCreationRequest
+from rockset_v2.model.azure_blob_storage_collection_creation_request import (
+    AzureBlobStorageCollectionCreationRequest,
+)
 from rockset_v2.model.azure_blob_storage_integration import AzureBlobStorageIntegration
-from rockset_v2.model.azure_blob_storage_integration_creation_request import AzureBlobStorageIntegrationCreationRequest
-from rockset_v2.model.azure_blob_storage_source_wrapper import AzureBlobStorageSourceWrapper
-from rockset_v2.model.azure_event_hubs_collection_creation_request import AzureEventHubsCollectionCreationRequest
+from rockset_v2.model.azure_blob_storage_integration_creation_request import (
+    AzureBlobStorageIntegrationCreationRequest,
+)
+from rockset_v2.model.azure_blob_storage_source_wrapper import (
+    AzureBlobStorageSourceWrapper,
+)
+from rockset_v2.model.azure_event_hubs_collection_creation_request import (
+    AzureEventHubsCollectionCreationRequest,
+)
 from rockset_v2.model.azure_event_hubs_integration import AzureEventHubsIntegration
-from rockset_v2.model.azure_event_hubs_integration_creation_request import AzureEventHubsIntegrationCreationRequest
+from rockset_v2.model.azure_event_hubs_integration_creation_request import (
+    AzureEventHubsIntegrationCreationRequest,
+)
 from rockset_v2.model.azure_event_hubs_source_wrapper import AzureEventHubsSourceWrapper
-from rockset_v2.model.azure_service_bus_collection_creation_request import AzureServiceBusCollectionCreationRequest
+from rockset_v2.model.azure_service_bus_collection_creation_request import (
+    AzureServiceBusCollectionCreationRequest,
+)
 from rockset_v2.model.azure_service_bus_integration import AzureServiceBusIntegration
-from rockset_v2.model.azure_service_bus_source_wrapper import AzureServiceBusSourceWrapper
+from rockset_v2.model.azure_service_bus_source_wrapper import (
+    AzureServiceBusSourceWrapper,
+)
 from rockset_v2.model.cancel_query_response import CancelQueryResponse
 from rockset_v2.model.cluster import Cluster
 from rockset_v2.model.collection import Collection
@@ -61,9 +75,13 @@ from rockset_v2.model.delete_user_response import DeleteUserResponse
 from rockset_v2.model.delete_view_response import DeleteViewResponse
 from rockset_v2.model.delete_workspace_response import DeleteWorkspaceResponse
 from rockset_v2.model.document_status import DocumentStatus
-from rockset_v2.model.dynamodb_collection_creation_request import DynamodbCollectionCreationRequest
+from rockset_v2.model.dynamodb_collection_creation_request import (
+    DynamodbCollectionCreationRequest,
+)
 from rockset_v2.model.dynamodb_integration import DynamodbIntegration
-from rockset_v2.model.dynamodb_integration_creation_request import DynamodbIntegrationCreationRequest
+from rockset_v2.model.dynamodb_integration_creation_request import (
+    DynamodbIntegrationCreationRequest,
+)
 from rockset_v2.model.dynamodb_source_wrapper import DynamodbSourceWrapper
 from rockset_v2.model.error_model import ErrorModel
 from rockset_v2.model.event_time_info import EventTimeInfo
@@ -71,13 +89,19 @@ from rockset_v2.model.execute_query_lambda_request import ExecuteQueryLambdaRequ
 from rockset_v2.model.field_mapping_query import FieldMappingQuery
 from rockset_v2.model.field_mapping_v2 import FieldMappingV2
 from rockset_v2.model.field_partition import FieldPartition
-from rockset_v2.model.file_upload_collection_creation_request import FileUploadCollectionCreationRequest
+from rockset_v2.model.file_upload_collection_creation_request import (
+    FileUploadCollectionCreationRequest,
+)
 from rockset_v2.model.file_upload_source_wrapper import FileUploadSourceWrapper
 from rockset_v2.model.format_params import FormatParams
 from rockset_v2.model.gcp_service_account import GcpServiceAccount
-from rockset_v2.model.gcs_collection_creation_request import GcsCollectionCreationRequest
+from rockset_v2.model.gcs_collection_creation_request import (
+    GcsCollectionCreationRequest,
+)
 from rockset_v2.model.gcs_integration import GcsIntegration
-from rockset_v2.model.gcs_integration_creation_request import GcsIntegrationCreationRequest
+from rockset_v2.model.gcs_integration_creation_request import (
+    GcsIntegrationCreationRequest,
+)
 from rockset_v2.model.gcs_source_wrapper import GcsSourceWrapper
 from rockset_v2.model.get_alias_response import GetAliasResponse
 from rockset_v2.model.get_api_key_response import GetApiKeyResponse
@@ -88,14 +112,22 @@ from rockset_v2.model.get_virtual_instance_response import GetVirtualInstanceRes
 from rockset_v2.model.get_workspace_response import GetWorkspaceResponse
 from rockset_v2.model.input_field import InputField
 from rockset_v2.model.integration import Integration
-from rockset_v2.model.kafka_collection_creation_request import KafkaCollectionCreationRequest
+from rockset_v2.model.kafka_collection_creation_request import (
+    KafkaCollectionCreationRequest,
+)
 from rockset_v2.model.kafka_integration import KafkaIntegration
-from rockset_v2.model.kafka_integration_creation_request import KafkaIntegrationCreationRequest
+from rockset_v2.model.kafka_integration_creation_request import (
+    KafkaIntegrationCreationRequest,
+)
 from rockset_v2.model.kafka_source_wrapper import KafkaSourceWrapper
 from rockset_v2.model.kafka_v3_security_config import KafkaV3SecurityConfig
-from rockset_v2.model.kinesis_collection_creation_request import KinesisCollectionCreationRequest
+from rockset_v2.model.kinesis_collection_creation_request import (
+    KinesisCollectionCreationRequest,
+)
 from rockset_v2.model.kinesis_integration import KinesisIntegration
-from rockset_v2.model.kinesis_integration_creation_request import KinesisIntegrationCreationRequest
+from rockset_v2.model.kinesis_integration_creation_request import (
+    KinesisIntegrationCreationRequest,
+)
 from rockset_v2.model.kinesis_source_wrapper import KinesisSourceWrapper
 from rockset_v2.model.list_aliases_response import ListAliasesResponse
 from rockset_v2.model.list_api_keys_response import ListApiKeysResponse
@@ -103,17 +135,27 @@ from rockset_v2.model.list_collections_response import ListCollectionsResponse
 from rockset_v2.model.list_integrations_response import ListIntegrationsResponse
 from rockset_v2.model.list_queries_response import ListQueriesResponse
 from rockset_v2.model.list_query_lambda_tags_response import ListQueryLambdaTagsResponse
-from rockset_v2.model.list_query_lambda_versions_response import ListQueryLambdaVersionsResponse
+from rockset_v2.model.list_query_lambda_versions_response import (
+    ListQueryLambdaVersionsResponse,
+)
 from rockset_v2.model.list_query_lambdas_response import ListQueryLambdasResponse
 from rockset_v2.model.list_roles_response import ListRolesResponse
-from rockset_v2.model.list_unsubscribe_preferences_response import ListUnsubscribePreferencesResponse
+from rockset_v2.model.list_unsubscribe_preferences_response import (
+    ListUnsubscribePreferencesResponse,
+)
 from rockset_v2.model.list_users_response import ListUsersResponse
 from rockset_v2.model.list_views_response import ListViewsResponse
-from rockset_v2.model.list_virtual_instances_response import ListVirtualInstancesResponse
+from rockset_v2.model.list_virtual_instances_response import (
+    ListVirtualInstancesResponse,
+)
 from rockset_v2.model.list_workspaces_response import ListWorkspacesResponse
 from rockset_v2.model.mongo_db_integration import MongoDbIntegration
-from rockset_v2.model.mongodb_collection_creation_request import MongodbCollectionCreationRequest
-from rockset_v2.model.mongodb_integration_creation_request import MongodbIntegrationCreationRequest
+from rockset_v2.model.mongodb_collection_creation_request import (
+    MongodbCollectionCreationRequest,
+)
+from rockset_v2.model.mongodb_integration_creation_request import (
+    MongodbIntegrationCreationRequest,
+)
 from rockset_v2.model.mongodb_source_wrapper import MongodbSourceWrapper
 from rockset_v2.model.organization import Organization
 from rockset_v2.model.organization_response import OrganizationResponse
@@ -145,11 +187,17 @@ from rockset_v2.model.role import Role
 from rockset_v2.model.role_response import RoleResponse
 from rockset_v2.model.s3_collection_creation_request import S3CollectionCreationRequest
 from rockset_v2.model.s3_integration import S3Integration
-from rockset_v2.model.s3_integration_creation_request import S3IntegrationCreationRequest
+from rockset_v2.model.s3_integration_creation_request import (
+    S3IntegrationCreationRequest,
+)
 from rockset_v2.model.s3_source_wrapper import S3SourceWrapper
 from rockset_v2.model.schema_registry_config import SchemaRegistryConfig
 from rockset_v2.model.segment_integration import SegmentIntegration
-from rockset_v2.model.segment_integration_creation_request import SegmentIntegrationCreationRequest
+from rockset_v2.model.segment_integration_creation_request import (
+    SegmentIntegrationCreationRequest,
+)
+from rockset_v2.model.snowflake_integration import SnowflakeIntegration
+from rockset_v2.model.snowflake_source_wrapper import SnowflakeSourceWrapper
 from rockset_v2.model.source import Source
 from rockset_v2.model.source_azure_blob_storage import SourceAzureBlobStorage
 from rockset_v2.model.source_azure_event_hubs import SourceAzureEventHubs
@@ -165,9 +213,13 @@ from rockset_v2.model.sql_expression import SqlExpression
 from rockset_v2.model.stats import Stats
 from rockset_v2.model.status import Status
 from rockset_v2.model.status_azure_event_hubs import StatusAzureEventHubs
-from rockset_v2.model.status_azure_event_hubs_partition import StatusAzureEventHubsPartition
+from rockset_v2.model.status_azure_event_hubs_partition import (
+    StatusAzureEventHubsPartition,
+)
 from rockset_v2.model.status_azure_service_bus import StatusAzureServiceBus
-from rockset_v2.model.status_azure_service_bus_session import StatusAzureServiceBusSession
+from rockset_v2.model.status_azure_service_bus_session import (
+    StatusAzureServiceBusSession,
+)
 from rockset_v2.model.status_dynamo_db import StatusDynamoDb
 from rockset_v2.model.status_dynamo_db_v2 import StatusDynamoDbV2
 from rockset_v2.model.status_kafka import StatusKafka
@@ -181,12 +233,20 @@ from rockset_v2.model.update_integration_request import UpdateIntegrationRequest
 from rockset_v2.model.update_integration_response import UpdateIntegrationResponse
 from rockset_v2.model.update_query_lambda_request import UpdateQueryLambdaRequest
 from rockset_v2.model.update_role_request import UpdateRoleRequest
-from rockset_v2.model.update_unsubscribe_preferences_request import UpdateUnsubscribePreferencesRequest
-from rockset_v2.model.update_unsubscribe_preferences_response import UpdateUnsubscribePreferencesResponse
+from rockset_v2.model.update_unsubscribe_preferences_request import (
+    UpdateUnsubscribePreferencesRequest,
+)
+from rockset_v2.model.update_unsubscribe_preferences_response import (
+    UpdateUnsubscribePreferencesResponse,
+)
 from rockset_v2.model.update_view_request import UpdateViewRequest
 from rockset_v2.model.update_view_response import UpdateViewResponse
-from rockset_v2.model.update_virtual_instance_request import UpdateVirtualInstanceRequest
-from rockset_v2.model.update_virtual_instance_response import UpdateVirtualInstanceResponse
+from rockset_v2.model.update_virtual_instance_request import (
+    UpdateVirtualInstanceRequest,
+)
+from rockset_v2.model.update_virtual_instance_response import (
+    UpdateVirtualInstanceResponse,
+)
 from rockset_v2.model.user import User
 from rockset_v2.model.validate_query_response import ValidateQueryResponse
 from rockset_v2.model.view import View

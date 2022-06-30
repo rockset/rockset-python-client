@@ -40,6 +40,7 @@ from rockset_v2.model.list_collections_response import ListCollectionsResponse
 from rockset_v2.model.mongodb_collection_creation_request import MongodbCollectionCreationRequest
 from rockset_v2.model.s3_collection_creation_request import S3CollectionCreationRequest
 from rockset_v2.model.snowflake_collection_creation_request import SnowflakeCollectionCreationRequest
+from rockset_v2.models import *
 
 
 class Collections(object):
