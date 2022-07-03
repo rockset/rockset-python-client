@@ -1,0 +1,58 @@
+{{#vars}}
+{{#required}}
+{{#isArray}}
+{{#items}}
+{{^isReadOnly}}
+{{#isPrimitiveType}}
+        {{name}}: typing.Sequence[{{dataType}}],
+{{/isPrimitiveType}}
+{{#isModel}}
+        {{name}}: typing.Sequence[{{dataType}}],
+{{/isModel}}
+{{^isPrimitiveType}}
+{{^isModel}}
+        {{name}}: typing.Sequence,
+{{/isModel}}
+{{/isPrimitiveType}}
+{{/isReadOnly}}
+{{/items}}
+{{/isArray}}
+{{#isMap}}
+        {{name}}: typing.Dict,
+{{/isMap}}
+{{^isArray}}
+{{^isMap}}
+        {{name}}: {{dataType}},
+{{/isMap}}
+{{/isArray}}
+{{/required}}
+{{/vars}}
+{{#vars}}
+{{^required}}
+{{#isArray}}
+{{#items}}
+{{^isReadOnly}}
+{{#isPrimitiveType}}
+        {{name}}: typing.Sequence[{{dataType}}] = None,
+{{/isPrimitiveType}}
+{{#isModel}}
+        {{name}}: typing.Sequence[{{dataType}}] = None,
+{{/isModel}}
+{{^isPrimitiveType}}
+{{^isModel}}
+        {{name}}: typing.Sequence = None,
+{{/isModel}}
+{{/isPrimitiveType}}
+{{/isReadOnly}}
+{{/items}}
+{{/isArray}}
+{{#isMap}}
+        {{name}}: typing.Dict = None,
+{{/isMap}}
+{{^isArray}}
+{{^isMap}}
+        {{name}}: {{dataType}} = None,
+{{/isMap}}
+{{/isArray}}
+{{/required}}
+{{/vars}}

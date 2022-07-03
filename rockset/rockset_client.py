@@ -60,18 +60,19 @@ def wrapper(method):
         other_args = kwargs
 
         body = None
-        try:
-            body = req_type(**body_args)
-        except ApiTypeError as e:
-            raise ApiValueError(
-                f"Body for the request ({req_type}) could not be created because of an incorrect type: {e}"
-            ) from e
-        except TypeError as e:
-            raise ApiValueError(
-                f"Body for the request ({req_type}) could not be created because of a missing argument: {e}"
-            ) from e
+        if body_args:
+            try:
+                body = req_type(**body_args)
+            except ApiTypeError as e:
+                raise ApiValueError(
+                    f"Body for the request ({req_type}) could not be created because of an incorrect type: {e}"
+                ) from e
+            except TypeError as e:
+                raise ApiValueError(
+                    f"Body for the request ({req_type}) could not be created because of a missing argument: {e}"
+                ) from e
 
-        other_args[body_param_name] = body
+            other_args[body_param_name] = body
 
         return method(*args, **other_args)
 
