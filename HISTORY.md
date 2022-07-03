@@ -1,3 +1,6 @@
+### v0.1.16
+    - Fix QL execution operations (bug caused by edge case involving optional body parameter)
+
 ### v0.1.15
     - Reenable additionalProperties temporarily
 
