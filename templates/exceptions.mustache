@@ -140,6 +140,12 @@ class ServiceException(ApiException):
         super(ServiceException, self).__init__(status, reason, http_resp)
 
 
+class BadRequestException(ApiException):
+
+    def __init__(self, status=None, reason=None, http_resp=None):
+        super(BadRequestException, self).__init__(status, reason, http_resp)
+
+
 class InitializationException(RocksetException):
 
     def __init__(self, reason):

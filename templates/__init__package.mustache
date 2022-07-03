@@ -1,0 +1,31 @@
+# flake8: noqa
+
+{{>partial_header}}
+
+__version__ = "{{packageVersion}}"
+
+# import ApiClient
+from {{packageName}}.api_client import ApiClient
+
+# import Configuration
+from {{packageName}}.configuration import Configuration
+{{#hasHttpSignatureMethods}}
+from {{packageName}}.signing import HttpSigningConfiguration
+{{/hasHttpSignatureMethods}}
+
+# import exceptions
+from {{packageName}}.exceptions import RocksetException
+from {{packageName}}.exceptions import ApiAttributeError
+from {{packageName}}.exceptions import ApiTypeError
+from {{packageName}}.exceptions import ApiValueError
+from {{packageName}}.exceptions import ApiKeyError
+from {{packageName}}.exceptions import ApiException
+from {{packageName}}.exceptions import BadRequestException
+
+from {{packageName}}.rockset_client import DevRegions, Regions, RocksetClient
+from {{packageName}}.document import Document
+from {{packageName}}.query_paginator import QueryPaginator
+{{#recursionLimit}}
+
+__import__('sys').setrecursionlimit({{{.}}})
+{{/recursionLimit}}

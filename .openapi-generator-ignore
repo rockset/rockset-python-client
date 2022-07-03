@@ -12,11 +12,6 @@ requirements.txt
 git_push.sh
 .travis.yml
 .gitlab-ci.yml
-rockset/__init__.py
-rockset/exceptions.py
-rockset/api_client.py
-rockset/rest.py
-rockset/configuration.py
 rockset/model/query_response.py
 
 # As an example, the C# client generator defines ApiClient.cs.
