@@ -201,6 +201,7 @@ docs/VirtualInstancesApi.md
 docs/Workspace.md
 docs/WorkspacesApi.md
 docs/XmlParams.md
+rockset/__init__.py
 rockset/api/__init__.py
 rockset/api/aliases_api.py
 rockset/api/api_keys_api.py
@@ -215,7 +216,10 @@ rockset/api/users_api.py
 rockset/api/views_api.py
 rockset/api/virtual_instances_api.py
 rockset/api/workspaces_api.py
+rockset/api_client.py
 rockset/apis/__init__.py
+rockset/configuration.py
+rockset/exceptions.py
 rockset/model/__init__.py
 rockset/model/add_documents_request.py
 rockset/model/add_documents_response.py
@@ -407,6 +411,7 @@ rockset/model/workspace.py
 rockset/model/xml_params.py
 rockset/model_utils.py
 rockset/models/__init__.py
+rockset/rest.py
 test-requirements.txt
 test/__init__.py
 test/test_add_documents_request.py
