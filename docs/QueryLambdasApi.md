@@ -537,7 +537,13 @@ Name | Type | Description  | Notes
  **query_lambda** | **str** | name of the Query Lambda |
  **version** | **str** | version |
  **workspace** | **str** | name of the workspace | defaults to "commons"
- **execute_query_lambda_request** | [**ExecuteQueryLambdaRequest**](ExecuteQueryLambdaRequest.md) | JSON object | [optional]
+ **async_options** | [**AsyncQueryOptions**](AsyncQueryOptions.md) |  | [optional]
+ **default_row_limit** | **int** | Row limit to use if no limit specified in the SQL query text | [optional]
+ **generate_warnings** | **bool** | Whether to generate warnings | [optional]
+ **initial_paginate_response_doc_count** | **int** | Number of documents to return in addition to paginating for this query call. Only relevant if &#x60;paginate&#x60; flag is also set. | [optional]
+ **paginate** | **bool** | Flag to paginate and store the results of this query for later / sequential retrieval. | [optional]
+ **parameters** | [**[QueryParameter]**](QueryParameter.md) | list of named parameters | [optional]
+
 
 ### Return type
 
@@ -627,7 +633,13 @@ Name | Type | Description  | Notes
  **query_lambda** | **str** | name of the Query Lambda |
  **tag** | **str** | tag |
  **workspace** | **str** | name of the workspace | defaults to "commons"
- **execute_query_lambda_request** | [**ExecuteQueryLambdaRequest**](ExecuteQueryLambdaRequest.md) | JSON object | [optional]
+ **async_options** | [**AsyncQueryOptions**](AsyncQueryOptions.md) |  | [optional]
+ **default_row_limit** | **int** | Row limit to use if no limit specified in the SQL query text | [optional]
+ **generate_warnings** | **bool** | Whether to generate warnings | [optional]
+ **initial_paginate_response_doc_count** | **int** | Number of documents to return in addition to paginating for this query call. Only relevant if &#x60;paginate&#x60; flag is also set. | [optional]
+ **paginate** | **bool** | Flag to paginate and store the results of this query for later / sequential retrieval. | [optional]
+ **parameters** | [**[QueryParameter]**](QueryParameter.md) | list of named parameters | [optional]
+
 
 ### Return type
 
