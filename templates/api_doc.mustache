@@ -47,7 +47,8 @@ Name | Type | Description  | Notes
 {{#requiredParams}}{{#isBodyParam}}{{#vars}}{{^isReadOnly}} **{{name}}** | {{^complexType}}**{{dataType}}**{{/complexType}}{{#complexType}}[**{{dataType}}**]({{complexType}}.md){{/complexType}} | {{description}} | {{^required}}[optional]{{/required}}{{#defaultValue}} defaults to {{{.}}}{{/defaultValue}}
 {{/isReadOnly}}{{/vars}}{{/isBodyParam}}{{^isBodyParam}}{{^defaultValue}} **{{paramName}}** | {{^baseType}}**{{dataType}}**{{/baseType}}{{#baseType}}[**{{dataType}}**]({{baseType}}.md){{/baseType}} | {{description}} |
 {{/defaultValue}}{{/isBodyParam}}{{/requiredParams}}{{#requiredParams}}{{#defaultValue}} **{{paramName}}** | {{^baseType}}**{{dataType}}**{{/baseType}}{{#baseType}}[**{{dataType}}**]({{baseType}}.md){{/baseType}} | {{description}} | defaults to {{{.}}}
-{{/defaultValue}}{{/requiredParams}}{{#optionalParams}} **{{paramName}}** | {{^baseType}}**{{dataType}}**{{/baseType}}{{#baseType}}[**{{dataType}}**]({{baseType}}.md){{/baseType}} | {{description}} | [optional]{{#defaultValue}} if omitted the server will use the default value of {{{.}}}{{/defaultValue}}
+{{/defaultValue}}{{/requiredParams}}{{#optionalParams}}{{#isBodyParam}}{{#vars}}{{^isReadOnly}} **{{name}}** | {{^complexType}}**{{dataType}}**{{/complexType}}{{#complexType}}[**{{dataType}}**]({{complexType}}.md){{/complexType}} | {{description}} | {{^required}}[optional]{{/required}}{{#defaultValue}} defaults to {{{.}}}{{/defaultValue}}
+{{/isReadOnly}}{{/vars}}{{/isBodyParam}}{{^isBodyParam}} **{{paramName}}** | {{^baseType}}**{{dataType}}**{{/baseType}}{{#baseType}}[**{{dataType}}**]({{baseType}}.md){{/baseType}} | {{description}} | [optional]{{#defaultValue}} if omitted the server will use the default value of {{{.}}}{{/defaultValue}}{{/isBodyParam}}
 {{/optionalParams}}
 
 ### Return type
