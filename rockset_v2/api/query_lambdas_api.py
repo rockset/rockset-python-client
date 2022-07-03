@@ -1379,7 +1379,12 @@ class QueryLambdas(object):
         query_lambda: str,
         version: str,
         workspace = "commons",
-        execute_query_lambda_request: ExecuteQueryLambdaRequest = None,
+        async_options: AsyncQueryOptions = None,
+        default_row_limit: int = None,
+        generate_warnings: bool = None,
+        initial_paginate_response_doc_count: int = None,
+        paginate: bool = None,
+        parameters: typing.Sequence[QueryParameter] = None,
         **kwargs
     ) -> typing.Union[QueryResponse, asyncio.Future]:
         """Execute Query Lambda By Version  # noqa: E501
@@ -1467,9 +1472,6 @@ class QueryLambdas(object):
             query_lambda
         kwargs['version'] = \
             version
-        if execute_query_lambda_request is not None:
-            kwargs['execute_query_lambda_request'] = \
-                execute_query_lambda_request
         return self.execute_query_lambda_endpoint.call_with_http_info(**kwargs)
 
     def execute_query_lambda_by_tag(
@@ -1478,7 +1480,12 @@ class QueryLambdas(object):
         query_lambda: str,
         tag: str,
         workspace = "commons",
-        execute_query_lambda_request: ExecuteQueryLambdaRequest = None,
+        async_options: AsyncQueryOptions = None,
+        default_row_limit: int = None,
+        generate_warnings: bool = None,
+        initial_paginate_response_doc_count: int = None,
+        paginate: bool = None,
+        parameters: typing.Sequence[QueryParameter] = None,
         **kwargs
     ) -> typing.Union[QueryResponse, asyncio.Future]:
         """Execute Query Lambda By Tag  # noqa: E501
@@ -1566,9 +1573,6 @@ class QueryLambdas(object):
             query_lambda
         kwargs['tag'] = \
             tag
-        if execute_query_lambda_request is not None:
-            kwargs['execute_query_lambda_request'] = \
-                execute_query_lambda_request
         return self.execute_query_lambda_by_tag_endpoint.call_with_http_info(**kwargs)
 
     def get_query_lambda_tag_version(
