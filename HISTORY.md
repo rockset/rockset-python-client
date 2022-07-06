@@ -1,2 +1,2 @@
 ### v1.0.0
-    - Initial public release
+    - Initial public release of v1
