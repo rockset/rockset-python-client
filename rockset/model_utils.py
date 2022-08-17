@@ -16,8 +16,9 @@ import os
 import pprint
 import re
 import tempfile
+import warnings
 
-from dateutil.parser import parse
+from dateutil.parser import UnknownTimezoneWarning, parse
 
 from rockset.exceptions import (
     ApiKeyError,
@@ -1439,6 +1440,7 @@ def attempt_convert_item(input_value, valid_classes, path_to_item,
         ApiValueError
         ApiKeyError
     """
+    warnings.filterwarnings("error", "", UnknownTimezoneWarning)
     valid_classes_ordered = order_response_types(valid_classes)
     valid_classes_coercible = remove_uncoercible(
         valid_classes_ordered, input_value, spec_property_naming)
@@ -1458,7 +1460,7 @@ def attempt_convert_item(input_value, valid_classes, path_to_item,
                 return deserialize_file(input_value, configuration)
             return deserialize_primitive(input_value, valid_class,
                                          path_to_item)
-        except (ApiTypeError, ApiValueError, ApiKeyError) as conversion_exc:
+        except (ApiTypeError, ApiValueError, ApiKeyError, Warning) as conversion_exc:
             if must_convert:
                 raise conversion_exc
             # if we have conversion errors when must_convert == False

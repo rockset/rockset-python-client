@@ -1,3 +1,6 @@
+### v1.0.2
+    - Do not attempt conversion of types during deserialization if timezone warning encountered
+
 ### v1.0.1
     - Use external version
 
