@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_field_mapping_v2_init():
-    FieldMappingV2(
-        
-    )
+    FieldMappingV2()

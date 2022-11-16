@@ -14,5 +14,6 @@ from rockset.models import *
 
 def test_validate_query_response_init():
     ValidateQueryResponse(
-        collections=["commons.foo"],parameters=["foo"],
+        collections=["commons.foo"],
+        parameters=["foo"],
     )

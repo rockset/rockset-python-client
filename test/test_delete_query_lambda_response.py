@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_delete_query_lambda_response_init():
-    DeleteQueryLambdaResponse(
-        
-    )
+    DeleteQueryLambdaResponse()

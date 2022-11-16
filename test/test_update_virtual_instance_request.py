@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_update_virtual_instance_request_init():
-    UpdateVirtualInstanceRequest(
-        
-    )
+    UpdateVirtualInstanceRequest()

@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_list_users_response_init():
-    ListUsersResponse(
-        
-    )
+    ListUsersResponse()

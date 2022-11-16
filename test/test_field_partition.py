@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_field_partition_init():
-    FieldPartition(
-        
-    )
+    FieldPartition()

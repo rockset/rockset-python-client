@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_gcs_integration_init():
-    GcsIntegration(
-        
-    )
+    GcsIntegration()

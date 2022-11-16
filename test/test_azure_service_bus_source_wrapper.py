@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_azure_service_bus_source_wrapper_init():
-    AzureServiceBusSourceWrapper(
-        
-    )
+    AzureServiceBusSourceWrapper()

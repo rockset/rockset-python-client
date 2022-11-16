@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_alias_init():
-    Alias(
-        
-    )
+    Alias()

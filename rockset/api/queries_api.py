@@ -368,14 +368,14 @@ class Queries(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.Queries.cancel_query(
-    query_id="queryId_example",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Queries.cancel_query(
+            query_id="queryId_example",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             query_id (str): [required]
@@ -453,14 +453,14 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.Queries.get_query(
-    query_id="queryId_example",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Queries.get_query(
+            query_id="queryId_example",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             query_id (str): [required]
@@ -540,14 +540,14 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.Queries.get_query_results(
-    query_id="queryId_example",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Queries.get_query_results(
+            query_id="queryId_example",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             query_id (str): [required]
@@ -631,13 +631,13 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.Queries.list_active_queries(
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Queries.list_active_queries(
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -713,32 +713,32 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.Queries.query(
-    async_options=AsyncQueryOptions(
-        client_timeout_ms=1,
-        max_initial_results=1,
-        timeout_ms=1,
-    ),
-    sql=QueryRequestSql(
-        default_row_limit=1,
-        generate_warnings=True,
-        initial_paginate_response_doc_count=1,
-        paginate=True,
-        parameters=[
-            QueryParameter(
-                name="_id",
-                type="string",
-                value="85beb391",
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Queries.query(
+            async_options=AsyncQueryOptions(
+                client_timeout_ms=1,
+                max_initial_results=1,
+                timeout_ms=1,
             ),
-        ],
-        query="SELECT * FROM foo where _id = :_id",
-    ),
-    async_req=True,
-)
-result = await future
-```
+            sql=QueryRequestSql(
+                default_row_limit=1,
+                generate_warnings=True,
+                initial_paginate_response_doc_count=1,
+                paginate=True,
+                parameters=[
+                    QueryParameter(
+                        name="_id",
+                        type="string",
+                        value="85beb391",
+                    ),
+                ],
+                query="SELECT * FROM foo where _id = :_id",
+            ),
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             async_options (AsyncQueryOptions): [optional]
@@ -818,32 +818,32 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.Queries.validate(
-    async_options=AsyncQueryOptions(
-        client_timeout_ms=1,
-        max_initial_results=1,
-        timeout_ms=1,
-    ),
-    sql=QueryRequestSql(
-        default_row_limit=1,
-        generate_warnings=True,
-        initial_paginate_response_doc_count=1,
-        paginate=True,
-        parameters=[
-            QueryParameter(
-                name="_id",
-                type="string",
-                value="85beb391",
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Queries.validate(
+            async_options=AsyncQueryOptions(
+                client_timeout_ms=1,
+                max_initial_results=1,
+                timeout_ms=1,
             ),
-        ],
-        query="SELECT * FROM foo where _id = :_id",
-    ),
-    async_req=True,
-)
-result = await future
-```
+            sql=QueryRequestSql(
+                default_row_limit=1,
+                generate_warnings=True,
+                initial_paginate_response_doc_count=1,
+                paginate=True,
+                parameters=[
+                    QueryParameter(
+                        name="_id",
+                        type="string",
+                        value="85beb391",
+                    ),
+                ],
+                query="SELECT * FROM foo where _id = :_id",
+            ),
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             async_options (AsyncQueryOptions): [optional]

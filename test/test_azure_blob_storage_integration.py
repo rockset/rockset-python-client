@@ -14,6 +14,6 @@ from rockset.models import *
 
 def test_azure_blob_storage_integration_init():
     AzureBlobStorageIntegration(
-        connection_string='''BlobEndpoint=https://<NamespaceName>.blob.core.windows.net;
-SharedAccessSignature=<KeyValue>''',
+        connection_string="""BlobEndpoint=https://<NamespaceName>.blob.core.windows.net;
+SharedAccessSignature=<KeyValue>""",
     )

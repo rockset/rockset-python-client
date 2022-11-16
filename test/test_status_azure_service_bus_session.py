@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_status_azure_service_bus_session_init():
-    StatusAzureServiceBusSession(
-        
-    )
+    StatusAzureServiceBusSession()

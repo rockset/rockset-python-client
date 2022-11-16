@@ -14,5 +14,9 @@ from rockset.models import *
 
 def test_snowflake_integration_init():
     SnowflakeIntegration(
-        default_warehouse="string_example",password="string_example",s3_export_path="s3://bucket/prefix",snowflake_url="acme-marketing-test-account.snowflakecomputing.com",username="string_example",
+        default_warehouse="string_example",
+        password="string_example",
+        s3_export_path="s3://bucket/prefix",
+        snowflake_url="acme-marketing-test-account.snowflakecomputing.com",
+        username="string_example",
     )

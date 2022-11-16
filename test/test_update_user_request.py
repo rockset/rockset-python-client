@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_update_user_request_init():
-    UpdateUserRequest(
-        
-    )
+    UpdateUserRequest()

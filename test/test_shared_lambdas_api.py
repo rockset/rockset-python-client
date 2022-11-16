@@ -19,8 +19,7 @@ def test_execute_public_query_lambda(get_client, mock_request, request_validator
         rs = get_client
         try:
             rs.SharedLambdas.execute_public_query_lambda(
-    public_access_id="public_access_id_example",
-)
+                public_access_id="public_access_id_example",
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
-

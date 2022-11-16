@@ -19,9 +19,9 @@ def test_create(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Workspaces.create(
-    description="Datasets of system logs for the ops team.",
-    name="event_logs",
-)
+                description="Datasets of system logs for the ops team.",
+                name="event_logs",
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -30,8 +30,7 @@ def test_delete(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Workspaces.delete(
-)
+            rs.Workspaces.delete()
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -40,8 +39,7 @@ def test_get(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Workspaces.get(
-)
+            rs.Workspaces.get()
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -50,8 +48,6 @@ def test_list(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Workspaces.list(
-)
+            rs.Workspaces.list()
         except EarlyExit as e:
             validate_call(e, request_validator)
-

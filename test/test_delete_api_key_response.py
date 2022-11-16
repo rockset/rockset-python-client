@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_delete_api_key_response_init():
-    DeleteApiKeyResponse(
-        
-    )
+    DeleteApiKeyResponse()

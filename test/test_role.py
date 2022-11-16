@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_role_init():
-    Role(
-        
-    )
+    Role()

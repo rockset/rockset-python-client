@@ -312,22 +312,22 @@ class CustomRoles(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.CustomRoles.create(
-    description="Role with read and write privileges to all collections.",
-    privileges=[
-        Privilege(
-            action="CREATE_COLLECTION_WS",
-            cluster="*ALL*",
-            resource_name="commons",
-        ),
-    ],
-    role_name="read_write",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.CustomRoles.create(
+            description="Role with read and write privileges to all collections.",
+            privileges=[
+                Privilege(
+                    action="CREATE_COLLECTION_WS",
+                    cluster="*ALL*",
+                    resource_name="commons",
+                ),
+            ],
+            role_name="read_write",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             description (str): Description for the role.. [optional]
@@ -407,14 +407,14 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.CustomRoles.delete(
-    role_name="roleName_example",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.CustomRoles.delete(
+            role_name="roleName_example",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             role_name (str): [required]
@@ -492,14 +492,14 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.CustomRoles.get(
-    role_name="roleName_example",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.CustomRoles.get(
+            role_name="roleName_example",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             role_name (str): [required]
@@ -575,13 +575,13 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.CustomRoles.list(
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.CustomRoles.list(
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -658,22 +658,22 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.CustomRoles.update(
-    role_name="roleName_example",
-    description="Role with read and write privileges to all collections.",
-    privileges=[
-        Privilege(
-            action="CREATE_COLLECTION_WS",
-            cluster="*ALL*",
-            resource_name="commons",
-        ),
-    ],
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.CustomRoles.update(
+            role_name="roleName_example",
+            description="Role with read and write privileges to all collections.",
+            privileges=[
+                Privilege(
+                    action="CREATE_COLLECTION_WS",
+                    cluster="*ALL*",
+                    resource_name="commons",
+                ),
+            ],
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             role_name (str): [required]

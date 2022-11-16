@@ -345,16 +345,16 @@ class APIKeys(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.APIKeys.create(
-    created_by="string_example",
-    name="my-app",
-    role="string_example",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.APIKeys.create(
+            created_by="string_example",
+            name="my-app",
+            role="string_example",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             created_by (str): [optional]
@@ -435,15 +435,15 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.APIKeys.delete(
-    name="my-key",
-    user="admin@me.com",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.APIKeys.delete(
+            name="my-key",
+            user="admin@me.com",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             name (str): Name of the API key.. [required]
@@ -526,15 +526,15 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.APIKeys.get(
-    user="admin@me.com",
-    name="my-key",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.APIKeys.get(
+            user="admin@me.com",
+            name="my-key",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             user (str): Email of the API key owner. Use `self` to specify the currently authenticated user.. [required]
@@ -619,14 +619,14 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.APIKeys.list(
-    user="admin@me.com",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.APIKeys.list(
+            user="admin@me.com",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             user (str): Email of the API key owner. Use `self` to specify the currently authenticated user.. [required]
@@ -706,16 +706,16 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.APIKeys.update(
-    name="my-key",
-    user="admin@me.com",
-    state="ACTIVE",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.APIKeys.update(
+            name="my-key",
+            user="admin@me.com",
+            state="ACTIVE",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             name (str): Name of the API key.. [required]

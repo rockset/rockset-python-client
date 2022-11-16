@@ -756,17 +756,17 @@ class VirtualInstances(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.VirtualInstances.create(
-    auto_suspend_seconds=3600,
-    description="VI serving prod traffic",
-    name="prod_vi",
-    type="LARGE",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.VirtualInstances.create(
+            auto_suspend_seconds=3600,
+            description="VI serving prod traffic",
+            name="prod_vi",
+            type="LARGE",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             auto_suspend_seconds (int): Number of seconds without queries after which the VI is suspended. [optional]
@@ -847,14 +847,14 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.VirtualInstances.delete(
-    virtual_instance_id="virtualInstanceId_example",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.VirtualInstances.delete(
+            virtual_instance_id="virtualInstanceId_example",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             virtual_instance_id (str): Virtual Instance RRN. [required]
@@ -932,14 +932,14 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.VirtualInstances.get(
-    virtual_instance_id="virtualInstanceId_example",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.VirtualInstances.get(
+            virtual_instance_id="virtualInstanceId_example",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             virtual_instance_id (str): Virtual Instance RRN. [required]
@@ -1018,15 +1018,15 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.VirtualInstances.get_collection_mount(
-    virtual_instance_id="virtualInstanceId_example",
-    collection_path="collectionPath_example",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.VirtualInstances.get_collection_mount(
+            virtual_instance_id="virtualInstanceId_example",
+            collection_path="collectionPath_example",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             virtual_instance_id (str): Virtual Instance RRN. [required]
@@ -1107,14 +1107,14 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.VirtualInstances.get_virtual_instance_queries(
-    virtual_instance_id="virtualInstanceId_example",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.VirtualInstances.get_virtual_instance_queries(
+            virtual_instance_id="virtualInstanceId_example",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             virtual_instance_id (str): Virtual Instance RRN. [required]
@@ -1190,13 +1190,13 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.VirtualInstances.list(
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.VirtualInstances.list(
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -1271,14 +1271,14 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.VirtualInstances.list_collection_mounts(
-    virtual_instance_id="virtualInstanceId_example",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.VirtualInstances.list_collection_mounts(
+            virtual_instance_id="virtualInstanceId_example",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             virtual_instance_id (str): Virtual Instance RRN. [required]
@@ -1358,16 +1358,16 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.VirtualInstances.mount_collection(
-    virtual_instance_id="virtualInstanceId_example",
-    collection_paths=["commons.foo","commons.bar"],
-    type="STATIC",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.VirtualInstances.mount_collection(
+            virtual_instance_id="virtualInstanceId_example",
+            collection_paths=["commons.foo","commons.bar"],
+            type="STATIC",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             virtual_instance_id (str): Virtual Instance RRN. [required]
@@ -1451,33 +1451,33 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.VirtualInstances.query_virtual_instance(
-    virtual_instance_id="virtualInstanceId_example",
-    async_options=AsyncQueryOptions(
-        client_timeout_ms=1,
-        max_initial_results=1,
-        timeout_ms=1,
-    ),
-    sql=QueryRequestSql(
-        default_row_limit=1,
-        generate_warnings=True,
-        initial_paginate_response_doc_count=1,
-        paginate=True,
-        parameters=[
-            QueryParameter(
-                name="_id",
-                type="string",
-                value="85beb391",
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.VirtualInstances.query_virtual_instance(
+            virtual_instance_id="virtualInstanceId_example",
+            async_options=AsyncQueryOptions(
+                client_timeout_ms=1,
+                max_initial_results=1,
+                timeout_ms=1,
             ),
-        ],
-        query="SELECT * FROM foo where _id = :_id",
-    ),
-    async_req=True,
-)
-result = await future
-```
+            sql=QueryRequestSql(
+                default_row_limit=1,
+                generate_warnings=True,
+                initial_paginate_response_doc_count=1,
+                paginate=True,
+                parameters=[
+                    QueryParameter(
+                        name="_id",
+                        type="string",
+                        value="85beb391",
+                    ),
+                ],
+                query="SELECT * FROM foo where _id = :_id",
+            ),
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             virtual_instance_id (str): Virtual Instance RRN. [required]
@@ -1559,14 +1559,14 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.VirtualInstances.resume_virtual_instance(
-    virtual_instance_id="virtualInstanceId_example",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.VirtualInstances.resume_virtual_instance(
+            virtual_instance_id="virtualInstanceId_example",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             virtual_instance_id (str): Virtual Instance RRN. [required]
@@ -1644,14 +1644,14 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.VirtualInstances.suspend_virtual_instance(
-    virtual_instance_id="virtualInstanceId_example",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.VirtualInstances.suspend_virtual_instance(
+            virtual_instance_id="virtualInstanceId_example",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             virtual_instance_id (str): Virtual Instance RRN. [required]
@@ -1730,15 +1730,15 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.VirtualInstances.unmount_collection(
-    virtual_instance_id="virtualInstanceId_example",
-    collection_path="collectionPath_example",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.VirtualInstances.unmount_collection(
+            virtual_instance_id="virtualInstanceId_example",
+            collection_path="collectionPath_example",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             virtual_instance_id (str): Virtual Instance RRN. [required]
@@ -1825,20 +1825,20 @@ result = await future
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.VirtualInstances.update(
-    virtual_instance_id="virtualInstanceId_example",
-    auto_suspend_enabled=True,
-    auto_suspend_seconds=3600,
-    description="VI for prod traffic",
-    monitoring_enabled=True,
-    name="prod_vi",
-    new_size="LARGE",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.VirtualInstances.update(
+            virtual_instance_id="virtualInstanceId_example",
+            auto_suspend_enabled=True,
+            auto_suspend_seconds=3600,
+            description="VI for prod traffic",
+            monitoring_enabled=True,
+            name="prod_vi",
+            new_size="LARGE",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             virtual_instance_id (str): Virtual Instance RRN. [required]

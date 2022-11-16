@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_resume_virtual_instance_response_init():
-    ResumeVirtualInstanceResponse(
-        
-    )
+    ResumeVirtualInstanceResponse()

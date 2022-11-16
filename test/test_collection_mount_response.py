@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_collection_mount_response_init():
-    CollectionMountResponse(
-        
-    )
+    CollectionMountResponse()

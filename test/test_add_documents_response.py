@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_add_documents_response_init():
-    AddDocumentsResponse(
-        
-    )
+    AddDocumentsResponse()

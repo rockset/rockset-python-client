@@ -14,5 +14,6 @@ from rockset.models import *
 
 def test_create_query_lambda_tag_request_init():
     CreateQueryLambdaTagRequest(
-        tag_name="production",version="123ABC",
+        tag_name="production",
+        version="123ABC",
     )

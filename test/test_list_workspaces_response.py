@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_list_workspaces_response_init():
-    ListWorkspacesResponse(
-        
-    )
+    ListWorkspacesResponse()

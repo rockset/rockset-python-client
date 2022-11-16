@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_list_integrations_response_init():
-    ListIntegrationsResponse(
-        
-    )
+    ListIntegrationsResponse()

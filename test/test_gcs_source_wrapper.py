@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_gcs_source_wrapper_init():
-    GcsSourceWrapper(
-        
-    )
+    GcsSourceWrapper()

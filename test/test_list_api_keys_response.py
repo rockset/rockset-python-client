@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_list_api_keys_response_init():
-    ListApiKeysResponse(
-        
-    )
+    ListApiKeysResponse()

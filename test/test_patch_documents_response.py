@@ -15,20 +15,20 @@ from rockset.models import *
 def test_patch_documents_response_init():
     PatchDocumentsResponse(
         data=[
-        DocumentStatus(
-            collection="customers",
-            id="2cd61e3b",
-            error=ErrorModel(
-                column=1,
-                error_id="error_id_example",
-                line=1,
-                message="collection not found",
-                query_id="query_id_example",
-                trace_id="trace_id_example",
-                type="INVALIDINPUT",
+            DocumentStatus(
+                collection="customers",
+                id="2cd61e3b",
+                error=ErrorModel(
+                    column=1,
+                    error_id="error_id_example",
+                    line=1,
+                    message="collection not found",
+                    query_id="query_id_example",
+                    trace_id="trace_id_example",
+                    type="INVALIDINPUT",
+                ),
+                patch_id="486gsg8",
+                status="ADDED",
             ),
-            patch_id="486gsg8",
-            status="ADDED",
-        ),
-    ],
+        ],
     )

@@ -19,10 +19,10 @@ def test_create(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Views.create(
-    description="view of awesome collection",
-    name="myAwesomeView",
-    query="SELECT * FROM foo",
-)
+                description="view of awesome collection",
+                name="myAwesomeView",
+                query="SELECT * FROM foo",
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -32,8 +32,8 @@ def test_delete(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Views.delete(
-    view="view_example",
-)
+                view="view_example",
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -43,8 +43,8 @@ def test_get(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Views.get(
-    view="view_example",
-)
+                view="view_example",
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -53,8 +53,7 @@ def test_list(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Views.list(
-)
+            rs.Views.list()
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -64,10 +63,10 @@ def test_update(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Views.update(
-    view="view_example",
-    description="view of awesome collection",
-    query="SELECT * FROM foo",
-)
+                view="view_example",
+                description="view of awesome collection",
+                query="SELECT * FROM foo",
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -76,8 +75,6 @@ def test_workspace_views(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Views.workspace_views(
-)
+            rs.Views.workspace_views()
         except EarlyExit as e:
             validate_call(e, request_validator)
-

@@ -104,14 +104,14 @@ class SharedLambdas(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-```python
-rs = RocksetClient(api_key=APIKEY)
-future = rs.SharedLambdas.execute_public_query_lambda(
-    public_access_id="public_access_id_example",
-    async_req=True,
-)
-result = await future
-```
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.SharedLambdas.execute_public_query_lambda(
+            public_access_id="public_access_id_example",
+            async_req=True,
+        )
+        result = await future
+        ```
 
         Keyword Args:
             public_access_id (str): public access ID of the query lambda. [required]

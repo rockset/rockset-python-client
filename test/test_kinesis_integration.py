@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_kinesis_integration_init():
-    KinesisIntegration(
-        
-    )
+    KinesisIntegration()

@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_list_queries_response_init():
-    ListQueriesResponse(
-        
-    )
+    ListQueriesResponse()

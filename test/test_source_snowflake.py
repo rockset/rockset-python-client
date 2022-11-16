@@ -14,5 +14,7 @@ from rockset.models import *
 
 def test_source_snowflake_init():
     SourceSnowflake(
-        database="NASDAQ",schema="PUBLIC",table_name="COMPANIES",
+        database="NASDAQ",
+        schema="PUBLIC",
+        table_name="COMPANIES",
     )

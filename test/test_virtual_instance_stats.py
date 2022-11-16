@@ -13,6 +13,4 @@ from rockset.models import *
 
 
 def test_virtual_instance_stats_init():
-    VirtualInstanceStats(
-        
-    )
+    VirtualInstanceStats()

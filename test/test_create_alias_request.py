@@ -14,5 +14,6 @@ from rockset.models import *
 
 def test_create_alias_request_init():
     CreateAliasRequest(
-        collections=["commons.foo","prod.demo"],name="aliasName",
+        collections=["commons.foo", "prod.demo"],
+        name="aliasName",
     )

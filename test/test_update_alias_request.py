@@ -14,5 +14,5 @@ from rockset.models import *
 
 def test_update_alias_request_init():
     UpdateAliasRequest(
-        collections=["commons.foo","prod.demo"],
+        collections=["commons.foo", "prod.demo"],
     )
