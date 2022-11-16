@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_delete_view_response_init():
-    DeleteViewResponse()
+    DeleteViewResponse(
+        
+    )

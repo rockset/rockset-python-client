@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_execute_query_lambda_request_init():
-    ExecuteQueryLambdaRequest()
+    ExecuteQueryLambdaRequest(
+        
+    )

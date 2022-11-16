@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_delete_user_response_init():
-    DeleteUserResponse()
+    DeleteUserResponse(
+        
+    )

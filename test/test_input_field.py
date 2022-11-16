@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_input_field_init():
-    InputField()
+    InputField(
+        
+    )

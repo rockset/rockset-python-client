@@ -19,16 +19,16 @@ def test_create(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.CustomRoles.create(
-                description="Role with read and write privileges to all collections.",
-                privileges=[
-                    Privilege(
-                        action="CREATE_COLLECTION_WS",
-                        cluster="*ALL*",
-                        resource_name="commons",
-                    ),
-                ],
-                role_name="read_write",
-            )
+    description="Role with read and write privileges to all collections.",
+    privileges=[
+        Privilege(
+            action="CREATE_COLLECTION_WS",
+            cluster="*ALL*",
+            resource_name="commons",
+        ),
+    ],
+    role_name="read_write",
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -38,8 +38,8 @@ def test_delete(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.CustomRoles.delete(
-                role_name="roleName_example",
-            )
+    role_name="roleName_example",
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -49,8 +49,8 @@ def test_get(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.CustomRoles.get(
-                role_name="roleName_example",
-            )
+    role_name="roleName_example",
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -59,7 +59,8 @@ def test_list(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.CustomRoles.list()
+            rs.CustomRoles.list(
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -69,15 +70,16 @@ def test_update(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.CustomRoles.update(
-                role_name="roleName_example",
-                description="Role with read and write privileges to all collections.",
-                privileges=[
-                    Privilege(
-                        action="CREATE_COLLECTION_WS",
-                        cluster="*ALL*",
-                        resource_name="commons",
-                    ),
-                ],
-            )
+    role_name="roleName_example",
+    description="Role with read and write privileges to all collections.",
+    privileges=[
+        Privilege(
+            action="CREATE_COLLECTION_WS",
+            cluster="*ALL*",
+            resource_name="commons",
+        ),
+    ],
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
+

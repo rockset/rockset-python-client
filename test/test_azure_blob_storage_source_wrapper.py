@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_azure_blob_storage_source_wrapper_init():
-    AzureBlobStorageSourceWrapper()
+    AzureBlobStorageSourceWrapper(
+        
+    )

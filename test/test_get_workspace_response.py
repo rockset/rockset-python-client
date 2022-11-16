@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_get_workspace_response_init():
-    GetWorkspaceResponse()
+    GetWorkspaceResponse(
+        
+    )

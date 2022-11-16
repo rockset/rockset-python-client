@@ -136,8 +136,8 @@ class StatusAzureServiceBusSession(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            last_processed (str): Most recent ISO-8601 date when a message from this session was processed. [optional]  # noqa: E501
-            sequence_number (int): The last processed sequence number within this session. [optional]  # noqa: E501
+            last_processed (str): Most recent ISO-8601 date when a message from this session was processed.. [optional]  # noqa: E501
+            sequence_number (int): The last processed sequence number within this session.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -189,8 +189,8 @@ class StatusAzureServiceBusSession(ModelNormal):
         """StatusAzureServiceBusSession - a model defined in OpenAPI
 
         Keyword Args:
-            last_processed (str): Most recent ISO-8601 date when a message from this session was processed. [optional]  # noqa: E501
-            sequence_number (int): The last processed sequence number within this session. [optional]  # noqa: E501
+            last_processed (str): Most recent ISO-8601 date when a message from this session was processed.. [optional]  # noqa: E501
+            sequence_number (int): The last processed sequence number within this session.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

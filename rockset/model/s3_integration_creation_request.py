@@ -114,7 +114,7 @@ class S3IntegrationCreationRequest(ModelNormal):
         """S3IntegrationCreationRequest - a model defined in OpenAPI
 
         Args:
-            name (str): descriptive label
+            name (str): Descriptive label.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -147,7 +147,7 @@ class S3IntegrationCreationRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            description (str): longer explanation for the integration. [optional]  # noqa: E501
+            description (str): Longer explanation for the integration.. [optional]  # noqa: E501
             s3 (S3Integration): [optional]  # noqa: E501
         """
 
@@ -201,8 +201,8 @@ class S3IntegrationCreationRequest(ModelNormal):
         """S3IntegrationCreationRequest - a model defined in OpenAPI
 
         Keyword Args:
-            name (str): descriptive label
-            description (str): longer explanation for the integration. [optional]  # noqa: E501
+            name (str): Descriptive label.
+            description (str): Longer explanation for the integration.. [optional]  # noqa: E501
             s3 (S3Integration): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be

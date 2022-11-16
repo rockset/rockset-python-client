@@ -14,5 +14,5 @@ from rockset.models import *
 
 def test_create_collection_request_init():
     CreateCollectionRequest(
-        name="global-transactions",
+        
     )

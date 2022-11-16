@@ -24,9 +24,20 @@ from rockset.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
+from rockset.model.collection_mount_response import CollectionMountResponse
+from rockset.model.create_collection_mount_request import CreateCollectionMountRequest
+from rockset.model.create_virtual_instance_request import CreateVirtualInstanceRequest
+from rockset.model.create_virtual_instance_response import CreateVirtualInstanceResponse
+from rockset.model.delete_virtual_instance_response import DeleteVirtualInstanceResponse
 from rockset.model.error_model import ErrorModel
 from rockset.model.get_virtual_instance_response import GetVirtualInstanceResponse
+from rockset.model.list_collection_mounts_response import ListCollectionMountsResponse
+from rockset.model.list_queries_response import ListQueriesResponse
 from rockset.model.list_virtual_instances_response import ListVirtualInstancesResponse
+from rockset.model.query_request import QueryRequest
+from rockset.model.query_response import QueryResponse
+from rockset.model.resume_virtual_instance_response import ResumeVirtualInstanceResponse
+from rockset.model.suspend_virtual_instance_response import SuspendVirtualInstanceResponse
 from rockset.model.update_virtual_instance_request import UpdateVirtualInstanceRequest
 from rockset.model.update_virtual_instance_response import UpdateVirtualInstanceResponse
 from rockset.models import *
@@ -43,6 +54,108 @@ class VirtualInstances(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
+        self.create_endpoint = _Endpoint(
+            settings={
+                'response_type': (CreateVirtualInstanceResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/virtualinstances',
+                'operation_id': 'create',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'create_virtual_instance_request',
+                ],
+                'required': [
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'create_virtual_instance_request':
+                        (CreateVirtualInstanceRequest,),
+                },
+                'attribute_map': {
+                },
+                'location_map': {
+                    'create_virtual_instance_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.delete_endpoint = _Endpoint(
+            settings={
+                'response_type': (DeleteVirtualInstanceResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/virtualinstances/{virtualInstanceId}',
+                'operation_id': 'delete',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'virtual_instance_id',
+                ],
+                'required': [
+                    'virtual_instance_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'virtual_instance_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'virtual_instance_id': 'virtualInstanceId',
+                },
+                'location_map': {
+                    'virtual_instance_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
         self.get_endpoint = _Endpoint(
             settings={
                 'response_type': (GetVirtualInstanceResponse,),
@@ -51,6 +164,114 @@ class VirtualInstances(object):
                 ],
                 'endpoint_path': '/v1/orgs/self/virtualinstances/{virtualInstanceId}',
                 'operation_id': 'get',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'virtual_instance_id',
+                ],
+                'required': [
+                    'virtual_instance_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'virtual_instance_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'virtual_instance_id': 'virtualInstanceId',
+                },
+                'location_map': {
+                    'virtual_instance_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.get_collection_mount_endpoint = _Endpoint(
+            settings={
+                'response_type': (CollectionMountResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts/{collectionPath}',
+                'operation_id': 'get_collection_mount',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'virtual_instance_id',
+                    'collection_path',
+                ],
+                'required': [
+                    'virtual_instance_id',
+                    'collection_path',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'virtual_instance_id':
+                        (str,),
+                    'collection_path':
+                        (str,),
+                },
+                'attribute_map': {
+                    'virtual_instance_id': 'virtualInstanceId',
+                    'collection_path': 'collectionPath',
+                },
+                'location_map': {
+                    'virtual_instance_id': 'path',
+                    'collection_path': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.get_virtual_instance_queries_endpoint = _Endpoint(
+            settings={
+                'response_type': (ListQueriesResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/virtualinstances/{virtualInstanceId}/queries',
+                'operation_id': 'get_virtual_instance_queries',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -138,14 +359,338 @@ class VirtualInstances(object):
             },
             api_client=api_client
         )
-        self.set_virtual_instance_endpoint = _Endpoint(
+        self.list_collection_mounts_endpoint = _Endpoint(
+            settings={
+                'response_type': (ListCollectionMountsResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts',
+                'operation_id': 'list_collection_mounts',
+                'http_method': 'GET',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'virtual_instance_id',
+                ],
+                'required': [
+                    'virtual_instance_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'virtual_instance_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'virtual_instance_id': 'virtualInstanceId',
+                },
+                'location_map': {
+                    'virtual_instance_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.mount_collection_endpoint = _Endpoint(
+            settings={
+                'response_type': (CollectionMountResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts',
+                'operation_id': 'mount_collection',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'virtual_instance_id',
+                    'create_collection_mount_request',
+                ],
+                'required': [
+                    'virtual_instance_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'virtual_instance_id':
+                        (str,),
+                    'create_collection_mount_request':
+                        (CreateCollectionMountRequest,),
+                },
+                'attribute_map': {
+                    'virtual_instance_id': 'virtualInstanceId',
+                },
+                'location_map': {
+                    'virtual_instance_id': 'path',
+                    'create_collection_mount_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.query_virtual_instance_endpoint = _Endpoint(
+            settings={
+                'response_type': (QueryResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/virtualinstances/{virtualInstanceId}/queries',
+                'operation_id': 'query_virtual_instance',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'virtual_instance_id',
+                    'query_request',
+                ],
+                'required': [
+                    'virtual_instance_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'virtual_instance_id':
+                        (str,),
+                    'query_request':
+                        (QueryRequest,),
+                },
+                'attribute_map': {
+                    'virtual_instance_id': 'virtualInstanceId',
+                },
+                'location_map': {
+                    'virtual_instance_id': 'path',
+                    'query_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.resume_virtual_instance_endpoint = _Endpoint(
+            settings={
+                'response_type': (ResumeVirtualInstanceResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/virtualinstances/{virtualInstanceId}/resume',
+                'operation_id': 'resume_virtual_instance',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'virtual_instance_id',
+                ],
+                'required': [
+                    'virtual_instance_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'virtual_instance_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'virtual_instance_id': 'virtualInstanceId',
+                },
+                'location_map': {
+                    'virtual_instance_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.suspend_virtual_instance_endpoint = _Endpoint(
+            settings={
+                'response_type': (SuspendVirtualInstanceResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/virtualinstances/{virtualInstanceId}/suspend',
+                'operation_id': 'suspend_virtual_instance',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'virtual_instance_id',
+                ],
+                'required': [
+                    'virtual_instance_id',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'virtual_instance_id':
+                        (str,),
+                },
+                'attribute_map': {
+                    'virtual_instance_id': 'virtualInstanceId',
+                },
+                'location_map': {
+                    'virtual_instance_id': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.unmount_collection_endpoint = _Endpoint(
+            settings={
+                'response_type': (CollectionMountResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts/{collectionPath}',
+                'operation_id': 'unmount_collection',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'virtual_instance_id',
+                    'collection_path',
+                ],
+                'required': [
+                    'virtual_instance_id',
+                    'collection_path',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'virtual_instance_id':
+                        (str,),
+                    'collection_path':
+                        (str,),
+                },
+                'attribute_map': {
+                    'virtual_instance_id': 'virtualInstanceId',
+                    'collection_path': 'collectionPath',
+                },
+                'location_map': {
+                    'virtual_instance_id': 'path',
+                    'collection_path': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.update_endpoint = _Endpoint(
             settings={
                 'response_type': (UpdateVirtualInstanceResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/virtualinstances/{virtualInstanceId}',
-                'operation_id': 'set_virtual_instance',
+                'operation_id': 'update',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -196,6 +741,185 @@ class VirtualInstances(object):
             api_client=api_client
         )
 
+    def create(
+        self,
+        *,
+        name: str,
+        auto_suspend_seconds: int = None,
+        description: str = None,
+        type: str = None,
+        **kwargs
+    ) -> typing.Union[CreateVirtualInstanceResponse, asyncio.Future]:
+        """Create Virtual Instance  # noqa: E501
+
+        [beta] Create virtual instance  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.VirtualInstances.create(
+    auto_suspend_seconds=3600,
+    description="VI serving prod traffic",
+    name="prod_vi",
+    type="LARGE",
+    async_req=True,
+)
+result = await future
+```
+
+        Keyword Args:
+            auto_suspend_seconds (int): Number of seconds without queries after which the VI is suspended. [optional]
+            description (str): Description of requested virtual instance.. [optional]
+            name (str): Unique identifier for virtual instance, can contain alphanumeric or dash characters.. [required]
+            type (str): Requested virtual instance type.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            CreateVirtualInstanceResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['create_virtual_instance_request'] = \
+            kwargs['create_virtual_instance_request']
+        return self.create_endpoint.call_with_http_info(**kwargs)
+
+    def delete(
+        self,
+        *,
+        virtual_instance_id: str,
+        **kwargs
+    ) -> typing.Union[DeleteVirtualInstanceResponse, asyncio.Future]:
+        """Delete Virtual Instance  # noqa: E501
+
+        [beta] Delete a virtual instance.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.VirtualInstances.delete(
+    virtual_instance_id="virtualInstanceId_example",
+    async_req=True,
+)
+result = await future
+```
+
+        Keyword Args:
+            virtual_instance_id (str): Virtual Instance RRN. [required]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            DeleteVirtualInstanceResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['virtual_instance_id'] = \
+            virtual_instance_id
+        return self.delete_endpoint.call_with_http_info(**kwargs)
+
     def get(
         self,
         *,
@@ -208,17 +932,17 @@ class VirtualInstances(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.VirtualInstances.get(
-            virtual_instance_id="virtualInstanceId_example",
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.VirtualInstances.get(
+    virtual_instance_id="virtualInstanceId_example",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
-            virtual_instance_id (str): uuid of the virtual instance. [required]
+            virtual_instance_id (str): Virtual Instance RRN. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -281,6 +1005,181 @@ class VirtualInstances(object):
             virtual_instance_id
         return self.get_endpoint.call_with_http_info(**kwargs)
 
+    def get_collection_mount(
+        self,
+        *,
+        virtual_instance_id: str,
+        collection_path: str,
+        **kwargs
+    ) -> typing.Union[CollectionMountResponse, asyncio.Future]:
+        """Get Collection Mount  # noqa: E501
+
+        [beta] Get a mount on this virtual instance.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.VirtualInstances.get_collection_mount(
+    virtual_instance_id="virtualInstanceId_example",
+    collection_path="collectionPath_example",
+    async_req=True,
+)
+result = await future
+```
+
+        Keyword Args:
+            virtual_instance_id (str): Virtual Instance RRN. [required]
+            collection_path (str): [required]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            CollectionMountResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['virtual_instance_id'] = \
+            virtual_instance_id
+        kwargs['collection_path'] = \
+            collection_path
+        return self.get_collection_mount_endpoint.call_with_http_info(**kwargs)
+
+    def get_virtual_instance_queries(
+        self,
+        *,
+        virtual_instance_id: str,
+        **kwargs
+    ) -> typing.Union[ListQueriesResponse, asyncio.Future]:
+        """List Queries  # noqa: E501
+
+        [beta] Lists actively queued and running queries for a particular Virtual Instance.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.VirtualInstances.get_virtual_instance_queries(
+    virtual_instance_id="virtualInstanceId_example",
+    async_req=True,
+)
+result = await future
+```
+
+        Keyword Args:
+            virtual_instance_id (str): Virtual Instance RRN. [required]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            ListQueriesResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['virtual_instance_id'] = \
+            virtual_instance_id
+        return self.get_virtual_instance_queries_endpoint.call_with_http_info(**kwargs)
+
     def list(
         self,
         **kwargs
@@ -291,13 +1190,13 @@ class VirtualInstances(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.VirtualInstances.list(
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.VirtualInstances.list(
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -360,13 +1259,564 @@ class VirtualInstances(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         return self.list_endpoint.call_with_http_info(**kwargs)
 
-    def set_virtual_instance(
+    def list_collection_mounts(
         self,
         *,
         virtual_instance_id: str,
+        **kwargs
+    ) -> typing.Union[ListCollectionMountsResponse, asyncio.Future]:
+        """List Collection Mounts  # noqa: E501
+
+        [beta] List collection mounts for a particular VI.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.VirtualInstances.list_collection_mounts(
+    virtual_instance_id="virtualInstanceId_example",
+    async_req=True,
+)
+result = await future
+```
+
+        Keyword Args:
+            virtual_instance_id (str): Virtual Instance RRN. [required]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            ListCollectionMountsResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['virtual_instance_id'] = \
+            virtual_instance_id
+        return self.list_collection_mounts_endpoint.call_with_http_info(**kwargs)
+
+    def mount_collection(
+        self,
+        *,
+        virtual_instance_id: str,
+        collection_paths: typing.Sequence[str] = None,
+        type: str = None,
+        **kwargs
+    ) -> typing.Union[CollectionMountResponse, asyncio.Future]:
+        """Mount Collection  # noqa: E501
+
+        [beta] Mount a collection to this virtual instance.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.VirtualInstances.mount_collection(
+    virtual_instance_id="virtualInstanceId_example",
+    collection_paths=["commons.foo","commons.bar"],
+    type="STATIC",
+    async_req=True,
+)
+result = await future
+```
+
+        Keyword Args:
+            virtual_instance_id (str): Virtual Instance RRN. [required]
+            collection_paths ([str]): Collections to mount.. [optional]
+            type (str): Mount type.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            CollectionMountResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['virtual_instance_id'] = \
+            virtual_instance_id
+        kwargs['create_collection_mount_request'] = \
+            kwargs['create_collection_mount_request']
+        return self.mount_collection_endpoint.call_with_http_info(**kwargs)
+
+    def query_virtual_instance(
+        self,
+        *,
+        virtual_instance_id: str,
+        sql: QueryRequestSql,
+        async_options: AsyncQueryOptions = None,
+        **kwargs
+    ) -> typing.Union[QueryResponse, asyncio.Future]:
+        """Execute SQL Query  # noqa: E501
+
+        [beta] Make a SQL query to Rockset.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.VirtualInstances.query_virtual_instance(
+    virtual_instance_id="virtualInstanceId_example",
+    async_options=AsyncQueryOptions(
+        client_timeout_ms=1,
+        max_initial_results=1,
+        timeout_ms=1,
+    ),
+    sql=QueryRequestSql(
+        default_row_limit=1,
+        generate_warnings=True,
+        initial_paginate_response_doc_count=1,
+        paginate=True,
+        parameters=[
+            QueryParameter(
+                name="_id",
+                type="string",
+                value="85beb391",
+            ),
+        ],
+        query="SELECT * FROM foo where _id = :_id",
+    ),
+    async_req=True,
+)
+result = await future
+```
+
+        Keyword Args:
+            virtual_instance_id (str): Virtual Instance RRN. [required]
+            async_options (AsyncQueryOptions): [optional]
+            sql (QueryRequestSql): [required]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            QueryResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['virtual_instance_id'] = \
+            virtual_instance_id
+        kwargs['query_request'] = \
+            kwargs['query_request']
+        return self.query_virtual_instance_endpoint.call_with_http_info(**kwargs)
+
+    def resume_virtual_instance(
+        self,
+        *,
+        virtual_instance_id: str,
+        **kwargs
+    ) -> typing.Union[ResumeVirtualInstanceResponse, asyncio.Future]:
+        """Resume Virtual Instance  # noqa: E501
+
+        [beta] Resume a virtual instance.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.VirtualInstances.resume_virtual_instance(
+    virtual_instance_id="virtualInstanceId_example",
+    async_req=True,
+)
+result = await future
+```
+
+        Keyword Args:
+            virtual_instance_id (str): Virtual Instance RRN. [required]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            ResumeVirtualInstanceResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['virtual_instance_id'] = \
+            virtual_instance_id
+        return self.resume_virtual_instance_endpoint.call_with_http_info(**kwargs)
+
+    def suspend_virtual_instance(
+        self,
+        *,
+        virtual_instance_id: str,
+        **kwargs
+    ) -> typing.Union[SuspendVirtualInstanceResponse, asyncio.Future]:
+        """Suspend Virtual Instance  # noqa: E501
+
+        [beta] Suspend a virtual instance.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.VirtualInstances.suspend_virtual_instance(
+    virtual_instance_id="virtualInstanceId_example",
+    async_req=True,
+)
+result = await future
+```
+
+        Keyword Args:
+            virtual_instance_id (str): Virtual Instance RRN. [required]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            SuspendVirtualInstanceResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['virtual_instance_id'] = \
+            virtual_instance_id
+        return self.suspend_virtual_instance_endpoint.call_with_http_info(**kwargs)
+
+    def unmount_collection(
+        self,
+        *,
+        virtual_instance_id: str,
+        collection_path: str,
+        **kwargs
+    ) -> typing.Union[CollectionMountResponse, asyncio.Future]:
+        """Unmount Collection  # noqa: E501
+
+        [beta] Unmount a collection from this virtual instance.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.VirtualInstances.unmount_collection(
+    virtual_instance_id="virtualInstanceId_example",
+    collection_path="collectionPath_example",
+    async_req=True,
+)
+result = await future
+```
+
+        Keyword Args:
+            virtual_instance_id (str): Virtual Instance RRN. [required]
+            collection_path (str): [required]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            CollectionMountResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['virtual_instance_id'] = \
+            virtual_instance_id
+        kwargs['collection_path'] = \
+            collection_path
+        return self.unmount_collection_endpoint.call_with_http_info(**kwargs)
+
+    def update(
+        self,
+        *,
+        virtual_instance_id: str,
+        auto_suspend_enabled: bool = None,
+        auto_suspend_seconds: int = None,
+        description: str = None,
         monitoring_enabled: bool = None,
+        name: str = None,
         new_size: str = None,
-        new_type: str = None,
         **kwargs
     ) -> typing.Union[UpdateVirtualInstanceResponse, asyncio.Future]:
         """Update Virtual Instance  # noqa: E501
@@ -375,23 +1825,29 @@ class VirtualInstances(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.VirtualInstances.set_virtual_instance(
-            virtual_instance_id="virtualInstanceId_example",
-            monitoring_enabled=True,
-            new_size="LARGE",
-            new_type="FREE",
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.VirtualInstances.update(
+    virtual_instance_id="virtualInstanceId_example",
+    auto_suspend_enabled=True,
+    auto_suspend_seconds=3600,
+    description="VI for prod traffic",
+    monitoring_enabled=True,
+    name="prod_vi",
+    new_size="LARGE",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
-            virtual_instance_id (str): uuid of the virtual instance. [required]
+            virtual_instance_id (str): Virtual Instance RRN. [required]
+            auto_suspend_enabled (bool): Whether auto-suspend should be enabled for this Virtual Instance.. [optional]
+            auto_suspend_seconds (int): Number of seconds without queries after which the VI is suspended. [optional]
+            description (str): New virtual instance description.. [optional]
             monitoring_enabled (bool): [optional]
-            new_size (str): requested virtual instance size. [optional]
-            new_type (str): [optional]
+            name (str): New virtual instance name.. [optional]
+            new_size (str): Requested virtual instance size.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -454,10 +1910,16 @@ class VirtualInstances(object):
             virtual_instance_id
         kwargs['update_virtual_instance_request'] = \
             kwargs['update_virtual_instance_request']
-        return self.set_virtual_instance_endpoint.call_with_http_info(**kwargs)
+        return self.update_endpoint.call_with_http_info(**kwargs)
 
 
     body_params_dict = dict()
     return_types_dict = dict()
-    body_params_dict['set_virtual_instance'] = 'update_virtual_instance_request'
-    return_types_dict['set_virtual_instance'] = UpdateVirtualInstanceRequest
+    body_params_dict['create'] = 'create_virtual_instance_request'
+    return_types_dict['create'] = CreateVirtualInstanceRequest
+    body_params_dict['mount_collection'] = 'create_collection_mount_request'
+    return_types_dict['mount_collection'] = CreateCollectionMountRequest
+    body_params_dict['query_virtual_instance'] = 'query_request'
+    return_types_dict['query_virtual_instance'] = QueryRequest
+    body_params_dict['update'] = 'update_virtual_instance_request'
+    return_types_dict['update'] = UpdateVirtualInstanceRequest

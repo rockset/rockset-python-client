@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_status_mongo_db_init():
-    StatusMongoDb()
+    StatusMongoDb(
+        
+    )

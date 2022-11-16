@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_create_role_request_init():
-    CreateRoleRequest()
+    CreateRoleRequest(
+        
+    )

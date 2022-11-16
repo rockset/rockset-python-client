@@ -106,8 +106,8 @@ class ValidateQueryResponse(ModelNormal):
         """ValidateQueryResponse - a model defined in OpenAPI
 
         Args:
-            collections ([str]): list of collections specified in query
-            parameters ([str]): list of parameters specified in query
+            collections ([str]): List of collections specified in query.
+            parameters ([str]): List of parameters specified in query.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -193,8 +193,8 @@ class ValidateQueryResponse(ModelNormal):
         """ValidateQueryResponse - a model defined in OpenAPI
 
         Keyword Args:
-            collections ([str]): list of collections specified in query
-            parameters ([str]): list of parameters specified in query
+            collections ([str]): List of collections specified in query.
+            parameters ([str]): List of parameters specified in query.
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

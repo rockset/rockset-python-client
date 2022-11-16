@@ -27,14 +27,18 @@ from rockset.model.azure_event_hubs_source_wrapper import AzureEventHubsSourceWr
 from rockset.model.azure_service_bus_collection_creation_request import AzureServiceBusCollectionCreationRequest
 from rockset.model.azure_service_bus_integration import AzureServiceBusIntegration
 from rockset.model.azure_service_bus_source_wrapper import AzureServiceBusSourceWrapper
+from rockset.model.bulk_stats import BulkStats
 from rockset.model.cancel_query_response import CancelQueryResponse
 from rockset.model.cluster import Cluster
 from rockset.model.collection import Collection
+from rockset.model.collection_mount import CollectionMount
+from rockset.model.collection_mount_response import CollectionMountResponse
 from rockset.model.collection_stats import CollectionStats
 from rockset.model.create_alias_request import CreateAliasRequest
 from rockset.model.create_alias_response import CreateAliasResponse
 from rockset.model.create_api_key_request import CreateApiKeyRequest
 from rockset.model.create_api_key_response import CreateApiKeyResponse
+from rockset.model.create_collection_mount_request import CreateCollectionMountRequest
 from rockset.model.create_collection_request import CreateCollectionRequest
 from rockset.model.create_collection_response import CreateCollectionResponse
 from rockset.model.create_integration_request import CreateIntegrationRequest
@@ -46,6 +50,8 @@ from rockset.model.create_user_request import CreateUserRequest
 from rockset.model.create_user_response import CreateUserResponse
 from rockset.model.create_view_request import CreateViewRequest
 from rockset.model.create_view_response import CreateViewResponse
+from rockset.model.create_virtual_instance_request import CreateVirtualInstanceRequest
+from rockset.model.create_virtual_instance_response import CreateVirtualInstanceResponse
 from rockset.model.create_workspace_request import CreateWorkspaceRequest
 from rockset.model.create_workspace_response import CreateWorkspaceResponse
 from rockset.model.csv_params import CsvParams
@@ -59,6 +65,7 @@ from rockset.model.delete_integration_response import DeleteIntegrationResponse
 from rockset.model.delete_query_lambda_response import DeleteQueryLambdaResponse
 from rockset.model.delete_user_response import DeleteUserResponse
 from rockset.model.delete_view_response import DeleteViewResponse
+from rockset.model.delete_virtual_instance_response import DeleteVirtualInstanceResponse
 from rockset.model.delete_workspace_response import DeleteWorkspaceResponse
 from rockset.model.document_status import DocumentStatus
 from rockset.model.dynamodb_collection_creation_request import DynamodbCollectionCreationRequest
@@ -100,6 +107,7 @@ from rockset.model.kinesis_integration_creation_request import KinesisIntegratio
 from rockset.model.kinesis_source_wrapper import KinesisSourceWrapper
 from rockset.model.list_aliases_response import ListAliasesResponse
 from rockset.model.list_api_keys_response import ListApiKeysResponse
+from rockset.model.list_collection_mounts_response import ListCollectionMountsResponse
 from rockset.model.list_collections_response import ListCollectionsResponse
 from rockset.model.list_integrations_response import ListIntegrationsResponse
 from rockset.model.list_queries_response import ListQueriesResponse
@@ -142,6 +150,7 @@ from rockset.model.query_request import QueryRequest
 from rockset.model.query_request_sql import QueryRequestSql
 from rockset.model.query_response import QueryResponse
 from rockset.model.query_response_stats import QueryResponseStats
+from rockset.model.resume_virtual_instance_response import ResumeVirtualInstanceResponse
 from rockset.model.role import Role
 from rockset.model.role_response import RoleResponse
 from rockset.model.s3_collection_creation_request import S3CollectionCreationRequest
@@ -149,8 +158,6 @@ from rockset.model.s3_integration import S3Integration
 from rockset.model.s3_integration_creation_request import S3IntegrationCreationRequest
 from rockset.model.s3_source_wrapper import S3SourceWrapper
 from rockset.model.schema_registry_config import SchemaRegistryConfig
-from rockset.model.segment_integration import SegmentIntegration
-from rockset.model.segment_integration_creation_request import SegmentIntegrationCreationRequest
 from rockset.model.snowflake_collection_creation_request import SnowflakeCollectionCreationRequest
 from rockset.model.snowflake_integration import SnowflakeIntegration
 from rockset.model.snowflake_integration_creation_request import SnowflakeIntegrationCreationRequest
@@ -180,6 +187,7 @@ from rockset.model.status_kafka import StatusKafka
 from rockset.model.status_kafka_partition import StatusKafkaPartition
 from rockset.model.status_mongo_db import StatusMongoDb
 from rockset.model.status_snowflake import StatusSnowflake
+from rockset.model.suspend_virtual_instance_response import SuspendVirtualInstanceResponse
 from rockset.model.unsubscribe_preference import UnsubscribePreference
 from rockset.model.update_alias_request import UpdateAliasRequest
 from rockset.model.update_api_key_request import UpdateApiKeyRequest
@@ -188,6 +196,7 @@ from rockset.model.update_query_lambda_request import UpdateQueryLambdaRequest
 from rockset.model.update_role_request import UpdateRoleRequest
 from rockset.model.update_unsubscribe_preferences_request import UpdateUnsubscribePreferencesRequest
 from rockset.model.update_unsubscribe_preferences_response import UpdateUnsubscribePreferencesResponse
+from rockset.model.update_user_request import UpdateUserRequest
 from rockset.model.update_view_request import UpdateViewRequest
 from rockset.model.update_view_response import UpdateViewResponse
 from rockset.model.update_virtual_instance_request import UpdateVirtualInstanceRequest
@@ -196,5 +205,6 @@ from rockset.model.user import User
 from rockset.model.validate_query_response import ValidateQueryResponse
 from rockset.model.view import View
 from rockset.model.virtual_instance import VirtualInstance
+from rockset.model.virtual_instance_stats import VirtualInstanceStats
 from rockset.model.workspace import Workspace
 from rockset.model.xml_params import XmlParams

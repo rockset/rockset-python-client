@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_status_azure_event_hubs_partition_init():
-    StatusAzureEventHubsPartition()
+    StatusAzureEventHubsPartition(
+        
+    )

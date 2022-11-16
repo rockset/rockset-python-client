@@ -140,7 +140,7 @@ class ListViewsResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            data ([View]): list of all views. [optional]  # noqa: E501
+            data ([View]): List of all views.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -192,7 +192,7 @@ class ListViewsResponse(ModelNormal):
         """ListViewsResponse - a model defined in OpenAPI
 
         Keyword Args:
-            data ([View]): list of all views. [optional]  # noqa: E501
+            data ([View]): List of all views.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

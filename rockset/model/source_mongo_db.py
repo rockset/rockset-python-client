@@ -115,8 +115,8 @@ class SourceMongoDb(ModelNormal):
         """SourceMongoDb - a model defined in OpenAPI
 
         Args:
-            collection_name (str): MongoDB collection name
-            database_name (str): MongoDB database name containing this collection
+            collection_name (str): MongoDB collection name.
+            database_name (str): MongoDB database name containing this collection.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -203,8 +203,8 @@ class SourceMongoDb(ModelNormal):
         """SourceMongoDb - a model defined in OpenAPI
 
         Keyword Args:
-            collection_name (str): MongoDB collection name
-            database_name (str): MongoDB database name containing this collection
+            collection_name (str): MongoDB collection name.
+            database_name (str): MongoDB database name containing this collection.
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

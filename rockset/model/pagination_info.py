@@ -143,8 +143,8 @@ class PaginationInfo(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            current_page_doc_count (int): Number of documents returned in this result set. [optional]  # noqa: E501
-            next_cursor (str): Cursor to use to get the list of documents. [optional]  # noqa: E501
+            current_page_doc_count (int): Number of documents returned in this result set.. [optional]  # noqa: E501
+            next_cursor (str): Cursor to use to get the list of documents.. [optional]  # noqa: E501
             next_cursor_offset (int): The doc offset that next_cursor starts at.. [optional]  # noqa: E501
             next_page_link (str): Direct link to the next page of results.. [optional]  # noqa: E501
             start_cursor (str): Cursor used to retrieve the first set of documents.. [optional]  # noqa: E501
@@ -199,8 +199,8 @@ class PaginationInfo(ModelNormal):
         """PaginationInfo - a model defined in OpenAPI
 
         Keyword Args:
-            current_page_doc_count (int): Number of documents returned in this result set. [optional]  # noqa: E501
-            next_cursor (str): Cursor to use to get the list of documents. [optional]  # noqa: E501
+            current_page_doc_count (int): Number of documents returned in this result set.. [optional]  # noqa: E501
+            next_cursor (str): Cursor to use to get the list of documents.. [optional]  # noqa: E501
             next_cursor_offset (int): The doc offset that next_cursor starts at.. [optional]  # noqa: E501
             start_cursor (str): Cursor used to retrieve the first set of documents.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types

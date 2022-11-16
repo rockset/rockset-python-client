@@ -119,9 +119,9 @@ class SourceSnowflake(ModelNormal):
         """SourceSnowflake - a model defined in OpenAPI
 
         Args:
-            database (str): name of the snowflake database
-            schema (str): name of the snowflake database schema
-            table_name (str): name of the snowflake table
+            database (str): Name of the snowflake database.
+            schema (str): Name of the snowflake database schema.
+            table_name (str): Name of the snowflake table.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -155,7 +155,7 @@ class SourceSnowflake(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
-            warehouse (str): name of the data warehouse to be used. [optional]  # noqa: E501
+            warehouse (str): Name of the data warehouse to be used.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -210,10 +210,10 @@ class SourceSnowflake(ModelNormal):
         """SourceSnowflake - a model defined in OpenAPI
 
         Keyword Args:
-            database (str): name of the snowflake database
-            schema (str): name of the snowflake database schema
-            table_name (str): name of the snowflake table
-            warehouse (str): name of the data warehouse to be used. [optional]  # noqa: E501
+            database (str): Name of the snowflake database.
+            schema (str): Name of the snowflake database schema.
+            table_name (str): Name of the snowflake table.
+            warehouse (str): Name of the data warehouse to be used.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_create_user_response_init():
-    CreateUserResponse()
+    CreateUserResponse(
+        
+    )

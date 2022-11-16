@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_async_query_options_init():
-    AsyncQueryOptions()
+    AsyncQueryOptions(
+        
+    )

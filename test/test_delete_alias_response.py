@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_delete_alias_response_init():
-    DeleteAliasResponse()
+    DeleteAliasResponse(
+        
+    )

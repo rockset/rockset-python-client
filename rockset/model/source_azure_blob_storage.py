@@ -150,7 +150,7 @@ class SourceAzureBlobStorage(ModelNormal):
             blob_bytes_total (int): [optional]  # noqa: E501
             blob_count_downloaded (int): [optional]  # noqa: E501
             blob_count_total (int): [optional]  # noqa: E501
-            container (str): name of Azure blob Storage container you want to ingest from. [optional]  # noqa: E501
+            container (str): Name of Azure blob Storage container you want to ingest from.. [optional]  # noqa: E501
             pattern (str): Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified.. [optional]  # noqa: E501
             prefix (str): Prefix that selects blobs to ingest.. [optional]  # noqa: E501
         """
@@ -204,7 +204,7 @@ class SourceAzureBlobStorage(ModelNormal):
         """SourceAzureBlobStorage - a model defined in OpenAPI
 
         Keyword Args:
-            container (str): name of Azure blob Storage container you want to ingest from. [optional]  # noqa: E501
+            container (str): Name of Azure blob Storage container you want to ingest from.. [optional]  # noqa: E501
             pattern (str): Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified.. [optional]  # noqa: E501
             prefix (str): Prefix that selects blobs to ingest.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types

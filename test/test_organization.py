@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_organization_init():
-    Organization()
+    Organization(
+        
+    )

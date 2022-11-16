@@ -142,11 +142,11 @@ class Workspace(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            collection_count (int): number of collections that are immediate children of workspace. [optional]  # noqa: E501
-            created_at (str): ISO-8601 date of when workspace was created. [optional]  # noqa: E501
-            created_by (str): email of user who created the workspace. [optional]  # noqa: E501
-            description (str): longer explanation for the workspace. [optional]  # noqa: E501
-            name (str): descriptive label and unique identifier. [optional]  # noqa: E501
+            collection_count (int): Number of collections that are immediate children of workspace.. [optional]  # noqa: E501
+            created_at (str): ISO-8601 date of when workspace was created.. [optional]  # noqa: E501
+            created_by (str): Email of user who created the workspace.. [optional]  # noqa: E501
+            description (str): Longer explanation for the workspace.. [optional]  # noqa: E501
+            name (str): Descriptive label and unique identifier.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -198,11 +198,11 @@ class Workspace(ModelNormal):
         """Workspace - a model defined in OpenAPI
 
         Keyword Args:
-            collection_count (int): number of collections that are immediate children of workspace. [optional]  # noqa: E501
-            created_at (str): ISO-8601 date of when workspace was created. [optional]  # noqa: E501
-            created_by (str): email of user who created the workspace. [optional]  # noqa: E501
-            description (str): longer explanation for the workspace. [optional]  # noqa: E501
-            name (str): descriptive label and unique identifier. [optional]  # noqa: E501
+            collection_count (int): Number of collections that are immediate children of workspace.. [optional]  # noqa: E501
+            created_at (str): ISO-8601 date of when workspace was created.. [optional]  # noqa: E501
+            created_by (str): Email of user who created the workspace.. [optional]  # noqa: E501
+            description (str): Longer explanation for the workspace.. [optional]  # noqa: E501
+            name (str): Descriptive label and unique identifier.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

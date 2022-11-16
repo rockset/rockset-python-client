@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_kafka_v3_security_config_init():
-    KafkaV3SecurityConfig()
+    KafkaV3SecurityConfig(
+        
+    )

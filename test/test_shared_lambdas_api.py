@@ -8,9 +8,19 @@
 """
 
 
-import sys
+from unittest import mock
+
 from rockset.models import *
+from test.conftest import EarlyExit, validate_call
 
 
-def test_segment_integration_init():
-    SegmentIntegration()
+def test_execute_public_query_lambda(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.SharedLambdas.execute_public_query_lambda(
+    public_access_id="public_access_id_example",
+)
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+

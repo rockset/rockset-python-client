@@ -146,8 +146,8 @@ class StatusDynamoDbV2(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             initial_dump_completion_percentage (float): [optional]  # noqa: E501
-            state (str): state of current ingest for this table. [optional]  # noqa: E501
-            stream_last_processed_at (str): ISO-8601 date when source was last processed. [optional]  # noqa: E501
+            state (str): State of current ingest for this table.. [optional]  # noqa: E501
+            stream_last_processed_at (str): ISO-8601 date when source was last processed.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -200,8 +200,8 @@ class StatusDynamoDbV2(ModelNormal):
 
         Keyword Args:
             initial_dump_completion_percentage (float): [optional]  # noqa: E501
-            state (str): state of current ingest for this table. [optional]  # noqa: E501
-            stream_last_processed_at (str): ISO-8601 date when source was last processed. [optional]  # noqa: E501
+            state (str): State of current ingest for this table.. [optional]  # noqa: E501
+            stream_last_processed_at (str): ISO-8601 date when source was last processed.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

@@ -12,7 +12,7 @@ import sys
 from rockset.models import *
 
 
-def test_segment_integration_creation_request_init():
-    SegmentIntegrationCreationRequest(
-        name="event-logs",
+def test_collection_mount_init():
+    CollectionMount(
+        
     )

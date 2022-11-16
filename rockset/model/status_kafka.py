@@ -151,10 +151,10 @@ class StatusKafka(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            kafka_partitions ([StatusKafkaPartition]): Status info per partition. [optional]  # noqa: E501
-            last_consumed_time (str): Time at which the last document was consumed from Kafka. [optional]  # noqa: E501
-            num_documents_processed (int): Number of documents consumed by this Kafka topic. [optional]  # noqa: E501
-            state (str): State of the Kafka source. [optional]  # noqa: E501
+            kafka_partitions ([StatusKafkaPartition]): Status info per partition.. [optional]  # noqa: E501
+            last_consumed_time (str): Time at which the last document was consumed from Kafka.. [optional]  # noqa: E501
+            num_documents_processed (int): Number of documents consumed by this Kafka topic.. [optional]  # noqa: E501
+            state (str): State of the Kafka source.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -206,10 +206,10 @@ class StatusKafka(ModelNormal):
         """StatusKafka - a model defined in OpenAPI
 
         Keyword Args:
-            kafka_partitions ([StatusKafkaPartition]): Status info per partition. [optional]  # noqa: E501
-            last_consumed_time (str): Time at which the last document was consumed from Kafka. [optional]  # noqa: E501
-            num_documents_processed (int): Number of documents consumed by this Kafka topic. [optional]  # noqa: E501
-            state (str): State of the Kafka source. [optional]  # noqa: E501
+            kafka_partitions ([StatusKafkaPartition]): Status info per partition.. [optional]  # noqa: E501
+            last_consumed_time (str): Time at which the last document was consumed from Kafka.. [optional]  # noqa: E501
+            num_documents_processed (int): Number of documents consumed by this Kafka topic.. [optional]  # noqa: E501
+            state (str): State of the Kafka source.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

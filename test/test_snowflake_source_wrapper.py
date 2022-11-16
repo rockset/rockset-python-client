@@ -14,7 +14,5 @@ from rockset.models import *
 
 def test_snowflake_source_wrapper_init():
     SnowflakeSourceWrapper(
-        database="NASDAQ",
-        schema="PUBLIC",
-        table_name="COMPANIES",
+        database="NASDAQ",schema="PUBLIC",table_name="COMPANIES",
     )

@@ -14,7 +14,5 @@ from rockset.models import *
 
 def test_file_upload_source_wrapper_init():
     FileUploadSourceWrapper(
-        file_name="file1.json",
-        file_size=12345,
-        file_upload_time="2019-01-15T21:48:23Z",
+        file_name="file1.json",file_size=12345,file_upload_time="2019-01-15T21:48:23Z",
     )

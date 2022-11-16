@@ -43,6 +43,7 @@ pprint(api_response)
 # assumes that execution takes place within an asynchronous context
 # Create API Key
 api_response = await rs.APIKeys.create(
+    created_by="string_example",
     name="my-app",
     role="string_example",
     async_req=True,
@@ -59,6 +60,7 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **created_by** | **str** |  | [optional]
  **name** | **str** | Name for this API key. | 
  **role** | **str** |  | [optional]
 

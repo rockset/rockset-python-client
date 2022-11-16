@@ -136,8 +136,8 @@ class QueryResponseStats(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            elapsed_time_ms (int): query time in milliseconds. [optional]  # noqa: E501
-            throttled_time_micros (int): time query was throttled by admission control. [optional]  # noqa: E501
+            elapsed_time_ms (int): Query time in milliseconds.. [optional]  # noqa: E501
+            throttled_time_micros (int): Time query was throttled by admission control.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -189,8 +189,8 @@ class QueryResponseStats(ModelNormal):
         """QueryResponseStats - a model defined in OpenAPI
 
         Keyword Args:
-            elapsed_time_ms (int): query time in milliseconds. [optional]  # noqa: E501
-            throttled_time_micros (int): time query was throttled by admission control. [optional]  # noqa: E501
+            elapsed_time_ms (int): Query time in milliseconds.. [optional]  # noqa: E501
+            throttled_time_micros (int): Time query was throttled by admission control.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

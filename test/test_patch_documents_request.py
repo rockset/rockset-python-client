@@ -15,16 +15,16 @@ from rockset.models import *
 def test_patch_documents_request_init():
     PatchDocumentsRequest(
         data=[
-            PatchDocument(
-                id="ca2d6832-1bfd-f88f-0620-d2aa27a5d86c",
-                patch=[
-                    PatchOperation(
-                        _from="_from_example",
-                        op="ADD",
-                        path="/foo/bar",
-                        value={},
-                    ),
-                ],
-            ),
-        ],
+        PatchDocument(
+            id="ca2d6832-1bfd-f88f-0620-d2aa27a5d86c",
+            patch=[
+                PatchOperation(
+                    _from="_from_example",
+                    op="ADD",
+                    path="/foo/bar",
+                    value={},
+                ),
+            ],
+        ),
+    ],
     )

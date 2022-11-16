@@ -144,9 +144,9 @@ class StatusAzureServiceBus(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            first_processed_at (str): Service Bus first message processed time in ISO-8601 format. [optional]  # noqa: E501
-            records_processed (int): Number of records processed. [optional]  # noqa: E501
-            sessions ({str: (StatusAzureServiceBusSession,)}): Sessions processed. [optional]  # noqa: E501
+            first_processed_at (str): Service Bus first message processed time in ISO-8601 format.. [optional]  # noqa: E501
+            records_processed (int): Number of records processed.. [optional]  # noqa: E501
+            sessions ({str: (StatusAzureServiceBusSession,)}): Sessions processed.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -198,9 +198,9 @@ class StatusAzureServiceBus(ModelNormal):
         """StatusAzureServiceBus - a model defined in OpenAPI
 
         Keyword Args:
-            first_processed_at (str): Service Bus first message processed time in ISO-8601 format. [optional]  # noqa: E501
-            records_processed (int): Number of records processed. [optional]  # noqa: E501
-            sessions ({str: (StatusAzureServiceBusSession,)}): Sessions processed. [optional]  # noqa: E501
+            first_processed_at (str): Service Bus first message processed time in ISO-8601 format.. [optional]  # noqa: E501
+            records_processed (int): Number of records processed.. [optional]  # noqa: E501
+            sessions ({str: (StatusAzureServiceBusSession,)}): Sessions processed.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

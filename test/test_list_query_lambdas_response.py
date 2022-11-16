@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_list_query_lambdas_response_init():
-    ListQueryLambdasResponse()
+    ListQueryLambdasResponse(
+        
+    )

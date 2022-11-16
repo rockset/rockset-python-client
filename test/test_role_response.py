@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_role_response_init():
-    RoleResponse()
+    RoleResponse(
+        
+    )

@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_delete_documents_response_init():
-    DeleteDocumentsResponse()
+    DeleteDocumentsResponse(
+        
+    )

@@ -90,6 +90,7 @@ class CreateQueryLambdaRequest(ModelNormal):
             'name': (str,),  # noqa: E501
             'sql': (QueryLambdaSql,),  # noqa: E501
             'description': (str, none_type),  # noqa: E501
+            'is_public': (bool, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -101,6 +102,7 @@ class CreateQueryLambdaRequest(ModelNormal):
         'name': 'name',  # noqa: E501
         'sql': 'sql',  # noqa: E501
         'description': 'description',  # noqa: E501
+        'is_public': 'is_public',  # noqa: E501
     }
 
     read_only_vars = {
@@ -114,7 +116,7 @@ class CreateQueryLambdaRequest(ModelNormal):
         """CreateQueryLambdaRequest - a model defined in OpenAPI
 
         Args:
-            name (str): Query Lambda name
+            name (str): Query Lambda name.
             sql (QueryLambdaSql):
 
         Keyword Args:
@@ -148,7 +150,8 @@ class CreateQueryLambdaRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            description (str): optional description. [optional]  # noqa: E501
+            description (str): Optional description.. [optional]  # noqa: E501
+            is_public (bool): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -202,9 +205,10 @@ class CreateQueryLambdaRequest(ModelNormal):
         """CreateQueryLambdaRequest - a model defined in OpenAPI
 
         Keyword Args:
-            name (str): Query Lambda name
+            name (str): Query Lambda name.
             sql (QueryLambdaSql):
-            description (str): optional description. [optional]  # noqa: E501
+            description (str): Optional description.. [optional]  # noqa: E501
+            is_public (bool): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

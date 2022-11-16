@@ -161,7 +161,7 @@ class ApiKey(ModelNormal):
             expiry_time (str): The expiration date of this API key.. [optional]  # noqa: E501
             last_access_time (str): Date that API key was most recently used (ISO-8601 format).. [optional]  # noqa: E501
             role (str): Role specifying access control. If not specified, API key will have access to all of the associated user's roles.. [optional]  # noqa: E501
-            state (str): current state of this key. [optional]  # noqa: E501
+            state (str): Current state of this key.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -222,7 +222,7 @@ class ApiKey(ModelNormal):
             expiry_time (str): The expiration date of this API key.. [optional]  # noqa: E501
             last_access_time (str): Date that API key was most recently used (ISO-8601 format).. [optional]  # noqa: E501
             role (str): Role specifying access control. If not specified, API key will have access to all of the associated user's roles.. [optional]  # noqa: E501
-            state (str): current state of this key. [optional]  # noqa: E501
+            state (str): Current state of this key.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

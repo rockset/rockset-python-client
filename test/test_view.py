@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_view_init():
-    View()
+    View(
+        
+    )

@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_xml_params_init():
-    XmlParams()
+    XmlParams(
+        
+    )

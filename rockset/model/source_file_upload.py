@@ -108,9 +108,9 @@ class SourceFileUpload(ModelNormal):
         """SourceFileUpload - a model defined in OpenAPI
 
         Args:
-            file_name (str): name of the file
-            file_size (int): size of the file in bytes
-            file_upload_time (str): time of file upload
+            file_name (str): Name of the file.
+            file_size (int): Size of the file in bytes.
+            file_upload_time (str): Time of file upload.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -197,9 +197,9 @@ class SourceFileUpload(ModelNormal):
         """SourceFileUpload - a model defined in OpenAPI
 
         Keyword Args:
-            file_name (str): name of the file
-            file_size (int): size of the file in bytes
-            file_upload_time (str): time of file upload
+            file_name (str): Name of the file.
+            file_size (int): Size of the file in bytes.
+            file_upload_time (str): Time of file upload.
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

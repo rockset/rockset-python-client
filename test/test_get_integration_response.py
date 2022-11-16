@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_get_integration_response_init():
-    GetIntegrationResponse()
+    GetIntegrationResponse(
+        
+    )

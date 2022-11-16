@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_query_pagination_response_init():
-    QueryPaginationResponse()
+    QueryPaginationResponse(
+        
+    )

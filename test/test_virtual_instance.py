@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_virtual_instance_init():
-    VirtualInstance()
+    VirtualInstance(
+        name="prod_vi",
+    )

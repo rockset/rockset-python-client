@@ -82,6 +82,7 @@ class AwsRole(ModelNormal):
         """
         return {
             'aws_role_arn': (str,),  # noqa: E501
+            'aws_external_id': (str, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -91,6 +92,7 @@ class AwsRole(ModelNormal):
 
     attribute_map = {
         'aws_role_arn': 'aws_role_arn',  # noqa: E501
+        'aws_external_id': 'aws_external_id',  # noqa: E501
     }
 
     read_only_vars = {
@@ -104,7 +106,7 @@ class AwsRole(ModelNormal):
         """AwsRole - a model defined in OpenAPI
 
         Args:
-            aws_role_arn (str): ARN of rockset-role created in your account
+            aws_role_arn (str): ARN of rockset-role created in your account.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -137,6 +139,7 @@ class AwsRole(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            aws_external_id (str): External id used for integration.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -189,7 +192,8 @@ class AwsRole(ModelNormal):
         """AwsRole - a model defined in OpenAPI
 
         Keyword Args:
-            aws_role_arn (str): ARN of rockset-role created in your account
+            aws_role_arn (str): ARN of rockset-role created in your account.
+            aws_external_id (str): External id used for integration.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

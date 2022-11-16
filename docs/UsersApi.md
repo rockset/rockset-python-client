@@ -10,6 +10,7 @@ Method | HTTP request | Description
 [**get_current_user**](UsersApi.md#get_current_user) | **GET** /v1/orgs/self/users/self | Retrieve Current User
 [**list**](UsersApi.md#list) | **GET** /v1/orgs/self/users | List Users
 [**list_unsubscribe_preferences**](UsersApi.md#list_unsubscribe_preferences) | **GET** /v1/orgs/self/users/self/preferences | Retrieve Notification Preferences
+[**update**](UsersApi.md#update) | **POST** /v1/orgs/self/users/{user} | Update User
 [**update_unsubscribe_preferences**](UsersApi.md#update_unsubscribe_preferences) | **POST** /v1/orgs/self/users/self/preferences | Update Notification Preferences
 
 
@@ -62,8 +63,8 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **email** | **str** | user email, must be unique | 
- **roles** | **[str]** | List of roles for a given user | [optional]
+ **email** | **str** | User email, must be unique. | 
+ **roles** | **[str]** | List of roles for a given user. | [optional]
 
 ### Return type
 
@@ -511,6 +512,97 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **update**
+> User update(user, update_user_request)
+
+Update User
+
+Update a user in an organization.
+
+### Example
+
+* Api Key Authentication (apikey):
+
+```python
+from rockset import *
+from pprint import pprint
+
+# Create an instance of the Rockset client
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
+
+# synchronous example passing only required values which don't have defaults set
+# Update User
+api_response = rs.Users.update(
+    user="user_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Users->update: %s\n" % e)
+
+# asynchronous example passing optional values and required values which don't have defaults set
+# assumes that execution takes place within an asynchronous context
+# Update User
+api_response = await rs.Users.update(
+    user="user_example",
+    first_name="John",
+    last_name="Doe",
+    roles=["admin","member","read-only"],
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Users->update: %s\n" % e)
+    return
+pprint(api_response)
+
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **user** | **str** | email of the user to update |
+ **first_name** | **str** | User first name. | [optional]
+ **last_name** | **str** | User last name. | [optional]
+ **roles** | **[str]** | New list of roles for a given user. | [optional]
+
+### Return type
+
+[**User**](User.md)
+
+### Authorization
+
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | user updated successfully |  -  |
+**400** | bad request |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+**405** | not allowed |  -  |
+**406** | not acceptable |  -  |
+**408** | request timeout |  -  |
+**415** | not supported |  -  |
+**429** | resource exceeded |  -  |
+**500** | internal error |  -  |
+**501** | not implemented |  -  |
+**502** | bad gateway |  -  |
+**503** | not ready |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **update_unsubscribe_preferences**
 > UpdateUnsubscribePreferencesResponse update_unsubscribe_preferences(update_unsubscribe_preferences_request)
 
@@ -561,7 +653,7 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **data** | [**[UnsubscribePreference]**](UnsubscribePreference.md) | List of notification preferences | [optional]
+ **data** | [**[UnsubscribePreference]**](UnsubscribePreference.md) | List of notification preferences. | [optional]
 
 ### Return type
 

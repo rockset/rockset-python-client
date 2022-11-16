@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_sql_expression_init():
-    SqlExpression()
+    SqlExpression(
+        
+    )

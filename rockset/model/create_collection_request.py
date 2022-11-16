@@ -68,6 +68,9 @@ class CreateCollectionRequest(ModelNormal):
     }
 
     validations = {
+        ('retention_secs',): {
+            'inclusive_minimum': 1,
+        },
     }
 
     @cached_property
@@ -93,13 +96,12 @@ class CreateCollectionRequest(ModelNormal):
         """
         lazy_import()
         return {
-            'name': (str,),  # noqa: E501
             'clustering_key': ([FieldPartition], none_type),  # noqa: E501
             'description': (str, none_type),  # noqa: E501
             'event_time_info': (EventTimeInfo, none_type),  # noqa: E501
             'field_mapping_query': (FieldMappingQuery, none_type),  # noqa: E501
             'field_mappings': ([FieldMappingV2], none_type),  # noqa: E501
-            'insert_only': (bool, none_type),  # noqa: E501
+            'name': (str, none_type),  # noqa: E501
             'retention_secs': (int, none_type),  # noqa: E501
         }
 
@@ -109,13 +111,12 @@ class CreateCollectionRequest(ModelNormal):
 
 
     attribute_map = {
-        'name': 'name',  # noqa: E501
         'clustering_key': 'clustering_key',  # noqa: E501
         'description': 'description',  # noqa: E501
         'event_time_info': 'event_time_info',  # noqa: E501
         'field_mapping_query': 'field_mapping_query',  # noqa: E501
         'field_mappings': 'field_mappings',  # noqa: E501
-        'insert_only': 'insert_only',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'retention_secs': 'retention_secs',  # noqa: E501
     }
 
@@ -126,11 +127,8 @@ class CreateCollectionRequest(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, name, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
         """CreateCollectionRequest - a model defined in OpenAPI
-
-        Args:
-            name (str): unique identifier for collection, can contain alphanumeric or dash characters
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -163,13 +161,13 @@ class CreateCollectionRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            clustering_key ([FieldPartition]): list of clustering fields. [optional]  # noqa: E501
-            description (str): text describing the collection. [optional]  # noqa: E501
+            clustering_key ([FieldPartition]): Deprecated. List of clustering fields. Use CLUSTER BY clause in `field_mapping_query` instead.. [optional]  # noqa: E501
+            description (str): Text describing the collection.. [optional]  # noqa: E501
             event_time_info (EventTimeInfo): [optional]  # noqa: E501
             field_mapping_query (FieldMappingQuery): [optional]  # noqa: E501
-            field_mappings ([FieldMappingV2]): list of mappings. [optional]  # noqa: E501
-            insert_only (bool): If true disallows updates and deletes, but makes indexing more efficient. [optional]  # noqa: E501
-            retention_secs (int): number of seconds after which data is purged, based on event time. [optional]  # noqa: E501
+            field_mappings ([FieldMappingV2]): Deprecated. List of mappings. Use field_mapping_query instead.. [optional]  # noqa: E501
+            name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [optional]  # noqa: E501
+            retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -197,7 +195,6 @@ class CreateCollectionRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.name = name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -218,18 +215,17 @@ class CreateCollectionRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *, name, **kwargs):  # noqa: E501
+    def __init__(self, **kwargs):  # noqa: E501
         """CreateCollectionRequest - a model defined in OpenAPI
 
         Keyword Args:
-            name (str): unique identifier for collection, can contain alphanumeric or dash characters
-            clustering_key ([FieldPartition]): list of clustering fields. [optional]  # noqa: E501
-            description (str): text describing the collection. [optional]  # noqa: E501
+            clustering_key ([FieldPartition]): Deprecated. List of clustering fields. Use CLUSTER BY clause in `field_mapping_query` instead.. [optional]  # noqa: E501
+            description (str): Text describing the collection.. [optional]  # noqa: E501
             event_time_info (EventTimeInfo): [optional]  # noqa: E501
             field_mapping_query (FieldMappingQuery): [optional]  # noqa: E501
-            field_mappings ([FieldMappingV2]): list of mappings. [optional]  # noqa: E501
-            insert_only (bool): If true disallows updates and deletes, but makes indexing more efficient. [optional]  # noqa: E501
-            retention_secs (int): number of seconds after which data is purged, based on event time. [optional]  # noqa: E501
+            field_mappings ([FieldMappingV2]): Deprecated. List of mappings. Use field_mapping_query instead.. [optional]  # noqa: E501
+            name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [optional]  # noqa: E501
+            retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -286,7 +282,6 @@ class CreateCollectionRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.name = name
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

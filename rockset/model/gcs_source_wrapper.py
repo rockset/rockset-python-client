@@ -60,7 +60,7 @@ class GcsSourceWrapper(ModelNormal):
           as additional properties values.
     """
     inner_field = "gcs"
-    inner_properties = ["bucket", "object_bytes_total", "object_count_downloaded", "object_count_total", "pattern", "prefix"]
+    inner_properties = ["bucket", "object_bytes_downloaded", "object_bytes_total", "object_count_downloaded", "object_count_total", "pattern", "prefix"]
     allowed_values = {
     }
 
@@ -94,6 +94,7 @@ class GcsSourceWrapper(ModelNormal):
             'integration_name': (str, none_type),  # noqa: E501
             'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
             'bucket': (str, none_type),  # noqa: E501
+            'object_bytes_downloaded': (int, none_type),  # noqa: E501
             'object_bytes_total': (int, none_type),  # noqa: E501
             'object_count_downloaded': (int, none_type),  # noqa: E501
             'object_count_total': (int, none_type),  # noqa: E501
@@ -111,6 +112,7 @@ class GcsSourceWrapper(ModelNormal):
         'integration_name': 'integration_name',  # noqa: E501
         'status': 'status',  # noqa: E501
         'bucket': 'bucket',  # noqa: E501
+        'object_bytes_downloaded': 'object_bytes_downloaded',  # noqa: E501
         'object_bytes_total': 'object_bytes_total',  # noqa: E501
         'object_count_downloaded': 'object_count_downloaded',  # noqa: E501
         'object_count_total': 'object_count_total',  # noqa: E501
@@ -120,6 +122,7 @@ class GcsSourceWrapper(ModelNormal):
 
     read_only_vars = {
         'status',  # noqa: E501
+        'object_bytes_downloaded',  # noqa: E501
         'object_bytes_total',  # noqa: E501
         'object_count_downloaded',  # noqa: E501
         'object_count_total',  # noqa: E501
@@ -164,9 +167,10 @@ class GcsSourceWrapper(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             format_params (FormatParams): [optional]  # noqa: E501
-            integration_name (str): name of integration to use. [optional]  # noqa: E501
+            integration_name (str): Name of integration to use.. [optional]  # noqa: E501
             status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
-            bucket (str): name of GCS bucket you want to ingest from. [optional]  # noqa: E501
+            bucket (str): Name of GCS bucket you want to ingest from.. [optional]  # noqa: E501
+            object_bytes_downloaded (int): [optional]  # noqa: E501
             object_bytes_total (int): [optional]  # noqa: E501
             object_count_downloaded (int): [optional]  # noqa: E501
             object_count_total (int): [optional]  # noqa: E501
@@ -224,8 +228,8 @@ class GcsSourceWrapper(ModelNormal):
 
         Keyword Args:
             format_params (FormatParams): [optional]  # noqa: E501
-            integration_name (str): name of integration to use. [optional]  # noqa: E501
-            bucket (str): name of GCS bucket you want to ingest from. [optional]  # noqa: E501
+            integration_name (str): Name of integration to use.. [optional]  # noqa: E501
+            bucket (str): Name of GCS bucket you want to ingest from.. [optional]  # noqa: E501
             pattern (str): Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified.. [optional]  # noqa: E501
             prefix (str): Prefix that selects keys to ingest.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types

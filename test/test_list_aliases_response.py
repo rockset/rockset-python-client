@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_list_aliases_response_init():
-    ListAliasesResponse()
+    ListAliasesResponse(
+        
+    )

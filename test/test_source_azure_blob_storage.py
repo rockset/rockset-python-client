@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_source_azure_blob_storage_init():
-    SourceAzureBlobStorage()
+    SourceAzureBlobStorage(
+        
+    )

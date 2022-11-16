@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_document_status_init():
-    DocumentStatus()
+    DocumentStatus(
+        
+    )

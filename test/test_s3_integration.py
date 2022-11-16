@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_s3_integration_init():
-    S3Integration()
+    S3Integration(
+        
+    )

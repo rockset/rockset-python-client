@@ -148,9 +148,9 @@ class FieldMappingV2(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            input_fields ([InputField]): A List of InputField for this mapping. [optional]  # noqa: E501
+            input_fields ([InputField]): A List of InputField for this mapping.. [optional]  # noqa: E501
             is_drop_all_fields (bool): A boolean that determines whether to drop all fields in this document. If set, input and output fields should not be set. [optional]  # noqa: E501
-            name (str): A user specified string that is a name for this mapping. [optional]  # noqa: E501
+            name (str): A user specified string that is a name for this mapping.. [optional]  # noqa: E501
             output_field (OutputField): [optional]  # noqa: E501
         """
 
@@ -203,9 +203,9 @@ class FieldMappingV2(ModelNormal):
         """FieldMappingV2 - a model defined in OpenAPI
 
         Keyword Args:
-            input_fields ([InputField]): A List of InputField for this mapping. [optional]  # noqa: E501
+            input_fields ([InputField]): A List of InputField for this mapping.. [optional]  # noqa: E501
             is_drop_all_fields (bool): A boolean that determines whether to drop all fields in this document. If set, input and output fields should not be set. [optional]  # noqa: E501
-            name (str): A user specified string that is a name for this mapping. [optional]  # noqa: E501
+            name (str): A user specified string that is a name for this mapping.. [optional]  # noqa: E501
             output_field (OutputField): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be

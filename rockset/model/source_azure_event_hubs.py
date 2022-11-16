@@ -149,7 +149,7 @@ class SourceAzureEventHubs(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            hub_id (str): name of the hub which rockset should ingest from. [optional]  # noqa: E501
+            hub_id (str): Name of the hub which rockset should ingest from.. [optional]  # noqa: E501
             offset_reset_policy (str): The offset reset policy.. [optional]  # noqa: E501
             status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
         """
@@ -203,7 +203,7 @@ class SourceAzureEventHubs(ModelNormal):
         """SourceAzureEventHubs - a model defined in OpenAPI
 
         Keyword Args:
-            hub_id (str): name of the hub which rockset should ingest from. [optional]  # noqa: E501
+            hub_id (str): Name of the hub which rockset should ingest from.. [optional]  # noqa: E501
             offset_reset_policy (str): The offset reset policy.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be

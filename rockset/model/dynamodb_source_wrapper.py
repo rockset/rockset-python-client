@@ -131,7 +131,7 @@ class DynamodbSourceWrapper(ModelNormal):
         """DynamodbSourceWrapper - a model defined in OpenAPI
 
         Args:
-            table_name (str): name of DynamoDB table containing data
+            table_name (str): Name of DynamoDB table containing data.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -165,12 +165,12 @@ class DynamodbSourceWrapper(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             format_params (FormatParams): [optional]  # noqa: E501
-            integration_name (str): name of integration to use. [optional]  # noqa: E501
+            integration_name (str): Name of integration to use.. [optional]  # noqa: E501
             status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
-            aws_region (str): AWS region name of DynamoDB table, by default us-west-2 is used. [optional]  # noqa: E501
+            aws_region (str): AWS region name of DynamoDB table, by default us-west-2 is used.. [optional]  # noqa: E501
             current_status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
-            rcu (int): Max RCU usage for scan. [optional]  # noqa: E501
-            use_scan_api (bool): Whether to use DynamoDB Scan API for the initial scan. [optional]  # noqa: E501
+            rcu (int): Max RCU usage for scan.. [optional]  # noqa: E501
+            use_scan_api (bool): Whether to use DynamoDB Scan API for the initial scan.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -223,12 +223,12 @@ class DynamodbSourceWrapper(ModelNormal):
         """DynamodbSourceWrapper - a model defined in OpenAPI
 
         Keyword Args:
-            table_name (str): name of DynamoDB table containing data
+            table_name (str): Name of DynamoDB table containing data.
             format_params (FormatParams): [optional]  # noqa: E501
-            integration_name (str): name of integration to use. [optional]  # noqa: E501
-            aws_region (str): AWS region name of DynamoDB table, by default us-west-2 is used. [optional]  # noqa: E501
-            rcu (int): Max RCU usage for scan. [optional]  # noqa: E501
-            use_scan_api (bool): Whether to use DynamoDB Scan API for the initial scan. [optional]  # noqa: E501
+            integration_name (str): Name of integration to use.. [optional]  # noqa: E501
+            aws_region (str): AWS region name of DynamoDB table, by default us-west-2 is used.. [optional]  # noqa: E501
+            rcu (int): Max RCU usage for scan.. [optional]  # noqa: E501
+            use_scan_api (bool): Whether to use DynamoDB Scan API for the initial scan.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

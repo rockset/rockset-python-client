@@ -138,9 +138,9 @@ class SchemaRegistryConfig(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            key (str): The secure API key for schema registry. [optional]  # noqa: E501
-            secret (str): The secure API password registry. [optional]  # noqa: E501
-            url (str): Schema registry URL. [optional]  # noqa: E501
+            key (str): The secure API key for schema registry.. [optional]  # noqa: E501
+            secret (str): The secure API password registry.. [optional]  # noqa: E501
+            url (str): Schema registry URL.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -192,9 +192,9 @@ class SchemaRegistryConfig(ModelNormal):
         """SchemaRegistryConfig - a model defined in OpenAPI
 
         Keyword Args:
-            key (str): The secure API key for schema registry. [optional]  # noqa: E501
-            secret (str): The secure API password registry. [optional]  # noqa: E501
-            url (str): Schema registry URL. [optional]  # noqa: E501
+            key (str): The secure API key for schema registry.. [optional]  # noqa: E501
+            secret (str): The secure API password registry.. [optional]  # noqa: E501
+            url (str): Schema registry URL.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

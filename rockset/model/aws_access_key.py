@@ -106,8 +106,8 @@ class AwsAccessKey(ModelNormal):
         """AwsAccessKey - a model defined in OpenAPI
 
         Args:
-            aws_access_key_id (str): AWS access key ID
-            aws_secret_access_key (str): AWS secret access key
+            aws_access_key_id (str): AWS access key ID.
+            aws_secret_access_key (str): AWS secret access key.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -193,8 +193,8 @@ class AwsAccessKey(ModelNormal):
         """AwsAccessKey - a model defined in OpenAPI
 
         Keyword Args:
-            aws_access_key_id (str): AWS access key ID
-            aws_secret_access_key (str): AWS secret access key
+            aws_access_key_id (str): AWS access key ID.
+            aws_secret_access_key (str): AWS secret access key.
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

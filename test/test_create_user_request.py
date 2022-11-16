@@ -14,6 +14,5 @@ from rockset.models import *
 
 def test_create_user_request_init():
     CreateUserRequest(
-        email="hello@rockset.com",
-        roles=["admin", "member", "read-only"],
+        email="hello@rockset.com",roles=["admin","member","read-only"],
     )

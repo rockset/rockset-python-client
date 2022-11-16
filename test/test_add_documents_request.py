@@ -14,5 +14,5 @@ from rockset.models import *
 
 def test_add_documents_request_init():
     AddDocumentsRequest(
-        data=[{"field": "value"}],
+        data=[{"field":"value"}],
     )

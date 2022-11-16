@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_output_field_init():
-    OutputField()
+    OutputField(
+        
+    )

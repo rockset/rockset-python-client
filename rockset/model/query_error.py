@@ -138,9 +138,9 @@ class QueryError(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            message (str): A message associated with the error, containing more information about it. [optional]  # noqa: E501
+            message (str): A message associated with the error, containing more information about it.. [optional]  # noqa: E501
             status_code (int): The HTTP status code associated with this error, had it been sent as the response status code. [optional]  # noqa: E501
-            type (str): The type of error. [optional]  # noqa: E501
+            type (str): The type of error.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -192,9 +192,9 @@ class QueryError(ModelNormal):
         """QueryError - a model defined in OpenAPI
 
         Keyword Args:
-            message (str): A message associated with the error, containing more information about it. [optional]  # noqa: E501
+            message (str): A message associated with the error, containing more information about it.. [optional]  # noqa: E501
             status_code (int): The HTTP status code associated with this error, had it been sent as the response status code. [optional]  # noqa: E501
-            type (str): The type of error. [optional]  # noqa: E501
+            type (str): The type of error.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

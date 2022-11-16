@@ -19,9 +19,10 @@ def test_create(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.APIKeys.create(
-                name="my-app",
-                role="string_example",
-            )
+    created_by="string_example",
+    name="my-app",
+    role="string_example",
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -31,9 +32,9 @@ def test_delete(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.APIKeys.delete(
-                name="my-key",
-                user="admin@me.com",
-            )
+    name="my-key",
+    user="admin@me.com",
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -43,9 +44,9 @@ def test_get(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.APIKeys.get(
-                user="admin@me.com",
-                name="my-key",
-            )
+    user="admin@me.com",
+    name="my-key",
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -55,8 +56,8 @@ def test_list(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.APIKeys.list(
-                user="admin@me.com",
-            )
+    user="admin@me.com",
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -66,9 +67,10 @@ def test_update(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.APIKeys.update(
-                name="my-key",
-                user="admin@me.com",
-                state="ACTIVE",
-            )
+    name="my-key",
+    user="admin@me.com",
+    state="ACTIVE",
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
+

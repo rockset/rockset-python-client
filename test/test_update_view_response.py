@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_update_view_response_init():
-    UpdateViewResponse()
+    UpdateViewResponse(
+        
+    )

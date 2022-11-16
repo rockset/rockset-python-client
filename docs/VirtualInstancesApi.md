@@ -4,10 +4,196 @@ All URIs are relative to *https://api.use1a1.rockset.com* or the apiserver provi
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**create**](VirtualInstancesApi.md#create) | **POST** /v1/orgs/self/virtualinstances | Create Virtual Instance
+[**delete**](VirtualInstancesApi.md#delete) | **DELETE** /v1/orgs/self/virtualinstances/{virtualInstanceId} | Delete Virtual Instance
 [**get**](VirtualInstancesApi.md#get) | **GET** /v1/orgs/self/virtualinstances/{virtualInstanceId} | Retrieve Virtual Instance
+[**get_collection_mount**](VirtualInstancesApi.md#get_collection_mount) | **GET** /v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts/{collectionPath} | Get Collection Mount
+[**get_virtual_instance_queries**](VirtualInstancesApi.md#get_virtual_instance_queries) | **GET** /v1/orgs/self/virtualinstances/{virtualInstanceId}/queries | List Queries
 [**list**](VirtualInstancesApi.md#list) | **GET** /v1/orgs/self/virtualinstances | List Virtual Instances
-[**set_virtual_instance**](VirtualInstancesApi.md#set_virtual_instance) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId} | Update Virtual Instance
+[**list_collection_mounts**](VirtualInstancesApi.md#list_collection_mounts) | **GET** /v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts | List Collection Mounts
+[**mount_collection**](VirtualInstancesApi.md#mount_collection) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts | Mount Collection
+[**query_virtual_instance**](VirtualInstancesApi.md#query_virtual_instance) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId}/queries | Execute SQL Query
+[**resume_virtual_instance**](VirtualInstancesApi.md#resume_virtual_instance) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId}/resume | Resume Virtual Instance
+[**suspend_virtual_instance**](VirtualInstancesApi.md#suspend_virtual_instance) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId}/suspend | Suspend Virtual Instance
+[**unmount_collection**](VirtualInstancesApi.md#unmount_collection) | **DELETE** /v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts/{collectionPath} | Unmount Collection
+[**update**](VirtualInstancesApi.md#update) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId} | Update Virtual Instance
 
+
+# **create**
+> CreateVirtualInstanceResponse create(create_virtual_instance_request)
+
+Create Virtual Instance
+
+[beta] Create virtual instance
+
+### Example
+
+* Api Key Authentication (apikey):
+
+```python
+from rockset import *
+from pprint import pprint
+
+# Create an instance of the Rockset client
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
+
+# synchronous example passing only required values which don't have defaults set
+# Create Virtual Instance
+api_response = rs.VirtualInstances.create(
+    name="prod_vi",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling VirtualInstances->create: %s\n" % e)
+
+# asynchronous example passing optional values and required values which don't have defaults set
+# assumes that execution takes place within an asynchronous context
+# Create Virtual Instance
+api_response = await rs.VirtualInstances.create(
+    auto_suspend_seconds=3600,
+    description="VI serving prod traffic",
+    name="prod_vi",
+    type="LARGE",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling VirtualInstances->create: %s\n" % e)
+    return
+pprint(api_response)
+
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **auto_suspend_seconds** | **int** | Number of seconds without queries after which the VI is suspended | [optional]
+ **description** | **str** | Description of requested virtual instance. | [optional]
+ **name** | **str** | Unique identifier for virtual instance, can contain alphanumeric or dash characters. | 
+ **type** | **str** | Requested virtual instance type. | [optional]
+
+### Return type
+
+[**CreateVirtualInstanceResponse**](CreateVirtualInstanceResponse.md)
+
+### Authorization
+
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | virtual instance created successfully |  -  |
+**400** | bad request |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+**405** | not allowed |  -  |
+**406** | not acceptable |  -  |
+**408** | request timeout |  -  |
+**415** | not supported |  -  |
+**429** | resource exceeded |  -  |
+**500** | internal error |  -  |
+**501** | not implemented |  -  |
+**502** | bad gateway |  -  |
+**503** | not ready |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **delete**
+> DeleteVirtualInstanceResponse delete(virtual_instance_id)
+
+Delete Virtual Instance
+
+[beta] Delete a virtual instance.
+
+### Example
+
+* Api Key Authentication (apikey):
+
+```python
+from rockset import *
+from pprint import pprint
+
+# Create an instance of the Rockset client
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
+
+# synchronous example passing only required values which don't have defaults set
+# Delete Virtual Instance
+api_response = rs.VirtualInstances.delete(
+    virtual_instance_id="virtualInstanceId_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling VirtualInstances->delete: %s\n" % e)
+
+# asynchronous example passing optional values and required values which don't have defaults set
+# assumes that execution takes place within an asynchronous context
+# Delete Virtual Instance
+api_response = await rs.VirtualInstances.delete(
+    virtual_instance_id="virtualInstanceId_example",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling VirtualInstances->delete: %s\n" % e)
+    return
+pprint(api_response)
+
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **virtual_instance_id** | **str** | Virtual Instance RRN |
+
+### Return type
+
+[**DeleteVirtualInstanceResponse**](DeleteVirtualInstanceResponse.md)
+
+### Authorization
+
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | virtual instance deleted successfully |  -  |
+**400** | bad request |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+**405** | not allowed |  -  |
+**406** | not acceptable |  -  |
+**408** | request timeout |  -  |
+**415** | not supported |  -  |
+**429** | resource exceeded |  -  |
+**500** | internal error |  -  |
+**501** | not implemented |  -  |
+**502** | bad gateway |  -  |
+**503** | not ready |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get**
 > GetVirtualInstanceResponse get(virtual_instance_id)
@@ -56,7 +242,7 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **virtual_instance_id** | **str** | uuid of the virtual instance |
+ **virtual_instance_id** | **str** | Virtual Instance RRN |
 
 ### Return type
 
@@ -78,6 +264,179 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | virtual instance retrieved successfully |  -  |
+**400** | bad request |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+**405** | not allowed |  -  |
+**406** | not acceptable |  -  |
+**408** | request timeout |  -  |
+**415** | not supported |  -  |
+**429** | resource exceeded |  -  |
+**500** | internal error |  -  |
+**501** | not implemented |  -  |
+**502** | bad gateway |  -  |
+**503** | not ready |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_collection_mount**
+> CollectionMountResponse get_collection_mount(virtual_instance_id, collection_path)
+
+Get Collection Mount
+
+[beta] Get a mount on this virtual instance.
+
+### Example
+
+* Api Key Authentication (apikey):
+
+```python
+from rockset import *
+from pprint import pprint
+
+# Create an instance of the Rockset client
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
+
+# synchronous example passing only required values which don't have defaults set
+# Get Collection Mount
+api_response = rs.VirtualInstances.get_collection_mount(
+    virtual_instance_id="virtualInstanceId_example",
+    collection_path="collectionPath_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling VirtualInstances->get_collection_mount: %s\n" % e)
+
+# asynchronous example passing optional values and required values which don't have defaults set
+# assumes that execution takes place within an asynchronous context
+# Get Collection Mount
+api_response = await rs.VirtualInstances.get_collection_mount(
+    virtual_instance_id="virtualInstanceId_example",
+    collection_path="collectionPath_example",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling VirtualInstances->get_collection_mount: %s\n" % e)
+    return
+pprint(api_response)
+
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **virtual_instance_id** | **str** | Virtual Instance RRN |
+ **collection_path** | **str** |  |
+
+### Return type
+
+[**CollectionMountResponse**](CollectionMountResponse.md)
+
+### Authorization
+
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | collection unmounted |  -  |
+**400** | bad request |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+**405** | not allowed |  -  |
+**406** | not acceptable |  -  |
+**408** | request timeout |  -  |
+**415** | not supported |  -  |
+**429** | resource exceeded |  -  |
+**500** | internal error |  -  |
+**501** | not implemented |  -  |
+**502** | bad gateway |  -  |
+**503** | not ready |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **get_virtual_instance_queries**
+> ListQueriesResponse get_virtual_instance_queries(virtual_instance_id)
+
+List Queries
+
+[beta] Lists actively queued and running queries for a particular Virtual Instance.
+
+### Example
+
+* Api Key Authentication (apikey):
+
+```python
+from rockset import *
+from pprint import pprint
+
+# Create an instance of the Rockset client
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
+
+# synchronous example passing only required values which don't have defaults set
+# List Queries
+api_response = rs.VirtualInstances.get_virtual_instance_queries(
+    virtual_instance_id="virtualInstanceId_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling VirtualInstances->get_virtual_instance_queries: %s\n" % e)
+
+# asynchronous example passing optional values and required values which don't have defaults set
+# assumes that execution takes place within an asynchronous context
+# List Queries
+api_response = await rs.VirtualInstances.get_virtual_instance_queries(
+    virtual_instance_id="virtualInstanceId_example",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling VirtualInstances->get_virtual_instance_queries: %s\n" % e)
+    return
+pprint(api_response)
+
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **virtual_instance_id** | **str** | Virtual Instance RRN |
+
+### Return type
+
+[**ListQueriesResponse**](ListQueriesResponse.md)
+
+### Authorization
+
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | successfully fetched queries |  -  |
 **400** | bad request |  -  |
 **401** | unauthorized |  -  |
 **403** | forbidden |  -  |
@@ -174,8 +533,560 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **set_virtual_instance**
-> UpdateVirtualInstanceResponse set_virtual_instance(virtual_instance_id, update_virtual_instance_request)
+# **list_collection_mounts**
+> ListCollectionMountsResponse list_collection_mounts(virtual_instance_id)
+
+List Collection Mounts
+
+[beta] List collection mounts for a particular VI.
+
+### Example
+
+* Api Key Authentication (apikey):
+
+```python
+from rockset import *
+from pprint import pprint
+
+# Create an instance of the Rockset client
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
+
+# synchronous example passing only required values which don't have defaults set
+# List Collection Mounts
+api_response = rs.VirtualInstances.list_collection_mounts(
+    virtual_instance_id="virtualInstanceId_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling VirtualInstances->list_collection_mounts: %s\n" % e)
+
+# asynchronous example passing optional values and required values which don't have defaults set
+# assumes that execution takes place within an asynchronous context
+# List Collection Mounts
+api_response = await rs.VirtualInstances.list_collection_mounts(
+    virtual_instance_id="virtualInstanceId_example",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling VirtualInstances->list_collection_mounts: %s\n" % e)
+    return
+pprint(api_response)
+
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **virtual_instance_id** | **str** | Virtual Instance RRN |
+
+### Return type
+
+[**ListCollectionMountsResponse**](ListCollectionMountsResponse.md)
+
+### Authorization
+
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | resource mounted |  -  |
+**400** | bad request |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+**405** | not allowed |  -  |
+**406** | not acceptable |  -  |
+**408** | request timeout |  -  |
+**415** | not supported |  -  |
+**429** | resource exceeded |  -  |
+**500** | internal error |  -  |
+**501** | not implemented |  -  |
+**502** | bad gateway |  -  |
+**503** | not ready |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **mount_collection**
+> CollectionMountResponse mount_collection(virtual_instance_id, create_collection_mount_request)
+
+Mount Collection
+
+[beta] Mount a collection to this virtual instance.
+
+### Example
+
+* Api Key Authentication (apikey):
+
+```python
+from rockset import *
+from pprint import pprint
+
+# Create an instance of the Rockset client
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
+
+# synchronous example passing only required values which don't have defaults set
+# Mount Collection
+api_response = rs.VirtualInstances.mount_collection(
+    virtual_instance_id="virtualInstanceId_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling VirtualInstances->mount_collection: %s\n" % e)
+
+# asynchronous example passing optional values and required values which don't have defaults set
+# assumes that execution takes place within an asynchronous context
+# Mount Collection
+api_response = await rs.VirtualInstances.mount_collection(
+    virtual_instance_id="virtualInstanceId_example",
+    collection_paths=["commons.foo","commons.bar"],
+    type="STATIC",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling VirtualInstances->mount_collection: %s\n" % e)
+    return
+pprint(api_response)
+
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **virtual_instance_id** | **str** | Virtual Instance RRN |
+ **collection_paths** | **[str]** | Collections to mount. | [optional]
+ **type** | **str** | Mount type. | [optional]
+
+### Return type
+
+[**CollectionMountResponse**](CollectionMountResponse.md)
+
+### Authorization
+
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | collection mounted |  -  |
+**400** | bad request |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+**405** | not allowed |  -  |
+**406** | not acceptable |  -  |
+**408** | request timeout |  -  |
+**415** | not supported |  -  |
+**429** | resource exceeded |  -  |
+**500** | internal error |  -  |
+**501** | not implemented |  -  |
+**502** | bad gateway |  -  |
+**503** | not ready |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **query_virtual_instance**
+> QueryResponse query_virtual_instance(virtual_instance_id, query_request)
+
+Execute SQL Query
+
+[beta] Make a SQL query to Rockset.
+
+### Example
+
+* Api Key Authentication (apikey):
+
+```python
+from rockset import *
+from pprint import pprint
+
+# Create an instance of the Rockset client
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
+
+# synchronous example passing only required values which don't have defaults set
+# Execute SQL Query
+api_response = rs.VirtualInstances.query_virtual_instance(
+    virtual_instance_id="virtualInstanceId_example",
+    sql=QueryRequestSql(
+        default_row_limit=1,
+        generate_warnings=True,
+        initial_paginate_response_doc_count=1,
+        paginate=True,
+        parameters=[
+            QueryParameter(
+                name="_id",
+                type="string",
+                value="85beb391",
+            ),
+        ],
+        query="SELECT * FROM foo where _id = :_id",
+    ),
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling VirtualInstances->query_virtual_instance: %s\n" % e)
+
+# asynchronous example passing optional values and required values which don't have defaults set
+# assumes that execution takes place within an asynchronous context
+# Execute SQL Query
+api_response = await rs.VirtualInstances.query_virtual_instance(
+    virtual_instance_id="virtualInstanceId_example",
+    async_options=AsyncQueryOptions(
+        client_timeout_ms=1,
+        max_initial_results=1,
+        timeout_ms=1,
+    ),
+    sql=QueryRequestSql(
+        default_row_limit=1,
+        generate_warnings=True,
+        initial_paginate_response_doc_count=1,
+        paginate=True,
+        parameters=[
+            QueryParameter(
+                name="_id",
+                type="string",
+                value="85beb391",
+            ),
+        ],
+        query="SELECT * FROM foo where _id = :_id",
+    ),
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling VirtualInstances->query_virtual_instance: %s\n" % e)
+    return
+pprint(api_response)
+
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **virtual_instance_id** | **str** | Virtual Instance RRN |
+ **async_options** | [**AsyncQueryOptions**](AsyncQueryOptions.md) |  | [optional]
+ **sql** | [**QueryRequestSql**](QueryRequestSql.md) |  | 
+
+### Return type
+
+[**QueryResponse**](QueryResponse.md)
+
+### Authorization
+
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | query executed successfully |  -  |
+**400** | bad request |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+**405** | not allowed |  -  |
+**406** | not acceptable |  -  |
+**408** | request timeout |  -  |
+**415** | not supported |  -  |
+**429** | resource exceeded |  -  |
+**500** | internal error |  -  |
+**501** | not implemented |  -  |
+**502** | bad gateway |  -  |
+**503** | not ready |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **resume_virtual_instance**
+> ResumeVirtualInstanceResponse resume_virtual_instance(virtual_instance_id)
+
+Resume Virtual Instance
+
+[beta] Resume a virtual instance.
+
+### Example
+
+* Api Key Authentication (apikey):
+
+```python
+from rockset import *
+from pprint import pprint
+
+# Create an instance of the Rockset client
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
+
+# synchronous example passing only required values which don't have defaults set
+# Resume Virtual Instance
+api_response = rs.VirtualInstances.resume_virtual_instance(
+    virtual_instance_id="virtualInstanceId_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling VirtualInstances->resume_virtual_instance: %s\n" % e)
+
+# asynchronous example passing optional values and required values which don't have defaults set
+# assumes that execution takes place within an asynchronous context
+# Resume Virtual Instance
+api_response = await rs.VirtualInstances.resume_virtual_instance(
+    virtual_instance_id="virtualInstanceId_example",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling VirtualInstances->resume_virtual_instance: %s\n" % e)
+    return
+pprint(api_response)
+
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **virtual_instance_id** | **str** | Virtual Instance RRN |
+
+### Return type
+
+[**ResumeVirtualInstanceResponse**](ResumeVirtualInstanceResponse.md)
+
+### Authorization
+
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | virtual instance resumed successfully |  -  |
+**400** | bad request |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+**405** | not allowed |  -  |
+**406** | not acceptable |  -  |
+**408** | request timeout |  -  |
+**415** | not supported |  -  |
+**429** | resource exceeded |  -  |
+**500** | internal error |  -  |
+**501** | not implemented |  -  |
+**502** | bad gateway |  -  |
+**503** | not ready |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **suspend_virtual_instance**
+> SuspendVirtualInstanceResponse suspend_virtual_instance(virtual_instance_id)
+
+Suspend Virtual Instance
+
+[beta] Suspend a virtual instance.
+
+### Example
+
+* Api Key Authentication (apikey):
+
+```python
+from rockset import *
+from pprint import pprint
+
+# Create an instance of the Rockset client
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
+
+# synchronous example passing only required values which don't have defaults set
+# Suspend Virtual Instance
+api_response = rs.VirtualInstances.suspend_virtual_instance(
+    virtual_instance_id="virtualInstanceId_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling VirtualInstances->suspend_virtual_instance: %s\n" % e)
+
+# asynchronous example passing optional values and required values which don't have defaults set
+# assumes that execution takes place within an asynchronous context
+# Suspend Virtual Instance
+api_response = await rs.VirtualInstances.suspend_virtual_instance(
+    virtual_instance_id="virtualInstanceId_example",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling VirtualInstances->suspend_virtual_instance: %s\n" % e)
+    return
+pprint(api_response)
+
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **virtual_instance_id** | **str** | Virtual Instance RRN |
+
+### Return type
+
+[**SuspendVirtualInstanceResponse**](SuspendVirtualInstanceResponse.md)
+
+### Authorization
+
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | virtual instance suspended successfully |  -  |
+**400** | bad request |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+**405** | not allowed |  -  |
+**406** | not acceptable |  -  |
+**408** | request timeout |  -  |
+**415** | not supported |  -  |
+**429** | resource exceeded |  -  |
+**500** | internal error |  -  |
+**501** | not implemented |  -  |
+**502** | bad gateway |  -  |
+**503** | not ready |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **unmount_collection**
+> CollectionMountResponse unmount_collection(virtual_instance_id, collection_path)
+
+Unmount Collection
+
+[beta] Unmount a collection from this virtual instance.
+
+### Example
+
+* Api Key Authentication (apikey):
+
+```python
+from rockset import *
+from pprint import pprint
+
+# Create an instance of the Rockset client
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
+
+# synchronous example passing only required values which don't have defaults set
+# Unmount Collection
+api_response = rs.VirtualInstances.unmount_collection(
+    virtual_instance_id="virtualInstanceId_example",
+    collection_path="collectionPath_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling VirtualInstances->unmount_collection: %s\n" % e)
+
+# asynchronous example passing optional values and required values which don't have defaults set
+# assumes that execution takes place within an asynchronous context
+# Unmount Collection
+api_response = await rs.VirtualInstances.unmount_collection(
+    virtual_instance_id="virtualInstanceId_example",
+    collection_path="collectionPath_example",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling VirtualInstances->unmount_collection: %s\n" % e)
+    return
+pprint(api_response)
+
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **virtual_instance_id** | **str** | Virtual Instance RRN |
+ **collection_path** | **str** |  |
+
+### Return type
+
+[**CollectionMountResponse**](CollectionMountResponse.md)
+
+### Authorization
+
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | collection unmounted |  -  |
+**400** | bad request |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+**405** | not allowed |  -  |
+**406** | not acceptable |  -  |
+**408** | request timeout |  -  |
+**415** | not supported |  -  |
+**429** | resource exceeded |  -  |
+**500** | internal error |  -  |
+**501** | not implemented |  -  |
+**502** | bad gateway |  -  |
+**503** | not ready |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update**
+> UpdateVirtualInstanceResponse update(virtual_instance_id, update_virtual_instance_request)
 
 Update Virtual Instance
 
@@ -194,26 +1105,29 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 # Update Virtual Instance
-api_response = rs.VirtualInstances.set_virtual_instance(
+api_response = rs.VirtualInstances.update(
     virtual_instance_id="virtualInstanceId_example",
 )
 pprint(api_response)
 # Error responses from the server will cause the client to throw an ApiException
 # except ApiException as e:
-#     print("Exception when calling VirtualInstances->set_virtual_instance: %s\n" % e)
+#     print("Exception when calling VirtualInstances->update: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 # assumes that execution takes place within an asynchronous context
 # Update Virtual Instance
-api_response = await rs.VirtualInstances.set_virtual_instance(
+api_response = await rs.VirtualInstances.update(
     virtual_instance_id="virtualInstanceId_example",
+    auto_suspend_enabled=True,
+    auto_suspend_seconds=3600,
+    description="VI for prod traffic",
     monitoring_enabled=True,
+    name="prod_vi",
     new_size="LARGE",
-    new_type="FREE",
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
-    print("Exception when calling VirtualInstances->set_virtual_instance: %s\n" % e)
+    print("Exception when calling VirtualInstances->update: %s\n" % e)
     return
 pprint(api_response)
 
@@ -224,10 +1138,13 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **virtual_instance_id** | **str** | uuid of the virtual instance |
+ **virtual_instance_id** | **str** | Virtual Instance RRN |
+ **auto_suspend_enabled** | **bool** | Whether auto-suspend should be enabled for this Virtual Instance. | [optional]
+ **auto_suspend_seconds** | **int** | Number of seconds without queries after which the VI is suspended | [optional]
+ **description** | **str** | New virtual instance description. | [optional]
  **monitoring_enabled** | **bool** |  | [optional]
- **new_size** | **str** | requested virtual instance size | [optional]
- **new_type** | **str** |  | [optional]
+ **name** | **str** | New virtual instance name. | [optional]
+ **new_size** | **str** | Requested virtual instance size. | [optional]
 
 ### Return type
 

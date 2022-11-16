@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_query_response_stats_init():
-    QueryResponseStats()
+    QueryResponseStats(
+        
+    )

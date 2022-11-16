@@ -104,7 +104,7 @@ class DeleteDocumentsRequestData(ModelNormal):
         """DeleteDocumentsRequestData - a model defined in OpenAPI
 
         Args:
-            id (str): unique document ID
+            id (str): Unique document ID.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -189,7 +189,7 @@ class DeleteDocumentsRequestData(ModelNormal):
         """DeleteDocumentsRequestData - a model defined in OpenAPI
 
         Keyword Args:
-            id (str): unique document ID
+            id (str): Unique document ID.
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_query_lambda_version_init():
-    QueryLambdaVersion()
+    QueryLambdaVersion(
+        
+    )

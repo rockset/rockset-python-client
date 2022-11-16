@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_update_unsubscribe_preferences_response_init():
-    UpdateUnsubscribePreferencesResponse()
+    UpdateUnsubscribePreferencesResponse(
+        
+    )

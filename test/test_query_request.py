@@ -15,17 +15,17 @@ from rockset.models import *
 def test_query_request_init():
     QueryRequest(
         sql=QueryRequestSql(
-            default_row_limit=1,
-            generate_warnings=True,
-            initial_paginate_response_doc_count=1,
-            paginate=True,
-            parameters=[
-                QueryParameter(
-                    name="_id",
-                    type="string",
-                    value="85beb391",
-                ),
-            ],
-            query="SELECT * FROM foo where _id = :_id",
-        ),
+        default_row_limit=1,
+        generate_warnings=True,
+        initial_paginate_response_doc_count=1,
+        paginate=True,
+        parameters=[
+            QueryParameter(
+                name="_id",
+                type="string",
+                value="85beb391",
+            ),
+        ],
+        query="SELECT * FROM foo where _id = :_id",
+    ),
     )

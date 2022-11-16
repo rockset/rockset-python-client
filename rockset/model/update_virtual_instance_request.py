@@ -59,19 +59,7 @@ class UpdateVirtualInstanceRequest(ModelNormal):
             'FREE': "FREE",
             'NANO': "NANO",
             'SHARED': "SHARED",
-            'SMALL': "SMALL",
-            'MEDIUM': "MEDIUM",
-            'LARGE': "LARGE",
-            'XLARGE': "XLARGE",
-            'XLARGE2': "XLARGE2",
-            'XLARGE4': "XLARGE4",
-            'XLARGE8': "XLARGE8",
-            'XLARGE16': "XLARGE16",
-        },
-        ('new_type',): {
-            'FREE': "FREE",
-            'NANO': "NANO",
-            'SHARED': "SHARED",
+            'MILLI': "MILLI",
             'SMALL': "SMALL",
             'MEDIUM': "MEDIUM",
             'LARGE': "LARGE",
@@ -107,9 +95,12 @@ class UpdateVirtualInstanceRequest(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'auto_suspend_enabled': (bool, none_type),  # noqa: E501
+            'auto_suspend_seconds': (int, none_type),  # noqa: E501
+            'description': (str, none_type),  # noqa: E501
             'monitoring_enabled': (bool, none_type),  # noqa: E501
+            'name': (str, none_type),  # noqa: E501
             'new_size': (str, none_type),  # noqa: E501
-            'new_type': (str, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -118,9 +109,12 @@ class UpdateVirtualInstanceRequest(ModelNormal):
 
 
     attribute_map = {
+        'auto_suspend_enabled': 'auto_suspend_enabled',  # noqa: E501
+        'auto_suspend_seconds': 'auto_suspend_seconds',  # noqa: E501
+        'description': 'description',  # noqa: E501
         'monitoring_enabled': 'monitoring_enabled',  # noqa: E501
+        'name': 'name',  # noqa: E501
         'new_size': 'new_size',  # noqa: E501
-        'new_type': 'new_type',  # noqa: E501
     }
 
     read_only_vars = {
@@ -164,9 +158,12 @@ class UpdateVirtualInstanceRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            auto_suspend_enabled (bool): Whether auto-suspend should be enabled for this Virtual Instance.. [optional]  # noqa: E501
+            auto_suspend_seconds (int): Number of seconds without queries after which the VI is suspended. [optional]  # noqa: E501
+            description (str): New virtual instance description.. [optional]  # noqa: E501
             monitoring_enabled (bool): [optional]  # noqa: E501
-            new_size (str): requested virtual instance size. [optional]  # noqa: E501
-            new_type (str): [optional]  # noqa: E501
+            name (str): New virtual instance name.. [optional]  # noqa: E501
+            new_size (str): Requested virtual instance size.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -218,9 +215,12 @@ class UpdateVirtualInstanceRequest(ModelNormal):
         """UpdateVirtualInstanceRequest - a model defined in OpenAPI
 
         Keyword Args:
+            auto_suspend_enabled (bool): Whether auto-suspend should be enabled for this Virtual Instance.. [optional]  # noqa: E501
+            auto_suspend_seconds (int): Number of seconds without queries after which the VI is suspended. [optional]  # noqa: E501
+            description (str): New virtual instance description.. [optional]  # noqa: E501
             monitoring_enabled (bool): [optional]  # noqa: E501
-            new_size (str): requested virtual instance size. [optional]  # noqa: E501
-            new_type (str): [optional]  # noqa: E501
+            name (str): New virtual instance name.. [optional]  # noqa: E501
+            new_size (str): Requested virtual instance size.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

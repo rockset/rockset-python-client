@@ -62,9 +62,9 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **collections** | **[str]** | list of fully qualified collection names referenced by alias | 
- **description** | **str** | optional description | [optional]
- **name** | **str** | Alias name | 
+ **collections** | **[str]** | List of fully qualified collection names referenced by alias. | 
+ **description** | **str** | Optional description. | [optional]
+ **name** | **str** | Alias name. | 
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
@@ -393,8 +393,8 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **alias** | **str** | name of the alias |
- **collections** | **[str]** | list of fully qualified collection names referenced by alias | 
- **description** | **str** | optional description | [optional]
+ **collections** | **[str]** | List of fully qualified collection names referenced by alias. | 
+ **description** | **str** | Optional description. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type

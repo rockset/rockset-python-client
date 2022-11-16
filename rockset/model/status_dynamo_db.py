@@ -149,12 +149,12 @@ class StatusDynamoDb(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            scan_end_time (str): DynamoDb scan end time. [optional]  # noqa: E501
-            scan_records_processed (int): Number of records inserted using scan. [optional]  # noqa: E501
-            scan_start_time (str): DynamoDB scan start time. [optional]  # noqa: E501
-            scan_total_records (int): Number of records in DynamoDB table at time of scan. [optional]  # noqa: E501
-            state (str): state of current ingest for this table. [optional]  # noqa: E501
-            stream_last_processed_at (str): ISO-8601 date when source was last processed. [optional]  # noqa: E501
+            scan_end_time (str): DynamoDb scan end time.. [optional]  # noqa: E501
+            scan_records_processed (int): Number of records inserted using scan.. [optional]  # noqa: E501
+            scan_start_time (str): DynamoDB scan start time.. [optional]  # noqa: E501
+            scan_total_records (int): Number of records in DynamoDB table at time of scan.. [optional]  # noqa: E501
+            state (str): State of current ingest for this table.. [optional]  # noqa: E501
+            stream_last_processed_at (str): ISO-8601 date when source was last processed.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -206,12 +206,12 @@ class StatusDynamoDb(ModelNormal):
         """StatusDynamoDb - a model defined in OpenAPI
 
         Keyword Args:
-            scan_end_time (str): DynamoDb scan end time. [optional]  # noqa: E501
-            scan_records_processed (int): Number of records inserted using scan. [optional]  # noqa: E501
-            scan_start_time (str): DynamoDB scan start time. [optional]  # noqa: E501
-            scan_total_records (int): Number of records in DynamoDB table at time of scan. [optional]  # noqa: E501
-            state (str): state of current ingest for this table. [optional]  # noqa: E501
-            stream_last_processed_at (str): ISO-8601 date when source was last processed. [optional]  # noqa: E501
+            scan_end_time (str): DynamoDb scan end time.. [optional]  # noqa: E501
+            scan_records_processed (int): Number of records inserted using scan.. [optional]  # noqa: E501
+            scan_start_time (str): DynamoDB scan start time.. [optional]  # noqa: E501
+            scan_total_records (int): Number of records in DynamoDB table at time of scan.. [optional]  # noqa: E501
+            state (str): State of current ingest for this table.. [optional]  # noqa: E501
+            stream_last_processed_at (str): ISO-8601 date when source was last processed.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_format_params_init():
-    FormatParams()
+    FormatParams(
+        
+    )

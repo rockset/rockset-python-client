@@ -5,7 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **csv** | [**CsvParams**](CsvParams.md) |  | [optional] 
-**json** | **bool** | source data is in json format | [optional] 
+**json** | **bool** | Source data is in json format. | [optional] 
 **mssql_dms** | **bool** |  | [optional] 
 **mysql_dms** | **bool** |  | [optional] 
 **oracle_dms** | **bool** |  | [optional] 

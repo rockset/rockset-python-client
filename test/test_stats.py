@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_stats_init():
-    Stats()
+    Stats(
+        
+    )

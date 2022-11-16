@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_create_alias_response_init():
-    CreateAliasResponse()
+    CreateAliasResponse(
+        
+    )

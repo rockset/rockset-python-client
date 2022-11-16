@@ -104,7 +104,7 @@ class AzureServiceBusIntegration(ModelNormal):
         """AzureServiceBusIntegration - a model defined in OpenAPI
 
         Args:
-            connection_string (str): credentials for the Azure Service Bus
+            connection_string (str): Credentials for the Azure Service Bus.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -189,7 +189,7 @@ class AzureServiceBusIntegration(ModelNormal):
         """AzureServiceBusIntegration - a model defined in OpenAPI
 
         Keyword Args:
-            connection_string (str): credentials for the Azure Service Bus
+            connection_string (str): Credentials for the Azure Service Bus.
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

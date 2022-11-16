@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_error_model_init():
-    ErrorModel()
+    ErrorModel(
+        
+    )

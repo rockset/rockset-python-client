@@ -89,6 +89,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**413** | content too large |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -156,7 +157,7 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **collection** | **str** | Name of the collection. |
- **data** | [**[DeleteDocumentsRequestData]**](DeleteDocumentsRequestData.md) | Array of IDs of documents to be deleted | 
+ **data** | [**[DeleteDocumentsRequestData]**](DeleteDocumentsRequestData.md) | Array of IDs of documents to be deleted. | 
  **workspace** | **str** | Name of the workspace. | defaults to "commons"
 
 ### Return type
@@ -299,6 +300,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**413** | content too large |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |

@@ -112,7 +112,7 @@ class QueryLambdaSql(ModelNormal):
         """QueryLambdaSql - a model defined in OpenAPI
 
         Args:
-            query (str): SQL text
+            query (str): SQL text.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -145,7 +145,7 @@ class QueryLambdaSql(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            default_parameters ([QueryParameter]): default parameters for this Query Lambda. [optional]  # noqa: E501
+            default_parameters ([QueryParameter]): Default parameters for this Query Lambda.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -198,8 +198,8 @@ class QueryLambdaSql(ModelNormal):
         """QueryLambdaSql - a model defined in OpenAPI
 
         Keyword Args:
-            query (str): SQL text
-            default_parameters ([QueryParameter]): default parameters for this Query Lambda. [optional]  # noqa: E501
+            query (str): SQL text.
+            default_parameters ([QueryParameter]): Default parameters for this Query Lambda.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

@@ -164,22 +164,22 @@ class CollectionStats(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            bulk_bytes_inserted (int): total number of bytes inserted into the collection during bulk. [optional]  # noqa: E501
-            bulk_bytes_overwritten (int): total number of bytes overwritten in writing into the collection during bulk. [optional]  # noqa: E501
-            bytes_inserted (int): total number of bytes inserted into the collection. [optional]  # noqa: E501
-            bytes_overwritten (int): total number of bytes overwritten in writing into the collection. [optional]  # noqa: E501
-            column_index_size (int): total collection column index size in bytes. [optional]  # noqa: E501
-            doc_count (int): number of documents in the collection. [optional]  # noqa: E501
-            fill_progress (float): number between 0 and 1 that indicates progress of collection creation. [optional]  # noqa: E501
-            inverted_index_size (int): total collection inverted index size in bytes. [optional]  # noqa: E501
-            last_queried_ms (int): milliseconds since Unix epoch Jan 1, 1970. [optional]  # noqa: E501
-            last_updated_ms (int): milliseconds since Unix epoch Jan 1, 1970. [optional]  # noqa: E501
-            purged_doc_count (int): number of documents purged from the collection. [optional]  # noqa: E501
-            purged_doc_size (int): total size of bytes purged in bytes. [optional]  # noqa: E501
-            range_index_size (int): total collection range index size in bytes. [optional]  # noqa: E501
-            row_index_size (int): total collection row index size in bytes. [optional]  # noqa: E501
-            total_index_size (int): total collection index size in bytes. [optional]  # noqa: E501
-            total_size (int): total collection size in bytes. [optional]  # noqa: E501
+            bulk_bytes_inserted (int): Total number of bytes inserted into the collection during bulk.. [optional]  # noqa: E501
+            bulk_bytes_overwritten (int): Total number of bytes overwritten in writing into the collection during bulk.. [optional]  # noqa: E501
+            bytes_inserted (int): Total number of bytes inserted into the collection.. [optional]  # noqa: E501
+            bytes_overwritten (int): Total number of bytes overwritten in writing into the collection.. [optional]  # noqa: E501
+            column_index_size (int): Total collection column index size in bytes.. [optional]  # noqa: E501
+            doc_count (int): Number of documents in the collection.. [optional]  # noqa: E501
+            fill_progress (float): Number between 0 and 1 that indicates progress of collection creation.. [optional]  # noqa: E501
+            inverted_index_size (int): Total collection inverted index size in bytes.. [optional]  # noqa: E501
+            last_queried_ms (int): Milliseconds since Unix epoch Jan 1, 1970.. [optional]  # noqa: E501
+            last_updated_ms (int): Milliseconds since Unix epoch Jan 1, 1970.. [optional]  # noqa: E501
+            purged_doc_count (int): Number of documents purged from the collection.. [optional]  # noqa: E501
+            purged_doc_size (int): Total size of bytes purged in bytes.. [optional]  # noqa: E501
+            range_index_size (int): Total collection range index size in bytes.. [optional]  # noqa: E501
+            row_index_size (int): Total collection row index size in bytes.. [optional]  # noqa: E501
+            total_index_size (int): Total collection index size in bytes.. [optional]  # noqa: E501
+            total_size (int): Total collection size in bytes.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -231,22 +231,22 @@ class CollectionStats(ModelNormal):
         """CollectionStats - a model defined in OpenAPI
 
         Keyword Args:
-            bulk_bytes_inserted (int): total number of bytes inserted into the collection during bulk. [optional]  # noqa: E501
-            bulk_bytes_overwritten (int): total number of bytes overwritten in writing into the collection during bulk. [optional]  # noqa: E501
-            bytes_inserted (int): total number of bytes inserted into the collection. [optional]  # noqa: E501
-            bytes_overwritten (int): total number of bytes overwritten in writing into the collection. [optional]  # noqa: E501
-            column_index_size (int): total collection column index size in bytes. [optional]  # noqa: E501
-            doc_count (int): number of documents in the collection. [optional]  # noqa: E501
-            fill_progress (float): number between 0 and 1 that indicates progress of collection creation. [optional]  # noqa: E501
-            inverted_index_size (int): total collection inverted index size in bytes. [optional]  # noqa: E501
-            last_queried_ms (int): milliseconds since Unix epoch Jan 1, 1970. [optional]  # noqa: E501
-            last_updated_ms (int): milliseconds since Unix epoch Jan 1, 1970. [optional]  # noqa: E501
-            purged_doc_count (int): number of documents purged from the collection. [optional]  # noqa: E501
-            purged_doc_size (int): total size of bytes purged in bytes. [optional]  # noqa: E501
-            range_index_size (int): total collection range index size in bytes. [optional]  # noqa: E501
-            row_index_size (int): total collection row index size in bytes. [optional]  # noqa: E501
-            total_index_size (int): total collection index size in bytes. [optional]  # noqa: E501
-            total_size (int): total collection size in bytes. [optional]  # noqa: E501
+            bulk_bytes_inserted (int): Total number of bytes inserted into the collection during bulk.. [optional]  # noqa: E501
+            bulk_bytes_overwritten (int): Total number of bytes overwritten in writing into the collection during bulk.. [optional]  # noqa: E501
+            bytes_inserted (int): Total number of bytes inserted into the collection.. [optional]  # noqa: E501
+            bytes_overwritten (int): Total number of bytes overwritten in writing into the collection.. [optional]  # noqa: E501
+            column_index_size (int): Total collection column index size in bytes.. [optional]  # noqa: E501
+            doc_count (int): Number of documents in the collection.. [optional]  # noqa: E501
+            fill_progress (float): Number between 0 and 1 that indicates progress of collection creation.. [optional]  # noqa: E501
+            inverted_index_size (int): Total collection inverted index size in bytes.. [optional]  # noqa: E501
+            last_queried_ms (int): Milliseconds since Unix epoch Jan 1, 1970.. [optional]  # noqa: E501
+            last_updated_ms (int): Milliseconds since Unix epoch Jan 1, 1970.. [optional]  # noqa: E501
+            purged_doc_count (int): Number of documents purged from the collection.. [optional]  # noqa: E501
+            purged_doc_size (int): Total size of bytes purged in bytes.. [optional]  # noqa: E501
+            range_index_size (int): Total collection range index size in bytes.. [optional]  # noqa: E501
+            row_index_size (int): Total collection row index size in bytes.. [optional]  # noqa: E501
+            total_index_size (int): Total collection index size in bytes.. [optional]  # noqa: E501
+            total_size (int): Total collection size in bytes.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

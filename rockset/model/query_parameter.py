@@ -108,9 +108,9 @@ class QueryParameter(ModelNormal):
         """QueryParameter - a model defined in OpenAPI
 
         Args:
-            name (str): name of the field
-            type (str): data type of the field
-            value (str): literal value of the field
+            name (str): Name of the field.
+            type (str): Data type of the field.
+            value (str): Literal value of the field.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -197,9 +197,9 @@ class QueryParameter(ModelNormal):
         """QueryParameter - a model defined in OpenAPI
 
         Keyword Args:
-            name (str): name of the field
-            type (str): data type of the field
-            value (str): literal value of the field
+            name (str): Name of the field.
+            type (str): Data type of the field.
+            value (str): Literal value of the field.
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

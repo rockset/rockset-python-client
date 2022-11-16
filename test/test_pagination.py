@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_pagination_init():
-    Pagination()
+    Pagination(
+        
+    )

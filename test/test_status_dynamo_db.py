@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_status_dynamo_db_init():
-    StatusDynamoDb()
+    StatusDynamoDb(
+        
+    )

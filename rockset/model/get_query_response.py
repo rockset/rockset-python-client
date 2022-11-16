@@ -88,7 +88,6 @@ class GetQueryResponse(ModelNormal):
         lazy_import()
         return {
             'data': (QueryInfo, none_type),  # noqa: E501
-            'last_offset': (str, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -98,7 +97,6 @@ class GetQueryResponse(ModelNormal):
 
     attribute_map = {
         'data': 'data',  # noqa: E501
-        'last_offset': 'last_offset',  # noqa: E501
     }
 
     read_only_vars = {
@@ -143,7 +141,6 @@ class GetQueryResponse(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             data (QueryInfo): [optional]  # noqa: E501
-            last_offset (str): If this was a write query, this is the log offset the query was written to. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -196,7 +193,6 @@ class GetQueryResponse(ModelNormal):
 
         Keyword Args:
             data (QueryInfo): [optional]  # noqa: E501
-            last_offset (str): If this was a write query, this is the log offset the query was written to. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

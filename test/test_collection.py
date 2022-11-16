@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_collection_init():
-    Collection()
+    Collection(
+        
+    )

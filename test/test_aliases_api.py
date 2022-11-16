@@ -19,10 +19,10 @@ def test_create(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Aliases.create(
-                collections=["commons.foo", "prod.demo"],
-                description="version alias",
-                name="aliasName",
-            )
+    collections=["commons.foo","prod.demo"],
+    description="version alias",
+    name="aliasName",
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -32,8 +32,8 @@ def test_delete(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Aliases.delete(
-                alias="alias_example",
-            )
+    alias="alias_example",
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -43,8 +43,8 @@ def test_get(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Aliases.get(
-                alias="alias_example",
-            )
+    alias="alias_example",
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -53,7 +53,8 @@ def test_list(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Aliases.list()
+            rs.Aliases.list(
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -63,10 +64,10 @@ def test_update(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Aliases.update(
-                alias="alias_example",
-                collections=["commons.foo", "prod.demo"],
-                description="version alias",
-            )
+    alias="alias_example",
+    collections=["commons.foo","prod.demo"],
+    description="version alias",
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -75,6 +76,8 @@ def test_workspace_aliases(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Aliases.workspace_aliases()
+            rs.Aliases.workspace_aliases(
+)
         except EarlyExit as e:
             validate_call(e, request_validator)
+

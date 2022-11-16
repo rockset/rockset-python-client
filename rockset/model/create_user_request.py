@@ -106,8 +106,8 @@ class CreateUserRequest(ModelNormal):
         """CreateUserRequest - a model defined in OpenAPI
 
         Args:
-            email (str): user email, must be unique
-            roles ([str]): List of roles for a given user
+            email (str): User email, must be unique.
+            roles ([str]): List of roles for a given user.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -193,8 +193,8 @@ class CreateUserRequest(ModelNormal):
         """CreateUserRequest - a model defined in OpenAPI
 
         Keyword Args:
-            email (str): user email, must be unique
-            roles ([str]): List of roles for a given user
+            email (str): User email, must be unique.
+            roles ([str]): List of roles for a given user.
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

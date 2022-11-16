@@ -14,5 +14,5 @@ from rockset.models import *
 
 def test_kafka_source_wrapper_init():
     KafkaSourceWrapper(
-        kafka_topic_name="example-topic",
+        
     )

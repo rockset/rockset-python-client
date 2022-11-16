@@ -114,7 +114,7 @@ class AzureEventHubsIntegrationCreationRequest(ModelNormal):
         """AzureEventHubsIntegrationCreationRequest - a model defined in OpenAPI
 
         Args:
-            name (str): descriptive label
+            name (str): Descriptive label.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -148,7 +148,7 @@ class AzureEventHubsIntegrationCreationRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             azure_event_hubs (AzureEventHubsIntegration): [optional]  # noqa: E501
-            description (str): longer explanation for the integration. [optional]  # noqa: E501
+            description (str): Longer explanation for the integration.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -201,9 +201,9 @@ class AzureEventHubsIntegrationCreationRequest(ModelNormal):
         """AzureEventHubsIntegrationCreationRequest - a model defined in OpenAPI
 
         Keyword Args:
-            name (str): descriptive label
+            name (str): Descriptive label.
             azure_event_hubs (AzureEventHubsIntegration): [optional]  # noqa: E501
-            description (str): longer explanation for the integration. [optional]  # noqa: E501
+            description (str): Longer explanation for the integration.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

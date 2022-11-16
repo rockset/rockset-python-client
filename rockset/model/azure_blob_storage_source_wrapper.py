@@ -164,12 +164,12 @@ class AzureBlobStorageSourceWrapper(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             format_params (FormatParams): [optional]  # noqa: E501
-            integration_name (str): name of integration to use. [optional]  # noqa: E501
+            integration_name (str): Name of integration to use.. [optional]  # noqa: E501
             status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
             blob_bytes_total (int): [optional]  # noqa: E501
             blob_count_downloaded (int): [optional]  # noqa: E501
             blob_count_total (int): [optional]  # noqa: E501
-            container (str): name of Azure blob Storage container you want to ingest from. [optional]  # noqa: E501
+            container (str): Name of Azure blob Storage container you want to ingest from.. [optional]  # noqa: E501
             pattern (str): Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified.. [optional]  # noqa: E501
             prefix (str): Prefix that selects blobs to ingest.. [optional]  # noqa: E501
         """
@@ -224,8 +224,8 @@ class AzureBlobStorageSourceWrapper(ModelNormal):
 
         Keyword Args:
             format_params (FormatParams): [optional]  # noqa: E501
-            integration_name (str): name of integration to use. [optional]  # noqa: E501
-            container (str): name of Azure blob Storage container you want to ingest from. [optional]  # noqa: E501
+            integration_name (str): Name of integration to use.. [optional]  # noqa: E501
+            container (str): Name of Azure blob Storage container you want to ingest from.. [optional]  # noqa: E501
             pattern (str): Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified.. [optional]  # noqa: E501
             prefix (str): Prefix that selects blobs to ingest.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types

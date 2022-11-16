@@ -13,4 +13,6 @@ from rockset.models import *
 
 
 def test_status_kafka_partition_init():
-    StatusKafkaPartition()
+    StatusKafkaPartition(
+        
+    )

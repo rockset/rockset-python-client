@@ -142,10 +142,10 @@ class XmlParams(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            attribute_prefix (str): tag to differentiate between attributes and elements. [optional]  # noqa: E501
-            doc_tag (str): tags with which documents are identified. [optional]  # noqa: E501
-            encoding (str): encoding in which data source is encoded. [optional]  # noqa: E501
-            root_tag (str): tag until which xml is ignored. [optional]  # noqa: E501
+            attribute_prefix (str): Tag to differentiate between attributes and elements.. [optional]  # noqa: E501
+            doc_tag (str): Tags with which documents are identified.. [optional]  # noqa: E501
+            encoding (str): Encoding in which data source is encoded.. [optional]  # noqa: E501
+            root_tag (str): Tag until which xml is ignored.. [optional]  # noqa: E501
             value_tag (str): tag used for the value when there are attributes in the element having no child. [optional]  # noqa: E501
         """
 
@@ -198,10 +198,10 @@ class XmlParams(ModelNormal):
         """XmlParams - a model defined in OpenAPI
 
         Keyword Args:
-            attribute_prefix (str): tag to differentiate between attributes and elements. [optional]  # noqa: E501
-            doc_tag (str): tags with which documents are identified. [optional]  # noqa: E501
-            encoding (str): encoding in which data source is encoded. [optional]  # noqa: E501
-            root_tag (str): tag until which xml is ignored. [optional]  # noqa: E501
+            attribute_prefix (str): Tag to differentiate between attributes and elements.. [optional]  # noqa: E501
+            doc_tag (str): Tags with which documents are identified.. [optional]  # noqa: E501
+            encoding (str): Encoding in which data source is encoded.. [optional]  # noqa: E501
+            root_tag (str): Tag until which xml is ignored.. [optional]  # noqa: E501
             value_tag (str): tag used for the value when there are attributes in the element having no child. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be

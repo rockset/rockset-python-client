@@ -159,17 +159,17 @@ class View(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            created_at (str): ISO-8601 date. [optional]  # noqa: E501
-            creator_email (str): email of the creator. [optional]  # noqa: E501
-            description (str): view description. [optional]  # noqa: E501
-            entities ([str]): list of entities referenced by view. An entity can be a view, alias or collection. [optional]  # noqa: E501
-            modified_at (str): ISO-8601 date. [optional]  # noqa: E501
-            name (str): name of the view. [optional]  # noqa: E501
-            owner_email (str): email of the owner, note: deprecated and will always be null. [optional]  # noqa: E501
+            created_at (str): ISO-8601 date.. [optional]  # noqa: E501
+            creator_email (str): Email of the creator.. [optional]  # noqa: E501
+            description (str): View description.. [optional]  # noqa: E501
+            entities ([str]): List of entities referenced by view. An entity can be a view, alias or collection.. [optional]  # noqa: E501
+            modified_at (str): ISO-8601 date.. [optional]  # noqa: E501
+            name (str): Name of the view.. [optional]  # noqa: E501
+            owner_email (str): Email of the owner, note: deprecated and will always be null.. [optional]  # noqa: E501
             path (str): [optional]  # noqa: E501
-            query_sql (str): SQL query of the view. [optional]  # noqa: E501
-            state (str): state of the view. [optional]  # noqa: E501
-            workspace (str): name of the workspace. [optional]  # noqa: E501
+            query_sql (str): SQL query of the view.. [optional]  # noqa: E501
+            state (str): State of the view.. [optional]  # noqa: E501
+            workspace (str): Name of the workspace.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -221,17 +221,17 @@ class View(ModelNormal):
         """View - a model defined in OpenAPI
 
         Keyword Args:
-            created_at (str): ISO-8601 date. [optional]  # noqa: E501
-            creator_email (str): email of the creator. [optional]  # noqa: E501
-            description (str): view description. [optional]  # noqa: E501
-            entities ([str]): list of entities referenced by view. An entity can be a view, alias or collection. [optional]  # noqa: E501
-            modified_at (str): ISO-8601 date. [optional]  # noqa: E501
-            name (str): name of the view. [optional]  # noqa: E501
-            owner_email (str): email of the owner, note: deprecated and will always be null. [optional]  # noqa: E501
+            created_at (str): ISO-8601 date.. [optional]  # noqa: E501
+            creator_email (str): Email of the creator.. [optional]  # noqa: E501
+            description (str): View description.. [optional]  # noqa: E501
+            entities ([str]): List of entities referenced by view. An entity can be a view, alias or collection.. [optional]  # noqa: E501
+            modified_at (str): ISO-8601 date.. [optional]  # noqa: E501
+            name (str): Name of the view.. [optional]  # noqa: E501
+            owner_email (str): Email of the owner, note: deprecated and will always be null.. [optional]  # noqa: E501
             path (str): [optional]  # noqa: E501
-            query_sql (str): SQL query of the view. [optional]  # noqa: E501
-            state (str): state of the view. [optional]  # noqa: E501
-            workspace (str): name of the workspace. [optional]  # noqa: E501
+            query_sql (str): SQL query of the view.. [optional]  # noqa: E501
+            state (str): State of the view.. [optional]  # noqa: E501
+            workspace (str): Name of the workspace.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

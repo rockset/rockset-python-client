@@ -14,6 +14,5 @@ from rockset.models import *
 
 def test_patch_operation_init():
     PatchOperation(
-        op="ADD",
-        path="/foo/bar",
+        op="ADD",path="/foo/bar",
     )

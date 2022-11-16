@@ -106,7 +106,7 @@ class UpdateViewRequest(ModelNormal):
         """UpdateViewRequest - a model defined in OpenAPI
 
         Args:
-            query (str): SQL for this view
+            query (str): SQL for this view.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -139,7 +139,7 @@ class UpdateViewRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            description (str): optional description. [optional]  # noqa: E501
+            description (str): Optional description.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -192,8 +192,8 @@ class UpdateViewRequest(ModelNormal):
         """UpdateViewRequest - a model defined in OpenAPI
 
         Keyword Args:
-            query (str): SQL for this view
-            description (str): optional description. [optional]  # noqa: E501
+            query (str): SQL for this view.
+            description (str): Optional description.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
