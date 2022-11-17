@@ -9,6 +9,7 @@ setup.cfg
 tox.ini
 .gitignore
 requirements.txt
+test-requirements.txt
 git_push.sh
 .travis.yml
 .gitlab-ci.yml
