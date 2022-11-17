@@ -94,7 +94,6 @@ class AzureEventHubsIntegration(ModelNormal):
     }
 
     read_only_vars = {
-        'connection_string',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -135,7 +134,7 @@ class AzureEventHubsIntegration(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            connection_string (str): azure event hubs connection string. [optional]  # noqa: E501
+            connection_string (str): Credentials for the Azure Event Hubs.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -187,6 +186,7 @@ class AzureEventHubsIntegration(ModelNormal):
         """AzureEventHubsIntegration - a model defined in OpenAPI
 
         Keyword Args:
+            connection_string (str): Credentials for the Azure Event Hubs.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

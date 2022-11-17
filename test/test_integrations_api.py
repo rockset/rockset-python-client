@@ -22,7 +22,8 @@ def test_create_azure_blob_storage_integration(
         try:
             rs.Integrations.create_azure_blob_storage_integration(
                 azure_blob_storage=AzureBlobStorageIntegration(
-                    connection_string="connection_string_example",
+                    connection_string="""BlobEndpoint=https://<NamespaceName>.blob.core.windows.net;
+SharedAccessSignature=<KeyValue>""",
                 ),
                 description="AWS account with event data for the data science team.",
                 name="event-logs",
@@ -38,7 +39,9 @@ def test_create_azure_event_hubs_integration(
         rs = get_client
         try:
             rs.Integrations.create_azure_event_hubs_integration(
-                azure_event_hubs=AzureEventHubsIntegration(),
+                azure_event_hubs=AzureEventHubsIntegration(
+                    connection_string="Endpoint=sb://<NamespaceName>.servicebus.windows.net/;SharedAccessKeyName=<KeyName>;SharedAccessKey=<KeyValue>",
+                ),
                 description="AWS account with event data for the data science team.",
                 name="event-logs",
             )
@@ -58,6 +61,7 @@ def test_create_dynamodb_integration(get_client, mock_request, request_validator
                         aws_secret_access_key="wJal....",
                     ),
                     aws_role=AwsRole(
+                        aws_external_id="external id of aws",
                         aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
                     ),
                     s3_export_bucket_name="s3_export_bucket_name_example",
@@ -92,7 +96,12 @@ def test_create_kafka_integration(get_client, mock_request, request_validator):
             rs.Integrations.create_kafka_integration(
                 description="AWS account with event data for the data science team.",
                 kafka=KafkaIntegration(
-                    bootstrap_servers="bootstrap_servers_example",
+                    aws_role=AwsRole(
+                        aws_external_id="external id of aws",
+                        aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
+                    ),
+                    bootstrap_servers="localhost:9092",
+                    connection_string="connection_string_example",
                     kafka_data_format="JSON",
                     kafka_topic_names=[
                         "kafka_topic_names_example",
@@ -126,6 +135,7 @@ def test_create_kinesis_integration(get_client, mock_request, request_validator)
                         aws_secret_access_key="wJal....",
                     ),
                     aws_role=AwsRole(
+                        aws_external_id="external id of aws",
                         aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
                     ),
                 ),
@@ -163,22 +173,10 @@ def test_create_s3_integration(get_client, mock_request, request_validator):
                         aws_secret_access_key="wJal....",
                     ),
                     aws_role=AwsRole(
+                        aws_external_id="external id of aws",
                         aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
                     ),
                 ),
-            )
-        except EarlyExit as e:
-            validate_call(e, request_validator)
-
-
-def test_create_segment_integration(get_client, mock_request, request_validator):
-    with mock_request:
-        rs = get_client
-        try:
-            rs.Integrations.create_segment_integration(
-                description="AWS account with event data for the data science team.",
-                name="event-logs",
-                segment=SegmentIntegration(),
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
@@ -197,6 +195,7 @@ def test_create_snowflake_integration(get_client, mock_request, request_validato
                         aws_secret_access_key="wJal....",
                     ),
                     aws_role=AwsRole(
+                        aws_external_id="external id of aws",
                         aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
                     ),
                     default_warehouse="default_warehouse_example",

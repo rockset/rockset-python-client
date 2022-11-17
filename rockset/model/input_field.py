@@ -144,10 +144,10 @@ class InputField(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            field_name (str): The name of a field, parsed as a SQL qualified name. [optional]  # noqa: E501
-            if_missing (str): Define the behaviour if fieldName is missing or is null. [optional]  # noqa: E501
-            is_drop (bool): If true, then drop fieldName from the document. [optional]  # noqa: E501
-            param (str): Sql parameter name. [optional]  # noqa: E501
+            field_name (str): The name of a field, parsed as a SQL qualified name.. [optional]  # noqa: E501
+            if_missing (str): Define the behaviour if fieldName is missing or is null.. [optional]  # noqa: E501
+            is_drop (bool): If true, then drop fieldName from the document.. [optional]  # noqa: E501
+            param (str): Sql parameter name.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -199,10 +199,10 @@ class InputField(ModelNormal):
         """InputField - a model defined in OpenAPI
 
         Keyword Args:
-            field_name (str): The name of a field, parsed as a SQL qualified name. [optional]  # noqa: E501
-            if_missing (str): Define the behaviour if fieldName is missing or is null. [optional]  # noqa: E501
-            is_drop (bool): If true, then drop fieldName from the document. [optional]  # noqa: E501
-            param (str): Sql parameter name. [optional]  # noqa: E501
+            field_name (str): The name of a field, parsed as a SQL qualified name.. [optional]  # noqa: E501
+            if_missing (str): Define the behaviour if fieldName is missing or is null.. [optional]  # noqa: E501
+            is_drop (bool): If true, then drop fieldName from the document.. [optional]  # noqa: E501
+            param (str): Sql parameter name.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

@@ -108,7 +108,7 @@ class EventTimeInfo(ModelNormal):
         """EventTimeInfo - a model defined in OpenAPI
 
         Args:
-            field (str): name of the field containing event time
+            field (str): Name of the field containing event time.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -141,8 +141,8 @@ class EventTimeInfo(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            format (str): format of time field, can be one of: milliseconds_since_epoch, seconds_since_epoch. [optional]  # noqa: E501
-            time_zone (str): default time zone, in standard IANA format. [optional]  # noqa: E501
+            format (str): Format of time field, can be one of: milliseconds_since_epoch, seconds_since_epoch.. [optional]  # noqa: E501
+            time_zone (str): Default time zone, in standard IANA format.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -195,9 +195,9 @@ class EventTimeInfo(ModelNormal):
         """EventTimeInfo - a model defined in OpenAPI
 
         Keyword Args:
-            field (str): name of the field containing event time
-            format (str): format of time field, can be one of: milliseconds_since_epoch, seconds_since_epoch. [optional]  # noqa: E501
-            time_zone (str): default time zone, in standard IANA format. [optional]  # noqa: E501
+            field (str): Name of the field containing event time.
+            format (str): Format of time field, can be one of: milliseconds_since_epoch, seconds_since_epoch.. [optional]  # noqa: E501
+            time_zone (str): Default time zone, in standard IANA format.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

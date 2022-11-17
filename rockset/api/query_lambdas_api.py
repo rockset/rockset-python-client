@@ -900,6 +900,7 @@ class QueryLambdas(object):
         *,
         name: str,
         description: str = None,
+        is_public: bool = None,
         sql: QueryLambdaSql = None,
         workspace = "commons",
         **kwargs
@@ -914,6 +915,7 @@ class QueryLambdas(object):
         rs = RocksetClient(api_key=APIKEY)
         future = rs.QueryLambdas.create_query_lambda(
             description="production version foo",
+            is_public=True,
             name="myQueryLambda",
             sql=QueryLambdaSql(
                 default_parameters=[
@@ -932,8 +934,9 @@ class QueryLambdas(object):
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
-            description (str): optional description. [optional]
-            name (str): Query Lambda name. [required]
+            description (str): Optional description.. [optional]
+            is_public (bool): [optional]
+            name (str): Query Lambda name.. [required]
             sql (QueryLambdaSql): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -1028,8 +1031,8 @@ class QueryLambdas(object):
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
             query_lambda (str): name of the Query Lambda. [required]
-            tag_name (str): name of Query Lambda tag. [required]
-            version (str): hash identifying a Query Lambda tag. [required]
+            tag_name (str): Name of Query Lambda tag.. [required]
+            version (str): Hash identifying a Query Lambda tag.. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1385,6 +1388,7 @@ class QueryLambdas(object):
         initial_paginate_response_doc_count: int = None,
         paginate: bool = None,
         parameters: typing.Sequence[QueryParameter] = None,
+        virtual_instance_id: str = None,
         **kwargs
     ) -> typing.Union[QueryResponse, asyncio.Future]:
         """Execute Query Lambda By Version  # noqa: E501
@@ -1486,6 +1490,7 @@ class QueryLambdas(object):
         initial_paginate_response_doc_count: int = None,
         paginate: bool = None,
         parameters: typing.Sequence[QueryParameter] = None,
+        virtual_instance_id: str = None,
         **kwargs
     ) -> typing.Union[QueryResponse, asyncio.Future]:
         """Execute Query Lambda By Tag  # noqa: E501
@@ -2109,6 +2114,7 @@ class QueryLambdas(object):
         *,
         query_lambda: str,
         description: str = None,
+        is_public: bool = None,
         sql: QueryLambdaSql = None,
         workspace = "commons",
         create: bool = None,
@@ -2125,6 +2131,7 @@ class QueryLambdas(object):
         future = rs.QueryLambdas.update_query_lambda(
             query_lambda="queryLambda_example",
             description="production version foo",
+            is_public=True,
             sql=QueryLambdaSql(
                 default_parameters=[
                     QueryParameter(
@@ -2143,9 +2150,10 @@ class QueryLambdas(object):
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
             query_lambda (str): name of the Query Lambda. [required]
-            description (str): optional description. [optional]
+            description (str): Optional description.. [optional]
+            is_public (bool): [optional]
             sql (QueryLambdaSql): [optional]
-            create (bool): [optional]
+            create (bool): Create a new Query Lambda if one does not exist already.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

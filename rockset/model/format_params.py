@@ -155,7 +155,7 @@ class FormatParams(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             csv (CsvParams): [optional]  # noqa: E501
-            json (bool): source data is in json format. [optional]  # noqa: E501
+            json (bool): Source data is in json format.. [optional]  # noqa: E501
             mssql_dms (bool): [optional]  # noqa: E501
             mysql_dms (bool): [optional]  # noqa: E501
             oracle_dms (bool): [optional]  # noqa: E501
@@ -213,7 +213,7 @@ class FormatParams(ModelNormal):
 
         Keyword Args:
             csv (CsvParams): [optional]  # noqa: E501
-            json (bool): source data is in json format. [optional]  # noqa: E501
+            json (bool): Source data is in json format.. [optional]  # noqa: E501
             mssql_dms (bool): [optional]  # noqa: E501
             mysql_dms (bool): [optional]  # noqa: E501
             oracle_dms (bool): [optional]  # noqa: E501

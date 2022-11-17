@@ -130,7 +130,7 @@ class KinesisSourceWrapper(ModelNormal):
         """KinesisSourceWrapper - a model defined in OpenAPI
 
         Args:
-            stream_name (str): name of kinesis stream
+            stream_name (str): Name of kinesis stream.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -164,10 +164,10 @@ class KinesisSourceWrapper(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             format_params (FormatParams): [optional]  # noqa: E501
-            integration_name (str): name of integration to use. [optional]  # noqa: E501
+            integration_name (str): Name of integration to use.. [optional]  # noqa: E501
             status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
-            aws_region (str): AWS region name of Kinesis stream, by default us-west-2 is used. [optional]  # noqa: E501
-            dms_primary_key ([str]): set of fields that correspond to a DMS primary key. [optional]  # noqa: E501
+            aws_region (str): AWS region name of Kinesis stream, by default us-west-2 is used.. [optional]  # noqa: E501
+            dms_primary_key ([str]): Set of fields that correspond to a DMS primary key.. [optional]  # noqa: E501
             offset_reset_policy (str): For non-DMS streams, Rockset can tail from the earliest end or latest end of kinesis source.. [optional]  # noqa: E501
         """
 
@@ -221,11 +221,11 @@ class KinesisSourceWrapper(ModelNormal):
         """KinesisSourceWrapper - a model defined in OpenAPI
 
         Keyword Args:
-            stream_name (str): name of kinesis stream
+            stream_name (str): Name of kinesis stream.
             format_params (FormatParams): [optional]  # noqa: E501
-            integration_name (str): name of integration to use. [optional]  # noqa: E501
-            aws_region (str): AWS region name of Kinesis stream, by default us-west-2 is used. [optional]  # noqa: E501
-            dms_primary_key ([str]): set of fields that correspond to a DMS primary key. [optional]  # noqa: E501
+            integration_name (str): Name of integration to use.. [optional]  # noqa: E501
+            aws_region (str): AWS region name of Kinesis stream, by default us-west-2 is used.. [optional]  # noqa: E501
+            dms_primary_key ([str]): Set of fields that correspond to a DMS primary key.. [optional]  # noqa: E501
             offset_reset_policy (str): For non-DMS streams, Rockset can tail from the earliest end or latest end of kinesis source.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be

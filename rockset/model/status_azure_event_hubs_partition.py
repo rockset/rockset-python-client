@@ -138,9 +138,9 @@ class StatusAzureEventHubsPartition(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            offset_lag (int): Per partition lag for offset. [optional]  # noqa: E501
-            partition_number (int): The number of this partition. [optional]  # noqa: E501
-            partition_offset (int): Latest offset of partition. [optional]  # noqa: E501
+            offset_lag (int): Per partition lag for offset.. [optional]  # noqa: E501
+            partition_number (int): The number of this partition.. [optional]  # noqa: E501
+            partition_offset (int): Latest offset of partition.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -192,9 +192,9 @@ class StatusAzureEventHubsPartition(ModelNormal):
         """StatusAzureEventHubsPartition - a model defined in OpenAPI
 
         Keyword Args:
-            offset_lag (int): Per partition lag for offset. [optional]  # noqa: E501
-            partition_number (int): The number of this partition. [optional]  # noqa: E501
-            partition_offset (int): Latest offset of partition. [optional]  # noqa: E501
+            offset_lag (int): Per partition lag for offset.. [optional]  # noqa: E501
+            partition_number (int): The number of this partition.. [optional]  # noqa: E501
+            partition_offset (int): Latest offset of partition.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

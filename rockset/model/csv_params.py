@@ -159,13 +159,13 @@ class CsvParams(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            column_names ([str]): names of columns. [optional]  # noqa: E501
-            column_types ([str]): names of columns. [optional]  # noqa: E501
-            encoding (str): can be one of: UTF-8, ISO_8859_1, UTF-16. [optional]  # noqa: E501
+            column_names ([str]): Names of columns.. [optional]  # noqa: E501
+            column_types ([str]): Names of columns.. [optional]  # noqa: E501
+            encoding (str): One of: UTF-8, ISO_8859_1, UTF-16.. [optional]  # noqa: E501
             escape_char (str): escape character removes any special meaning from the following character,default is '\\'. [optional]  # noqa: E501
-            first_line_as_column_names (bool): If the first line in every object specifies the column names. [optional]  # noqa: E501
+            first_line_as_column_names (bool): If the first line in every object specifies the column names.. [optional]  # noqa: E501
             quote_char (str): character within which a cell value is enclosed,null character if no such character, default is '\"'. [optional]  # noqa: E501
-            separator (str): a single character that is the column separator. [optional]  # noqa: E501
+            separator (str): A single character that is the column separator.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -217,13 +217,13 @@ class CsvParams(ModelNormal):
         """CsvParams - a model defined in OpenAPI
 
         Keyword Args:
-            column_names ([str]): names of columns. [optional]  # noqa: E501
-            column_types ([str]): names of columns. [optional]  # noqa: E501
-            encoding (str): can be one of: UTF-8, ISO_8859_1, UTF-16. [optional]  # noqa: E501
+            column_names ([str]): Names of columns.. [optional]  # noqa: E501
+            column_types ([str]): Names of columns.. [optional]  # noqa: E501
+            encoding (str): One of: UTF-8, ISO_8859_1, UTF-16.. [optional]  # noqa: E501
             escape_char (str): escape character removes any special meaning from the following character,default is '\\'. [optional]  # noqa: E501
-            first_line_as_column_names (bool): If the first line in every object specifies the column names. [optional]  # noqa: E501
+            first_line_as_column_names (bool): If the first line in every object specifies the column names.. [optional]  # noqa: E501
             quote_char (str): character within which a cell value is enclosed,null character if no such character, default is '\"'. [optional]  # noqa: E501
-            separator (str): a single character that is the column separator. [optional]  # noqa: E501
+            separator (str): A single character that is the column separator.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

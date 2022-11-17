@@ -62,9 +62,9 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **description** | **str** | optional description | [optional]
- **name** | **str** | View name | 
- **query** | **str** | SQL for this view | 
+ **description** | **str** | Optional description. | [optional]
+ **name** | **str** | View name. | 
+ **query** | **str** | SQL for this view. | 
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
@@ -380,8 +380,8 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **view** | **str** | name of the view |
- **description** | **str** | optional description | [optional]
- **query** | **str** | SQL for this view | 
+ **description** | **str** | Optional description. | [optional]
+ **query** | **str** | SQL for this view. | 
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type

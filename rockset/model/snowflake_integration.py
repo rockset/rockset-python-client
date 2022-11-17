@@ -127,10 +127,10 @@ class SnowflakeIntegration(ModelNormal):
 
         Args:
             default_warehouse (str): default snowflake data warehouse name for query execution. Warehouse name can be overridden in the collection.
-            password (str): snowflake database password
-            s3_export_path (str): S3 path used for running 'COPY INTO' command on snowflake table
-            snowflake_url (str): snowflake browser url
-            username (str): snowflake database username
+            password (str): Snowflake database password.
+            s3_export_path (str): S3 path used for running 'COPY INTO' command on snowflake table.
+            snowflake_url (str): Snowflake browser url.
+            username (str): Snowflake database username.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -165,7 +165,7 @@ class SnowflakeIntegration(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             aws_access_key (AwsAccessKey): [optional]  # noqa: E501
             aws_role (AwsRole): [optional]  # noqa: E501
-            user_role (str): snowflake user role. If unspecified, will use the default user role.. [optional]  # noqa: E501
+            user_role (str): Snowflake user role. If unspecified, will use the default user role.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -223,13 +223,13 @@ class SnowflakeIntegration(ModelNormal):
 
         Keyword Args:
             default_warehouse (str): default snowflake data warehouse name for query execution. Warehouse name can be overridden in the collection.
-            password (str): snowflake database password
-            s3_export_path (str): S3 path used for running 'COPY INTO' command on snowflake table
-            snowflake_url (str): snowflake browser url
-            username (str): snowflake database username
+            password (str): Snowflake database password.
+            s3_export_path (str): S3 path used for running 'COPY INTO' command on snowflake table.
+            snowflake_url (str): Snowflake browser url.
+            username (str): Snowflake database username.
             aws_access_key (AwsAccessKey): [optional]  # noqa: E501
             aws_role (AwsRole): [optional]  # noqa: E501
-            user_role (str): snowflake user role. If unspecified, will use the default user role.. [optional]  # noqa: E501
+            user_role (str): Snowflake user role. If unspecified, will use the default user role.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

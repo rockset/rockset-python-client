@@ -82,6 +82,7 @@ class CreateApiKeyRequest(ModelNormal):
         """
         return {
             'name': (str,),  # noqa: E501
+            'created_by': (str, none_type),  # noqa: E501
             'role': (str, none_type),  # noqa: E501
         }
 
@@ -92,6 +93,7 @@ class CreateApiKeyRequest(ModelNormal):
 
     attribute_map = {
         'name': 'name',  # noqa: E501
+        'created_by': 'created_by',  # noqa: E501
         'role': 'role',  # noqa: E501
     }
 
@@ -139,6 +141,7 @@ class CreateApiKeyRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            created_by (str): [optional]  # noqa: E501
             role (str): [optional]  # noqa: E501
         """
 
@@ -193,6 +196,7 @@ class CreateApiKeyRequest(ModelNormal):
 
         Keyword Args:
             name (str): Name for this API key.
+            created_by (str): [optional]  # noqa: E501
             role (str): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be

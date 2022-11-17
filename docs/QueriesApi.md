@@ -230,9 +230,8 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **query_id** | **str** |  |
- **cursor** | **str** |  | [optional]
- **docs** | **int** |  | [optional]
- **offset** | **int** |  | [optional]
+ **cursor** | **str** | Cursor to current page. If unset, will default to the first page. | [optional]
+ **docs** | **int** | Number of documents to fetch. | [optional]
 
 ### Return type
 

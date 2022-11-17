@@ -98,6 +98,7 @@ class QueryLambdaVersion(ModelNormal):
             'created_by': (str, none_type),  # noqa: E501
             'description': (str, none_type),  # noqa: E501
             'name': (str, none_type),  # noqa: E501
+            'public_access_id': (str, none_type),  # noqa: E501
             'sql': (QueryLambdaSql, none_type),  # noqa: E501
             'state': (str, none_type),  # noqa: E501
             'stats': (QueryLambdaStats, none_type),  # noqa: E501
@@ -116,6 +117,7 @@ class QueryLambdaVersion(ModelNormal):
         'created_by': 'created_by',  # noqa: E501
         'description': 'description',  # noqa: E501
         'name': 'name',  # noqa: E501
+        'public_access_id': 'public_access_id',  # noqa: E501
         'sql': 'sql',  # noqa: E501
         'state': 'state',  # noqa: E501
         'stats': 'stats',  # noqa: E501
@@ -164,16 +166,17 @@ class QueryLambdaVersion(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            collections ([str]): collections queried by underlying SQL query. [optional]  # noqa: E501
-            created_at (str): ISO-8601 date of when Query Lambda was created. [optional]  # noqa: E501
-            created_by (str): user that created this Query Lambda. [optional]  # noqa: E501
-            description (str): optional description. [optional]  # noqa: E501
-            name (str): Query Lambda name. [optional]  # noqa: E501
+            collections ([str]): Collections queried by underlying SQL query.. [optional]  # noqa: E501
+            created_at (str): ISO-8601 date of when Query Lambda was created.. [optional]  # noqa: E501
+            created_by (str): User that created this Query Lambda.. [optional]  # noqa: E501
+            description (str): Optional description.. [optional]  # noqa: E501
+            name (str): Query Lambda name.. [optional]  # noqa: E501
+            public_access_id (str): Public access ID associated with this QL version. [optional]  # noqa: E501
             sql (QueryLambdaSql): [optional]  # noqa: E501
-            state (str): status of this Query Lambda. [optional]  # noqa: E501
+            state (str): Status of this Query Lambda.. [optional]  # noqa: E501
             stats (QueryLambdaStats): [optional]  # noqa: E501
-            version (str): Query Lambda version. [optional]  # noqa: E501
-            workspace (str): workspace of this Query Lambda. [optional]  # noqa: E501
+            version (str): Query Lambda version.. [optional]  # noqa: E501
+            workspace (str): Workspace of this Query Lambda.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -225,16 +228,17 @@ class QueryLambdaVersion(ModelNormal):
         """QueryLambdaVersion - a model defined in OpenAPI
 
         Keyword Args:
-            collections ([str]): collections queried by underlying SQL query. [optional]  # noqa: E501
-            created_at (str): ISO-8601 date of when Query Lambda was created. [optional]  # noqa: E501
-            created_by (str): user that created this Query Lambda. [optional]  # noqa: E501
-            description (str): optional description. [optional]  # noqa: E501
-            name (str): Query Lambda name. [optional]  # noqa: E501
+            collections ([str]): Collections queried by underlying SQL query.. [optional]  # noqa: E501
+            created_at (str): ISO-8601 date of when Query Lambda was created.. [optional]  # noqa: E501
+            created_by (str): User that created this Query Lambda.. [optional]  # noqa: E501
+            description (str): Optional description.. [optional]  # noqa: E501
+            name (str): Query Lambda name.. [optional]  # noqa: E501
+            public_access_id (str): Public access ID associated with this QL version. [optional]  # noqa: E501
             sql (QueryLambdaSql): [optional]  # noqa: E501
-            state (str): status of this Query Lambda. [optional]  # noqa: E501
+            state (str): Status of this Query Lambda.. [optional]  # noqa: E501
             stats (QueryLambdaStats): [optional]  # noqa: E501
-            version (str): Query Lambda version. [optional]  # noqa: E501
-            workspace (str): workspace of this Query Lambda. [optional]  # noqa: E501
+            version (str): Query Lambda version.. [optional]  # noqa: E501
+            workspace (str): Workspace of this Query Lambda.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

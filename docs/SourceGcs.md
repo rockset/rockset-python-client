@@ -4,7 +4,8 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**bucket** | **str** | name of GCS bucket you want to ingest from | [optional] 
+**bucket** | **str** | Name of GCS bucket you want to ingest from. | [optional] 
+**object_bytes_downloaded** | **int** |  | [optional] [readonly] 
 **object_bytes_total** | **int** |  | [optional] [readonly] 
 **object_count_downloaded** | **int** |  | [optional] [readonly] 
 **object_count_total** | **int** |  | [optional] [readonly] 

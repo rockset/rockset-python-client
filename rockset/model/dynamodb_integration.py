@@ -148,7 +148,7 @@ class DynamodbIntegration(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             aws_access_key (AwsAccessKey): [optional]  # noqa: E501
             aws_role (AwsRole): [optional]  # noqa: E501
-            s3_export_bucket_name (str): [optional]  # noqa: E501
+            s3_export_bucket_name (str): S3 bucket used for export during collection initial dump.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -202,7 +202,7 @@ class DynamodbIntegration(ModelNormal):
         Keyword Args:
             aws_access_key (AwsAccessKey): [optional]  # noqa: E501
             aws_role (AwsRole): [optional]  # noqa: E501
-            s3_export_bucket_name (str): [optional]  # noqa: E501
+            s3_export_bucket_name (str): S3 bucket used for export during collection initial dump.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

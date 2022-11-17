@@ -97,6 +97,11 @@ class Privilege(ModelNormal):
             'EXECUTE_QUERY_LAMBDA_WS': "EXECUTE_QUERY_LAMBDA_WS",
             'CREATE_VIEW_WS': "CREATE_VIEW_WS",
             'DELETE_VIEW_WS': "DELETE_VIEW_WS",
+            'ALL_VI_ACTIONS': "ALL_VI_ACTIONS",
+            'QUERY_VI': "QUERY_VI",
+            'UPDATE_VI': "UPDATE_VI",
+            'SUSPEND_RESUME_VI': "SUSPEND_RESUME_VI",
+            'DELETE_VI': "DELETE_VI",
         },
     }
 
@@ -182,7 +187,7 @@ class Privilege(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             action (str): The action allowed by this privilege.. [optional]  # noqa: E501
-            cluster (str): Cluster ID (`rs2` for us-west-2, `use1a1` for us-east-1) for which the action is allowed. Defaults to '*All*' if not specified.. [optional]  # noqa: E501
+            cluster (str): Cluster ID (`usw2a1` for us-west-2, `use1a1` for us-east-1, `euc1a1` for eu-central-1) for which the action is allowed. Defaults to '*All*' if not specified.. [optional]  # noqa: E501
             resource_name (str): The resources on which the action is allowed. Defaults to '*All*' if not specified.. [optional]  # noqa: E501
         """
 
@@ -236,7 +241,7 @@ class Privilege(ModelNormal):
 
         Keyword Args:
             action (str): The action allowed by this privilege.. [optional]  # noqa: E501
-            cluster (str): Cluster ID (`rs2` for us-west-2, `use1a1` for us-east-1) for which the action is allowed. Defaults to '*All*' if not specified.. [optional]  # noqa: E501
+            cluster (str): Cluster ID (`usw2a1` for us-west-2, `use1a1` for us-east-1, `euc1a1` for eu-central-1) for which the action is allowed. Defaults to '*All*' if not specified.. [optional]  # noqa: E501
             resource_name (str): The resources on which the action is allowed. Defaults to '*All*' if not specified.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be

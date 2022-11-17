@@ -140,7 +140,7 @@ class ListQueryLambdaVersionsResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            data ([QueryLambdaVersion]): list of all versions for a particular Query Lambda. [optional]  # noqa: E501
+            data ([QueryLambdaVersion]): List of all versions for a particular Query Lambda.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -192,7 +192,7 @@ class ListQueryLambdaVersionsResponse(ModelNormal):
         """ListQueryLambdaVersionsResponse - a model defined in OpenAPI
 
         Keyword Args:
-            data ([QueryLambdaVersion]): list of all versions for a particular Query Lambda. [optional]  # noqa: E501
+            data ([QueryLambdaVersion]): List of all versions for a particular Query Lambda.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

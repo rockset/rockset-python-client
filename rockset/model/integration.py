@@ -40,7 +40,6 @@ def lazy_import():
     from rockset.model.kinesis_integration import KinesisIntegration
     from rockset.model.mongo_db_integration import MongoDbIntegration
     from rockset.model.s3_integration import S3Integration
-    from rockset.model.segment_integration import SegmentIntegration
     from rockset.model.snowflake_integration import SnowflakeIntegration
     globals()['AzureBlobStorageIntegration'] = AzureBlobStorageIntegration
     globals()['AzureEventHubsIntegration'] = AzureEventHubsIntegration
@@ -52,7 +51,6 @@ def lazy_import():
     globals()['KinesisIntegration'] = KinesisIntegration
     globals()['MongoDbIntegration'] = MongoDbIntegration
     globals()['S3Integration'] = S3Integration
-    globals()['SegmentIntegration'] = SegmentIntegration
     globals()['SnowflakeIntegration'] = SnowflakeIntegration
 
 
@@ -122,8 +120,8 @@ class Integration(ModelNormal):
             'kafka': (KafkaIntegration, none_type),  # noqa: E501
             'kinesis': (KinesisIntegration, none_type),  # noqa: E501
             'mongodb': (MongoDbIntegration, none_type),  # noqa: E501
+            'owner_email': (str, none_type),  # noqa: E501
             's3': (S3Integration, none_type),  # noqa: E501
-            'segment': (SegmentIntegration, none_type),  # noqa: E501
             'snowflake': (SnowflakeIntegration, none_type),  # noqa: E501
         }
 
@@ -146,8 +144,8 @@ class Integration(ModelNormal):
         'kafka': 'kafka',  # noqa: E501
         'kinesis': 'kinesis',  # noqa: E501
         'mongodb': 'mongodb',  # noqa: E501
+        'owner_email': 'owner_email',  # noqa: E501
         's3': 's3',  # noqa: E501
-        'segment': 'segment',  # noqa: E501
         'snowflake': 'snowflake',  # noqa: E501
     }
 
@@ -162,8 +160,8 @@ class Integration(ModelNormal):
         """Integration - a model defined in OpenAPI
 
         Args:
-            created_by (str): email of user who created the integration
-            name (str): descriptive label and unique identifier
+            created_by (str): Email of user who created the integration.
+            name (str): Descriptive label and unique identifier.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -199,16 +197,16 @@ class Integration(ModelNormal):
             azure_blob_storage (AzureBlobStorageIntegration): [optional]  # noqa: E501
             azure_event_hubs (AzureEventHubsIntegration): [optional]  # noqa: E501
             azure_service_bus (AzureServiceBusIntegration): [optional]  # noqa: E501
-            collections ([Collection]): list of collections that use the integration. [optional]  # noqa: E501
-            created_at (str): ISO-8601 date. [optional]  # noqa: E501
-            description (str): longer explanation for the integration. [optional]  # noqa: E501
+            collections ([Collection]): List of collections that use the integration.. [optional]  # noqa: E501
+            created_at (str): ISO-8601 date.. [optional]  # noqa: E501
+            description (str): Longer explanation for the integration.. [optional]  # noqa: E501
             dynamodb (DynamodbIntegration): [optional]  # noqa: E501
             gcs (GcsIntegration): [optional]  # noqa: E501
             kafka (KafkaIntegration): [optional]  # noqa: E501
             kinesis (KinesisIntegration): [optional]  # noqa: E501
             mongodb (MongoDbIntegration): [optional]  # noqa: E501
+            owner_email (str): User that owns this integration.. [optional]  # noqa: E501
             s3 (S3Integration): [optional]  # noqa: E501
-            segment (SegmentIntegration): [optional]  # noqa: E501
             snowflake (SnowflakeIntegration): [optional]  # noqa: E501
         """
 
@@ -263,21 +261,21 @@ class Integration(ModelNormal):
         """Integration - a model defined in OpenAPI
 
         Keyword Args:
-            created_by (str): email of user who created the integration
-            name (str): descriptive label and unique identifier
+            created_by (str): Email of user who created the integration.
+            name (str): Descriptive label and unique identifier.
             azure_blob_storage (AzureBlobStorageIntegration): [optional]  # noqa: E501
             azure_event_hubs (AzureEventHubsIntegration): [optional]  # noqa: E501
             azure_service_bus (AzureServiceBusIntegration): [optional]  # noqa: E501
-            collections ([Collection]): list of collections that use the integration. [optional]  # noqa: E501
-            created_at (str): ISO-8601 date. [optional]  # noqa: E501
-            description (str): longer explanation for the integration. [optional]  # noqa: E501
+            collections ([Collection]): List of collections that use the integration.. [optional]  # noqa: E501
+            created_at (str): ISO-8601 date.. [optional]  # noqa: E501
+            description (str): Longer explanation for the integration.. [optional]  # noqa: E501
             dynamodb (DynamodbIntegration): [optional]  # noqa: E501
             gcs (GcsIntegration): [optional]  # noqa: E501
             kafka (KafkaIntegration): [optional]  # noqa: E501
             kinesis (KinesisIntegration): [optional]  # noqa: E501
             mongodb (MongoDbIntegration): [optional]  # noqa: E501
+            owner_email (str): User that owns this integration.. [optional]  # noqa: E501
             s3 (S3Integration): [optional]  # noqa: E501
-            segment (SegmentIntegration): [optional]  # noqa: E501
             snowflake (SnowflakeIntegration): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be

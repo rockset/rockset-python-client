@@ -155,11 +155,11 @@ class DocumentStatus(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            collection (str): collection name. [optional]  # noqa: E501
-            id (str): unique document ID. [optional]  # noqa: E501
+            collection (str): Collection name.. [optional]  # noqa: E501
+            id (str): Unique document ID.. [optional]  # noqa: E501
             error (ErrorModel): [optional]  # noqa: E501
-            patch_id (str): unique id used to represent each patch request. [optional]  # noqa: E501
-            status (str): status of the document. [optional]  # noqa: E501
+            patch_id (str): Unique id used to represent each patch request.. [optional]  # noqa: E501
+            status (str): Status of the document.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -211,11 +211,11 @@ class DocumentStatus(ModelNormal):
         """DocumentStatus - a model defined in OpenAPI
 
         Keyword Args:
-            collection (str): collection name. [optional]  # noqa: E501
-            id (str): unique document ID. [optional]  # noqa: E501
+            collection (str): Collection name.. [optional]  # noqa: E501
+            id (str): Unique document ID.. [optional]  # noqa: E501
             error (ErrorModel): [optional]  # noqa: E501
-            patch_id (str): unique id used to represent each patch request. [optional]  # noqa: E501
-            status (str): status of the document. [optional]  # noqa: E501
+            patch_id (str): Unique id used to represent each patch request.. [optional]  # noqa: E501
+            status (str): Status of the document.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

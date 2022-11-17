@@ -142,7 +142,7 @@ class QueryLambdaTag(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            tag_name (str): name of Query Lambda tag. [optional]  # noqa: E501
+            tag_name (str): Name of Query Lambda tag.. [optional]  # noqa: E501
             version (QueryLambdaVersion): [optional]  # noqa: E501
         """
 
@@ -195,7 +195,7 @@ class QueryLambdaTag(ModelNormal):
         """QueryLambdaTag - a model defined in OpenAPI
 
         Keyword Args:
-            tag_name (str): name of Query Lambda tag. [optional]  # noqa: E501
+            tag_name (str): Name of Query Lambda tag.. [optional]  # noqa: E501
             version (QueryLambdaVersion): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be

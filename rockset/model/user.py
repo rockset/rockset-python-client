@@ -114,7 +114,7 @@ class User(ModelNormal):
         """User - a model defined in OpenAPI
 
         Args:
-            email (str): user email
+            email (str): User email.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -147,11 +147,11 @@ class User(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            created_at (str): ISO-8601 date. [optional]  # noqa: E501
-            first_name (str): user first name. [optional]  # noqa: E501
-            last_name (str): user last name. [optional]  # noqa: E501
-            roles ([str]): List of roles for a given user. [optional]  # noqa: E501
-            state (str): state of user - NEW / ACTIVE. [optional]  # noqa: E501
+            created_at (str): ISO-8601 date.. [optional]  # noqa: E501
+            first_name (str): User first name.. [optional]  # noqa: E501
+            last_name (str): User last name.. [optional]  # noqa: E501
+            roles ([str]): List of roles for a given user.. [optional]  # noqa: E501
+            state (str): State of user - NEW / ACTIVE.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -204,12 +204,12 @@ class User(ModelNormal):
         """User - a model defined in OpenAPI
 
         Keyword Args:
-            email (str): user email
-            created_at (str): ISO-8601 date. [optional]  # noqa: E501
-            first_name (str): user first name. [optional]  # noqa: E501
-            last_name (str): user last name. [optional]  # noqa: E501
-            roles ([str]): List of roles for a given user. [optional]  # noqa: E501
-            state (str): state of user - NEW / ACTIVE. [optional]  # noqa: E501
+            email (str): User email.
+            created_at (str): ISO-8601 date.. [optional]  # noqa: E501
+            first_name (str): User first name.. [optional]  # noqa: E501
+            last_name (str): User last name.. [optional]  # noqa: E501
+            roles ([str]): List of roles for a given user.. [optional]  # noqa: E501
+            state (str): State of user - NEW / ACTIVE.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

@@ -122,8 +122,8 @@ class MongodbSourceWrapper(ModelNormal):
         """MongodbSourceWrapper - a model defined in OpenAPI
 
         Args:
-            collection_name (str): MongoDB collection name
-            database_name (str): MongoDB database name containing this collection
+            collection_name (str): MongoDB collection name.
+            database_name (str): MongoDB database name containing this collection.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -157,7 +157,7 @@ class MongodbSourceWrapper(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             format_params (FormatParams): [optional]  # noqa: E501
-            integration_name (str): name of integration to use. [optional]  # noqa: E501
+            integration_name (str): Name of integration to use.. [optional]  # noqa: E501
             status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
         """
 
@@ -212,10 +212,10 @@ class MongodbSourceWrapper(ModelNormal):
         """MongodbSourceWrapper - a model defined in OpenAPI
 
         Keyword Args:
-            collection_name (str): MongoDB collection name
-            database_name (str): MongoDB database name containing this collection
+            collection_name (str): MongoDB collection name.
+            database_name (str): MongoDB database name containing this collection.
             format_params (FormatParams): [optional]  # noqa: E501
-            integration_name (str): name of integration to use. [optional]  # noqa: E501
+            integration_name (str): Name of integration to use.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

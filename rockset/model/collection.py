@@ -31,12 +31,14 @@ from rockset.exceptions import ApiAttributeError
 
 def lazy_import():
     from rockset.model.alias import Alias
+    from rockset.model.bulk_stats import BulkStats
     from rockset.model.collection_stats import CollectionStats
     from rockset.model.field_mapping_query import FieldMappingQuery
     from rockset.model.field_mapping_v2 import FieldMappingV2
     from rockset.model.field_partition import FieldPartition
     from rockset.model.source import Source
     globals()['Alias'] = Alias
+    globals()['BulkStats'] = BulkStats
     globals()['CollectionStats'] = CollectionStats
     globals()['FieldMappingQuery'] = FieldMappingQuery
     globals()['FieldMappingV2'] = FieldMappingV2
@@ -116,6 +118,7 @@ class Collection(ModelNormal):
         lazy_import()
         return {
             'aliases': ([Alias], none_type),  # noqa: E501
+            'bulk_stats': ([BulkStats], none_type),  # noqa: E501
             'clustering_key': ([FieldPartition], none_type),  # noqa: E501
             'created_at': (str, none_type),  # noqa: E501
             'created_by': (str, none_type),  # noqa: E501
@@ -139,6 +142,7 @@ class Collection(ModelNormal):
 
     attribute_map = {
         'aliases': 'aliases',  # noqa: E501
+        'bulk_stats': 'bulk_stats',  # noqa: E501
         'clustering_key': 'clustering_key',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
         'created_by': 'created_by',  # noqa: E501
@@ -196,21 +200,22 @@ class Collection(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            aliases ([Alias]): list of aliases for a collection. [optional]  # noqa: E501
-            clustering_key ([FieldPartition]): list of clustering fields for a collection. [optional]  # noqa: E501
-            created_at (str): ISO-8601 date. [optional]  # noqa: E501
-            created_by (str): email of user who created the collection. [optional]  # noqa: E501
-            description (str): text describing the collection. [optional]  # noqa: E501
+            aliases ([Alias]): List of aliases for a collection.. [optional]  # noqa: E501
+            bulk_stats ([BulkStats]): [optional]  # noqa: E501
+            clustering_key ([FieldPartition]): List of clustering fields for a collection.. [optional]  # noqa: E501
+            created_at (str): ISO-8601 date.. [optional]  # noqa: E501
+            created_by (str): Email of user who created the collection.. [optional]  # noqa: E501
+            description (str): Text describing the collection.. [optional]  # noqa: E501
             field_mapping_query (FieldMappingQuery): [optional]  # noqa: E501
-            field_mappings ([FieldMappingV2]): list of mappings applied on all documents in a collection. [optional]  # noqa: E501
-            insert_only (bool): Whether the collection is insert only or not. [optional]  # noqa: E501
-            name (str): unique identifer for collection, can contain alphanumeric or dash characters. [optional]  # noqa: E501
-            read_only (bool): Whether the collection is read-only or not. [optional]  # noqa: E501
-            retention_secs (int): number of seconds after which data is purged based on event time. [optional]  # noqa: E501
-            sources ([Source]): list of sources from which collection ingests. [optional]  # noqa: E501
+            field_mappings ([FieldMappingV2]): List of mappings applied on all documents in a collection.. [optional]  # noqa: E501
+            insert_only (bool): Whether the collection is insert only or not.. [optional]  # noqa: E501
+            name (str): Unique identifer for collection, can contain alphanumeric or dash characters.. [optional]  # noqa: E501
+            read_only (bool): Whether the collection is read-only or not.. [optional]  # noqa: E501
+            retention_secs (int): Number of seconds after which data is purged based on event time.. [optional]  # noqa: E501
+            sources ([Source]): List of sources from which collection ingests.. [optional]  # noqa: E501
             stats (CollectionStats): [optional]  # noqa: E501
-            status (str): current status of collection, one of: CREATED, READY, DELETED. [optional]  # noqa: E501
-            workspace (str): name of the workspace that the collection is in. [optional]  # noqa: E501
+            status (str): Current status of collection.. [optional]  # noqa: E501
+            workspace (str): Name of the workspace that the collection is in.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -262,21 +267,22 @@ class Collection(ModelNormal):
         """Collection - a model defined in OpenAPI
 
         Keyword Args:
-            aliases ([Alias]): list of aliases for a collection. [optional]  # noqa: E501
-            clustering_key ([FieldPartition]): list of clustering fields for a collection. [optional]  # noqa: E501
-            created_at (str): ISO-8601 date. [optional]  # noqa: E501
-            created_by (str): email of user who created the collection. [optional]  # noqa: E501
-            description (str): text describing the collection. [optional]  # noqa: E501
+            aliases ([Alias]): List of aliases for a collection.. [optional]  # noqa: E501
+            bulk_stats ([BulkStats]): [optional]  # noqa: E501
+            clustering_key ([FieldPartition]): List of clustering fields for a collection.. [optional]  # noqa: E501
+            created_at (str): ISO-8601 date.. [optional]  # noqa: E501
+            created_by (str): Email of user who created the collection.. [optional]  # noqa: E501
+            description (str): Text describing the collection.. [optional]  # noqa: E501
             field_mapping_query (FieldMappingQuery): [optional]  # noqa: E501
-            field_mappings ([FieldMappingV2]): list of mappings applied on all documents in a collection. [optional]  # noqa: E501
-            insert_only (bool): Whether the collection is insert only or not. [optional]  # noqa: E501
-            name (str): unique identifer for collection, can contain alphanumeric or dash characters. [optional]  # noqa: E501
-            read_only (bool): Whether the collection is read-only or not. [optional]  # noqa: E501
-            retention_secs (int): number of seconds after which data is purged based on event time. [optional]  # noqa: E501
-            sources ([Source]): list of sources from which collection ingests. [optional]  # noqa: E501
+            field_mappings ([FieldMappingV2]): List of mappings applied on all documents in a collection.. [optional]  # noqa: E501
+            insert_only (bool): Whether the collection is insert only or not.. [optional]  # noqa: E501
+            name (str): Unique identifer for collection, can contain alphanumeric or dash characters.. [optional]  # noqa: E501
+            read_only (bool): Whether the collection is read-only or not.. [optional]  # noqa: E501
+            retention_secs (int): Number of seconds after which data is purged based on event time.. [optional]  # noqa: E501
+            sources ([Source]): List of sources from which collection ingests.. [optional]  # noqa: E501
             stats (CollectionStats): [optional]  # noqa: E501
-            status (str): current status of collection, one of: CREATED, READY, DELETED. [optional]  # noqa: E501
-            workspace (str): name of the workspace that the collection is in. [optional]  # noqa: E501
+            status (str): Current status of collection.. [optional]  # noqa: E501
+            workspace (str): Name of the workspace that the collection is in.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

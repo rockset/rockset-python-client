@@ -152,13 +152,13 @@ class QueryLambda(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            collections ([str]): collections/aliases queried by underlying SQL query. [optional]  # noqa: E501
-            last_updated (str): ISO-8601 date of when Query Lambda was last updated. [optional]  # noqa: E501
-            last_updated_by (str): user that created this Query Lambda. [optional]  # noqa: E501
+            collections ([str]): Collections/aliases queried by underlying SQL query.. [optional]  # noqa: E501
+            last_updated (str): ISO-8601 date of when Query Lambda was last updated.. [optional]  # noqa: E501
+            last_updated_by (str): User that created this Query Lambda.. [optional]  # noqa: E501
             latest_version (QueryLambdaVersion): [optional]  # noqa: E501
-            name (str): Query Lambda name. [optional]  # noqa: E501
-            version_count (int): number of Query Lambda versions. [optional]  # noqa: E501
-            workspace (str): workspace of this Query Lambda. [optional]  # noqa: E501
+            name (str): Query Lambda name.. [optional]  # noqa: E501
+            version_count (int): Number of Query Lambda versions.. [optional]  # noqa: E501
+            workspace (str): Workspace of this Query Lambda.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -210,13 +210,13 @@ class QueryLambda(ModelNormal):
         """QueryLambda - a model defined in OpenAPI
 
         Keyword Args:
-            collections ([str]): collections/aliases queried by underlying SQL query. [optional]  # noqa: E501
-            last_updated (str): ISO-8601 date of when Query Lambda was last updated. [optional]  # noqa: E501
-            last_updated_by (str): user that created this Query Lambda. [optional]  # noqa: E501
+            collections ([str]): Collections/aliases queried by underlying SQL query.. [optional]  # noqa: E501
+            last_updated (str): ISO-8601 date of when Query Lambda was last updated.. [optional]  # noqa: E501
+            last_updated_by (str): User that created this Query Lambda.. [optional]  # noqa: E501
             latest_version (QueryLambdaVersion): [optional]  # noqa: E501
-            name (str): Query Lambda name. [optional]  # noqa: E501
-            version_count (int): number of Query Lambda versions. [optional]  # noqa: E501
-            workspace (str): workspace of this Query Lambda. [optional]  # noqa: E501
+            name (str): Query Lambda name.. [optional]  # noqa: E501
+            version_count (int): Number of Query Lambda versions.. [optional]  # noqa: E501
+            workspace (str): Workspace of this Query Lambda.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

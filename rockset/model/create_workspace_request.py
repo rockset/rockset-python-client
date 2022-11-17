@@ -106,7 +106,7 @@ class CreateWorkspaceRequest(ModelNormal):
         """CreateWorkspaceRequest - a model defined in OpenAPI
 
         Args:
-            name (str): descriptive label and unique identifier
+            name (str): Descriptive label and unique identifier.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -139,7 +139,7 @@ class CreateWorkspaceRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            description (str): longer explanation for the workspace. [optional]  # noqa: E501
+            description (str): Longer explanation for the workspace.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -192,8 +192,8 @@ class CreateWorkspaceRequest(ModelNormal):
         """CreateWorkspaceRequest - a model defined in OpenAPI
 
         Keyword Args:
-            name (str): descriptive label and unique identifier
-            description (str): longer explanation for the workspace. [optional]  # noqa: E501
+            name (str): Descriptive label and unique identifier.
+            description (str): Longer explanation for the workspace.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

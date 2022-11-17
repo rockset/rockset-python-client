@@ -37,7 +37,6 @@ from rockset.model.kinesis_integration_creation_request import KinesisIntegratio
 from rockset.model.list_integrations_response import ListIntegrationsResponse
 from rockset.model.mongodb_integration_creation_request import MongodbIntegrationCreationRequest
 from rockset.model.s3_integration_creation_request import S3IntegrationCreationRequest
-from rockset.model.segment_integration_creation_request import SegmentIntegrationCreationRequest
 from rockset.model.snowflake_integration_creation_request import SnowflakeIntegrationCreationRequest
 from rockset.models import *
 
@@ -461,57 +460,6 @@ class Integrations(object):
             },
             api_client=api_client
         )
-        self.create_segment_integration_endpoint = _Endpoint(
-            settings={
-                'response_type': (CreateIntegrationResponse,),
-                'auth': [
-                    'apikey'
-                ],
-                'endpoint_path': '/v1/orgs/self/integrations',
-                'operation_id': 'create_segment_integration',
-                'http_method': 'POST',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'segment_integration_creation_request',
-                ],
-                'required': [
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'segment_integration_creation_request':
-                        (SegmentIntegrationCreationRequest,),
-                },
-                'attribute_map': {
-                },
-                'location_map': {
-                    'segment_integration_creation_request': 'body',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [
-                    'application/json'
-                ]
-            },
-            api_client=api_client
-        )
         self.create_snowflake_integration_endpoint = _Endpoint(
             settings={
                 'response_type': (CreateIntegrationResponse,),
@@ -728,7 +676,8 @@ class Integrations(object):
         rs = RocksetClient(api_key=APIKEY)
         future = rs.Integrations.create_azure_blob_storage_integration(
             azure_blob_storage=AzureBlobStorageIntegration(
-                connection_string="connection_string_example",
+                connection_string='''BlobEndpoint=https://<NamespaceName>.blob.core.windows.net;
+        SharedAccessSignature=<KeyValue>''',
             ),
             description="AWS account with event data for the data science team.",
             name="event-logs",
@@ -739,8 +688,8 @@ class Integrations(object):
 
         Keyword Args:
             azure_blob_storage (AzureBlobStorageIntegration): [optional]
-            description (str): longer explanation for the integration. [optional]
-            name (str): descriptive label. [required]
+            description (str): Longer explanation for the integration.. [optional]
+            name (str): Descriptive label.. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -821,6 +770,7 @@ class Integrations(object):
         rs = RocksetClient(api_key=APIKEY)
         future = rs.Integrations.create_azure_event_hubs_integration(
             azure_event_hubs=AzureEventHubsIntegration(
+                connection_string="Endpoint=sb://<NamespaceName>.servicebus.windows.net/;SharedAccessKeyName=<KeyName>;SharedAccessKey=<KeyValue>",
             ),
             description="AWS account with event data for the data science team.",
             name="event-logs",
@@ -831,8 +781,8 @@ class Integrations(object):
 
         Keyword Args:
             azure_event_hubs (AzureEventHubsIntegration): [optional]
-            description (str): longer explanation for the integration. [optional]
-            name (str): descriptive label. [required]
+            description (str): Longer explanation for the integration.. [optional]
+            name (str): Descriptive label.. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -919,6 +869,7 @@ class Integrations(object):
                     aws_secret_access_key="wJal....",
                 ),
                 aws_role=AwsRole(
+                    aws_external_id="external id of aws",
                     aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
                 ),
                 s3_export_bucket_name="s3_export_bucket_name_example",
@@ -930,9 +881,9 @@ class Integrations(object):
         ```
 
         Keyword Args:
-            description (str): longer explanation for the integration. [optional]
+            description (str): Longer explanation for the integration.. [optional]
             dynamodb (DynamodbIntegration): [optional]
-            name (str): descriptive label. [required]
+            name (str): Descriptive label.. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1025,9 +976,9 @@ class Integrations(object):
         ```
 
         Keyword Args:
-            description (str): longer explanation for the integration. [optional]
+            description (str): Longer explanation for the integration.. [optional]
             gcs (GcsIntegration): [optional]
-            name (str): descriptive label. [required]
+            name (str): Descriptive label.. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1109,7 +1060,12 @@ class Integrations(object):
         future = rs.Integrations.create_kafka_integration(
             description="AWS account with event data for the data science team.",
             kafka=KafkaIntegration(
-                bootstrap_servers="bootstrap_servers_example",
+                aws_role=AwsRole(
+                    aws_external_id="external id of aws",
+                    aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
+                ),
+                bootstrap_servers="localhost:9092",
+                connection_string="connection_string_example",
                 kafka_data_format="JSON",
                 kafka_topic_names=[
                     "kafka_topic_names_example",
@@ -1132,9 +1088,9 @@ class Integrations(object):
         ```
 
         Keyword Args:
-            description (str): longer explanation for the integration. [optional]
+            description (str): Longer explanation for the integration.. [optional]
             kafka (KafkaIntegration): [optional]
-            name (str): descriptive label. [required]
+            name (str): Descriptive label.. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1221,6 +1177,7 @@ class Integrations(object):
                     aws_secret_access_key="wJal....",
                 ),
                 aws_role=AwsRole(
+                    aws_external_id="external id of aws",
                     aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
                 ),
             ),
@@ -1231,9 +1188,9 @@ class Integrations(object):
         ```
 
         Keyword Args:
-            description (str): longer explanation for the integration. [optional]
+            description (str): Longer explanation for the integration.. [optional]
             kinesis (KinesisIntegration): [optional]
-            name (str): descriptive label. [required]
+            name (str): Descriptive label.. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1324,9 +1281,9 @@ class Integrations(object):
         ```
 
         Keyword Args:
-            description (str): longer explanation for the integration. [optional]
+            description (str): Longer explanation for the integration.. [optional]
             mongodb (MongoDbIntegration): [optional]
-            name (str): descriptive label. [required]
+            name (str): Descriptive label.. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1414,6 +1371,7 @@ class Integrations(object):
                     aws_secret_access_key="wJal....",
                 ),
                 aws_role=AwsRole(
+                    aws_external_id="external id of aws",
                     aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
                 ),
             ),
@@ -1423,8 +1381,8 @@ class Integrations(object):
         ```
 
         Keyword Args:
-            description (str): longer explanation for the integration. [optional]
-            name (str): descriptive label. [required]
+            description (str): Longer explanation for the integration.. [optional]
+            name (str): Descriptive label.. [required]
             s3 (S3Integration): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -1488,98 +1446,6 @@ class Integrations(object):
             kwargs['s3_integration_creation_request']
         return self.create_s3_integration_endpoint.call_with_http_info(**kwargs)
 
-    def create_segment_integration(
-        self,
-        *,
-        name: str,
-        description: str = None,
-        segment: SegmentIntegration = None,
-        **kwargs
-    ) -> typing.Union[CreateIntegrationResponse, asyncio.Future]:
-        """Create segment integration  # noqa: E501
-
-        Create a new integration.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Integrations.create_segment_integration(
-            description="AWS account with event data for the data science team.",
-            name="event-logs",
-            segment=SegmentIntegration(
-            ),
-            async_req=True,
-        )
-        result = await future
-        ```
-
-        Keyword Args:
-            description (str): longer explanation for the integration. [optional]
-            name (str): descriptive label. [required]
-            segment (SegmentIntegration): [optional]
-            _return_http_data_only (bool): response data without head status
-                code and headers. Default is True.
-            _preload_content (bool): if False, the urllib3.HTTPResponse object
-                will be returned without reading/decoding response data.
-                Default is True.
-            _request_timeout (int/float/tuple): timeout setting for this request. If
-                one number provided, it will be total request timeout. It can also
-                be a pair (tuple) of (connection, read) timeouts.
-                Default is None.
-            _check_input_type (bool): specifies if type checking
-                should be done one the data sent to the server.
-                Default is True.
-            _check_return_type (bool): specifies if type checking
-                should be done on the data received from the server.
-                If False, the client will also not convert nested inner objects
-                into the respective model types (the outermost object
-                is still converted to the model).
-                Default is True.
-            _spec_property_naming (bool): True if the variable names in the input data
-                are serialized names, as specified in the OpenAPI document.
-                False if the variable names in the input data
-                are pythonic names, e.g. snake case (default)
-            _content_type (str/None): force body content-type.
-                Default is None and content-type will be predicted by allowed
-                content-types and body.
-            _host_index (int/None): specifies the index of the server
-                that we want to use.
-                Default is read from the configuration.
-            async_req (bool): execute request asynchronously
-
-        Returns:
-            CreateIntegrationResponse
-                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
-        """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['segment_integration_creation_request'] = \
-            kwargs['segment_integration_creation_request']
-        return self.create_segment_integration_endpoint.call_with_http_info(**kwargs)
-
     def create_snowflake_integration(
         self,
         *,
@@ -1605,6 +1471,7 @@ class Integrations(object):
                     aws_secret_access_key="wJal....",
                 ),
                 aws_role=AwsRole(
+                    aws_external_id="external id of aws",
                     aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
                 ),
                 default_warehouse="default_warehouse_example",
@@ -1620,8 +1487,8 @@ class Integrations(object):
         ```
 
         Keyword Args:
-            description (str): longer explanation for the integration. [optional]
-            name (str): descriptive label. [required]
+            description (str): Longer explanation for the integration.. [optional]
+            name (str): Descriptive label.. [required]
             snowflake (SnowflakeIntegration): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -1953,7 +1820,5 @@ class Integrations(object):
     return_types_dict['create_mongodb_integration'] = MongodbIntegrationCreationRequest
     body_params_dict['create_s3_integration'] = 's3_integration_creation_request'
     return_types_dict['create_s3_integration'] = S3IntegrationCreationRequest
-    body_params_dict['create_segment_integration'] = 'segment_integration_creation_request'
-    return_types_dict['create_segment_integration'] = SegmentIntegrationCreationRequest
     body_params_dict['create_snowflake_integration'] = 'snowflake_integration_creation_request'
     return_types_dict['create_snowflake_integration'] = SnowflakeIntegrationCreationRequest

@@ -164,7 +164,6 @@ class Queries(object):
                     'query_id',
                     'cursor',
                     'docs',
-                    'offset',
                 ],
                 'required': [
                     'query_id',
@@ -188,20 +187,16 @@ class Queries(object):
                         (str,),
                     'docs':
                         (int,),
-                    'offset':
-                        (int,),
                 },
                 'attribute_map': {
                     'query_id': 'queryId',
                     'cursor': 'cursor',
                     'docs': 'docs',
-                    'offset': 'offset',
                 },
                 'location_map': {
                     'query_id': 'path',
                     'cursor': 'query',
                     'docs': 'query',
-                    'offset': 'query',
                 },
                 'collection_format_map': {
                 }
@@ -537,7 +532,6 @@ class Queries(object):
         query_id: str,
         cursor: str = None,
         docs: int = None,
-        offset: int = None,
         **kwargs
     ) -> typing.Union[QueryPaginationResponse, asyncio.Future]:
         """Retrieve Query Results Page  # noqa: E501
@@ -557,9 +551,8 @@ class Queries(object):
 
         Keyword Args:
             query_id (str): [required]
-            cursor (str): [optional]
-            docs (int): [optional]
-            offset (int): [optional]
+            cursor (str): Cursor to current page. If unset, will default to the first page.. [optional]
+            docs (int): Number of documents to fetch.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -626,9 +619,6 @@ class Queries(object):
         if docs is not None:
             kwargs['docs'] = \
                 docs
-        if offset is not None:
-            kwargs['offset'] = \
-                offset
         return self.get_query_results_endpoint.call_with_http_info(**kwargs)
 
     def list_active_queries(

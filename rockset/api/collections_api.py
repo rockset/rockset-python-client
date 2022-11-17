@@ -900,7 +900,6 @@ class Collections(object):
         event_time_info: EventTimeInfo = None,
         field_mapping_query: FieldMappingQuery = None,
         field_mappings: typing.Sequence[FieldMappingV2] = None,
-        insert_only: bool = None,
         retention_secs: int = None,
         sources: typing.Sequence[AzureBlobStorageSourceWrapper] = None,
         workspace = "commons",
@@ -951,7 +950,6 @@ class Collections(object):
                     ),
                 ),
             ],
-            insert_only=True,
             name="global-transactions",
             retention_secs=1000000,
             sources=[
@@ -992,14 +990,13 @@ class Collections(object):
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
-            clustering_key ([FieldPartition]): list of clustering fields. [optional]
-            description (str): text describing the collection. [optional]
+            clustering_key ([FieldPartition]): Deprecated. List of clustering fields. Use CLUSTER BY clause in `field_mapping_query` instead.. [optional]
+            description (str): Text describing the collection.. [optional]
             event_time_info (EventTimeInfo): [optional]
             field_mapping_query (FieldMappingQuery): [optional]
-            field_mappings ([FieldMappingV2]): list of mappings. [optional]
-            insert_only (bool): If true disallows updates and deletes, but makes indexing more efficient. [optional]
-            name (str): unique identifier for collection, can contain alphanumeric or dash characters. [required]
-            retention_secs (int): number of seconds after which data is purged, based on event time. [optional]
+            field_mappings ([FieldMappingV2]): Deprecated. List of mappings. Use field_mapping_query instead.. [optional]
+            name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
+            retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
             sources ([AzureBlobStorageSourceWrapper]): List of sources from which to ingest data. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -1074,7 +1071,6 @@ class Collections(object):
         event_time_info: EventTimeInfo = None,
         field_mapping_query: FieldMappingQuery = None,
         field_mappings: typing.Sequence[FieldMappingV2] = None,
-        insert_only: bool = None,
         retention_secs: int = None,
         sources: typing.Sequence[AzureEventHubsSourceWrapper] = None,
         workspace = "commons",
@@ -1125,7 +1121,6 @@ class Collections(object):
                     ),
                 ),
             ],
-            insert_only=True,
             name="global-transactions",
             retention_secs=1000000,
             sources=[
@@ -1165,14 +1160,13 @@ class Collections(object):
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
-            clustering_key ([FieldPartition]): list of clustering fields. [optional]
-            description (str): text describing the collection. [optional]
+            clustering_key ([FieldPartition]): Deprecated. List of clustering fields. Use CLUSTER BY clause in `field_mapping_query` instead.. [optional]
+            description (str): Text describing the collection.. [optional]
             event_time_info (EventTimeInfo): [optional]
             field_mapping_query (FieldMappingQuery): [optional]
-            field_mappings ([FieldMappingV2]): list of mappings. [optional]
-            insert_only (bool): If true disallows updates and deletes, but makes indexing more efficient. [optional]
-            name (str): unique identifier for collection, can contain alphanumeric or dash characters. [required]
-            retention_secs (int): number of seconds after which data is purged, based on event time. [optional]
+            field_mappings ([FieldMappingV2]): Deprecated. List of mappings. Use field_mapping_query instead.. [optional]
+            name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
+            retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
             sources ([AzureEventHubsSourceWrapper]): List of sources from which to ingest data. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -1247,7 +1241,6 @@ class Collections(object):
         event_time_info: EventTimeInfo = None,
         field_mapping_query: FieldMappingQuery = None,
         field_mappings: typing.Sequence[FieldMappingV2] = None,
-        insert_only: bool = None,
         retention_secs: int = None,
         sources: typing.Sequence[AzureServiceBusSourceWrapper] = None,
         workspace = "commons",
@@ -1298,7 +1291,6 @@ class Collections(object):
                     ),
                 ),
             ],
-            insert_only=True,
             name="global-transactions",
             retention_secs=1000000,
             sources=[
@@ -1338,14 +1330,13 @@ class Collections(object):
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
-            clustering_key ([FieldPartition]): list of clustering fields. [optional]
-            description (str): text describing the collection. [optional]
+            clustering_key ([FieldPartition]): Deprecated. List of clustering fields. Use CLUSTER BY clause in `field_mapping_query` instead.. [optional]
+            description (str): Text describing the collection.. [optional]
             event_time_info (EventTimeInfo): [optional]
             field_mapping_query (FieldMappingQuery): [optional]
-            field_mappings ([FieldMappingV2]): list of mappings. [optional]
-            insert_only (bool): If true disallows updates and deletes, but makes indexing more efficient. [optional]
-            name (str): unique identifier for collection, can contain alphanumeric or dash characters. [required]
-            retention_secs (int): number of seconds after which data is purged, based on event time. [optional]
+            field_mappings ([FieldMappingV2]): Deprecated. List of mappings. Use field_mapping_query instead.. [optional]
+            name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
+            retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
             sources ([AzureServiceBusSourceWrapper]): List of sources from which to ingest data. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -1420,7 +1411,6 @@ class Collections(object):
         event_time_info: EventTimeInfo = None,
         field_mapping_query: FieldMappingQuery = None,
         field_mappings: typing.Sequence[FieldMappingV2] = None,
-        insert_only: bool = None,
         retention_secs: int = None,
         sources: typing.Sequence[DynamodbSourceWrapper] = None,
         workspace = "commons",
@@ -1471,7 +1461,6 @@ class Collections(object):
                     ),
                 ),
             ],
-            insert_only=True,
             name="global-transactions",
             retention_secs=1000000,
             sources=[
@@ -1513,14 +1502,13 @@ class Collections(object):
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
-            clustering_key ([FieldPartition]): list of clustering fields. [optional]
-            description (str): text describing the collection. [optional]
+            clustering_key ([FieldPartition]): Deprecated. List of clustering fields. Use CLUSTER BY clause in `field_mapping_query` instead.. [optional]
+            description (str): Text describing the collection.. [optional]
             event_time_info (EventTimeInfo): [optional]
             field_mapping_query (FieldMappingQuery): [optional]
-            field_mappings ([FieldMappingV2]): list of mappings. [optional]
-            insert_only (bool): If true disallows updates and deletes, but makes indexing more efficient. [optional]
-            name (str): unique identifier for collection, can contain alphanumeric or dash characters. [required]
-            retention_secs (int): number of seconds after which data is purged, based on event time. [optional]
+            field_mappings ([FieldMappingV2]): Deprecated. List of mappings. Use field_mapping_query instead.. [optional]
+            name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
+            retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
             sources ([DynamodbSourceWrapper]): List of sources from which to ingest data. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -1595,7 +1583,6 @@ class Collections(object):
         event_time_info: EventTimeInfo = None,
         field_mapping_query: FieldMappingQuery = None,
         field_mappings: typing.Sequence[FieldMappingV2] = None,
-        insert_only: bool = None,
         retention_secs: int = None,
         sources: typing.Sequence[FileUploadSourceWrapper] = None,
         workspace = "commons",
@@ -1646,7 +1633,6 @@ class Collections(object):
                     ),
                 ),
             ],
-            insert_only=True,
             name="global-transactions",
             retention_secs=1000000,
             sources=[
@@ -1687,14 +1673,13 @@ class Collections(object):
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
-            clustering_key ([FieldPartition]): list of clustering fields. [optional]
-            description (str): text describing the collection. [optional]
+            clustering_key ([FieldPartition]): Deprecated. List of clustering fields. Use CLUSTER BY clause in `field_mapping_query` instead.. [optional]
+            description (str): Text describing the collection.. [optional]
             event_time_info (EventTimeInfo): [optional]
             field_mapping_query (FieldMappingQuery): [optional]
-            field_mappings ([FieldMappingV2]): list of mappings. [optional]
-            insert_only (bool): If true disallows updates and deletes, but makes indexing more efficient. [optional]
-            name (str): unique identifier for collection, can contain alphanumeric or dash characters. [required]
-            retention_secs (int): number of seconds after which data is purged, based on event time. [optional]
+            field_mappings ([FieldMappingV2]): Deprecated. List of mappings. Use field_mapping_query instead.. [optional]
+            name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
+            retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
             sources ([FileUploadSourceWrapper]): List of sources from which to ingest data. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -1769,7 +1754,6 @@ class Collections(object):
         event_time_info: EventTimeInfo = None,
         field_mapping_query: FieldMappingQuery = None,
         field_mappings: typing.Sequence[FieldMappingV2] = None,
-        insert_only: bool = None,
         retention_secs: int = None,
         sources: typing.Sequence[GcsSourceWrapper] = None,
         workspace = "commons",
@@ -1820,7 +1804,6 @@ class Collections(object):
                     ),
                 ),
             ],
-            insert_only=True,
             name="global-transactions",
             retention_secs=1000000,
             sources=[
@@ -1861,14 +1844,13 @@ class Collections(object):
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
-            clustering_key ([FieldPartition]): list of clustering fields. [optional]
-            description (str): text describing the collection. [optional]
+            clustering_key ([FieldPartition]): Deprecated. List of clustering fields. Use CLUSTER BY clause in `field_mapping_query` instead.. [optional]
+            description (str): Text describing the collection.. [optional]
             event_time_info (EventTimeInfo): [optional]
             field_mapping_query (FieldMappingQuery): [optional]
-            field_mappings ([FieldMappingV2]): list of mappings. [optional]
-            insert_only (bool): If true disallows updates and deletes, but makes indexing more efficient. [optional]
-            name (str): unique identifier for collection, can contain alphanumeric or dash characters. [required]
-            retention_secs (int): number of seconds after which data is purged, based on event time. [optional]
+            field_mappings ([FieldMappingV2]): Deprecated. List of mappings. Use field_mapping_query instead.. [optional]
+            name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
+            retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
             sources ([GcsSourceWrapper]): List of sources from which to ingest data. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -1943,7 +1925,6 @@ class Collections(object):
         event_time_info: EventTimeInfo = None,
         field_mapping_query: FieldMappingQuery = None,
         field_mappings: typing.Sequence[FieldMappingV2] = None,
-        insert_only: bool = None,
         retention_secs: int = None,
         sources: typing.Sequence[KafkaSourceWrapper] = None,
         workspace = "commons",
@@ -1994,7 +1975,6 @@ class Collections(object):
                     ),
                 ),
             ],
-            insert_only=True,
             name="global-transactions",
             retention_secs=1000000,
             sources=[
@@ -2025,7 +2005,7 @@ class Collections(object):
                     integration_name="aws-integration",
                     consumer_group_id="org-collection",
                     kafka_topic_name="example-topic",
-                    offset_reset_policy="LATEST",
+                    offset_reset_policy="EARLIEST",
                     use_v3=True,
                 ),
             ],
@@ -2036,14 +2016,13 @@ class Collections(object):
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
-            clustering_key ([FieldPartition]): list of clustering fields. [optional]
-            description (str): text describing the collection. [optional]
+            clustering_key ([FieldPartition]): Deprecated. List of clustering fields. Use CLUSTER BY clause in `field_mapping_query` instead.. [optional]
+            description (str): Text describing the collection.. [optional]
             event_time_info (EventTimeInfo): [optional]
             field_mapping_query (FieldMappingQuery): [optional]
-            field_mappings ([FieldMappingV2]): list of mappings. [optional]
-            insert_only (bool): If true disallows updates and deletes, but makes indexing more efficient. [optional]
-            name (str): unique identifier for collection, can contain alphanumeric or dash characters. [required]
-            retention_secs (int): number of seconds after which data is purged, based on event time. [optional]
+            field_mappings ([FieldMappingV2]): Deprecated. List of mappings. Use field_mapping_query instead.. [optional]
+            name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
+            retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
             sources ([KafkaSourceWrapper]): List of sources from which to ingest data. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -2118,7 +2097,6 @@ class Collections(object):
         event_time_info: EventTimeInfo = None,
         field_mapping_query: FieldMappingQuery = None,
         field_mappings: typing.Sequence[FieldMappingV2] = None,
-        insert_only: bool = None,
         retention_secs: int = None,
         sources: typing.Sequence[KinesisSourceWrapper] = None,
         workspace = "commons",
@@ -2169,7 +2147,6 @@ class Collections(object):
                     ),
                 ),
             ],
-            insert_only=True,
             name="global-transactions",
             retention_secs=1000000,
             sources=[
@@ -2213,14 +2190,13 @@ class Collections(object):
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
-            clustering_key ([FieldPartition]): list of clustering fields. [optional]
-            description (str): text describing the collection. [optional]
+            clustering_key ([FieldPartition]): Deprecated. List of clustering fields. Use CLUSTER BY clause in `field_mapping_query` instead.. [optional]
+            description (str): Text describing the collection.. [optional]
             event_time_info (EventTimeInfo): [optional]
             field_mapping_query (FieldMappingQuery): [optional]
-            field_mappings ([FieldMappingV2]): list of mappings. [optional]
-            insert_only (bool): If true disallows updates and deletes, but makes indexing more efficient. [optional]
-            name (str): unique identifier for collection, can contain alphanumeric or dash characters. [required]
-            retention_secs (int): number of seconds after which data is purged, based on event time. [optional]
+            field_mappings ([FieldMappingV2]): Deprecated. List of mappings. Use field_mapping_query instead.. [optional]
+            name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
+            retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
             sources ([KinesisSourceWrapper]): List of sources from which to ingest data. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -2295,7 +2271,6 @@ class Collections(object):
         event_time_info: EventTimeInfo = None,
         field_mapping_query: FieldMappingQuery = None,
         field_mappings: typing.Sequence[FieldMappingV2] = None,
-        insert_only: bool = None,
         retention_secs: int = None,
         sources: typing.Sequence[MongodbSourceWrapper] = None,
         workspace = "commons",
@@ -2346,7 +2321,6 @@ class Collections(object):
                     ),
                 ),
             ],
-            insert_only=True,
             name="global-transactions",
             retention_secs=1000000,
             sources=[
@@ -2386,14 +2360,13 @@ class Collections(object):
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
-            clustering_key ([FieldPartition]): list of clustering fields. [optional]
-            description (str): text describing the collection. [optional]
+            clustering_key ([FieldPartition]): Deprecated. List of clustering fields. Use CLUSTER BY clause in `field_mapping_query` instead.. [optional]
+            description (str): Text describing the collection.. [optional]
             event_time_info (EventTimeInfo): [optional]
             field_mapping_query (FieldMappingQuery): [optional]
-            field_mappings ([FieldMappingV2]): list of mappings. [optional]
-            insert_only (bool): If true disallows updates and deletes, but makes indexing more efficient. [optional]
-            name (str): unique identifier for collection, can contain alphanumeric or dash characters. [required]
-            retention_secs (int): number of seconds after which data is purged, based on event time. [optional]
+            field_mappings ([FieldMappingV2]): Deprecated. List of mappings. Use field_mapping_query instead.. [optional]
+            name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
+            retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
             sources ([MongodbSourceWrapper]): List of sources from which to ingest data. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -2468,7 +2441,6 @@ class Collections(object):
         event_time_info: EventTimeInfo = None,
         field_mapping_query: FieldMappingQuery = None,
         field_mappings: typing.Sequence[FieldMappingV2] = None,
-        insert_only: bool = None,
         retention_secs: int = None,
         sources: typing.Sequence[S3SourceWrapper] = None,
         workspace = "commons",
@@ -2519,7 +2491,6 @@ class Collections(object):
                     ),
                 ),
             ],
-            insert_only=True,
             name="global-transactions",
             retention_secs=1000000,
             sources=[
@@ -2561,14 +2532,13 @@ class Collections(object):
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
-            clustering_key ([FieldPartition]): list of clustering fields. [optional]
-            description (str): text describing the collection. [optional]
+            clustering_key ([FieldPartition]): Deprecated. List of clustering fields. Use CLUSTER BY clause in `field_mapping_query` instead.. [optional]
+            description (str): Text describing the collection.. [optional]
             event_time_info (EventTimeInfo): [optional]
             field_mapping_query (FieldMappingQuery): [optional]
-            field_mappings ([FieldMappingV2]): list of mappings. [optional]
-            insert_only (bool): If true disallows updates and deletes, but makes indexing more efficient. [optional]
-            name (str): unique identifier for collection, can contain alphanumeric or dash characters. [required]
-            retention_secs (int): number of seconds after which data is purged, based on event time. [optional]
+            field_mappings ([FieldMappingV2]): Deprecated. List of mappings. Use field_mapping_query instead.. [optional]
+            name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
+            retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
             sources ([S3SourceWrapper]): List of sources from which to ingest data. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -2643,7 +2613,6 @@ class Collections(object):
         event_time_info: EventTimeInfo = None,
         field_mapping_query: FieldMappingQuery = None,
         field_mappings: typing.Sequence[FieldMappingV2] = None,
-        insert_only: bool = None,
         retention_secs: int = None,
         sources: typing.Sequence[SnowflakeSourceWrapper] = None,
         workspace = "commons",
@@ -2694,7 +2663,6 @@ class Collections(object):
                     ),
                 ),
             ],
-            insert_only=True,
             name="global-transactions",
             retention_secs=1000000,
             sources=[
@@ -2736,14 +2704,13 @@ class Collections(object):
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
-            clustering_key ([FieldPartition]): list of clustering fields. [optional]
-            description (str): text describing the collection. [optional]
+            clustering_key ([FieldPartition]): Deprecated. List of clustering fields. Use CLUSTER BY clause in `field_mapping_query` instead.. [optional]
+            description (str): Text describing the collection.. [optional]
             event_time_info (EventTimeInfo): [optional]
             field_mapping_query (FieldMappingQuery): [optional]
-            field_mappings ([FieldMappingV2]): list of mappings. [optional]
-            insert_only (bool): If true disallows updates and deletes, but makes indexing more efficient. [optional]
-            name (str): unique identifier for collection, can contain alphanumeric or dash characters. [required]
-            retention_secs (int): number of seconds after which data is purged, based on event time. [optional]
+            field_mappings ([FieldMappingV2]): Deprecated. List of mappings. Use field_mapping_query instead.. [optional]
+            name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
+            retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
             sources ([SnowflakeSourceWrapper]): List of sources from which to ingest data. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.

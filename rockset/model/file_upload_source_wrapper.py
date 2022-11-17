@@ -124,9 +124,9 @@ class FileUploadSourceWrapper(ModelNormal):
         """FileUploadSourceWrapper - a model defined in OpenAPI
 
         Args:
-            file_name (str): name of the file
-            file_size (int): size of the file in bytes
-            file_upload_time (str): time of file upload
+            file_name (str): Name of the file.
+            file_size (int): Size of the file in bytes.
+            file_upload_time (str): Time of file upload.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -160,7 +160,7 @@ class FileUploadSourceWrapper(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             format_params (FormatParams): [optional]  # noqa: E501
-            integration_name (str): name of integration to use. [optional]  # noqa: E501
+            integration_name (str): Name of integration to use.. [optional]  # noqa: E501
             status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
         """
 
@@ -216,11 +216,11 @@ class FileUploadSourceWrapper(ModelNormal):
         """FileUploadSourceWrapper - a model defined in OpenAPI
 
         Keyword Args:
-            file_name (str): name of the file
-            file_size (int): size of the file in bytes
-            file_upload_time (str): time of file upload
+            file_name (str): Name of the file.
+            file_size (int): Size of the file in bytes.
+            file_upload_time (str): Time of file upload.
             format_params (FormatParams): [optional]  # noqa: E501
-            integration_name (str): name of integration to use. [optional]  # noqa: E501
+            integration_name (str): Name of integration to use.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

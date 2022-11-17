@@ -63,6 +63,7 @@ pprint(api_response)
 # Create Query Lambda
 api_response = await rs.QueryLambdas.create_query_lambda(
     description="production version foo",
+    is_public=True,
     name="myQueryLambda",
     sql=QueryLambdaSql(
         default_parameters=[
@@ -88,8 +89,9 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **description** | **str** | optional description | [optional]
- **name** | **str** | Query Lambda name | 
+ **description** | **str** | Optional description. | [optional]
+ **is_public** | **bool** |  | [optional]
+ **name** | **str** | Query Lambda name. | 
  **sql** | [**QueryLambdaSql**](QueryLambdaSql.md) |  | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
@@ -181,8 +183,8 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **query_lambda** | **str** | name of the Query Lambda |
- **tag_name** | **str** | name of Query Lambda tag | 
- **version** | **str** | hash identifying a Query Lambda tag | 
+ **tag_name** | **str** | Name of Query Lambda tag. | 
+ **version** | **str** | Hash identifying a Query Lambda tag. | 
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
@@ -538,11 +540,12 @@ Name | Type | Description  | Notes
  **version** | **str** | version |
  **workspace** | **str** | name of the workspace | defaults to "commons"
  **async_options** | [**AsyncQueryOptions**](AsyncQueryOptions.md) |  | [optional]
- **default_row_limit** | **int** | Row limit to use if no limit specified in the SQL query text | [optional]
- **generate_warnings** | **bool** | Whether to generate warnings | [optional]
+ **default_row_limit** | **int** | Row limit to use if no limit specified in the SQL query text. | [optional]
+ **generate_warnings** | **bool** | Whether to generate warnings. | [optional]
  **initial_paginate_response_doc_count** | **int** | Number of documents to return in addition to paginating for this query call. Only relevant if &#x60;paginate&#x60; flag is also set. | [optional]
  **paginate** | **bool** | Flag to paginate and store the results of this query for later / sequential retrieval. | [optional]
- **parameters** | [**[QueryParameter]**](QueryParameter.md) | list of named parameters | [optional]
+ **parameters** | [**[QueryParameter]**](QueryParameter.md) | List of named parameters. | [optional]
+ **virtual_instance_id** | **str** | Virtual instance on which to run the query. | [optional]
 
 
 ### Return type
@@ -634,11 +637,12 @@ Name | Type | Description  | Notes
  **tag** | **str** | tag |
  **workspace** | **str** | name of the workspace | defaults to "commons"
  **async_options** | [**AsyncQueryOptions**](AsyncQueryOptions.md) |  | [optional]
- **default_row_limit** | **int** | Row limit to use if no limit specified in the SQL query text | [optional]
- **generate_warnings** | **bool** | Whether to generate warnings | [optional]
+ **default_row_limit** | **int** | Row limit to use if no limit specified in the SQL query text. | [optional]
+ **generate_warnings** | **bool** | Whether to generate warnings. | [optional]
  **initial_paginate_response_doc_count** | **int** | Number of documents to return in addition to paginating for this query call. Only relevant if &#x60;paginate&#x60; flag is also set. | [optional]
  **paginate** | **bool** | Flag to paginate and store the results of this query for later / sequential retrieval. | [optional]
- **parameters** | [**[QueryParameter]**](QueryParameter.md) | list of named parameters | [optional]
+ **parameters** | [**[QueryParameter]**](QueryParameter.md) | List of named parameters. | [optional]
+ **virtual_instance_id** | **str** | Virtual instance on which to run the query. | [optional]
 
 
 ### Return type
@@ -1224,6 +1228,7 @@ pprint(api_response)
 api_response = await rs.QueryLambdas.update_query_lambda(
     query_lambda="queryLambda_example",
     description="production version foo",
+    is_public=True,
     sql=QueryLambdaSql(
         default_parameters=[
             QueryParameter(
@@ -1249,10 +1254,11 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **query_lambda** | **str** | name of the Query Lambda |
- **description** | **str** | optional description | [optional]
+ **description** | **str** | Optional description. | [optional]
+ **is_public** | **bool** |  | [optional]
  **sql** | [**QueryLambdaSql**](QueryLambdaSql.md) |  | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
- **create** | **bool** |  | [optional]
+ **create** | **bool** | Create a new Query Lambda if one does not exist already. | [optional]
 
 ### Return type
 

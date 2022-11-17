@@ -335,6 +335,7 @@ class APIKeys(object):
         self,
         *,
         name: str,
+        created_by: str = None,
         role: str = None,
         **kwargs
     ) -> typing.Union[CreateApiKeyResponse, asyncio.Future]:
@@ -347,6 +348,7 @@ class APIKeys(object):
         ```python
         rs = RocksetClient(api_key=APIKEY)
         future = rs.APIKeys.create(
+            created_by="string_example",
             name="my-app",
             role="string_example",
             async_req=True,
@@ -355,6 +357,7 @@ class APIKeys(object):
         ```
 
         Keyword Args:
+            created_by (str): [optional]
             name (str): Name for this API key.. [required]
             role (str): [optional]
             _return_http_data_only (bool): response data without head status

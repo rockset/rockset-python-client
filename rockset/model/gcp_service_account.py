@@ -104,7 +104,7 @@ class GcpServiceAccount(ModelNormal):
         """GcpServiceAccount - a model defined in OpenAPI
 
         Args:
-            service_account_key_file_json (str): Contents of JSON Service Account key file
+            service_account_key_file_json (str): Contents of JSON Service Account key file.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -189,7 +189,7 @@ class GcpServiceAccount(ModelNormal):
         """GcpServiceAccount - a model defined in OpenAPI
 
         Keyword Args:
-            service_account_key_file_json (str): Contents of JSON Service Account key file
+            service_account_key_file_json (str): Contents of JSON Service Account key file.
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

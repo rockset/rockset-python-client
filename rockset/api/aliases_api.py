@@ -403,9 +403,9 @@ class Aliases(object):
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
-            collections ([str]): list of fully qualified collection names referenced by alias. [required]
-            description (str): optional description. [optional]
-            name (str): Alias name. [required]
+            collections ([str]): List of fully qualified collection names referenced by alias.. [required]
+            description (str): Optional description.. [optional]
+            name (str): Alias name.. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -756,8 +756,8 @@ class Aliases(object):
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
             alias (str): name of the alias. [required]
-            collections ([str]): list of fully qualified collection names referenced by alias. [required]
-            description (str): optional description. [optional]
+            collections ([str]): List of fully qualified collection names referenced by alias.. [required]
+            description (str): Optional description.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

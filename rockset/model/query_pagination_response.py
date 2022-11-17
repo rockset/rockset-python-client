@@ -145,8 +145,8 @@ class QueryPaginationResponse(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             pagination (PaginationInfo): [optional]  # noqa: E501
-            results ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]): List of documents returned by the query. [optional]  # noqa: E501
-            results_total_doc_count (int): Total documents returned by the query. [optional]  # noqa: E501
+            results ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]): List of documents returned by the query.. [optional]  # noqa: E501
+            results_total_doc_count (int): Total documents returned by the query.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -199,8 +199,8 @@ class QueryPaginationResponse(ModelNormal):
 
         Keyword Args:
             pagination (PaginationInfo): [optional]  # noqa: E501
-            results ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]): List of documents returned by the query. [optional]  # noqa: E501
-            results_total_doc_count (int): Total documents returned by the query. [optional]  # noqa: E501
+            results ([{str: (bool, date, datetime, dict, float, int, list, str, none_type)}]): List of documents returned by the query.. [optional]  # noqa: E501
+            results_total_doc_count (int): Total documents returned by the query.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

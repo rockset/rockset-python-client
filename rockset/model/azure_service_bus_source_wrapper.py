@@ -153,10 +153,10 @@ class AzureServiceBusSourceWrapper(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             format_params (FormatParams): [optional]  # noqa: E501
-            integration_name (str): name of integration to use. [optional]  # noqa: E501
+            integration_name (str): Name of integration to use.. [optional]  # noqa: E501
             status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
-            subscription (str): the subscription to read from the topic. [optional]  # noqa: E501
-            topic (str): name of the topic which rockset should ingest from. [optional]  # noqa: E501
+            subscription (str): The subscription to read from the topic.. [optional]  # noqa: E501
+            topic (str): Name of the topic which rockset should ingest from.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -209,9 +209,9 @@ class AzureServiceBusSourceWrapper(ModelNormal):
 
         Keyword Args:
             format_params (FormatParams): [optional]  # noqa: E501
-            integration_name (str): name of integration to use. [optional]  # noqa: E501
-            subscription (str): the subscription to read from the topic. [optional]  # noqa: E501
-            topic (str): name of the topic which rockset should ingest from. [optional]  # noqa: E501
+            integration_name (str): Name of integration to use.. [optional]  # noqa: E501
+            subscription (str): The subscription to read from the topic.. [optional]  # noqa: E501
+            topic (str): Name of the topic which rockset should ingest from.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

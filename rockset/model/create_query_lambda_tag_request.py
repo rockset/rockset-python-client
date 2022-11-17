@@ -106,8 +106,8 @@ class CreateQueryLambdaTagRequest(ModelNormal):
         """CreateQueryLambdaTagRequest - a model defined in OpenAPI
 
         Args:
-            tag_name (str): name of Query Lambda tag
-            version (str): hash identifying a Query Lambda tag
+            tag_name (str): Name of Query Lambda tag.
+            version (str): Hash identifying a Query Lambda tag.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -193,8 +193,8 @@ class CreateQueryLambdaTagRequest(ModelNormal):
         """CreateQueryLambdaTagRequest - a model defined in OpenAPI
 
         Keyword Args:
-            tag_name (str): name of Query Lambda tag
-            version (str): hash identifying a Query Lambda tag
+            tag_name (str): Name of Query Lambda tag.
+            version (str): Hash identifying a Query Lambda tag.
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

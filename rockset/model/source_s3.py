@@ -83,6 +83,7 @@ class SourceS3(ModelNormal):
         return {
             'bucket': (str,),  # noqa: E501
             'prefixes': ([str],),  # noqa: E501
+            'object_bytes_downloaded': (int, none_type),  # noqa: E501
             'object_bytes_total': (int, none_type),  # noqa: E501
             'object_count_downloaded': (int, none_type),  # noqa: E501
             'object_count_total': (int, none_type),  # noqa: E501
@@ -99,6 +100,7 @@ class SourceS3(ModelNormal):
     attribute_map = {
         'bucket': 'bucket',  # noqa: E501
         'prefixes': 'prefixes',  # noqa: E501
+        'object_bytes_downloaded': 'object_bytes_downloaded',  # noqa: E501
         'object_bytes_total': 'object_bytes_total',  # noqa: E501
         'object_count_downloaded': 'object_count_downloaded',  # noqa: E501
         'object_count_total': 'object_count_total',  # noqa: E501
@@ -109,6 +111,7 @@ class SourceS3(ModelNormal):
 
     read_only_vars = {
         'prefixes',  # noqa: E501
+        'object_bytes_downloaded',  # noqa: E501
         'object_bytes_total',  # noqa: E501
         'object_count_downloaded',  # noqa: E501
         'object_count_total',  # noqa: E501
@@ -122,8 +125,8 @@ class SourceS3(ModelNormal):
         """SourceS3 - a model defined in OpenAPI
 
         Args:
-            bucket (str): address of S3 bucket containing data
-            prefixes ([str]): list of prefixes to paths from which data should be ingested
+            bucket (str): Address of S3 bucket containing data.
+            prefixes ([str]): List of prefixes to paths from which data should be ingested.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -156,12 +159,13 @@ class SourceS3(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            object_bytes_downloaded (int): [optional]  # noqa: E501
             object_bytes_total (int): [optional]  # noqa: E501
             object_count_downloaded (int): [optional]  # noqa: E501
             object_count_total (int): [optional]  # noqa: E501
             pattern (str): Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified.. [optional]  # noqa: E501
             prefix (str): Prefix that selects keys to ingest.. [optional]  # noqa: E501
-            region (str): AWS region containing source bucket. [optional]  # noqa: E501
+            region (str): AWS region containing source bucket.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -215,10 +219,10 @@ class SourceS3(ModelNormal):
         """SourceS3 - a model defined in OpenAPI
 
         Keyword Args:
-            bucket (str): address of S3 bucket containing data
+            bucket (str): Address of S3 bucket containing data.
             pattern (str): Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified.. [optional]  # noqa: E501
             prefix (str): Prefix that selects keys to ingest.. [optional]  # noqa: E501
-            region (str): AWS region containing source bucket. [optional]  # noqa: E501
+            region (str): AWS region containing source bucket.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

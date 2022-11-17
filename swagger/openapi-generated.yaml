@@ -1270,19 +1270,15 @@ paths:
           required: true
           schema:
             type: string
-        - in: query
+        - description: "Cursor to current page. If unset, will default to the first page."
+          in: query
           name: cursor
           required: false
           schema:
             type: string
-        - in: query
+        - description: Number of documents to fetch.
+          in: query
           name: docs
-          required: false
-          schema:
-            format: int32
-            type: integer
-        - in: query
-          name: offset
           required: false
           schema:
             format: int32
@@ -2644,6 +2640,112 @@ paths:
       operationId: getUser
       summary: Retrieve User
       x-rename: get
+    post:
+      parameters:
+        - description: email of the user to update
+          in: path
+          name: user
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/User"
+          description: user updated successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      tags:
+        - Users
+      description: Update a user in an organization.
+      operationId: updateUser
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateUserRequest"
+        description: JSON object
+        required: true
+      summary: Update User
+      x-rename: update
   "/v1/orgs/self/users/{user}/apikeys":
     get:
       parameters:
@@ -3275,10 +3377,208 @@ paths:
       operationId: listVirtualInstances
       summary: List Virtual Instances
       x-rename: list
+    post:
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateVirtualInstanceResponse"
+          description: virtual instance created successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      tags:
+        - Virtual Instances
+      description: "[beta] Create virtual instance"
+      operationId: createVirtualInstance
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateVirtualInstanceRequest"
+        description: JSON object
+        required: true
+      summary: Create Virtual Instance
+      x-rename: create
   "/v1/orgs/self/virtualinstances/{virtualInstanceId}":
+    delete:
+      parameters:
+        - description: Virtual Instance RRN
+          in: path
+          name: virtualInstanceId
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteVirtualInstanceResponse"
+          description: virtual instance deleted successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      tags:
+        - Virtual Instances
+      description: "[beta] Delete a virtual instance."
+      operationId: deleteVirtualInstance
+      summary: Delete Virtual Instance
+      x-rename: delete
     get:
       parameters:
-        - description: uuid of the virtual instance
+        - description: Virtual Instance RRN
           in: path
           name: virtualInstanceId
           required: true
@@ -3377,7 +3677,7 @@ paths:
       x-rename: get
     post:
       parameters:
-        - description: uuid of the virtual instance
+        - description: Virtual Instance RRN
           in: path
           name: virtualInstanceId
           required: true
@@ -3480,6 +3780,822 @@ paths:
         description: JSON object
         required: true
       summary: Update Virtual Instance
+      x-rename: update
+  "/v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts":
+    get:
+      parameters:
+        - description: Virtual Instance RRN
+          in: path
+          name: virtualInstanceId
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListCollectionMountsResponse"
+          description: resource mounted
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      tags:
+        - Virtual Instances
+      description: "[beta] List collection mounts for a particular VI."
+      operationId: listCollectionMounts
+      summary: List Collection Mounts
+    post:
+      parameters:
+        - description: Virtual Instance RRN
+          in: path
+          name: virtualInstanceId
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CollectionMountResponse"
+          description: collection mounted
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      tags:
+        - Virtual Instances
+      description: "[beta] Mount a collection to this virtual instance."
+      operationId: mountCollection
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateCollectionMountRequest"
+        description: JSON object
+        required: true
+      summary: Mount Collection
+  "/v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts/{collectionPath}":
+    delete:
+      parameters:
+        - description: Virtual Instance RRN
+          in: path
+          name: virtualInstanceId
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: collectionPath
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CollectionMountResponse"
+          description: collection unmounted
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      tags:
+        - Virtual Instances
+      description: "[beta] Unmount a collection from this virtual instance."
+      operationId: unmountCollection
+      summary: Unmount Collection
+    get:
+      parameters:
+        - description: Virtual Instance RRN
+          in: path
+          name: virtualInstanceId
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: collectionPath
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CollectionMountResponse"
+          description: collection unmounted
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      tags:
+        - Virtual Instances
+      description: "[beta] Get a mount on this virtual instance."
+      operationId: getCollectionMount
+      summary: Get Collection Mount
+  "/v1/orgs/self/virtualinstances/{virtualInstanceId}/queries":
+    get:
+      parameters:
+        - description: Virtual Instance RRN
+          in: path
+          name: virtualInstanceId
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListQueriesResponse"
+          description: successfully fetched queries
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      tags:
+        - Virtual Instances
+      description: >-
+        [beta] Lists actively queued and running queries for a particular
+        Virtual Instance.
+      operationId: getVirtualInstanceQueries
+      summary: List Queries
+    post:
+      parameters:
+        - description: Virtual Instance RRN
+          in: path
+          name: virtualInstanceId
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QueryResponse"
+          description: query executed successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      tags:
+        - Virtual Instances
+      description: "[beta] Make a SQL query to Rockset."
+      operationId: queryVirtualInstance
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/QueryRequest"
+        description: JSON object
+        required: true
+      summary: Execute SQL Query
+  "/v1/orgs/self/virtualinstances/{virtualInstanceId}/resume":
+    post:
+      parameters:
+        - description: Virtual Instance RRN
+          in: path
+          name: virtualInstanceId
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ResumeVirtualInstanceResponse"
+          description: virtual instance resumed successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      tags:
+        - Virtual Instances
+      description: "[beta] Resume a virtual instance."
+      operationId: resumeVirtualInstance
+      summary: Resume Virtual Instance
+  "/v1/orgs/self/virtualinstances/{virtualInstanceId}/suspend":
+    post:
+      parameters:
+        - description: Virtual Instance RRN
+          in: path
+          name: virtualInstanceId
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SuspendVirtualInstanceResponse"
+          description: virtual instance suspended successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      tags:
+        - Virtual Instances
+      description: "[beta] Suspend a virtual instance."
+      operationId: suspendVirtualInstance
+      summary: Suspend Virtual Instance
   /v1/orgs/self/ws:
     get:
       responses:
@@ -4846,6 +5962,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "413":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: content too large
         "415":
           content:
             application/json:
@@ -4958,6 +6080,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "413":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: content too large
         "415":
           content:
             application/json:
@@ -6111,7 +7239,8 @@ paths:
           required: true
           schema:
             type: string
-        - in: query
+        - description: Create a new Query Lambda if one does not exist already.
+          in: query
           name: create
           required: false
           schema:
@@ -6741,6 +7870,105 @@ paths:
         required: true
       summary: Update View
       x-rename: update
+  "/v1/public/shared_lambdas/{public_access_id}":
+    get:
+      parameters:
+        - description: public access ID of the query lambda
+          in: path
+          name: public_access_id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/QueryResponse"
+          description: Query Lambda executed successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      tags:
+        - Shared Lambdas
+      description: Execute a public query lambda.
+      operationId: executePublicQueryLambda
+      summary: Execute a Public Query Lambda
 components:
   requestBodies:
     ExecuteQueryLambdaRequest:
@@ -6771,7 +7999,7 @@ components:
     AddDocumentsResponse:
       properties:
         data:
-          description: information about the added documents
+          description: Information about the added documents.
           items:
             $ref: "#/components/schemas/DocumentStatus"
           type: array
@@ -6779,40 +8007,40 @@ components:
     Alias:
       properties:
         collections:
-          description: list of fully qualified collection names referenced by alias
+          description: List of fully qualified collection names referenced by alias.
           example: '["commons.foo", "prod.demo"]'
           items:
             type: string
           type: array
         created_at:
-          description: ISO-8601 date
+          description: ISO-8601 date.
           example: "2001-08-28T00:23:41Z"
           type: string
         creator_email:
-          description: email of the creator
+          description: Email of the creator.
           example: xyz@rockset.com
           type: string
         description:
-          description: alias description
+          description: Alias description.
           example: alias referencing collection in workspace
           type: string
         modified_at:
-          description: ISO-8601 date
+          description: ISO-8601 date.
           example: "2001-08-28T00:23:42Z"
           type: string
         name:
-          description: name of the alias
+          description: Name of the alias.
           example: demo
           type: string
         state:
-          description: state of the alias
+          description: State of the alias.
           enum:
             - CREATED
             - DELETED
           example: CREATED
           type: string
         workspace:
-          description: name of the workspace
+          description: Name of the workspace.
           example: commons
           type: string
       type: object
@@ -6827,7 +8055,7 @@ components:
           type: string
         created_by:
           description: Email of API key owner.
-          example: test@example.com
+          example: test@rockset.com
           type: string
         expiry_time:
           description: The expiration date of this API key.
@@ -6852,7 +8080,7 @@ components:
           example: read-only
           type: string
         state:
-          description: current state of this key
+          description: Current state of this key.
           enum:
             - ACTIVE
             - SUSPENDED
@@ -6893,11 +8121,11 @@ components:
     AwsAccessKey:
       properties:
         aws_access_key_id:
-          description: AWS access key ID
+          description: AWS access key ID.
           example: AKIAIOSFODNN7EXAMPLE
           type: string
         aws_secret_access_key:
-          description: AWS secret access key
+          description: AWS secret access key.
           example: wJal....
           type: string
       required:
@@ -6906,8 +8134,12 @@ components:
       type: object
     AwsRole:
       properties:
+        aws_external_id:
+          description: External id used for integration.
+          example: external id of aws
+          type: string
         aws_role_arn:
-          description: ARN of rockset-role created in your account
+          description: ARN of rockset-role created in your account.
           example: "arn:aws:iam::2378964092:role/rockset-role"
           type: string
       required:
@@ -6916,7 +8148,10 @@ components:
     AzureBlobStorageIntegration:
       properties:
         connection_string:
-          description: credentials for Azure Blob Storage
+          description: Credentials for the Azure Blob Service.
+          example: |-
+            BlobEndpoint=https://<NamespaceName>.blob.core.windows.net;
+            SharedAccessSignature=<KeyValue>
           type: string
       required:
         - connection_string
@@ -6924,17 +8159,92 @@ components:
     AzureEventHubsIntegration:
       properties:
         connection_string:
-          description: azure event hubs connection string
-          readOnly: true
+          description: Credentials for the Azure Event Hubs.
+          example: >-
+            Endpoint=sb://<NamespaceName>.servicebus.windows.net/;SharedAccessKeyName=<KeyName>;SharedAccessKey=<KeyValue>
           type: string
       type: object
     AzureServiceBusIntegration:
       properties:
         connection_string:
-          description: credentials for the Azure Service Bus
+          description: Credentials for the Azure Service Bus.
+          example: >-
+            Endpoint=sb://<NamespaceName>.servicebus.windows.net/;SharedAccessKeyName=<KeyName>;SharedAccessKey=<KeyValue>
           type: string
       required:
         - connection_string
+      type: object
+    BulkStats:
+      properties:
+        data_downloaded_bytes:
+          description: >-
+            Size in bytes of documents downloaded from source during an ongoing
+            or completed bulk ingest. This includes documents that are dropped
+            and reingested.
+          example: 10000000
+          format: int64
+          type: integer
+        data_indexed_bytes:
+          description: >-
+            Size in bytes of documents indexed. This is the total size of
+            documents after transformations and dropping before indexes are
+            built.
+          example: 8000000
+          format: int64
+          type: integer
+        documents_downloaded:
+          description: >-
+            Number of documents downloaded from source during an ongoing or
+            completed bulk ingest. This includes documents that are dropped and
+            reingested.
+          example: 10000
+          format: int64
+          type: integer
+        download_compute_ms:
+          description: >-
+            Bulk ingest compute units in milliseconds used for downloading
+            documents.
+          example: 50000
+          format: int64
+          type: integer
+        downloading_stage_done_at:
+          description: ISO-8601 date of when the downloading stage was completed.
+          example: "2001-08-28T00:23:41Z"
+          type: string
+        finalizing_stage_done_at:
+          description: ISO-8601 date of when the finalizing stage was completed.
+          example: "2001-08-28T00:23:41Z"
+          type: string
+        index_compute_ms:
+          description: >-
+            Bulk ingest compute units in milliseconds used for indexing
+            documents.
+          example: 100000
+          format: int64
+          type: integer
+        indexing_stage_done_at:
+          description: ISO-8601 date of when the indexing stage was completed.
+          example: "2001-08-28T00:23:41Z"
+          type: string
+        initializing_stage_done_at:
+          description: ISO-8601 date of when the initializing stage was completed.
+          example: "2001-08-28T00:23:41Z"
+          type: string
+        provisioning_stage_done_at:
+          description: ISO-8601 date of when the provisioning stage was completed.
+          example: "2001-08-28T00:23:41Z"
+          type: string
+        started_at:
+          description: ISO-8601 date of when the bulk ingest was started.
+          example: "2001-08-28T00:23:41Z"
+          type: string
+        total_index_size_bytes:
+          description: >-
+            Total size of indexes after the completed bulk ingest. This is the
+            same as collection size.
+          example: 10000000
+          format: int64
+          type: integer
       type: object
     CancelQueryResponse:
       properties:
@@ -6944,92 +8254,96 @@ components:
     Cluster:
       properties:
         apiserver_url:
-          description: api server url for cluster
+          description: Api server url for cluster.
           example: api.rockset.us-west-2.rockset.com
           type: string
         aws_region:
-          description: aws region
+          description: Aws region.
           example: us-west-2
           type: string
         cluster_type:
-          description: cluster type
+          description: Cluster type.
           enum:
             - PUBLIC
           example: PRIVATE
           type: string
         domain:
-          description: domain of org using cluster
+          description: Domain of org using cluster.
           example: rockset
           type: string
         id:
-          description: unique identifier for the cluster
+          description: Unique identifier for the cluster.
           example: asdf98-as9df8adf-adsf9asfd
           type: string
         top_level_domain:
-          description: top level domain of org using cluster
+          description: Top level domain of org using cluster.
           example: .com
           type: string
       type: object
     Collection:
       properties:
         aliases:
-          description: list of aliases for a collection
+          description: List of aliases for a collection.
           items:
             $ref: "#/components/schemas/Alias"
           type: array
+        bulk_stats:
+          items:
+            $ref: "#/components/schemas/BulkStats"
+          type: array
         clustering_key:
-          description: list of clustering fields for a collection
+          description: List of clustering fields for a collection.
           items:
             $ref: "#/components/schemas/FieldPartition"
           type: array
         created_at:
-          description: ISO-8601 date
+          description: ISO-8601 date.
           example: "2001-08-28T00:23:41Z"
           type: string
         created_by:
-          description: email of user who created the collection
+          description: Email of user who created the collection.
           example: hello@rockset.com
           type: string
         description:
-          description: text describing the collection
+          description: Text describing the collection.
           example: transactions from stores worldwide
           type: string
         field_mapping_query:
           $ref: "#/components/schemas/FieldMappingQuery"
-          description: Field mapping for a collection
+          description: Field mapping for a collection.
         field_mappings:
-          description: list of mappings applied on all documents in a collection
+          description: List of mappings applied on all documents in a collection.
           items:
             $ref: "#/components/schemas/FieldMappingV2"
           type: array
         insert_only:
-          description: Whether the collection is insert only or not
+          description: Whether the collection is insert only or not.
           type: boolean
         name:
           description: >-
-            unique identifer for collection, can contain alphanumeric or dash
-            characters
+            Unique identifer for collection, can contain alphanumeric or dash
+            characters.
           example: global-transactions
           pattern: '^[A-Za-z0-9_\-.]+$'
           type: string
         read_only:
-          description: Whether the collection is read-only or not
+          description: Whether the collection is read-only or not.
           type: boolean
         retention_secs:
-          description: number of seconds after which data is purged based on event time
+          description: Number of seconds after which data is purged based on event time.
           example: 2592000
           format: int64
           type: integer
         sources:
-          description: list of sources from which collection ingests
+          description: List of sources from which collection ingests.
           items:
             $ref: "#/components/schemas/Source"
           type: array
         stats:
           $ref: "#/components/schemas/CollectionStats"
-          description: metrics about the collection
+          description: Metrics about the collection.
         status:
-          description: "current status of collection, one of: CREATED, READY, DELETED"
+          description: Current status of collection.
           enum:
             - INITIALIZED
             - CREATED
@@ -7045,91 +8359,145 @@ components:
           example: READY
           type: string
         workspace:
-          description: name of the workspace that the collection is in
+          description: Name of the workspace that the collection is in.
           example: commons
           type: string
+      type: object
+    CollectionMount:
+      properties:
+        collection_path:
+          description: Collection path.
+          example: commons.foo
+          type: string
+        created_at:
+          description: ISO-8601 date.
+          example: "2001-08-28T00:23:41Z"
+          type: string
+        id:
+          description: Mount ID.
+          example: 5ac23....
+          type: string
+        rrn:
+          description: Mount RRN.
+          example: "rrn:mnt:use1a1:123e4567-e89b-12d3-a456-556642440000"
+          type: string
+        snapshot_expiration_time_millis:
+          description: Time in millis at which the snapshot expires.
+          example: 864000000
+          format: int64
+          type: integer
+        state:
+          description: Mount type.
+          enum:
+            - CREATING
+            - ACTIVE
+            - EXPIRED
+            - DELETING
+          example: ACTIVE
+          type: string
+        type:
+          description: Mount type.
+          enum:
+            - STATIC
+            - LIVE
+          example: STATIC
+          type: string
+        virtual_instance_id:
+          description: Virtual instance ID.
+          example: 5ac23....
+          type: string
+        virtual_instance_rrn:
+          description: Virtual Instance RRN.
+          example: "rrn:vi:use1a1:123e4567-e89b-12d3-a456-556642440000"
+          type: string
+      type: object
+    CollectionMountResponse:
+      properties:
+        data:
+          $ref: "#/components/schemas/CollectionMount"
+          description: Resource mount object.
       type: object
     CollectionStats:
       properties:
         bulk_bytes_inserted:
-          description: total number of bytes inserted into the collection during bulk
+          description: Total number of bytes inserted into the collection during bulk.
           format: int64
           type: integer
         bulk_bytes_overwritten:
           description: >-
-            total number of bytes overwritten in writing into the collection
-            during bulk
+            Total number of bytes overwritten in writing into the collection
+            during bulk.
           format: int64
           type: integer
         bytes_inserted:
-          description: total number of bytes inserted into the collection
+          description: Total number of bytes inserted into the collection.
           example: 123456
           format: int64
           type: integer
         bytes_overwritten:
-          description: total number of bytes overwritten in writing into the collection
+          description: Total number of bytes overwritten in writing into the collection.
           example: 123456
           format: int64
           type: integer
         column_index_size:
-          description: total collection column index size in bytes
+          description: Total collection column index size in bytes.
           example: 123456
           format: int64
           type: integer
         doc_count:
-          description: number of documents in the collection
+          description: Number of documents in the collection.
           example: 2145
           format: int64
           type: integer
         fill_progress:
           description: >-
-            number between 0 and 1 that indicates progress of collection
-            creation
+            Number between 0 and 1 that indicates progress of collection
+            creation.
           example: 0.6
           format: double
           type: number
         inverted_index_size:
-          description: total collection inverted index size in bytes
+          description: Total collection inverted index size in bytes.
           example: 123456
           format: int64
           type: integer
         last_queried_ms:
-          description: "milliseconds since Unix epoch Jan 1, 1970"
+          description: "Milliseconds since Unix epoch Jan 1, 1970."
           example: 1535101119334
           format: int64
           type: integer
         last_updated_ms:
-          description: "milliseconds since Unix epoch Jan 1, 1970"
+          description: "Milliseconds since Unix epoch Jan 1, 1970."
           example: 1535101094433
           format: int64
           type: integer
         purged_doc_count:
-          description: number of documents purged from the collection
+          description: Number of documents purged from the collection.
           example: 2145
           format: int64
           type: integer
         purged_doc_size:
-          description: total size of bytes purged in bytes
+          description: Total size of bytes purged in bytes.
           example: 123456
           format: int64
           type: integer
         range_index_size:
-          description: total collection range index size in bytes
+          description: Total collection range index size in bytes.
           example: 123456
           format: int64
           type: integer
         row_index_size:
-          description: total collection row index size in bytes
+          description: Total collection row index size in bytes.
           example: 123456
           format: int64
           type: integer
         total_index_size:
-          description: total collection index size in bytes
+          description: Total collection index size in bytes.
           example: 123456
           format: int64
           type: integer
         total_size:
-          description: total collection size in bytes
+          description: Total collection size in bytes.
           example: 123456
           format: int64
           type: integer
@@ -7137,17 +8505,17 @@ components:
     CreateAliasRequest:
       properties:
         collections:
-          description: list of fully qualified collection names referenced by alias
+          description: List of fully qualified collection names referenced by alias.
           example: '["commons.foo", "prod.demo"]'
           items:
             type: string
           type: array
         description:
-          description: optional description
+          description: Optional description.
           example: version alias
           type: string
         name:
-          description: Alias name
+          description: Alias name.
           example: aliasName
           type: string
       required:
@@ -7158,10 +8526,12 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/Alias"
-          description: alias that was created
+          description: Alias that was created.
       type: object
     CreateApiKeyRequest:
       properties:
+        created_by:
+          type: string
         name:
           description: Name for this API key.
           example: my-app
@@ -7177,92 +8547,110 @@ components:
           $ref: "#/components/schemas/ApiKey"
           description: The API key that was created.
       type: object
+    CreateCollectionMountRequest:
+      properties:
+        collection_paths:
+          description: Collections to mount.
+          example: '["commons.foo", "commons.bar"]'
+          items:
+            type: string
+          type: array
+        type:
+          description: Mount type.
+          enum:
+            - STATIC
+            - LIVE
+          example: STATIC
+          type: string
+      type: object
     CreateCollectionRequest:
       properties:
         clustering_key:
-          description: list of clustering fields
+          description: >-
+            Deprecated. List of clustering fields. Use CLUSTER BY clause in
+            `field_mapping_query` instead.
           items:
             $ref: "#/components/schemas/FieldPartition"
           type: array
         description:
-          description: text describing the collection
+          description: Text describing the collection.
           example: transactions from stores worldwide
           type: string
         event_time_info:
           $ref: "#/components/schemas/EventTimeInfo"
-          description: configuration for event data
+          description: >-
+            Deprecated. Configuration for event data. Use an _event_time mapping
+            in `field_mapping_query` instead.
         field_mapping_query:
           $ref: "#/components/schemas/FieldMappingQuery"
-          description: Mapping of fields for a collection
+          description: Mapping of fields for a collection.
         field_mappings:
-          description: list of mappings
+          description: Deprecated. List of mappings. Use field_mapping_query instead.
           items:
             $ref: "#/components/schemas/FieldMappingV2"
           type: array
-        insert_only:
-          description: >-
-            If true disallows updates and deletes, but makes indexing more
-            efficient
-          type: boolean
         name:
           description: >-
-            unique identifier for collection, can contain alphanumeric or dash
-            characters
+            Unique identifier for collection, can contain alphanumeric or dash
+            characters.
           example: global-transactions
           type: string
         retention_secs:
-          description: "number of seconds after which data is purged, based on event time"
+          description: "Number of seconds after which data is purged, based on event time."
           example: 1000000
           format: int64
+          minimum: 1
           type: integer
         sources:
-          description: list of sources from which to ingest data
+          description: List of sources from which to ingest data.
           items:
             $ref: "#/components/schemas/Source"
           type: array
-      required:
-        - name
       type: object
     CreateCollectionResponse:
       properties:
         data:
           $ref: "#/components/schemas/Collection"
-          description: collection that was created
+          description: Collection that was created.
       type: object
     CreateIntegrationRequest:
       properties:
         azure_blob_storage:
           $ref: "#/components/schemas/AzureBlobStorageIntegration"
-          description: Azure Blob Storage details
+          description: Azure Blob Storage details.
         azure_event_hubs:
           $ref: "#/components/schemas/AzureEventHubsIntegration"
+          description: Azure Event Hubs details.
+        azure_service_bus:
+          $ref: "#/components/schemas/AzureServiceBusIntegration"
+          description: Azure Service Bus details.
         description:
-          description: longer explanation for the integration
+          description: Longer explanation for the integration.
           example: AWS account with event data for the data science team.
           type: string
         dynamodb:
           $ref: "#/components/schemas/DynamodbIntegration"
-          description: "Amazon DynamoDB details, must have one of aws_access_key or aws_role"
+          description: >-
+            Amazon DynamoDB details, must have one of aws_access_key or
+            aws_role.
         gcs:
           $ref: "#/components/schemas/GcsIntegration"
-          description: GCS details
+          description: GCS details.
         kafka:
           $ref: "#/components/schemas/KafkaIntegration"
         kinesis:
           $ref: "#/components/schemas/KinesisIntegration"
-          description: "Amazon Kinesis details, must have one of aws_access_key or aws_role"
+          description: "Amazon Kinesis details, must have one of aws_access_key or aws_role."
         mongodb:
           $ref: "#/components/schemas/MongoDbIntegration"
-          description: MongoDb details
+          description: MongoDb details.
         name:
-          description: descriptive label
+          description: Descriptive label.
           example: event-logs
           type: string
         s3:
           $ref: "#/components/schemas/S3Integration"
-          description: "Amazon S3 details, must have one of aws_access_key or aws_role"
-        segment:
-          $ref: "#/components/schemas/SegmentIntegration"
+          description: "Amazon S3 details, must have one of aws_access_key or aws_role."
         snowflake:
           $ref: "#/components/schemas/SnowflakeIntegration"
       required:
@@ -7272,21 +8660,23 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/Integration"
-          description: integration object that was created
+          description: Integration object that was created.
       type: object
     CreateQueryLambdaRequest:
       properties:
         description:
-          description: optional description
+          description: Optional description.
           example: production version foo
           type: string
+        is_public:
+          type: boolean
         name:
-          description: Query Lambda name
+          description: Query Lambda name.
           example: myQueryLambda
           type: string
         sql:
           $ref: "#/components/schemas/QueryLambdaSql"
-          description: Query Lambda SQL query
+          description: Query Lambda SQL query.
       required:
         - name
         - sql
@@ -7294,11 +8684,11 @@ components:
     CreateQueryLambdaTagRequest:
       properties:
         tag_name:
-          description: name of Query Lambda tag
+          description: Name of Query Lambda tag.
           example: production
           type: string
         version:
-          description: hash identifying a Query Lambda tag
+          description: Hash identifying a Query Lambda tag.
           example: 123ABC
           type: string
       required:
@@ -7324,11 +8714,11 @@ components:
     CreateUserRequest:
       properties:
         email:
-          description: "user email, must be unique"
+          description: "User email, must be unique."
           example: hello@rockset.com
           type: string
         roles:
-          description: List of roles for a given user
+          description: List of roles for a given user.
           example: '["admin", "member", "read-only"]'
           items:
             type: string
@@ -7341,20 +8731,20 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/User"
-          description: user that was created
+          description: User that was created.
       type: object
     CreateViewRequest:
       properties:
         description:
-          description: optional description
+          description: Optional description.
           example: view of awesome collection
           type: string
         name:
-          description: View name
+          description: View name.
           example: myAwesomeView
           type: string
         query:
-          description: SQL for this view
+          description: SQL for this view.
           example: SELECT * FROM foo
           type: string
       required:
@@ -7365,16 +8755,59 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/View"
-          description: view that was updated
+          description: View that was updated.
+      type: object
+    CreateVirtualInstanceRequest:
+      properties:
+        auto_suspend_seconds:
+          description: Number of seconds without queries after which the VI is suspended
+          example: 3600
+          format: int32
+          type: integer
+        description:
+          description: Description of requested virtual instance.
+          example: VI serving prod traffic
+          type: string
+        name:
+          description: >-
+            Unique identifier for virtual instance, can contain alphanumeric or
+            dash characters.
+          example: prod_vi
+          type: string
+        type:
+          description: Requested virtual instance type.
+          enum:
+            - FREE
+            - NANO
+            - SHARED
+            - MILLI
+            - SMALL
+            - MEDIUM
+            - LARGE
+            - XLARGE
+            - XLARGE2
+            - XLARGE4
+            - XLARGE8
+            - XLARGE16
+          example: LARGE
+          type: string
+      required:
+        - name
+      type: object
+    CreateVirtualInstanceResponse:
+      properties:
+        data:
+          $ref: "#/components/schemas/VirtualInstance"
+          description: Virtual instance object.
       type: object
     CreateWorkspaceRequest:
       properties:
         description:
-          description: longer explanation for the workspace
+          description: Longer explanation for the workspace.
           example: Datasets of system logs for the ops team.
           type: string
         name:
-          description: descriptive label and unique identifier
+          description: Descriptive label and unique identifier.
           example: event_logs
           type: string
       required:
@@ -7384,18 +8817,18 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/Workspace"
-          description: the workspace that was created
+          description: The workspace that was created.
       type: object
     CsvParams:
       properties:
         columnNames:
-          description: names of columns
+          description: Names of columns.
           example: '["c1", "c2", "c3"]'
           items:
             type: string
           type: array
         columnTypes:
-          description: names of columns
+          description: Names of columns.
           example: '["BOOLEAN", "INTEGER", "FLOAT", "STRING"]'
           items:
             enum:
@@ -7413,7 +8846,7 @@ components:
             type: string
           type: array
         encoding:
-          description: "can be one of: UTF-8, ISO_8859_1, UTF-16"
+          description: "One of: UTF-8, ISO_8859_1, UTF-16."
           example: UTF-8
           type: string
         escapeChar:
@@ -7423,7 +8856,7 @@ components:
           example: \
           type: string
         firstLineAsColumnNames:
-          description: If the first line in every object specifies the column names
+          description: If the first line in every object specifies the column names.
           example: true
           type: boolean
         quoteChar:
@@ -7433,7 +8866,7 @@ components:
           example: '"'
           type: string
         separator:
-          description: a single character that is the column separator
+          description: A single character that is the column separator.
           example: ","
           type: string
       type: object
@@ -7441,7 +8874,7 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/Alias"
-          description: alias that was deleted
+          description: Alias that was deleted.
       type: object
     DeleteApiKeyResponse:
       properties:
@@ -7453,12 +8886,12 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/Collection"
-          description: collection that was deleted
+          description: Collection that was deleted.
       type: object
     DeleteDocumentsRequest:
       properties:
         data:
-          description: Array of IDs of documents to be deleted
+          description: Array of IDs of documents to be deleted.
           items:
             $ref: "#/components/schemas/DeleteDocumentsRequestData"
           type: array
@@ -7468,7 +8901,7 @@ components:
     DeleteDocumentsRequestData:
       properties:
         _id:
-          description: unique document ID
+          description: Unique document ID.
           example: 2cd61e3b
           type: string
       required:
@@ -7477,7 +8910,7 @@ components:
     DeleteDocumentsResponse:
       properties:
         data:
-          description: information about deleted documents
+          description: Information about deleted documents.
           items:
             $ref: "#/components/schemas/DocumentStatus"
           type: array
@@ -7486,51 +8919,57 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/Integration"
-          description: integration object that was deleted
+          description: Integration object that was deleted.
       type: object
     DeleteQueryLambdaResponse:
       properties:
         data:
           $ref: "#/components/schemas/QueryLambda"
-          description: Query Lambda details
+          description: Query Lambda details.
       type: object
     DeleteUserResponse:
       properties:
         data:
           $ref: "#/components/schemas/User"
-          description: user object that was deleted
+          description: User object that was deleted.
       type: object
     DeleteViewResponse:
       properties:
         data:
           $ref: "#/components/schemas/View"
-          description: view that was deleted
+          description: View that was deleted.
+      type: object
+    DeleteVirtualInstanceResponse:
+      properties:
+        data:
+          $ref: "#/components/schemas/VirtualInstance"
+          description: Virtual instance that was deleted.
       type: object
     DeleteWorkspaceResponse:
       properties:
         data:
           $ref: "#/components/schemas/Workspace"
-          description: the workspace that was deleted
+          description: The workspace that was deleted.
       type: object
     DocumentStatus:
       properties:
         _collection:
-          description: collection name
+          description: Collection name.
           example: customers
           type: string
         _id:
-          description: unique document ID
+          description: Unique document ID.
           example: 2cd61e3b
           type: string
         error:
           $ref: "#/components/schemas/ErrorModel"
-          description: "error message, if any"
+          description: "Error message, if any."
         patch_id:
-          description: unique id used to represent each patch request
+          description: Unique id used to represent each patch request.
           example: 486gsg8
           type: string
         status:
-          description: status of the document
+          description: Status of the document.
           enum:
             - ADDED
             - REPLACED
@@ -7544,39 +8983,40 @@ components:
       properties:
         aws_access_key:
           $ref: "#/components/schemas/AwsAccessKey"
-          description: credentials for an AWS access key integration
+          description: Credentials for an AWS access key integration.
         aws_role:
           $ref: "#/components/schemas/AwsRole"
-          description: role used for external id type authentication
+          description: Role used for external id type authentication.
         s3_export_bucket_name:
+          description: S3 bucket used for export during collection initial dump.
           type: string
       type: object
     ErrorModel:
       description: Describes details about an error
       properties:
         column:
-          description: Column where the error happened (if applicable)
+          description: Column where the error happened (if applicable).
           format: int32
           type: integer
         error_id:
-          description: ID of the error
+          description: ID of the error.
           type: string
         line:
-          description: Line where the error happened (if applicable)
+          description: Line where the error happened (if applicable).
           format: int32
           type: integer
         message:
-          description: descriptive message about the error
+          description: Descriptive message about the error.
           example: collection not found
           type: string
         query_id:
-          description: ID of the query (if applicable)
+          description: ID of the query (if applicable).
           type: string
         trace_id:
-          description: Internal trace ID to help with debugging
+          description: Internal trace ID to help with debugging.
           type: string
         type:
-          description: category of the error
+          description: Category of the error.
           enum:
             - AUTHEXCEPTION
             - VERSIONEXCEPTION
@@ -7596,6 +9036,7 @@ components:
             - QUERY_TIMEOUT
             - ROLE_NOT_FOUND
             - CONNECTION_ERROR
+            - CONTENTTOOLARGE
             - CREATING
             - BADREQUEST
             - SERVICEUNAVAILABLE
@@ -7608,17 +9049,17 @@ components:
     EventTimeInfo:
       properties:
         field:
-          description: name of the field containing event time
+          description: Name of the field containing event time.
           example: timestamp
           type: string
         format:
           description: >-
-            format of time field, can be one of: milliseconds_since_epoch,
-            seconds_since_epoch
+            Format of time field, can be one of: milliseconds_since_epoch,
+            seconds_since_epoch.
           example: seconds_since_epoch
           type: string
         time_zone:
-          description: "default time zone, in standard IANA format"
+          description: "Default time zone, in standard IANA format."
           example: UTC
           type: string
       required:
@@ -7627,7 +9068,7 @@ components:
     ExecuteQueryLambdaRequest:
       properties:
         parameters:
-          description: list of named parameters
+          description: List of named parameters.
           items:
             $ref: "#/components/schemas/QueryParameter"
           type: array
@@ -7635,11 +9076,11 @@ components:
           $ref: "#/components/schemas/AsyncQueryOptions"
           description: Options for configuring Asynchronous Query Mode (beta).
         default_row_limit:
-          description: Row limit to use if no limit specified in the SQL query text
+          description: Row limit to use if no limit specified in the SQL query text.
           format: int32
           type: integer
         generate_warnings:
-          description: Whether to generate warnings
+          description: Whether to generate warnings.
           type: boolean
         initial_paginate_response_doc_count:
           description: >-
@@ -7652,6 +9093,9 @@ components:
             Flag to paginate and store the results of this query for later /
             sequential retrieval.
           type: boolean
+        virtual_instance_id:
+          description: Virtual instance on which to run the query.
+          type: string
       type: object
     FieldMapping:
       properties: {}
@@ -7659,14 +9103,14 @@ components:
     FieldMappingQuery:
       properties:
         sql:
-          description: "SELECT * EXCEPT (name), SHA256(name) AS name_anon FROM _input"
+          description: "SELECT * EXCEPT (name), SHA256(name) AS name_anon FROM _input."
           example: sql
           type: string
       type: object
     FieldMappingV2:
       properties:
         input_fields:
-          description: A List of InputField for this mapping
+          description: A List of InputField for this mapping.
           items:
             $ref: "#/components/schemas/InputField"
           type: array
@@ -7677,17 +9121,17 @@ components:
           example: true
           type: boolean
         name:
-          description: A user specified string that is a name for this mapping
+          description: A user specified string that is a name for this mapping.
           example: myTestMapping
           type: string
         output_field:
           $ref: "#/components/schemas/OutputField"
-          description: An OutputField for this mapping
+          description: An OutputField for this mapping.
       type: object
     FieldPartition:
       properties:
         field_name:
-          description: "The name of a field, parsed as a SQL qualified name"
+          description: "The name of a field, parsed as a SQL qualified name."
           example: address.city.zipcode
           type: string
         keys:
@@ -7699,7 +9143,7 @@ components:
             type: string
           type: array
         type:
-          description: The type of partitions on a field
+          description: The type of partitions on a field.
           enum:
             - AUTO
           example: AUTO
@@ -7712,7 +9156,7 @@ components:
         csv:
           $ref: "#/components/schemas/CsvParams"
         json:
-          description: source data is in json format
+          description: Source data is in json format.
           example: true
           type: boolean
         mssql_dms:
@@ -7729,7 +9173,7 @@ components:
     GcpServiceAccount:
       properties:
         service_account_key_file_json:
-          description: Contents of JSON Service Account key file
+          description: Contents of JSON Service Account key file.
           type: string
       required:
         - service_account_key_file_json
@@ -7738,13 +9182,13 @@ components:
       properties:
         gcp_service_account:
           $ref: "#/components/schemas/GcpServiceAccount"
-          description: credentials for an AWS key integration
+          description: Credentials for an GCP key integration.
       type: object
     GetAliasResponse:
       properties:
         data:
           $ref: "#/components/schemas/Alias"
-          description: alias that was requested
+          description: Alias that was requested.
       type: object
     GetApiKeyResponse:
       properties:
@@ -7756,61 +9200,56 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/Collection"
-          description: collection that was requested
+          description: Collection that was requested.
       type: object
     GetIntegrationResponse:
       properties:
         data:
           $ref: "#/components/schemas/Integration"
-          description: integration object
+          description: Integration object.
       type: object
     GetQueryResponse:
       properties:
         data:
           $ref: "#/components/schemas/QueryInfo"
-        last_offset:
-          description: >-
-            If this was a write query, this is the log offset the query was
-            written to
-          type: string
       type: object
     GetViewResponse:
       properties:
         data:
           $ref: "#/components/schemas/View"
-          description: view that was requested
+          description: View that was requested.
       type: object
     GetVirtualInstanceResponse:
       properties:
         data:
           $ref: "#/components/schemas/VirtualInstance"
-          description: virtual instance that was requested
+          description: Virtual instance that was requested.
       type: object
     GetWorkspaceResponse:
       properties:
         data:
           $ref: "#/components/schemas/Workspace"
-          description: the workspace that was requested
+          description: The workspace that was requested.
       type: object
     InputField:
       properties:
         field_name:
-          description: "The name of a field, parsed as a SQL qualified name"
+          description: "The name of a field, parsed as a SQL qualified name."
           example: address.city.zipcode
           type: string
         if_missing:
-          description: Define the behaviour if fieldName is missing or is null
+          description: Define the behaviour if fieldName is missing or is null.
           enum:
             - SKIP
             - PASS
           example: SKIP
           type: string
         is_drop:
-          description: "If true, then drop fieldName from the document"
+          description: "If true, then drop fieldName from the document."
           example: true
           type: boolean
         param:
-          description: Sql parameter name
+          description: Sql parameter name.
           example: zip
           type: string
       type: object
@@ -7821,90 +9260,100 @@ components:
       properties:
         azure_blob_storage:
           $ref: "#/components/schemas/AzureBlobStorageIntegration"
-          description: Azure Blob Storage details
+          description: Azure Blob Storage details.
         azure_event_hubs:
           $ref: "#/components/schemas/AzureEventHubsIntegration"
+          description: Azure Event Hubs details.
         azure_service_bus:
           $ref: "#/components/schemas/AzureServiceBusIntegration"
+          description: Azure Service Bus details.
         collections:
-          description: list of collections that use the integration
+          description: List of collections that use the integration.
           items:
             $ref: "#/components/schemas/Collection"
           type: array
         created_at:
-          description: ISO-8601 date
+          description: ISO-8601 date.
           example: "2001-08-28T00:23:41Z"
           type: string
         created_by:
-          description: email of user who created the integration
+          description: Email of user who created the integration.
           example: hello@rockset.com
           type: string
         description:
-          description: longer explanation for the integration
+          description: Longer explanation for the integration.
           example: AWS account with event data for the data science team.
           type: string
         dynamodb:
           $ref: "#/components/schemas/DynamodbIntegration"
-          description: "Amazon DynamoDB details, must have one of aws_access_key or aws_role"
+          description: >-
+            Amazon DynamoDB details, must have one of aws_access_key or
+            aws_role.
         gcs:
           $ref: "#/components/schemas/GcsIntegration"
-          description: GCS details
+          description: GCS details.
         kafka:
           $ref: "#/components/schemas/KafkaIntegration"
-          description: Kafka details
+          description: Kafka details.
         kinesis:
           $ref: "#/components/schemas/KinesisIntegration"
-          description: "Amazon Kinesis details, must have one of aws_access_key or aws_role"
+          description: "Amazon Kinesis details, must have one of aws_access_key or aws_role."
         mongodb:
           $ref: "#/components/schemas/MongoDbIntegration"
-          description: MongoDb details
+          description: MongoDb details.
         name:
-          description: descriptive label and unique identifier
+          description: Descriptive label and unique identifier.
           example: event-logs
+          type: string
+        owner_email:
+          description: User that owns this integration.
+          example: abc@rockset.com
           type: string
         s3:
           $ref: "#/components/schemas/S3Integration"
-          description: "Amazon S3 details, must have one of aws_access_key or aws_role"
-        segment:
-          $ref: "#/components/schemas/SegmentIntegration"
-          description: Segment details
+          description: "Amazon S3 details, must have one of aws_access_key or aws_role."
         snowflake:
           $ref: "#/components/schemas/SnowflakeIntegration"
-          description: Snowflake details
+          description: Snowflake details.
       required:
         - created_by
         - name
       type: object
     KafkaIntegration:
       properties:
+        aws_role:
+          $ref: "#/components/schemas/AwsRole"
+          description: Details of an AWS cross-account role integration.
         bootstrap_servers:
+          description: The Kafka bootstrap server url(s). Required only for V3 integration.
+          example: "localhost:9092"
           type: string
         connection_string:
-          description: kafka connection string
-          readOnly: true
+          description: Kafka connection string.
           type: string
         kafka_data_format:
-          description: The format of the Kafka topics being tailed
+          description: The format of the Kafka topics being tailed.
           enum:
             - JSON
             - AVRO
           example: JSON
           type: string
         kafka_topic_names:
-          description: Kafka topics to tail
+          description: Kafka topics to tail.
           items:
             type: string
           type: array
           uniqueItems: true
         schema_registry_config:
           $ref: "#/components/schemas/SchemaRegistryConfig"
+          description: Kafka configurations for schema registry.
         security_config:
           $ref: "#/components/schemas/KafkaV3SecurityConfig"
-          description: Kafka security configurations. Required only for V3 integration.
+          description: Kafka security configurations.
         source_status_by_topic:
           additionalProperties:
             $ref: "#/components/schemas/StatusKafka"
-          description: The status of the Kafka source by topic
+          description: The status of the Kafka source by topic.
           example: '{"topic-a": "DORMANT"}'
           readOnly: true
           type: object
@@ -7922,15 +9371,15 @@ components:
       properties:
         aws_access_key:
           $ref: "#/components/schemas/AwsAccessKey"
-          description: credentials for an AWS access key integration
+          description: Credentials for an AWS access key integration.
         aws_role:
           $ref: "#/components/schemas/AwsRole"
-          description: details of an AWS cross-account role integration
+          description: Details of an AWS cross-account role integration.
       type: object
     ListAliasesResponse:
       properties:
         data:
-          description: list of all aliases
+          description: List of all aliases.
           items:
             $ref: "#/components/schemas/Alias"
           type: array
@@ -7943,10 +9392,18 @@ components:
             $ref: "#/components/schemas/ApiKey"
           type: array
       type: object
+    ListCollectionMountsResponse:
+      properties:
+        data:
+          description: List of all collection mounts.
+          items:
+            $ref: "#/components/schemas/CollectionMount"
+          type: array
+      type: object
     ListCollectionsResponse:
       properties:
         data:
-          description: list of all collections
+          description: List of all collections.
           items:
             $ref: "#/components/schemas/Collection"
           type: array
@@ -7954,7 +9411,7 @@ components:
     ListIntegrationsResponse:
       properties:
         data:
-          description: list of integration objects
+          description: List of integration objects.
           items:
             $ref: "#/components/schemas/Integration"
           type: array
@@ -7969,7 +9426,7 @@ components:
     ListQueryLambdaTagsResponse:
       properties:
         data:
-          description: list of all tags associated with a Query Lambda
+          description: List of all tags associated with a Query Lambda.
           items:
             $ref: "#/components/schemas/QueryLambdaTag"
           type: array
@@ -7977,7 +9434,7 @@ components:
     ListQueryLambdaVersionsResponse:
       properties:
         data:
-          description: list of all versions for a particular Query Lambda
+          description: List of all versions for a particular Query Lambda.
           items:
             $ref: "#/components/schemas/QueryLambdaVersion"
           type: array
@@ -7985,7 +9442,7 @@ components:
     ListQueryLambdasResponse:
       properties:
         data:
-          description: list of all Query Lambdas
+          description: List of all Query Lambdas.
           items:
             $ref: "#/components/schemas/QueryLambda"
           type: array
@@ -8001,7 +9458,7 @@ components:
     ListUnsubscribePreferencesResponse:
       properties:
         data:
-          description: List of notification preferences
+          description: List of notification preferences.
           items:
             $ref: "#/components/schemas/UnsubscribePreference"
           type: array
@@ -8009,7 +9466,7 @@ components:
     ListUsersResponse:
       properties:
         data:
-          description: list of users
+          description: List of users.
           items:
             $ref: "#/components/schemas/User"
           type: array
@@ -8017,7 +9474,7 @@ components:
     ListViewsResponse:
       properties:
         data:
-          description: list of all views
+          description: List of all views.
           items:
             $ref: "#/components/schemas/View"
           type: array
@@ -8025,7 +9482,7 @@ components:
     ListVirtualInstancesResponse:
       properties:
         data:
-          description: list of all virtual instances
+          description: List of all virtual instances.
           items:
             $ref: "#/components/schemas/VirtualInstance"
           type: array
@@ -8033,7 +9490,7 @@ components:
     ListWorkspacesResponse:
       properties:
         data:
-          description: list of workspaces
+          description: List of workspaces.
           items:
             $ref: "#/components/schemas/Workspace"
           type: array
@@ -8041,7 +9498,7 @@ components:
     MongoDbIntegration:
       properties:
         connection_uri:
-          description: MongoDB connection URI string
+          description: MongoDB connection URI string.
           example: "mongodb+srv://<username>:<password>@server.example.com/"
           type: string
       required:
@@ -8051,31 +9508,29 @@ components:
       description: An organization in Rockset is a container for users and collections.
       properties:
         clusters:
-          description: list of clusters associated with this org
+          description: List of clusters associated with this org.
           example: "[{ ... }]"
           items:
             $ref: "#/components/schemas/Cluster"
           type: array
         created_at:
-          description: ISO-8601 date
+          description: ISO-8601 date.
           example: "2001-08-28T00:23:41Z"
           type: string
-        deletionScheduledAt:
-          type: string
         display_name:
-          description: name of the organization
+          description: Name of the organization.
           example: "Rockset, Inc"
           type: string
         external_id:
-          description: organization's unique external ID within Rockset
+          description: Organization's unique external ID within Rockset.
           example: <hash>
           type: string
         id:
-          description: unique identifier for the organization
+          description: Unique identifier for the organization.
           example: rockset
           type: string
         rockset_user:
-          description: Rockset's global AWS user
+          description: Rockset's global AWS user.
           example: <id>
           type: string
       type: object
@@ -8083,16 +9538,16 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/Organization"
-          description: Organization object
+          description: Organization object.
       type: object
     OutputField:
       properties:
         field_name:
-          description: "The name of a field, parsed as a SQL qualified name "
+          description: "The name of a field, parsed as a SQL qualified name."
           example: zip_hash
           type: string
         on_error:
-          description: "Error in Mapping execution: 'skip' or 'fail' "
+          description: "Error in Mapping execution: 'skip' or 'fail'."
           enum:
             - SKIP
             - FAIL
@@ -8100,7 +9555,7 @@ components:
           type: string
         value:
           $ref: "#/components/schemas/SqlExpression"
-          description: The name of a sql function
+          description: The name of a sql function.
           example: "SHA256(:zip)"
       type: object
     Pagination:
@@ -8113,12 +9568,12 @@ components:
     PaginationInfo:
       properties:
         current_page_doc_count:
-          description: Number of documents returned in this result set
+          description: Number of documents returned in this result set.
           example: 1000
           format: int64
           type: integer
         next_cursor:
-          description: Cursor to use to get the list of documents
+          description: Cursor to use to get the list of documents.
           example: testnextcursor
           type: string
         next_cursor_offset:
@@ -8256,12 +9711,18 @@ components:
             - EXECUTE_QUERY_LAMBDA_WS
             - CREATE_VIEW_WS
             - DELETE_VIEW_WS
+            - ALL_VI_ACTIONS
+            - QUERY_VI
+            - UPDATE_VI
+            - SUSPEND_RESUME_VI
+            - DELETE_VI
           example: CREATE_COLLECTION_WS
           type: string
         cluster:
           description: >-
-            Cluster ID (`rs2` for us-west-2, `use1a1` for us-east-1) for which
-            the action is allowed. Defaults to '*All*' if not specified.
+            Cluster ID (`usw2a1` for us-west-2, `use1a1` for us-east-1, `euc1a1`
+            for eu-central-1) for which the action is allowed. Defaults to
+            '*All*' if not specified.
           example: "*ALL*"
           type: string
         resource_name:
@@ -8276,7 +9737,7 @@ components:
         message:
           description: >-
             A message associated with the error, containing more information
-            about it
+            about it.
           example: Too many rows
           type: string
         status_code:
@@ -8287,18 +9748,18 @@ components:
           format: int32
           type: integer
         type:
-          description: The type of error
+          description: The type of error.
           example: ResourceExceeded
           type: string
       type: object
     QueryFieldType:
       properties:
         name:
-          description: name of the field
+          description: Name of the field.
           example: _id
           type: string
         type:
-          description: data type of the field
+          description: Data type of the field.
           example: string
           type: string
       required:
@@ -8308,7 +9769,7 @@ components:
     QueryInfo:
       properties:
         executed_by:
-          description: User ID who executed the query
+          description: User ID who executed the query.
           example: xyz@rockset.com
           type: string
         expires_at:
@@ -8359,44 +9820,44 @@ components:
     QueryLambda:
       properties:
         collections:
-          description: collections/aliases queried by underlying SQL query
+          description: Collections/aliases queried by underlying SQL query.
           items:
             type: string
           type: array
         last_updated:
-          description: ISO-8601 date of when Query Lambda was last updated
+          description: ISO-8601 date of when Query Lambda was last updated.
           example: "2001-08-28T00:23:41Z"
           type: string
         last_updated_by:
-          description: user that created this Query Lambda
+          description: User that created this Query Lambda.
           example: ..@rockset.com
           type: string
         latest_version:
           $ref: "#/components/schemas/QueryLambdaVersion"
-          description: Query Lambda version details for most recently created version
+          description: Query Lambda version details for most recently created version.
         name:
-          description: Query Lambda name
+          description: Query Lambda name.
           example: myQuery
           type: string
         version_count:
-          description: number of Query Lambda versions
+          description: Number of Query Lambda versions.
           example: 1
           format: int32
           type: integer
         workspace:
-          description: workspace of this Query Lambda
+          description: Workspace of this Query Lambda.
           example: commons
           type: string
       type: object
     QueryLambdaSql:
       properties:
         default_parameters:
-          description: default parameters for this Query Lambda
+          description: Default parameters for this Query Lambda.
           items:
             $ref: "#/components/schemas/QueryParameter"
           type: array
         query:
-          description: SQL text
+          description: SQL text.
           example: SELECT 'Foo'
           type: string
       required:
@@ -8405,67 +9866,70 @@ components:
     QueryLambdaStats:
       properties:
         last_executed:
-          description: ISO-8601 date
+          description: ISO-8601 date.
           example: "2001-08-28T00:23:41Z"
           type: string
         last_executed_by:
-          description: user who last executed Query Lambda
+          description: User who last executed Query Lambda.
           example: ...@rockset.com
           type: string
         last_execution_error:
-          description: ISO-8601 date of last execution failure
+          description: ISO-8601 date of last execution failure.
           example: "2001-08-28T00:23:41Z"
           type: string
         last_execution_error_message:
-          description: error message associated with last failed execution
+          description: Error message associated with last failed execution.
           example: "[error message]"
           type: string
       type: object
     QueryLambdaTag:
       properties:
         tag_name:
-          description: name of Query Lambda tag
+          description: Name of Query Lambda tag.
           example: production
           type: string
         version:
           $ref: "#/components/schemas/QueryLambdaVersion"
-          description: query lambda version
+          description: Query lambda version.
           example: b1d7c9a34b50cd
       type: object
     QueryLambdaTagResponse:
       properties:
         data:
           $ref: "#/components/schemas/QueryLambdaTag"
-          description: updated Query Lambda tag
+          description: Updated Query Lambda tag.
       type: object
     QueryLambdaVersion:
       properties:
         collections:
-          description: collections queried by underlying SQL query
+          description: Collections queried by underlying SQL query.
           items:
             type: string
           type: array
         created_at:
-          description: ISO-8601 date of when Query Lambda was created
+          description: ISO-8601 date of when Query Lambda was created.
           example: "2001-08-28T00:23:41Z"
           type: string
         created_by:
-          description: user that created this Query Lambda
+          description: User that created this Query Lambda.
           example: ..@rockset.com
           type: string
         description:
-          description: optional description
+          description: Optional description.
           example: production version foo
           type: string
         name:
-          description: Query Lambda name
+          description: Query Lambda name.
           example: myQuery
+          type: string
+        public_access_id:
+          description: Public access ID associated with this QL version
           type: string
         sql:
           $ref: "#/components/schemas/QueryLambdaSql"
-          description: Query Lambda SQL query
+          description: Query Lambda SQL query.
         state:
-          description: status of this Query Lambda
+          description: Status of this Query Lambda.
           enum:
             - ACTIVE
             - INVALID_SQL
@@ -8473,13 +9937,13 @@ components:
           type: string
         stats:
           $ref: "#/components/schemas/QueryLambdaStats"
-          description: stats related to this Query Lambda
+          description: Stats related to this Query Lambda.
         version:
-          description: Query Lambda version
+          description: Query Lambda version.
           example: acb99feg92bcaf
           type: string
         workspace:
-          description: workspace of this Query Lambda
+          description: Workspace of this Query Lambda.
           example: commons
           type: string
       type: object
@@ -8487,35 +9951,35 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/QueryLambdaVersion"
-          description: Query Lambda version details
+          description: Query Lambda version details.
       type: object
     QueryPaginationResponse:
       properties:
         pagination:
           $ref: "#/components/schemas/PaginationInfo"
-          description: Pagination metadata
+          description: Pagination metadata.
         results:
-          description: List of documents returned by the query
+          description: List of documents returned by the query.
           items:
             type: object
           type: array
         results_total_doc_count:
-          description: Total documents returned by the query
+          description: Total documents returned by the query.
           format: int64
           type: integer
       type: object
     QueryParameter:
       properties:
         name:
-          description: name of the field
+          description: Name of the field.
           example: _id
           type: string
         type:
-          description: data type of the field
+          description: Data type of the field.
           example: string
           type: string
         value:
-          description: literal value of the field
+          description: Literal value of the field.
           example: 85beb391
           type: string
       required:
@@ -8587,7 +10051,7 @@ components:
         last_offset:
           description: >-
             If this was a write query, this is the log offset the query was
-            written to
+            written to.
           type: string
         pagination:
           $ref: "#/components/schemas/PaginationInfo"
@@ -8613,7 +10077,7 @@ components:
             type: object
           type: array
         results_total_doc_count:
-          description: Number of results generated by the query
+          description: Number of results generated by the query.
           format: int64
           type: integer
         stats:
@@ -8630,15 +10094,21 @@ components:
     QueryResponseStats:
       properties:
         elapsed_time_ms:
-          description: query time in milliseconds
+          description: Query time in milliseconds.
           example: 126
           format: int64
           type: integer
         throttled_time_micros:
-          description: time query was throttled by admission control
+          description: Time query was throttled by admission control.
           example: 126
           format: int64
           type: integer
+      type: object
+    ResumeVirtualInstanceResponse:
+      properties:
+        data:
+          $ref: "#/components/schemas/VirtualInstance"
+          description: Virtual instance that was resumed.
       type: object
     Role:
       properties:
@@ -8677,59 +10147,52 @@ components:
       properties:
         aws_access_key:
           $ref: "#/components/schemas/AwsAccessKey"
-          description: credentials for an AWS access key integration
+          description: Credentials for an AWS access key integration.
         aws_role:
           $ref: "#/components/schemas/AwsRole"
-          description: details of an AWS cross-account role integration
+          description: Details of an AWS cross-account role integration.
       type: object
     SchemaRegistryConfig:
       properties:
         key:
-          description: The secure API key for schema registry
+          description: The secure API key for schema registry.
           type: string
         secret:
-          description: The secure API password registry
+          description: The secure API password registry.
           type: string
         url:
-          description: Schema registry URL
-          type: string
-      type: object
-    SegmentIntegration:
-      properties:
-        connection_string:
-          description: segment connection string
-          readOnly: true
+          description: Schema registry URL.
           type: string
       type: object
     SnowflakeIntegration:
       properties:
         aws_access_key:
           $ref: "#/components/schemas/AwsAccessKey"
-          description: credentials for an AWS access key integration
+          description: Credentials for an AWS access key integration.
         aws_role:
           $ref: "#/components/schemas/AwsRole"
-          description: details of an AWS cross-account role integration
+          description: Details of an AWS cross-account role integration.
         default_warehouse:
           description: >-
             default snowflake data warehouse name for query execution. Warehouse
             name can be overridden in the collection.
           type: string
         password:
-          description: snowflake database password
+          description: Snowflake database password.
           type: string
         s3_export_path:
-          description: S3 path used for running 'COPY INTO' command on snowflake table
+          description: S3 path used for running 'COPY INTO' command on snowflake table.
           example: "s3://bucket/prefix"
           type: string
         snowflake_url:
-          description: snowflake browser url
+          description: Snowflake browser url.
           example: acme-marketing-test-account.snowflakecomputing.com
           type: string
         user_role:
-          description: "snowflake user role. If unspecified, will use the default user role."
+          description: "Snowflake user role. If unspecified, will use the default user role."
           type: string
         username:
-          description: snowflake database username
+          description: Snowflake database username.
           type: string
       required:
         - default_warehouse
@@ -8746,44 +10209,51 @@ components:
       properties:
         azure_blob_storage:
           $ref: "#/components/schemas/SourceAzureBlobStorage"
+          description: Configuration for ingestion from Azure Blob Storage.
         azure_event_hubs:
           $ref: "#/components/schemas/SourceAzureEventHubs"
+          description: Configuration for ingestion from Azure Event Hubs.
         azure_service_bus:
           $ref: "#/components/schemas/SourceAzureServiceBus"
+          description: Configuration for ingestion from Azure Service Bus.
         dynamodb:
           $ref: "#/components/schemas/SourceDynamoDb"
-          description: configuration for ingestion from  a dynamodb table
+          description: Configuration for ingestion from  a dynamodb table.
         file_upload:
           $ref: "#/components/schemas/SourceFileUpload"
-          description: file upload details
+          description: File upload details.
         format_params:
           $ref: "#/components/schemas/FormatParams"
-          description: format parameters for data from this source
+          description: Format parameters for data from this source.
         gcs:
           $ref: "#/components/schemas/SourceGcs"
-          description: configuration for ingestion from GCS
+          description: Configuration for ingestion from GCS.
+        id:
+          description: Unique source identifier.
+          example: a1df483c-734e-485b-8005-f46386ef42f6
+          type: string
         integration_name:
-          description: name of integration to use
+          description: Name of integration to use.
           example: aws-integration
           type: string
         kafka:
           $ref: "#/components/schemas/SourceKafka"
-          description: kafka collection identifier
+          description: Kafka collection identifier.
         kinesis:
           $ref: "#/components/schemas/SourceKinesis"
-          description: configuration for ingestion from kinesis stream
+          description: Configuration for ingestion from kinesis stream.
         mongodb:
           $ref: "#/components/schemas/SourceMongoDb"
-          description: MongoDB collection details
+          description: MongoDB collection details.
         s3:
           $ref: "#/components/schemas/SourceS3"
-          description: configuration for ingestion from S3
+          description: Configuration for ingestion from S3.
         snowflake:
           $ref: "#/components/schemas/SourceSnowflake"
-          description: configuration for ingestion from Snowflake
+          description: Configuration for ingestion from Snowflake.
         status:
           $ref: "#/components/schemas/Status"
-          description: the ingest status of this source
+          description: The ingest status of this source.
           readOnly: true
       type: object
     SourceAzureBlobStorage:
@@ -8801,7 +10271,7 @@ components:
           readOnly: true
           type: integer
         container:
-          description: name of Azure blob Storage container you want to ingest from
+          description: Name of Azure blob Storage container you want to ingest from.
           example: server-logs
           type: string
         pattern:
@@ -8818,7 +10288,7 @@ components:
     SourceAzureEventHubs:
       properties:
         hub_id:
-          description: name of the hub which rockset should ingest from
+          description: Name of the hub which rockset should ingest from.
           example: event-hub-1
           type: string
         offset_reset_policy:
@@ -8830,49 +10300,49 @@ components:
           type: string
         status:
           $ref: "#/components/schemas/StatusAzureEventHubs"
-          description: source status
+          description: Source status.
           readOnly: true
       type: object
     SourceAzureServiceBus:
       properties:
         status:
           $ref: "#/components/schemas/StatusAzureServiceBus"
-          description: Azure Service bus source status
+          description: Azure Service bus source status.
           readOnly: true
         subscription:
-          description: the subscription to read from the topic
+          description: The subscription to read from the topic.
           example: rockset-subscription
           type: string
         topic:
-          description: name of the topic which rockset should ingest from
+          description: Name of the topic which rockset should ingest from.
           example: rockset-topic
           type: string
       type: object
     SourceDynamoDb:
       properties:
         aws_region:
-          description: "AWS region name of DynamoDB table, by default us-west-2 is used"
+          description: "AWS region name of DynamoDB table, by default us-west-2 is used."
           example: us-east-2
           type: string
         current_status:
           $ref: "#/components/schemas/StatusDynamoDbV2"
-          description: DynamoDB source status v2
+          description: DynamoDB source status v2.
           readOnly: true
         rcu:
-          description: Max RCU usage for scan
+          description: Max RCU usage for scan.
           example: 1000
           format: int64
           type: integer
         status:
           $ref: "#/components/schemas/StatusDynamoDb"
-          description: DynamoDB source status
+          description: DynamoDB source status.
           readOnly: true
         table_name:
-          description: name of DynamoDB table containing data
+          description: Name of DynamoDB table containing data.
           example: dynamodb_table_name
           type: string
         use_scan_api:
-          description: Whether to use DynamoDB Scan API for the initial scan
+          description: Whether to use DynamoDB Scan API for the initial scan.
           type: boolean
       required:
         - table_name
@@ -8880,16 +10350,16 @@ components:
     SourceFileUpload:
       properties:
         file_name:
-          description: name of the file
+          description: Name of the file.
           example: file1.json
           type: string
         file_size:
-          description: size of the file in bytes
+          description: Size of the file in bytes.
           example: 12345
           format: int64
           type: integer
         file_upload_time:
-          description: time of file upload
+          description: Time of file upload.
           example: "2019-01-15T21:48:23Z"
           type: string
       required:
@@ -8900,9 +10370,13 @@ components:
     SourceGcs:
       properties:
         bucket:
-          description: name of GCS bucket you want to ingest from
+          description: Name of GCS bucket you want to ingest from.
           example: server-logs
           type: string
+        object_bytes_downloaded:
+          format: int64
+          readOnly: true
+          type: integer
         object_bytes_total:
           format: int64
           readOnly: true
@@ -8929,35 +10403,36 @@ components:
     SourceKafka:
       properties:
         consumer_group_id:
-          description: The Kafka consumer group Id being used
+          description: The Kafka consumer group Id being used.
           example: org-collection
           type: string
         kafka_topic_name:
-          description: The Kafka topic to be tailed
+          description: The Kafka topic to be tailed.
           example: example-topic
           type: string
         offset_reset_policy:
+          description: The offset reset policy.
           enum:
             - LATEST
             - EARLIEST
+          example: EARLIEST
           type: string
         status:
           $ref: "#/components/schemas/StatusKafka"
-          description: Kafka source status
+          description: Kafka source status.
           readOnly: true
         use_v3:
+          description: Whether to use v3 integration.
           type: boolean
-      required:
-        - kafka_topic_name
       type: object
     SourceKinesis:
       properties:
         aws_region:
-          description: "AWS region name of Kinesis stream, by default us-west-2 is used"
+          description: "AWS region name of Kinesis stream, by default us-west-2 is used."
           example: us-east-2
           type: string
         dms_primary_key:
-          description: set of fields that correspond to a DMS primary key
+          description: Set of fields that correspond to a DMS primary key.
           items:
             type: string
           type: array
@@ -8971,7 +10446,7 @@ components:
           example: EARLIEST
           type: string
         stream_name:
-          description: name of kinesis stream
+          description: Name of kinesis stream.
           example: click_stream
           type: string
       required:
@@ -8980,16 +10455,16 @@ components:
     SourceMongoDb:
       properties:
         collection_name:
-          description: MongoDB collection name
+          description: MongoDB collection name.
           example: my_collection
           type: string
         database_name:
-          description: MongoDB database name containing this collection
+          description: MongoDB database name containing this collection.
           example: my_database
           type: string
         status:
           $ref: "#/components/schemas/StatusMongoDb"
-          description: MongoDB source status
+          description: MongoDB source status.
           readOnly: true
       required:
         - collection_name
@@ -8998,9 +10473,13 @@ components:
     SourceS3:
       properties:
         bucket:
-          description: address of S3 bucket containing data
+          description: Address of S3 bucket containing data.
           example: "s3://customer-account-info"
           type: string
+        object_bytes_downloaded:
+          format: int64
+          readOnly: true
+          type: integer
         object_bytes_total:
           format: int64
           readOnly: true
@@ -9024,14 +10503,14 @@ components:
           example: prefix/to/keys
           type: string
         prefixes:
-          description: list of prefixes to paths from which data should be ingested
+          description: List of prefixes to paths from which data should be ingested.
           example: '["/transactions", "/stores"]'
           items:
             type: string
           readOnly: true
           type: array
         region:
-          description: AWS region containing source bucket
+          description: AWS region containing source bucket.
           example: us-west-2
           type: string
       required:
@@ -9041,23 +10520,23 @@ components:
     SourceSnowflake:
       properties:
         database:
-          description: name of the snowflake database
+          description: Name of the snowflake database.
           example: NASDAQ
           type: string
         schema:
-          description: name of the snowflake database schema
+          description: Name of the snowflake database schema.
           example: PUBLIC
           type: string
         status:
           $ref: "#/components/schemas/StatusSnowflake"
-          description: Snowflake source status
+          description: Snowflake source status.
           readOnly: true
         table_name:
-          description: name of the snowflake table
+          description: Name of the snowflake table.
           example: COMPANIES
           type: string
         warehouse:
-          description: name of the data warehouse to be used
+          description: Name of the data warehouse to be used.
           example: COMPUTE_XL
           type: string
       required:
@@ -9068,7 +10547,7 @@ components:
     SqlExpression:
       properties:
         sql:
-          description: The name of a sql function
+          description: The name of a sql function.
           example: SHA256()
           type: string
       type: object
@@ -9104,21 +10583,19 @@ components:
     Status:
       properties:
         last_processed_at:
-          description: ISO-8601 date when source was last processed
+          description: ISO-8601 date when source was last processed.
           example: "2019-01-15T21:48:23Z"
           type: string
         last_processed_item:
-          description: last source item processed by ingester
+          description: Last source item processed by ingester.
           example: /path/to/some/object
           type: string
         message:
-          description: state message
+          description: State message.
           example: error 403 forbidden
           type: string
         state:
-          description: >-
-            Status of the Source's ingestion, one of: INITIALIZING, WATCHING,
-            PROCESSING, COMPLETED, ERROR
+          description: Status of the Source's ingestion.
           enum:
             - INITIALIZING
             - WATCHING
@@ -9128,7 +10605,7 @@ components:
           example: INITIALIZING
           type: string
         total_processed_items:
-          description: Total items processed of source
+          description: Total items processed of source.
           example: 32849023
           format: int64
           type: integer
@@ -9136,21 +10613,21 @@ components:
     StatusAzureEventHubs:
       properties:
         last_consumed_time:
-          description: Time at which the last document was consumed
+          description: Time at which the last document was consumed.
           example: "2001-08-28T00:23:41Z"
           type: string
         num_documents_processed:
-          description: Number of documents consumed
+          description: Number of documents consumed.
           example: 1337
           format: int64
           type: integer
         partitions:
-          description: Status info per partition
+          description: Status info per partition.
           items:
             $ref: "#/components/schemas/StatusAzureEventHubsPartition"
           type: array
         state:
-          description: State of the source
+          description: State of the source.
           enum:
             - NO_DOCS_YET
             - ACTIVE
@@ -9161,17 +10638,17 @@ components:
     StatusAzureEventHubsPartition:
       properties:
         offset_lag:
-          description: Per partition lag for offset
+          description: Per partition lag for offset.
           example: 10
           format: int64
           type: integer
         partition_number:
-          description: The number of this partition
+          description: The number of this partition.
           example: 123
           format: int32
           type: integer
         partition_offset:
-          description: Latest offset of partition
+          description: Latest offset of partition.
           example: 100
           format: int64
           type: integer
@@ -9179,18 +10656,18 @@ components:
     StatusAzureServiceBus:
       properties:
         first_processed_at:
-          description: Service Bus first message processed time in ISO-8601 format
+          description: Service Bus first message processed time in ISO-8601 format.
           example: "2021-08-28T00:23:41Z"
           type: string
         records_processed:
-          description: Number of records processed
+          description: Number of records processed.
           example: 1000
           format: int64
           type: integer
         sessions:
           additionalProperties:
             $ref: "#/components/schemas/StatusAzureServiceBusSession"
-          description: Sessions processed
+          description: Sessions processed.
           type: object
       type: object
     StatusAzureServiceBusSession:
@@ -9198,11 +10675,11 @@ components:
         last_processed:
           description: >-
             Most recent ISO-8601 date when a message from this session was
-            processed
+            processed.
           example: "2022-08-23T00:13:41Z"
           type: string
         sequence_number:
-          description: The last processed sequence number within this session
+          description: The last processed sequence number within this session.
           example: 323862
           format: int64
           type: integer
@@ -9210,25 +10687,25 @@ components:
     StatusDynamoDb:
       properties:
         scan_end_time:
-          description: DynamoDb scan end time
+          description: DynamoDb scan end time.
           example: "2001-08-28T00:23:41Z"
           type: string
         scan_records_processed:
-          description: Number of records inserted using scan
+          description: Number of records inserted using scan.
           example: 1000
           format: int64
           type: integer
         scan_start_time:
-          description: DynamoDB scan start time
+          description: DynamoDB scan start time.
           example: "2001-08-28T00:23:41Z"
           type: string
         scan_total_records:
-          description: Number of records in DynamoDB table at time of scan
+          description: Number of records in DynamoDB table at time of scan.
           example: 2000
           format: int64
           type: integer
         state:
-          description: state of current ingest for this table
+          description: State of current ingest for this table.
           enum:
             - INITIALIZING
             - SCANNING_TABLE
@@ -9236,7 +10713,7 @@ components:
           example: SCANNING_TABLE
           type: string
         stream_last_processed_at:
-          description: ISO-8601 date when source was last processed
+          description: ISO-8601 date when source was last processed.
           example: "2019-01-15T21:48:23Z"
           type: string
       type: object
@@ -9247,7 +10724,7 @@ components:
           format: double
           type: number
         state:
-          description: state of current ingest for this table
+          description: State of current ingest for this table.
           enum:
             - INITIALIZING
             - SCANNING
@@ -9257,28 +10734,28 @@ components:
           example: PROCESSING_STREAM
           type: string
         stream_last_processed_at:
-          description: ISO-8601 date when source was last processed
+          description: ISO-8601 date when source was last processed.
           example: "2019-01-15T21:48:23Z"
           type: string
       type: object
     StatusKafka:
       properties:
         kafka_partitions:
-          description: Status info per partition
+          description: Status info per partition.
           items:
             $ref: "#/components/schemas/StatusKafkaPartition"
           type: array
         last_consumed_time:
-          description: Time at which the last document was consumed from Kafka
+          description: Time at which the last document was consumed from Kafka.
           example: "2001-08-28T00:23:41Z"
           type: string
         num_documents_processed:
-          description: Number of documents consumed by this Kafka topic
+          description: Number of documents consumed by this Kafka topic.
           example: 1337
           format: int64
           type: integer
         state:
-          description: State of the Kafka source
+          description: State of the Kafka source.
           enum:
             - NO_DOCS_YET
             - ACTIVE
@@ -9289,17 +10766,17 @@ components:
     StatusKafkaPartition:
       properties:
         offset_lag:
-          description: Per partition lag for offset
+          description: Per partition lag for offset.
           example: 10
           format: int64
           type: integer
         partition_number:
-          description: The number of this partition
+          description: The number of this partition.
           example: 123
           format: int32
           type: integer
         partition_offset:
-          description: Latest offset of partition
+          description: Latest offset of partition.
           example: 100
           format: int64
           type: integer
@@ -9307,25 +10784,25 @@ components:
     StatusMongoDb:
       properties:
         scan_end_time:
-          description: MongoDB scan end time
+          description: MongoDB scan end time.
           example: "2001-08-28T00:23:41Z"
           type: string
         scan_records_processed:
-          description: Number of records inserted using scan
+          description: Number of records inserted using scan.
           example: 1000
           format: int64
           type: integer
         scan_start_time:
-          description: MongoDB scan start time
+          description: MongoDB scan start time.
           example: "2001-08-28T00:23:41Z"
           type: string
         scan_total_records:
-          description: Number of records in MongoDB table at time of scan
+          description: Number of records in MongoDB table at time of scan.
           example: 2000
           format: int64
           type: integer
         state:
-          description: state of current ingest for this table
+          description: State of current ingest for this table.
           enum:
             - INITIALIZING
             - SCANNING_TABLE
@@ -9333,29 +10810,29 @@ components:
           example: SCANNING_TABLE
           type: string
         stream_last_delete_processed_at:
-          description: ISO-8601 date when delete from source was last processed
+          description: ISO-8601 date when delete from source was last processed.
           example: "2019-01-15T21:48:23Z"
           type: string
         stream_last_insert_processed_at:
-          description: ISO-8601 date when new insert from source was last processed
+          description: ISO-8601 date when new insert from source was last processed.
           example: "2019-01-15T21:48:23Z"
           type: string
         stream_last_update_processed_at:
-          description: ISO-8601 date when update from source was last processed
+          description: ISO-8601 date when update from source was last processed.
           example: "2019-01-15T21:48:23Z"
           type: string
         stream_records_deleted:
-          description: Number of new records deleted using stream
+          description: Number of new records deleted using stream.
           example: 100
           format: int64
           type: integer
         stream_records_inserted:
-          description: Number of new records inserted using stream
+          description: Number of new records inserted using stream.
           example: 10000
           format: int64
           type: integer
         stream_records_updated:
-          description: Number of new records updated using stream
+          description: Number of new records updated using stream.
           example: 1000
           format: int64
           type: integer
@@ -9363,7 +10840,7 @@ components:
     StatusSnowflake:
       properties:
         state:
-          description: state of current ingest for this table
+          description: State of current ingest for this table.
           enum:
             - INITIALIZING
             - EXPORTING_TO_S3
@@ -9371,6 +10848,12 @@ components:
             - COMPLETED
           example: EXPORTING_TO_S3
           type: string
+      type: object
+    SuspendVirtualInstanceResponse:
+      properties:
+        data:
+          $ref: "#/components/schemas/VirtualInstance"
+          description: Virtual instance that was suspended.
       type: object
     UnsubscribePreference:
       description: Notification preferences for the user.
@@ -9385,13 +10868,13 @@ components:
     UpdateAliasRequest:
       properties:
         collections:
-          description: list of fully qualified collection names referenced by alias
+          description: List of fully qualified collection names referenced by alias.
           example: '["commons.foo", "prod.demo"]'
           items:
             type: string
           type: array
         description:
-          description: optional description
+          description: Optional description.
           example: version alias
           type: string
       required:
@@ -9416,12 +10899,14 @@ components:
     UpdateQueryLambdaRequest:
       properties:
         description:
-          description: optional description
+          description: Optional description.
           example: production version foo
           type: string
+        is_public:
+          type: boolean
         sql:
           $ref: "#/components/schemas/QueryLambdaSql"
-          description: Query Lambda SQL query
+          description: Query Lambda SQL query.
       type: object
     UpdateRoleRequest:
       properties:
@@ -9438,7 +10923,7 @@ components:
     UpdateUnsubscribePreferencesRequest:
       properties:
         data:
-          description: List of notification preferences
+          description: List of notification preferences.
           items:
             $ref: "#/components/schemas/UnsubscribePreference"
           type: array
@@ -9446,19 +10931,36 @@ components:
     UpdateUnsubscribePreferencesResponse:
       properties:
         data:
-          description: List of notification preferences
+          description: List of notification preferences.
           items:
             $ref: "#/components/schemas/UnsubscribePreference"
+          type: array
+      type: object
+    UpdateUserRequest:
+      properties:
+        first_name:
+          description: User first name.
+          example: John
+          type: string
+        last_name:
+          description: User last name.
+          example: Doe
+          type: string
+        roles:
+          description: New list of roles for a given user.
+          example: '["admin", "member", "read-only"]'
+          items:
+            type: string
           type: array
       type: object
     UpdateViewRequest:
       properties:
         description:
-          description: optional description
+          description: Optional description.
           example: view of awesome collection
           type: string
         query:
-          description: SQL for this view
+          description: SQL for this view.
           example: SELECT * FROM foo
           type: string
       required:
@@ -9468,18 +10970,36 @@ components:
       properties:
         data:
           $ref: "#/components/schemas/View"
-          description: view that was updated
+          description: View that was updated.
       type: object
     UpdateVirtualInstanceRequest:
       properties:
+        auto_suspend_enabled:
+          description: Whether auto-suspend should be enabled for this Virtual Instance.
+          example: true
+          type: boolean
+        auto_suspend_seconds:
+          description: Number of seconds without queries after which the VI is suspended
+          example: 3600
+          format: int32
+          type: integer
+        description:
+          description: New virtual instance description.
+          example: VI for prod traffic
+          type: string
         monitoring_enabled:
           type: boolean
+        name:
+          description: New virtual instance name.
+          example: prod_vi
+          type: string
         new_size:
-          description: requested virtual instance size
+          description: Requested virtual instance size.
           enum:
             - FREE
             - NANO
             - SHARED
+            - MILLI
             - SMALL
             - MEDIUM
             - LARGE
@@ -9490,53 +11010,39 @@ components:
             - XLARGE16
           example: LARGE
           type: string
-        new_type:
-          enum:
-            - FREE
-            - NANO
-            - SHARED
-            - SMALL
-            - MEDIUM
-            - LARGE
-            - XLARGE
-            - XLARGE2
-            - XLARGE4
-            - XLARGE8
-            - XLARGE16
-          type: string
       type: object
     UpdateVirtualInstanceResponse:
       properties:
         data:
           $ref: "#/components/schemas/VirtualInstance"
-          description: virtual instance that was switched
+          description: Virtual instance that was switched.
       type: object
     User:
       properties:
         created_at:
-          description: ISO-8601 date
+          description: ISO-8601 date.
           example: "2001-08-28T00:23:41Z"
           type: string
         email:
-          description: user email
+          description: User email.
           example: hello@rockset.com
           type: string
         first_name:
-          description: user first name
+          description: User first name.
           example: John
           type: string
         last_name:
-          description: user last name
+          description: User last name.
           example: Doe
           type: string
         roles:
-          description: List of roles for a given user
+          description: List of roles for a given user.
           example: '["admin", "member", "read-only"]'
           items:
             type: string
           type: array
         state:
-          description: state of user - NEW / ACTIVE
+          description: State of user - NEW / ACTIVE.
           example: ACTIVE
           type: string
       required:
@@ -9545,13 +11051,13 @@ components:
     ValidateQueryResponse:
       properties:
         parameters:
-          description: list of parameters specified in query
+          description: List of parameters specified in query.
           example: '["foo"]'
           items:
             type: string
           type: array
         collections:
-          description: list of collections specified in query
+          description: List of collections specified in query.
           example: '["commons.foo"]'
           items:
             type: string
@@ -9563,45 +11069,45 @@ components:
     View:
       properties:
         created_at:
-          description: ISO-8601 date
+          description: ISO-8601 date.
           example: "2001-08-28T00:23:41Z"
           type: string
         creator_email:
-          description: email of the creator
+          description: Email of the creator.
           example: xyz@rockset.com
           type: string
         description:
-          description: view description
+          description: View description.
           example: view referencing collection in workspace
           type: string
         entities:
           description: >-
-            list of entities referenced by view. An entity can be a view, alias
-            or collection
+            List of entities referenced by view. An entity can be a view, alias
+            or collection.
           example: '["common.foo_view", "prod.demo_alias", "dev.user_collection"]'
           items:
             type: string
           type: array
         modified_at:
-          description: ISO-8601 date
+          description: ISO-8601 date.
           example: "2001-08-28T00:23:42Z"
           type: string
         name:
-          description: name of the view
+          description: Name of the view.
           example: demo
           type: string
         owner_email:
-          description: "email of the owner, note: deprecated and will always be null"
+          description: "Email of the owner, note: deprecated and will always be null."
           example: abc@rockset.com
           type: string
         path:
           type: string
         query_sql:
-          description: SQL query of the view
+          description: SQL query of the view.
           example: SELECT * FROM commons.foo
           type: string
         state:
-          description: state of the view
+          description: State of the view.
           enum:
             - CREATED
             - SYNCING
@@ -9609,18 +11115,32 @@ components:
           example: CREATED
           type: string
         workspace:
-          description: name of the workspace
+          description: Name of the workspace.
           example: commons
           type: string
       type: object
     VirtualInstance:
       properties:
+        auto_suspend_seconds:
+          description: Number of seconds without queries after which the VI is suspended
+          example: 3600
+          format: int32
+          type: integer
+        created_at:
+          description: ISO-8601 date of when virtual instance was created.
+          example: "2001-08-28T00:23:41Z"
+          type: string
+        created_by:
+          description: Creator of requested virtual instance.
+          example: hello@rockset.com
+          type: string
         current_size:
-          description: virtual instance current size
+          description: Virtual instance current size.
           enum:
             - FREE
             - NANO
             - SHARED
+            - MILLI
             - SMALL
             - MEDIUM
             - LARGE
@@ -9631,32 +11151,23 @@ components:
             - XLARGE16
           example: MEDIUM
           readOnly: true
-          type: string
-        current_type:
-          enum:
-            - FREE
-            - NANO
-            - SHARED
-            - SMALL
-            - MEDIUM
-            - LARGE
-            - XLARGE
-            - XLARGE2
-            - XLARGE4
-            - XLARGE8
-            - XLARGE16
           type: string
         default_pod_count:
           format: int32
           type: integer
         default_vi:
           type: boolean
+        description:
+          description: Virtual instance description.
+          example: VI for prod traffic
+          type: string
         desired_size:
-          description: virtual instance desired size
+          description: Virtual instance desired size.
           enum:
             - FREE
             - NANO
             - SHARED
+            - MILLI
             - SMALL
             - MEDIUM
             - LARGE
@@ -9668,82 +11179,95 @@ components:
           example: MEDIUM
           readOnly: true
           type: string
-        desired_type:
-          enum:
-            - FREE
-            - NANO
-            - SHARED
-            - SMALL
-            - MEDIUM
-            - LARGE
-            - XLARGE
-            - XLARGE2
-            - XLARGE4
-            - XLARGE8
-            - XLARGE16
-          type: string
         id:
-          description: unique identifier for virtual instance
+          description: Unique identifier for virtual instance.
           example: 123e4567-e89b-12d3-a456-556642440000
           type: string
         monitoring_enabled:
           type: boolean
+        name:
+          description: Virtual instance name.
+          example: prod_vi
+          type: string
+        resumed_at:
+          description: ISO-8601 date of when virtual instance was created.
+          example: "2001-08-28T00:23:41Z"
+          type: string
+        rrn:
+          description: Virtual Instance RRN.
+          example: "rrn:vi:use1a1:123e4567-e89b-12d3-a456-556642440000"
+          type: string
         scaled_pod_count:
           format: int32
           type: integer
         state:
-          description: virtual instance state
+          description: Virtual instance state.
           enum:
+            - INITIALIZING
             - PROVISIONING_RESOURCES
             - REBALANCING_COLLECTIONS
             - ACTIVE
             - SUSPENDING
             - SUSPENDED
+            - RESUMING
             - DELETED
           example: ACTIVE
           type: string
+        stats:
+          $ref: "#/components/schemas/VirtualInstanceStats"
+          description: Stats about this VirtualInstance
+      required:
+        - name
+      type: object
+    VirtualInstanceStats:
+      properties:
+        last_queried_ms:
+          description: "Milliseconds since Unix epoch Jan 1, 1970."
+          example: 1535101119334
+          format: int64
+          type: integer
       type: object
     Workspace:
       description: Workspaces are organizational containers for collections.
       properties:
         collection_count:
-          description: number of collections that are immediate children of workspace
+          description: Number of collections that are immediate children of workspace.
           example: 3
           format: int64
           type: integer
         created_at:
-          description: ISO-8601 date of when workspace was created
+          description: ISO-8601 date of when workspace was created.
           example: "2001-08-28T00:23:41Z"
           type: string
         created_by:
-          description: email of user who created the workspace
+          description: Email of user who created the workspace.
           example: hello@rockset.com
           type: string
         description:
-          description: longer explanation for the workspace
+          description: Longer explanation for the workspace.
           example: Datasets of system logs for the ops team.
           type: string
         name:
-          description: descriptive label and unique identifier
+          description: Descriptive label and unique identifier.
           example: event_logs
           type: string
       type: object
     XmlParams:
       properties:
         attribute_prefix:
-          description: tag to differentiate between attributes and elements
+          description: Tag to differentiate between attributes and elements.
           example: _attr
           type: string
         doc_tag:
-          description: tags with which documents are identified
+          description: Tags with which documents are identified.
           example: row
           type: string
         encoding:
-          description: encoding in which data source is encoded
+          description: Encoding in which data source is encoded.
           example: UTF-8
           type: string
         root_tag:
-          description: tag until which xml is ignored
+          description: Tag until which xml is ignored.
           example: root
           type: string
         value_tag:
@@ -9763,6 +11287,7 @@ tags:
   - name: Organizations
   - name: Queries
   - name: Query Lambdas
+  - name: Shared Lambdas
   - name: Users
   - name: Views
   - name: Virtual Instances

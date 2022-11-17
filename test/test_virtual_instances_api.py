@@ -14,11 +14,59 @@ from rockset.models import *
 from test.conftest import EarlyExit, validate_call
 
 
+def test_create(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.VirtualInstances.create(
+                auto_suspend_seconds=3600,
+                description="VI serving prod traffic",
+                name="prod_vi",
+                type="LARGE",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_delete(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.VirtualInstances.delete(
+                virtual_instance_id="virtualInstanceId_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
 def test_get(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
             rs.VirtualInstances.get(
+                virtual_instance_id="virtualInstanceId_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_get_collection_mount(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.VirtualInstances.get_collection_mount(
+                virtual_instance_id="virtualInstanceId_example",
+                collection_path="collectionPath_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_get_virtual_instance_queries(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.VirtualInstances.get_virtual_instance_queries(
                 virtual_instance_id="virtualInstanceId_example",
             )
         except EarlyExit as e:
@@ -34,15 +82,106 @@ def test_list(get_client, mock_request, request_validator):
             validate_call(e, request_validator)
 
 
-def test_set_virtual_instance(get_client, mock_request, request_validator):
+def test_list_collection_mounts(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.VirtualInstances.set_virtual_instance(
+            rs.VirtualInstances.list_collection_mounts(
                 virtual_instance_id="virtualInstanceId_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_mount_collection(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.VirtualInstances.mount_collection(
+                virtual_instance_id="virtualInstanceId_example",
+                collection_paths=["commons.foo", "commons.bar"],
+                type="STATIC",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_query_virtual_instance(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.VirtualInstances.query_virtual_instance(
+                virtual_instance_id="virtualInstanceId_example",
+                async_options=AsyncQueryOptions(
+                    client_timeout_ms=1,
+                    max_initial_results=1,
+                    timeout_ms=1,
+                ),
+                sql=QueryRequestSql(
+                    default_row_limit=1,
+                    generate_warnings=True,
+                    initial_paginate_response_doc_count=1,
+                    paginate=True,
+                    parameters=[
+                        QueryParameter(
+                            name="_id",
+                            type="string",
+                            value="85beb391",
+                        ),
+                    ],
+                    query="SELECT * FROM foo where _id = :_id",
+                ),
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_resume_virtual_instance(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.VirtualInstances.resume_virtual_instance(
+                virtual_instance_id="virtualInstanceId_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_suspend_virtual_instance(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.VirtualInstances.suspend_virtual_instance(
+                virtual_instance_id="virtualInstanceId_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_unmount_collection(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.VirtualInstances.unmount_collection(
+                virtual_instance_id="virtualInstanceId_example",
+                collection_path="collectionPath_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_update(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.VirtualInstances.update(
+                virtual_instance_id="virtualInstanceId_example",
+                auto_suspend_enabled=True,
+                auto_suspend_seconds=3600,
+                description="VI for prod traffic",
                 monitoring_enabled=True,
+                name="prod_vi",
                 new_size="LARGE",
-                new_type="FREE",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)

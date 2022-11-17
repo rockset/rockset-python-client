@@ -6,9 +6,10 @@ Details about the data source for the given collection.
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **format_params** | [**FormatParams**](FormatParams.md) |  | [optional] 
-**integration_name** | **str** | name of integration to use | [optional] 
+**integration_name** | **str** | Name of integration to use. | [optional] 
 **status** | **bool, date, datetime, dict, float, int, list, str, none_type** |  | [optional] [readonly] 
-**bucket** | **str** | name of GCS bucket you want to ingest from | [optional] 
+**bucket** | **str** | Name of GCS bucket you want to ingest from. | [optional] 
+**object_bytes_downloaded** | **int** |  | [optional] [readonly] 
 **object_bytes_total** | **int** |  | [optional] [readonly] 
 **object_count_downloaded** | **int** |  | [optional] [readonly] 
 **object_count_total** | **int** |  | [optional] [readonly] 

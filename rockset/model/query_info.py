@@ -167,7 +167,7 @@ class QueryInfo(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            executed_by (str): User ID who executed the query. [optional]  # noqa: E501
+            executed_by (str): User ID who executed the query.. [optional]  # noqa: E501
             expires_at (str): Time (UTC) that query results expire. Only populated if `status` is `COMPLETE`.. [optional]  # noqa: E501
             last_offset (str): The log offset that query results were written to in the destination collection. Only populated for INSERT INTO queries.. [optional]  # noqa: E501
             pagination (Pagination): [optional]  # noqa: E501
@@ -227,7 +227,7 @@ class QueryInfo(ModelNormal):
         """QueryInfo - a model defined in OpenAPI
 
         Keyword Args:
-            executed_by (str): User ID who executed the query. [optional]  # noqa: E501
+            executed_by (str): User ID who executed the query.. [optional]  # noqa: E501
             expires_at (str): Time (UTC) that query results expire. Only populated if `status` is `COMPLETE`.. [optional]  # noqa: E501
             last_offset (str): The log offset that query results were written to in the destination collection. Only populated for INSERT INTO queries.. [optional]  # noqa: E501
             pagination (Pagination): [optional]  # noqa: E501

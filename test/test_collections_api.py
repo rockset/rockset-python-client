@@ -57,7 +57,6 @@ def test_create_azure_blob_storage_collection(
                         ),
                     ),
                 ],
-                insert_only=True,
                 name="global-transactions",
                 retention_secs=1000000,
                 sources=[
@@ -139,7 +138,6 @@ def test_create_azure_event_hubs_collection(
                         ),
                     ),
                 ],
-                insert_only=True,
                 name="global-transactions",
                 retention_secs=1000000,
                 sources=[
@@ -220,7 +218,6 @@ def test_create_azure_service_bus_collection(
                         ),
                     ),
                 ],
-                insert_only=True,
                 name="global-transactions",
                 retention_secs=1000000,
                 sources=[
@@ -299,7 +296,6 @@ def test_create_dynamodb_collection(get_client, mock_request, request_validator)
                         ),
                     ),
                 ],
-                insert_only=True,
                 name="global-transactions",
                 retention_secs=1000000,
                 sources=[
@@ -380,7 +376,6 @@ def test_create_file_upload_collection(get_client, mock_request, request_validat
                         ),
                     ),
                 ],
-                insert_only=True,
                 name="global-transactions",
                 retention_secs=1000000,
                 sources=[
@@ -460,7 +455,6 @@ def test_create_gcs_collection(get_client, mock_request, request_validator):
                         ),
                     ),
                 ],
-                insert_only=True,
                 name="global-transactions",
                 retention_secs=1000000,
                 sources=[
@@ -540,7 +534,6 @@ def test_create_kafka_collection(get_client, mock_request, request_validator):
                         ),
                     ),
                 ],
-                insert_only=True,
                 name="global-transactions",
                 retention_secs=1000000,
                 sources=[
@@ -571,7 +564,7 @@ def test_create_kafka_collection(get_client, mock_request, request_validator):
                         integration_name="aws-integration",
                         consumer_group_id="org-collection",
                         kafka_topic_name="example-topic",
-                        offset_reset_policy="LATEST",
+                        offset_reset_policy="EARLIEST",
                         use_v3=True,
                     ),
                 ],
@@ -621,7 +614,6 @@ def test_create_kinesis_collection(get_client, mock_request, request_validator):
                         ),
                     ),
                 ],
-                insert_only=True,
                 name="global-transactions",
                 retention_secs=1000000,
                 sources=[
@@ -704,7 +696,6 @@ def test_create_mongodb_collection(get_client, mock_request, request_validator):
                         ),
                     ),
                 ],
-                insert_only=True,
                 name="global-transactions",
                 retention_secs=1000000,
                 sources=[
@@ -783,7 +774,6 @@ def test_create_s3_collection(get_client, mock_request, request_validator):
                         ),
                     ),
                 ],
-                insert_only=True,
                 name="global-transactions",
                 retention_secs=1000000,
                 sources=[
@@ -864,7 +854,6 @@ def test_create_snowflake_collection(get_client, mock_request, request_validator
                         ),
                     ),
                 ],
-                insert_only=True,
                 name="global-transactions",
                 retention_secs=1000000,
                 sources=[

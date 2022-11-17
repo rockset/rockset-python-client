@@ -89,7 +89,6 @@ api_response = await rs.Collections.create_azure_blob_storage_collection(
             ),
         ),
     ],
-    insert_only=True,
     name="global-transactions",
     retention_secs=1000000,
     sources=[
@@ -137,14 +136,13 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **clustering_key** | [**[FieldPartition]**](FieldPartition.md) | list of clustering fields | [optional]
- **description** | **str** | text describing the collection | [optional]
+ **clustering_key** | [**[FieldPartition]**](FieldPartition.md) | Deprecated. List of clustering fields. Use CLUSTER BY clause in &#x60;field_mapping_query&#x60; instead. | [optional]
+ **description** | **str** | Text describing the collection. | [optional]
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
- **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | list of mappings | [optional]
- **insert_only** | **bool** | If true disallows updates and deletes, but makes indexing more efficient | [optional]
- **name** | **str** | unique identifier for collection, can contain alphanumeric or dash characters | 
- **retention_secs** | **int** | number of seconds after which data is purged, based on event time | [optional]
+ **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | Deprecated. List of mappings. Use field_mapping_query instead. | [optional]
+ **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
+ **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
  **sources** | [**[AzureBlobStorageSourceWrapper]**](AzureBlobStorageSourceWrapper.md) | List of sources from which to ingest data | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
@@ -252,7 +250,6 @@ api_response = await rs.Collections.create_azure_event_hubs_collection(
             ),
         ),
     ],
-    insert_only=True,
     name="global-transactions",
     retention_secs=1000000,
     sources=[
@@ -299,14 +296,13 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **clustering_key** | [**[FieldPartition]**](FieldPartition.md) | list of clustering fields | [optional]
- **description** | **str** | text describing the collection | [optional]
+ **clustering_key** | [**[FieldPartition]**](FieldPartition.md) | Deprecated. List of clustering fields. Use CLUSTER BY clause in &#x60;field_mapping_query&#x60; instead. | [optional]
+ **description** | **str** | Text describing the collection. | [optional]
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
- **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | list of mappings | [optional]
- **insert_only** | **bool** | If true disallows updates and deletes, but makes indexing more efficient | [optional]
- **name** | **str** | unique identifier for collection, can contain alphanumeric or dash characters | 
- **retention_secs** | **int** | number of seconds after which data is purged, based on event time | [optional]
+ **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | Deprecated. List of mappings. Use field_mapping_query instead. | [optional]
+ **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
+ **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
  **sources** | [**[AzureEventHubsSourceWrapper]**](AzureEventHubsSourceWrapper.md) | List of sources from which to ingest data | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
@@ -414,7 +410,6 @@ api_response = await rs.Collections.create_azure_service_bus_collection(
             ),
         ),
     ],
-    insert_only=True,
     name="global-transactions",
     retention_secs=1000000,
     sources=[
@@ -461,14 +456,13 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **clustering_key** | [**[FieldPartition]**](FieldPartition.md) | list of clustering fields | [optional]
- **description** | **str** | text describing the collection | [optional]
+ **clustering_key** | [**[FieldPartition]**](FieldPartition.md) | Deprecated. List of clustering fields. Use CLUSTER BY clause in &#x60;field_mapping_query&#x60; instead. | [optional]
+ **description** | **str** | Text describing the collection. | [optional]
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
- **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | list of mappings | [optional]
- **insert_only** | **bool** | If true disallows updates and deletes, but makes indexing more efficient | [optional]
- **name** | **str** | unique identifier for collection, can contain alphanumeric or dash characters | 
- **retention_secs** | **int** | number of seconds after which data is purged, based on event time | [optional]
+ **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | Deprecated. List of mappings. Use field_mapping_query instead. | [optional]
+ **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
+ **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
  **sources** | [**[AzureServiceBusSourceWrapper]**](AzureServiceBusSourceWrapper.md) | List of sources from which to ingest data | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
@@ -576,7 +570,6 @@ api_response = await rs.Collections.create_dynamodb_collection(
             ),
         ),
     ],
-    insert_only=True,
     name="global-transactions",
     retention_secs=1000000,
     sources=[
@@ -625,14 +618,13 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **clustering_key** | [**[FieldPartition]**](FieldPartition.md) | list of clustering fields | [optional]
- **description** | **str** | text describing the collection | [optional]
+ **clustering_key** | [**[FieldPartition]**](FieldPartition.md) | Deprecated. List of clustering fields. Use CLUSTER BY clause in &#x60;field_mapping_query&#x60; instead. | [optional]
+ **description** | **str** | Text describing the collection. | [optional]
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
- **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | list of mappings | [optional]
- **insert_only** | **bool** | If true disallows updates and deletes, but makes indexing more efficient | [optional]
- **name** | **str** | unique identifier for collection, can contain alphanumeric or dash characters | 
- **retention_secs** | **int** | number of seconds after which data is purged, based on event time | [optional]
+ **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | Deprecated. List of mappings. Use field_mapping_query instead. | [optional]
+ **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
+ **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
  **sources** | [**[DynamodbSourceWrapper]**](DynamodbSourceWrapper.md) | List of sources from which to ingest data | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
@@ -740,7 +732,6 @@ api_response = await rs.Collections.create_file_upload_collection(
             ),
         ),
     ],
-    insert_only=True,
     name="global-transactions",
     retention_secs=1000000,
     sources=[
@@ -788,14 +779,13 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **clustering_key** | [**[FieldPartition]**](FieldPartition.md) | list of clustering fields | [optional]
- **description** | **str** | text describing the collection | [optional]
+ **clustering_key** | [**[FieldPartition]**](FieldPartition.md) | Deprecated. List of clustering fields. Use CLUSTER BY clause in &#x60;field_mapping_query&#x60; instead. | [optional]
+ **description** | **str** | Text describing the collection. | [optional]
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
- **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | list of mappings | [optional]
- **insert_only** | **bool** | If true disallows updates and deletes, but makes indexing more efficient | [optional]
- **name** | **str** | unique identifier for collection, can contain alphanumeric or dash characters | 
- **retention_secs** | **int** | number of seconds after which data is purged, based on event time | [optional]
+ **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | Deprecated. List of mappings. Use field_mapping_query instead. | [optional]
+ **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
+ **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
  **sources** | [**[FileUploadSourceWrapper]**](FileUploadSourceWrapper.md) | List of sources from which to ingest data | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
@@ -903,7 +893,6 @@ api_response = await rs.Collections.create_gcs_collection(
             ),
         ),
     ],
-    insert_only=True,
     name="global-transactions",
     retention_secs=1000000,
     sources=[
@@ -951,14 +940,13 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **clustering_key** | [**[FieldPartition]**](FieldPartition.md) | list of clustering fields | [optional]
- **description** | **str** | text describing the collection | [optional]
+ **clustering_key** | [**[FieldPartition]**](FieldPartition.md) | Deprecated. List of clustering fields. Use CLUSTER BY clause in &#x60;field_mapping_query&#x60; instead. | [optional]
+ **description** | **str** | Text describing the collection. | [optional]
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
- **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | list of mappings | [optional]
- **insert_only** | **bool** | If true disallows updates and deletes, but makes indexing more efficient | [optional]
- **name** | **str** | unique identifier for collection, can contain alphanumeric or dash characters | 
- **retention_secs** | **int** | number of seconds after which data is purged, based on event time | [optional]
+ **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | Deprecated. List of mappings. Use field_mapping_query instead. | [optional]
+ **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
+ **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
  **sources** | [**[GcsSourceWrapper]**](GcsSourceWrapper.md) | List of sources from which to ingest data | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
@@ -1066,7 +1054,6 @@ api_response = await rs.Collections.create_kafka_collection(
             ),
         ),
     ],
-    insert_only=True,
     name="global-transactions",
     retention_secs=1000000,
     sources=[
@@ -1097,7 +1084,7 @@ api_response = await rs.Collections.create_kafka_collection(
             integration_name="aws-integration",
             consumer_group_id="org-collection",
             kafka_topic_name="example-topic",
-            offset_reset_policy="LATEST",
+            offset_reset_policy="EARLIEST",
             use_v3=True,
         ),
     ],
@@ -1115,14 +1102,13 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **clustering_key** | [**[FieldPartition]**](FieldPartition.md) | list of clustering fields | [optional]
- **description** | **str** | text describing the collection | [optional]
+ **clustering_key** | [**[FieldPartition]**](FieldPartition.md) | Deprecated. List of clustering fields. Use CLUSTER BY clause in &#x60;field_mapping_query&#x60; instead. | [optional]
+ **description** | **str** | Text describing the collection. | [optional]
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
- **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | list of mappings | [optional]
- **insert_only** | **bool** | If true disallows updates and deletes, but makes indexing more efficient | [optional]
- **name** | **str** | unique identifier for collection, can contain alphanumeric or dash characters | 
- **retention_secs** | **int** | number of seconds after which data is purged, based on event time | [optional]
+ **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | Deprecated. List of mappings. Use field_mapping_query instead. | [optional]
+ **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
+ **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
  **sources** | [**[KafkaSourceWrapper]**](KafkaSourceWrapper.md) | List of sources from which to ingest data | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
@@ -1230,7 +1216,6 @@ api_response = await rs.Collections.create_kinesis_collection(
             ),
         ),
     ],
-    insert_only=True,
     name="global-transactions",
     retention_secs=1000000,
     sources=[
@@ -1281,14 +1266,13 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **clustering_key** | [**[FieldPartition]**](FieldPartition.md) | list of clustering fields | [optional]
- **description** | **str** | text describing the collection | [optional]
+ **clustering_key** | [**[FieldPartition]**](FieldPartition.md) | Deprecated. List of clustering fields. Use CLUSTER BY clause in &#x60;field_mapping_query&#x60; instead. | [optional]
+ **description** | **str** | Text describing the collection. | [optional]
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
- **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | list of mappings | [optional]
- **insert_only** | **bool** | If true disallows updates and deletes, but makes indexing more efficient | [optional]
- **name** | **str** | unique identifier for collection, can contain alphanumeric or dash characters | 
- **retention_secs** | **int** | number of seconds after which data is purged, based on event time | [optional]
+ **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | Deprecated. List of mappings. Use field_mapping_query instead. | [optional]
+ **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
+ **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
  **sources** | [**[KinesisSourceWrapper]**](KinesisSourceWrapper.md) | List of sources from which to ingest data | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
@@ -1396,7 +1380,6 @@ api_response = await rs.Collections.create_mongodb_collection(
             ),
         ),
     ],
-    insert_only=True,
     name="global-transactions",
     retention_secs=1000000,
     sources=[
@@ -1443,14 +1426,13 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **clustering_key** | [**[FieldPartition]**](FieldPartition.md) | list of clustering fields | [optional]
- **description** | **str** | text describing the collection | [optional]
+ **clustering_key** | [**[FieldPartition]**](FieldPartition.md) | Deprecated. List of clustering fields. Use CLUSTER BY clause in &#x60;field_mapping_query&#x60; instead. | [optional]
+ **description** | **str** | Text describing the collection. | [optional]
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
- **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | list of mappings | [optional]
- **insert_only** | **bool** | If true disallows updates and deletes, but makes indexing more efficient | [optional]
- **name** | **str** | unique identifier for collection, can contain alphanumeric or dash characters | 
- **retention_secs** | **int** | number of seconds after which data is purged, based on event time | [optional]
+ **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | Deprecated. List of mappings. Use field_mapping_query instead. | [optional]
+ **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
+ **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
  **sources** | [**[MongodbSourceWrapper]**](MongodbSourceWrapper.md) | List of sources from which to ingest data | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
@@ -1558,7 +1540,6 @@ api_response = await rs.Collections.create_s3_collection(
             ),
         ),
     ],
-    insert_only=True,
     name="global-transactions",
     retention_secs=1000000,
     sources=[
@@ -1607,14 +1588,13 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **clustering_key** | [**[FieldPartition]**](FieldPartition.md) | list of clustering fields | [optional]
- **description** | **str** | text describing the collection | [optional]
+ **clustering_key** | [**[FieldPartition]**](FieldPartition.md) | Deprecated. List of clustering fields. Use CLUSTER BY clause in &#x60;field_mapping_query&#x60; instead. | [optional]
+ **description** | **str** | Text describing the collection. | [optional]
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
- **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | list of mappings | [optional]
- **insert_only** | **bool** | If true disallows updates and deletes, but makes indexing more efficient | [optional]
- **name** | **str** | unique identifier for collection, can contain alphanumeric or dash characters | 
- **retention_secs** | **int** | number of seconds after which data is purged, based on event time | [optional]
+ **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | Deprecated. List of mappings. Use field_mapping_query instead. | [optional]
+ **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
+ **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
  **sources** | [**[S3SourceWrapper]**](S3SourceWrapper.md) | List of sources from which to ingest data | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
@@ -1722,7 +1702,6 @@ api_response = await rs.Collections.create_snowflake_collection(
             ),
         ),
     ],
-    insert_only=True,
     name="global-transactions",
     retention_secs=1000000,
     sources=[
@@ -1771,14 +1750,13 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **clustering_key** | [**[FieldPartition]**](FieldPartition.md) | list of clustering fields | [optional]
- **description** | **str** | text describing the collection | [optional]
+ **clustering_key** | [**[FieldPartition]**](FieldPartition.md) | Deprecated. List of clustering fields. Use CLUSTER BY clause in &#x60;field_mapping_query&#x60; instead. | [optional]
+ **description** | **str** | Text describing the collection. | [optional]
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
- **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | list of mappings | [optional]
- **insert_only** | **bool** | If true disallows updates and deletes, but makes indexing more efficient | [optional]
- **name** | **str** | unique identifier for collection, can contain alphanumeric or dash characters | 
- **retention_secs** | **int** | number of seconds after which data is purged, based on event time | [optional]
+ **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | Deprecated. List of mappings. Use field_mapping_query instead. | [optional]
+ **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
+ **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
  **sources** | [**[SnowflakeSourceWrapper]**](SnowflakeSourceWrapper.md) | List of sources from which to ingest data | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 

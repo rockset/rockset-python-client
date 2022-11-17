@@ -266,8 +266,8 @@ class Workspaces(object):
         ```
 
         Keyword Args:
-            description (str): longer explanation for the workspace. [optional]
-            name (str): descriptive label and unique identifier. [required]
+            description (str): Longer explanation for the workspace.. [optional]
+            name (str): Descriptive label and unique identifier.. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

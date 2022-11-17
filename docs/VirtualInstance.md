@@ -4,16 +4,22 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**current_size** | **str** | virtual instance current size | [optional] [readonly] 
-**current_type** | **str** |  | [optional] 
+**name** | **str** | Virtual instance name. | 
+**auto_suspend_seconds** | **int** | Number of seconds without queries after which the VI is suspended | [optional] 
+**created_at** | **str** | ISO-8601 date of when virtual instance was created. | [optional] 
+**created_by** | **str** | Creator of requested virtual instance. | [optional] 
+**current_size** | **str** | Virtual instance current size. | [optional] [readonly] 
 **default_pod_count** | **int** |  | [optional] 
 **default_vi** | **bool** |  | [optional] 
-**desired_size** | **str** | virtual instance desired size | [optional] [readonly] 
-**desired_type** | **str** |  | [optional] 
-**id** | **str** | unique identifier for virtual instance | [optional] 
+**description** | **str** | Virtual instance description. | [optional] 
+**desired_size** | **str** | Virtual instance desired size. | [optional] [readonly] 
+**id** | **str** | Unique identifier for virtual instance. | [optional] 
 **monitoring_enabled** | **bool** |  | [optional] 
+**resumed_at** | **str** | ISO-8601 date of when virtual instance was created. | [optional] 
+**rrn** | **str** | Virtual Instance RRN. | [optional] 
 **scaled_pod_count** | **int** |  | [optional] 
-**state** | **str** | virtual instance state | [optional] 
+**state** | **str** | Virtual instance state. | [optional] 
+**stats** | [**VirtualInstanceStats**](VirtualInstanceStats.md) |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

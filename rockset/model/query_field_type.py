@@ -106,8 +106,8 @@ class QueryFieldType(ModelNormal):
         """QueryFieldType - a model defined in OpenAPI
 
         Args:
-            name (str): name of the field
-            type (str): data type of the field
+            name (str): Name of the field.
+            type (str): Data type of the field.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -193,8 +193,8 @@ class QueryFieldType(ModelNormal):
         """QueryFieldType - a model defined in OpenAPI
 
         Keyword Args:
-            name (str): name of the field
-            type (str): data type of the field
+            name (str): Name of the field.
+            type (str): Data type of the field.
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

@@ -88,6 +88,7 @@ class UpdateQueryLambdaRequest(ModelNormal):
         lazy_import()
         return {
             'description': (str, none_type),  # noqa: E501
+            'is_public': (bool, none_type),  # noqa: E501
             'sql': (QueryLambdaSql, none_type),  # noqa: E501
         }
 
@@ -98,6 +99,7 @@ class UpdateQueryLambdaRequest(ModelNormal):
 
     attribute_map = {
         'description': 'description',  # noqa: E501
+        'is_public': 'is_public',  # noqa: E501
         'sql': 'sql',  # noqa: E501
     }
 
@@ -142,7 +144,8 @@ class UpdateQueryLambdaRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            description (str): optional description. [optional]  # noqa: E501
+            description (str): Optional description.. [optional]  # noqa: E501
+            is_public (bool): [optional]  # noqa: E501
             sql (QueryLambdaSql): [optional]  # noqa: E501
         """
 
@@ -195,7 +198,8 @@ class UpdateQueryLambdaRequest(ModelNormal):
         """UpdateQueryLambdaRequest - a model defined in OpenAPI
 
         Keyword Args:
-            description (str): optional description. [optional]  # noqa: E501
+            description (str): Optional description.. [optional]  # noqa: E501
+            is_public (bool): [optional]  # noqa: E501
             sql (QueryLambdaSql): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be

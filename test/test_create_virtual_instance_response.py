@@ -12,5 +12,5 @@ import sys
 from rockset.models import *
 
 
-def test_segment_integration_init():
-    SegmentIntegration()
+def test_create_virtual_instance_response_init():
+    CreateVirtualInstanceResponse()

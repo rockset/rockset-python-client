@@ -74,6 +74,7 @@ class ErrorModel(ModelNormal):
             'QUERY_TIMEOUT': "QUERY_TIMEOUT",
             'ROLE_NOT_FOUND': "ROLE_NOT_FOUND",
             'CONNECTION_ERROR': "CONNECTION_ERROR",
+            'CONTENTTOOLARGE': "CONTENTTOOLARGE",
             'CREATING': "CREATING",
             'BADREQUEST': "BADREQUEST",
             'SERVICEUNAVAILABLE': "SERVICEUNAVAILABLE",
@@ -172,13 +173,13 @@ class ErrorModel(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            column (int): Column where the error happened (if applicable). [optional]  # noqa: E501
-            error_id (str): ID of the error. [optional]  # noqa: E501
-            line (int): Line where the error happened (if applicable). [optional]  # noqa: E501
-            message (str): descriptive message about the error. [optional]  # noqa: E501
-            query_id (str): ID of the query (if applicable). [optional]  # noqa: E501
-            trace_id (str): Internal trace ID to help with debugging. [optional]  # noqa: E501
-            type (str): category of the error. [optional]  # noqa: E501
+            column (int): Column where the error happened (if applicable).. [optional]  # noqa: E501
+            error_id (str): ID of the error.. [optional]  # noqa: E501
+            line (int): Line where the error happened (if applicable).. [optional]  # noqa: E501
+            message (str): Descriptive message about the error.. [optional]  # noqa: E501
+            query_id (str): ID of the query (if applicable).. [optional]  # noqa: E501
+            trace_id (str): Internal trace ID to help with debugging.. [optional]  # noqa: E501
+            type (str): Category of the error.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -230,13 +231,13 @@ class ErrorModel(ModelNormal):
         """ErrorModel - a model defined in OpenAPI
 
         Keyword Args:
-            column (int): Column where the error happened (if applicable). [optional]  # noqa: E501
-            error_id (str): ID of the error. [optional]  # noqa: E501
-            line (int): Line where the error happened (if applicable). [optional]  # noqa: E501
-            message (str): descriptive message about the error. [optional]  # noqa: E501
-            query_id (str): ID of the query (if applicable). [optional]  # noqa: E501
-            trace_id (str): Internal trace ID to help with debugging. [optional]  # noqa: E501
-            type (str): category of the error. [optional]  # noqa: E501
+            column (int): Column where the error happened (if applicable).. [optional]  # noqa: E501
+            error_id (str): ID of the error.. [optional]  # noqa: E501
+            line (int): Line where the error happened (if applicable).. [optional]  # noqa: E501
+            message (str): Descriptive message about the error.. [optional]  # noqa: E501
+            query_id (str): ID of the query (if applicable).. [optional]  # noqa: E501
+            trace_id (str): Internal trace ID to help with debugging.. [optional]  # noqa: E501
+            type (str): Category of the error.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

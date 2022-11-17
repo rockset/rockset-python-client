@@ -17,6 +17,7 @@ from rockset.apis import (
     Organizations,
     Queries,
     QueryLambdas,
+    SharedLambdas,
     Users,
     Views,
     VirtualInstances,
@@ -148,6 +149,10 @@ class QueryLambdasApiWrapper(QueryLambdas, metaclass=ApiMetaclass):
     pass
 
 
+class SharedLambdasApiWrapper(SharedLambdas, metaclass=ApiMetaclass):
+    pass
+
+
 class UsersApiWrapper(Users, metaclass=ApiMetaclass):
     pass
 
@@ -248,6 +253,7 @@ class RocksetClient:
         self.Organizations = OrganizationsApiWrapper(self.api_client)
         self.Queries = QueriesApiWrapper(self.api_client)
         self.QueryLambdas = QueryLambdasApiWrapper(self.api_client)
+        self.SharedLambdas = SharedLambdasApiWrapper(self.api_client)
         self.Users = UsersApiWrapper(self.api_client)
         self.Views = ViewsApiWrapper(self.api_client)
         self.VirtualInstances = VirtualInstancesApiWrapper(self.api_client)

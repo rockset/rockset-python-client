@@ -19,6 +19,7 @@ def test_create(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.APIKeys.create(
+                created_by="string_example",
                 name="my-app",
                 role="string_example",
             )

@@ -30,9 +30,11 @@ from rockset.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from rockset.model.aws_role import AwsRole
     from rockset.model.kafka_v3_security_config import KafkaV3SecurityConfig
     from rockset.model.schema_registry_config import SchemaRegistryConfig
     from rockset.model.status_kafka import StatusKafka
+    globals()['AwsRole'] = AwsRole
     globals()['KafkaV3SecurityConfig'] = KafkaV3SecurityConfig
     globals()['SchemaRegistryConfig'] = SchemaRegistryConfig
     globals()['StatusKafka'] = StatusKafka
@@ -97,6 +99,7 @@ class KafkaIntegration(ModelNormal):
         """
         lazy_import()
         return {
+            'aws_role': (AwsRole, none_type),  # noqa: E501
             'bootstrap_servers': (str, none_type),  # noqa: E501
             'connection_string': (str, none_type),  # noqa: E501
             'kafka_data_format': (str, none_type),  # noqa: E501
@@ -113,6 +116,7 @@ class KafkaIntegration(ModelNormal):
 
 
     attribute_map = {
+        'aws_role': 'aws_role',  # noqa: E501
         'bootstrap_servers': 'bootstrap_servers',  # noqa: E501
         'connection_string': 'connection_string',  # noqa: E501
         'kafka_data_format': 'kafka_data_format',  # noqa: E501
@@ -124,7 +128,6 @@ class KafkaIntegration(ModelNormal):
     }
 
     read_only_vars = {
-        'connection_string',  # noqa: E501
         'source_status_by_topic',  # noqa: E501
     }
 
@@ -166,13 +169,14 @@ class KafkaIntegration(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            bootstrap_servers (str): [optional]  # noqa: E501
-            connection_string (str): kafka connection string. [optional]  # noqa: E501
-            kafka_data_format (str): The format of the Kafka topics being tailed. [optional]  # noqa: E501
-            kafka_topic_names ([str]): Kafka topics to tail. [optional]  # noqa: E501
+            aws_role (AwsRole): [optional]  # noqa: E501
+            bootstrap_servers (str): The Kafka bootstrap server url(s). Required only for V3 integration.. [optional]  # noqa: E501
+            connection_string (str): Kafka connection string.. [optional]  # noqa: E501
+            kafka_data_format (str): The format of the Kafka topics being tailed.. [optional]  # noqa: E501
+            kafka_topic_names ([str]): Kafka topics to tail.. [optional]  # noqa: E501
             schema_registry_config (SchemaRegistryConfig): [optional]  # noqa: E501
             security_config (KafkaV3SecurityConfig): [optional]  # noqa: E501
-            source_status_by_topic ({str: (StatusKafka,)}): The status of the Kafka source by topic. [optional]  # noqa: E501
+            source_status_by_topic ({str: (StatusKafka,)}): The status of the Kafka source by topic.. [optional]  # noqa: E501
             use_v3 (bool): [optional]  # noqa: E501
         """
 
@@ -225,9 +229,11 @@ class KafkaIntegration(ModelNormal):
         """KafkaIntegration - a model defined in OpenAPI
 
         Keyword Args:
-            bootstrap_servers (str): [optional]  # noqa: E501
-            kafka_data_format (str): The format of the Kafka topics being tailed. [optional]  # noqa: E501
-            kafka_topic_names ([str]): Kafka topics to tail. [optional]  # noqa: E501
+            aws_role (AwsRole): [optional]  # noqa: E501
+            bootstrap_servers (str): The Kafka bootstrap server url(s). Required only for V3 integration.. [optional]  # noqa: E501
+            connection_string (str): Kafka connection string.. [optional]  # noqa: E501
+            kafka_data_format (str): The format of the Kafka topics being tailed.. [optional]  # noqa: E501
+            kafka_topic_names ([str]): Kafka topics to tail.. [optional]  # noqa: E501
             schema_registry_config (SchemaRegistryConfig): [optional]  # noqa: E501
             security_config (KafkaV3SecurityConfig): [optional]  # noqa: E501
             use_v3 (bool): [optional]  # noqa: E501

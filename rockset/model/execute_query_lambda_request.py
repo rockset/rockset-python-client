@@ -95,6 +95,7 @@ class ExecuteQueryLambdaRequest(ModelNormal):
             'initial_paginate_response_doc_count': (int, none_type),  # noqa: E501
             'paginate': (bool, none_type),  # noqa: E501
             'parameters': ([QueryParameter], none_type),  # noqa: E501
+            'virtual_instance_id': (str, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -109,6 +110,7 @@ class ExecuteQueryLambdaRequest(ModelNormal):
         'initial_paginate_response_doc_count': 'initial_paginate_response_doc_count',  # noqa: E501
         'paginate': 'paginate',  # noqa: E501
         'parameters': 'parameters',  # noqa: E501
+        'virtual_instance_id': 'virtual_instance_id',  # noqa: E501
     }
 
     read_only_vars = {
@@ -153,11 +155,12 @@ class ExecuteQueryLambdaRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             async_options (AsyncQueryOptions): [optional]  # noqa: E501
-            default_row_limit (int): Row limit to use if no limit specified in the SQL query text. [optional]  # noqa: E501
-            generate_warnings (bool): Whether to generate warnings. [optional]  # noqa: E501
+            default_row_limit (int): Row limit to use if no limit specified in the SQL query text.. [optional]  # noqa: E501
+            generate_warnings (bool): Whether to generate warnings.. [optional]  # noqa: E501
             initial_paginate_response_doc_count (int): Number of documents to return in addition to paginating for this query call. Only relevant if `paginate` flag is also set.. [optional]  # noqa: E501
             paginate (bool): Flag to paginate and store the results of this query for later / sequential retrieval.. [optional]  # noqa: E501
-            parameters ([QueryParameter]): list of named parameters. [optional]  # noqa: E501
+            parameters ([QueryParameter]): List of named parameters.. [optional]  # noqa: E501
+            virtual_instance_id (str): Virtual instance on which to run the query.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -210,11 +213,12 @@ class ExecuteQueryLambdaRequest(ModelNormal):
 
         Keyword Args:
             async_options (AsyncQueryOptions): [optional]  # noqa: E501
-            default_row_limit (int): Row limit to use if no limit specified in the SQL query text. [optional]  # noqa: E501
-            generate_warnings (bool): Whether to generate warnings. [optional]  # noqa: E501
+            default_row_limit (int): Row limit to use if no limit specified in the SQL query text.. [optional]  # noqa: E501
+            generate_warnings (bool): Whether to generate warnings.. [optional]  # noqa: E501
             initial_paginate_response_doc_count (int): Number of documents to return in addition to paginating for this query call. Only relevant if `paginate` flag is also set.. [optional]  # noqa: E501
             paginate (bool): Flag to paginate and store the results of this query for later / sequential retrieval.. [optional]  # noqa: E501
-            parameters ([QueryParameter]): list of named parameters. [optional]  # noqa: E501
+            parameters ([QueryParameter]): List of named parameters.. [optional]  # noqa: E501
+            virtual_instance_id (str): Virtual instance on which to run the query.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

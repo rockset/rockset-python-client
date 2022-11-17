@@ -20,6 +20,7 @@ def test_create_query_lambda(get_client, mock_request, request_validator):
         try:
             rs.QueryLambdas.create_query_lambda(
                 description="production version foo",
+                is_public=True,
                 name="myQueryLambda",
                 sql=QueryLambdaSql(
                     default_parameters=[
@@ -179,6 +180,7 @@ def test_update_query_lambda(get_client, mock_request, request_validator):
             rs.QueryLambdas.update_query_lambda(
                 query_lambda="queryLambda_example",
                 description="production version foo",
+                is_public=True,
                 sql=QueryLambdaSql(
                     default_parameters=[
                         QueryParameter(

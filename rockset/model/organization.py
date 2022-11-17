@@ -89,7 +89,6 @@ class Organization(ModelNormal):
         return {
             'clusters': ([Cluster], none_type),  # noqa: E501
             'created_at': (str, none_type),  # noqa: E501
-            'deletion_scheduled_at': (str, none_type),  # noqa: E501
             'display_name': (str, none_type),  # noqa: E501
             'external_id': (str, none_type),  # noqa: E501
             'id': (str, none_type),  # noqa: E501
@@ -104,7 +103,6 @@ class Organization(ModelNormal):
     attribute_map = {
         'clusters': 'clusters',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
-        'deletion_scheduled_at': 'deletionScheduledAt',  # noqa: E501
         'display_name': 'display_name',  # noqa: E501
         'external_id': 'external_id',  # noqa: E501
         'id': 'id',  # noqa: E501
@@ -152,13 +150,12 @@ class Organization(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            clusters ([Cluster]): list of clusters associated with this org. [optional]  # noqa: E501
-            created_at (str): ISO-8601 date. [optional]  # noqa: E501
-            deletion_scheduled_at (str): [optional]  # noqa: E501
-            display_name (str): name of the organization. [optional]  # noqa: E501
-            external_id (str): organization's unique external ID within Rockset. [optional]  # noqa: E501
-            id (str): unique identifier for the organization. [optional]  # noqa: E501
-            rockset_user (str): Rockset's global AWS user. [optional]  # noqa: E501
+            clusters ([Cluster]): List of clusters associated with this org.. [optional]  # noqa: E501
+            created_at (str): ISO-8601 date.. [optional]  # noqa: E501
+            display_name (str): Name of the organization.. [optional]  # noqa: E501
+            external_id (str): Organization's unique external ID within Rockset.. [optional]  # noqa: E501
+            id (str): Unique identifier for the organization.. [optional]  # noqa: E501
+            rockset_user (str): Rockset's global AWS user.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -210,13 +207,12 @@ class Organization(ModelNormal):
         """Organization - a model defined in OpenAPI
 
         Keyword Args:
-            clusters ([Cluster]): list of clusters associated with this org. [optional]  # noqa: E501
-            created_at (str): ISO-8601 date. [optional]  # noqa: E501
-            deletion_scheduled_at (str): [optional]  # noqa: E501
-            display_name (str): name of the organization. [optional]  # noqa: E501
-            external_id (str): organization's unique external ID within Rockset. [optional]  # noqa: E501
-            id (str): unique identifier for the organization. [optional]  # noqa: E501
-            rockset_user (str): Rockset's global AWS user. [optional]  # noqa: E501
+            clusters ([Cluster]): List of clusters associated with this org.. [optional]  # noqa: E501
+            created_at (str): ISO-8601 date.. [optional]  # noqa: E501
+            display_name (str): Name of the organization.. [optional]  # noqa: E501
+            external_id (str): Organization's unique external ID within Rockset.. [optional]  # noqa: E501
+            id (str): Unique identifier for the organization.. [optional]  # noqa: E501
+            rockset_user (str): Rockset's global AWS user.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

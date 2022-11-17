@@ -404,9 +404,9 @@ class Views(object):
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
-            description (str): optional description. [optional]
-            name (str): View name. [required]
-            query (str): SQL for this view. [required]
+            description (str): Optional description.. [optional]
+            name (str): View name.. [required]
+            query (str): SQL for this view.. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -757,8 +757,8 @@ class Views(object):
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
             view (str): name of the view. [required]
-            description (str): optional description. [optional]
-            query (str): SQL for this view. [required]
+            description (str): Optional description.. [optional]
+            query (str): SQL for this view.. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

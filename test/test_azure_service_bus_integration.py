@@ -14,5 +14,5 @@ from rockset.models import *
 
 def test_azure_service_bus_integration_init():
     AzureServiceBusIntegration(
-        connection_string="string_example",
+        connection_string="Endpoint=sb://<NamespaceName>.servicebus.windows.net/;SharedAccessKeyName=<KeyName>;SharedAccessKey=<KeyValue>",
     )

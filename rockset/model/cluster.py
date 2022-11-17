@@ -147,12 +147,12 @@ class Cluster(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            apiserver_url (str): api server url for cluster. [optional]  # noqa: E501
-            aws_region (str): aws region. [optional]  # noqa: E501
-            cluster_type (str): cluster type. [optional] if omitted the server will use the default value of "PUBLIC"  # noqa: E501
-            domain (str): domain of org using cluster. [optional]  # noqa: E501
-            id (str): unique identifier for the cluster. [optional]  # noqa: E501
-            top_level_domain (str): top level domain of org using cluster. [optional]  # noqa: E501
+            apiserver_url (str): Api server url for cluster.. [optional]  # noqa: E501
+            aws_region (str): Aws region.. [optional]  # noqa: E501
+            cluster_type (str): Cluster type.. [optional] if omitted the server will use the default value of "PUBLIC"  # noqa: E501
+            domain (str): Domain of org using cluster.. [optional]  # noqa: E501
+            id (str): Unique identifier for the cluster.. [optional]  # noqa: E501
+            top_level_domain (str): Top level domain of org using cluster.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -204,12 +204,12 @@ class Cluster(ModelNormal):
         """Cluster - a model defined in OpenAPI
 
         Keyword Args:
-            apiserver_url (str): api server url for cluster. [optional]  # noqa: E501
-            aws_region (str): aws region. [optional]  # noqa: E501
-            cluster_type (str): cluster type. [optional] if omitted the server will use the default value of "PUBLIC"  # noqa: E501
-            domain (str): domain of org using cluster. [optional]  # noqa: E501
-            id (str): unique identifier for the cluster. [optional]  # noqa: E501
-            top_level_domain (str): top level domain of org using cluster. [optional]  # noqa: E501
+            apiserver_url (str): Api server url for cluster.. [optional]  # noqa: E501
+            aws_region (str): Aws region.. [optional]  # noqa: E501
+            cluster_type (str): Cluster type.. [optional] if omitted the server will use the default value of "PUBLIC"  # noqa: E501
+            domain (str): Domain of org using cluster.. [optional]  # noqa: E501
+            id (str): Unique identifier for the cluster.. [optional]  # noqa: E501
+            top_level_domain (str): Top level domain of org using cluster.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

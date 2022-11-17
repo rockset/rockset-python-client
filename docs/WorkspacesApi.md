@@ -58,8 +58,8 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **description** | **str** | longer explanation for the workspace | [optional]
- **name** | **str** | descriptive label and unique identifier | 
+ **description** | **str** | Longer explanation for the workspace. | [optional]
+ **name** | **str** | Descriptive label and unique identifier. | 
 
 ### Return type
 
