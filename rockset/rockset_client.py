@@ -35,6 +35,7 @@ class Regions(str, Enum):
     rs2 = "https://api.rs2.usw2.rockset.com"
     use1a1 = "https://api.use1a1.rockset.com"
     euc1a1 = "https://api.euc1a1.rockset.com"
+    usw2a1 = "https://api.usw2a1.rockset.com"
 
 
 class DevRegions(str, Enum):

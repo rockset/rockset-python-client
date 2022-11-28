@@ -36,6 +36,25 @@ except rockset.ApiException as e:
     print("Exception when calling ApiKey->create_api_key: %s\n" % e)
 ```
 
+**Note:** If you receive SSL Errors while using the client, this could be caused by your python installation. One possible fix is running the following commands:
+
+```sh
+CERT_PATH=$(python3 -m certifi)
+export SSL_CERT_FILE=${CERT_PATH}
+export REQUESTS_CA_BUNDLE=${CERT_PATH}
+```
+
+As a last resort, you can configure the client to avoid certificate verification. Note that you will receive warnings from urllib3 when requests are made.
+
+```python
+from rockset import RocksetClient, Regions, Configuration
+
+config = Configuration(api_key=KEY)
+config.verify_ssl = False
+
+rs = RocksetClient(host=Regions.rs2, config=config)
+```
+
 ## Optional Models
 
 When making requests, certain parameters will oftentimes be instances of classes (eg. rockset.models.QueryRequestSql). Since importing and instantiating these objects can be verbose, you always have the option of passing in a dictionary instead of a model.
