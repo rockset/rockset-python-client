@@ -25,6 +25,7 @@ from rockset.model_utils import (  # noqa: F401
     validate_and_convert_types
 )
 from rockset.model.error_model import ErrorModel
+from rockset.model.execute_public_query_lambda_request import ExecutePublicQueryLambdaRequest
 from rockset.model.query_response import QueryResponse
 from rockset.models import *
 
@@ -40,20 +41,21 @@ class SharedLambdas(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-        self.execute_public_query_lambda_endpoint = _Endpoint(
+        self.execute_public_query_lambda_with_params_endpoint = _Endpoint(
             settings={
                 'response_type': (QueryResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/public/shared_lambdas/{public_access_id}',
-                'operation_id': 'execute_public_query_lambda',
-                'http_method': 'GET',
+                'operation_id': 'execute_public_query_lambda_with_params',
+                'http_method': 'POST',
                 'servers': None,
             },
             params_map={
                 'all': [
                     'public_access_id',
+                    'execute_public_query_lambda_request',
                 ],
                 'required': [
                     'public_access_id',
@@ -73,12 +75,15 @@ class SharedLambdas(object):
                 'openapi_types': {
                     'public_access_id':
                         (str,),
+                    'execute_public_query_lambda_request':
+                        (ExecutePublicQueryLambdaRequest,),
                 },
                 'attribute_map': {
                     'public_access_id': 'public_access_id',
                 },
                 'location_map': {
                     'public_access_id': 'path',
+                    'execute_public_query_lambda_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -87,26 +92,31 @@ class SharedLambdas(object):
                 'accept': [
                     'application/json'
                 ],
-                'content_type': [],
+                'content_type': [
+                    'application/json'
+                ]
             },
             api_client=api_client
         )
 
-    def execute_public_query_lambda(
+    def execute_public_query_lambda_with_params(
         self,
         *,
         public_access_id: str,
+        default_row_limit: int = None,
+        generate_warnings: bool = None,
+        parameters: typing.Sequence[QueryParameter] = None,
         **kwargs
     ) -> typing.Union[QueryResponse, asyncio.Future]:
         """Execute a Public Query Lambda  # noqa: E501
 
-        Execute a public query lambda.  # noqa: E501
+        Execute a public query lambda (full version).  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.SharedLambdas.execute_public_query_lambda(
+        future = rs.SharedLambdas.execute_public_query_lambda_with_params(
             public_access_id="public_access_id_example",
             async_req=True,
         )
@@ -115,6 +125,7 @@ class SharedLambdas(object):
 
         Keyword Args:
             public_access_id (str): public access ID of the query lambda. [required]
+            execute_public_query_lambda_request (ExecutePublicQueryLambdaRequest): JSON object. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -175,8 +186,10 @@ class SharedLambdas(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['public_access_id'] = \
             public_access_id
-        return self.execute_public_query_lambda_endpoint.call_with_http_info(**kwargs)
+        return self.execute_public_query_lambda_with_params_endpoint.call_with_http_info(**kwargs)
 
 
     body_params_dict = dict()
     return_types_dict = dict()
+    body_params_dict['execute_public_query_lambda_with_params'] = 'execute_public_query_lambda_request'
+    return_types_dict['execute_public_query_lambda_with_params'] = ExecutePublicQueryLambdaRequest

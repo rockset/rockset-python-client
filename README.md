@@ -36,25 +36,6 @@ except rockset.ApiException as e:
     print("Exception when calling ApiKey->create_api_key: %s\n" % e)
 ```
 
-**Note:** If you receive SSL Errors while using the client, this could be caused by your python installation. One possible fix is running the following commands:
-
-```sh
-CERT_PATH=$(python3 -m certifi)
-export SSL_CERT_FILE=${CERT_PATH}
-export REQUESTS_CA_BUNDLE=${CERT_PATH}
-```
-
-As a last resort, you can configure the client to avoid certificate verification. Note that you will receive warnings from urllib3 when requests are made.
-
-```python
-from rockset import RocksetClient, Regions, Configuration
-
-config = Configuration(api_key=KEY)
-config.verify_ssl = False
-
-rs = RocksetClient(host=Regions.rs2, config=config)
-```
-
 ## Optional Models
 
 When making requests, certain parameters will oftentimes be instances of classes (eg. rockset.models.QueryRequestSql). Since importing and instantiating these objects can be verbose, you always have the option of passing in a dictionary instead of a model.
@@ -194,7 +175,7 @@ Class | Method | HTTP request | Description
 *QueryLambdas* | [**list_query_lambda_versions**](docs/QueryLambdasApi.md#list_query_lambda_versions) | **GET** /v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/versions | List Query Lambda Versions
 *QueryLambdas* | [**list_query_lambdas_in_workspace**](docs/QueryLambdasApi.md#list_query_lambdas_in_workspace) | **GET** /v1/orgs/self/ws/{workspace}/lambdas | List Query Lambdas in Workspace
 *QueryLambdas* | [**update_query_lambda**](docs/QueryLambdasApi.md#update_query_lambda) | **POST** /v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/versions | Update Query Lambda
-*SharedLambdas* | [**execute_public_query_lambda**](docs/SharedLambdasApi.md#execute_public_query_lambda) | **GET** /v1/public/shared_lambdas/{public_access_id} | Execute a Public Query Lambda
+*SharedLambdas* | [**execute_public_query_lambda_with_params**](docs/SharedLambdasApi.md#execute_public_query_lambda_with_params) | **POST** /v1/public/shared_lambdas/{public_access_id} | Execute a Public Query Lambda
 *Users* | [**create**](docs/UsersApi.md#create) | **POST** /v1/orgs/self/users | Create User
 *Users* | [**delete**](docs/UsersApi.md#delete) | **DELETE** /v1/orgs/self/users/{user} | Delete User
 *Users* | [**get**](docs/UsersApi.md#get) | **GET** /v1/orgs/self/users/{user} | Retrieve User
@@ -254,6 +235,7 @@ Class | Method | HTTP request | Description
  - [Collection](docs/Collection.md)
  - [CollectionMount](docs/CollectionMount.md)
  - [CollectionMountResponse](docs/CollectionMountResponse.md)
+ - [CollectionMountStats](docs/CollectionMountStats.md)
  - [CollectionStats](docs/CollectionStats.md)
  - [CreateAliasRequest](docs/CreateAliasRequest.md)
  - [CreateAliasResponse](docs/CreateAliasResponse.md)
@@ -295,6 +277,7 @@ Class | Method | HTTP request | Description
  - [DynamodbSourceWrapper](docs/DynamodbSourceWrapper.md)
  - [ErrorModel](docs/ErrorModel.md)
  - [EventTimeInfo](docs/EventTimeInfo.md)
+ - [ExecutePublicQueryLambdaRequest](docs/ExecutePublicQueryLambdaRequest.md)
  - [ExecuteQueryLambdaRequest](docs/ExecuteQueryLambdaRequest.md)
  - [FieldMappingQuery](docs/FieldMappingQuery.md)
  - [FieldMappingV2](docs/FieldMappingV2.md)

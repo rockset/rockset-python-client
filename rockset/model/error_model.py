@@ -72,7 +72,6 @@ class ErrorModel(ModelNormal):
             'NOT_READY': "NOT_READY",
             'FORBIDDEN': "FORBIDDEN",
             'QUERY_TIMEOUT': "QUERY_TIMEOUT",
-            'ROLE_NOT_FOUND': "ROLE_NOT_FOUND",
             'CONNECTION_ERROR': "CONNECTION_ERROR",
             'CONTENTTOOLARGE': "CONTENTTOOLARGE",
             'CREATING': "CREATING",

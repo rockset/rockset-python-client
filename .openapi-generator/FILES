@@ -25,6 +25,7 @@ docs/Cluster.md
 docs/Collection.md
 docs/CollectionMount.md
 docs/CollectionMountResponse.md
+docs/CollectionMountStats.md
 docs/CollectionStats.md
 docs/CollectionsApi.md
 docs/CreateAliasRequest.md
@@ -69,6 +70,7 @@ docs/DynamodbIntegrationCreationRequest.md
 docs/DynamodbSourceWrapper.md
 docs/ErrorModel.md
 docs/EventTimeInfo.md
+docs/ExecutePublicQueryLambdaRequest.md
 docs/ExecuteQueryLambdaRequest.md
 docs/FieldMappingQuery.md
 docs/FieldMappingV2.md
@@ -257,6 +259,7 @@ rockset/model/cluster.py
 rockset/model/collection.py
 rockset/model/collection_mount.py
 rockset/model/collection_mount_response.py
+rockset/model/collection_mount_stats.py
 rockset/model/collection_stats.py
 rockset/model/create_alias_request.py
 rockset/model/create_alias_response.py
@@ -298,6 +301,7 @@ rockset/model/dynamodb_integration_creation_request.py
 rockset/model/dynamodb_source_wrapper.py
 rockset/model/error_model.py
 rockset/model/event_time_info.py
+rockset/model/execute_public_query_lambda_request.py
 rockset/model/execute_query_lambda_request.py
 rockset/model/field_mapping_query.py
 rockset/model/field_mapping_v2.py
@@ -434,7 +438,6 @@ rockset/model/xml_params.py
 rockset/model_utils.py
 rockset/models/__init__.py
 rockset/rest.py
-test-requirements.txt
 test/__init__.py
 test/test_add_documents_request.py
 test/test_add_documents_response.py
@@ -462,6 +465,7 @@ test/test_cluster.py
 test/test_collection.py
 test/test_collection_mount.py
 test/test_collection_mount_response.py
+test/test_collection_mount_stats.py
 test/test_collection_stats.py
 test/test_collections_api.py
 test/test_create_alias_request.py
@@ -506,6 +510,7 @@ test/test_dynamodb_integration_creation_request.py
 test/test_dynamodb_source_wrapper.py
 test/test_error_model.py
 test/test_event_time_info.py
+test/test_execute_public_query_lambda_request.py
 test/test_execute_query_lambda_request.py
 test/test_field_mapping_query.py
 test/test_field_mapping_v2.py

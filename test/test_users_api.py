@@ -20,6 +20,8 @@ def test_create(get_client, mock_request, request_validator):
         try:
             rs.Users.create(
                 email="hello@rockset.com",
+                first_name="John",
+                last_name="Doe",
                 roles=["admin", "member", "read-only"],
             )
         except EarlyExit as e:

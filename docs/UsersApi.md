@@ -48,6 +48,8 @@ pprint(api_response)
 # Create User
 api_response = await rs.Users.create(
     email="hello@rockset.com",
+    first_name="John",
+    last_name="Doe",
     roles=["admin","member","read-only"],
     async_req=True,
 )
@@ -64,6 +66,8 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **email** | **str** | User email, must be unique. | 
+ **first_name** | **str** | User first name. | [optional]
+ **last_name** | **str** | User last name. | [optional]
  **roles** | **[str]** | List of roles for a given user. | [optional]
 
 ### Return type

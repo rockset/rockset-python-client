@@ -83,6 +83,8 @@ class CreateUserRequest(ModelNormal):
         return {
             'email': (str,),  # noqa: E501
             'roles': ([str],),  # noqa: E501
+            'first_name': (str, none_type),  # noqa: E501
+            'last_name': (str, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -93,6 +95,8 @@ class CreateUserRequest(ModelNormal):
     attribute_map = {
         'email': 'email',  # noqa: E501
         'roles': 'roles',  # noqa: E501
+        'first_name': 'first_name',  # noqa: E501
+        'last_name': 'last_name',  # noqa: E501
     }
 
     read_only_vars = {
@@ -140,6 +144,8 @@ class CreateUserRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            first_name (str): User first name.. [optional]  # noqa: E501
+            last_name (str): User last name.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -195,6 +201,8 @@ class CreateUserRequest(ModelNormal):
         Keyword Args:
             email (str): User email, must be unique.
             roles ([str]): List of roles for a given user.
+            first_name (str): User first name.. [optional]  # noqa: E501
+            last_name (str): User last name.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

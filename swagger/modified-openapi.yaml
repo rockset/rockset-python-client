@@ -659,6 +659,9 @@ components:
             - DELETING
           example: ACTIVE
           type: string
+        stats:
+          $ref: "#/components/schemas/CollectionMountStats"
+          description: Stats about this Collection Mount
         type:
           description: Mount type.
           enum:
@@ -680,6 +683,14 @@ components:
         data:
           $ref: "#/components/schemas/CollectionMount"
           description: Resource mount object.
+      type: object
+    CollectionMountStats:
+      properties:
+        last_queried_ms:
+          description: Milliseconds since Unix epoch Jan 1, 1970.
+          example: 1535101119334
+          format: int64
+          type: integer
       type: object
     CollectionStats:
       properties:
@@ -983,6 +994,14 @@ components:
         email:
           description: User email, must be unique.
           example: hello@rockset.com
+          type: string
+        first_name:
+          description: User first name.
+          example: John
+          type: string
+        last_name:
+          description: User last name.
+          example: Doe
           type: string
         roles:
           description: List of roles for a given user.
@@ -1397,7 +1416,6 @@ components:
             - NOT_READY
             - FORBIDDEN
             - QUERY_TIMEOUT
-            - ROLE_NOT_FOUND
             - CONNECTION_ERROR
             - CONTENTTOOLARGE
             - CREATING
@@ -1427,6 +1445,21 @@ components:
           type: string
       required:
         - field
+      type: object
+    ExecutePublicQueryLambdaRequest:
+      properties:
+        default_row_limit:
+          description: Row limit to use if no limit specified in the SQL query text.
+          format: int32
+          type: integer
+        generate_warnings:
+          description: Whether to generate warnings.
+          type: boolean
+        parameters:
+          description: List of named parameters.
+          items:
+            $ref: "#/components/schemas/QueryParameter"
+          type: array
       type: object
     ExecuteQueryLambdaRequest:
       properties:
@@ -3498,6 +3531,12 @@ components:
       type: object
     Status:
       properties:
+        detected_size_bytes:
+          description:
+            Size in bytes detected for the source at collection initialization.
+            This size can be 0 or null for event stream sources.
+          format: int64
+          type: integer
         last_processed_at:
           description: ISO-8601 date when source was last processed.
           example: "2019-01-15T21:48:23Z"
@@ -13944,9 +13983,9 @@ paths:
         - Views
       x-rename: update
   /v1/public/shared_lambdas/{public_access_id}:
-    get:
-      description: Execute a public query lambda.
-      operationId: executePublicQueryLambda
+    post:
+      description: Execute a public query lambda (full version).
+      operationId: executePublicQueryLambdaWithParams
       parameters:
         - description: public access ID of the query lambda
           in: path
@@ -13954,6 +13993,12 @@ paths:
           required: true
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ExecutePublicQueryLambdaRequest"
+        description: JSON object
       responses:
         "200":
           content:

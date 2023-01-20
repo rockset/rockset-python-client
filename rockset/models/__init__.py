@@ -33,6 +33,7 @@ from rockset.model.cluster import Cluster
 from rockset.model.collection import Collection
 from rockset.model.collection_mount import CollectionMount
 from rockset.model.collection_mount_response import CollectionMountResponse
+from rockset.model.collection_mount_stats import CollectionMountStats
 from rockset.model.collection_stats import CollectionStats
 from rockset.model.create_alias_request import CreateAliasRequest
 from rockset.model.create_alias_response import CreateAliasResponse
@@ -74,6 +75,7 @@ from rockset.model.dynamodb_integration_creation_request import DynamodbIntegrat
 from rockset.model.dynamodb_source_wrapper import DynamodbSourceWrapper
 from rockset.model.error_model import ErrorModel
 from rockset.model.event_time_info import EventTimeInfo
+from rockset.model.execute_public_query_lambda_request import ExecutePublicQueryLambdaRequest
 from rockset.model.execute_query_lambda_request import ExecuteQueryLambdaRequest
 from rockset.model.field_mapping_query import FieldMappingQuery
 from rockset.model.field_mapping_v2 import FieldMappingV2

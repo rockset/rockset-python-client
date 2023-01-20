@@ -4,15 +4,15 @@ All URIs are relative to *https://api.use1a1.rockset.com* or the apiserver provi
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**execute_public_query_lambda**](SharedLambdasApi.md#execute_public_query_lambda) | **GET** /v1/public/shared_lambdas/{public_access_id} | Execute a Public Query Lambda
+[**execute_public_query_lambda_with_params**](SharedLambdasApi.md#execute_public_query_lambda_with_params) | **POST** /v1/public/shared_lambdas/{public_access_id} | Execute a Public Query Lambda
 
 
-# **execute_public_query_lambda**
-> QueryResponse execute_public_query_lambda(public_access_id)
+# **execute_public_query_lambda_with_params**
+> QueryResponse execute_public_query_lambda_with_params(public_access_id)
 
 Execute a Public Query Lambda
 
-Execute a public query lambda.
+Execute a public query lambda (full version).
 
 ### Example
 
@@ -27,23 +27,23 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 # Execute a Public Query Lambda
-api_response = rs.SharedLambdas.execute_public_query_lambda(
+api_response = rs.SharedLambdas.execute_public_query_lambda_with_params(
     public_access_id="public_access_id_example",
 )
 pprint(api_response)
 # Error responses from the server will cause the client to throw an ApiException
 # except ApiException as e:
-#     print("Exception when calling SharedLambdas->execute_public_query_lambda: %s\n" % e)
+#     print("Exception when calling SharedLambdas->execute_public_query_lambda_with_params: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 # assumes that execution takes place within an asynchronous context
 # Execute a Public Query Lambda
-api_response = await rs.SharedLambdas.execute_public_query_lambda(
+api_response = await rs.SharedLambdas.execute_public_query_lambda_with_params(
     public_access_id="public_access_id_example",
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
-    print("Exception when calling SharedLambdas->execute_public_query_lambda: %s\n" % e)
+    print("Exception when calling SharedLambdas->execute_public_query_lambda_with_params: %s\n" % e)
     return
 pprint(api_response)
 
@@ -55,6 +55,10 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **public_access_id** | **str** | public access ID of the query lambda |
+ **default_row_limit** | **int** | Row limit to use if no limit specified in the SQL query text. | [optional]
+ **generate_warnings** | **bool** | Whether to generate warnings. | [optional]
+ **parameters** | [**[QueryParameter]**](QueryParameter.md) | List of named parameters. | [optional]
+
 
 ### Return type
 
@@ -67,7 +71,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 
