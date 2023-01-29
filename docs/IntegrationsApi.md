@@ -31,6 +31,7 @@ Create a new integration.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -123,6 +124,7 @@ Create a new integration.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -214,6 +216,7 @@ Create a new integration.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -313,6 +316,7 @@ Create a new integration.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -406,6 +410,7 @@ Create a new integration.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -516,6 +521,7 @@ Create a new integration.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -614,6 +620,7 @@ Create a new integration.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -705,6 +712,7 @@ Create a new integration.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -803,6 +811,7 @@ Create a new integration.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -907,6 +916,7 @@ Remove an integration.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -992,6 +1002,7 @@ Retrieve information about a single integration.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1077,6 +1088,7 @@ List all integrations in an organization.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client

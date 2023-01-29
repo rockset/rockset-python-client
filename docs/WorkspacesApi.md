@@ -23,6 +23,7 @@ Create a new workspace.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -110,6 +111,7 @@ Remove a workspace.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -193,6 +195,7 @@ Get information about a single workspace.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -276,6 +279,7 @@ List all workspaces in an organization.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client

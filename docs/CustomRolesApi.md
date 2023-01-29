@@ -24,6 +24,7 @@ Create a role for your organization.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -118,6 +119,7 @@ Delete a role for your organization.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -203,6 +205,7 @@ Retrieve a role by name for your organization.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -288,6 +291,7 @@ List all roles for your organization.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -368,6 +372,7 @@ Update a role for your organization.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client

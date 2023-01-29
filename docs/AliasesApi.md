@@ -25,6 +25,7 @@ Create new alias in a workspace.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -116,6 +117,7 @@ Delete an alias.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -189,6 +191,7 @@ Get details about an alias
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -275,6 +278,7 @@ Retrieve all aliases in an organization
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -355,6 +359,7 @@ Update alias in a workspace.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -433,6 +438,7 @@ Retrieve all aliases in a workspace.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client

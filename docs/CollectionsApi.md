@@ -34,6 +34,7 @@ Create new collection in a workspace.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -195,6 +196,7 @@ Create new collection in a workspace.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -355,6 +357,7 @@ Create new collection in a workspace.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -515,6 +518,7 @@ Create new collection in a workspace.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -677,6 +681,7 @@ Create new collection in a workspace.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -838,6 +843,7 @@ Create new collection in a workspace.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -999,6 +1005,7 @@ Create new collection in a workspace.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1161,6 +1168,7 @@ Create new collection in a workspace.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1325,6 +1333,7 @@ Create new collection in a workspace.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1485,6 +1494,7 @@ Create new collection in a workspace.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1647,6 +1657,7 @@ Create new collection in a workspace.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1809,6 +1820,7 @@ Delete a collection and all its documents from Rockset.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1895,6 +1907,7 @@ Get details about a collection.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1981,6 +1994,7 @@ Retrieve all collections in an organization.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -2061,6 +2075,7 @@ Retrieve all collections in a workspace.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client

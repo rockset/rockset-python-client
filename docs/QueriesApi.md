@@ -25,6 +25,7 @@ Attempts to cancel an actively-running query.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -110,6 +111,7 @@ Returns information about a query.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -195,6 +197,7 @@ Returns a page of query results.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -282,6 +285,7 @@ Lists actively queued and running queries.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -362,6 +366,7 @@ Make a SQL query to Rockset.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -479,6 +484,7 @@ Validate a SQL query with Rockset's parser and planner.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client

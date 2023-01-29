@@ -24,6 +24,7 @@ Create a new API key for the authenticated user.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -113,6 +114,7 @@ Delete an API key for any user in your organization.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -201,6 +203,7 @@ Retrieve a particular API key for any user in your organization.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -290,6 +293,7 @@ List API key metadata for any user in your organization.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -375,6 +379,7 @@ Update the state of an API key for any user in your organization.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client

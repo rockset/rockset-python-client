@@ -434,7 +434,6 @@ rockset/model/xml_params.py
 rockset/model_utils.py
 rockset/models/__init__.py
 rockset/rest.py
-test-requirements.txt
 test/__init__.py
 test/test_add_documents_request.py
 test/test_add_documents_response.py

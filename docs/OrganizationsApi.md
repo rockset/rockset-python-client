@@ -20,6 +20,7 @@ Retrieve information about current organization.
 
 ```python
 from rockset import *
+from rockset.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
