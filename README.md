@@ -61,7 +61,7 @@ When making requests, certain parameters will oftentimes be instances of classes
 
 ## Queries
 
-Queries can be made be either calling the regular client [**query method**](docs/Queries.md#query) or by using the convenience method (rs.sql). The convenience method currently does not support all the options of the regular call. If you need these more advanced features, you should use the regular call.
+Queries can be made be either calling the regular client [**query method**](docs/QueriesApi.md#query) or by using the convenience method (rs.sql). The convenience method currently does not support all the options of the regular call. If you need these more advanced features, you should use the regular call.
 
 ```python
 from rockset import RocksetClient
@@ -94,7 +94,7 @@ except rockset.ApiException as e:
 
 ### Pagination
 
-Query pagination can be achieved by using the normal API call (rs.Queries.get_query_results()) or by using the QueryPaginator class as an iterator. The QueryPaginator should be initialized by passing in a client object and a QueryResponse object. The QueryResponse object could be the result of any call that returns this object ([query](docs/Queries.md#query), [get_query](docs/Queries.md#get_query), [execute_query_lambda](docs/QueryLambdas.md#execute_query_lambda), [execute_query_lambda_by_tag](docs/QueryLambdas.md#execute_query_lambda_by_tag)). You will then be able to use the QueryPaginator object like you would any other iterator.
+Query pagination can be achieved by using the normal API call (rs.Queries.get_query_results()) or by using the QueryPaginator class as an iterator. The QueryPaginator should be initialized by passing in a client object and a QueryResponse object. The QueryResponse object could be the result of any call that returns this object ([query](docs/QueriesApi.md#query), [get_query](docs/QueriesApi.md#get_query), [execute_query_lambda](docs/QueryLambdasApi.md#execute_query_lambda), [execute_query_lambda_by_tag](docs/QueryLambdasApi.md#execute_query_lambda_by_tag)). You will then be able to use the QueryPaginator object like you would any other iterator.
 
 ```python
 import rockset
