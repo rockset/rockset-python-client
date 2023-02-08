@@ -1,3 +1,6 @@
+### v1.0.4
+    - Enum added for usw2a1
+
 ### v1.0.3
     - New api changes
 
