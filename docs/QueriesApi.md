@@ -235,6 +235,7 @@ Name | Type | Description  | Notes
  **query_id** | **str** |  |
  **cursor** | **str** | Cursor to current page. If unset, will default to the first page. | [optional]
  **docs** | **int** | Number of documents to fetch. | [optional]
+ **offset** | **int** | Offset from the cursor of the first document to be returned | [optional]
 
 ### Return type
 
@@ -377,7 +378,7 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 api_response = rs.Queries.query(
     sql=QueryRequestSql(
         default_row_limit=1,
-        generate_warnings=True,
+        generate_warnings=False,
         initial_paginate_response_doc_count=1,
         paginate=True,
         parameters=[
@@ -406,7 +407,7 @@ api_response = await rs.Queries.query(
     ),
     sql=QueryRequestSql(
         default_row_limit=1,
-        generate_warnings=True,
+        generate_warnings=False,
         initial_paginate_response_doc_count=1,
         paginate=True,
         parameters=[
@@ -495,7 +496,7 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 api_response = rs.Queries.validate(
     sql=QueryRequestSql(
         default_row_limit=1,
-        generate_warnings=True,
+        generate_warnings=False,
         initial_paginate_response_doc_count=1,
         paginate=True,
         parameters=[
@@ -524,7 +525,7 @@ api_response = await rs.Queries.validate(
     ),
     sql=QueryRequestSql(
         default_row_limit=1,
-        generate_warnings=True,
+        generate_warnings=False,
         initial_paginate_response_doc_count=1,
         paginate=True,
         parameters=[

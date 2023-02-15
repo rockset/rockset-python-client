@@ -454,6 +454,15 @@ components:
           example: 8000000
           format: int64
           type: integer
+        data_indexed_throughput_bytes:
+          description:
+            Throughput of documents indexed in the last minute measured
+            in bytes/s. This is based off the data_indexed_bytes size. Throughput
+            during the download stage is shown on a per-source granularity in the
+            sources field of the Collection response.
+          example: 800000.5
+          format: double
+          type: number
         documents_downloaded:
           description:
             Number of documents downloaded from source during an ongoing
@@ -492,6 +501,15 @@ components:
           description: ISO-8601 date of when the initializing stage was completed.
           example: "2001-08-28T00:23:41Z"
           type: string
+        pre_index_size_bytes:
+          description:
+            Size in bytes of documents before being indexed. This is the
+            total size of documents after decompression, transformations, and dropping.
+            This is equal to data_indexed_bytes after the indexing stage is done unless
+            there are retries during indexing the data.
+          example: 8000000
+          format: int64
+          type: integer
         provisioning_stage_done_at:
           description: ISO-8601 date of when the provisioning stage was completed.
           example: "2001-08-28T00:23:41Z"
@@ -505,6 +523,11 @@ components:
             Total size of indexes after the completed bulk ingest. This
             is the same as collection size.
           example: 10000000
+          format: int64
+          type: integer
+        transformation_compute_ms:
+          description: Bulk ingest compute units in milliseconds used for ingest transformation.
+          example: 50000
           format: int64
           type: integer
       type: object
@@ -655,10 +678,14 @@ components:
           enum:
             - CREATING
             - ACTIVE
+            - REFRESHING
             - EXPIRED
             - DELETING
           example: ACTIVE
           type: string
+        stats:
+          $ref: "#/components/schemas/CollectionMountStats"
+          description: Stats about this Collection Mount
         type:
           description: Mount type.
           enum:
@@ -680,6 +707,14 @@ components:
         data:
           $ref: "#/components/schemas/CollectionMount"
           description: Resource mount object.
+      type: object
+    CollectionMountStats:
+      properties:
+        last_queried_ms:
+          description: Milliseconds since Unix epoch Jan 1, 1970.
+          example: 1535101119334
+          format: int64
+          type: integer
       type: object
     CollectionStats:
       properties:
@@ -830,6 +865,14 @@ components:
             - LIVE
           example: STATIC
           type: string
+      type: object
+    CreateCollectionMountsResponse:
+      properties:
+        data:
+          description: Mounts created.
+          items:
+            $ref: "#/components/schemas/CollectionMount"
+          type: array
       type: object
     CreateCollectionRequest:
       properties:
@@ -983,6 +1026,14 @@ components:
         email:
           description: User email, must be unique.
           example: hello@rockset.com
+          type: string
+        first_name:
+          description: User first name.
+          example: John
+          type: string
+        last_name:
+          description: User last name.
+          example: Doe
           type: string
         roles:
           description: List of roles for a given user.
@@ -1397,12 +1448,12 @@ components:
             - NOT_READY
             - FORBIDDEN
             - QUERY_TIMEOUT
-            - ROLE_NOT_FOUND
             - CONNECTION_ERROR
             - CONTENTTOOLARGE
             - CREATING
             - BADREQUEST
             - SERVICEUNAVAILABLE
+            - CONFLICT
             - RATELIMITEXCEEDED
             - QUERY_CANCELLED
             - CLIENT_CONNECTION_ERROR
@@ -1427,6 +1478,21 @@ components:
           type: string
       required:
         - field
+      type: object
+    ExecutePublicQueryLambdaRequest:
+      properties:
+        default_row_limit:
+          description: Row limit to use if no limit specified in the SQL query text.
+          format: int32
+          type: integer
+        generate_warnings:
+          description: Whether to generate warnings.
+          type: boolean
+        parameters:
+          description: List of named parameters.
+          items:
+            $ref: "#/components/schemas/QueryParameter"
+          type: array
       type: object
     ExecuteQueryLambdaRequest:
       properties:
@@ -2479,6 +2545,8 @@ components:
             - CREATE_QUERY_LAMBDA_WS
             - DELETE_QUERY_LAMBDA_WS
             - EXECUTE_QUERY_LAMBDA_WS
+            - CREATE_SCHEDULED_LAMBDA_WS
+            - DELETE_SCHEDULED_LAMBDA_WS
             - CREATE_VIEW_WS
             - DELETE_VIEW_WS
             - ALL_VI_ACTIONS
@@ -2780,6 +2848,7 @@ components:
           description:
             Flag to enable warnings. Warnings can help debug query issues
             but negatively affect performance.
+          example: false
           type: boolean
         initial_paginate_response_doc_count:
           description:
@@ -2790,7 +2859,7 @@ components:
         paginate:
           description:
             Flag to paginate and store the results of this query for later
-            / sequential retrieval.
+            sequential retrieval.
           type: boolean
         parameters:
           description: List of named parameters.
@@ -3498,6 +3567,12 @@ components:
       type: object
     Status:
       properties:
+        detected_size_bytes:
+          description:
+            Size in bytes detected for the source at collection initialization.
+            This size can be 0 or null for event stream sources.
+          format: int64
+          type: integer
         last_processed_at:
           description: ISO-8601 date when source was last processed.
           example: "2019-01-15T21:48:23Z"
@@ -6287,6 +6362,13 @@ paths:
           schema:
             format: int32
             type: integer
+        - description: Offset from the cursor of the first document to be returned
+          in: query
+          name: offset
+          required: false
+          schema:
+            format: int32
+            type: integer
       responses:
         "200":
           content:
@@ -8904,7 +8986,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CollectionMountResponse"
+                $ref: "#/components/schemas/CreateCollectionMountsResponse"
           description: collection mounted
         "400":
           content:
@@ -13944,9 +14026,9 @@ paths:
         - Views
       x-rename: update
   /v1/public/shared_lambdas/{public_access_id}:
-    get:
-      description: Execute a public query lambda.
-      operationId: executePublicQueryLambda
+    post:
+      description: Execute a public query lambda (full version).
+      operationId: executePublicQueryLambdaWithParams
       parameters:
         - description: public access ID of the query lambda
           in: path
@@ -13954,6 +14036,12 @@ paths:
           required: true
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ExecutePublicQueryLambdaRequest"
+        description: JSON object
       responses:
         "200":
           content:

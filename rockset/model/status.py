@@ -88,6 +88,7 @@ class Status(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'detected_size_bytes': (int, none_type),  # noqa: E501
             'last_processed_at': (str, none_type),  # noqa: E501
             'last_processed_item': (str, none_type),  # noqa: E501
             'message': (str, none_type),  # noqa: E501
@@ -101,6 +102,7 @@ class Status(ModelNormal):
 
 
     attribute_map = {
+        'detected_size_bytes': 'detected_size_bytes',  # noqa: E501
         'last_processed_at': 'last_processed_at',  # noqa: E501
         'last_processed_item': 'last_processed_item',  # noqa: E501
         'message': 'message',  # noqa: E501
@@ -149,6 +151,7 @@ class Status(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            detected_size_bytes (int): Size in bytes detected for the source at collection initialization. This size can be 0 or null for event stream sources.. [optional]  # noqa: E501
             last_processed_at (str): ISO-8601 date when source was last processed.. [optional]  # noqa: E501
             last_processed_item (str): Last source item processed by ingester.. [optional]  # noqa: E501
             message (str): State message.. [optional]  # noqa: E501
@@ -205,6 +208,7 @@ class Status(ModelNormal):
         """Status - a model defined in OpenAPI
 
         Keyword Args:
+            detected_size_bytes (int): Size in bytes detected for the source at collection initialization. This size can be 0 or null for event stream sources.. [optional]  # noqa: E501
             last_processed_at (str): ISO-8601 date when source was last processed.. [optional]  # noqa: E501
             last_processed_item (str): Last source item processed by ingester.. [optional]  # noqa: E501
             message (str): State message.. [optional]  # noqa: E501

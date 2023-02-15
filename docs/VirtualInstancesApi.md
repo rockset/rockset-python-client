@@ -626,7 +626,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **mount_collection**
-> CollectionMountResponse mount_collection(virtual_instance_id, create_collection_mount_request)
+> CreateCollectionMountsResponse mount_collection(virtual_instance_id, create_collection_mount_request)
 
 Mount Collection
 
@@ -681,7 +681,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**CollectionMountResponse**](CollectionMountResponse.md)
+[**CreateCollectionMountsResponse**](CreateCollectionMountsResponse.md)
 
 ### Authorization
 
@@ -740,7 +740,7 @@ api_response = rs.VirtualInstances.query_virtual_instance(
     virtual_instance_id="virtualInstanceId_example",
     sql=QueryRequestSql(
         default_row_limit=1,
-        generate_warnings=True,
+        generate_warnings=False,
         initial_paginate_response_doc_count=1,
         paginate=True,
         parameters=[
@@ -770,7 +770,7 @@ api_response = await rs.VirtualInstances.query_virtual_instance(
     ),
     sql=QueryRequestSql(
         default_row_limit=1,
-        generate_warnings=True,
+        generate_warnings=False,
         initial_paginate_response_doc_count=1,
         paginate=True,
         parameters=[

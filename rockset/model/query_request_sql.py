@@ -156,7 +156,7 @@ class QueryRequestSql(ModelNormal):
             default_row_limit (int): Row limit to use. Limits specified in the query text will override this default.. [optional]  # noqa: E501
             generate_warnings (bool): Flag to enable warnings. Warnings can help debug query issues but negatively affect performance.. [optional]  # noqa: E501
             initial_paginate_response_doc_count (int): Number of documents to return in addition to paginating for this query call. Only relevant if `paginate` flag is also set.. [optional]  # noqa: E501
-            paginate (bool): Flag to paginate and store the results of this query for later / sequential retrieval.. [optional]  # noqa: E501
+            paginate (bool): Flag to paginate and store the results of this query for later sequential retrieval.. [optional]  # noqa: E501
             parameters ([QueryParameter]): List of named parameters.. [optional]  # noqa: E501
         """
 
@@ -214,7 +214,7 @@ class QueryRequestSql(ModelNormal):
             default_row_limit (int): Row limit to use. Limits specified in the query text will override this default.. [optional]  # noqa: E501
             generate_warnings (bool): Flag to enable warnings. Warnings can help debug query issues but negatively affect performance.. [optional]  # noqa: E501
             initial_paginate_response_doc_count (int): Number of documents to return in addition to paginating for this query call. Only relevant if `paginate` flag is also set.. [optional]  # noqa: E501
-            paginate (bool): Flag to paginate and store the results of this query for later / sequential retrieval.. [optional]  # noqa: E501
+            paginate (bool): Flag to paginate and store the results of this query for later sequential retrieval.. [optional]  # noqa: E501
             parameters ([QueryParameter]): List of named parameters.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be

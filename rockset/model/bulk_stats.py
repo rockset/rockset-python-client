@@ -83,6 +83,7 @@ class BulkStats(ModelNormal):
         return {
             'data_downloaded_bytes': (int, none_type),  # noqa: E501
             'data_indexed_bytes': (int, none_type),  # noqa: E501
+            'data_indexed_throughput_bytes': (float, none_type),  # noqa: E501
             'documents_downloaded': (int, none_type),  # noqa: E501
             'download_compute_ms': (int, none_type),  # noqa: E501
             'downloading_stage_done_at': (str, none_type),  # noqa: E501
@@ -90,9 +91,11 @@ class BulkStats(ModelNormal):
             'index_compute_ms': (int, none_type),  # noqa: E501
             'indexing_stage_done_at': (str, none_type),  # noqa: E501
             'initializing_stage_done_at': (str, none_type),  # noqa: E501
+            'pre_index_size_bytes': (int, none_type),  # noqa: E501
             'provisioning_stage_done_at': (str, none_type),  # noqa: E501
             'started_at': (str, none_type),  # noqa: E501
             'total_index_size_bytes': (int, none_type),  # noqa: E501
+            'transformation_compute_ms': (int, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -103,6 +106,7 @@ class BulkStats(ModelNormal):
     attribute_map = {
         'data_downloaded_bytes': 'data_downloaded_bytes',  # noqa: E501
         'data_indexed_bytes': 'data_indexed_bytes',  # noqa: E501
+        'data_indexed_throughput_bytes': 'data_indexed_throughput_bytes',  # noqa: E501
         'documents_downloaded': 'documents_downloaded',  # noqa: E501
         'download_compute_ms': 'download_compute_ms',  # noqa: E501
         'downloading_stage_done_at': 'downloading_stage_done_at',  # noqa: E501
@@ -110,9 +114,11 @@ class BulkStats(ModelNormal):
         'index_compute_ms': 'index_compute_ms',  # noqa: E501
         'indexing_stage_done_at': 'indexing_stage_done_at',  # noqa: E501
         'initializing_stage_done_at': 'initializing_stage_done_at',  # noqa: E501
+        'pre_index_size_bytes': 'pre_index_size_bytes',  # noqa: E501
         'provisioning_stage_done_at': 'provisioning_stage_done_at',  # noqa: E501
         'started_at': 'started_at',  # noqa: E501
         'total_index_size_bytes': 'total_index_size_bytes',  # noqa: E501
+        'transformation_compute_ms': 'transformation_compute_ms',  # noqa: E501
     }
 
     read_only_vars = {
@@ -158,6 +164,7 @@ class BulkStats(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             data_downloaded_bytes (int): Size in bytes of documents downloaded from source during an ongoing or completed bulk ingest. This includes documents that are dropped and reingested.. [optional]  # noqa: E501
             data_indexed_bytes (int): Size in bytes of documents indexed. This is the total size of documents after transformations and dropping before indexes are built.. [optional]  # noqa: E501
+            data_indexed_throughput_bytes (float): Throughput of documents indexed in the last minute measured in bytes/s. This is based off the data_indexed_bytes size. Throughput during the download stage is shown on a per-source granularity in the sources field of the Collection response.. [optional]  # noqa: E501
             documents_downloaded (int): Number of documents downloaded from source during an ongoing or completed bulk ingest. This includes documents that are dropped and reingested.. [optional]  # noqa: E501
             download_compute_ms (int): Bulk ingest compute units in milliseconds used for downloading documents.. [optional]  # noqa: E501
             downloading_stage_done_at (str): ISO-8601 date of when the downloading stage was completed.. [optional]  # noqa: E501
@@ -165,9 +172,11 @@ class BulkStats(ModelNormal):
             index_compute_ms (int): Bulk ingest compute units in milliseconds used for indexing documents.. [optional]  # noqa: E501
             indexing_stage_done_at (str): ISO-8601 date of when the indexing stage was completed.. [optional]  # noqa: E501
             initializing_stage_done_at (str): ISO-8601 date of when the initializing stage was completed.. [optional]  # noqa: E501
+            pre_index_size_bytes (int): Size in bytes of documents before being indexed. This is the total size of documents after decompression, transformations, and dropping. This is equal to data_indexed_bytes after the indexing stage is done unless there are retries during indexing the data.. [optional]  # noqa: E501
             provisioning_stage_done_at (str): ISO-8601 date of when the provisioning stage was completed.. [optional]  # noqa: E501
             started_at (str): ISO-8601 date of when the bulk ingest was started.. [optional]  # noqa: E501
             total_index_size_bytes (int): Total size of indexes after the completed bulk ingest. This is the same as collection size.. [optional]  # noqa: E501
+            transformation_compute_ms (int): Bulk ingest compute units in milliseconds used for ingest transformation.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -221,6 +230,7 @@ class BulkStats(ModelNormal):
         Keyword Args:
             data_downloaded_bytes (int): Size in bytes of documents downloaded from source during an ongoing or completed bulk ingest. This includes documents that are dropped and reingested.. [optional]  # noqa: E501
             data_indexed_bytes (int): Size in bytes of documents indexed. This is the total size of documents after transformations and dropping before indexes are built.. [optional]  # noqa: E501
+            data_indexed_throughput_bytes (float): Throughput of documents indexed in the last minute measured in bytes/s. This is based off the data_indexed_bytes size. Throughput during the download stage is shown on a per-source granularity in the sources field of the Collection response.. [optional]  # noqa: E501
             documents_downloaded (int): Number of documents downloaded from source during an ongoing or completed bulk ingest. This includes documents that are dropped and reingested.. [optional]  # noqa: E501
             download_compute_ms (int): Bulk ingest compute units in milliseconds used for downloading documents.. [optional]  # noqa: E501
             downloading_stage_done_at (str): ISO-8601 date of when the downloading stage was completed.. [optional]  # noqa: E501
@@ -228,9 +238,11 @@ class BulkStats(ModelNormal):
             index_compute_ms (int): Bulk ingest compute units in milliseconds used for indexing documents.. [optional]  # noqa: E501
             indexing_stage_done_at (str): ISO-8601 date of when the indexing stage was completed.. [optional]  # noqa: E501
             initializing_stage_done_at (str): ISO-8601 date of when the initializing stage was completed.. [optional]  # noqa: E501
+            pre_index_size_bytes (int): Size in bytes of documents before being indexed. This is the total size of documents after decompression, transformations, and dropping. This is equal to data_indexed_bytes after the indexing stage is done unless there are retries during indexing the data.. [optional]  # noqa: E501
             provisioning_stage_done_at (str): ISO-8601 date of when the provisioning stage was completed.. [optional]  # noqa: E501
             started_at (str): ISO-8601 date of when the bulk ingest was started.. [optional]  # noqa: E501
             total_index_size_bytes (int): Total size of indexes after the completed bulk ingest. This is the same as collection size.. [optional]  # noqa: E501
+            transformation_compute_ms (int): Bulk ingest compute units in milliseconds used for ingest transformation.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

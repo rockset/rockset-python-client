@@ -446,6 +446,8 @@ class Users(object):
         self,
         *,
         email: str,
+        first_name: str = None,
+        last_name: str = None,
         roles: typing.Sequence[str] = None,
         **kwargs
     ) -> typing.Union[CreateUserResponse, asyncio.Future]:
@@ -459,6 +461,8 @@ class Users(object):
         rs = RocksetClient(api_key=APIKEY)
         future = rs.Users.create(
             email="hello@rockset.com",
+            first_name="John",
+            last_name="Doe",
             roles=["admin","member","read-only"],
             async_req=True,
         )
@@ -467,6 +471,8 @@ class Users(object):
 
         Keyword Args:
             email (str): User email, must be unique.. [required]
+            first_name (str): User first name.. [optional]
+            last_name (str): User last name.. [optional]
             roles ([str]): List of roles for a given user.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.

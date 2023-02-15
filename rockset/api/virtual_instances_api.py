@@ -26,6 +26,7 @@ from rockset.model_utils import (  # noqa: F401
 )
 from rockset.model.collection_mount_response import CollectionMountResponse
 from rockset.model.create_collection_mount_request import CreateCollectionMountRequest
+from rockset.model.create_collection_mounts_response import CreateCollectionMountsResponse
 from rockset.model.create_virtual_instance_request import CreateVirtualInstanceRequest
 from rockset.model.create_virtual_instance_response import CreateVirtualInstanceResponse
 from rockset.model.delete_virtual_instance_response import DeleteVirtualInstanceResponse
@@ -412,7 +413,7 @@ class VirtualInstances(object):
         )
         self.mount_collection_endpoint = _Endpoint(
             settings={
-                'response_type': (CollectionMountResponse,),
+                'response_type': (CreateCollectionMountsResponse,),
                 'auth': [
                     'apikey'
                 ],
@@ -1351,7 +1352,7 @@ class VirtualInstances(object):
         collection_paths: typing.Sequence[str] = None,
         type: str = None,
         **kwargs
-    ) -> typing.Union[CollectionMountResponse, asyncio.Future]:
+    ) -> typing.Union[CreateCollectionMountsResponse, asyncio.Future]:
         """Mount Collection  # noqa: E501
 
         [beta] Mount a collection to this virtual instance.  # noqa: E501
@@ -1404,7 +1405,7 @@ class VirtualInstances(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            CollectionMountResponse
+            CreateCollectionMountsResponse
                 If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
@@ -1462,7 +1463,7 @@ class VirtualInstances(object):
             ),
             sql=QueryRequestSql(
                 default_row_limit=1,
-                generate_warnings=True,
+                generate_warnings=False,
                 initial_paginate_response_doc_count=1,
                 paginate=True,
                 parameters=[

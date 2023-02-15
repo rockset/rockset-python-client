@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**detected_size_bytes** | **int** | Size in bytes detected for the source at collection initialization. This size can be 0 or null for event stream sources. | [optional] 
 **last_processed_at** | **str** | ISO-8601 date when source was last processed. | [optional] 
 **last_processed_item** | **str** | Last source item processed by ingester. | [optional] 
 **message** | **str** | State message. | [optional] 

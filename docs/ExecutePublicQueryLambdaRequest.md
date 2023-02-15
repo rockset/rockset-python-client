@@ -1,13 +1,12 @@
-# CreateUserRequest
+# ExecutePublicQueryLambdaRequest
 
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**email** | **str** | User email, must be unique. | 
-**roles** | **[str]** | List of roles for a given user. | 
-**first_name** | **str** | User first name. | [optional] 
-**last_name** | **str** | User last name. | [optional] 
+**default_row_limit** | **int** | Row limit to use if no limit specified in the SQL query text. | [optional] 
+**generate_warnings** | **bool** | Whether to generate warnings. | [optional] 
+**parameters** | [**[QueryParameter]**](QueryParameter.md) | List of named parameters. | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

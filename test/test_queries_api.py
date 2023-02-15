@@ -68,7 +68,7 @@ def test_query(get_client, mock_request, request_validator):
                 ),
                 sql=QueryRequestSql(
                     default_row_limit=1,
-                    generate_warnings=True,
+                    generate_warnings=False,
                     initial_paginate_response_doc_count=1,
                     paginate=True,
                     parameters=[
@@ -97,7 +97,7 @@ def test_validate(get_client, mock_request, request_validator):
                 ),
                 sql=QueryRequestSql(
                     default_row_limit=1,
-                    generate_warnings=True,
+                    generate_warnings=False,
                     initial_paginate_response_doc_count=1,
                     paginate=True,
                     parameters=[

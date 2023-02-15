@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **rrn** | **str** | Mount RRN. | [optional] 
 **snapshot_expiration_time_millis** | **int** | Time in millis at which the snapshot expires. | [optional] 
 **state** | **str** | Mount type. | [optional] 
+**stats** | [**CollectionMountStats**](CollectionMountStats.md) |  | [optional] 
 **type** | **str** | Mount type. | [optional] 
 **virtual_instance_id** | **str** | Virtual instance ID. | [optional] 
 **virtual_instance_rrn** | **str** | Virtual Instance RRN. | [optional] 
