@@ -13,7 +13,6 @@ test-requirements.txt
 git_push.sh
 .travis.yml
 .gitlab-ci.yml
-rockset/model/query_response.py
 
 # As an example, the C# client generator defines ApiClient.cs.
 # You can make changes and tell OpenAPI Generator to ignore just this file by uncommenting the following line:

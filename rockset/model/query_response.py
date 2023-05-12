@@ -225,9 +225,6 @@ class QueryResponse(ModelNormal):
             ):
                 # discard variable.
                 continue
-            if var_name == "results":
-                setattr(self, "results", [Document(doc) for doc in var_value])
-                continue
             setattr(self, var_name, var_value)
         return self
 
