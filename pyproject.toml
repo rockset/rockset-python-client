@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "rockset"
-version = "1.0.5"
+version = "1.0.6"
 description = "The python client for the Rockset API."
 authors = ["Rockset <support@rockset.com>"]
 packages = [
@@ -9,9 +9,8 @@ packages = [
 documentation = "https://github.com/rockset/rockset-python-client"
 repository = "https://github.com/rockset/rockset-python-client"
 readme = "LONG_DESCRIPTION.rst"
-license = "BSD License"
+license = "Apache-2.0"
 classifiers = [
-    "License :: OSI Approved :: BSD License",
     "Environment :: Console",
     "Environment :: Other Environment",
     "Intended Audience :: Developers",

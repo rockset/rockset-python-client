@@ -1,3 +1,6 @@
+### v1.0.6
+    - QueryResponse will correctly parse datetimes into datetime objects
+
 ### v1.0.5
     - New api changes
     - Issue with mount response fixed (was actually an issue with the API) https://github.com/rockset/rockset-python-client/issues/2
