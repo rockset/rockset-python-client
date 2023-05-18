@@ -27,6 +27,7 @@ from rockset.model_utils import (  # noqa: F401
     OpenApiModel
 )
 from rockset.exceptions import ApiAttributeError
+from rockset.document import Document
 
 
 def lazy_import():
