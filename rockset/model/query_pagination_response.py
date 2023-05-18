@@ -181,6 +181,9 @@ class QueryPaginationResponse(ModelNormal):
                         self.additional_properties_type is None:
                 # discard variable.
                 continue
+            if var_name == "results":
+                setattr(self, "results", [Document(doc) for doc in var_value])
+                continue
             setattr(self, var_name, var_value)
         return self
 
@@ -263,6 +266,9 @@ class QueryPaginationResponse(ModelNormal):
                         self._configuration.discard_unknown_keys and \
                         self.additional_properties_type is None:
                 # discard variable.
+                continue
+            if var_name == "results":
+                setattr(self, "results", [Document(doc) for doc in var_value])
                 continue
             setattr(self, var_name, var_value)
             # todo: remove these comments - this stops the user from setting read only vars but we need this now to address a bug

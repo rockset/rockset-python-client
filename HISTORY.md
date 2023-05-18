@@ -1,5 +1,5 @@
-### v1.0.6
-    - QueryResponse will correctly parse datetimes into datetime objects
+### v2.0.0
+    - QueryPaginationResponse will correctly parse datetime and date objects into python datetime objects. Timestamp objects will be left as strings.
 
 ### v1.0.5
     - New api changes
