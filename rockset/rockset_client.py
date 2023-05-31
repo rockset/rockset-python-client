@@ -64,10 +64,6 @@ def wrapper(method):
         body = None
         if body_args:
             try:
-                if "_override_fields" in kwargs:
-                    body_args.update(kwargs["_override_fields"])
-                    del other_args["_override_fields"]
-                    
                 body = req_type(**body_args)
             except ApiTypeError as e:
                 raise ApiValueError(
