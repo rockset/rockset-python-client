@@ -75,7 +75,6 @@ def wrapper(method):
                 ) from e
 
             other_args[body_param_name] = body
-
         # A way to pass in arguments that will make it to the body.
         # This is not officially supported, arguments sent in this way have no compatability gaurentees.
         if "add_raw_args_to_body" in other_args:

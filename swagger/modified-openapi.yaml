@@ -144,8 +144,57 @@ components:
           description:
             The maximum amount of time that the system will attempt to
             complete query execution before aborting the query and returning an error.
+            This must be set to a value that is greater than or equal to the client
+            timeout, and the maximum value of this timeout is 30 minutes.
           format: int64
           type: integer
+      type: object
+    AutoScalingPolicy:
+      properties:
+        enabled:
+          description: Whether auto scaling policy is enabled.
+          example: true
+          type: boolean
+        max_size:
+          description:
+            Maximum size Rockset can auto scale the Virtual Instance to.
+            This value should be one of the dedicated sizes greater than or same as
+            the min_size and lower than or same as the current size.
+          enum:
+            - FREE
+            - NANO
+            - SHARED
+            - MILLI
+            - SMALL
+            - MEDIUM
+            - LARGE
+            - XLARGE
+            - XLARGE2
+            - XLARGE4
+            - XLARGE8
+            - XLARGE16
+          example: XLARGE2
+          type: string
+        min_size:
+          description:
+            Minimum size Rockset can auto scale the Virtual Instance to.
+            This value should be one of the dedicated sizes lower than or same as
+            the max_size and greater than or same as the current size.
+          enum:
+            - FREE
+            - NANO
+            - SHARED
+            - MILLI
+            - SMALL
+            - MEDIUM
+            - LARGE
+            - XLARGE
+            - XLARGE2
+            - XLARGE4
+            - XLARGE8
+            - XLARGE16
+          example: LARGE
+          type: string
       type: object
     AwsAccessKey:
       properties:
@@ -194,12 +243,7 @@ components:
             mapping in `field_mapping_query` instead.
         field_mapping_query:
           $ref: "#/components/schemas/FieldMappingQuery"
-          description: Mapping of fields for a collection.
-        field_mappings:
-          description: Deprecated. List of mappings. Use field_mapping_query instead.
-          items:
-            $ref: "#/components/schemas/FieldMappingV2"
-          type: array
+          description: Ingest transformation query.
         name:
           description:
             Unique identifier for collection, can contain alphanumeric
@@ -219,6 +263,13 @@ components:
           items:
             $ref: "#/components/schemas/AzureBlobStorageSourceWrapper"
           type: array
+        storage_compression_type:
+          description: RocksDB storage compression type.
+          enum:
+            - LZ4
+            - ZSTD
+          example: LZ4
+          type: string
       required:
         - name
       type: object
@@ -289,12 +340,7 @@ components:
             mapping in `field_mapping_query` instead.
         field_mapping_query:
           $ref: "#/components/schemas/FieldMappingQuery"
-          description: Mapping of fields for a collection.
-        field_mappings:
-          description: Deprecated. List of mappings. Use field_mapping_query instead.
-          items:
-            $ref: "#/components/schemas/FieldMappingV2"
-          type: array
+          description: Ingest transformation query.
         name:
           description:
             Unique identifier for collection, can contain alphanumeric
@@ -314,6 +360,13 @@ components:
           items:
             $ref: "#/components/schemas/AzureEventHubsSourceWrapper"
           type: array
+        storage_compression_type:
+          description: RocksDB storage compression type.
+          enum:
+            - LZ4
+            - ZSTD
+          example: LZ4
+          type: string
       required:
         - name
       type: object
@@ -380,12 +433,7 @@ components:
             mapping in `field_mapping_query` instead.
         field_mapping_query:
           $ref: "#/components/schemas/FieldMappingQuery"
-          description: Mapping of fields for a collection.
-        field_mappings:
-          description: Deprecated. List of mappings. Use field_mapping_query instead.
-          items:
-            $ref: "#/components/schemas/FieldMappingV2"
-          type: array
+          description: Ingest transformation query.
         name:
           description:
             Unique identifier for collection, can contain alphanumeric
@@ -405,6 +453,13 @@ components:
           items:
             $ref: "#/components/schemas/AzureServiceBusSourceWrapper"
           type: array
+        storage_compression_type:
+          description: RocksDB storage compression type.
+          enum:
+            - LZ4
+            - ZSTD
+          example: LZ4
+          type: string
       required:
         - name
       type: object
@@ -664,6 +719,13 @@ components:
           description: Mount ID.
           example: 5ac23....
           type: string
+        last_refresh_time_millis:
+          description:
+            Unix timestamp of most recent refresh. Not applicable for live
+            mounts.
+          example: 123123764
+          format: int64
+          type: integer
         rrn:
           description: Mount RRN.
           example: rrn:mnt:use1a1:123e4567-e89b-12d3-a456-556642440000
@@ -681,18 +743,14 @@ components:
             - REFRESHING
             - EXPIRED
             - DELETING
+            - SWITCHING_REFRESH_TYPE
+            - SUSPENDED
+            - SUSPENDING
           example: ACTIVE
           type: string
         stats:
           $ref: "#/components/schemas/CollectionMountStats"
           description: Stats about this Collection Mount
-        type:
-          description: Mount type.
-          enum:
-            - STATIC
-            - LIVE
-          example: STATIC
-          type: string
         virtual_instance_id:
           description: Virtual instance ID.
           example: 5ac23....
@@ -858,13 +916,6 @@ components:
           items:
             type: string
           type: array
-        type:
-          description: Mount type.
-          enum:
-            - STATIC
-            - LIVE
-          example: STATIC
-          type: string
       type: object
     CreateCollectionMountsResponse:
       properties:
@@ -894,12 +945,7 @@ components:
             mapping in `field_mapping_query` instead.
         field_mapping_query:
           $ref: "#/components/schemas/FieldMappingQuery"
-          description: Mapping of fields for a collection.
-        field_mappings:
-          description: Deprecated. List of mappings. Use field_mapping_query instead.
-          items:
-            $ref: "#/components/schemas/FieldMappingV2"
-          type: array
+          description: Ingest transformation query.
         name:
           description:
             Unique identifier for collection, can contain alphanumeric
@@ -914,6 +960,13 @@ components:
           format: int64
           minimum: 1
           type: integer
+        storage_compression_type:
+          description: RocksDB storage compression type.
+          enum:
+            - LZ4
+            - ZSTD
+          example: LZ4
+          type: string
       type: object
     CreateCollectionResponse:
       properties:
@@ -1089,6 +1142,20 @@ components:
           description: Description of requested virtual instance.
           example: VI serving prod traffic
           type: string
+        enable_remount_on_resume:
+          description:
+            When a Virtual Instance is resumed, it will remount all collections
+            that were mounted when the Virtual Instance was suspended.
+          example: true
+          type: boolean
+        mount_refresh_interval_seconds:
+          description:
+            Number of seconds between data refreshes for mounts on this
+            Virtual Instance. A value of 0 means continuous refresh and a value of
+            null means never refresh.
+          example: 3600
+          format: int32
+          type: integer
         name:
           description:
             Unique identifier for virtual instance, can contain alphanumeric
@@ -1327,12 +1394,7 @@ components:
             mapping in `field_mapping_query` instead.
         field_mapping_query:
           $ref: "#/components/schemas/FieldMappingQuery"
-          description: Mapping of fields for a collection.
-        field_mappings:
-          description: Deprecated. List of mappings. Use field_mapping_query instead.
-          items:
-            $ref: "#/components/schemas/FieldMappingV2"
-          type: array
+          description: Ingest transformation query.
         name:
           description:
             Unique identifier for collection, can contain alphanumeric
@@ -1352,6 +1414,13 @@ components:
           items:
             $ref: "#/components/schemas/DynamodbSourceWrapper"
           type: array
+        storage_compression_type:
+          description: RocksDB storage compression type.
+          enum:
+            - LZ4
+            - ZSTD
+          example: LZ4
+          type: string
       required:
         - name
       type: object
@@ -1522,12 +1591,17 @@ components:
           items:
             $ref: "#/components/schemas/QueryParameter"
           type: array
+        timeout_ms:
+          description:
+            The maximum amount of time that the system will attempt to
+            complete query execution before aborting the query and returning an error.
+            The maximum value for this timeout is 2 minutes. async_options.timeout_ms
+            will override this timeout.
+          format: int64
+          type: integer
         virtual_instance_id:
           description: Virtual instance on which to run the query.
           type: string
-      type: object
-    FieldMapping:
-      properties: {}
       type: object
     FieldMappingQuery:
       properties:
@@ -1600,12 +1674,7 @@ components:
             mapping in `field_mapping_query` instead.
         field_mapping_query:
           $ref: "#/components/schemas/FieldMappingQuery"
-          description: Mapping of fields for a collection.
-        field_mappings:
-          description: Deprecated. List of mappings. Use field_mapping_query instead.
-          items:
-            $ref: "#/components/schemas/FieldMappingV2"
-          type: array
+          description: Ingest transformation query.
         name:
           description:
             Unique identifier for collection, can contain alphanumeric
@@ -1625,6 +1694,13 @@ components:
           items:
             $ref: "#/components/schemas/FileUploadSourceWrapper"
           type: array
+        storage_compression_type:
+          description: RocksDB storage compression type.
+          enum:
+            - LZ4
+            - ZSTD
+          example: LZ4
+          type: string
       required:
         - name
       type: object
@@ -1695,12 +1771,7 @@ components:
             mapping in `field_mapping_query` instead.
         field_mapping_query:
           $ref: "#/components/schemas/FieldMappingQuery"
-          description: Mapping of fields for a collection.
-        field_mappings:
-          description: Deprecated. List of mappings. Use field_mapping_query instead.
-          items:
-            $ref: "#/components/schemas/FieldMappingV2"
-          type: array
+          description: Ingest transformation query.
         name:
           description:
             Unique identifier for collection, can contain alphanumeric
@@ -1720,6 +1791,13 @@ components:
           items:
             $ref: "#/components/schemas/GcsSourceWrapper"
           type: array
+        storage_compression_type:
+          description: RocksDB storage compression type.
+          enum:
+            - LZ4
+            - ZSTD
+          example: LZ4
+          type: string
       required:
         - name
       type: object
@@ -1922,12 +2000,7 @@ components:
             mapping in `field_mapping_query` instead.
         field_mapping_query:
           $ref: "#/components/schemas/FieldMappingQuery"
-          description: Mapping of fields for a collection.
-        field_mappings:
-          description: Deprecated. List of mappings. Use field_mapping_query instead.
-          items:
-            $ref: "#/components/schemas/FieldMappingV2"
-          type: array
+          description: Ingest transformation query.
         name:
           description:
             Unique identifier for collection, can contain alphanumeric
@@ -1947,6 +2020,13 @@ components:
           items:
             $ref: "#/components/schemas/KafkaSourceWrapper"
           type: array
+        storage_compression_type:
+          description: RocksDB storage compression type.
+          enum:
+            - LZ4
+            - ZSTD
+          example: LZ4
+          type: string
       required:
         - name
       type: object
@@ -2054,12 +2134,7 @@ components:
             mapping in `field_mapping_query` instead.
         field_mapping_query:
           $ref: "#/components/schemas/FieldMappingQuery"
-          description: Mapping of fields for a collection.
-        field_mappings:
-          description: Deprecated. List of mappings. Use field_mapping_query instead.
-          items:
-            $ref: "#/components/schemas/FieldMappingV2"
-          type: array
+          description: Ingest transformation query.
         name:
           description:
             Unique identifier for collection, can contain alphanumeric
@@ -2079,6 +2154,13 @@ components:
           items:
             $ref: "#/components/schemas/KinesisSourceWrapper"
           type: array
+        storage_compression_type:
+          description: RocksDB storage compression type.
+          enum:
+            - LZ4
+            - ZSTD
+          example: LZ4
+          type: string
       required:
         - name
       type: object
@@ -2277,12 +2359,7 @@ components:
             mapping in `field_mapping_query` instead.
         field_mapping_query:
           $ref: "#/components/schemas/FieldMappingQuery"
-          description: Mapping of fields for a collection.
-        field_mappings:
-          description: Deprecated. List of mappings. Use field_mapping_query instead.
-          items:
-            $ref: "#/components/schemas/FieldMappingV2"
-          type: array
+          description: Ingest transformation query.
         name:
           description:
             Unique identifier for collection, can contain alphanumeric
@@ -2302,6 +2379,13 @@ components:
           items:
             $ref: "#/components/schemas/MongodbSourceWrapper"
           type: array
+        storage_compression_type:
+          description: RocksDB storage compression type.
+          enum:
+            - LZ4
+            - ZSTD
+          example: LZ4
+          type: string
       required:
         - name
       type: object
@@ -2635,6 +2719,9 @@ components:
           description: Unique Query ID.
           example: 5b596206-c632-4a08-8343-0c560f7ef7f1
           type: string
+        sql:
+          description: The SQL query for this request
+          type: string
         stats:
           $ref: "#/components/schemas/Stats"
           description: Various stats about the query's execution.
@@ -2813,7 +2900,7 @@ components:
           example: _id
           type: string
         type:
-          description: Data type of the field.
+          description: Deprecated. Data type of the field.
           example: string
           type: string
         value:
@@ -2833,6 +2920,14 @@ components:
         sql:
           $ref: "#/components/schemas/QueryRequestSql"
           description: Main query request body.
+        timeout_ms:
+          description:
+            The maximum amount of time that the system will attempt to
+            complete query execution before aborting the query and returning an error.
+            The maximum value for this timeout is 2 minutes. async_options.timeout_ms
+            will override this timeout.
+          format: int64
+          type: integer
       required:
         - sql
       type: object
@@ -2856,11 +2951,6 @@ components:
             this query call. Only relevant if `paginate` flag is also set.
           format: int32
           type: integer
-        paginate:
-          description:
-            Flag to paginate and store the results of this query for later
-            sequential retrieval.
-          type: boolean
         parameters:
           description: List of named parameters.
           items:
@@ -3002,12 +3092,7 @@ components:
             mapping in `field_mapping_query` instead.
         field_mapping_query:
           $ref: "#/components/schemas/FieldMappingQuery"
-          description: Mapping of fields for a collection.
-        field_mappings:
-          description: Deprecated. List of mappings. Use field_mapping_query instead.
-          items:
-            $ref: "#/components/schemas/FieldMappingV2"
-          type: array
+          description: Ingest transformation query.
         name:
           description:
             Unique identifier for collection, can contain alphanumeric
@@ -3027,6 +3112,13 @@ components:
           items:
             $ref: "#/components/schemas/S3SourceWrapper"
           type: array
+        storage_compression_type:
+          description: RocksDB storage compression type.
+          enum:
+            - LZ4
+            - ZSTD
+          example: LZ4
+          type: string
       required:
         - name
       type: object
@@ -3107,12 +3199,7 @@ components:
             mapping in `field_mapping_query` instead.
         field_mapping_query:
           $ref: "#/components/schemas/FieldMappingQuery"
-          description: Mapping of fields for a collection.
-        field_mappings:
-          description: Deprecated. List of mappings. Use field_mapping_query instead.
-          items:
-            $ref: "#/components/schemas/FieldMappingV2"
-          type: array
+          description: Ingest transformation query.
         name:
           description:
             Unique identifier for collection, can contain alphanumeric
@@ -3132,6 +3219,13 @@ components:
           items:
             $ref: "#/components/schemas/SnowflakeSourceWrapper"
           type: array
+        storage_compression_type:
+          description: RocksDB storage compression type.
+          enum:
+            - LZ4
+            - ZSTD
+          example: LZ4
+          type: string
       required:
         - name
       type: object
@@ -3443,6 +3537,12 @@ components:
           description: MongoDB database name containing this collection.
           example: my_database
           type: string
+        retrieve_full_document:
+          description:
+            Whether to get the full document from the MongoDB change stream
+            to enable multi-field expression transformations. Selecting this option
+            will increase load on your upstream MongoDB database.
+          type: boolean
         status:
           allOf:
             - $ref: "#/components/schemas/StatusMongoDb"
@@ -3528,6 +3628,15 @@ components:
         - database
         - schema
         - table_name
+      type: object
+    SourceSystem:
+      properties:
+        type:
+          description: The type of this system source.
+          enum:
+            - QUERY_LOGS
+          example: QUERY_LOGS
+          type: string
       type: object
     SqlExpression:
       properties:
@@ -3889,6 +3998,18 @@ components:
           $ref: "#/components/schemas/ApiKey"
           description: The API key that was updated.
       type: object
+    UpdateCollectionRequest:
+      properties:
+        description:
+          description: Updated text describing the collection.
+          example: transactions from stores worldwide
+          type: string
+        field_mapping_query:
+          $ref: "#/components/schemas/FieldMappingQuery"
+          description:
+            Updated ingest transformation query. Note that updating the
+            transformation will lead to a brief interruption in ingestion.
+      type: object
     UpdateQueryLambdaRequest:
       properties:
         description:
@@ -3970,6 +4091,10 @@ components:
       type: object
     UpdateVirtualInstanceRequest:
       properties:
+        auto_scaling_policy:
+          $ref: "#/components/schemas/AutoScalingPolicy"
+          description: Options for configuring auto scaling policy
+          example: "true"
         auto_suspend_enabled:
           description: Whether auto-suspend should be enabled for this Virtual Instance.
           example: true
@@ -3983,8 +4108,20 @@ components:
           description: New virtual instance description.
           example: VI for prod traffic
           type: string
-        monitoring_enabled:
+        enable_remount_on_resume:
+          description:
+            When a Virtual Instance is resumed, it will remount all collections
+            that were mounted when the Virtual Instance was suspended.
+          example: true
           type: boolean
+        mount_refresh_interval_seconds:
+          description:
+            Number of seconds between data refreshes for mounts on this
+            Virtual Instance. A value of 0 means continuous refresh and a value of
+            null means never refresh.
+          example: 3600
+          format: int32
+          type: integer
         name:
           description: New virtual instance name.
           example: prod_vi
@@ -4125,6 +4262,9 @@ components:
       type: object
     VirtualInstance:
       properties:
+        auto_scaling_policy:
+          $ref: "#/components/schemas/AutoScalingPolicy"
+          description: Options for configuring auto scaling policy
         auto_suspend_seconds:
           description: Number of seconds without queries after which the VI is suspended
           example: 3600
@@ -4183,12 +4323,25 @@ components:
           example: MEDIUM
           readOnly: true
           type: string
+        enable_remount_on_resume:
+          description:
+            When a Virtual Instance is resumed, it will remount all collections
+            that were mounted when the Virtual Instance was suspended.
+          example: true
+          type: boolean
         id:
           description: Unique identifier for virtual instance.
           example: 123e4567-e89b-12d3-a456-556642440000
           type: string
         monitoring_enabled:
           type: boolean
+        mount_refresh_interval_seconds:
+          description:
+            Number of seconds between data refreshes for mounts on this
+            Virtual Instance
+          example: 3600
+          format: int32
+          type: integer
         name:
           description: Virtual instance name.
           example: prod_vi
@@ -9066,7 +9219,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: not ready
-      summary: Mount Collection
+      summary: Mount Collections
       tags:
         - Virtual Instances
   /v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts/{collectionPath}:
@@ -9174,7 +9327,7 @@ paths:
       tags:
         - Virtual Instances
     get:
-      description: "[beta] Get a mount on this virtual instance."
+      description: "[beta] Retrieve a mount on this virtual instance."
       operationId: getCollectionMount
       parameters:
         - description: Virtual Instance RRN
@@ -10305,6 +10458,84 @@ paths:
               schema:
                 $ref: "#/components/schemas/DeleteAliasResponse"
           description: alias deleted successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
       summary: Delete Alias
       tags:
         - Aliases
@@ -10446,6 +10677,84 @@ paths:
               schema:
                 $ref: "#/components/schemas/GetAliasResponse"
           description: alias updated successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
       summary: Update Alias
       tags:
         - Aliases
@@ -11937,6 +12246,119 @@ paths:
                 $ref: "#/components/schemas/ErrorModel"
           description: not ready
       summary: Retrieve Collection
+      tags:
+        - Collections
+      x-rename: get
+    put:
+      description: Update details about a collection.
+      operationId: updateCollection
+      parameters:
+        - description: name of the workspace
+          in: path
+          name: workspace
+          required: true
+          schema:
+            default: commons
+            type: string
+        - description: name of the collection
+          in: path
+          name: collection
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateCollectionRequest"
+        description: JSON object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetCollectionResponse"
+          description: collection updated successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Update Collection
       tags:
         - Collections
       x-rename: get
@@ -13851,6 +14273,84 @@ paths:
               schema:
                 $ref: "#/components/schemas/CreateViewResponse"
           description: view created successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
       summary: Create View
       tags:
         - Views
@@ -13880,6 +14380,84 @@ paths:
               schema:
                 $ref: "#/components/schemas/DeleteViewResponse"
           description: view deleted successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
       summary: Delete View
       tags:
         - Views
@@ -14021,6 +14599,84 @@ paths:
               schema:
                 $ref: "#/components/schemas/UpdateViewResponse"
           description: view updated successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
       summary: Update View
       tags:
         - Views
