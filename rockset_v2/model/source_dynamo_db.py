@@ -11,7 +11,7 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from rockset.model_utils import (  # noqa: F401
+from rockset_v2.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
     ModelNormal,
@@ -26,12 +26,12 @@ from rockset.model_utils import (  # noqa: F401
     validate_get_composed_info,
     OpenApiModel
 )
-from rockset.exceptions import ApiAttributeError
+from rockset_v2.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from rockset.model.status_dynamo_db import StatusDynamoDb
-    from rockset.model.status_dynamo_db_v2 import StatusDynamoDbV2
+    from rockset_v2.model.status_dynamo_db import StatusDynamoDb
+    from rockset_v2.model.status_dynamo_db_v2 import StatusDynamoDbV2
     globals()['StatusDynamoDb'] = StatusDynamoDb
     globals()['StatusDynamoDbV2'] = StatusDynamoDbV2
 

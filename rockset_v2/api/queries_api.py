@@ -14,8 +14,8 @@ import typing  # noqa: F401
 
 import asyncio
 
-from rockset.api_client import ApiClient, Endpoint as _Endpoint
-from rockset.model_utils import (  # noqa: F401
+from rockset_v2.api_client import ApiClient, Endpoint as _Endpoint
+from rockset_v2.model_utils import (  # noqa: F401
     check_allowed_values,
     check_validations,
     date,
@@ -24,15 +24,15 @@ from rockset.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from rockset.model.cancel_query_response import CancelQueryResponse
-from rockset.model.error_model import ErrorModel
-from rockset.model.get_query_response import GetQueryResponse
-from rockset.model.list_queries_response import ListQueriesResponse
-from rockset.model.query_pagination_response import QueryPaginationResponse
-from rockset.model.query_request import QueryRequest
-from rockset.model.query_response import QueryResponse
-from rockset.model.validate_query_response import ValidateQueryResponse
-from rockset.models import *
+from rockset_v2.model.cancel_query_response import CancelQueryResponse
+from rockset_v2.model.error_model import ErrorModel
+from rockset_v2.model.get_query_response import GetQueryResponse
+from rockset_v2.model.list_queries_response import ListQueriesResponse
+from rockset_v2.model.query_pagination_response import QueryPaginationResponse
+from rockset_v2.model.query_request import QueryRequest
+from rockset_v2.model.query_response import QueryResponse
+from rockset_v2.model.validate_query_response import ValidateQueryResponse
+from rockset_v2.models import *
 
 
 class Queries(object):
@@ -373,14 +373,14 @@ class Queries(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Queries.cancel_query(
-            query_id="queryId_example",
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Queries.cancel_query(
+    query_id="queryId_example",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             query_id (str): [required]
@@ -458,14 +458,14 @@ class Queries(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Queries.get_query(
-            query_id="queryId_example",
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Queries.get_query(
+    query_id="queryId_example",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             query_id (str): [required]
@@ -546,14 +546,14 @@ class Queries(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Queries.get_query_results(
-            query_id="queryId_example",
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Queries.get_query_results(
+    query_id="queryId_example",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             query_id (str): [required]
@@ -641,13 +641,13 @@ class Queries(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Queries.list_active_queries(
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Queries.list_active_queries(
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -715,6 +715,7 @@ class Queries(object):
         *,
         sql: QueryRequestSql,
         async_options: AsyncQueryOptions = None,
+        timeout_ms: int = None,
         **kwargs
     ) -> typing.Union[QueryResponse, asyncio.Future]:
         """Execute SQL Query  # noqa: E501
@@ -723,36 +724,37 @@ class Queries(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Queries.query(
-            async_options=AsyncQueryOptions(
-                client_timeout_ms=1,
-                max_initial_results=1,
-                timeout_ms=1,
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Queries.query(
+    async_options=AsyncQueryOptions(
+        client_timeout_ms=1,
+        max_initial_results=1,
+        timeout_ms=1,
+    ),
+    sql=QueryRequestSql(
+        default_row_limit=1,
+        generate_warnings=False,
+        initial_paginate_response_doc_count=1,
+        parameters=[
+            QueryParameter(
+                name="_id",
+                type="string",
+                value="85beb391",
             ),
-            sql=QueryRequestSql(
-                default_row_limit=1,
-                generate_warnings=False,
-                initial_paginate_response_doc_count=1,
-                paginate=True,
-                parameters=[
-                    QueryParameter(
-                        name="_id",
-                        type="string",
-                        value="85beb391",
-                    ),
-                ],
-                query="SELECT * FROM foo where _id = :_id",
-            ),
-            async_req=True,
-        )
-        result = await future
-        ```
+        ],
+        query="SELECT * FROM foo where _id = :_id",
+    ),
+    timeout_ms=1,
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             async_options (AsyncQueryOptions): [optional]
             sql (QueryRequestSql): [required]
+            timeout_ms (int): The maximum amount of time that the system will attempt to complete query execution before aborting the query and returning an error. The maximum value for this timeout is 2 minutes. async_options.timeout_ms will override this timeout.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -820,6 +822,7 @@ class Queries(object):
         *,
         sql: QueryRequestSql,
         async_options: AsyncQueryOptions = None,
+        timeout_ms: int = None,
         **kwargs
     ) -> typing.Union[ValidateQueryResponse, asyncio.Future]:
         """Validate Query  # noqa: E501
@@ -828,36 +831,37 @@ class Queries(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Queries.validate(
-            async_options=AsyncQueryOptions(
-                client_timeout_ms=1,
-                max_initial_results=1,
-                timeout_ms=1,
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Queries.validate(
+    async_options=AsyncQueryOptions(
+        client_timeout_ms=1,
+        max_initial_results=1,
+        timeout_ms=1,
+    ),
+    sql=QueryRequestSql(
+        default_row_limit=1,
+        generate_warnings=False,
+        initial_paginate_response_doc_count=1,
+        parameters=[
+            QueryParameter(
+                name="_id",
+                type="string",
+                value="85beb391",
             ),
-            sql=QueryRequestSql(
-                default_row_limit=1,
-                generate_warnings=False,
-                initial_paginate_response_doc_count=1,
-                paginate=True,
-                parameters=[
-                    QueryParameter(
-                        name="_id",
-                        type="string",
-                        value="85beb391",
-                    ),
-                ],
-                query="SELECT * FROM foo where _id = :_id",
-            ),
-            async_req=True,
-        )
-        result = await future
-        ```
+        ],
+        query="SELECT * FROM foo where _id = :_id",
+    ),
+    timeout_ms=1,
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             async_options (AsyncQueryOptions): [optional]
             sql (QueryRequestSql): [required]
+            timeout_ms (int): The maximum amount of time that the system will attempt to complete query execution before aborting the query and returning an error. The maximum value for this timeout is 2 minutes. async_options.timeout_ms will override this timeout.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

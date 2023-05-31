@@ -11,7 +11,7 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from rockset.model_utils import (  # noqa: F401
+from rockset_v2.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
     ModelNormal,
@@ -26,17 +26,15 @@ from rockset.model_utils import (  # noqa: F401
     validate_get_composed_info,
     OpenApiModel
 )
-from rockset.exceptions import ApiAttributeError
+from rockset_v2.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from rockset.model.event_time_info import EventTimeInfo
-    from rockset.model.field_mapping_query import FieldMappingQuery
-    from rockset.model.field_mapping_v2 import FieldMappingV2
-    from rockset.model.field_partition import FieldPartition
+    from rockset_v2.model.event_time_info import EventTimeInfo
+    from rockset_v2.model.field_mapping_query import FieldMappingQuery
+    from rockset_v2.model.field_partition import FieldPartition
     globals()['EventTimeInfo'] = EventTimeInfo
     globals()['FieldMappingQuery'] = FieldMappingQuery
-    globals()['FieldMappingV2'] = FieldMappingV2
     globals()['FieldPartition'] = FieldPartition
 
 
@@ -65,6 +63,10 @@ class CreateCollectionRequest(ModelNormal):
     """
     
     allowed_values = {
+        ('storage_compression_type',): {
+            'LZ4': "LZ4",
+            'ZSTD': "ZSTD",
+        },
     }
 
     validations = {
@@ -100,9 +102,9 @@ class CreateCollectionRequest(ModelNormal):
             'description': (str, none_type),  # noqa: E501
             'event_time_info': (EventTimeInfo, none_type),  # noqa: E501
             'field_mapping_query': (FieldMappingQuery, none_type),  # noqa: E501
-            'field_mappings': ([FieldMappingV2], none_type),  # noqa: E501
             'name': (str, none_type),  # noqa: E501
             'retention_secs': (int, none_type),  # noqa: E501
+            'storage_compression_type': (str, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -115,9 +117,9 @@ class CreateCollectionRequest(ModelNormal):
         'description': 'description',  # noqa: E501
         'event_time_info': 'event_time_info',  # noqa: E501
         'field_mapping_query': 'field_mapping_query',  # noqa: E501
-        'field_mappings': 'field_mappings',  # noqa: E501
         'name': 'name',  # noqa: E501
         'retention_secs': 'retention_secs',  # noqa: E501
+        'storage_compression_type': 'storage_compression_type',  # noqa: E501
     }
 
     read_only_vars = {
@@ -165,9 +167,9 @@ class CreateCollectionRequest(ModelNormal):
             description (str): Text describing the collection.. [optional]  # noqa: E501
             event_time_info (EventTimeInfo): [optional]  # noqa: E501
             field_mapping_query (FieldMappingQuery): [optional]  # noqa: E501
-            field_mappings ([FieldMappingV2]): Deprecated. List of mappings. Use field_mapping_query instead.. [optional]  # noqa: E501
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [optional]  # noqa: E501
             retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]  # noqa: E501
+            storage_compression_type (str): RocksDB storage compression type.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -223,9 +225,9 @@ class CreateCollectionRequest(ModelNormal):
             description (str): Text describing the collection.. [optional]  # noqa: E501
             event_time_info (EventTimeInfo): [optional]  # noqa: E501
             field_mapping_query (FieldMappingQuery): [optional]  # noqa: E501
-            field_mappings ([FieldMappingV2]): Deprecated. List of mappings. Use field_mapping_query instead.. [optional]  # noqa: E501
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [optional]  # noqa: E501
             retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]  # noqa: E501
+            storage_compression_type (str): RocksDB storage compression type.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

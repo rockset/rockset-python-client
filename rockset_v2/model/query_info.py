@@ -11,7 +11,7 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from rockset.model_utils import (  # noqa: F401
+from rockset_v2.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
     ModelNormal,
@@ -26,13 +26,13 @@ from rockset.model_utils import (  # noqa: F401
     validate_get_composed_info,
     OpenApiModel
 )
-from rockset.exceptions import ApiAttributeError
+from rockset_v2.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from rockset.model.pagination import Pagination
-    from rockset.model.query_error import QueryError
-    from rockset.model.stats import Stats
+    from rockset_v2.model.pagination import Pagination
+    from rockset_v2.model.query_error import QueryError
+    from rockset_v2.model.stats import Stats
     globals()['Pagination'] = Pagination
     globals()['QueryError'] = QueryError
     globals()['Stats'] = Stats
@@ -104,6 +104,7 @@ class QueryInfo(ModelNormal):
             'pagination': (Pagination, none_type),  # noqa: E501
             'query_errors': ([QueryError], none_type),  # noqa: E501
             'query_id': (str, none_type),  # noqa: E501
+            'sql': (str, none_type),  # noqa: E501
             'stats': (Stats, none_type),  # noqa: E501
             'status': (str, none_type),  # noqa: E501
             'submitted_at': (str, none_type),  # noqa: E501
@@ -121,6 +122,7 @@ class QueryInfo(ModelNormal):
         'pagination': 'pagination',  # noqa: E501
         'query_errors': 'query_errors',  # noqa: E501
         'query_id': 'query_id',  # noqa: E501
+        'sql': 'sql',  # noqa: E501
         'stats': 'stats',  # noqa: E501
         'status': 'status',  # noqa: E501
         'submitted_at': 'submitted_at',  # noqa: E501
@@ -173,6 +175,7 @@ class QueryInfo(ModelNormal):
             pagination (Pagination): [optional]  # noqa: E501
             query_errors ([QueryError]): Errors encountered while executing the query.. [optional]  # noqa: E501
             query_id (str): Unique Query ID.. [optional]  # noqa: E501
+            sql (str): The SQL query for this request. [optional]  # noqa: E501
             stats (Stats): [optional]  # noqa: E501
             status (str): Status of the query.. [optional]  # noqa: E501
             submitted_at (str): Time (UTC) the query request was first received and queued for execution.. [optional]  # noqa: E501
@@ -233,6 +236,7 @@ class QueryInfo(ModelNormal):
             pagination (Pagination): [optional]  # noqa: E501
             query_errors ([QueryError]): Errors encountered while executing the query.. [optional]  # noqa: E501
             query_id (str): Unique Query ID.. [optional]  # noqa: E501
+            sql (str): The SQL query for this request. [optional]  # noqa: E501
             stats (Stats): [optional]  # noqa: E501
             status (str): Status of the query.. [optional]  # noqa: E501
             submitted_at (str): Time (UTC) the query request was first received and queued for execution.. [optional]  # noqa: E501

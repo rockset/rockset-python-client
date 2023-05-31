@@ -1,4 +1,4 @@
-# rockset.QueryLambdas
+# rockset_v2.QueryLambdas
 
 All URIs are relative to *https://api.use1a1.rockset.com* or the apiserver provided when initializing RocksetClient
 
@@ -32,8 +32,8 @@ Create a Query Lambda in given workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -144,8 +144,8 @@ Create a tag for a specific Query Lambda version, or update that tag if it alrea
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -237,8 +237,8 @@ Delete a Query Lambda.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -324,8 +324,8 @@ Delete a tag for a specific Query Lambda
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -414,8 +414,8 @@ Delete a Query Lambda version.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -504,8 +504,8 @@ Execute a particular version of a Query Lambda.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -551,6 +551,7 @@ Name | Type | Description  | Notes
  **initial_paginate_response_doc_count** | **int** | Number of documents to return in addition to paginating for this query call. Only relevant if &#x60;paginate&#x60; flag is also set. | [optional]
  **paginate** | **bool** | Flag to paginate and store the results of this query for later / sequential retrieval. | [optional]
  **parameters** | [**[QueryParameter]**](QueryParameter.md) | List of named parameters. | [optional]
+ **timeout_ms** | **int** | The maximum amount of time that the system will attempt to complete query execution before aborting the query and returning an error. The maximum value for this timeout is 2 minutes. async_options.timeout_ms will override this timeout. | [optional]
  **virtual_instance_id** | **str** | Virtual instance on which to run the query. | [optional]
 
 
@@ -602,8 +603,8 @@ Execute the Query Lambda version associated with a given tag.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -649,6 +650,7 @@ Name | Type | Description  | Notes
  **initial_paginate_response_doc_count** | **int** | Number of documents to return in addition to paginating for this query call. Only relevant if &#x60;paginate&#x60; flag is also set. | [optional]
  **paginate** | **bool** | Flag to paginate and store the results of this query for later / sequential retrieval. | [optional]
  **parameters** | [**[QueryParameter]**](QueryParameter.md) | List of named parameters. | [optional]
+ **timeout_ms** | **int** | The maximum amount of time that the system will attempt to complete query execution before aborting the query and returning an error. The maximum value for this timeout is 2 minutes. async_options.timeout_ms will override this timeout. | [optional]
  **virtual_instance_id** | **str** | Virtual instance on which to run the query. | [optional]
 
 
@@ -700,8 +702,8 @@ Retrieve the Query Lambda version associated with a given tag.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -790,8 +792,8 @@ Retrieve details for a specified version of a Query Lambda.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -880,8 +882,8 @@ List all Query Lambdas in an organization.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -961,8 +963,8 @@ List all tags associated with a Query Lambda
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1048,8 +1050,8 @@ List all versions of a Query Lambda.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1135,8 +1137,8 @@ List all Query Lambdas under given workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1219,8 +1221,8 @@ Create a new version of a Query Lambda in given workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client

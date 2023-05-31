@@ -15,7 +15,7 @@ import sys
 import urllib3
 
 from http import client as http_client
-from rockset.exceptions import ApiValueError
+from rockset_v2.exceptions import ApiValueError
 
 
 JSON_SCHEMA_VALIDATION_KEYWORDS = {
@@ -74,7 +74,7 @@ class Configuration(object):
 
     Requests to the Rockset API made from clients should use apikeys which are set in the authorization header with a prefix of 'apikey'.
 
-    conf = rockset.Configuration(
+    conf = rockset_v2.Configuration(
         api_key='abc123'
     )
 
@@ -122,7 +122,7 @@ class Configuration(object):
         self.logger = {}
         """Logging Settings
         """
-        self.logger["package_logger"] = logging.getLogger("rockset")
+        self.logger["package_logger"] = logging.getLogger("rockset_v2")
         self.logger["urllib3_logger"] = logging.getLogger("urllib3")
         self.logger_format = '%(asctime)s %(levelname)s %(message)s'
         """Log format

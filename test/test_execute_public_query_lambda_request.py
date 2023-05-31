@@ -9,7 +9,7 @@
 
 
 import sys
-from rockset.models import *
+from rockset_v2.models import *
 
 
 def test_execute_public_query_lambda_request_init():

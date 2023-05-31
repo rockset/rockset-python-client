@@ -13,20 +13,20 @@
 __version__ = "1.0.0"
 
 # import ApiClient
-from rockset.api_client import ApiClient
+from rockset_v2.api_client import ApiClient
 
 # import Configuration
-from rockset.configuration import Configuration
+from rockset_v2.configuration import Configuration
 
 # import exceptions
-from rockset.exceptions import RocksetException
-from rockset.exceptions import ApiAttributeError
-from rockset.exceptions import ApiTypeError
-from rockset.exceptions import ApiValueError
-from rockset.exceptions import ApiKeyError
-from rockset.exceptions import ApiException
-from rockset.exceptions import BadRequestException
+from rockset_v2.exceptions import RocksetException
+from rockset_v2.exceptions import ApiAttributeError
+from rockset_v2.exceptions import ApiTypeError
+from rockset_v2.exceptions import ApiValueError
+from rockset_v2.exceptions import ApiKeyError
+from rockset_v2.exceptions import ApiException
+from rockset_v2.exceptions import BadRequestException
 
-from rockset.rockset_client import DevRegions, Regions, RocksetClient
-from rockset.document import Document
-from rockset.query_paginator import QueryPaginator
+from rockset_v2.rockset_client import DevRegions, Regions, RocksetClient
+from rockset_v2.document import Document
+from rockset_v2.query_paginator import QueryPaginator

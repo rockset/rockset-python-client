@@ -19,7 +19,7 @@ from urllib.request import proxy_bypass_environment
 import urllib3
 import ipaddress
 
-from rockset.exceptions import ApiException, BadRequestException, UnauthorizedException, ForbiddenException, NotFoundException, ServiceException, ApiValueError
+from rockset_v2.exceptions import ApiException, BadRequestException, UnauthorizedException, ForbiddenException, NotFoundException, ServiceException, ApiValueError
 
 
 logger = logging.getLogger(__name__)

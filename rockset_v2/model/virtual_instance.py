@@ -11,7 +11,7 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from rockset.model_utils import (  # noqa: F401
+from rockset_v2.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
     ModelNormal,
@@ -26,11 +26,13 @@ from rockset.model_utils import (  # noqa: F401
     validate_get_composed_info,
     OpenApiModel
 )
-from rockset.exceptions import ApiAttributeError
+from rockset_v2.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from rockset.model.virtual_instance_stats import VirtualInstanceStats
+    from rockset_v2.model.auto_scaling_policy import AutoScalingPolicy
+    from rockset_v2.model.virtual_instance_stats import VirtualInstanceStats
+    globals()['AutoScalingPolicy'] = AutoScalingPolicy
     globals()['VirtualInstanceStats'] = VirtualInstanceStats
 
 
@@ -126,6 +128,7 @@ class VirtualInstance(ModelNormal):
         lazy_import()
         return {
             'name': (str,),  # noqa: E501
+            'auto_scaling_policy': (AutoScalingPolicy, none_type),  # noqa: E501
             'auto_suspend_seconds': (int, none_type),  # noqa: E501
             'created_at': (str, none_type),  # noqa: E501
             'created_by': (str, none_type),  # noqa: E501
@@ -134,8 +137,10 @@ class VirtualInstance(ModelNormal):
             'default_vi': (bool, none_type),  # noqa: E501
             'description': (str, none_type),  # noqa: E501
             'desired_size': (str, none_type),  # noqa: E501
+            'enable_remount_on_resume': (bool, none_type),  # noqa: E501
             'id': (str, none_type),  # noqa: E501
             'monitoring_enabled': (bool, none_type),  # noqa: E501
+            'mount_refresh_interval_seconds': (int, none_type),  # noqa: E501
             'resumed_at': (str, none_type),  # noqa: E501
             'rrn': (str, none_type),  # noqa: E501
             'scaled_pod_count': (int, none_type),  # noqa: E501
@@ -150,6 +155,7 @@ class VirtualInstance(ModelNormal):
 
     attribute_map = {
         'name': 'name',  # noqa: E501
+        'auto_scaling_policy': 'auto_scaling_policy',  # noqa: E501
         'auto_suspend_seconds': 'auto_suspend_seconds',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
         'created_by': 'created_by',  # noqa: E501
@@ -158,8 +164,10 @@ class VirtualInstance(ModelNormal):
         'default_vi': 'default_vi',  # noqa: E501
         'description': 'description',  # noqa: E501
         'desired_size': 'desired_size',  # noqa: E501
+        'enable_remount_on_resume': 'enable_remount_on_resume',  # noqa: E501
         'id': 'id',  # noqa: E501
         'monitoring_enabled': 'monitoring_enabled',  # noqa: E501
+        'mount_refresh_interval_seconds': 'mount_refresh_interval_seconds',  # noqa: E501
         'resumed_at': 'resumed_at',  # noqa: E501
         'rrn': 'rrn',  # noqa: E501
         'scaled_pod_count': 'scaled_pod_count',  # noqa: E501
@@ -213,6 +221,7 @@ class VirtualInstance(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            auto_scaling_policy (AutoScalingPolicy): [optional]  # noqa: E501
             auto_suspend_seconds (int): Number of seconds without queries after which the VI is suspended. [optional]  # noqa: E501
             created_at (str): ISO-8601 date of when virtual instance was created.. [optional]  # noqa: E501
             created_by (str): Creator of requested virtual instance.. [optional]  # noqa: E501
@@ -221,8 +230,10 @@ class VirtualInstance(ModelNormal):
             default_vi (bool): [optional]  # noqa: E501
             description (str): Virtual instance description.. [optional]  # noqa: E501
             desired_size (str): Virtual instance desired size.. [optional]  # noqa: E501
+            enable_remount_on_resume (bool): When a Virtual Instance is resumed, it will remount all collections that were mounted when the Virtual Instance was suspended.. [optional]  # noqa: E501
             id (str): Unique identifier for virtual instance.. [optional]  # noqa: E501
             monitoring_enabled (bool): [optional]  # noqa: E501
+            mount_refresh_interval_seconds (int): Number of seconds between data refreshes for mounts on this Virtual Instance. [optional]  # noqa: E501
             resumed_at (str): ISO-8601 date of when virtual instance was created.. [optional]  # noqa: E501
             rrn (str): Virtual Instance RRN.. [optional]  # noqa: E501
             scaled_pod_count (int): [optional]  # noqa: E501
@@ -281,14 +292,17 @@ class VirtualInstance(ModelNormal):
 
         Keyword Args:
             name (str): Virtual instance name.
+            auto_scaling_policy (AutoScalingPolicy): [optional]  # noqa: E501
             auto_suspend_seconds (int): Number of seconds without queries after which the VI is suspended. [optional]  # noqa: E501
             created_at (str): ISO-8601 date of when virtual instance was created.. [optional]  # noqa: E501
             created_by (str): Creator of requested virtual instance.. [optional]  # noqa: E501
             default_pod_count (int): [optional]  # noqa: E501
             default_vi (bool): [optional]  # noqa: E501
             description (str): Virtual instance description.. [optional]  # noqa: E501
+            enable_remount_on_resume (bool): When a Virtual Instance is resumed, it will remount all collections that were mounted when the Virtual Instance was suspended.. [optional]  # noqa: E501
             id (str): Unique identifier for virtual instance.. [optional]  # noqa: E501
             monitoring_enabled (bool): [optional]  # noqa: E501
+            mount_refresh_interval_seconds (int): Number of seconds between data refreshes for mounts on this Virtual Instance. [optional]  # noqa: E501
             resumed_at (str): ISO-8601 date of when virtual instance was created.. [optional]  # noqa: E501
             rrn (str): Virtual Instance RRN.. [optional]  # noqa: E501
             scaled_pod_count (int): [optional]  # noqa: E501

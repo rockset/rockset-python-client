@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **initial_paginate_response_doc_count** | **int** | Number of documents to return in addition to paginating for this query call. Only relevant if &#x60;paginate&#x60; flag is also set. | [optional] 
 **paginate** | **bool** | Flag to paginate and store the results of this query for later / sequential retrieval. | [optional] 
 **parameters** | [**[QueryParameter]**](QueryParameter.md) | List of named parameters. | [optional] 
+**timeout_ms** | **int** | The maximum amount of time that the system will attempt to complete query execution before aborting the query and returning an error. The maximum value for this timeout is 2 minutes. async_options.timeout_ms will override this timeout. | [optional] 
 **virtual_instance_id** | **str** | Virtual instance on which to run the query. | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 

@@ -11,7 +11,7 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from rockset.model_utils import (  # noqa: F401
+from rockset_v2.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
     ModelNormal,
@@ -26,12 +26,12 @@ from rockset.model_utils import (  # noqa: F401
     validate_get_composed_info,
     OpenApiModel
 )
-from rockset.exceptions import ApiAttributeError
+from rockset_v2.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from rockset.model.async_query_options import AsyncQueryOptions
-    from rockset.model.query_request_sql import QueryRequestSql
+    from rockset_v2.model.async_query_options import AsyncQueryOptions
+    from rockset_v2.model.query_request_sql import QueryRequestSql
     globals()['AsyncQueryOptions'] = AsyncQueryOptions
     globals()['QueryRequestSql'] = QueryRequestSql
 
@@ -91,6 +91,7 @@ class QueryRequest(ModelNormal):
         return {
             'sql': (QueryRequestSql,),  # noqa: E501
             'async_options': (AsyncQueryOptions, none_type),  # noqa: E501
+            'timeout_ms': (int, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -101,6 +102,7 @@ class QueryRequest(ModelNormal):
     attribute_map = {
         'sql': 'sql',  # noqa: E501
         'async_options': 'async_options',  # noqa: E501
+        'timeout_ms': 'timeout_ms',  # noqa: E501
     }
 
     read_only_vars = {
@@ -148,6 +150,7 @@ class QueryRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             async_options (AsyncQueryOptions): [optional]  # noqa: E501
+            timeout_ms (int): The maximum amount of time that the system will attempt to complete query execution before aborting the query and returning an error. The maximum value for this timeout is 2 minutes. async_options.timeout_ms will override this timeout.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -202,6 +205,7 @@ class QueryRequest(ModelNormal):
         Keyword Args:
             sql (QueryRequestSql):
             async_options (AsyncQueryOptions): [optional]  # noqa: E501
+            timeout_ms (int): The maximum amount of time that the system will attempt to complete query execution before aborting the query and returning an error. The maximum value for this timeout is 2 minutes. async_options.timeout_ms will override this timeout.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

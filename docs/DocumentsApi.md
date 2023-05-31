@@ -1,4 +1,4 @@
-# rockset.Documents
+# rockset_v2.Documents
 
 All URIs are relative to *https://api.use1a1.rockset.com* or the apiserver provided when initializing RocksetClient
 
@@ -21,8 +21,8 @@ Add documents to a collection.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -112,8 +112,8 @@ Delete documents from a collection.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -210,8 +210,8 @@ Update existing documents in a collection.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client

@@ -11,7 +11,7 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from rockset.model_utils import (  # noqa: F401
+from rockset_v2.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
     ModelNormal,
@@ -26,12 +26,11 @@ from rockset.model_utils import (  # noqa: F401
     validate_get_composed_info,
     OpenApiModel
 )
-from rockset.exceptions import ApiAttributeError
-from rockset.document import Document
+from rockset_v2.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from rockset.model.pagination_info import PaginationInfo
+    from rockset_v2.model.pagination_info import PaginationInfo
     globals()['PaginationInfo'] = PaginationInfo
 
 
@@ -182,9 +181,6 @@ class QueryPaginationResponse(ModelNormal):
                         self.additional_properties_type is None:
                 # discard variable.
                 continue
-            if var_name == "results":
-                setattr(self, "results", [Document(doc) for doc in var_value])
-                continue
             setattr(self, var_name, var_value)
         return self
 
@@ -267,9 +263,6 @@ class QueryPaginationResponse(ModelNormal):
                         self._configuration.discard_unknown_keys and \
                         self.additional_properties_type is None:
                 # discard variable.
-                continue
-            if var_name == "results":
-                setattr(self, "results", [Document(doc) for doc in var_value])
                 continue
             setattr(self, var_name, var_value)
             # todo: remove these comments - this stops the user from setting read only vars but we need this now to address a bug

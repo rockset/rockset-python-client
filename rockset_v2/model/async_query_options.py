@@ -11,7 +11,7 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from rockset.model_utils import (  # noqa: F401
+from rockset_v2.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
     ModelNormal,
@@ -26,7 +26,7 @@ from rockset.model_utils import (  # noqa: F401
     validate_get_composed_info,
     OpenApiModel
 )
-from rockset.exceptions import ApiAttributeError
+from rockset_v2.exceptions import ApiAttributeError
 
 
 
@@ -140,7 +140,7 @@ class AsyncQueryOptions(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             client_timeout_ms (int): The maximum amount of time that the client is willing to wait for the query to complete. If the query is not complete by this timeout, a response will be returned with a `query_id` that can be used to check the status of the query and retrieve results once the query has completed.. [optional]  # noqa: E501
             max_initial_results (int): The maximum number of results you will receive as a client. If the query exceeds this limit, the remaining results can be requested using a returned pagination cursor. In addition, there is a maximum response size of 100MiB so fewer than `max_results` may be returned.. [optional]  # noqa: E501
-            timeout_ms (int): The maximum amount of time that the system will attempt to complete query execution before aborting the query and returning an error.. [optional]  # noqa: E501
+            timeout_ms (int): The maximum amount of time that the system will attempt to complete query execution before aborting the query and returning an error. This must be set to a value that is greater than or equal to the client timeout, and the maximum value of this timeout is 30 minutes.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -194,7 +194,7 @@ class AsyncQueryOptions(ModelNormal):
         Keyword Args:
             client_timeout_ms (int): The maximum amount of time that the client is willing to wait for the query to complete. If the query is not complete by this timeout, a response will be returned with a `query_id` that can be used to check the status of the query and retrieve results once the query has completed.. [optional]  # noqa: E501
             max_initial_results (int): The maximum number of results you will receive as a client. If the query exceeds this limit, the remaining results can be requested using a returned pagination cursor. In addition, there is a maximum response size of 100MiB so fewer than `max_results` may be returned.. [optional]  # noqa: E501
-            timeout_ms (int): The maximum amount of time that the system will attempt to complete query execution before aborting the query and returning an error.. [optional]  # noqa: E501
+            timeout_ms (int): The maximum amount of time that the system will attempt to complete query execution before aborting the query and returning an error. This must be set to a value that is greater than or equal to the client timeout, and the maximum value of this timeout is 30 minutes.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

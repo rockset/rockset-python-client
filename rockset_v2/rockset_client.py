@@ -6,8 +6,8 @@ from functools import wraps
 from types import FunctionType
 from typing import Any, Dict, Union
 
-from rockset.api_client import ApiClient
-from rockset.apis import (
+from rockset_v2.api_client import ApiClient
+from rockset_v2.apis import (
     Aliases,
     APIKeys,
     Collections,
@@ -23,9 +23,9 @@ from rockset.apis import (
     VirtualInstances,
     Workspaces,
 )
-from rockset.configuration import Configuration
-from rockset.exceptions import ApiTypeError, ApiValueError, InitializationException
-from rockset.models import QueryParameter, QueryRequestSql, QueryResponse
+from rockset_v2.configuration import Configuration
+from rockset_v2.exceptions import ApiTypeError, ApiValueError, InitializationException
+from rockset_v2.models import QueryParameter, QueryRequestSql, QueryResponse
 
 
 APISERVER_PATTERN = re.compile(r"^https:\/\/(\w|-|\.)+\.rockset\.com$")

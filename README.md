@@ -1,4 +1,4 @@
-# rockset
+# rockset-v2
 (These are the docs for Rockset's v1 Python client. Looking for the [v0 docs](https://rockset.com/docs/client/python/)?)
 
 Rockset's Python SDK allows for creating and managing resources in Rockset. Each supported endpoint is documented below.
@@ -18,7 +18,7 @@ pip install rockset
 
 Then import the package:
 ```python
-import rockset
+import rockset_v2
 ```
 
 ## Getting Started
@@ -26,13 +26,13 @@ import rockset
 Please follow the [installation procedure](#installation--usage) and then run the following:
 
 ```python
-import rockset
+import rockset_v2
 
 # Defining the host is optional and defaults to *https://api.use1a1.rockset.com*
-rs = rockset.RocksetClient(host=rockset.Regions.use1a1, api_key="APIKEY")
+rs = rockset_v2.RocksetClient(host=rockset.Regions.use1a1, api_key="APIKEY")
 try:
     rs.APIKeys.create(name="api-key-name", role="member")
-except rockset.ApiException as e:
+except rockset_v2.ApiException as e:
     print("Exception when calling ApiKey->create_api_key: %s\n" % e)
 ```
 
@@ -64,7 +64,7 @@ When making requests, certain parameters will oftentimes be instances of classes
 Queries can be made be either calling the regular client [**query method**](docs/QueriesApi.md#query) or by using the convenience method (rs.sql). The convenience method currently does not support all the options of the regular call. If you need these more advanced features, you should use the regular call.
 
 ```python
-from rockset import RocksetClient
+from rockset_v2 import RocksetClient
 
 rs = RocksetClient(api_key=APIKEY)
 try:
@@ -83,9 +83,9 @@ except rockset.ApiException as e:
 ```
 
 ```python
-import rockset
+import rockset_v2
 
-rs = rockset.RocksetClient(host=rockset.Regions.use1a1, api_key="APIKEY")
+rs = rockset_v2.RocksetClient(host=rockset_v2.Regions.use1a1, api_key="APIKEY")
 try:
     res = rs.sql(query="SELECT * FROM _events WHERE kind=:event_type LIMIT 100", params={"event_type", "INGEST"})
 except rockset.ApiException as e:
@@ -97,13 +97,13 @@ except rockset.ApiException as e:
 Query pagination can be achieved by using the normal API call (rs.Queries.get_query_results()) or by using the QueryPaginator class as an iterator. The QueryPaginator should be initialized by passing in a client object and a QueryResponse object. The QueryResponse object could be the result of any call that returns this object ([query](docs/QueriesApi.md#query), [get_query](docs/QueriesApi.md#get_query), [execute_query_lambda](docs/QueryLambdasApi.md#execute_query_lambda), [execute_query_lambda_by_tag](docs/QueryLambdasApi.md#execute_query_lambda_by_tag)). You will then be able to use the QueryPaginator object like you would any other iterator.
 
 ```python
-import rockset
+import rockset_v2
 
-rs = rockset.RocksetClient(host=rockset.Regions.use1a1, api_key="APIKEY")
-for page in rockset.QueryPaginator(
+rs = rockset_v2.RocksetClient(host=rockset_v2.Regions.use1a1, api_key="APIKEY")
+for page in rockset_v2.QueryPaginator(
     rs,
     rs.Queries.query(
-        sql=rockset.models.QueryRequestSql(
+        sql=rockset_v2.models.QueryRequestSql(
             query="SELECT * FROM _events LIMIT 500",
             paginate=True,
             initial_paginate_response_doc_count=100,
@@ -151,6 +151,7 @@ Class | Method | HTTP request | Description
 *Collections* | [**create_snowflake_collection**](docs/CollectionsApi.md#create_snowflake_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create snowflake collection
 *Collections* | [**delete**](docs/CollectionsApi.md#delete) | **DELETE** /v1/orgs/self/ws/{workspace}/collections/{collection} | Delete Collection
 *Collections* | [**get**](docs/CollectionsApi.md#get) | **GET** /v1/orgs/self/ws/{workspace}/collections/{collection} | Retrieve Collection
+*Collections* | [**get_0**](docs/CollectionsApi.md#get_0) | **PUT** /v1/orgs/self/ws/{workspace}/collections/{collection} | Update Collection
 *Collections* | [**list**](docs/CollectionsApi.md#list) | **GET** /v1/orgs/self/collections | List Collections
 *Collections* | [**workspace_collections**](docs/CollectionsApi.md#workspace_collections) | **GET** /v1/orgs/self/ws/{workspace}/collections | List Collections in Workspace
 *CustomRoles* | [**create**](docs/CustomRolesApi.md#create) | **POST** /v1/orgs/self/roles | Create a Role
@@ -194,7 +195,7 @@ Class | Method | HTTP request | Description
 *QueryLambdas* | [**list_query_lambda_versions**](docs/QueryLambdasApi.md#list_query_lambda_versions) | **GET** /v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/versions | List Query Lambda Versions
 *QueryLambdas* | [**list_query_lambdas_in_workspace**](docs/QueryLambdasApi.md#list_query_lambdas_in_workspace) | **GET** /v1/orgs/self/ws/{workspace}/lambdas | List Query Lambdas in Workspace
 *QueryLambdas* | [**update_query_lambda**](docs/QueryLambdasApi.md#update_query_lambda) | **POST** /v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/versions | Update Query Lambda
-*SharedLambdas* | [**execute_public_query_lambda**](docs/SharedLambdasApi.md#execute_public_query_lambda) | **GET** /v1/public/shared_lambdas/{public_access_id} | Execute a Public Query Lambda
+*SharedLambdas* | [**execute_public_query_lambda_with_params**](docs/SharedLambdasApi.md#execute_public_query_lambda_with_params) | **POST** /v1/public/shared_lambdas/{public_access_id} | Execute a Public Query Lambda
 *Users* | [**create**](docs/UsersApi.md#create) | **POST** /v1/orgs/self/users | Create User
 *Users* | [**delete**](docs/UsersApi.md#delete) | **DELETE** /v1/orgs/self/users/{user} | Delete User
 *Users* | [**get**](docs/UsersApi.md#get) | **GET** /v1/orgs/self/users/{user} | Retrieve User
@@ -216,7 +217,7 @@ Class | Method | HTTP request | Description
 *VirtualInstances* | [**get_virtual_instance_queries**](docs/VirtualInstancesApi.md#get_virtual_instance_queries) | **GET** /v1/orgs/self/virtualinstances/{virtualInstanceId}/queries | List Queries
 *VirtualInstances* | [**list**](docs/VirtualInstancesApi.md#list) | **GET** /v1/orgs/self/virtualinstances | List Virtual Instances
 *VirtualInstances* | [**list_collection_mounts**](docs/VirtualInstancesApi.md#list_collection_mounts) | **GET** /v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts | List Collection Mounts
-*VirtualInstances* | [**mount_collection**](docs/VirtualInstancesApi.md#mount_collection) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts | Mount Collection
+*VirtualInstances* | [**mount_collection**](docs/VirtualInstancesApi.md#mount_collection) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts | Mount Collections
 *VirtualInstances* | [**query_virtual_instance**](docs/VirtualInstancesApi.md#query_virtual_instance) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId}/queries | Execute SQL Query
 *VirtualInstances* | [**resume_virtual_instance**](docs/VirtualInstancesApi.md#resume_virtual_instance) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId}/resume | Resume Virtual Instance
 *VirtualInstances* | [**suspend_virtual_instance**](docs/VirtualInstancesApi.md#suspend_virtual_instance) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId}/suspend | Suspend Virtual Instance
@@ -235,6 +236,7 @@ Class | Method | HTTP request | Description
  - [Alias](docs/Alias.md)
  - [ApiKey](docs/ApiKey.md)
  - [AsyncQueryOptions](docs/AsyncQueryOptions.md)
+ - [AutoScalingPolicy](docs/AutoScalingPolicy.md)
  - [AwsAccessKey](docs/AwsAccessKey.md)
  - [AwsRole](docs/AwsRole.md)
  - [AzureBlobStorageCollectionCreationRequest](docs/AzureBlobStorageCollectionCreationRequest.md)
@@ -254,12 +256,14 @@ Class | Method | HTTP request | Description
  - [Collection](docs/Collection.md)
  - [CollectionMount](docs/CollectionMount.md)
  - [CollectionMountResponse](docs/CollectionMountResponse.md)
+ - [CollectionMountStats](docs/CollectionMountStats.md)
  - [CollectionStats](docs/CollectionStats.md)
  - [CreateAliasRequest](docs/CreateAliasRequest.md)
  - [CreateAliasResponse](docs/CreateAliasResponse.md)
  - [CreateApiKeyRequest](docs/CreateApiKeyRequest.md)
  - [CreateApiKeyResponse](docs/CreateApiKeyResponse.md)
  - [CreateCollectionMountRequest](docs/CreateCollectionMountRequest.md)
+ - [CreateCollectionMountsResponse](docs/CreateCollectionMountsResponse.md)
  - [CreateCollectionRequest](docs/CreateCollectionRequest.md)
  - [CreateCollectionResponse](docs/CreateCollectionResponse.md)
  - [CreateIntegrationRequest](docs/CreateIntegrationRequest.md)
@@ -295,6 +299,7 @@ Class | Method | HTTP request | Description
  - [DynamodbSourceWrapper](docs/DynamodbSourceWrapper.md)
  - [ErrorModel](docs/ErrorModel.md)
  - [EventTimeInfo](docs/EventTimeInfo.md)
+ - [ExecutePublicQueryLambdaRequest](docs/ExecutePublicQueryLambdaRequest.md)
  - [ExecuteQueryLambdaRequest](docs/ExecuteQueryLambdaRequest.md)
  - [FieldMappingQuery](docs/FieldMappingQuery.md)
  - [FieldMappingV2](docs/FieldMappingV2.md)
@@ -395,6 +400,7 @@ Class | Method | HTTP request | Description
  - [SourceMongoDb](docs/SourceMongoDb.md)
  - [SourceS3](docs/SourceS3.md)
  - [SourceSnowflake](docs/SourceSnowflake.md)
+ - [SourceSystem](docs/SourceSystem.md)
  - [SqlExpression](docs/SqlExpression.md)
  - [Stats](docs/Stats.md)
  - [Status](docs/Status.md)
@@ -413,6 +419,7 @@ Class | Method | HTTP request | Description
  - [UpdateAliasRequest](docs/UpdateAliasRequest.md)
  - [UpdateApiKeyRequest](docs/UpdateApiKeyRequest.md)
  - [UpdateApiKeyResponse](docs/UpdateApiKeyResponse.md)
+ - [UpdateCollectionRequest](docs/UpdateCollectionRequest.md)
  - [UpdateQueryLambdaRequest](docs/UpdateQueryLambdaRequest.md)
  - [UpdateRoleRequest](docs/UpdateRoleRequest.md)
  - [UpdateUnsubscribePreferencesRequest](docs/UpdateUnsubscribePreferencesRequest.md)

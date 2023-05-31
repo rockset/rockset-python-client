@@ -11,7 +11,7 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from rockset.model_utils import (  # noqa: F401
+from rockset_v2.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
     ModelNormal,
@@ -26,12 +26,12 @@ from rockset.model_utils import (  # noqa: F401
     validate_get_composed_info,
     OpenApiModel
 )
-from rockset.exceptions import ApiAttributeError
+from rockset_v2.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from rockset.model.format_params import FormatParams
-    from rockset.model.status_mongo_db import StatusMongoDb
+    from rockset_v2.model.format_params import FormatParams
+    from rockset_v2.model.status_mongo_db import StatusMongoDb
     globals()['FormatParams'] = FormatParams
     globals()['StatusMongoDb'] = StatusMongoDb
 
@@ -60,7 +60,7 @@ class MongodbSourceWrapper(ModelNormal):
           as additional properties values.
     """
     inner_field = "mongodb"
-    inner_properties = ["collection_name", "database_name", "status"]
+    inner_properties = ["collection_name", "database_name", "retrieve_full_document", "status"]
     allowed_values = {
     }
 
@@ -95,6 +95,7 @@ class MongodbSourceWrapper(ModelNormal):
             'format_params': (FormatParams, none_type),  # noqa: E501
             'integration_name': (str, none_type),  # noqa: E501
             'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
+            'retrieve_full_document': (bool, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -108,6 +109,7 @@ class MongodbSourceWrapper(ModelNormal):
         'format_params': 'format_params',  # noqa: E501
         'integration_name': 'integration_name',  # noqa: E501
         'status': 'status',  # noqa: E501
+        'retrieve_full_document': 'retrieve_full_document',  # noqa: E501
     }
 
     read_only_vars = {
@@ -159,6 +161,7 @@ class MongodbSourceWrapper(ModelNormal):
             format_params (FormatParams): [optional]  # noqa: E501
             integration_name (str): Name of integration to use.. [optional]  # noqa: E501
             status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
+            retrieve_full_document (bool): Whether to get the full document from the MongoDB change stream to enable multi-field expression transformations. Selecting this option will increase load on your upstream MongoDB database.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -216,6 +219,7 @@ class MongodbSourceWrapper(ModelNormal):
             database_name (str): MongoDB database name containing this collection.
             format_params (FormatParams): [optional]  # noqa: E501
             integration_name (str): Name of integration to use.. [optional]  # noqa: E501
+            retrieve_full_document (bool): Whether to get the full document from the MongoDB change stream to enable multi-field expression transformations. Selecting this option will increase load on your upstream MongoDB database.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

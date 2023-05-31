@@ -11,7 +11,7 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from rockset.model_utils import (  # noqa: F401
+from rockset_v2.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
     ModelNormal,
@@ -26,12 +26,12 @@ from rockset.model_utils import (  # noqa: F401
     validate_get_composed_info,
     OpenApiModel
 )
-from rockset.exceptions import ApiAttributeError
+from rockset_v2.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from rockset.model.async_query_options import AsyncQueryOptions
-    from rockset.model.query_parameter import QueryParameter
+    from rockset_v2.model.async_query_options import AsyncQueryOptions
+    from rockset_v2.model.query_parameter import QueryParameter
     globals()['AsyncQueryOptions'] = AsyncQueryOptions
     globals()['QueryParameter'] = QueryParameter
 
@@ -95,6 +95,7 @@ class ExecuteQueryLambdaRequest(ModelNormal):
             'initial_paginate_response_doc_count': (int, none_type),  # noqa: E501
             'paginate': (bool, none_type),  # noqa: E501
             'parameters': ([QueryParameter], none_type),  # noqa: E501
+            'timeout_ms': (int, none_type),  # noqa: E501
             'virtual_instance_id': (str, none_type),  # noqa: E501
         }
 
@@ -110,6 +111,7 @@ class ExecuteQueryLambdaRequest(ModelNormal):
         'initial_paginate_response_doc_count': 'initial_paginate_response_doc_count',  # noqa: E501
         'paginate': 'paginate',  # noqa: E501
         'parameters': 'parameters',  # noqa: E501
+        'timeout_ms': 'timeout_ms',  # noqa: E501
         'virtual_instance_id': 'virtual_instance_id',  # noqa: E501
     }
 
@@ -160,6 +162,7 @@ class ExecuteQueryLambdaRequest(ModelNormal):
             initial_paginate_response_doc_count (int): Number of documents to return in addition to paginating for this query call. Only relevant if `paginate` flag is also set.. [optional]  # noqa: E501
             paginate (bool): Flag to paginate and store the results of this query for later / sequential retrieval.. [optional]  # noqa: E501
             parameters ([QueryParameter]): List of named parameters.. [optional]  # noqa: E501
+            timeout_ms (int): The maximum amount of time that the system will attempt to complete query execution before aborting the query and returning an error. The maximum value for this timeout is 2 minutes. async_options.timeout_ms will override this timeout.. [optional]  # noqa: E501
             virtual_instance_id (str): Virtual instance on which to run the query.. [optional]  # noqa: E501
         """
 
@@ -218,6 +221,7 @@ class ExecuteQueryLambdaRequest(ModelNormal):
             initial_paginate_response_doc_count (int): Number of documents to return in addition to paginating for this query call. Only relevant if `paginate` flag is also set.. [optional]  # noqa: E501
             paginate (bool): Flag to paginate and store the results of this query for later / sequential retrieval.. [optional]  # noqa: E501
             parameters ([QueryParameter]): List of named parameters.. [optional]  # noqa: E501
+            timeout_ms (int): The maximum amount of time that the system will attempt to complete query execution before aborting the query and returning an error. The maximum value for this timeout is 2 minutes. async_options.timeout_ms will override this timeout.. [optional]  # noqa: E501
             virtual_instance_id (str): Virtual instance on which to run the query.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be

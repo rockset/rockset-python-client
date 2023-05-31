@@ -11,7 +11,7 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from rockset.model_utils import (  # noqa: F401
+from rockset_v2.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
     ModelNormal,
@@ -26,17 +26,17 @@ from rockset.model_utils import (  # noqa: F401
     validate_get_composed_info,
     OpenApiModel
 )
-from rockset.exceptions import ApiAttributeError
+from rockset_v2.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from rockset.model.alias import Alias
-    from rockset.model.bulk_stats import BulkStats
-    from rockset.model.collection_stats import CollectionStats
-    from rockset.model.field_mapping_query import FieldMappingQuery
-    from rockset.model.field_mapping_v2 import FieldMappingV2
-    from rockset.model.field_partition import FieldPartition
-    from rockset.model.source import Source
+    from rockset_v2.model.alias import Alias
+    from rockset_v2.model.bulk_stats import BulkStats
+    from rockset_v2.model.collection_stats import CollectionStats
+    from rockset_v2.model.field_mapping_query import FieldMappingQuery
+    from rockset_v2.model.field_mapping_v2 import FieldMappingV2
+    from rockset_v2.model.field_partition import FieldPartition
+    from rockset_v2.model.source import Source
     globals()['Alias'] = Alias
     globals()['BulkStats'] = BulkStats
     globals()['CollectionStats'] = CollectionStats

@@ -14,8 +14,8 @@ import typing  # noqa: F401
 
 import asyncio
 
-from rockset.api_client import ApiClient, Endpoint as _Endpoint
-from rockset.model_utils import (  # noqa: F401
+from rockset_v2.api_client import ApiClient, Endpoint as _Endpoint
+from rockset_v2.model_utils import (  # noqa: F401
     check_allowed_values,
     check_validations,
     date,
@@ -24,17 +24,17 @@ from rockset.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from rockset.model.create_user_request import CreateUserRequest
-from rockset.model.create_user_response import CreateUserResponse
-from rockset.model.delete_user_response import DeleteUserResponse
-from rockset.model.error_model import ErrorModel
-from rockset.model.list_unsubscribe_preferences_response import ListUnsubscribePreferencesResponse
-from rockset.model.list_users_response import ListUsersResponse
-from rockset.model.update_unsubscribe_preferences_request import UpdateUnsubscribePreferencesRequest
-from rockset.model.update_unsubscribe_preferences_response import UpdateUnsubscribePreferencesResponse
-from rockset.model.update_user_request import UpdateUserRequest
-from rockset.model.user import User
-from rockset.models import *
+from rockset_v2.model.create_user_request import CreateUserRequest
+from rockset_v2.model.create_user_response import CreateUserResponse
+from rockset_v2.model.delete_user_response import DeleteUserResponse
+from rockset_v2.model.error_model import ErrorModel
+from rockset_v2.model.list_unsubscribe_preferences_response import ListUnsubscribePreferencesResponse
+from rockset_v2.model.list_users_response import ListUsersResponse
+from rockset_v2.model.update_unsubscribe_preferences_request import UpdateUnsubscribePreferencesRequest
+from rockset_v2.model.update_unsubscribe_preferences_response import UpdateUnsubscribePreferencesResponse
+from rockset_v2.model.update_user_request import UpdateUserRequest
+from rockset_v2.model.user import User
+from rockset_v2.models import *
 
 
 class Users(object):
@@ -457,17 +457,17 @@ class Users(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Users.create(
-            email="hello@rockset.com",
-            first_name="John",
-            last_name="Doe",
-            roles=["admin","member","read-only"],
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Users.create(
+    email="hello@rockset.com",
+    first_name="John",
+    last_name="Doe",
+    roles=["admin","member","read-only"],
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             email (str): User email, must be unique.. [required]
@@ -548,14 +548,14 @@ class Users(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Users.delete(
-            user="user_example",
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Users.delete(
+    user="user_example",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             user (str): user email. [required]
@@ -633,14 +633,14 @@ class Users(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Users.get(
-            user="user_example",
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Users.get(
+    user="user_example",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             user (str): user email. [required]
@@ -716,13 +716,13 @@ class Users(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Users.get_current_user(
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Users.get_current_user(
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -795,13 +795,13 @@ class Users(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Users.list(
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Users.list(
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -874,13 +874,13 @@ class Users(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Users.list_unsubscribe_preferences(
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Users.list_unsubscribe_preferences(
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -958,17 +958,17 @@ class Users(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Users.update(
-            user="user_example",
-            first_name="John",
-            last_name="Doe",
-            roles=["admin","member","read-only"],
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Users.update(
+    user="user_example",
+    first_name="John",
+    last_name="Doe",
+    roles=["admin","member","read-only"],
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             user (str): email of the user to update. [required]
@@ -1051,18 +1051,18 @@ class Users(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Users.update_unsubscribe_preferences(
-            data=[
-                UnsubscribePreference(
-                    notification_type="create_apikey",
-                ),
-            ],
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Users.update_unsubscribe_preferences(
+    data=[
+        UnsubscribePreference(
+            notification_type="create_apikey",
+        ),
+    ],
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             data ([UnsubscribePreference]): List of notification preferences.. [optional]

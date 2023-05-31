@@ -14,8 +14,8 @@ import typing  # noqa: F401
 
 import asyncio
 
-from rockset.api_client import ApiClient, Endpoint as _Endpoint
-from rockset.model_utils import (  # noqa: F401
+from rockset_v2.api_client import ApiClient, Endpoint as _Endpoint
+from rockset_v2.model_utils import (  # noqa: F401
     check_allowed_values,
     check_validations,
     date,
@@ -24,21 +24,21 @@ from rockset.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from rockset.model.azure_blob_storage_integration_creation_request import AzureBlobStorageIntegrationCreationRequest
-from rockset.model.azure_event_hubs_integration_creation_request import AzureEventHubsIntegrationCreationRequest
-from rockset.model.create_integration_response import CreateIntegrationResponse
-from rockset.model.delete_integration_response import DeleteIntegrationResponse
-from rockset.model.dynamodb_integration_creation_request import DynamodbIntegrationCreationRequest
-from rockset.model.error_model import ErrorModel
-from rockset.model.gcs_integration_creation_request import GcsIntegrationCreationRequest
-from rockset.model.get_integration_response import GetIntegrationResponse
-from rockset.model.kafka_integration_creation_request import KafkaIntegrationCreationRequest
-from rockset.model.kinesis_integration_creation_request import KinesisIntegrationCreationRequest
-from rockset.model.list_integrations_response import ListIntegrationsResponse
-from rockset.model.mongodb_integration_creation_request import MongodbIntegrationCreationRequest
-from rockset.model.s3_integration_creation_request import S3IntegrationCreationRequest
-from rockset.model.snowflake_integration_creation_request import SnowflakeIntegrationCreationRequest
-from rockset.models import *
+from rockset_v2.model.azure_blob_storage_integration_creation_request import AzureBlobStorageIntegrationCreationRequest
+from rockset_v2.model.azure_event_hubs_integration_creation_request import AzureEventHubsIntegrationCreationRequest
+from rockset_v2.model.create_integration_response import CreateIntegrationResponse
+from rockset_v2.model.delete_integration_response import DeleteIntegrationResponse
+from rockset_v2.model.dynamodb_integration_creation_request import DynamodbIntegrationCreationRequest
+from rockset_v2.model.error_model import ErrorModel
+from rockset_v2.model.gcs_integration_creation_request import GcsIntegrationCreationRequest
+from rockset_v2.model.get_integration_response import GetIntegrationResponse
+from rockset_v2.model.kafka_integration_creation_request import KafkaIntegrationCreationRequest
+from rockset_v2.model.kinesis_integration_creation_request import KinesisIntegrationCreationRequest
+from rockset_v2.model.list_integrations_response import ListIntegrationsResponse
+from rockset_v2.model.mongodb_integration_creation_request import MongodbIntegrationCreationRequest
+from rockset_v2.model.s3_integration_creation_request import S3IntegrationCreationRequest
+from rockset_v2.model.snowflake_integration_creation_request import SnowflakeIntegrationCreationRequest
+from rockset_v2.models import *
 
 
 class Integrations(object):
@@ -672,19 +672,19 @@ class Integrations(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Integrations.create_azure_blob_storage_integration(
-            azure_blob_storage=AzureBlobStorageIntegration(
-                connection_string='''BlobEndpoint=https://<NamespaceName>.blob.core.windows.net;
-        SharedAccessSignature=<KeyValue>''',
-            ),
-            description="AWS account with event data for the data science team.",
-            name="event-logs",
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Integrations.create_azure_blob_storage_integration(
+    azure_blob_storage=AzureBlobStorageIntegration(
+        connection_string='''BlobEndpoint=https://<NamespaceName>.blob.core.windows.net;
+SharedAccessSignature=<KeyValue>''',
+    ),
+    description="AWS account with event data for the data science team.",
+    name="event-logs",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             azure_blob_storage (AzureBlobStorageIntegration): [optional]
@@ -766,18 +766,18 @@ class Integrations(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Integrations.create_azure_event_hubs_integration(
-            azure_event_hubs=AzureEventHubsIntegration(
-                connection_string="Endpoint=sb://<NamespaceName>.servicebus.windows.net/;SharedAccessKeyName=<KeyName>;SharedAccessKey=<KeyValue>",
-            ),
-            description="AWS account with event data for the data science team.",
-            name="event-logs",
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Integrations.create_azure_event_hubs_integration(
+    azure_event_hubs=AzureEventHubsIntegration(
+        connection_string="Endpoint=sb://<NamespaceName>.servicebus.windows.net/;SharedAccessKeyName=<KeyName>;SharedAccessKey=<KeyValue>",
+    ),
+    description="AWS account with event data for the data science team.",
+    name="event-logs",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             azure_event_hubs (AzureEventHubsIntegration): [optional]
@@ -859,26 +859,26 @@ class Integrations(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Integrations.create_dynamodb_integration(
-            description="AWS account with event data for the data science team.",
-            dynamodb=DynamodbIntegration(
-                aws_access_key=AwsAccessKey(
-                    aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
-                    aws_secret_access_key="wJal....",
-                ),
-                aws_role=AwsRole(
-                    aws_external_id="external id of aws",
-                    aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
-                ),
-                s3_export_bucket_name="s3_export_bucket_name_example",
-            ),
-            name="event-logs",
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Integrations.create_dynamodb_integration(
+    description="AWS account with event data for the data science team.",
+    dynamodb=DynamodbIntegration(
+        aws_access_key=AwsAccessKey(
+            aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
+            aws_secret_access_key="wJal....",
+        ),
+        aws_role=AwsRole(
+            aws_external_id="external id of aws",
+            aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
+        ),
+        s3_export_bucket_name="s3_export_bucket_name_example",
+    ),
+    name="event-logs",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             description (str): Longer explanation for the integration.. [optional]
@@ -960,20 +960,20 @@ class Integrations(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Integrations.create_gcs_integration(
-            description="AWS account with event data for the data science team.",
-            gcs=GcsIntegration(
-                gcp_service_account=GcpServiceAccount(
-                    service_account_key_file_json="service_account_key_file_json_example",
-                ),
-            ),
-            name="event-logs",
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Integrations.create_gcs_integration(
+    description="AWS account with event data for the data science team.",
+    gcs=GcsIntegration(
+        gcp_service_account=GcpServiceAccount(
+            service_account_key_file_json="service_account_key_file_json_example",
+        ),
+    ),
+    name="event-logs",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             description (str): Longer explanation for the integration.. [optional]
@@ -1055,37 +1055,37 @@ class Integrations(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Integrations.create_kafka_integration(
-            description="AWS account with event data for the data science team.",
-            kafka=KafkaIntegration(
-                aws_role=AwsRole(
-                    aws_external_id="external id of aws",
-                    aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
-                ),
-                bootstrap_servers="localhost:9092",
-                connection_string="connection_string_example",
-                kafka_data_format="JSON",
-                kafka_topic_names=[
-                    "kafka_topic_names_example",
-                ],
-                schema_registry_config=SchemaRegistryConfig(
-                    key="key_example",
-                    secret="secret_example",
-                    url="url_example",
-                ),
-                security_config=KafkaV3SecurityConfig(
-                    api_key="api_key_example",
-                    secret="secret_example",
-                ),
-                use_v3=True,
-            ),
-            name="event-logs",
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Integrations.create_kafka_integration(
+    description="AWS account with event data for the data science team.",
+    kafka=KafkaIntegration(
+        aws_role=AwsRole(
+            aws_external_id="external id of aws",
+            aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
+        ),
+        bootstrap_servers="localhost:9092",
+        connection_string="connection_string_example",
+        kafka_data_format="JSON",
+        kafka_topic_names=[
+            "kafka_topic_names_example",
+        ],
+        schema_registry_config=SchemaRegistryConfig(
+            key="key_example",
+            secret="secret_example",
+            url="url_example",
+        ),
+        security_config=KafkaV3SecurityConfig(
+            api_key="api_key_example",
+            secret="secret_example",
+        ),
+        use_v3=True,
+    ),
+    name="event-logs",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             description (str): Longer explanation for the integration.. [optional]
@@ -1167,25 +1167,25 @@ class Integrations(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Integrations.create_kinesis_integration(
-            description="AWS account with event data for the data science team.",
-            kinesis=KinesisIntegration(
-                aws_access_key=AwsAccessKey(
-                    aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
-                    aws_secret_access_key="wJal....",
-                ),
-                aws_role=AwsRole(
-                    aws_external_id="external id of aws",
-                    aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
-                ),
-            ),
-            name="event-logs",
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Integrations.create_kinesis_integration(
+    description="AWS account with event data for the data science team.",
+    kinesis=KinesisIntegration(
+        aws_access_key=AwsAccessKey(
+            aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
+            aws_secret_access_key="wJal....",
+        ),
+        aws_role=AwsRole(
+            aws_external_id="external id of aws",
+            aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
+        ),
+    ),
+    name="event-logs",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             description (str): Longer explanation for the integration.. [optional]
@@ -1267,18 +1267,18 @@ class Integrations(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Integrations.create_mongodb_integration(
-            description="AWS account with event data for the data science team.",
-            mongodb=MongoDbIntegration(
-                connection_uri="mongodb+srv://<username>:<password>@server.example.com/",
-            ),
-            name="event-logs",
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Integrations.create_mongodb_integration(
+    description="AWS account with event data for the data science team.",
+    mongodb=MongoDbIntegration(
+        connection_uri="mongodb+srv://<username>:<password>@server.example.com/",
+    ),
+    name="event-logs",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             description (str): Longer explanation for the integration.. [optional]
@@ -1360,25 +1360,25 @@ class Integrations(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Integrations.create_s3_integration(
-            description="AWS account with event data for the data science team.",
-            name="event-logs",
-            s3=S3Integration(
-                aws_access_key=AwsAccessKey(
-                    aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
-                    aws_secret_access_key="wJal....",
-                ),
-                aws_role=AwsRole(
-                    aws_external_id="external id of aws",
-                    aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
-                ),
-            ),
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Integrations.create_s3_integration(
+    description="AWS account with event data for the data science team.",
+    name="event-logs",
+    s3=S3Integration(
+        aws_access_key=AwsAccessKey(
+            aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
+            aws_secret_access_key="wJal....",
+        ),
+        aws_role=AwsRole(
+            aws_external_id="external id of aws",
+            aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
+        ),
+    ),
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             description (str): Longer explanation for the integration.. [optional]
@@ -1460,31 +1460,31 @@ class Integrations(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Integrations.create_snowflake_integration(
-            description="AWS account with event data for the data science team.",
-            name="event-logs",
-            snowflake=SnowflakeIntegration(
-                aws_access_key=AwsAccessKey(
-                    aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
-                    aws_secret_access_key="wJal....",
-                ),
-                aws_role=AwsRole(
-                    aws_external_id="external id of aws",
-                    aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
-                ),
-                default_warehouse="default_warehouse_example",
-                password="password_example",
-                s3_export_path="s3://bucket/prefix",
-                snowflake_url="acme-marketing-test-account.snowflakecomputing.com",
-                user_role="user_role_example",
-                username="username_example",
-            ),
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Integrations.create_snowflake_integration(
+    description="AWS account with event data for the data science team.",
+    name="event-logs",
+    snowflake=SnowflakeIntegration(
+        aws_access_key=AwsAccessKey(
+            aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
+            aws_secret_access_key="wJal....",
+        ),
+        aws_role=AwsRole(
+            aws_external_id="external id of aws",
+            aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
+        ),
+        default_warehouse="default_warehouse_example",
+        password="password_example",
+        s3_export_path="s3://bucket/prefix",
+        snowflake_url="acme-marketing-test-account.snowflakecomputing.com",
+        user_role="user_role_example",
+        username="username_example",
+    ),
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             description (str): Longer explanation for the integration.. [optional]
@@ -1564,14 +1564,14 @@ class Integrations(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Integrations.delete(
-            integration="integration_example",
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Integrations.delete(
+    integration="integration_example",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             integration (str): name of the integration. [required]
@@ -1649,14 +1649,14 @@ class Integrations(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Integrations.get(
-            integration="integration_example",
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Integrations.get(
+    integration="integration_example",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             integration (str): name of the integration. [required]
@@ -1732,13 +1732,13 @@ class Integrations(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Integrations.list(
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Integrations.list(
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status

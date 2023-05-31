@@ -10,7 +10,7 @@
 
 from unittest import mock
 
-from rockset.models import *
+from rockset_v2.models import *
 from test.conftest import EarlyExit, validate_call
 
 
@@ -37,26 +37,6 @@ def test_create_azure_blob_storage_collection(
                 field_mapping_query=FieldMappingQuery(
                     sql="sql",
                 ),
-                field_mappings=[
-                    FieldMappingV2(
-                        input_fields=[
-                            InputField(
-                                field_name="address.city.zipcode",
-                                if_missing="SKIP",
-                                is_drop=True,
-                                param="zip",
-                            ),
-                        ],
-                        name="myTestMapping",
-                        output_field=OutputField(
-                            field_name="zip_hash",
-                            on_error="SKIP",
-                            value=SqlExpression(
-                                sql="SHA256()",
-                            ),
-                        ),
-                    ),
-                ],
                 name="global-transactions",
                 retention_secs=1000000,
                 sources=[
@@ -90,6 +70,7 @@ def test_create_azure_blob_storage_collection(
                         prefix="prefix/to/blobs",
                     ),
                 ],
+                storage_compression_type="LZ4",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
@@ -118,26 +99,6 @@ def test_create_azure_event_hubs_collection(
                 field_mapping_query=FieldMappingQuery(
                     sql="sql",
                 ),
-                field_mappings=[
-                    FieldMappingV2(
-                        input_fields=[
-                            InputField(
-                                field_name="address.city.zipcode",
-                                if_missing="SKIP",
-                                is_drop=True,
-                                param="zip",
-                            ),
-                        ],
-                        name="myTestMapping",
-                        output_field=OutputField(
-                            field_name="zip_hash",
-                            on_error="SKIP",
-                            value=SqlExpression(
-                                sql="SHA256()",
-                            ),
-                        ),
-                    ),
-                ],
                 name="global-transactions",
                 retention_secs=1000000,
                 sources=[
@@ -170,6 +131,7 @@ def test_create_azure_event_hubs_collection(
                         offset_reset_policy="EARLIEST",
                     ),
                 ],
+                storage_compression_type="LZ4",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
@@ -198,26 +160,6 @@ def test_create_azure_service_bus_collection(
                 field_mapping_query=FieldMappingQuery(
                     sql="sql",
                 ),
-                field_mappings=[
-                    FieldMappingV2(
-                        input_fields=[
-                            InputField(
-                                field_name="address.city.zipcode",
-                                if_missing="SKIP",
-                                is_drop=True,
-                                param="zip",
-                            ),
-                        ],
-                        name="myTestMapping",
-                        output_field=OutputField(
-                            field_name="zip_hash",
-                            on_error="SKIP",
-                            value=SqlExpression(
-                                sql="SHA256()",
-                            ),
-                        ),
-                    ),
-                ],
                 name="global-transactions",
                 retention_secs=1000000,
                 sources=[
@@ -250,6 +192,7 @@ def test_create_azure_service_bus_collection(
                         topic="rockset-topic",
                     ),
                 ],
+                storage_compression_type="LZ4",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
@@ -276,26 +219,6 @@ def test_create_dynamodb_collection(get_client, mock_request, request_validator)
                 field_mapping_query=FieldMappingQuery(
                     sql="sql",
                 ),
-                field_mappings=[
-                    FieldMappingV2(
-                        input_fields=[
-                            InputField(
-                                field_name="address.city.zipcode",
-                                if_missing="SKIP",
-                                is_drop=True,
-                                param="zip",
-                            ),
-                        ],
-                        name="myTestMapping",
-                        output_field=OutputField(
-                            field_name="zip_hash",
-                            on_error="SKIP",
-                            value=SqlExpression(
-                                sql="SHA256()",
-                            ),
-                        ),
-                    ),
-                ],
                 name="global-transactions",
                 retention_secs=1000000,
                 sources=[
@@ -330,6 +253,7 @@ def test_create_dynamodb_collection(get_client, mock_request, request_validator)
                         use_scan_api=True,
                     ),
                 ],
+                storage_compression_type="LZ4",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
@@ -356,26 +280,6 @@ def test_create_file_upload_collection(get_client, mock_request, request_validat
                 field_mapping_query=FieldMappingQuery(
                     sql="sql",
                 ),
-                field_mappings=[
-                    FieldMappingV2(
-                        input_fields=[
-                            InputField(
-                                field_name="address.city.zipcode",
-                                if_missing="SKIP",
-                                is_drop=True,
-                                param="zip",
-                            ),
-                        ],
-                        name="myTestMapping",
-                        output_field=OutputField(
-                            field_name="zip_hash",
-                            on_error="SKIP",
-                            value=SqlExpression(
-                                sql="SHA256()",
-                            ),
-                        ),
-                    ),
-                ],
                 name="global-transactions",
                 retention_secs=1000000,
                 sources=[
@@ -409,6 +313,7 @@ def test_create_file_upload_collection(get_client, mock_request, request_validat
                         file_upload_time="2019-01-15T21:48:23Z",
                     ),
                 ],
+                storage_compression_type="LZ4",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
@@ -435,26 +340,6 @@ def test_create_gcs_collection(get_client, mock_request, request_validator):
                 field_mapping_query=FieldMappingQuery(
                     sql="sql",
                 ),
-                field_mappings=[
-                    FieldMappingV2(
-                        input_fields=[
-                            InputField(
-                                field_name="address.city.zipcode",
-                                if_missing="SKIP",
-                                is_drop=True,
-                                param="zip",
-                            ),
-                        ],
-                        name="myTestMapping",
-                        output_field=OutputField(
-                            field_name="zip_hash",
-                            on_error="SKIP",
-                            value=SqlExpression(
-                                sql="SHA256()",
-                            ),
-                        ),
-                    ),
-                ],
                 name="global-transactions",
                 retention_secs=1000000,
                 sources=[
@@ -488,6 +373,7 @@ def test_create_gcs_collection(get_client, mock_request, request_validator):
                         prefix="prefix/to/keys",
                     ),
                 ],
+                storage_compression_type="LZ4",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
@@ -514,26 +400,6 @@ def test_create_kafka_collection(get_client, mock_request, request_validator):
                 field_mapping_query=FieldMappingQuery(
                     sql="sql",
                 ),
-                field_mappings=[
-                    FieldMappingV2(
-                        input_fields=[
-                            InputField(
-                                field_name="address.city.zipcode",
-                                if_missing="SKIP",
-                                is_drop=True,
-                                param="zip",
-                            ),
-                        ],
-                        name="myTestMapping",
-                        output_field=OutputField(
-                            field_name="zip_hash",
-                            on_error="SKIP",
-                            value=SqlExpression(
-                                sql="SHA256()",
-                            ),
-                        ),
-                    ),
-                ],
                 name="global-transactions",
                 retention_secs=1000000,
                 sources=[
@@ -568,6 +434,7 @@ def test_create_kafka_collection(get_client, mock_request, request_validator):
                         use_v3=True,
                     ),
                 ],
+                storage_compression_type="LZ4",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
@@ -594,26 +461,6 @@ def test_create_kinesis_collection(get_client, mock_request, request_validator):
                 field_mapping_query=FieldMappingQuery(
                     sql="sql",
                 ),
-                field_mappings=[
-                    FieldMappingV2(
-                        input_fields=[
-                            InputField(
-                                field_name="address.city.zipcode",
-                                if_missing="SKIP",
-                                is_drop=True,
-                                param="zip",
-                            ),
-                        ],
-                        name="myTestMapping",
-                        output_field=OutputField(
-                            field_name="zip_hash",
-                            on_error="SKIP",
-                            value=SqlExpression(
-                                sql="SHA256()",
-                            ),
-                        ),
-                    ),
-                ],
                 name="global-transactions",
                 retention_secs=1000000,
                 sources=[
@@ -650,6 +497,7 @@ def test_create_kinesis_collection(get_client, mock_request, request_validator):
                         stream_name="click_stream",
                     ),
                 ],
+                storage_compression_type="LZ4",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
@@ -676,26 +524,6 @@ def test_create_mongodb_collection(get_client, mock_request, request_validator):
                 field_mapping_query=FieldMappingQuery(
                     sql="sql",
                 ),
-                field_mappings=[
-                    FieldMappingV2(
-                        input_fields=[
-                            InputField(
-                                field_name="address.city.zipcode",
-                                if_missing="SKIP",
-                                is_drop=True,
-                                param="zip",
-                            ),
-                        ],
-                        name="myTestMapping",
-                        output_field=OutputField(
-                            field_name="zip_hash",
-                            on_error="SKIP",
-                            value=SqlExpression(
-                                sql="SHA256()",
-                            ),
-                        ),
-                    ),
-                ],
                 name="global-transactions",
                 retention_secs=1000000,
                 sources=[
@@ -726,8 +554,10 @@ def test_create_mongodb_collection(get_client, mock_request, request_validator):
                         integration_name="aws-integration",
                         collection_name="my_collection",
                         database_name="my_database",
+                        retrieve_full_document=True,
                     ),
                 ],
+                storage_compression_type="LZ4",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
@@ -754,26 +584,6 @@ def test_create_s3_collection(get_client, mock_request, request_validator):
                 field_mapping_query=FieldMappingQuery(
                     sql="sql",
                 ),
-                field_mappings=[
-                    FieldMappingV2(
-                        input_fields=[
-                            InputField(
-                                field_name="address.city.zipcode",
-                                if_missing="SKIP",
-                                is_drop=True,
-                                param="zip",
-                            ),
-                        ],
-                        name="myTestMapping",
-                        output_field=OutputField(
-                            field_name="zip_hash",
-                            on_error="SKIP",
-                            value=SqlExpression(
-                                sql="SHA256()",
-                            ),
-                        ),
-                    ),
-                ],
                 name="global-transactions",
                 retention_secs=1000000,
                 sources=[
@@ -808,6 +618,7 @@ def test_create_s3_collection(get_client, mock_request, request_validator):
                         region="us-west-2",
                     ),
                 ],
+                storage_compression_type="LZ4",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
@@ -834,26 +645,6 @@ def test_create_snowflake_collection(get_client, mock_request, request_validator
                 field_mapping_query=FieldMappingQuery(
                     sql="sql",
                 ),
-                field_mappings=[
-                    FieldMappingV2(
-                        input_fields=[
-                            InputField(
-                                field_name="address.city.zipcode",
-                                if_missing="SKIP",
-                                is_drop=True,
-                                param="zip",
-                            ),
-                        ],
-                        name="myTestMapping",
-                        output_field=OutputField(
-                            field_name="zip_hash",
-                            on_error="SKIP",
-                            value=SqlExpression(
-                                sql="SHA256()",
-                            ),
-                        ),
-                    ),
-                ],
                 name="global-transactions",
                 retention_secs=1000000,
                 sources=[
@@ -888,6 +679,7 @@ def test_create_snowflake_collection(get_client, mock_request, request_validator
                         warehouse="COMPUTE_XL",
                     ),
                 ],
+                storage_compression_type="LZ4",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
@@ -910,6 +702,21 @@ def test_get(get_client, mock_request, request_validator):
         try:
             rs.Collections.get(
                 collection="collection_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_get_0(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Collections.get_0(
+                collection="collection_example",
+                description="transactions from stores worldwide",
+                field_mapping_query=FieldMappingQuery(
+                    sql="sql",
+                ),
             )
         except EarlyExit as e:
             validate_call(e, request_validator)

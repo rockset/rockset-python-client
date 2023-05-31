@@ -1,4 +1,4 @@
-# rockset.Queries
+# rockset_v2.Queries
 
 All URIs are relative to *https://api.use1a1.rockset.com* or the apiserver provided when initializing RocksetClient
 
@@ -24,8 +24,8 @@ Attempts to cancel an actively-running query.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -110,8 +110,8 @@ Returns information about a query.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -196,8 +196,8 @@ Returns a page of query results.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -285,8 +285,8 @@ Lists actively queued and running queries.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -366,8 +366,8 @@ Make a SQL query to Rockset.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -380,7 +380,6 @@ api_response = rs.Queries.query(
         default_row_limit=1,
         generate_warnings=False,
         initial_paginate_response_doc_count=1,
-        paginate=True,
         parameters=[
             QueryParameter(
                 name="_id",
@@ -409,7 +408,6 @@ api_response = await rs.Queries.query(
         default_row_limit=1,
         generate_warnings=False,
         initial_paginate_response_doc_count=1,
-        paginate=True,
         parameters=[
             QueryParameter(
                 name="_id",
@@ -419,6 +417,7 @@ api_response = await rs.Queries.query(
         ],
         query="SELECT * FROM foo where _id = :_id",
     ),
+    timeout_ms=1,
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
@@ -435,6 +434,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **async_options** | [**AsyncQueryOptions**](AsyncQueryOptions.md) |  | [optional]
  **sql** | [**QueryRequestSql**](QueryRequestSql.md) |  | 
+ **timeout_ms** | **int** | The maximum amount of time that the system will attempt to complete query execution before aborting the query and returning an error. The maximum value for this timeout is 2 minutes. async_options.timeout_ms will override this timeout. | [optional]
 
 ### Return type
 
@@ -484,8 +484,8 @@ Validate a SQL query with Rockset's parser and planner.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -498,7 +498,6 @@ api_response = rs.Queries.validate(
         default_row_limit=1,
         generate_warnings=False,
         initial_paginate_response_doc_count=1,
-        paginate=True,
         parameters=[
             QueryParameter(
                 name="_id",
@@ -527,7 +526,6 @@ api_response = await rs.Queries.validate(
         default_row_limit=1,
         generate_warnings=False,
         initial_paginate_response_doc_count=1,
-        paginate=True,
         parameters=[
             QueryParameter(
                 name="_id",
@@ -537,6 +535,7 @@ api_response = await rs.Queries.validate(
         ],
         query="SELECT * FROM foo where _id = :_id",
     ),
+    timeout_ms=1,
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
@@ -553,6 +552,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **async_options** | [**AsyncQueryOptions**](AsyncQueryOptions.md) |  | [optional]
  **sql** | [**QueryRequestSql**](QueryRequestSql.md) |  | 
+ **timeout_ms** | **int** | The maximum amount of time that the system will attempt to complete query execution before aborting the query and returning an error. The maximum value for this timeout is 2 minutes. async_options.timeout_ms will override this timeout. | [optional]
 
 ### Return type
 

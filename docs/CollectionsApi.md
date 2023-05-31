@@ -1,4 +1,4 @@
-# rockset.Collections
+# rockset_v2.Collections
 
 All URIs are relative to *https://api.use1a1.rockset.com* or the apiserver provided when initializing RocksetClient
 
@@ -17,6 +17,7 @@ Method | HTTP request | Description
 [**create_snowflake_collection**](CollectionsApi.md#create_snowflake_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create snowflake collection
 [**delete**](CollectionsApi.md#delete) | **DELETE** /v1/orgs/self/ws/{workspace}/collections/{collection} | Delete Collection
 [**get**](CollectionsApi.md#get) | **GET** /v1/orgs/self/ws/{workspace}/collections/{collection} | Retrieve Collection
+[**get_0**](CollectionsApi.md#get_0) | **PUT** /v1/orgs/self/ws/{workspace}/collections/{collection} | Update Collection
 [**list**](CollectionsApi.md#list) | **GET** /v1/orgs/self/collections | List Collections
 [**workspace_collections**](CollectionsApi.md#workspace_collections) | **GET** /v1/orgs/self/ws/{workspace}/collections | List Collections in Workspace
 
@@ -33,8 +34,8 @@ Create new collection in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -70,26 +71,6 @@ api_response = await rs.Collections.create_azure_blob_storage_collection(
     field_mapping_query=FieldMappingQuery(
         sql="sql",
     ),
-    field_mappings=[
-        FieldMappingV2(
-            input_fields=[
-                InputField(
-                    field_name="address.city.zipcode",
-                    if_missing="SKIP",
-                    is_drop=True,
-                    param="zip",
-                ),
-            ],
-            name="myTestMapping",
-            output_field=OutputField(
-                field_name="zip_hash",
-                on_error="SKIP",
-                value=SqlExpression(
-                    sql="SHA256()",
-                ),
-            ),
-        ),
-    ],
     name="global-transactions",
     retention_secs=1000000,
     sources=[
@@ -123,6 +104,7 @@ api_response = await rs.Collections.create_azure_blob_storage_collection(
             prefix="prefix/to/blobs",
         ),
     ],
+    storage_compression_type="LZ4",
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
@@ -141,10 +123,10 @@ Name | Type | Description  | Notes
  **description** | **str** | Text describing the collection. | [optional]
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
- **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | Deprecated. List of mappings. Use field_mapping_query instead. | [optional]
  **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
  **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
  **sources** | [**[AzureBlobStorageSourceWrapper]**](AzureBlobStorageSourceWrapper.md) | List of sources from which to ingest data | [optional]
+ **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
@@ -195,8 +177,8 @@ Create new collection in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -232,26 +214,6 @@ api_response = await rs.Collections.create_azure_event_hubs_collection(
     field_mapping_query=FieldMappingQuery(
         sql="sql",
     ),
-    field_mappings=[
-        FieldMappingV2(
-            input_fields=[
-                InputField(
-                    field_name="address.city.zipcode",
-                    if_missing="SKIP",
-                    is_drop=True,
-                    param="zip",
-                ),
-            ],
-            name="myTestMapping",
-            output_field=OutputField(
-                field_name="zip_hash",
-                on_error="SKIP",
-                value=SqlExpression(
-                    sql="SHA256()",
-                ),
-            ),
-        ),
-    ],
     name="global-transactions",
     retention_secs=1000000,
     sources=[
@@ -284,6 +246,7 @@ api_response = await rs.Collections.create_azure_event_hubs_collection(
             offset_reset_policy="EARLIEST",
         ),
     ],
+    storage_compression_type="LZ4",
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
@@ -302,10 +265,10 @@ Name | Type | Description  | Notes
  **description** | **str** | Text describing the collection. | [optional]
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
- **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | Deprecated. List of mappings. Use field_mapping_query instead. | [optional]
  **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
  **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
  **sources** | [**[AzureEventHubsSourceWrapper]**](AzureEventHubsSourceWrapper.md) | List of sources from which to ingest data | [optional]
+ **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
@@ -356,8 +319,8 @@ Create new collection in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -393,26 +356,6 @@ api_response = await rs.Collections.create_azure_service_bus_collection(
     field_mapping_query=FieldMappingQuery(
         sql="sql",
     ),
-    field_mappings=[
-        FieldMappingV2(
-            input_fields=[
-                InputField(
-                    field_name="address.city.zipcode",
-                    if_missing="SKIP",
-                    is_drop=True,
-                    param="zip",
-                ),
-            ],
-            name="myTestMapping",
-            output_field=OutputField(
-                field_name="zip_hash",
-                on_error="SKIP",
-                value=SqlExpression(
-                    sql="SHA256()",
-                ),
-            ),
-        ),
-    ],
     name="global-transactions",
     retention_secs=1000000,
     sources=[
@@ -445,6 +388,7 @@ api_response = await rs.Collections.create_azure_service_bus_collection(
             topic="rockset-topic",
         ),
     ],
+    storage_compression_type="LZ4",
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
@@ -463,10 +407,10 @@ Name | Type | Description  | Notes
  **description** | **str** | Text describing the collection. | [optional]
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
- **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | Deprecated. List of mappings. Use field_mapping_query instead. | [optional]
  **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
  **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
  **sources** | [**[AzureServiceBusSourceWrapper]**](AzureServiceBusSourceWrapper.md) | List of sources from which to ingest data | [optional]
+ **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
@@ -517,8 +461,8 @@ Create new collection in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -554,26 +498,6 @@ api_response = await rs.Collections.create_dynamodb_collection(
     field_mapping_query=FieldMappingQuery(
         sql="sql",
     ),
-    field_mappings=[
-        FieldMappingV2(
-            input_fields=[
-                InputField(
-                    field_name="address.city.zipcode",
-                    if_missing="SKIP",
-                    is_drop=True,
-                    param="zip",
-                ),
-            ],
-            name="myTestMapping",
-            output_field=OutputField(
-                field_name="zip_hash",
-                on_error="SKIP",
-                value=SqlExpression(
-                    sql="SHA256()",
-                ),
-            ),
-        ),
-    ],
     name="global-transactions",
     retention_secs=1000000,
     sources=[
@@ -608,6 +532,7 @@ api_response = await rs.Collections.create_dynamodb_collection(
             use_scan_api=True,
         ),
     ],
+    storage_compression_type="LZ4",
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
@@ -626,10 +551,10 @@ Name | Type | Description  | Notes
  **description** | **str** | Text describing the collection. | [optional]
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
- **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | Deprecated. List of mappings. Use field_mapping_query instead. | [optional]
  **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
  **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
  **sources** | [**[DynamodbSourceWrapper]**](DynamodbSourceWrapper.md) | List of sources from which to ingest data | [optional]
+ **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
@@ -680,8 +605,8 @@ Create new collection in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -717,26 +642,6 @@ api_response = await rs.Collections.create_file_upload_collection(
     field_mapping_query=FieldMappingQuery(
         sql="sql",
     ),
-    field_mappings=[
-        FieldMappingV2(
-            input_fields=[
-                InputField(
-                    field_name="address.city.zipcode",
-                    if_missing="SKIP",
-                    is_drop=True,
-                    param="zip",
-                ),
-            ],
-            name="myTestMapping",
-            output_field=OutputField(
-                field_name="zip_hash",
-                on_error="SKIP",
-                value=SqlExpression(
-                    sql="SHA256()",
-                ),
-            ),
-        ),
-    ],
     name="global-transactions",
     retention_secs=1000000,
     sources=[
@@ -770,6 +675,7 @@ api_response = await rs.Collections.create_file_upload_collection(
             file_upload_time="2019-01-15T21:48:23Z",
         ),
     ],
+    storage_compression_type="LZ4",
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
@@ -788,10 +694,10 @@ Name | Type | Description  | Notes
  **description** | **str** | Text describing the collection. | [optional]
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
- **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | Deprecated. List of mappings. Use field_mapping_query instead. | [optional]
  **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
  **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
  **sources** | [**[FileUploadSourceWrapper]**](FileUploadSourceWrapper.md) | List of sources from which to ingest data | [optional]
+ **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
@@ -842,8 +748,8 @@ Create new collection in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -879,26 +785,6 @@ api_response = await rs.Collections.create_gcs_collection(
     field_mapping_query=FieldMappingQuery(
         sql="sql",
     ),
-    field_mappings=[
-        FieldMappingV2(
-            input_fields=[
-                InputField(
-                    field_name="address.city.zipcode",
-                    if_missing="SKIP",
-                    is_drop=True,
-                    param="zip",
-                ),
-            ],
-            name="myTestMapping",
-            output_field=OutputField(
-                field_name="zip_hash",
-                on_error="SKIP",
-                value=SqlExpression(
-                    sql="SHA256()",
-                ),
-            ),
-        ),
-    ],
     name="global-transactions",
     retention_secs=1000000,
     sources=[
@@ -932,6 +818,7 @@ api_response = await rs.Collections.create_gcs_collection(
             prefix="prefix/to/keys",
         ),
     ],
+    storage_compression_type="LZ4",
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
@@ -950,10 +837,10 @@ Name | Type | Description  | Notes
  **description** | **str** | Text describing the collection. | [optional]
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
- **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | Deprecated. List of mappings. Use field_mapping_query instead. | [optional]
  **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
  **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
  **sources** | [**[GcsSourceWrapper]**](GcsSourceWrapper.md) | List of sources from which to ingest data | [optional]
+ **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
@@ -1004,8 +891,8 @@ Create new collection in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1041,26 +928,6 @@ api_response = await rs.Collections.create_kafka_collection(
     field_mapping_query=FieldMappingQuery(
         sql="sql",
     ),
-    field_mappings=[
-        FieldMappingV2(
-            input_fields=[
-                InputField(
-                    field_name="address.city.zipcode",
-                    if_missing="SKIP",
-                    is_drop=True,
-                    param="zip",
-                ),
-            ],
-            name="myTestMapping",
-            output_field=OutputField(
-                field_name="zip_hash",
-                on_error="SKIP",
-                value=SqlExpression(
-                    sql="SHA256()",
-                ),
-            ),
-        ),
-    ],
     name="global-transactions",
     retention_secs=1000000,
     sources=[
@@ -1095,6 +962,7 @@ api_response = await rs.Collections.create_kafka_collection(
             use_v3=True,
         ),
     ],
+    storage_compression_type="LZ4",
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
@@ -1113,10 +981,10 @@ Name | Type | Description  | Notes
  **description** | **str** | Text describing the collection. | [optional]
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
- **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | Deprecated. List of mappings. Use field_mapping_query instead. | [optional]
  **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
  **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
  **sources** | [**[KafkaSourceWrapper]**](KafkaSourceWrapper.md) | List of sources from which to ingest data | [optional]
+ **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
@@ -1167,8 +1035,8 @@ Create new collection in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1204,26 +1072,6 @@ api_response = await rs.Collections.create_kinesis_collection(
     field_mapping_query=FieldMappingQuery(
         sql="sql",
     ),
-    field_mappings=[
-        FieldMappingV2(
-            input_fields=[
-                InputField(
-                    field_name="address.city.zipcode",
-                    if_missing="SKIP",
-                    is_drop=True,
-                    param="zip",
-                ),
-            ],
-            name="myTestMapping",
-            output_field=OutputField(
-                field_name="zip_hash",
-                on_error="SKIP",
-                value=SqlExpression(
-                    sql="SHA256()",
-                ),
-            ),
-        ),
-    ],
     name="global-transactions",
     retention_secs=1000000,
     sources=[
@@ -1260,6 +1108,7 @@ api_response = await rs.Collections.create_kinesis_collection(
             stream_name="click_stream",
         ),
     ],
+    storage_compression_type="LZ4",
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
@@ -1278,10 +1127,10 @@ Name | Type | Description  | Notes
  **description** | **str** | Text describing the collection. | [optional]
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
- **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | Deprecated. List of mappings. Use field_mapping_query instead. | [optional]
  **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
  **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
  **sources** | [**[KinesisSourceWrapper]**](KinesisSourceWrapper.md) | List of sources from which to ingest data | [optional]
+ **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
@@ -1332,8 +1181,8 @@ Create new collection in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1369,26 +1218,6 @@ api_response = await rs.Collections.create_mongodb_collection(
     field_mapping_query=FieldMappingQuery(
         sql="sql",
     ),
-    field_mappings=[
-        FieldMappingV2(
-            input_fields=[
-                InputField(
-                    field_name="address.city.zipcode",
-                    if_missing="SKIP",
-                    is_drop=True,
-                    param="zip",
-                ),
-            ],
-            name="myTestMapping",
-            output_field=OutputField(
-                field_name="zip_hash",
-                on_error="SKIP",
-                value=SqlExpression(
-                    sql="SHA256()",
-                ),
-            ),
-        ),
-    ],
     name="global-transactions",
     retention_secs=1000000,
     sources=[
@@ -1419,8 +1248,10 @@ api_response = await rs.Collections.create_mongodb_collection(
             integration_name="aws-integration",
             collection_name="my_collection",
             database_name="my_database",
+            retrieve_full_document=True,
         ),
     ],
+    storage_compression_type="LZ4",
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
@@ -1439,10 +1270,10 @@ Name | Type | Description  | Notes
  **description** | **str** | Text describing the collection. | [optional]
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
- **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | Deprecated. List of mappings. Use field_mapping_query instead. | [optional]
  **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
  **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
  **sources** | [**[MongodbSourceWrapper]**](MongodbSourceWrapper.md) | List of sources from which to ingest data | [optional]
+ **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
@@ -1493,8 +1324,8 @@ Create new collection in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1530,26 +1361,6 @@ api_response = await rs.Collections.create_s3_collection(
     field_mapping_query=FieldMappingQuery(
         sql="sql",
     ),
-    field_mappings=[
-        FieldMappingV2(
-            input_fields=[
-                InputField(
-                    field_name="address.city.zipcode",
-                    if_missing="SKIP",
-                    is_drop=True,
-                    param="zip",
-                ),
-            ],
-            name="myTestMapping",
-            output_field=OutputField(
-                field_name="zip_hash",
-                on_error="SKIP",
-                value=SqlExpression(
-                    sql="SHA256()",
-                ),
-            ),
-        ),
-    ],
     name="global-transactions",
     retention_secs=1000000,
     sources=[
@@ -1584,6 +1395,7 @@ api_response = await rs.Collections.create_s3_collection(
             region="us-west-2",
         ),
     ],
+    storage_compression_type="LZ4",
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
@@ -1602,10 +1414,10 @@ Name | Type | Description  | Notes
  **description** | **str** | Text describing the collection. | [optional]
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
- **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | Deprecated. List of mappings. Use field_mapping_query instead. | [optional]
  **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
  **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
  **sources** | [**[S3SourceWrapper]**](S3SourceWrapper.md) | List of sources from which to ingest data | [optional]
+ **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
@@ -1656,8 +1468,8 @@ Create new collection in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1693,26 +1505,6 @@ api_response = await rs.Collections.create_snowflake_collection(
     field_mapping_query=FieldMappingQuery(
         sql="sql",
     ),
-    field_mappings=[
-        FieldMappingV2(
-            input_fields=[
-                InputField(
-                    field_name="address.city.zipcode",
-                    if_missing="SKIP",
-                    is_drop=True,
-                    param="zip",
-                ),
-            ],
-            name="myTestMapping",
-            output_field=OutputField(
-                field_name="zip_hash",
-                on_error="SKIP",
-                value=SqlExpression(
-                    sql="SHA256()",
-                ),
-            ),
-        ),
-    ],
     name="global-transactions",
     retention_secs=1000000,
     sources=[
@@ -1747,6 +1539,7 @@ api_response = await rs.Collections.create_snowflake_collection(
             warehouse="COMPUTE_XL",
         ),
     ],
+    storage_compression_type="LZ4",
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
@@ -1765,10 +1558,10 @@ Name | Type | Description  | Notes
  **description** | **str** | Text describing the collection. | [optional]
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
- **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | Deprecated. List of mappings. Use field_mapping_query instead. | [optional]
  **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
  **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
  **sources** | [**[SnowflakeSourceWrapper]**](SnowflakeSourceWrapper.md) | List of sources from which to ingest data | [optional]
+ **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
@@ -1819,8 +1612,8 @@ Delete a collection and all its documents from Rockset.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1906,8 +1699,8 @@ Get details about a collection.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1981,6 +1774,99 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+# **get_0**
+> GetCollectionResponse get_0(collection, update_collection_request)
+
+Update Collection
+
+Update details about a collection.
+
+### Example
+
+* Api Key Authentication (apikey):
+
+```python
+from rockset_v2 import *
+from rockset_v2.models import *
+from pprint import pprint
+
+# Create an instance of the Rockset client
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
+
+# synchronous example passing only required values which don't have defaults set
+# Update Collection
+api_response = rs.Collections.get_0(
+    collection="collection_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Collections->get_0: %s\n" % e)
+
+# asynchronous example passing optional values and required values which don't have defaults set
+# assumes that execution takes place within an asynchronous context
+# Update Collection
+api_response = await rs.Collections.get_0(
+    collection="collection_example",
+    description="transactions from stores worldwide",
+    field_mapping_query=FieldMappingQuery(
+        sql="sql",
+    ),
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Collections->get_0: %s\n" % e)
+    return
+pprint(api_response)
+
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **collection** | **str** | name of the collection |
+ **description** | **str** | Updated text describing the collection. | [optional]
+ **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
+ **workspace** | **str** | name of the workspace | defaults to "commons"
+
+### Return type
+
+[**GetCollectionResponse**](GetCollectionResponse.md)
+
+### Authorization
+
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | collection updated successfully |  -  |
+**400** | bad request |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+**405** | not allowed |  -  |
+**406** | not acceptable |  -  |
+**408** | request timeout |  -  |
+**415** | not supported |  -  |
+**429** | resource exceeded |  -  |
+**500** | internal error |  -  |
+**501** | not implemented |  -  |
+**502** | bad gateway |  -  |
+**503** | not ready |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 # **list**
 > ListCollectionsResponse list()
 
@@ -1993,8 +1879,8 @@ Retrieve all collections in an organization.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -2074,8 +1960,8 @@ Retrieve all collections in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client

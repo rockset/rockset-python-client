@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **pagination** | [**Pagination**](Pagination.md) |  | [optional] 
 **query_errors** | [**[QueryError]**](QueryError.md) | Errors encountered while executing the query. | [optional] 
 **query_id** | **str** | Unique Query ID. | [optional] 
+**sql** | **str** | The SQL query for this request | [optional] 
 **stats** | [**Stats**](Stats.md) |  | [optional] 
 **status** | **str** | Status of the query. | [optional] 
 **submitted_at** | **str** | Time (UTC) the query request was first received and queued for execution. | [optional] 

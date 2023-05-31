@@ -14,8 +14,8 @@ import typing  # noqa: F401
 
 import asyncio
 
-from rockset.api_client import ApiClient, Endpoint as _Endpoint
-from rockset.model_utils import (  # noqa: F401
+from rockset_v2.api_client import ApiClient, Endpoint as _Endpoint
+from rockset_v2.model_utils import (  # noqa: F401
     check_allowed_values,
     check_validations,
     date,
@@ -24,15 +24,15 @@ from rockset.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from rockset.model.create_view_request import CreateViewRequest
-from rockset.model.create_view_response import CreateViewResponse
-from rockset.model.delete_view_response import DeleteViewResponse
-from rockset.model.error_model import ErrorModel
-from rockset.model.get_view_response import GetViewResponse
-from rockset.model.list_views_response import ListViewsResponse
-from rockset.model.update_view_request import UpdateViewRequest
-from rockset.model.update_view_response import UpdateViewResponse
-from rockset.models import *
+from rockset_v2.model.create_view_request import CreateViewRequest
+from rockset_v2.model.create_view_response import CreateViewResponse
+from rockset_v2.model.delete_view_response import DeleteViewResponse
+from rockset_v2.model.error_model import ErrorModel
+from rockset_v2.model.get_view_response import GetViewResponse
+from rockset_v2.model.list_views_response import ListViewsResponse
+from rockset_v2.model.update_view_request import UpdateViewRequest
+from rockset_v2.model.update_view_response import UpdateViewResponse
+from rockset_v2.models import *
 
 
 class Views(object):
@@ -391,16 +391,16 @@ class Views(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Views.create(
-            description="view of awesome collection",
-            name="myAwesomeView",
-            query="SELECT * FROM foo",
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Views.create(
+    description="view of awesome collection",
+    name="myAwesomeView",
+    query="SELECT * FROM foo",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -484,14 +484,14 @@ class Views(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Views.delete(
-            view="view_example",
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Views.delete(
+    view="view_example",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -573,14 +573,14 @@ class Views(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Views.get(
-            view="view_example",
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Views.get(
+    view="view_example",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -659,13 +659,13 @@ class Views(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Views.list(
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Views.list(
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -743,16 +743,16 @@ class Views(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Views.update(
-            view="view_example",
-            description="view of awesome collection",
-            query="SELECT * FROM foo",
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Views.update(
+    view="view_example",
+    description="view of awesome collection",
+    query="SELECT * FROM foo",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -837,13 +837,13 @@ class Views(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Views.workspace_views(
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Views.workspace_views(
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"

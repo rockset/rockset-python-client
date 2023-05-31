@@ -10,7 +10,7 @@
 
 from unittest import mock
 
-from rockset.models import *
+from rockset_v2.models import *
 from test.conftest import EarlyExit, validate_call
 
 

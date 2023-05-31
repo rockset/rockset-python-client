@@ -1,4 +1,4 @@
-# rockset.CustomRoles
+# rockset_v2.CustomRoles
 
 All URIs are relative to *https://api.use1a1.rockset.com* or the apiserver provided when initializing RocksetClient
 
@@ -23,8 +23,8 @@ Create a role for your organization.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -118,8 +118,8 @@ Delete a role for your organization.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -204,8 +204,8 @@ Retrieve a role by name for your organization.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -290,8 +290,8 @@ List all roles for your organization.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -371,8 +371,8 @@ Update a role for your organization.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client

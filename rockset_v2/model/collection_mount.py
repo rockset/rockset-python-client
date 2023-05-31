@@ -11,7 +11,7 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from rockset.model_utils import (  # noqa: F401
+from rockset_v2.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
     ModelNormal,
@@ -26,11 +26,11 @@ from rockset.model_utils import (  # noqa: F401
     validate_get_composed_info,
     OpenApiModel
 )
-from rockset.exceptions import ApiAttributeError
+from rockset_v2.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from rockset.model.collection_mount_stats import CollectionMountStats
+    from rockset_v2.model.collection_mount_stats import CollectionMountStats
     globals()['CollectionMountStats'] = CollectionMountStats
 
 
@@ -65,10 +65,9 @@ class CollectionMount(ModelNormal):
             'REFRESHING': "REFRESHING",
             'EXPIRED': "EXPIRED",
             'DELETING': "DELETING",
-        },
-        ('type',): {
-            'STATIC': "STATIC",
-            'LIVE': "LIVE",
+            'SWITCHING_REFRESH_TYPE': "SWITCHING_REFRESH_TYPE",
+            'SUSPENDED': "SUSPENDED",
+            'SUSPENDING': "SUSPENDING",
         },
     }
 
@@ -101,11 +100,11 @@ class CollectionMount(ModelNormal):
             'collection_path': (str, none_type),  # noqa: E501
             'created_at': (str, none_type),  # noqa: E501
             'id': (str, none_type),  # noqa: E501
+            'last_refresh_time_millis': (int, none_type),  # noqa: E501
             'rrn': (str, none_type),  # noqa: E501
             'snapshot_expiration_time_millis': (int, none_type),  # noqa: E501
             'state': (str, none_type),  # noqa: E501
             'stats': (CollectionMountStats, none_type),  # noqa: E501
-            'type': (str, none_type),  # noqa: E501
             'virtual_instance_id': (str, none_type),  # noqa: E501
             'virtual_instance_rrn': (str, none_type),  # noqa: E501
         }
@@ -119,11 +118,11 @@ class CollectionMount(ModelNormal):
         'collection_path': 'collection_path',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
         'id': 'id',  # noqa: E501
+        'last_refresh_time_millis': 'last_refresh_time_millis',  # noqa: E501
         'rrn': 'rrn',  # noqa: E501
         'snapshot_expiration_time_millis': 'snapshot_expiration_time_millis',  # noqa: E501
         'state': 'state',  # noqa: E501
         'stats': 'stats',  # noqa: E501
-        'type': 'type',  # noqa: E501
         'virtual_instance_id': 'virtual_instance_id',  # noqa: E501
         'virtual_instance_rrn': 'virtual_instance_rrn',  # noqa: E501
     }
@@ -172,11 +171,11 @@ class CollectionMount(ModelNormal):
             collection_path (str): Collection path.. [optional]  # noqa: E501
             created_at (str): ISO-8601 date.. [optional]  # noqa: E501
             id (str): Mount ID.. [optional]  # noqa: E501
+            last_refresh_time_millis (int): Unix timestamp of most recent refresh. Not applicable for live mounts.. [optional]  # noqa: E501
             rrn (str): Mount RRN.. [optional]  # noqa: E501
             snapshot_expiration_time_millis (int): Time in millis at which the snapshot expires.. [optional]  # noqa: E501
             state (str): Mount type.. [optional]  # noqa: E501
             stats (CollectionMountStats): [optional]  # noqa: E501
-            type (str): Mount type.. [optional]  # noqa: E501
             virtual_instance_id (str): Virtual instance ID.. [optional]  # noqa: E501
             virtual_instance_rrn (str): Virtual Instance RRN.. [optional]  # noqa: E501
         """
@@ -233,11 +232,11 @@ class CollectionMount(ModelNormal):
             collection_path (str): Collection path.. [optional]  # noqa: E501
             created_at (str): ISO-8601 date.. [optional]  # noqa: E501
             id (str): Mount ID.. [optional]  # noqa: E501
+            last_refresh_time_millis (int): Unix timestamp of most recent refresh. Not applicable for live mounts.. [optional]  # noqa: E501
             rrn (str): Mount RRN.. [optional]  # noqa: E501
             snapshot_expiration_time_millis (int): Time in millis at which the snapshot expires.. [optional]  # noqa: E501
             state (str): Mount type.. [optional]  # noqa: E501
             stats (CollectionMountStats): [optional]  # noqa: E501
-            type (str): Mount type.. [optional]  # noqa: E501
             virtual_instance_id (str): Virtual instance ID.. [optional]  # noqa: E501
             virtual_instance_rrn (str): Virtual Instance RRN.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types

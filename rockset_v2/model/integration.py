@@ -11,7 +11,7 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from rockset.model_utils import (  # noqa: F401
+from rockset_v2.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
     ModelNormal,
@@ -26,21 +26,21 @@ from rockset.model_utils import (  # noqa: F401
     validate_get_composed_info,
     OpenApiModel
 )
-from rockset.exceptions import ApiAttributeError
+from rockset_v2.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from rockset.model.azure_blob_storage_integration import AzureBlobStorageIntegration
-    from rockset.model.azure_event_hubs_integration import AzureEventHubsIntegration
-    from rockset.model.azure_service_bus_integration import AzureServiceBusIntegration
-    from rockset.model.collection import Collection
-    from rockset.model.dynamodb_integration import DynamodbIntegration
-    from rockset.model.gcs_integration import GcsIntegration
-    from rockset.model.kafka_integration import KafkaIntegration
-    from rockset.model.kinesis_integration import KinesisIntegration
-    from rockset.model.mongo_db_integration import MongoDbIntegration
-    from rockset.model.s3_integration import S3Integration
-    from rockset.model.snowflake_integration import SnowflakeIntegration
+    from rockset_v2.model.azure_blob_storage_integration import AzureBlobStorageIntegration
+    from rockset_v2.model.azure_event_hubs_integration import AzureEventHubsIntegration
+    from rockset_v2.model.azure_service_bus_integration import AzureServiceBusIntegration
+    from rockset_v2.model.collection import Collection
+    from rockset_v2.model.dynamodb_integration import DynamodbIntegration
+    from rockset_v2.model.gcs_integration import GcsIntegration
+    from rockset_v2.model.kafka_integration import KafkaIntegration
+    from rockset_v2.model.kinesis_integration import KinesisIntegration
+    from rockset_v2.model.mongo_db_integration import MongoDbIntegration
+    from rockset_v2.model.s3_integration import S3Integration
+    from rockset_v2.model.snowflake_integration import SnowflakeIntegration
     globals()['AzureBlobStorageIntegration'] = AzureBlobStorageIntegration
     globals()['AzureEventHubsIntegration'] = AzureEventHubsIntegration
     globals()['AzureServiceBusIntegration'] = AzureServiceBusIntegration

@@ -19,7 +19,7 @@ import tempfile
 
 from dateutil.parser import parse
 
-from rockset.exceptions import (
+from rockset_v2.exceptions import (
     ApiKeyError,
     ApiAttributeError,
     ApiTypeError,

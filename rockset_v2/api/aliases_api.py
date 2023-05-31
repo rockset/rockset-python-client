@@ -14,8 +14,8 @@ import typing  # noqa: F401
 
 import asyncio
 
-from rockset.api_client import ApiClient, Endpoint as _Endpoint
-from rockset.model_utils import (  # noqa: F401
+from rockset_v2.api_client import ApiClient, Endpoint as _Endpoint
+from rockset_v2.model_utils import (  # noqa: F401
     check_allowed_values,
     check_validations,
     date,
@@ -24,14 +24,14 @@ from rockset.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from rockset.model.create_alias_request import CreateAliasRequest
-from rockset.model.create_alias_response import CreateAliasResponse
-from rockset.model.delete_alias_response import DeleteAliasResponse
-from rockset.model.error_model import ErrorModel
-from rockset.model.get_alias_response import GetAliasResponse
-from rockset.model.list_aliases_response import ListAliasesResponse
-from rockset.model.update_alias_request import UpdateAliasRequest
-from rockset.models import *
+from rockset_v2.model.create_alias_request import CreateAliasRequest
+from rockset_v2.model.create_alias_response import CreateAliasResponse
+from rockset_v2.model.delete_alias_response import DeleteAliasResponse
+from rockset_v2.model.error_model import ErrorModel
+from rockset_v2.model.get_alias_response import GetAliasResponse
+from rockset_v2.model.list_aliases_response import ListAliasesResponse
+from rockset_v2.model.update_alias_request import UpdateAliasRequest
+from rockset_v2.models import *
 
 
 class Aliases(object):
@@ -390,16 +390,16 @@ class Aliases(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Aliases.create(
-            collections=["commons.foo","prod.demo"],
-            description="version alias",
-            name="aliasName",
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Aliases.create(
+    collections=["commons.foo","prod.demo"],
+    description="version alias",
+    name="aliasName",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -483,14 +483,14 @@ class Aliases(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Aliases.delete(
-            alias="alias_example",
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Aliases.delete(
+    alias="alias_example",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -572,14 +572,14 @@ class Aliases(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Aliases.get(
-            alias="alias_example",
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Aliases.get(
+    alias="alias_example",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -658,13 +658,13 @@ class Aliases(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Aliases.list(
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Aliases.list(
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -742,16 +742,16 @@ class Aliases(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Aliases.update(
-            alias="alias_example",
-            collections=["commons.foo","prod.demo"],
-            description="version alias",
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Aliases.update(
+    alias="alias_example",
+    collections=["commons.foo","prod.demo"],
+    description="version alias",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -836,13 +836,13 @@ class Aliases(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Aliases.workspace_aliases(
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Aliases.workspace_aliases(
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"

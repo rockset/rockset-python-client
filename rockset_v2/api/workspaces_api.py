@@ -14,8 +14,8 @@ import typing  # noqa: F401
 
 import asyncio
 
-from rockset.api_client import ApiClient, Endpoint as _Endpoint
-from rockset.model_utils import (  # noqa: F401
+from rockset_v2.api_client import ApiClient, Endpoint as _Endpoint
+from rockset_v2.model_utils import (  # noqa: F401
     check_allowed_values,
     check_validations,
     date,
@@ -24,13 +24,13 @@ from rockset.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from rockset.model.create_workspace_request import CreateWorkspaceRequest
-from rockset.model.create_workspace_response import CreateWorkspaceResponse
-from rockset.model.delete_workspace_response import DeleteWorkspaceResponse
-from rockset.model.error_model import ErrorModel
-from rockset.model.get_workspace_response import GetWorkspaceResponse
-from rockset.model.list_workspaces_response import ListWorkspacesResponse
-from rockset.models import *
+from rockset_v2.model.create_workspace_request import CreateWorkspaceRequest
+from rockset_v2.model.create_workspace_response import CreateWorkspaceResponse
+from rockset_v2.model.delete_workspace_response import DeleteWorkspaceResponse
+from rockset_v2.model.error_model import ErrorModel
+from rockset_v2.model.get_workspace_response import GetWorkspaceResponse
+from rockset_v2.model.list_workspaces_response import ListWorkspacesResponse
+from rockset_v2.models import *
 
 
 class Workspaces(object):
@@ -255,15 +255,15 @@ class Workspaces(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Workspaces.create(
-            description="Datasets of system logs for the ops team.",
-            name="event_logs",
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Workspaces.create(
+    description="Datasets of system logs for the ops team.",
+    name="event_logs",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             description (str): Longer explanation for the workspace.. [optional]
@@ -342,13 +342,13 @@ class Workspaces(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Workspaces.delete(
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Workspaces.delete(
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -426,13 +426,13 @@ class Workspaces(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Workspaces.get(
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Workspaces.get(
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -508,13 +508,13 @@ class Workspaces(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Workspaces.list(
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Workspaces.list(
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status

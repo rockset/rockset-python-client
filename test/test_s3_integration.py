@@ -9,7 +9,7 @@
 
 
 import sys
-from rockset.models import *
+from rockset_v2.models import *
 
 
 def test_s3_integration_init():

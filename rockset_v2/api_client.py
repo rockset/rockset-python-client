@@ -21,10 +21,10 @@ from functools import wraps
 from urllib.parse import quote
 from urllib3.fields import RequestField
 
-from rockset import rest
-from rockset.configuration import Configuration
-from rockset.exceptions import ApiTypeError, ApiValueError, ApiException
-from rockset.model_utils import (
+from rockset_v2 import rest
+from rockset_v2.configuration import Configuration
+from rockset_v2.exceptions import ApiTypeError, ApiValueError, ApiException
+from rockset_v2.model_utils import (
     ModelNormal,
     ModelSimple,
     ModelComposed,

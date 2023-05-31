@@ -14,8 +14,8 @@ import typing  # noqa: F401
 
 import asyncio
 
-from rockset.api_client import ApiClient, Endpoint as _Endpoint
-from rockset.model_utils import (  # noqa: F401
+from rockset_v2.api_client import ApiClient, Endpoint as _Endpoint
+from rockset_v2.model_utils import (  # noqa: F401
     check_allowed_values,
     check_validations,
     date,
@@ -24,23 +24,24 @@ from rockset.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from rockset.model.azure_blob_storage_collection_creation_request import AzureBlobStorageCollectionCreationRequest
-from rockset.model.azure_event_hubs_collection_creation_request import AzureEventHubsCollectionCreationRequest
-from rockset.model.azure_service_bus_collection_creation_request import AzureServiceBusCollectionCreationRequest
-from rockset.model.create_collection_response import CreateCollectionResponse
-from rockset.model.delete_collection_response import DeleteCollectionResponse
-from rockset.model.dynamodb_collection_creation_request import DynamodbCollectionCreationRequest
-from rockset.model.error_model import ErrorModel
-from rockset.model.file_upload_collection_creation_request import FileUploadCollectionCreationRequest
-from rockset.model.gcs_collection_creation_request import GcsCollectionCreationRequest
-from rockset.model.get_collection_response import GetCollectionResponse
-from rockset.model.kafka_collection_creation_request import KafkaCollectionCreationRequest
-from rockset.model.kinesis_collection_creation_request import KinesisCollectionCreationRequest
-from rockset.model.list_collections_response import ListCollectionsResponse
-from rockset.model.mongodb_collection_creation_request import MongodbCollectionCreationRequest
-from rockset.model.s3_collection_creation_request import S3CollectionCreationRequest
-from rockset.model.snowflake_collection_creation_request import SnowflakeCollectionCreationRequest
-from rockset.models import *
+from rockset_v2.model.azure_blob_storage_collection_creation_request import AzureBlobStorageCollectionCreationRequest
+from rockset_v2.model.azure_event_hubs_collection_creation_request import AzureEventHubsCollectionCreationRequest
+from rockset_v2.model.azure_service_bus_collection_creation_request import AzureServiceBusCollectionCreationRequest
+from rockset_v2.model.create_collection_response import CreateCollectionResponse
+from rockset_v2.model.delete_collection_response import DeleteCollectionResponse
+from rockset_v2.model.dynamodb_collection_creation_request import DynamodbCollectionCreationRequest
+from rockset_v2.model.error_model import ErrorModel
+from rockset_v2.model.file_upload_collection_creation_request import FileUploadCollectionCreationRequest
+from rockset_v2.model.gcs_collection_creation_request import GcsCollectionCreationRequest
+from rockset_v2.model.get_collection_response import GetCollectionResponse
+from rockset_v2.model.kafka_collection_creation_request import KafkaCollectionCreationRequest
+from rockset_v2.model.kinesis_collection_creation_request import KinesisCollectionCreationRequest
+from rockset_v2.model.list_collections_response import ListCollectionsResponse
+from rockset_v2.model.mongodb_collection_creation_request import MongodbCollectionCreationRequest
+from rockset_v2.model.s3_collection_creation_request import S3CollectionCreationRequest
+from rockset_v2.model.snowflake_collection_creation_request import SnowflakeCollectionCreationRequest
+from rockset_v2.model.update_collection_request import UpdateCollectionRequest
+from rockset_v2.models import *
 
 
 class Collections(object):
@@ -795,6 +796,69 @@ class Collections(object):
             },
             api_client=api_client
         )
+        self.get_0_endpoint = _Endpoint(
+            settings={
+                'response_type': (GetCollectionResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}',
+                'operation_id': 'get_0',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'workspace',
+                    'collection',
+                    'update_collection_request',
+                ],
+                'required': [
+                    'workspace',
+                    'collection',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'workspace':
+                        (str,),
+                    'collection':
+                        (str,),
+                    'update_collection_request':
+                        (UpdateCollectionRequest,),
+                },
+                'attribute_map': {
+                    'workspace': 'workspace',
+                    'collection': 'collection',
+                },
+                'location_map': {
+                    'workspace': 'path',
+                    'collection': 'path',
+                    'update_collection_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
         self.list_endpoint = _Endpoint(
             settings={
                 'response_type': (ListCollectionsResponse,),
@@ -899,9 +963,9 @@ class Collections(object):
         description: str = None,
         event_time_info: EventTimeInfo = None,
         field_mapping_query: FieldMappingQuery = None,
-        field_mappings: typing.Sequence[FieldMappingV2] = None,
         retention_secs: int = None,
         sources: typing.Sequence[AzureBlobStorageSourceWrapper] = None,
+        storage_compression_type: str = None,
         workspace = "commons",
         **kwargs
     ) -> typing.Union[CreateCollectionResponse, asyncio.Future]:
@@ -911,82 +975,63 @@ class Collections(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Collections.create_azure_blob_storage_collection(
-            clustering_key=[
-                FieldPartition(
-                    field_name="address.city.zipcode",
-                    keys=["value1","value2"],
-                    type="AUTO",
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Collections.create_azure_blob_storage_collection(
+    clustering_key=[
+        FieldPartition(
+            field_name="address.city.zipcode",
+            keys=["value1","value2"],
+            type="AUTO",
+        ),
+    ],
+    description="transactions from stores worldwide",
+    event_time_info=EventTimeInfo(
+        field="timestamp",
+        format="seconds_since_epoch",
+        time_zone="UTC",
+    ),
+    field_mapping_query=FieldMappingQuery(
+        sql="sql",
+    ),
+    name="global-transactions",
+    retention_secs=1000000,
+    sources=[
+        AzureBlobStorageSourceWrapper(
+            format_params=FormatParams(
+                csv=CsvParams(
+                    column_names=["c1","c2","c3"],
+                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                    encoding="UTF-8",
+                    escape_char="\\",
+                    first_line_as_column_names=True,
+                    quote_char="\"",
+                    separator=",",
                 ),
-            ],
-            description="transactions from stores worldwide",
-            event_time_info=EventTimeInfo(
-                field="timestamp",
-                format="seconds_since_epoch",
-                time_zone="UTC",
+                json=True,
+                mssql_dms=True,
+                mysql_dms=True,
+                oracle_dms=True,
+                postgres_dms=True,
+                xml=XmlParams(
+                    attribute_prefix="_attr",
+                    doc_tag="row",
+                    encoding="UTF-8",
+                    root_tag="root",
+                    value_tag="value",
+                ),
             ),
-            field_mapping_query=FieldMappingQuery(
-                sql="sql",
-            ),
-            field_mappings=[
-                FieldMappingV2(
-                    input_fields=[
-                        InputField(
-                            field_name="address.city.zipcode",
-                            if_missing="SKIP",
-                            is_drop=True,
-                            param="zip",
-                        ),
-                    ],
-                    name="myTestMapping",
-                    output_field=OutputField(
-                        field_name="zip_hash",
-                        on_error="SKIP",
-                        value=SqlExpression(
-                            sql="SHA256()",
-                        ),
-                    ),
-                ),
-            ],
-            name="global-transactions",
-            retention_secs=1000000,
-            sources=[
-                AzureBlobStorageSourceWrapper(
-                    format_params=FormatParams(
-                        csv=CsvParams(
-                            column_names=["c1","c2","c3"],
-                            column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
-                            encoding="UTF-8",
-                            escape_char="\\",
-                            first_line_as_column_names=True,
-                            quote_char="\"",
-                            separator=",",
-                        ),
-                        json=True,
-                        mssql_dms=True,
-                        mysql_dms=True,
-                        oracle_dms=True,
-                        postgres_dms=True,
-                        xml=XmlParams(
-                            attribute_prefix="_attr",
-                            doc_tag="row",
-                            encoding="UTF-8",
-                            root_tag="root",
-                            value_tag="value",
-                        ),
-                    ),
-                    integration_name="aws-integration",
-                    container="server-logs",
-                    pattern="prefix/to/**/keys/*.format",
-                    prefix="prefix/to/blobs",
-                ),
-            ],
-            async_req=True,
-        )
-        result = await future
-        ```
+            integration_name="aws-integration",
+            container="server-logs",
+            pattern="prefix/to/**/keys/*.format",
+            prefix="prefix/to/blobs",
+        ),
+    ],
+    storage_compression_type="LZ4",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -994,10 +1039,10 @@ class Collections(object):
             description (str): Text describing the collection.. [optional]
             event_time_info (EventTimeInfo): [optional]
             field_mapping_query (FieldMappingQuery): [optional]
-            field_mappings ([FieldMappingV2]): Deprecated. List of mappings. Use field_mapping_query instead.. [optional]
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
             retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
             sources ([AzureBlobStorageSourceWrapper]): List of sources from which to ingest data. [optional]
+            storage_compression_type (str): RocksDB storage compression type.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1070,9 +1115,9 @@ class Collections(object):
         description: str = None,
         event_time_info: EventTimeInfo = None,
         field_mapping_query: FieldMappingQuery = None,
-        field_mappings: typing.Sequence[FieldMappingV2] = None,
         retention_secs: int = None,
         sources: typing.Sequence[AzureEventHubsSourceWrapper] = None,
+        storage_compression_type: str = None,
         workspace = "commons",
         **kwargs
     ) -> typing.Union[CreateCollectionResponse, asyncio.Future]:
@@ -1082,81 +1127,62 @@ class Collections(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Collections.create_azure_event_hubs_collection(
-            clustering_key=[
-                FieldPartition(
-                    field_name="address.city.zipcode",
-                    keys=["value1","value2"],
-                    type="AUTO",
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Collections.create_azure_event_hubs_collection(
+    clustering_key=[
+        FieldPartition(
+            field_name="address.city.zipcode",
+            keys=["value1","value2"],
+            type="AUTO",
+        ),
+    ],
+    description="transactions from stores worldwide",
+    event_time_info=EventTimeInfo(
+        field="timestamp",
+        format="seconds_since_epoch",
+        time_zone="UTC",
+    ),
+    field_mapping_query=FieldMappingQuery(
+        sql="sql",
+    ),
+    name="global-transactions",
+    retention_secs=1000000,
+    sources=[
+        AzureEventHubsSourceWrapper(
+            format_params=FormatParams(
+                csv=CsvParams(
+                    column_names=["c1","c2","c3"],
+                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                    encoding="UTF-8",
+                    escape_char="\\",
+                    first_line_as_column_names=True,
+                    quote_char="\"",
+                    separator=",",
                 ),
-            ],
-            description="transactions from stores worldwide",
-            event_time_info=EventTimeInfo(
-                field="timestamp",
-                format="seconds_since_epoch",
-                time_zone="UTC",
+                json=True,
+                mssql_dms=True,
+                mysql_dms=True,
+                oracle_dms=True,
+                postgres_dms=True,
+                xml=XmlParams(
+                    attribute_prefix="_attr",
+                    doc_tag="row",
+                    encoding="UTF-8",
+                    root_tag="root",
+                    value_tag="value",
+                ),
             ),
-            field_mapping_query=FieldMappingQuery(
-                sql="sql",
-            ),
-            field_mappings=[
-                FieldMappingV2(
-                    input_fields=[
-                        InputField(
-                            field_name="address.city.zipcode",
-                            if_missing="SKIP",
-                            is_drop=True,
-                            param="zip",
-                        ),
-                    ],
-                    name="myTestMapping",
-                    output_field=OutputField(
-                        field_name="zip_hash",
-                        on_error="SKIP",
-                        value=SqlExpression(
-                            sql="SHA256()",
-                        ),
-                    ),
-                ),
-            ],
-            name="global-transactions",
-            retention_secs=1000000,
-            sources=[
-                AzureEventHubsSourceWrapper(
-                    format_params=FormatParams(
-                        csv=CsvParams(
-                            column_names=["c1","c2","c3"],
-                            column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
-                            encoding="UTF-8",
-                            escape_char="\\",
-                            first_line_as_column_names=True,
-                            quote_char="\"",
-                            separator=",",
-                        ),
-                        json=True,
-                        mssql_dms=True,
-                        mysql_dms=True,
-                        oracle_dms=True,
-                        postgres_dms=True,
-                        xml=XmlParams(
-                            attribute_prefix="_attr",
-                            doc_tag="row",
-                            encoding="UTF-8",
-                            root_tag="root",
-                            value_tag="value",
-                        ),
-                    ),
-                    integration_name="aws-integration",
-                    hub_id="event-hub-1",
-                    offset_reset_policy="EARLIEST",
-                ),
-            ],
-            async_req=True,
-        )
-        result = await future
-        ```
+            integration_name="aws-integration",
+            hub_id="event-hub-1",
+            offset_reset_policy="EARLIEST",
+        ),
+    ],
+    storage_compression_type="LZ4",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -1164,10 +1190,10 @@ class Collections(object):
             description (str): Text describing the collection.. [optional]
             event_time_info (EventTimeInfo): [optional]
             field_mapping_query (FieldMappingQuery): [optional]
-            field_mappings ([FieldMappingV2]): Deprecated. List of mappings. Use field_mapping_query instead.. [optional]
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
             retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
             sources ([AzureEventHubsSourceWrapper]): List of sources from which to ingest data. [optional]
+            storage_compression_type (str): RocksDB storage compression type.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1240,9 +1266,9 @@ class Collections(object):
         description: str = None,
         event_time_info: EventTimeInfo = None,
         field_mapping_query: FieldMappingQuery = None,
-        field_mappings: typing.Sequence[FieldMappingV2] = None,
         retention_secs: int = None,
         sources: typing.Sequence[AzureServiceBusSourceWrapper] = None,
+        storage_compression_type: str = None,
         workspace = "commons",
         **kwargs
     ) -> typing.Union[CreateCollectionResponse, asyncio.Future]:
@@ -1252,81 +1278,62 @@ class Collections(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Collections.create_azure_service_bus_collection(
-            clustering_key=[
-                FieldPartition(
-                    field_name="address.city.zipcode",
-                    keys=["value1","value2"],
-                    type="AUTO",
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Collections.create_azure_service_bus_collection(
+    clustering_key=[
+        FieldPartition(
+            field_name="address.city.zipcode",
+            keys=["value1","value2"],
+            type="AUTO",
+        ),
+    ],
+    description="transactions from stores worldwide",
+    event_time_info=EventTimeInfo(
+        field="timestamp",
+        format="seconds_since_epoch",
+        time_zone="UTC",
+    ),
+    field_mapping_query=FieldMappingQuery(
+        sql="sql",
+    ),
+    name="global-transactions",
+    retention_secs=1000000,
+    sources=[
+        AzureServiceBusSourceWrapper(
+            format_params=FormatParams(
+                csv=CsvParams(
+                    column_names=["c1","c2","c3"],
+                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                    encoding="UTF-8",
+                    escape_char="\\",
+                    first_line_as_column_names=True,
+                    quote_char="\"",
+                    separator=",",
                 ),
-            ],
-            description="transactions from stores worldwide",
-            event_time_info=EventTimeInfo(
-                field="timestamp",
-                format="seconds_since_epoch",
-                time_zone="UTC",
+                json=True,
+                mssql_dms=True,
+                mysql_dms=True,
+                oracle_dms=True,
+                postgres_dms=True,
+                xml=XmlParams(
+                    attribute_prefix="_attr",
+                    doc_tag="row",
+                    encoding="UTF-8",
+                    root_tag="root",
+                    value_tag="value",
+                ),
             ),
-            field_mapping_query=FieldMappingQuery(
-                sql="sql",
-            ),
-            field_mappings=[
-                FieldMappingV2(
-                    input_fields=[
-                        InputField(
-                            field_name="address.city.zipcode",
-                            if_missing="SKIP",
-                            is_drop=True,
-                            param="zip",
-                        ),
-                    ],
-                    name="myTestMapping",
-                    output_field=OutputField(
-                        field_name="zip_hash",
-                        on_error="SKIP",
-                        value=SqlExpression(
-                            sql="SHA256()",
-                        ),
-                    ),
-                ),
-            ],
-            name="global-transactions",
-            retention_secs=1000000,
-            sources=[
-                AzureServiceBusSourceWrapper(
-                    format_params=FormatParams(
-                        csv=CsvParams(
-                            column_names=["c1","c2","c3"],
-                            column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
-                            encoding="UTF-8",
-                            escape_char="\\",
-                            first_line_as_column_names=True,
-                            quote_char="\"",
-                            separator=",",
-                        ),
-                        json=True,
-                        mssql_dms=True,
-                        mysql_dms=True,
-                        oracle_dms=True,
-                        postgres_dms=True,
-                        xml=XmlParams(
-                            attribute_prefix="_attr",
-                            doc_tag="row",
-                            encoding="UTF-8",
-                            root_tag="root",
-                            value_tag="value",
-                        ),
-                    ),
-                    integration_name="aws-integration",
-                    subscription="rockset-subscription",
-                    topic="rockset-topic",
-                ),
-            ],
-            async_req=True,
-        )
-        result = await future
-        ```
+            integration_name="aws-integration",
+            subscription="rockset-subscription",
+            topic="rockset-topic",
+        ),
+    ],
+    storage_compression_type="LZ4",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -1334,10 +1341,10 @@ class Collections(object):
             description (str): Text describing the collection.. [optional]
             event_time_info (EventTimeInfo): [optional]
             field_mapping_query (FieldMappingQuery): [optional]
-            field_mappings ([FieldMappingV2]): Deprecated. List of mappings. Use field_mapping_query instead.. [optional]
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
             retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
             sources ([AzureServiceBusSourceWrapper]): List of sources from which to ingest data. [optional]
+            storage_compression_type (str): RocksDB storage compression type.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1410,9 +1417,9 @@ class Collections(object):
         description: str = None,
         event_time_info: EventTimeInfo = None,
         field_mapping_query: FieldMappingQuery = None,
-        field_mappings: typing.Sequence[FieldMappingV2] = None,
         retention_secs: int = None,
         sources: typing.Sequence[DynamodbSourceWrapper] = None,
+        storage_compression_type: str = None,
         workspace = "commons",
         **kwargs
     ) -> typing.Union[CreateCollectionResponse, asyncio.Future]:
@@ -1422,83 +1429,64 @@ class Collections(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Collections.create_dynamodb_collection(
-            clustering_key=[
-                FieldPartition(
-                    field_name="address.city.zipcode",
-                    keys=["value1","value2"],
-                    type="AUTO",
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Collections.create_dynamodb_collection(
+    clustering_key=[
+        FieldPartition(
+            field_name="address.city.zipcode",
+            keys=["value1","value2"],
+            type="AUTO",
+        ),
+    ],
+    description="transactions from stores worldwide",
+    event_time_info=EventTimeInfo(
+        field="timestamp",
+        format="seconds_since_epoch",
+        time_zone="UTC",
+    ),
+    field_mapping_query=FieldMappingQuery(
+        sql="sql",
+    ),
+    name="global-transactions",
+    retention_secs=1000000,
+    sources=[
+        DynamodbSourceWrapper(
+            format_params=FormatParams(
+                csv=CsvParams(
+                    column_names=["c1","c2","c3"],
+                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                    encoding="UTF-8",
+                    escape_char="\\",
+                    first_line_as_column_names=True,
+                    quote_char="\"",
+                    separator=",",
                 ),
-            ],
-            description="transactions from stores worldwide",
-            event_time_info=EventTimeInfo(
-                field="timestamp",
-                format="seconds_since_epoch",
-                time_zone="UTC",
+                json=True,
+                mssql_dms=True,
+                mysql_dms=True,
+                oracle_dms=True,
+                postgres_dms=True,
+                xml=XmlParams(
+                    attribute_prefix="_attr",
+                    doc_tag="row",
+                    encoding="UTF-8",
+                    root_tag="root",
+                    value_tag="value",
+                ),
             ),
-            field_mapping_query=FieldMappingQuery(
-                sql="sql",
-            ),
-            field_mappings=[
-                FieldMappingV2(
-                    input_fields=[
-                        InputField(
-                            field_name="address.city.zipcode",
-                            if_missing="SKIP",
-                            is_drop=True,
-                            param="zip",
-                        ),
-                    ],
-                    name="myTestMapping",
-                    output_field=OutputField(
-                        field_name="zip_hash",
-                        on_error="SKIP",
-                        value=SqlExpression(
-                            sql="SHA256()",
-                        ),
-                    ),
-                ),
-            ],
-            name="global-transactions",
-            retention_secs=1000000,
-            sources=[
-                DynamodbSourceWrapper(
-                    format_params=FormatParams(
-                        csv=CsvParams(
-                            column_names=["c1","c2","c3"],
-                            column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
-                            encoding="UTF-8",
-                            escape_char="\\",
-                            first_line_as_column_names=True,
-                            quote_char="\"",
-                            separator=",",
-                        ),
-                        json=True,
-                        mssql_dms=True,
-                        mysql_dms=True,
-                        oracle_dms=True,
-                        postgres_dms=True,
-                        xml=XmlParams(
-                            attribute_prefix="_attr",
-                            doc_tag="row",
-                            encoding="UTF-8",
-                            root_tag="root",
-                            value_tag="value",
-                        ),
-                    ),
-                    integration_name="aws-integration",
-                    aws_region="us-east-2",
-                    rcu=1000,
-                    table_name="dynamodb_table_name",
-                    use_scan_api=True,
-                ),
-            ],
-            async_req=True,
-        )
-        result = await future
-        ```
+            integration_name="aws-integration",
+            aws_region="us-east-2",
+            rcu=1000,
+            table_name="dynamodb_table_name",
+            use_scan_api=True,
+        ),
+    ],
+    storage_compression_type="LZ4",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -1506,10 +1494,10 @@ class Collections(object):
             description (str): Text describing the collection.. [optional]
             event_time_info (EventTimeInfo): [optional]
             field_mapping_query (FieldMappingQuery): [optional]
-            field_mappings ([FieldMappingV2]): Deprecated. List of mappings. Use field_mapping_query instead.. [optional]
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
             retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
             sources ([DynamodbSourceWrapper]): List of sources from which to ingest data. [optional]
+            storage_compression_type (str): RocksDB storage compression type.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1582,9 +1570,9 @@ class Collections(object):
         description: str = None,
         event_time_info: EventTimeInfo = None,
         field_mapping_query: FieldMappingQuery = None,
-        field_mappings: typing.Sequence[FieldMappingV2] = None,
         retention_secs: int = None,
         sources: typing.Sequence[FileUploadSourceWrapper] = None,
+        storage_compression_type: str = None,
         workspace = "commons",
         **kwargs
     ) -> typing.Union[CreateCollectionResponse, asyncio.Future]:
@@ -1594,82 +1582,63 @@ class Collections(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Collections.create_file_upload_collection(
-            clustering_key=[
-                FieldPartition(
-                    field_name="address.city.zipcode",
-                    keys=["value1","value2"],
-                    type="AUTO",
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Collections.create_file_upload_collection(
+    clustering_key=[
+        FieldPartition(
+            field_name="address.city.zipcode",
+            keys=["value1","value2"],
+            type="AUTO",
+        ),
+    ],
+    description="transactions from stores worldwide",
+    event_time_info=EventTimeInfo(
+        field="timestamp",
+        format="seconds_since_epoch",
+        time_zone="UTC",
+    ),
+    field_mapping_query=FieldMappingQuery(
+        sql="sql",
+    ),
+    name="global-transactions",
+    retention_secs=1000000,
+    sources=[
+        FileUploadSourceWrapper(
+            format_params=FormatParams(
+                csv=CsvParams(
+                    column_names=["c1","c2","c3"],
+                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                    encoding="UTF-8",
+                    escape_char="\\",
+                    first_line_as_column_names=True,
+                    quote_char="\"",
+                    separator=",",
                 ),
-            ],
-            description="transactions from stores worldwide",
-            event_time_info=EventTimeInfo(
-                field="timestamp",
-                format="seconds_since_epoch",
-                time_zone="UTC",
+                json=True,
+                mssql_dms=True,
+                mysql_dms=True,
+                oracle_dms=True,
+                postgres_dms=True,
+                xml=XmlParams(
+                    attribute_prefix="_attr",
+                    doc_tag="row",
+                    encoding="UTF-8",
+                    root_tag="root",
+                    value_tag="value",
+                ),
             ),
-            field_mapping_query=FieldMappingQuery(
-                sql="sql",
-            ),
-            field_mappings=[
-                FieldMappingV2(
-                    input_fields=[
-                        InputField(
-                            field_name="address.city.zipcode",
-                            if_missing="SKIP",
-                            is_drop=True,
-                            param="zip",
-                        ),
-                    ],
-                    name="myTestMapping",
-                    output_field=OutputField(
-                        field_name="zip_hash",
-                        on_error="SKIP",
-                        value=SqlExpression(
-                            sql="SHA256()",
-                        ),
-                    ),
-                ),
-            ],
-            name="global-transactions",
-            retention_secs=1000000,
-            sources=[
-                FileUploadSourceWrapper(
-                    format_params=FormatParams(
-                        csv=CsvParams(
-                            column_names=["c1","c2","c3"],
-                            column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
-                            encoding="UTF-8",
-                            escape_char="\\",
-                            first_line_as_column_names=True,
-                            quote_char="\"",
-                            separator=",",
-                        ),
-                        json=True,
-                        mssql_dms=True,
-                        mysql_dms=True,
-                        oracle_dms=True,
-                        postgres_dms=True,
-                        xml=XmlParams(
-                            attribute_prefix="_attr",
-                            doc_tag="row",
-                            encoding="UTF-8",
-                            root_tag="root",
-                            value_tag="value",
-                        ),
-                    ),
-                    integration_name="aws-integration",
-                    file_name="file1.json",
-                    file_size=12345,
-                    file_upload_time="2019-01-15T21:48:23Z",
-                ),
-            ],
-            async_req=True,
-        )
-        result = await future
-        ```
+            integration_name="aws-integration",
+            file_name="file1.json",
+            file_size=12345,
+            file_upload_time="2019-01-15T21:48:23Z",
+        ),
+    ],
+    storage_compression_type="LZ4",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -1677,10 +1646,10 @@ class Collections(object):
             description (str): Text describing the collection.. [optional]
             event_time_info (EventTimeInfo): [optional]
             field_mapping_query (FieldMappingQuery): [optional]
-            field_mappings ([FieldMappingV2]): Deprecated. List of mappings. Use field_mapping_query instead.. [optional]
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
             retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
             sources ([FileUploadSourceWrapper]): List of sources from which to ingest data. [optional]
+            storage_compression_type (str): RocksDB storage compression type.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1753,9 +1722,9 @@ class Collections(object):
         description: str = None,
         event_time_info: EventTimeInfo = None,
         field_mapping_query: FieldMappingQuery = None,
-        field_mappings: typing.Sequence[FieldMappingV2] = None,
         retention_secs: int = None,
         sources: typing.Sequence[GcsSourceWrapper] = None,
+        storage_compression_type: str = None,
         workspace = "commons",
         **kwargs
     ) -> typing.Union[CreateCollectionResponse, asyncio.Future]:
@@ -1765,82 +1734,63 @@ class Collections(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Collections.create_gcs_collection(
-            clustering_key=[
-                FieldPartition(
-                    field_name="address.city.zipcode",
-                    keys=["value1","value2"],
-                    type="AUTO",
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Collections.create_gcs_collection(
+    clustering_key=[
+        FieldPartition(
+            field_name="address.city.zipcode",
+            keys=["value1","value2"],
+            type="AUTO",
+        ),
+    ],
+    description="transactions from stores worldwide",
+    event_time_info=EventTimeInfo(
+        field="timestamp",
+        format="seconds_since_epoch",
+        time_zone="UTC",
+    ),
+    field_mapping_query=FieldMappingQuery(
+        sql="sql",
+    ),
+    name="global-transactions",
+    retention_secs=1000000,
+    sources=[
+        GcsSourceWrapper(
+            format_params=FormatParams(
+                csv=CsvParams(
+                    column_names=["c1","c2","c3"],
+                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                    encoding="UTF-8",
+                    escape_char="\\",
+                    first_line_as_column_names=True,
+                    quote_char="\"",
+                    separator=",",
                 ),
-            ],
-            description="transactions from stores worldwide",
-            event_time_info=EventTimeInfo(
-                field="timestamp",
-                format="seconds_since_epoch",
-                time_zone="UTC",
+                json=True,
+                mssql_dms=True,
+                mysql_dms=True,
+                oracle_dms=True,
+                postgres_dms=True,
+                xml=XmlParams(
+                    attribute_prefix="_attr",
+                    doc_tag="row",
+                    encoding="UTF-8",
+                    root_tag="root",
+                    value_tag="value",
+                ),
             ),
-            field_mapping_query=FieldMappingQuery(
-                sql="sql",
-            ),
-            field_mappings=[
-                FieldMappingV2(
-                    input_fields=[
-                        InputField(
-                            field_name="address.city.zipcode",
-                            if_missing="SKIP",
-                            is_drop=True,
-                            param="zip",
-                        ),
-                    ],
-                    name="myTestMapping",
-                    output_field=OutputField(
-                        field_name="zip_hash",
-                        on_error="SKIP",
-                        value=SqlExpression(
-                            sql="SHA256()",
-                        ),
-                    ),
-                ),
-            ],
-            name="global-transactions",
-            retention_secs=1000000,
-            sources=[
-                GcsSourceWrapper(
-                    format_params=FormatParams(
-                        csv=CsvParams(
-                            column_names=["c1","c2","c3"],
-                            column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
-                            encoding="UTF-8",
-                            escape_char="\\",
-                            first_line_as_column_names=True,
-                            quote_char="\"",
-                            separator=",",
-                        ),
-                        json=True,
-                        mssql_dms=True,
-                        mysql_dms=True,
-                        oracle_dms=True,
-                        postgres_dms=True,
-                        xml=XmlParams(
-                            attribute_prefix="_attr",
-                            doc_tag="row",
-                            encoding="UTF-8",
-                            root_tag="root",
-                            value_tag="value",
-                        ),
-                    ),
-                    integration_name="aws-integration",
-                    bucket="server-logs",
-                    pattern="prefix/to/**/keys/*.format",
-                    prefix="prefix/to/keys",
-                ),
-            ],
-            async_req=True,
-        )
-        result = await future
-        ```
+            integration_name="aws-integration",
+            bucket="server-logs",
+            pattern="prefix/to/**/keys/*.format",
+            prefix="prefix/to/keys",
+        ),
+    ],
+    storage_compression_type="LZ4",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -1848,10 +1798,10 @@ class Collections(object):
             description (str): Text describing the collection.. [optional]
             event_time_info (EventTimeInfo): [optional]
             field_mapping_query (FieldMappingQuery): [optional]
-            field_mappings ([FieldMappingV2]): Deprecated. List of mappings. Use field_mapping_query instead.. [optional]
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
             retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
             sources ([GcsSourceWrapper]): List of sources from which to ingest data. [optional]
+            storage_compression_type (str): RocksDB storage compression type.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1924,9 +1874,9 @@ class Collections(object):
         description: str = None,
         event_time_info: EventTimeInfo = None,
         field_mapping_query: FieldMappingQuery = None,
-        field_mappings: typing.Sequence[FieldMappingV2] = None,
         retention_secs: int = None,
         sources: typing.Sequence[KafkaSourceWrapper] = None,
+        storage_compression_type: str = None,
         workspace = "commons",
         **kwargs
     ) -> typing.Union[CreateCollectionResponse, asyncio.Future]:
@@ -1936,83 +1886,64 @@ class Collections(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Collections.create_kafka_collection(
-            clustering_key=[
-                FieldPartition(
-                    field_name="address.city.zipcode",
-                    keys=["value1","value2"],
-                    type="AUTO",
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Collections.create_kafka_collection(
+    clustering_key=[
+        FieldPartition(
+            field_name="address.city.zipcode",
+            keys=["value1","value2"],
+            type="AUTO",
+        ),
+    ],
+    description="transactions from stores worldwide",
+    event_time_info=EventTimeInfo(
+        field="timestamp",
+        format="seconds_since_epoch",
+        time_zone="UTC",
+    ),
+    field_mapping_query=FieldMappingQuery(
+        sql="sql",
+    ),
+    name="global-transactions",
+    retention_secs=1000000,
+    sources=[
+        KafkaSourceWrapper(
+            format_params=FormatParams(
+                csv=CsvParams(
+                    column_names=["c1","c2","c3"],
+                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                    encoding="UTF-8",
+                    escape_char="\\",
+                    first_line_as_column_names=True,
+                    quote_char="\"",
+                    separator=",",
                 ),
-            ],
-            description="transactions from stores worldwide",
-            event_time_info=EventTimeInfo(
-                field="timestamp",
-                format="seconds_since_epoch",
-                time_zone="UTC",
+                json=True,
+                mssql_dms=True,
+                mysql_dms=True,
+                oracle_dms=True,
+                postgres_dms=True,
+                xml=XmlParams(
+                    attribute_prefix="_attr",
+                    doc_tag="row",
+                    encoding="UTF-8",
+                    root_tag="root",
+                    value_tag="value",
+                ),
             ),
-            field_mapping_query=FieldMappingQuery(
-                sql="sql",
-            ),
-            field_mappings=[
-                FieldMappingV2(
-                    input_fields=[
-                        InputField(
-                            field_name="address.city.zipcode",
-                            if_missing="SKIP",
-                            is_drop=True,
-                            param="zip",
-                        ),
-                    ],
-                    name="myTestMapping",
-                    output_field=OutputField(
-                        field_name="zip_hash",
-                        on_error="SKIP",
-                        value=SqlExpression(
-                            sql="SHA256()",
-                        ),
-                    ),
-                ),
-            ],
-            name="global-transactions",
-            retention_secs=1000000,
-            sources=[
-                KafkaSourceWrapper(
-                    format_params=FormatParams(
-                        csv=CsvParams(
-                            column_names=["c1","c2","c3"],
-                            column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
-                            encoding="UTF-8",
-                            escape_char="\\",
-                            first_line_as_column_names=True,
-                            quote_char="\"",
-                            separator=",",
-                        ),
-                        json=True,
-                        mssql_dms=True,
-                        mysql_dms=True,
-                        oracle_dms=True,
-                        postgres_dms=True,
-                        xml=XmlParams(
-                            attribute_prefix="_attr",
-                            doc_tag="row",
-                            encoding="UTF-8",
-                            root_tag="root",
-                            value_tag="value",
-                        ),
-                    ),
-                    integration_name="aws-integration",
-                    consumer_group_id="org-collection",
-                    kafka_topic_name="example-topic",
-                    offset_reset_policy="EARLIEST",
-                    use_v3=True,
-                ),
-            ],
-            async_req=True,
-        )
-        result = await future
-        ```
+            integration_name="aws-integration",
+            consumer_group_id="org-collection",
+            kafka_topic_name="example-topic",
+            offset_reset_policy="EARLIEST",
+            use_v3=True,
+        ),
+    ],
+    storage_compression_type="LZ4",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -2020,10 +1951,10 @@ class Collections(object):
             description (str): Text describing the collection.. [optional]
             event_time_info (EventTimeInfo): [optional]
             field_mapping_query (FieldMappingQuery): [optional]
-            field_mappings ([FieldMappingV2]): Deprecated. List of mappings. Use field_mapping_query instead.. [optional]
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
             retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
             sources ([KafkaSourceWrapper]): List of sources from which to ingest data. [optional]
+            storage_compression_type (str): RocksDB storage compression type.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2096,9 +2027,9 @@ class Collections(object):
         description: str = None,
         event_time_info: EventTimeInfo = None,
         field_mapping_query: FieldMappingQuery = None,
-        field_mappings: typing.Sequence[FieldMappingV2] = None,
         retention_secs: int = None,
         sources: typing.Sequence[KinesisSourceWrapper] = None,
+        storage_compression_type: str = None,
         workspace = "commons",
         **kwargs
     ) -> typing.Union[CreateCollectionResponse, asyncio.Future]:
@@ -2108,85 +2039,66 @@ class Collections(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Collections.create_kinesis_collection(
-            clustering_key=[
-                FieldPartition(
-                    field_name="address.city.zipcode",
-                    keys=["value1","value2"],
-                    type="AUTO",
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Collections.create_kinesis_collection(
+    clustering_key=[
+        FieldPartition(
+            field_name="address.city.zipcode",
+            keys=["value1","value2"],
+            type="AUTO",
+        ),
+    ],
+    description="transactions from stores worldwide",
+    event_time_info=EventTimeInfo(
+        field="timestamp",
+        format="seconds_since_epoch",
+        time_zone="UTC",
+    ),
+    field_mapping_query=FieldMappingQuery(
+        sql="sql",
+    ),
+    name="global-transactions",
+    retention_secs=1000000,
+    sources=[
+        KinesisSourceWrapper(
+            format_params=FormatParams(
+                csv=CsvParams(
+                    column_names=["c1","c2","c3"],
+                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                    encoding="UTF-8",
+                    escape_char="\\",
+                    first_line_as_column_names=True,
+                    quote_char="\"",
+                    separator=",",
                 ),
-            ],
-            description="transactions from stores worldwide",
-            event_time_info=EventTimeInfo(
-                field="timestamp",
-                format="seconds_since_epoch",
-                time_zone="UTC",
+                json=True,
+                mssql_dms=True,
+                mysql_dms=True,
+                oracle_dms=True,
+                postgres_dms=True,
+                xml=XmlParams(
+                    attribute_prefix="_attr",
+                    doc_tag="row",
+                    encoding="UTF-8",
+                    root_tag="root",
+                    value_tag="value",
+                ),
             ),
-            field_mapping_query=FieldMappingQuery(
-                sql="sql",
-            ),
-            field_mappings=[
-                FieldMappingV2(
-                    input_fields=[
-                        InputField(
-                            field_name="address.city.zipcode",
-                            if_missing="SKIP",
-                            is_drop=True,
-                            param="zip",
-                        ),
-                    ],
-                    name="myTestMapping",
-                    output_field=OutputField(
-                        field_name="zip_hash",
-                        on_error="SKIP",
-                        value=SqlExpression(
-                            sql="SHA256()",
-                        ),
-                    ),
-                ),
+            integration_name="aws-integration",
+            aws_region="us-east-2",
+            dms_primary_key=[
+                "dms_primary_key_example",
             ],
-            name="global-transactions",
-            retention_secs=1000000,
-            sources=[
-                KinesisSourceWrapper(
-                    format_params=FormatParams(
-                        csv=CsvParams(
-                            column_names=["c1","c2","c3"],
-                            column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
-                            encoding="UTF-8",
-                            escape_char="\\",
-                            first_line_as_column_names=True,
-                            quote_char="\"",
-                            separator=",",
-                        ),
-                        json=True,
-                        mssql_dms=True,
-                        mysql_dms=True,
-                        oracle_dms=True,
-                        postgres_dms=True,
-                        xml=XmlParams(
-                            attribute_prefix="_attr",
-                            doc_tag="row",
-                            encoding="UTF-8",
-                            root_tag="root",
-                            value_tag="value",
-                        ),
-                    ),
-                    integration_name="aws-integration",
-                    aws_region="us-east-2",
-                    dms_primary_key=[
-                        "dms_primary_key_example",
-                    ],
-                    offset_reset_policy="EARLIEST",
-                    stream_name="click_stream",
-                ),
-            ],
-            async_req=True,
-        )
-        result = await future
-        ```
+            offset_reset_policy="EARLIEST",
+            stream_name="click_stream",
+        ),
+    ],
+    storage_compression_type="LZ4",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -2194,10 +2106,10 @@ class Collections(object):
             description (str): Text describing the collection.. [optional]
             event_time_info (EventTimeInfo): [optional]
             field_mapping_query (FieldMappingQuery): [optional]
-            field_mappings ([FieldMappingV2]): Deprecated. List of mappings. Use field_mapping_query instead.. [optional]
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
             retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
             sources ([KinesisSourceWrapper]): List of sources from which to ingest data. [optional]
+            storage_compression_type (str): RocksDB storage compression type.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2270,9 +2182,9 @@ class Collections(object):
         description: str = None,
         event_time_info: EventTimeInfo = None,
         field_mapping_query: FieldMappingQuery = None,
-        field_mappings: typing.Sequence[FieldMappingV2] = None,
         retention_secs: int = None,
         sources: typing.Sequence[MongodbSourceWrapper] = None,
+        storage_compression_type: str = None,
         workspace = "commons",
         **kwargs
     ) -> typing.Union[CreateCollectionResponse, asyncio.Future]:
@@ -2282,81 +2194,63 @@ class Collections(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Collections.create_mongodb_collection(
-            clustering_key=[
-                FieldPartition(
-                    field_name="address.city.zipcode",
-                    keys=["value1","value2"],
-                    type="AUTO",
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Collections.create_mongodb_collection(
+    clustering_key=[
+        FieldPartition(
+            field_name="address.city.zipcode",
+            keys=["value1","value2"],
+            type="AUTO",
+        ),
+    ],
+    description="transactions from stores worldwide",
+    event_time_info=EventTimeInfo(
+        field="timestamp",
+        format="seconds_since_epoch",
+        time_zone="UTC",
+    ),
+    field_mapping_query=FieldMappingQuery(
+        sql="sql",
+    ),
+    name="global-transactions",
+    retention_secs=1000000,
+    sources=[
+        MongodbSourceWrapper(
+            format_params=FormatParams(
+                csv=CsvParams(
+                    column_names=["c1","c2","c3"],
+                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                    encoding="UTF-8",
+                    escape_char="\\",
+                    first_line_as_column_names=True,
+                    quote_char="\"",
+                    separator=",",
                 ),
-            ],
-            description="transactions from stores worldwide",
-            event_time_info=EventTimeInfo(
-                field="timestamp",
-                format="seconds_since_epoch",
-                time_zone="UTC",
+                json=True,
+                mssql_dms=True,
+                mysql_dms=True,
+                oracle_dms=True,
+                postgres_dms=True,
+                xml=XmlParams(
+                    attribute_prefix="_attr",
+                    doc_tag="row",
+                    encoding="UTF-8",
+                    root_tag="root",
+                    value_tag="value",
+                ),
             ),
-            field_mapping_query=FieldMappingQuery(
-                sql="sql",
-            ),
-            field_mappings=[
-                FieldMappingV2(
-                    input_fields=[
-                        InputField(
-                            field_name="address.city.zipcode",
-                            if_missing="SKIP",
-                            is_drop=True,
-                            param="zip",
-                        ),
-                    ],
-                    name="myTestMapping",
-                    output_field=OutputField(
-                        field_name="zip_hash",
-                        on_error="SKIP",
-                        value=SqlExpression(
-                            sql="SHA256()",
-                        ),
-                    ),
-                ),
-            ],
-            name="global-transactions",
-            retention_secs=1000000,
-            sources=[
-                MongodbSourceWrapper(
-                    format_params=FormatParams(
-                        csv=CsvParams(
-                            column_names=["c1","c2","c3"],
-                            column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
-                            encoding="UTF-8",
-                            escape_char="\\",
-                            first_line_as_column_names=True,
-                            quote_char="\"",
-                            separator=",",
-                        ),
-                        json=True,
-                        mssql_dms=True,
-                        mysql_dms=True,
-                        oracle_dms=True,
-                        postgres_dms=True,
-                        xml=XmlParams(
-                            attribute_prefix="_attr",
-                            doc_tag="row",
-                            encoding="UTF-8",
-                            root_tag="root",
-                            value_tag="value",
-                        ),
-                    ),
-                    integration_name="aws-integration",
-                    collection_name="my_collection",
-                    database_name="my_database",
-                ),
-            ],
-            async_req=True,
-        )
-        result = await future
-        ```
+            integration_name="aws-integration",
+            collection_name="my_collection",
+            database_name="my_database",
+            retrieve_full_document=True,
+        ),
+    ],
+    storage_compression_type="LZ4",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -2364,10 +2258,10 @@ class Collections(object):
             description (str): Text describing the collection.. [optional]
             event_time_info (EventTimeInfo): [optional]
             field_mapping_query (FieldMappingQuery): [optional]
-            field_mappings ([FieldMappingV2]): Deprecated. List of mappings. Use field_mapping_query instead.. [optional]
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
             retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
             sources ([MongodbSourceWrapper]): List of sources from which to ingest data. [optional]
+            storage_compression_type (str): RocksDB storage compression type.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2440,9 +2334,9 @@ class Collections(object):
         description: str = None,
         event_time_info: EventTimeInfo = None,
         field_mapping_query: FieldMappingQuery = None,
-        field_mappings: typing.Sequence[FieldMappingV2] = None,
         retention_secs: int = None,
         sources: typing.Sequence[S3SourceWrapper] = None,
+        storage_compression_type: str = None,
         workspace = "commons",
         **kwargs
     ) -> typing.Union[CreateCollectionResponse, asyncio.Future]:
@@ -2452,83 +2346,64 @@ class Collections(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Collections.create_s3_collection(
-            clustering_key=[
-                FieldPartition(
-                    field_name="address.city.zipcode",
-                    keys=["value1","value2"],
-                    type="AUTO",
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Collections.create_s3_collection(
+    clustering_key=[
+        FieldPartition(
+            field_name="address.city.zipcode",
+            keys=["value1","value2"],
+            type="AUTO",
+        ),
+    ],
+    description="transactions from stores worldwide",
+    event_time_info=EventTimeInfo(
+        field="timestamp",
+        format="seconds_since_epoch",
+        time_zone="UTC",
+    ),
+    field_mapping_query=FieldMappingQuery(
+        sql="sql",
+    ),
+    name="global-transactions",
+    retention_secs=1000000,
+    sources=[
+        S3SourceWrapper(
+            format_params=FormatParams(
+                csv=CsvParams(
+                    column_names=["c1","c2","c3"],
+                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                    encoding="UTF-8",
+                    escape_char="\\",
+                    first_line_as_column_names=True,
+                    quote_char="\"",
+                    separator=",",
                 ),
-            ],
-            description="transactions from stores worldwide",
-            event_time_info=EventTimeInfo(
-                field="timestamp",
-                format="seconds_since_epoch",
-                time_zone="UTC",
+                json=True,
+                mssql_dms=True,
+                mysql_dms=True,
+                oracle_dms=True,
+                postgres_dms=True,
+                xml=XmlParams(
+                    attribute_prefix="_attr",
+                    doc_tag="row",
+                    encoding="UTF-8",
+                    root_tag="root",
+                    value_tag="value",
+                ),
             ),
-            field_mapping_query=FieldMappingQuery(
-                sql="sql",
-            ),
-            field_mappings=[
-                FieldMappingV2(
-                    input_fields=[
-                        InputField(
-                            field_name="address.city.zipcode",
-                            if_missing="SKIP",
-                            is_drop=True,
-                            param="zip",
-                        ),
-                    ],
-                    name="myTestMapping",
-                    output_field=OutputField(
-                        field_name="zip_hash",
-                        on_error="SKIP",
-                        value=SqlExpression(
-                            sql="SHA256()",
-                        ),
-                    ),
-                ),
-            ],
-            name="global-transactions",
-            retention_secs=1000000,
-            sources=[
-                S3SourceWrapper(
-                    format_params=FormatParams(
-                        csv=CsvParams(
-                            column_names=["c1","c2","c3"],
-                            column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
-                            encoding="UTF-8",
-                            escape_char="\\",
-                            first_line_as_column_names=True,
-                            quote_char="\"",
-                            separator=",",
-                        ),
-                        json=True,
-                        mssql_dms=True,
-                        mysql_dms=True,
-                        oracle_dms=True,
-                        postgres_dms=True,
-                        xml=XmlParams(
-                            attribute_prefix="_attr",
-                            doc_tag="row",
-                            encoding="UTF-8",
-                            root_tag="root",
-                            value_tag="value",
-                        ),
-                    ),
-                    integration_name="aws-integration",
-                    bucket="s3://customer-account-info",
-                    pattern="prefix/to/**/keys/*.format",
-                    prefix="prefix/to/keys",
-                    region="us-west-2",
-                ),
-            ],
-            async_req=True,
-        )
-        result = await future
-        ```
+            integration_name="aws-integration",
+            bucket="s3://customer-account-info",
+            pattern="prefix/to/**/keys/*.format",
+            prefix="prefix/to/keys",
+            region="us-west-2",
+        ),
+    ],
+    storage_compression_type="LZ4",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -2536,10 +2411,10 @@ class Collections(object):
             description (str): Text describing the collection.. [optional]
             event_time_info (EventTimeInfo): [optional]
             field_mapping_query (FieldMappingQuery): [optional]
-            field_mappings ([FieldMappingV2]): Deprecated. List of mappings. Use field_mapping_query instead.. [optional]
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
             retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
             sources ([S3SourceWrapper]): List of sources from which to ingest data. [optional]
+            storage_compression_type (str): RocksDB storage compression type.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2612,9 +2487,9 @@ class Collections(object):
         description: str = None,
         event_time_info: EventTimeInfo = None,
         field_mapping_query: FieldMappingQuery = None,
-        field_mappings: typing.Sequence[FieldMappingV2] = None,
         retention_secs: int = None,
         sources: typing.Sequence[SnowflakeSourceWrapper] = None,
+        storage_compression_type: str = None,
         workspace = "commons",
         **kwargs
     ) -> typing.Union[CreateCollectionResponse, asyncio.Future]:
@@ -2624,83 +2499,64 @@ class Collections(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Collections.create_snowflake_collection(
-            clustering_key=[
-                FieldPartition(
-                    field_name="address.city.zipcode",
-                    keys=["value1","value2"],
-                    type="AUTO",
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Collections.create_snowflake_collection(
+    clustering_key=[
+        FieldPartition(
+            field_name="address.city.zipcode",
+            keys=["value1","value2"],
+            type="AUTO",
+        ),
+    ],
+    description="transactions from stores worldwide",
+    event_time_info=EventTimeInfo(
+        field="timestamp",
+        format="seconds_since_epoch",
+        time_zone="UTC",
+    ),
+    field_mapping_query=FieldMappingQuery(
+        sql="sql",
+    ),
+    name="global-transactions",
+    retention_secs=1000000,
+    sources=[
+        SnowflakeSourceWrapper(
+            format_params=FormatParams(
+                csv=CsvParams(
+                    column_names=["c1","c2","c3"],
+                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                    encoding="UTF-8",
+                    escape_char="\\",
+                    first_line_as_column_names=True,
+                    quote_char="\"",
+                    separator=",",
                 ),
-            ],
-            description="transactions from stores worldwide",
-            event_time_info=EventTimeInfo(
-                field="timestamp",
-                format="seconds_since_epoch",
-                time_zone="UTC",
+                json=True,
+                mssql_dms=True,
+                mysql_dms=True,
+                oracle_dms=True,
+                postgres_dms=True,
+                xml=XmlParams(
+                    attribute_prefix="_attr",
+                    doc_tag="row",
+                    encoding="UTF-8",
+                    root_tag="root",
+                    value_tag="value",
+                ),
             ),
-            field_mapping_query=FieldMappingQuery(
-                sql="sql",
-            ),
-            field_mappings=[
-                FieldMappingV2(
-                    input_fields=[
-                        InputField(
-                            field_name="address.city.zipcode",
-                            if_missing="SKIP",
-                            is_drop=True,
-                            param="zip",
-                        ),
-                    ],
-                    name="myTestMapping",
-                    output_field=OutputField(
-                        field_name="zip_hash",
-                        on_error="SKIP",
-                        value=SqlExpression(
-                            sql="SHA256()",
-                        ),
-                    ),
-                ),
-            ],
-            name="global-transactions",
-            retention_secs=1000000,
-            sources=[
-                SnowflakeSourceWrapper(
-                    format_params=FormatParams(
-                        csv=CsvParams(
-                            column_names=["c1","c2","c3"],
-                            column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
-                            encoding="UTF-8",
-                            escape_char="\\",
-                            first_line_as_column_names=True,
-                            quote_char="\"",
-                            separator=",",
-                        ),
-                        json=True,
-                        mssql_dms=True,
-                        mysql_dms=True,
-                        oracle_dms=True,
-                        postgres_dms=True,
-                        xml=XmlParams(
-                            attribute_prefix="_attr",
-                            doc_tag="row",
-                            encoding="UTF-8",
-                            root_tag="root",
-                            value_tag="value",
-                        ),
-                    ),
-                    integration_name="aws-integration",
-                    database="NASDAQ",
-                    schema="PUBLIC",
-                    table_name="COMPANIES",
-                    warehouse="COMPUTE_XL",
-                ),
-            ],
-            async_req=True,
-        )
-        result = await future
-        ```
+            integration_name="aws-integration",
+            database="NASDAQ",
+            schema="PUBLIC",
+            table_name="COMPANIES",
+            warehouse="COMPUTE_XL",
+        ),
+    ],
+    storage_compression_type="LZ4",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -2708,10 +2564,10 @@ class Collections(object):
             description (str): Text describing the collection.. [optional]
             event_time_info (EventTimeInfo): [optional]
             field_mapping_query (FieldMappingQuery): [optional]
-            field_mappings ([FieldMappingV2]): Deprecated. List of mappings. Use field_mapping_query instead.. [optional]
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
             retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
             sources ([SnowflakeSourceWrapper]): List of sources from which to ingest data. [optional]
+            storage_compression_type (str): RocksDB storage compression type.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2789,14 +2645,14 @@ class Collections(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Collections.delete(
-            collection="collection_example",
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Collections.delete(
+    collection="collection_example",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -2878,14 +2734,14 @@ class Collections(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Collections.get(
-            collection="collection_example",
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Collections.get(
+    collection="collection_example",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -2954,6 +2810,105 @@ class Collections(object):
             collection
         return self.get_endpoint.call_with_http_info(**kwargs)
 
+    def get_0(
+        self,
+        *,
+        collection: str,
+        description: str = None,
+        field_mapping_query: FieldMappingQuery = None,
+        workspace = "commons",
+        **kwargs
+    ) -> typing.Union[GetCollectionResponse, asyncio.Future]:
+        """Update Collection  # noqa: E501
+
+        Update details about a collection.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Collections.get_0(
+    collection="collection_example",
+    description="transactions from stores worldwide",
+    field_mapping_query=FieldMappingQuery(
+        sql="sql",
+    ),
+    async_req=True,
+)
+result = await future
+```
+
+        Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            collection (str): name of the collection. [required]
+            description (str): Updated text describing the collection.. [optional]
+            field_mapping_query (FieldMappingQuery): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GetCollectionResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['workspace'] = \
+            workspace
+        kwargs['collection'] = \
+            collection
+        kwargs['update_collection_request'] = \
+            kwargs['update_collection_request']
+        return self.get_0_endpoint.call_with_http_info(**kwargs)
+
     def list(
         self,
         **kwargs
@@ -2964,13 +2919,13 @@ class Collections(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Collections.list(
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Collections.list(
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             _return_http_data_only (bool): response data without head status
@@ -3045,13 +3000,13 @@ class Collections(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.Collections.workspace_collections(
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.Collections.workspace_collections(
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
@@ -3142,3 +3097,5 @@ class Collections(object):
     return_types_dict['create_s3_collection'] = S3CollectionCreationRequest
     body_params_dict['create_snowflake_collection'] = 'snowflake_collection_creation_request'
     return_types_dict['create_snowflake_collection'] = SnowflakeCollectionCreationRequest
+    body_params_dict['get_0'] = 'update_collection_request'
+    return_types_dict['get_0'] = UpdateCollectionRequest

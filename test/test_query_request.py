@@ -9,7 +9,7 @@
 
 
 import sys
-from rockset.models import *
+from rockset_v2.models import *
 
 
 def test_query_request_init():
@@ -18,7 +18,6 @@ def test_query_request_init():
             default_row_limit=1,
             generate_warnings=False,
             initial_paginate_response_doc_count=1,
-            paginate=True,
             parameters=[
                 QueryParameter(
                     name="_id",

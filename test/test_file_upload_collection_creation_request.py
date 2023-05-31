@@ -9,7 +9,7 @@
 
 
 import sys
-from rockset.models import *
+from rockset_v2.models import *
 
 
 def test_file_upload_collection_creation_request_init():

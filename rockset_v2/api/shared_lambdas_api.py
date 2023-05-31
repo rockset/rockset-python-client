@@ -14,8 +14,8 @@ import typing  # noqa: F401
 
 import asyncio
 
-from rockset.api_client import ApiClient, Endpoint as _Endpoint
-from rockset.model_utils import (  # noqa: F401
+from rockset_v2.api_client import ApiClient, Endpoint as _Endpoint
+from rockset_v2.model_utils import (  # noqa: F401
     check_allowed_values,
     check_validations,
     date,
@@ -24,10 +24,10 @@ from rockset.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
-from rockset.model.error_model import ErrorModel
-from rockset.model.execute_public_query_lambda_request import ExecutePublicQueryLambdaRequest
-from rockset.model.query_response import QueryResponse
-from rockset.models import *
+from rockset_v2.model.error_model import ErrorModel
+from rockset_v2.model.execute_public_query_lambda_request import ExecutePublicQueryLambdaRequest
+from rockset_v2.model.query_response import QueryResponse
+from rockset_v2.models import *
 
 
 class SharedLambdas(object):
@@ -114,14 +114,14 @@ class SharedLambdas(object):
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.SharedLambdas.execute_public_query_lambda_with_params(
-            public_access_id="public_access_id_example",
-            async_req=True,
-        )
-        result = await future
-        ```
+```python
+rs = RocksetClient(api_key=APIKEY)
+future = rs.SharedLambdas.execute_public_query_lambda_with_params(
+    public_access_id="public_access_id_example",
+    async_req=True,
+)
+result = await future
+```
 
         Keyword Args:
             public_access_id (str): public access ID of the query lambda. [required]

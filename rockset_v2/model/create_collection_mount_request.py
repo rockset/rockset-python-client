@@ -11,7 +11,7 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from rockset.model_utils import (  # noqa: F401
+from rockset_v2.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
     ModelNormal,
@@ -26,7 +26,7 @@ from rockset.model_utils import (  # noqa: F401
     validate_get_composed_info,
     OpenApiModel
 )
-from rockset.exceptions import ApiAttributeError
+from rockset_v2.exceptions import ApiAttributeError
 
 
 
@@ -55,10 +55,6 @@ class CreateCollectionMountRequest(ModelNormal):
     """
     
     allowed_values = {
-        ('type',): {
-            'STATIC': "STATIC",
-            'LIVE': "LIVE",
-        },
     }
 
     validations = {
@@ -86,7 +82,6 @@ class CreateCollectionMountRequest(ModelNormal):
         """
         return {
             'collection_paths': ([str], none_type),  # noqa: E501
-            'type': (str, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -96,7 +91,6 @@ class CreateCollectionMountRequest(ModelNormal):
 
     attribute_map = {
         'collection_paths': 'collection_paths',  # noqa: E501
-        'type': 'type',  # noqa: E501
     }
 
     read_only_vars = {
@@ -141,7 +135,6 @@ class CreateCollectionMountRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             collection_paths ([str]): Collections to mount.. [optional]  # noqa: E501
-            type (str): Mount type.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -194,7 +187,6 @@ class CreateCollectionMountRequest(ModelNormal):
 
         Keyword Args:
             collection_paths ([str]): Collections to mount.. [optional]  # noqa: E501
-            type (str): Mount type.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

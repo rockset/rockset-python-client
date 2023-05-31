@@ -1,4 +1,4 @@
-# rockset.Views
+# rockset_v2.Views
 
 All URIs are relative to *https://api.use1a1.rockset.com* or the apiserver provided when initializing RocksetClient
 
@@ -24,8 +24,8 @@ Create a view
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -88,6 +88,19 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | view created successfully |  -  |
+**400** | bad request |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+**405** | not allowed |  -  |
+**406** | not acceptable |  -  |
+**408** | request timeout |  -  |
+**415** | not supported |  -  |
+**429** | resource exceeded |  -  |
+**500** | internal error |  -  |
+**501** | not implemented |  -  |
+**502** | bad gateway |  -  |
+**503** | not ready |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -103,8 +116,8 @@ Delete a view
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -162,6 +175,19 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | view deleted successfully |  -  |
+**400** | bad request |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+**405** | not allowed |  -  |
+**406** | not acceptable |  -  |
+**408** | request timeout |  -  |
+**415** | not supported |  -  |
+**429** | resource exceeded |  -  |
+**500** | internal error |  -  |
+**501** | not implemented |  -  |
+**502** | bad gateway |  -  |
+**503** | not ready |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -177,8 +203,8 @@ Get details about a view
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -264,8 +290,8 @@ Retrieve all views in an organization
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -345,8 +371,8 @@ Update a view
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -409,6 +435,19 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | view updated successfully |  -  |
+**400** | bad request |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+**405** | not allowed |  -  |
+**406** | not acceptable |  -  |
+**408** | request timeout |  -  |
+**415** | not supported |  -  |
+**429** | resource exceeded |  -  |
+**500** | internal error |  -  |
+**501** | not implemented |  -  |
+**502** | bad gateway |  -  |
+**503** | not ready |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
@@ -424,8 +463,8 @@ Retrieve all views in a workspace.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client

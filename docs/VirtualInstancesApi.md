@@ -1,4 +1,4 @@
-# rockset.VirtualInstances
+# rockset_v2.VirtualInstances
 
 All URIs are relative to *https://api.use1a1.rockset.com* or the apiserver provided when initializing RocksetClient
 
@@ -11,7 +11,7 @@ Method | HTTP request | Description
 [**get_virtual_instance_queries**](VirtualInstancesApi.md#get_virtual_instance_queries) | **GET** /v1/orgs/self/virtualinstances/{virtualInstanceId}/queries | List Queries
 [**list**](VirtualInstancesApi.md#list) | **GET** /v1/orgs/self/virtualinstances | List Virtual Instances
 [**list_collection_mounts**](VirtualInstancesApi.md#list_collection_mounts) | **GET** /v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts | List Collection Mounts
-[**mount_collection**](VirtualInstancesApi.md#mount_collection) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts | Mount Collection
+[**mount_collection**](VirtualInstancesApi.md#mount_collection) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts | Mount Collections
 [**query_virtual_instance**](VirtualInstancesApi.md#query_virtual_instance) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId}/queries | Execute SQL Query
 [**resume_virtual_instance**](VirtualInstancesApi.md#resume_virtual_instance) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId}/resume | Resume Virtual Instance
 [**suspend_virtual_instance**](VirtualInstancesApi.md#suspend_virtual_instance) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId}/suspend | Suspend Virtual Instance
@@ -31,8 +31,8 @@ Create Virtual Instance
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -54,6 +54,8 @@ pprint(api_response)
 api_response = await rs.VirtualInstances.create(
     auto_suspend_seconds=3600,
     description="VI serving prod traffic",
+    enable_remount_on_resume=True,
+    mount_refresh_interval_seconds=3600,
     name="prod_vi",
     type="LARGE",
     async_req=True,
@@ -72,6 +74,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **auto_suspend_seconds** | **int** | Number of seconds without queries after which the VI is suspended | [optional]
  **description** | **str** | Description of requested virtual instance. | [optional]
+ **enable_remount_on_resume** | **bool** | When a Virtual Instance is resumed, it will remount all collections that were mounted when the Virtual Instance was suspended. | [optional]
+ **mount_refresh_interval_seconds** | **int** | Number of seconds between data refreshes for mounts on this Virtual Instance. A value of 0 means continuous refresh and a value of null means never refresh. | [optional]
  **name** | **str** | Unique identifier for virtual instance, can contain alphanumeric or dash characters. | 
  **type** | **str** | Requested virtual instance type. | [optional]
 
@@ -123,8 +127,8 @@ Delete Virtual Instance
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -209,8 +213,8 @@ Get details about a virtual instance.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -288,15 +292,15 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 Get Collection Mount
 
-[beta] Get a mount on this virtual instance.
+[beta] Retrieve a mount on this virtual instance.
 
 ### Example
 
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -384,8 +388,8 @@ List Queries
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -470,8 +474,8 @@ Retrieve all virtual instances in an organization.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -551,8 +555,8 @@ List Collection Mounts
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -628,7 +632,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 # **mount_collection**
 > CreateCollectionMountsResponse mount_collection(virtual_instance_id, create_collection_mount_request)
 
-Mount Collection
+Mount Collections
 
 [beta] Mount a collection to this virtual instance.
 
@@ -637,15 +641,15 @@ Mount Collection
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
 rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-# Mount Collection
+# Mount Collections
 api_response = rs.VirtualInstances.mount_collection(
     virtual_instance_id="virtualInstanceId_example",
 )
@@ -656,11 +660,10 @@ pprint(api_response)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 # assumes that execution takes place within an asynchronous context
-# Mount Collection
+# Mount Collections
 api_response = await rs.VirtualInstances.mount_collection(
     virtual_instance_id="virtualInstanceId_example",
     collection_paths=["commons.foo","commons.bar"],
-    type="STATIC",
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
@@ -677,7 +680,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **virtual_instance_id** | **str** | Virtual Instance RRN |
  **collection_paths** | **[str]** | Collections to mount. | [optional]
- **type** | **str** | Mount type. | [optional]
 
 ### Return type
 
@@ -727,8 +729,8 @@ Execute SQL Query
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -742,7 +744,6 @@ api_response = rs.VirtualInstances.query_virtual_instance(
         default_row_limit=1,
         generate_warnings=False,
         initial_paginate_response_doc_count=1,
-        paginate=True,
         parameters=[
             QueryParameter(
                 name="_id",
@@ -772,7 +773,6 @@ api_response = await rs.VirtualInstances.query_virtual_instance(
         default_row_limit=1,
         generate_warnings=False,
         initial_paginate_response_doc_count=1,
-        paginate=True,
         parameters=[
             QueryParameter(
                 name="_id",
@@ -782,6 +782,7 @@ api_response = await rs.VirtualInstances.query_virtual_instance(
         ],
         query="SELECT * FROM foo where _id = :_id",
     ),
+    timeout_ms=1,
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
@@ -799,6 +800,7 @@ Name | Type | Description  | Notes
  **virtual_instance_id** | **str** | Virtual Instance RRN |
  **async_options** | [**AsyncQueryOptions**](AsyncQueryOptions.md) |  | [optional]
  **sql** | [**QueryRequestSql**](QueryRequestSql.md) |  | 
+ **timeout_ms** | **int** | The maximum amount of time that the system will attempt to complete query execution before aborting the query and returning an error. The maximum value for this timeout is 2 minutes. async_options.timeout_ms will override this timeout. | [optional]
 
 ### Return type
 
@@ -848,8 +850,8 @@ Resume Virtual Instance
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -934,8 +936,8 @@ Suspend Virtual Instance
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1020,8 +1022,8 @@ Unmount Collection
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1109,8 +1111,8 @@ Update the properties of a virtual instance.
 * Api Key Authentication (apikey):
 
 ```python
-from rockset import *
-from rockset.models import *
+from rockset_v2 import *
+from rockset_v2.models import *
 from pprint import pprint
 
 # Create an instance of the Rockset client
@@ -1131,10 +1133,16 @@ pprint(api_response)
 # Update Virtual Instance
 api_response = await rs.VirtualInstances.update(
     virtual_instance_id="virtualInstanceId_example",
+    auto_scaling_policy=AutoScalingPolicy(
+        enabled=True,
+        max_size="XLARGE2",
+        min_size="LARGE",
+    ),
     auto_suspend_enabled=True,
     auto_suspend_seconds=3600,
     description="VI for prod traffic",
-    monitoring_enabled=True,
+    enable_remount_on_resume=True,
+    mount_refresh_interval_seconds=3600,
     name="prod_vi",
     new_size="LARGE",
     async_req=True,
@@ -1152,10 +1160,12 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **virtual_instance_id** | **str** | Virtual Instance RRN |
+ **auto_scaling_policy** | [**AutoScalingPolicy**](AutoScalingPolicy.md) |  | [optional]
  **auto_suspend_enabled** | **bool** | Whether auto-suspend should be enabled for this Virtual Instance. | [optional]
  **auto_suspend_seconds** | **int** | Number of seconds without queries after which the VI is suspended | [optional]
  **description** | **str** | New virtual instance description. | [optional]
- **monitoring_enabled** | **bool** |  | [optional]
+ **enable_remount_on_resume** | **bool** | When a Virtual Instance is resumed, it will remount all collections that were mounted when the Virtual Instance was suspended. | [optional]
+ **mount_refresh_interval_seconds** | **int** | Number of seconds between data refreshes for mounts on this Virtual Instance. A value of 0 means continuous refresh and a value of null means never refresh. | [optional]
  **name** | **str** | New virtual instance name. | [optional]
  **new_size** | **str** | Requested virtual instance size. | [optional]
 

@@ -11,7 +11,7 @@
 import re  # noqa: F401
 import sys  # noqa: F401
 
-from rockset.model_utils import (  # noqa: F401
+from rockset_v2.model_utils import (  # noqa: F401
     ApiTypeError,
     ModelComposed,
     ModelNormal,
@@ -26,14 +26,14 @@ from rockset.model_utils import (  # noqa: F401
     validate_get_composed_info,
     OpenApiModel
 )
-from rockset.exceptions import ApiAttributeError
+from rockset_v2.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from rockset.model.aws_role import AwsRole
-    from rockset.model.kafka_v3_security_config import KafkaV3SecurityConfig
-    from rockset.model.schema_registry_config import SchemaRegistryConfig
-    from rockset.model.status_kafka import StatusKafka
+    from rockset_v2.model.aws_role import AwsRole
+    from rockset_v2.model.kafka_v3_security_config import KafkaV3SecurityConfig
+    from rockset_v2.model.schema_registry_config import SchemaRegistryConfig
+    from rockset_v2.model.status_kafka import StatusKafka
     globals()['AwsRole'] = AwsRole
     globals()['KafkaV3SecurityConfig'] = KafkaV3SecurityConfig
     globals()['SchemaRegistryConfig'] = SchemaRegistryConfig
