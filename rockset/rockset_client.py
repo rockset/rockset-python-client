@@ -75,6 +75,10 @@ def wrapper(method):
                 ) from e
 
             other_args[body_param_name] = body
+        if "add_raw_args_to_body" in other_args:
+            for raw_key, raw_value in other_args["add_raw_args_to_body"].items():
+                other_args[body_param_name][raw_key] = raw_value
+            del other_args["add_raw_args_to_body"]
 
         return method(*args, **other_args)
 
