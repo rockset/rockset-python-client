@@ -87,7 +87,7 @@ import rockset
 
 rs = rockset.RocksetClient(host=rockset.Regions.use1a1, api_key="APIKEY")
 try:
-    res = rs.sql(query="SELECT * FROM _events WHERE kind=:event_type LIMIT 100", params={"event_type", "INGEST"})
+    res = rs.sql(query="SELECT * FROM _events WHERE kind=:event_type LIMIT 100", params={"event_type": "INGEST"})
 except rockset.ApiException as e:
     print("Exception when querying: %s\n" % e)
 ```
