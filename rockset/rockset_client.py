@@ -269,7 +269,7 @@ class RocksetClient:
 
     def sql(self, query: str, params: Dict[str, Any] = None) -> QueryResponse:
         """Convenience method for making queries."""
-        if params:
+        if params is not None:
             params = [
                 QueryParameter(
                     name=param, value=str(val), type=convert_to_rockset_type(val)
