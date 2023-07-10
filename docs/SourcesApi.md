@@ -63,11 +63,6 @@ api_response = await rs.Sources.create_source(
         table_name="dynamodb_table_name",
         use_scan_api=True,
     ),
-    file_upload=SourceFileUpload(
-        file_name="file1.json",
-        file_size=12345,
-        file_upload_time="2019-01-15T21:48:23Z",
-    ),
     format_params=FormatParams(
         csv=CsvParams(
             column_names=["c1","c2","c3"],
@@ -151,7 +146,6 @@ Name | Type | Description  | Notes
  **azure_event_hubs** | [**SourceAzureEventHubs**](SourceAzureEventHubs.md) |  | [optional]
  **azure_service_bus** | [**SourceAzureServiceBus**](SourceAzureServiceBus.md) |  | [optional]
  **dynamodb** | [**SourceDynamoDb**](SourceDynamoDb.md) |  | [optional]
- **file_upload** | [**SourceFileUpload**](SourceFileUpload.md) |  | [optional]
  **format_params** | [**FormatParams**](FormatParams.md) |  | [optional]
  **gcs** | [**SourceGcs**](SourceGcs.md) |  | [optional]
  **id** | **str** | Unique source identifier. | [optional]

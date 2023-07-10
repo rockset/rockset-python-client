@@ -298,7 +298,6 @@ class Sources(object):
         azure_event_hubs: SourceAzureEventHubs = None,
         azure_service_bus: SourceAzureServiceBus = None,
         dynamodb: SourceDynamoDb = None,
-        file_upload: SourceFileUpload = None,
         format_params: FormatParams = None,
         gcs: SourceGcs = None,
         id: str = None,
@@ -340,11 +339,6 @@ class Sources(object):
                 rcu=1000,
                 table_name="dynamodb_table_name",
                 use_scan_api=True,
-            ),
-            file_upload=SourceFileUpload(
-                file_name="file1.json",
-                file_size=12345,
-                file_upload_time="2019-01-15T21:48:23Z",
             ),
             format_params=FormatParams(
                 csv=CsvParams(
@@ -422,7 +416,6 @@ class Sources(object):
             azure_event_hubs (SourceAzureEventHubs): [optional]
             azure_service_bus (SourceAzureServiceBus): [optional]
             dynamodb (SourceDynamoDb): [optional]
-            file_upload (SourceFileUpload): [optional]
             format_params (FormatParams): [optional]
             gcs (SourceGcs): [optional]
             id (str): Unique source identifier.. [optional]

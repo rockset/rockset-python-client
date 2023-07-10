@@ -117,7 +117,7 @@ class Source(ModelNormal):
             'azure_event_hubs': (SourceAzureEventHubs, none_type),  # noqa: E501
             'azure_service_bus': (SourceAzureServiceBus, none_type),  # noqa: E501
             'dynamodb': (SourceDynamoDb, none_type),  # noqa: E501
-            'file_upload': (SourceFileUpload, none_type),  # noqa: E501
+            'file_upload': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
             'format_params': (FormatParams, none_type),  # noqa: E501
             'gcs': (SourceGcs, none_type),  # noqa: E501
             'id': (str, none_type),  # noqa: E501
@@ -156,6 +156,7 @@ class Source(ModelNormal):
     }
 
     read_only_vars = {
+        'file_upload',  # noqa: E501
         'status',  # noqa: E501
     }
 
@@ -201,7 +202,7 @@ class Source(ModelNormal):
             azure_event_hubs (SourceAzureEventHubs): [optional]  # noqa: E501
             azure_service_bus (SourceAzureServiceBus): [optional]  # noqa: E501
             dynamodb (SourceDynamoDb): [optional]  # noqa: E501
-            file_upload (SourceFileUpload): [optional]  # noqa: E501
+            file_upload (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
             format_params (FormatParams): [optional]  # noqa: E501
             gcs (SourceGcs): [optional]  # noqa: E501
             id (str): Unique source identifier.. [optional]  # noqa: E501
@@ -268,7 +269,6 @@ class Source(ModelNormal):
             azure_event_hubs (SourceAzureEventHubs): [optional]  # noqa: E501
             azure_service_bus (SourceAzureServiceBus): [optional]  # noqa: E501
             dynamodb (SourceDynamoDb): [optional]  # noqa: E501
-            file_upload (SourceFileUpload): [optional]  # noqa: E501
             format_params (FormatParams): [optional]  # noqa: E501
             gcs (SourceGcs): [optional]  # noqa: E501
             id (str): Unique source identifier.. [optional]  # noqa: E501

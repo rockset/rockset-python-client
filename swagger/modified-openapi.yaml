@@ -3380,8 +3380,9 @@ components:
           $ref: "#/components/schemas/SourceDynamoDb"
           description: Configuration for ingestion from  a dynamodb table.
         file_upload:
-          $ref: "#/components/schemas/SourceFileUpload"
-          description: File upload details.
+          allOf:
+            - $ref: "#/components/schemas/SourceFileUpload"
+              description: File upload details.
           readOnly: true
         format_params:
           $ref: "#/components/schemas/FormatParams"

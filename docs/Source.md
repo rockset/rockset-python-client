@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **azure_event_hubs** | [**SourceAzureEventHubs**](SourceAzureEventHubs.md) |  | [optional] 
 **azure_service_bus** | [**SourceAzureServiceBus**](SourceAzureServiceBus.md) |  | [optional] 
 **dynamodb** | [**SourceDynamoDb**](SourceDynamoDb.md) |  | [optional] 
-**file_upload** | [**SourceFileUpload**](SourceFileUpload.md) |  | [optional] 
+**file_upload** | **bool, date, datetime, dict, float, int, list, str, none_type** |  | [optional] [readonly] 
 **format_params** | [**FormatParams**](FormatParams.md) |  | [optional] 
 **gcs** | [**SourceGcs**](SourceGcs.md) |  | [optional] 
 **id** | **str** | Unique source identifier. | [optional] 

@@ -15,9 +15,7 @@ def test_{{operationId}}(get_client, mock_request, request_validator):
 {{^isReadOnly}}
 {{^defaultValue}}
 {{^isBodyParam}}
-{{^isReadOnly}}
     {{paramName}}={{#example}}{{{.}}}{{/example}}{{^example}}{{paramName}}{{/example}},
-{{/isReadOnly}}
 {{/isBodyParam}}
 {{#isBodyParam}}
 {{#vars}}

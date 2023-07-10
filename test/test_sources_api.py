@@ -39,11 +39,6 @@ def test_create_source(get_client, mock_request, request_validator):
                     table_name="dynamodb_table_name",
                     use_scan_api=True,
                 ),
-                file_upload=SourceFileUpload(
-                    file_name="file1.json",
-                    file_size=12345,
-                    file_upload_time="2019-01-15T21:48:23Z",
-                ),
                 format_params=FormatParams(
                     csv=CsvParams(
                         column_names=["c1", "c2", "c3"],
