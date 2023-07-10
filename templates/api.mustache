@@ -254,7 +254,9 @@ class {{classname}}(object):
 {{/isMap}}
 {{^isArray}}
 {{^isMap}}
+{{^isReadOnly}}
         {{name}}: {{dataType}},
+{{/isReadOnly}}
 {{/isMap}}
 {{/isArray}}
 {{/required}}
@@ -283,7 +285,9 @@ class {{classname}}(object):
 {{/isMap}}
 {{^isArray}}
 {{^isMap}}
+{{^isReadOnly}}
         {{name}}: {{dataType}} = None,
+{{/isReadOnly}}
 {{/isMap}}
 {{/isArray}}
 {{/required}}

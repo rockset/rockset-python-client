@@ -44,6 +44,30 @@ pprint(api_response)
 # Create a source
 api_response = await rs.Sources.create_source(
     collection="collection_example",
+    azure_blob_storage=SourceAzureBlobStorage(
+        container="server-logs",
+        pattern="prefix/to/**/keys/*.format",
+        prefix="prefix/to/blobs",
+    ),
+    azure_event_hubs=SourceAzureEventHubs(
+        hub_id="event-hub-1",
+        offset_reset_policy="EARLIEST",
+    ),
+    azure_service_bus=SourceAzureServiceBus(
+        subscription="rockset-subscription",
+        topic="rockset-topic",
+    ),
+    dynamodb=SourceDynamoDb(
+        aws_region="us-east-2",
+        rcu=1000,
+        table_name="dynamodb_table_name",
+        use_scan_api=True,
+    ),
+    file_upload=SourceFileUpload(
+        file_name="file1.json",
+        file_size=12345,
+        file_upload_time="2019-01-15T21:48:23Z",
+    ),
     format_params=FormatParams(
         csv=CsvParams(
             column_names=["c1","c2","c3"],
@@ -67,7 +91,47 @@ api_response = await rs.Sources.create_source(
             value_tag="value",
         ),
     ),
+    gcs=SourceGcs(
+        bucket="server-logs",
+        pattern="prefix/to/**/keys/*.format",
+        prefix="prefix/to/keys",
+    ),
+    id="a1df483c-734e-485b-8005-f46386ef42f6",
     integration_name="aws-integration",
+    kafka=SourceKafka(
+        consumer_group_id="org-collection",
+        kafka_topic_name="example-topic",
+        offset_reset_policy="EARLIEST",
+        use_v3=True,
+    ),
+    kinesis=SourceKinesis(
+        aws_region="us-east-2",
+        dms_primary_key=[
+            "dms_primary_key_example",
+        ],
+        offset_reset_policy="EARLIEST",
+        stream_name="click_stream",
+    ),
+    mongodb=SourceMongoDb(
+        collection_name="my_collection",
+        database_name="my_database",
+        retrieve_full_document=True,
+    ),
+    s3=SourceS3(
+        bucket="s3://customer-account-info",
+        pattern="prefix/to/**/keys/*.format",
+        prefix="prefix/to/keys",
+        region="us-west-2",
+    ),
+    snowflake=SourceSnowflake(
+        database="NASDAQ",
+        schema="PUBLIC",
+        table_name="COMPANIES",
+        warehouse="COMPUTE_XL",
+    ),
+    system=SourceSystem(
+        type="QUERY_LOGS",
+    ),
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
@@ -83,8 +147,21 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **collection** | **str** | name of the collection |
+ **azure_blob_storage** | [**SourceAzureBlobStorage**](SourceAzureBlobStorage.md) |  | [optional]
+ **azure_event_hubs** | [**SourceAzureEventHubs**](SourceAzureEventHubs.md) |  | [optional]
+ **azure_service_bus** | [**SourceAzureServiceBus**](SourceAzureServiceBus.md) |  | [optional]
+ **dynamodb** | [**SourceDynamoDb**](SourceDynamoDb.md) |  | [optional]
+ **file_upload** | [**SourceFileUpload**](SourceFileUpload.md) |  | [optional]
  **format_params** | [**FormatParams**](FormatParams.md) |  | [optional]
+ **gcs** | [**SourceGcs**](SourceGcs.md) |  | [optional]
+ **id** | **str** | Unique source identifier. | [optional]
  **integration_name** | **str** | Name of integration to use. | [optional]
+ **kafka** | [**SourceKafka**](SourceKafka.md) |  | [optional]
+ **kinesis** | [**SourceKinesis**](SourceKinesis.md) |  | [optional]
+ **mongodb** | [**SourceMongoDb**](SourceMongoDb.md) |  | [optional]
+ **s3** | [**SourceS3**](SourceS3.md) |  | [optional]
+ **snowflake** | [**SourceSnowflake**](SourceSnowflake.md) |  | [optional]
+ **system** | [**SourceSystem**](SourceSystem.md) |  | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type

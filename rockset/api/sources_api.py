@@ -294,9 +294,21 @@ class Sources(object):
         self,
         *,
         collection: str,
+        azure_blob_storage: SourceAzureBlobStorage = None,
+        azure_event_hubs: SourceAzureEventHubs = None,
+        azure_service_bus: SourceAzureServiceBus = None,
+        dynamodb: SourceDynamoDb = None,
+        file_upload: SourceFileUpload = None,
         format_params: FormatParams = None,
+        gcs: SourceGcs = None,
+        id: str = None,
         integration_name: str = None,
-        status: bool, date, datetime, dict, float, int, list, str, none_type = None,
+        kafka: SourceKafka = None,
+        kinesis: SourceKinesis = None,
+        mongodb: SourceMongoDb = None,
+        s3: SourceS3 = None,
+        snowflake: SourceSnowflake = None,
+        system: SourceSystem = None,
         workspace = "commons",
         **kwargs
     ) -> typing.Union[GetSourceResponse, asyncio.Future]:
@@ -310,6 +322,30 @@ class Sources(object):
         rs = RocksetClient(api_key=APIKEY)
         future = rs.Sources.create_source(
             collection="collection_example",
+            azure_blob_storage=SourceAzureBlobStorage(
+                container="server-logs",
+                pattern="prefix/to/**/keys/*.format",
+                prefix="prefix/to/blobs",
+            ),
+            azure_event_hubs=SourceAzureEventHubs(
+                hub_id="event-hub-1",
+                offset_reset_policy="EARLIEST",
+            ),
+            azure_service_bus=SourceAzureServiceBus(
+                subscription="rockset-subscription",
+                topic="rockset-topic",
+            ),
+            dynamodb=SourceDynamoDb(
+                aws_region="us-east-2",
+                rcu=1000,
+                table_name="dynamodb_table_name",
+                use_scan_api=True,
+            ),
+            file_upload=SourceFileUpload(
+                file_name="file1.json",
+                file_size=12345,
+                file_upload_time="2019-01-15T21:48:23Z",
+            ),
             format_params=FormatParams(
                 csv=CsvParams(
                     column_names=["c1","c2","c3"],
@@ -333,7 +369,47 @@ class Sources(object):
                     value_tag="value",
                 ),
             ),
+            gcs=SourceGcs(
+                bucket="server-logs",
+                pattern="prefix/to/**/keys/*.format",
+                prefix="prefix/to/keys",
+            ),
+            id="a1df483c-734e-485b-8005-f46386ef42f6",
             integration_name="aws-integration",
+            kafka=SourceKafka(
+                consumer_group_id="org-collection",
+                kafka_topic_name="example-topic",
+                offset_reset_policy="EARLIEST",
+                use_v3=True,
+            ),
+            kinesis=SourceKinesis(
+                aws_region="us-east-2",
+                dms_primary_key=[
+                    "dms_primary_key_example",
+                ],
+                offset_reset_policy="EARLIEST",
+                stream_name="click_stream",
+            ),
+            mongodb=SourceMongoDb(
+                collection_name="my_collection",
+                database_name="my_database",
+                retrieve_full_document=True,
+            ),
+            s3=SourceS3(
+                bucket="s3://customer-account-info",
+                pattern="prefix/to/**/keys/*.format",
+                prefix="prefix/to/keys",
+                region="us-west-2",
+            ),
+            snowflake=SourceSnowflake(
+                database="NASDAQ",
+                schema="PUBLIC",
+                table_name="COMPANIES",
+                warehouse="COMPUTE_XL",
+            ),
+            system=SourceSystem(
+                type="QUERY_LOGS",
+            ),
             async_req=True,
         )
         result = await future
@@ -342,8 +418,21 @@ class Sources(object):
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
             collection (str): name of the collection. [required]
+            azure_blob_storage (SourceAzureBlobStorage): [optional]
+            azure_event_hubs (SourceAzureEventHubs): [optional]
+            azure_service_bus (SourceAzureServiceBus): [optional]
+            dynamodb (SourceDynamoDb): [optional]
+            file_upload (SourceFileUpload): [optional]
             format_params (FormatParams): [optional]
+            gcs (SourceGcs): [optional]
+            id (str): Unique source identifier.. [optional]
             integration_name (str): Name of integration to use.. [optional]
+            kafka (SourceKafka): [optional]
+            kinesis (SourceKinesis): [optional]
+            mongodb (SourceMongoDb): [optional]
+            s3 (SourceS3): [optional]
+            snowflake (SourceSnowflake): [optional]
+            system (SourceSystem): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

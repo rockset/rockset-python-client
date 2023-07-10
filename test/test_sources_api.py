@@ -20,6 +20,30 @@ def test_create_source(get_client, mock_request, request_validator):
         try:
             rs.Sources.create_source(
                 collection="collection_example",
+                azure_blob_storage=SourceAzureBlobStorage(
+                    container="server-logs",
+                    pattern="prefix/to/**/keys/*.format",
+                    prefix="prefix/to/blobs",
+                ),
+                azure_event_hubs=SourceAzureEventHubs(
+                    hub_id="event-hub-1",
+                    offset_reset_policy="EARLIEST",
+                ),
+                azure_service_bus=SourceAzureServiceBus(
+                    subscription="rockset-subscription",
+                    topic="rockset-topic",
+                ),
+                dynamodb=SourceDynamoDb(
+                    aws_region="us-east-2",
+                    rcu=1000,
+                    table_name="dynamodb_table_name",
+                    use_scan_api=True,
+                ),
+                file_upload=SourceFileUpload(
+                    file_name="file1.json",
+                    file_size=12345,
+                    file_upload_time="2019-01-15T21:48:23Z",
+                ),
                 format_params=FormatParams(
                     csv=CsvParams(
                         column_names=["c1", "c2", "c3"],
@@ -43,7 +67,47 @@ def test_create_source(get_client, mock_request, request_validator):
                         value_tag="value",
                     ),
                 ),
+                gcs=SourceGcs(
+                    bucket="server-logs",
+                    pattern="prefix/to/**/keys/*.format",
+                    prefix="prefix/to/keys",
+                ),
+                id="a1df483c-734e-485b-8005-f46386ef42f6",
                 integration_name="aws-integration",
+                kafka=SourceKafka(
+                    consumer_group_id="org-collection",
+                    kafka_topic_name="example-topic",
+                    offset_reset_policy="EARLIEST",
+                    use_v3=True,
+                ),
+                kinesis=SourceKinesis(
+                    aws_region="us-east-2",
+                    dms_primary_key=[
+                        "dms_primary_key_example",
+                    ],
+                    offset_reset_policy="EARLIEST",
+                    stream_name="click_stream",
+                ),
+                mongodb=SourceMongoDb(
+                    collection_name="my_collection",
+                    database_name="my_database",
+                    retrieve_full_document=True,
+                ),
+                s3=SourceS3(
+                    bucket="s3://customer-account-info",
+                    pattern="prefix/to/**/keys/*.format",
+                    prefix="prefix/to/keys",
+                    region="us-west-2",
+                ),
+                snowflake=SourceSnowflake(
+                    database="NASDAQ",
+                    schema="PUBLIC",
+                    table_name="COMPANIES",
+                    warehouse="COMPUTE_XL",
+                ),
+                system=SourceSystem(
+                    type="QUERY_LOGS",
+                ),
             )
         except EarlyExit as e:
             validate_call(e, request_validator)

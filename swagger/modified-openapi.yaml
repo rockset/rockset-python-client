@@ -3367,18 +3367,58 @@ components:
         of the following fields are allowed to be defined. Only collections can act
         as data sources for views. "
       properties:
+        azure_blob_storage:
+          $ref: "#/components/schemas/SourceAzureBlobStorage"
+          description: Configuration for ingestion from Azure Blob Storage.
+        azure_event_hubs:
+          $ref: "#/components/schemas/SourceAzureEventHubs"
+          description: Configuration for ingestion from Azure Event Hubs.
+        azure_service_bus:
+          $ref: "#/components/schemas/SourceAzureServiceBus"
+          description: Configuration for ingestion from Azure Service Bus.
+        dynamodb:
+          $ref: "#/components/schemas/SourceDynamoDb"
+          description: Configuration for ingestion from  a dynamodb table.
+        file_upload:
+          $ref: "#/components/schemas/SourceFileUpload"
+          description: File upload details.
+          readOnly: true
         format_params:
           $ref: "#/components/schemas/FormatParams"
           description: Format parameters for data from this source.
+        gcs:
+          $ref: "#/components/schemas/SourceGcs"
+          description: Configuration for ingestion from GCS.
+        id:
+          description: Unique source identifier.
+          example: a1df483c-734e-485b-8005-f46386ef42f6
+          type: string
         integration_name:
           description: Name of integration to use.
           example: aws-integration
           type: string
+        kafka:
+          $ref: "#/components/schemas/SourceKafka"
+          description: Kafka collection identifier.
+        kinesis:
+          $ref: "#/components/schemas/SourceKinesis"
+          description: Configuration for ingestion from kinesis stream.
+        mongodb:
+          $ref: "#/components/schemas/SourceMongoDb"
+          description: MongoDB collection details.
+        s3:
+          $ref: "#/components/schemas/SourceS3"
+          description: Configuration for ingestion from S3.
+        snowflake:
+          $ref: "#/components/schemas/SourceSnowflake"
+          description: Configuration for ingestion from Snowflake.
         status:
           allOf:
             - $ref: "#/components/schemas/Status"
               description: The ingest status of this source.
           readOnly: true
+        system:
+          $ref: "#/components/schemas/SourceSystem"
       type: object
     SourceAzureBlobStorage:
       properties:

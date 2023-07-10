@@ -31,8 +31,32 @@ from rockset.exceptions import ApiAttributeError
 
 def lazy_import():
     from rockset.model.format_params import FormatParams
+    from rockset.model.source_azure_blob_storage import SourceAzureBlobStorage
+    from rockset.model.source_azure_event_hubs import SourceAzureEventHubs
+    from rockset.model.source_azure_service_bus import SourceAzureServiceBus
+    from rockset.model.source_dynamo_db import SourceDynamoDb
+    from rockset.model.source_file_upload import SourceFileUpload
+    from rockset.model.source_gcs import SourceGcs
+    from rockset.model.source_kafka import SourceKafka
+    from rockset.model.source_kinesis import SourceKinesis
+    from rockset.model.source_mongo_db import SourceMongoDb
+    from rockset.model.source_s3 import SourceS3
+    from rockset.model.source_snowflake import SourceSnowflake
+    from rockset.model.source_system import SourceSystem
     from rockset.model.status import Status
     globals()['FormatParams'] = FormatParams
+    globals()['SourceAzureBlobStorage'] = SourceAzureBlobStorage
+    globals()['SourceAzureEventHubs'] = SourceAzureEventHubs
+    globals()['SourceAzureServiceBus'] = SourceAzureServiceBus
+    globals()['SourceDynamoDb'] = SourceDynamoDb
+    globals()['SourceFileUpload'] = SourceFileUpload
+    globals()['SourceGcs'] = SourceGcs
+    globals()['SourceKafka'] = SourceKafka
+    globals()['SourceKinesis'] = SourceKinesis
+    globals()['SourceMongoDb'] = SourceMongoDb
+    globals()['SourceS3'] = SourceS3
+    globals()['SourceSnowflake'] = SourceSnowflake
+    globals()['SourceSystem'] = SourceSystem
     globals()['Status'] = Status
 
 
@@ -89,9 +113,22 @@ class Source(ModelNormal):
         """
         lazy_import()
         return {
+            'azure_blob_storage': (SourceAzureBlobStorage, none_type),  # noqa: E501
+            'azure_event_hubs': (SourceAzureEventHubs, none_type),  # noqa: E501
+            'azure_service_bus': (SourceAzureServiceBus, none_type),  # noqa: E501
+            'dynamodb': (SourceDynamoDb, none_type),  # noqa: E501
+            'file_upload': (SourceFileUpload, none_type),  # noqa: E501
             'format_params': (FormatParams, none_type),  # noqa: E501
+            'gcs': (SourceGcs, none_type),  # noqa: E501
+            'id': (str, none_type),  # noqa: E501
             'integration_name': (str, none_type),  # noqa: E501
+            'kafka': (SourceKafka, none_type),  # noqa: E501
+            'kinesis': (SourceKinesis, none_type),  # noqa: E501
+            'mongodb': (SourceMongoDb, none_type),  # noqa: E501
+            's3': (SourceS3, none_type),  # noqa: E501
+            'snowflake': (SourceSnowflake, none_type),  # noqa: E501
             'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
+            'system': (SourceSystem, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -100,9 +137,22 @@ class Source(ModelNormal):
 
 
     attribute_map = {
+        'azure_blob_storage': 'azure_blob_storage',  # noqa: E501
+        'azure_event_hubs': 'azure_event_hubs',  # noqa: E501
+        'azure_service_bus': 'azure_service_bus',  # noqa: E501
+        'dynamodb': 'dynamodb',  # noqa: E501
+        'file_upload': 'file_upload',  # noqa: E501
         'format_params': 'format_params',  # noqa: E501
+        'gcs': 'gcs',  # noqa: E501
+        'id': 'id',  # noqa: E501
         'integration_name': 'integration_name',  # noqa: E501
+        'kafka': 'kafka',  # noqa: E501
+        'kinesis': 'kinesis',  # noqa: E501
+        'mongodb': 'mongodb',  # noqa: E501
+        's3': 's3',  # noqa: E501
+        'snowflake': 'snowflake',  # noqa: E501
         'status': 'status',  # noqa: E501
+        'system': 'system',  # noqa: E501
     }
 
     read_only_vars = {
@@ -147,9 +197,22 @@ class Source(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            azure_blob_storage (SourceAzureBlobStorage): [optional]  # noqa: E501
+            azure_event_hubs (SourceAzureEventHubs): [optional]  # noqa: E501
+            azure_service_bus (SourceAzureServiceBus): [optional]  # noqa: E501
+            dynamodb (SourceDynamoDb): [optional]  # noqa: E501
+            file_upload (SourceFileUpload): [optional]  # noqa: E501
             format_params (FormatParams): [optional]  # noqa: E501
+            gcs (SourceGcs): [optional]  # noqa: E501
+            id (str): Unique source identifier.. [optional]  # noqa: E501
             integration_name (str): Name of integration to use.. [optional]  # noqa: E501
+            kafka (SourceKafka): [optional]  # noqa: E501
+            kinesis (SourceKinesis): [optional]  # noqa: E501
+            mongodb (SourceMongoDb): [optional]  # noqa: E501
+            s3 (SourceS3): [optional]  # noqa: E501
+            snowflake (SourceSnowflake): [optional]  # noqa: E501
             status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
+            system (SourceSystem): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -201,8 +264,21 @@ class Source(ModelNormal):
         """Source - a model defined in OpenAPI
 
         Keyword Args:
+            azure_blob_storage (SourceAzureBlobStorage): [optional]  # noqa: E501
+            azure_event_hubs (SourceAzureEventHubs): [optional]  # noqa: E501
+            azure_service_bus (SourceAzureServiceBus): [optional]  # noqa: E501
+            dynamodb (SourceDynamoDb): [optional]  # noqa: E501
+            file_upload (SourceFileUpload): [optional]  # noqa: E501
             format_params (FormatParams): [optional]  # noqa: E501
+            gcs (SourceGcs): [optional]  # noqa: E501
+            id (str): Unique source identifier.. [optional]  # noqa: E501
             integration_name (str): Name of integration to use.. [optional]  # noqa: E501
+            kafka (SourceKafka): [optional]  # noqa: E501
+            kinesis (SourceKinesis): [optional]  # noqa: E501
+            mongodb (SourceMongoDb): [optional]  # noqa: E501
+            s3 (SourceS3): [optional]  # noqa: E501
+            snowflake (SourceSnowflake): [optional]  # noqa: E501
+            system (SourceSystem): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
