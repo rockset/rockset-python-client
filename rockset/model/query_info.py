@@ -104,6 +104,7 @@ class QueryInfo(ModelNormal):
             'pagination': (Pagination, none_type),  # noqa: E501
             'query_errors': ([QueryError], none_type),  # noqa: E501
             'query_id': (str, none_type),  # noqa: E501
+            'sql': (str, none_type),  # noqa: E501
             'stats': (Stats, none_type),  # noqa: E501
             'status': (str, none_type),  # noqa: E501
             'submitted_at': (str, none_type),  # noqa: E501
@@ -121,6 +122,7 @@ class QueryInfo(ModelNormal):
         'pagination': 'pagination',  # noqa: E501
         'query_errors': 'query_errors',  # noqa: E501
         'query_id': 'query_id',  # noqa: E501
+        'sql': 'sql',  # noqa: E501
         'stats': 'stats',  # noqa: E501
         'status': 'status',  # noqa: E501
         'submitted_at': 'submitted_at',  # noqa: E501
@@ -173,6 +175,7 @@ class QueryInfo(ModelNormal):
             pagination (Pagination): [optional]  # noqa: E501
             query_errors ([QueryError]): Errors encountered while executing the query.. [optional]  # noqa: E501
             query_id (str): Unique Query ID.. [optional]  # noqa: E501
+            sql (str): The SQL query for this request. [optional]  # noqa: E501
             stats (Stats): [optional]  # noqa: E501
             status (str): Status of the query.. [optional]  # noqa: E501
             submitted_at (str): Time (UTC) the query request was first received and queued for execution.. [optional]  # noqa: E501
@@ -233,6 +236,7 @@ class QueryInfo(ModelNormal):
             pagination (Pagination): [optional]  # noqa: E501
             query_errors ([QueryError]): Errors encountered while executing the query.. [optional]  # noqa: E501
             query_id (str): Unique Query ID.. [optional]  # noqa: E501
+            sql (str): The SQL query for this request. [optional]  # noqa: E501
             stats (Stats): [optional]  # noqa: E501
             status (str): Status of the query.. [optional]  # noqa: E501
             submitted_at (str): Time (UTC) the query request was first received and queued for execution.. [optional]  # noqa: E501

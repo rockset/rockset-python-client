@@ -714,7 +714,11 @@ class Queries(object):
         self,
         *,
         sql: QueryRequestSql,
+        _async: bool = None,
         async_options: AsyncQueryOptions = None,
+        debug_threshold_ms: int = None,
+        max_initial_results: int = None,
+        timeout_ms: int = None,
         **kwargs
     ) -> typing.Union[QueryResponse, asyncio.Future]:
         """Execute SQL Query  # noqa: E501
@@ -726,16 +730,18 @@ class Queries(object):
         ```python
         rs = RocksetClient(api_key=APIKEY)
         future = rs.Queries.query(
+            _async=True,
             async_options=AsyncQueryOptions(
                 client_timeout_ms=1,
                 max_initial_results=1,
                 timeout_ms=1,
             ),
+            debug_threshold_ms=1,
+            max_initial_results=1,
             sql=QueryRequestSql(
                 default_row_limit=1,
                 generate_warnings=False,
                 initial_paginate_response_doc_count=1,
-                paginate=True,
                 parameters=[
                     QueryParameter(
                         name="_id",
@@ -745,14 +751,19 @@ class Queries(object):
                 ],
                 query="SELECT * FROM foo where _id = :_id",
             ),
+            timeout_ms=1,
             async_req=True,
         )
         result = await future
         ```
 
         Keyword Args:
+            _async (bool): If true, the query will run asynchronously for up to 30 minutes. The query request will immediately return with a query id that can be used to retrieve the query status and results. If false or not specified, the query will return with results once completed or timeout after 2 minutes. (To return results directly for shorter queries while still allowing a timeout of up to 30 minutes, set `async_options.client_timeout_ms`.) . [optional]
             async_options (AsyncQueryOptions): [optional]
+            debug_threshold_ms (int): If query execution takes longer than this value, debug information will be logged. If the query text includes the DEBUG hint and this parameter is also provided, only this value will be used and the DEBUG hint will be ignored.. [optional]
+            max_initial_results (int): This limits the maximum number of results in the initial response. A pagination cursor is returned if the number of results exceeds `max_initial_results`. If `max_initial_results` is not set, all results will be returned in the initial response up to 4 million. If `max_initial_results` is set, the value must be between 0 and 100,000. If the query is async and `client_timeout_ms` is exceeded, `max_initial_results` does not apply since none of the results will be returned with the initial response.. [optional]
             sql (QueryRequestSql): [required]
+            timeout_ms (int): If a query exceeds the specified timeout, the query will automatically stop and return an error. The query timeout defaults to a maximum of 2 minutes. If `async` is true, the query timeout defaults to a maximum of 30 minutes.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -819,7 +830,11 @@ class Queries(object):
         self,
         *,
         sql: QueryRequestSql,
+        _async: bool = None,
         async_options: AsyncQueryOptions = None,
+        debug_threshold_ms: int = None,
+        max_initial_results: int = None,
+        timeout_ms: int = None,
         **kwargs
     ) -> typing.Union[ValidateQueryResponse, asyncio.Future]:
         """Validate Query  # noqa: E501
@@ -831,16 +846,18 @@ class Queries(object):
         ```python
         rs = RocksetClient(api_key=APIKEY)
         future = rs.Queries.validate(
+            _async=True,
             async_options=AsyncQueryOptions(
                 client_timeout_ms=1,
                 max_initial_results=1,
                 timeout_ms=1,
             ),
+            debug_threshold_ms=1,
+            max_initial_results=1,
             sql=QueryRequestSql(
                 default_row_limit=1,
                 generate_warnings=False,
                 initial_paginate_response_doc_count=1,
-                paginate=True,
                 parameters=[
                     QueryParameter(
                         name="_id",
@@ -850,14 +867,19 @@ class Queries(object):
                 ],
                 query="SELECT * FROM foo where _id = :_id",
             ),
+            timeout_ms=1,
             async_req=True,
         )
         result = await future
         ```
 
         Keyword Args:
+            _async (bool): If true, the query will run asynchronously for up to 30 minutes. The query request will immediately return with a query id that can be used to retrieve the query status and results. If false or not specified, the query will return with results once completed or timeout after 2 minutes. (To return results directly for shorter queries while still allowing a timeout of up to 30 minutes, set `async_options.client_timeout_ms`.) . [optional]
             async_options (AsyncQueryOptions): [optional]
+            debug_threshold_ms (int): If query execution takes longer than this value, debug information will be logged. If the query text includes the DEBUG hint and this parameter is also provided, only this value will be used and the DEBUG hint will be ignored.. [optional]
+            max_initial_results (int): This limits the maximum number of results in the initial response. A pagination cursor is returned if the number of results exceeds `max_initial_results`. If `max_initial_results` is not set, all results will be returned in the initial response up to 4 million. If `max_initial_results` is set, the value must be between 0 and 100,000. If the query is async and `client_timeout_ms` is exceeded, `max_initial_results` does not apply since none of the results will be returned with the initial response.. [optional]
             sql (QueryRequestSql): [required]
+            timeout_ms (int): If a query exceeds the specified timeout, the query will automatically stop and return an error. The query timeout defaults to a maximum of 2 minutes. If `async` is true, the query timeout defaults to a maximum of 30 minutes.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

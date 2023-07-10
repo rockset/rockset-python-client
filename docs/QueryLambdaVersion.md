@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **collections** | **[str]** | Collections queried by underlying SQL query. | [optional] 
 **created_at** | **str** | ISO-8601 date of when Query Lambda was created. | [optional] 
 **created_by** | **str** | User that created this Query Lambda. | [optional] 
+**created_by_apikey_name** | **str** | Name of the API key that was used to create this object if one was used. | [optional] 
 **description** | **str** | Optional description. | [optional] 
 **name** | **str** | Query Lambda name. | [optional] 
 **public_access_id** | **str** | Public access ID associated with this QL version | [optional] 

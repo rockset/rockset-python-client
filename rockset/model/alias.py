@@ -87,6 +87,7 @@ class Alias(ModelNormal):
         return {
             'collections': ([str], none_type),  # noqa: E501
             'created_at': (str, none_type),  # noqa: E501
+            'created_by_apikey_name': (str, none_type),  # noqa: E501
             'creator_email': (str, none_type),  # noqa: E501
             'description': (str, none_type),  # noqa: E501
             'modified_at': (str, none_type),  # noqa: E501
@@ -103,6 +104,7 @@ class Alias(ModelNormal):
     attribute_map = {
         'collections': 'collections',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
+        'created_by_apikey_name': 'created_by_apikey_name',  # noqa: E501
         'creator_email': 'creator_email',  # noqa: E501
         'description': 'description',  # noqa: E501
         'modified_at': 'modified_at',  # noqa: E501
@@ -154,6 +156,7 @@ class Alias(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             collections ([str]): List of fully qualified collection names referenced by alias.. [optional]  # noqa: E501
             created_at (str): ISO-8601 date.. [optional]  # noqa: E501
+            created_by_apikey_name (str): Name of the API key that was used to create this object if one was used.. [optional]  # noqa: E501
             creator_email (str): Email of the creator.. [optional]  # noqa: E501
             description (str): Alias description.. [optional]  # noqa: E501
             modified_at (str): ISO-8601 date.. [optional]  # noqa: E501
@@ -213,6 +216,7 @@ class Alias(ModelNormal):
         Keyword Args:
             collections ([str]): List of fully qualified collection names referenced by alias.. [optional]  # noqa: E501
             created_at (str): ISO-8601 date.. [optional]  # noqa: E501
+            created_by_apikey_name (str): Name of the API key that was used to create this object if one was used.. [optional]  # noqa: E501
             creator_email (str): Email of the creator.. [optional]  # noqa: E501
             description (str): Alias description.. [optional]  # noqa: E501
             modified_at (str): ISO-8601 date.. [optional]  # noqa: E501

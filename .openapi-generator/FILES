@@ -6,6 +6,7 @@ docs/Alias.md
 docs/AliasesApi.md
 docs/ApiKey.md
 docs/AsyncQueryOptions.md
+docs/AutoScalingPolicy.md
 docs/AwsAccessKey.md
 docs/AwsRole.md
 docs/AzureBlobStorageCollectionCreationRequest.md
@@ -59,6 +60,7 @@ docs/DeleteDocumentsRequestData.md
 docs/DeleteDocumentsResponse.md
 docs/DeleteIntegrationResponse.md
 docs/DeleteQueryLambdaResponse.md
+docs/DeleteSourceResponse.md
 docs/DeleteUserResponse.md
 docs/DeleteViewResponse.md
 docs/DeleteVirtualInstanceResponse.md
@@ -76,8 +78,6 @@ docs/ExecuteQueryLambdaRequest.md
 docs/FieldMappingQuery.md
 docs/FieldMappingV2.md
 docs/FieldPartition.md
-docs/FileUploadCollectionCreationRequest.md
-docs/FileUploadSourceWrapper.md
 docs/FormatParams.md
 docs/GcpServiceAccount.md
 docs/GcsCollectionCreationRequest.md
@@ -89,6 +89,7 @@ docs/GetApiKeyResponse.md
 docs/GetCollectionResponse.md
 docs/GetIntegrationResponse.md
 docs/GetQueryResponse.md
+docs/GetSourceResponse.md
 docs/GetViewResponse.md
 docs/GetVirtualInstanceResponse.md
 docs/GetWorkspaceResponse.md
@@ -114,6 +115,7 @@ docs/ListQueryLambdaTagsResponse.md
 docs/ListQueryLambdaVersionsResponse.md
 docs/ListQueryLambdasResponse.md
 docs/ListRolesResponse.md
+docs/ListSourcesResponse.md
 docs/ListUnsubscribePreferencesResponse.md
 docs/ListUsersResponse.md
 docs/ListViewsResponse.md
@@ -177,6 +179,8 @@ docs/SourceKinesis.md
 docs/SourceMongoDb.md
 docs/SourceS3.md
 docs/SourceSnowflake.md
+docs/SourceSystem.md
+docs/SourcesApi.md
 docs/SqlExpression.md
 docs/Stats.md
 docs/Status.md
@@ -195,6 +199,7 @@ docs/UnsubscribePreference.md
 docs/UpdateAliasRequest.md
 docs/UpdateApiKeyRequest.md
 docs/UpdateApiKeyResponse.md
+docs/UpdateCollectionRequest.md
 docs/UpdateQueryLambdaRequest.md
 docs/UpdateRoleRequest.md
 docs/UpdateUnsubscribePreferencesRequest.md
@@ -227,6 +232,7 @@ rockset/api/organizations_api.py
 rockset/api/queries_api.py
 rockset/api/query_lambdas_api.py
 rockset/api/shared_lambdas_api.py
+rockset/api/sources_api.py
 rockset/api/users_api.py
 rockset/api/views_api.py
 rockset/api/virtual_instances_api.py
@@ -241,6 +247,7 @@ rockset/model/add_documents_response.py
 rockset/model/alias.py
 rockset/model/api_key.py
 rockset/model/async_query_options.py
+rockset/model/auto_scaling_policy.py
 rockset/model/aws_access_key.py
 rockset/model/aws_role.py
 rockset/model/azure_blob_storage_collection_creation_request.py
@@ -292,6 +299,7 @@ rockset/model/delete_documents_request_data.py
 rockset/model/delete_documents_response.py
 rockset/model/delete_integration_response.py
 rockset/model/delete_query_lambda_response.py
+rockset/model/delete_source_response.py
 rockset/model/delete_user_response.py
 rockset/model/delete_view_response.py
 rockset/model/delete_virtual_instance_response.py
@@ -308,8 +316,6 @@ rockset/model/execute_query_lambda_request.py
 rockset/model/field_mapping_query.py
 rockset/model/field_mapping_v2.py
 rockset/model/field_partition.py
-rockset/model/file_upload_collection_creation_request.py
-rockset/model/file_upload_source_wrapper.py
 rockset/model/format_params.py
 rockset/model/gcp_service_account.py
 rockset/model/gcs_collection_creation_request.py
@@ -321,6 +327,7 @@ rockset/model/get_api_key_response.py
 rockset/model/get_collection_response.py
 rockset/model/get_integration_response.py
 rockset/model/get_query_response.py
+rockset/model/get_source_response.py
 rockset/model/get_view_response.py
 rockset/model/get_virtual_instance_response.py
 rockset/model/get_workspace_response.py
@@ -345,6 +352,7 @@ rockset/model/list_query_lambda_tags_response.py
 rockset/model/list_query_lambda_versions_response.py
 rockset/model/list_query_lambdas_response.py
 rockset/model/list_roles_response.py
+rockset/model/list_sources_response.py
 rockset/model/list_unsubscribe_preferences_response.py
 rockset/model/list_users_response.py
 rockset/model/list_views_response.py
@@ -374,7 +382,6 @@ rockset/model/query_lambda_tag.py
 rockset/model/query_lambda_tag_response.py
 rockset/model/query_lambda_version.py
 rockset/model/query_lambda_version_response.py
-rockset/model/query_pagination_response.py
 rockset/model/query_parameter.py
 rockset/model/query_request.py
 rockset/model/query_request_sql.py
@@ -403,6 +410,7 @@ rockset/model/source_kinesis.py
 rockset/model/source_mongo_db.py
 rockset/model/source_s3.py
 rockset/model/source_snowflake.py
+rockset/model/source_system.py
 rockset/model/sql_expression.py
 rockset/model/stats.py
 rockset/model/status.py
@@ -421,6 +429,7 @@ rockset/model/unsubscribe_preference.py
 rockset/model/update_alias_request.py
 rockset/model/update_api_key_request.py
 rockset/model/update_api_key_response.py
+rockset/model/update_collection_request.py
 rockset/model/update_query_lambda_request.py
 rockset/model/update_role_request.py
 rockset/model/update_unsubscribe_preferences_request.py
@@ -448,6 +457,7 @@ test/test_aliases_api.py
 test/test_api_key.py
 test/test_api_keys_api.py
 test/test_async_query_options.py
+test/test_auto_scaling_policy.py
 test/test_aws_access_key.py
 test/test_aws_role.py
 test/test_azure_blob_storage_collection_creation_request.py
@@ -501,6 +511,7 @@ test/test_delete_documents_request_data.py
 test/test_delete_documents_response.py
 test/test_delete_integration_response.py
 test/test_delete_query_lambda_response.py
+test/test_delete_source_response.py
 test/test_delete_user_response.py
 test/test_delete_view_response.py
 test/test_delete_virtual_instance_response.py
@@ -518,8 +529,6 @@ test/test_execute_query_lambda_request.py
 test/test_field_mapping_query.py
 test/test_field_mapping_v2.py
 test/test_field_partition.py
-test/test_file_upload_collection_creation_request.py
-test/test_file_upload_source_wrapper.py
 test/test_format_params.py
 test/test_gcp_service_account.py
 test/test_gcs_collection_creation_request.py
@@ -531,6 +540,7 @@ test/test_get_api_key_response.py
 test/test_get_collection_response.py
 test/test_get_integration_response.py
 test/test_get_query_response.py
+test/test_get_source_response.py
 test/test_get_view_response.py
 test/test_get_virtual_instance_response.py
 test/test_get_workspace_response.py
@@ -556,6 +566,7 @@ test/test_list_query_lambda_tags_response.py
 test/test_list_query_lambda_versions_response.py
 test/test_list_query_lambdas_response.py
 test/test_list_roles_response.py
+test/test_list_sources_response.py
 test/test_list_unsubscribe_preferences_response.py
 test/test_list_users_response.py
 test/test_list_views_response.py
@@ -619,6 +630,8 @@ test/test_source_kinesis.py
 test/test_source_mongo_db.py
 test/test_source_s3.py
 test/test_source_snowflake.py
+test/test_source_system.py
+test/test_sources_api.py
 test/test_sql_expression.py
 test/test_stats.py
 test/test_status.py
@@ -637,6 +650,7 @@ test/test_unsubscribe_preference.py
 test/test_update_alias_request.py
 test/test_update_api_key_request.py
 test/test_update_api_key_response.py
+test/test_update_collection_request.py
 test/test_update_query_lambda_request.py
 test/test_update_role_request.py
 test/test_update_unsubscribe_preferences_request.py

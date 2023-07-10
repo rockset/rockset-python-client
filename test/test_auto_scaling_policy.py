@@ -12,7 +12,5 @@ import sys
 from rockset.models import *
 
 
-def test_file_upload_collection_creation_request_init():
-    FileUploadCollectionCreationRequest(
-        name="global-transactions",
-    )
+def test_auto_scaling_policy_init():
+    AutoScalingPolicy()

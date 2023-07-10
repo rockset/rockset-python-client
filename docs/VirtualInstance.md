@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **name** | **str** | Virtual instance name. | 
+**auto_scaling_policy** | [**AutoScalingPolicy**](AutoScalingPolicy.md) |  | [optional] 
 **auto_suspend_seconds** | **int** | Number of seconds without queries after which the VI is suspended | [optional] 
 **created_at** | **str** | ISO-8601 date of when virtual instance was created. | [optional] 
 **created_by** | **str** | Creator of requested virtual instance. | [optional] 
@@ -13,8 +14,10 @@ Name | Type | Description | Notes
 **default_vi** | **bool** |  | [optional] 
 **description** | **str** | Virtual instance description. | [optional] 
 **desired_size** | **str** | Virtual instance desired size. | [optional] [readonly] 
+**enable_remount_on_resume** | **bool** | When a Virtual Instance is resumed, it will remount all collections that were mounted when the Virtual Instance was suspended. | [optional] 
 **id** | **str** | Unique identifier for virtual instance. | [optional] 
 **monitoring_enabled** | **bool** |  | [optional] 
+**mount_refresh_interval_seconds** | **int** | Number of seconds between data refreshes for mounts on this Virtual Instance | [optional] 
 **resumed_at** | **str** | ISO-8601 date of when virtual instance was created. | [optional] 
 **rrn** | **str** | Virtual Instance RRN. | [optional] 
 **scaled_pod_count** | **int** |  | [optional] 

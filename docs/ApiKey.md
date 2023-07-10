@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **name** | **str** | Name of the API key. | 
 **created_at** | **str** | Date that API key was created (ISO-8601 format). | [optional] 
 **created_by** | **str** | Email of API key owner. | [optional] 
+**created_by_apikey_name** | **str** | Name of the API key that was used to create this object if one was used. | [optional] 
 **expiry_time** | **str** | The expiration date of this API key. | [optional] 
 **last_access_time** | **str** | Date that API key was most recently used (ISO-8601 format). | [optional] 
 **role** | **str** | Role specifying access control. If not specified, API key will have access to all of the associated user&#39;s roles. | [optional] 

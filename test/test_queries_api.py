@@ -61,16 +61,18 @@ def test_query(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Queries.query(
+                _async=True,
                 async_options=AsyncQueryOptions(
                     client_timeout_ms=1,
                     max_initial_results=1,
                     timeout_ms=1,
                 ),
+                debug_threshold_ms=1,
+                max_initial_results=1,
                 sql=QueryRequestSql(
                     default_row_limit=1,
                     generate_warnings=False,
                     initial_paginate_response_doc_count=1,
-                    paginate=True,
                     parameters=[
                         QueryParameter(
                             name="_id",
@@ -80,6 +82,7 @@ def test_query(get_client, mock_request, request_validator):
                     ],
                     query="SELECT * FROM foo where _id = :_id",
                 ),
+                timeout_ms=1,
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
@@ -90,16 +93,18 @@ def test_validate(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Queries.validate(
+                _async=True,
                 async_options=AsyncQueryOptions(
                     client_timeout_ms=1,
                     max_initial_results=1,
                     timeout_ms=1,
                 ),
+                debug_threshold_ms=1,
+                max_initial_results=1,
                 sql=QueryRequestSql(
                     default_row_limit=1,
                     generate_warnings=False,
                     initial_paginate_response_doc_count=1,
-                    paginate=True,
                     parameters=[
                         QueryParameter(
                             name="_id",
@@ -109,6 +114,7 @@ def test_validate(get_client, mock_request, request_validator):
                     ],
                     query="SELECT * FROM foo where _id = :_id",
                 ),
+                timeout_ms=1,
             )
         except EarlyExit as e:
             validate_call(e, request_validator)

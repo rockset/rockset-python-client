@@ -89,12 +89,16 @@ class ExecuteQueryLambdaRequest(ModelNormal):
         """
         lazy_import()
         return {
+            '_async': (bool, none_type),  # noqa: E501
             'async_options': (AsyncQueryOptions, none_type),  # noqa: E501
+            'debug_threshold_ms': (int, none_type),  # noqa: E501
             'default_row_limit': (int, none_type),  # noqa: E501
             'generate_warnings': (bool, none_type),  # noqa: E501
             'initial_paginate_response_doc_count': (int, none_type),  # noqa: E501
+            'max_initial_results': (int, none_type),  # noqa: E501
             'paginate': (bool, none_type),  # noqa: E501
             'parameters': ([QueryParameter], none_type),  # noqa: E501
+            'timeout_ms': (int, none_type),  # noqa: E501
             'virtual_instance_id': (str, none_type),  # noqa: E501
         }
 
@@ -104,12 +108,16 @@ class ExecuteQueryLambdaRequest(ModelNormal):
 
 
     attribute_map = {
+        '_async': 'async',  # noqa: E501
         'async_options': 'async_options',  # noqa: E501
+        'debug_threshold_ms': 'debug_threshold_ms',  # noqa: E501
         'default_row_limit': 'default_row_limit',  # noqa: E501
         'generate_warnings': 'generate_warnings',  # noqa: E501
         'initial_paginate_response_doc_count': 'initial_paginate_response_doc_count',  # noqa: E501
+        'max_initial_results': 'max_initial_results',  # noqa: E501
         'paginate': 'paginate',  # noqa: E501
         'parameters': 'parameters',  # noqa: E501
+        'timeout_ms': 'timeout_ms',  # noqa: E501
         'virtual_instance_id': 'virtual_instance_id',  # noqa: E501
     }
 
@@ -154,12 +162,16 @@ class ExecuteQueryLambdaRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            _async (bool): If true, the query will run asynchronously for up to 30 minutes. The query request will immediately return with a query id that can be used to retrieve the query status and results. If false or not specified, the query will return with results once completed or timeout after 2 minutes. (To return results directly for shorter queries while still allowing a timeout of up to 30 minutes, set `async_options.client_timeout_ms`.) . [optional]  # noqa: E501
             async_options (AsyncQueryOptions): [optional]  # noqa: E501
+            debug_threshold_ms (int): If query execution takes longer than this value, debug information will be logged. If the query text includes the DEBUG hint and this parameter is also provided, only this value will be used and the DEBUG hint will be ignored.. [optional]  # noqa: E501
             default_row_limit (int): Row limit to use if no limit specified in the SQL query text.. [optional]  # noqa: E501
             generate_warnings (bool): Whether to generate warnings.. [optional]  # noqa: E501
-            initial_paginate_response_doc_count (int): Number of documents to return in addition to paginating for this query call. Only relevant if `paginate` flag is also set.. [optional]  # noqa: E501
+            initial_paginate_response_doc_count (int): [DEPRECATED] Use `max_initial_results` instead. Number of documents to return in addition to paginating for this query call. Only relevant if `paginate` flag is also set.. [optional]  # noqa: E501
+            max_initial_results (int): This limits the maximum number of results in the initial response. A pagination cursor is returned if the number of results exceeds `max_initial_results`. If `max_initial_results` is not set, all results will be returned in the initial response up to 4 million. If `max_initial_results` is set, the value must be between 0 and 100,000. If the query is async and `client_timeout_ms` is exceeded, `max_initial_results` does not apply since none of the results will be returned with the initial response.. [optional]  # noqa: E501
             paginate (bool): Flag to paginate and store the results of this query for later / sequential retrieval.. [optional]  # noqa: E501
             parameters ([QueryParameter]): List of named parameters.. [optional]  # noqa: E501
+            timeout_ms (int): If a query exceeds the specified timeout, the query will automatically stop and return an error. The query timeout defaults to a maximum of 2 minutes. If `async` is true, the query timeout defaults to a maximum of 30 minutes.. [optional]  # noqa: E501
             virtual_instance_id (str): Virtual instance on which to run the query.. [optional]  # noqa: E501
         """
 
@@ -212,12 +224,16 @@ class ExecuteQueryLambdaRequest(ModelNormal):
         """ExecuteQueryLambdaRequest - a model defined in OpenAPI
 
         Keyword Args:
+            _async (bool): If true, the query will run asynchronously for up to 30 minutes. The query request will immediately return with a query id that can be used to retrieve the query status and results. If false or not specified, the query will return with results once completed or timeout after 2 minutes. (To return results directly for shorter queries while still allowing a timeout of up to 30 minutes, set `async_options.client_timeout_ms`.) . [optional]  # noqa: E501
             async_options (AsyncQueryOptions): [optional]  # noqa: E501
+            debug_threshold_ms (int): If query execution takes longer than this value, debug information will be logged. If the query text includes the DEBUG hint and this parameter is also provided, only this value will be used and the DEBUG hint will be ignored.. [optional]  # noqa: E501
             default_row_limit (int): Row limit to use if no limit specified in the SQL query text.. [optional]  # noqa: E501
             generate_warnings (bool): Whether to generate warnings.. [optional]  # noqa: E501
-            initial_paginate_response_doc_count (int): Number of documents to return in addition to paginating for this query call. Only relevant if `paginate` flag is also set.. [optional]  # noqa: E501
+            initial_paginate_response_doc_count (int): [DEPRECATED] Use `max_initial_results` instead. Number of documents to return in addition to paginating for this query call. Only relevant if `paginate` flag is also set.. [optional]  # noqa: E501
+            max_initial_results (int): This limits the maximum number of results in the initial response. A pagination cursor is returned if the number of results exceeds `max_initial_results`. If `max_initial_results` is not set, all results will be returned in the initial response up to 4 million. If `max_initial_results` is set, the value must be between 0 and 100,000. If the query is async and `client_timeout_ms` is exceeded, `max_initial_results` does not apply since none of the results will be returned with the initial response.. [optional]  # noqa: E501
             paginate (bool): Flag to paginate and store the results of this query for later / sequential retrieval.. [optional]  # noqa: E501
             parameters ([QueryParameter]): List of named parameters.. [optional]  # noqa: E501
+            timeout_ms (int): If a query exceeds the specified timeout, the query will automatically stop and return an error. The query timeout defaults to a maximum of 2 minutes. If `async` is true, the query timeout defaults to a maximum of 30 minutes.. [optional]  # noqa: E501
             virtual_instance_id (str): Virtual instance on which to run the query.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be

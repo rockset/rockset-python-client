@@ -122,6 +122,7 @@ class Collection(ModelNormal):
             'clustering_key': ([FieldPartition], none_type),  # noqa: E501
             'created_at': (str, none_type),  # noqa: E501
             'created_by': (str, none_type),  # noqa: E501
+            'created_by_apikey_name': (str, none_type),  # noqa: E501
             'description': (str, none_type),  # noqa: E501
             'field_mapping_query': (FieldMappingQuery, none_type),  # noqa: E501
             'field_mappings': ([FieldMappingV2], none_type),  # noqa: E501
@@ -146,6 +147,7 @@ class Collection(ModelNormal):
         'clustering_key': 'clustering_key',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
         'created_by': 'created_by',  # noqa: E501
+        'created_by_apikey_name': 'created_by_apikey_name',  # noqa: E501
         'description': 'description',  # noqa: E501
         'field_mapping_query': 'field_mapping_query',  # noqa: E501
         'field_mappings': 'field_mappings',  # noqa: E501
@@ -205,6 +207,7 @@ class Collection(ModelNormal):
             clustering_key ([FieldPartition]): List of clustering fields for a collection.. [optional]  # noqa: E501
             created_at (str): ISO-8601 date.. [optional]  # noqa: E501
             created_by (str): Email of user who created the collection.. [optional]  # noqa: E501
+            created_by_apikey_name (str): Name of the API key that was used to create this collection if one was used.. [optional]  # noqa: E501
             description (str): Text describing the collection.. [optional]  # noqa: E501
             field_mapping_query (FieldMappingQuery): [optional]  # noqa: E501
             field_mappings ([FieldMappingV2]): List of mappings applied on all documents in a collection.. [optional]  # noqa: E501
@@ -272,6 +275,7 @@ class Collection(ModelNormal):
             clustering_key ([FieldPartition]): List of clustering fields for a collection.. [optional]  # noqa: E501
             created_at (str): ISO-8601 date.. [optional]  # noqa: E501
             created_by (str): Email of user who created the collection.. [optional]  # noqa: E501
+            created_by_apikey_name (str): Name of the API key that was used to create this collection if one was used.. [optional]  # noqa: E501
             description (str): Text describing the collection.. [optional]  # noqa: E501
             field_mapping_query (FieldMappingQuery): [optional]  # noqa: E501
             field_mappings ([FieldMappingV2]): List of mappings applied on all documents in a collection.. [optional]  # noqa: E501

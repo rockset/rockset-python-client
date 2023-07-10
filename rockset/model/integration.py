@@ -114,6 +114,7 @@ class Integration(ModelNormal):
             'azure_service_bus': (AzureServiceBusIntegration, none_type),  # noqa: E501
             'collections': ([Collection], none_type),  # noqa: E501
             'created_at': (str, none_type),  # noqa: E501
+            'created_by_apikey_name': (str, none_type),  # noqa: E501
             'description': (str, none_type),  # noqa: E501
             'dynamodb': (DynamodbIntegration, none_type),  # noqa: E501
             'gcs': (GcsIntegration, none_type),  # noqa: E501
@@ -138,6 +139,7 @@ class Integration(ModelNormal):
         'azure_service_bus': 'azure_service_bus',  # noqa: E501
         'collections': 'collections',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
+        'created_by_apikey_name': 'created_by_apikey_name',  # noqa: E501
         'description': 'description',  # noqa: E501
         'dynamodb': 'dynamodb',  # noqa: E501
         'gcs': 'gcs',  # noqa: E501
@@ -199,6 +201,7 @@ class Integration(ModelNormal):
             azure_service_bus (AzureServiceBusIntegration): [optional]  # noqa: E501
             collections ([Collection]): List of collections that use the integration.. [optional]  # noqa: E501
             created_at (str): ISO-8601 date.. [optional]  # noqa: E501
+            created_by_apikey_name (str): Name of the API key that was used to create this object if one was used.. [optional]  # noqa: E501
             description (str): Longer explanation for the integration.. [optional]  # noqa: E501
             dynamodb (DynamodbIntegration): [optional]  # noqa: E501
             gcs (GcsIntegration): [optional]  # noqa: E501
@@ -268,6 +271,7 @@ class Integration(ModelNormal):
             azure_service_bus (AzureServiceBusIntegration): [optional]  # noqa: E501
             collections ([Collection]): List of collections that use the integration.. [optional]  # noqa: E501
             created_at (str): ISO-8601 date.. [optional]  # noqa: E501
+            created_by_apikey_name (str): Name of the API key that was used to create this object if one was used.. [optional]  # noqa: E501
             description (str): Longer explanation for the integration.. [optional]  # noqa: E501
             dynamodb (DynamodbIntegration): [optional]  # noqa: E501
             gcs (GcsIntegration): [optional]  # noqa: E501

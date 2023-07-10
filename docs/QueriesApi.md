@@ -380,7 +380,6 @@ api_response = rs.Queries.query(
         default_row_limit=1,
         generate_warnings=False,
         initial_paginate_response_doc_count=1,
-        paginate=True,
         parameters=[
             QueryParameter(
                 name="_id",
@@ -400,16 +399,18 @@ pprint(api_response)
 # assumes that execution takes place within an asynchronous context
 # Execute SQL Query
 api_response = await rs.Queries.query(
+    _async=True,
     async_options=AsyncQueryOptions(
         client_timeout_ms=1,
         max_initial_results=1,
         timeout_ms=1,
     ),
+    debug_threshold_ms=1,
+    max_initial_results=1,
     sql=QueryRequestSql(
         default_row_limit=1,
         generate_warnings=False,
         initial_paginate_response_doc_count=1,
-        paginate=True,
         parameters=[
             QueryParameter(
                 name="_id",
@@ -419,6 +420,7 @@ api_response = await rs.Queries.query(
         ],
         query="SELECT * FROM foo where _id = :_id",
     ),
+    timeout_ms=1,
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
@@ -433,8 +435,12 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **_async** | **bool** | If true, the query will run asynchronously for up to 30 minutes. The query request will immediately return with a query id that can be used to retrieve the query status and results. If false or not specified, the query will return with results once completed or timeout after 2 minutes. (To return results directly for shorter queries while still allowing a timeout of up to 30 minutes, set &#x60;async_options.client_timeout_ms&#x60;.)  | [optional]
  **async_options** | [**AsyncQueryOptions**](AsyncQueryOptions.md) |  | [optional]
+ **debug_threshold_ms** | **int** | If query execution takes longer than this value, debug information will be logged. If the query text includes the DEBUG hint and this parameter is also provided, only this value will be used and the DEBUG hint will be ignored. | [optional]
+ **max_initial_results** | **int** | This limits the maximum number of results in the initial response. A pagination cursor is returned if the number of results exceeds &#x60;max_initial_results&#x60;. If &#x60;max_initial_results&#x60; is not set, all results will be returned in the initial response up to 4 million. If &#x60;max_initial_results&#x60; is set, the value must be between 0 and 100,000. If the query is async and &#x60;client_timeout_ms&#x60; is exceeded, &#x60;max_initial_results&#x60; does not apply since none of the results will be returned with the initial response. | [optional]
  **sql** | [**QueryRequestSql**](QueryRequestSql.md) |  | 
+ **timeout_ms** | **int** | If a query exceeds the specified timeout, the query will automatically stop and return an error. The query timeout defaults to a maximum of 2 minutes. If &#x60;async&#x60; is true, the query timeout defaults to a maximum of 30 minutes. | [optional]
 
 ### Return type
 
@@ -498,7 +504,6 @@ api_response = rs.Queries.validate(
         default_row_limit=1,
         generate_warnings=False,
         initial_paginate_response_doc_count=1,
-        paginate=True,
         parameters=[
             QueryParameter(
                 name="_id",
@@ -518,16 +523,18 @@ pprint(api_response)
 # assumes that execution takes place within an asynchronous context
 # Validate Query
 api_response = await rs.Queries.validate(
+    _async=True,
     async_options=AsyncQueryOptions(
         client_timeout_ms=1,
         max_initial_results=1,
         timeout_ms=1,
     ),
+    debug_threshold_ms=1,
+    max_initial_results=1,
     sql=QueryRequestSql(
         default_row_limit=1,
         generate_warnings=False,
         initial_paginate_response_doc_count=1,
-        paginate=True,
         parameters=[
             QueryParameter(
                 name="_id",
@@ -537,6 +544,7 @@ api_response = await rs.Queries.validate(
         ],
         query="SELECT * FROM foo where _id = :_id",
     ),
+    timeout_ms=1,
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
@@ -551,8 +559,12 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **_async** | **bool** | If true, the query will run asynchronously for up to 30 minutes. The query request will immediately return with a query id that can be used to retrieve the query status and results. If false or not specified, the query will return with results once completed or timeout after 2 minutes. (To return results directly for shorter queries while still allowing a timeout of up to 30 minutes, set &#x60;async_options.client_timeout_ms&#x60;.)  | [optional]
  **async_options** | [**AsyncQueryOptions**](AsyncQueryOptions.md) |  | [optional]
+ **debug_threshold_ms** | **int** | If query execution takes longer than this value, debug information will be logged. If the query text includes the DEBUG hint and this parameter is also provided, only this value will be used and the DEBUG hint will be ignored. | [optional]
+ **max_initial_results** | **int** | This limits the maximum number of results in the initial response. A pagination cursor is returned if the number of results exceeds &#x60;max_initial_results&#x60;. If &#x60;max_initial_results&#x60; is not set, all results will be returned in the initial response up to 4 million. If &#x60;max_initial_results&#x60; is set, the value must be between 0 and 100,000. If the query is async and &#x60;client_timeout_ms&#x60; is exceeded, &#x60;max_initial_results&#x60; does not apply since none of the results will be returned with the initial response. | [optional]
  **sql** | [**QueryRequestSql**](QueryRequestSql.md) |  | 
+ **timeout_ms** | **int** | If a query exceeds the specified timeout, the query will automatically stop and return an error. The query timeout defaults to a maximum of 2 minutes. If &#x60;async&#x60; is true, the query timeout defaults to a maximum of 30 minutes. | [optional]
 
 ### Return type
 

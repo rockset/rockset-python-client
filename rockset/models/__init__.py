@@ -14,6 +14,7 @@ from rockset.model.add_documents_response import AddDocumentsResponse
 from rockset.model.alias import Alias
 from rockset.model.api_key import ApiKey
 from rockset.model.async_query_options import AsyncQueryOptions
+from rockset.model.auto_scaling_policy import AutoScalingPolicy
 from rockset.model.aws_access_key import AwsAccessKey
 from rockset.model.aws_role import AwsRole
 from rockset.model.azure_blob_storage_collection_creation_request import AzureBlobStorageCollectionCreationRequest
@@ -65,6 +66,7 @@ from rockset.model.delete_documents_request_data import DeleteDocumentsRequestDa
 from rockset.model.delete_documents_response import DeleteDocumentsResponse
 from rockset.model.delete_integration_response import DeleteIntegrationResponse
 from rockset.model.delete_query_lambda_response import DeleteQueryLambdaResponse
+from rockset.model.delete_source_response import DeleteSourceResponse
 from rockset.model.delete_user_response import DeleteUserResponse
 from rockset.model.delete_view_response import DeleteViewResponse
 from rockset.model.delete_virtual_instance_response import DeleteVirtualInstanceResponse
@@ -81,8 +83,6 @@ from rockset.model.execute_query_lambda_request import ExecuteQueryLambdaRequest
 from rockset.model.field_mapping_query import FieldMappingQuery
 from rockset.model.field_mapping_v2 import FieldMappingV2
 from rockset.model.field_partition import FieldPartition
-from rockset.model.file_upload_collection_creation_request import FileUploadCollectionCreationRequest
-from rockset.model.file_upload_source_wrapper import FileUploadSourceWrapper
 from rockset.model.format_params import FormatParams
 from rockset.model.gcp_service_account import GcpServiceAccount
 from rockset.model.gcs_collection_creation_request import GcsCollectionCreationRequest
@@ -94,6 +94,7 @@ from rockset.model.get_api_key_response import GetApiKeyResponse
 from rockset.model.get_collection_response import GetCollectionResponse
 from rockset.model.get_integration_response import GetIntegrationResponse
 from rockset.model.get_query_response import GetQueryResponse
+from rockset.model.get_source_response import GetSourceResponse
 from rockset.model.get_view_response import GetViewResponse
 from rockset.model.get_virtual_instance_response import GetVirtualInstanceResponse
 from rockset.model.get_workspace_response import GetWorkspaceResponse
@@ -118,6 +119,7 @@ from rockset.model.list_query_lambda_tags_response import ListQueryLambdaTagsRes
 from rockset.model.list_query_lambda_versions_response import ListQueryLambdaVersionsResponse
 from rockset.model.list_query_lambdas_response import ListQueryLambdasResponse
 from rockset.model.list_roles_response import ListRolesResponse
+from rockset.model.list_sources_response import ListSourcesResponse
 from rockset.model.list_unsubscribe_preferences_response import ListUnsubscribePreferencesResponse
 from rockset.model.list_users_response import ListUsersResponse
 from rockset.model.list_views_response import ListViewsResponse
@@ -177,6 +179,7 @@ from rockset.model.source_kinesis import SourceKinesis
 from rockset.model.source_mongo_db import SourceMongoDb
 from rockset.model.source_s3 import SourceS3
 from rockset.model.source_snowflake import SourceSnowflake
+from rockset.model.source_system import SourceSystem
 from rockset.model.sql_expression import SqlExpression
 from rockset.model.stats import Stats
 from rockset.model.status import Status
@@ -195,6 +198,7 @@ from rockset.model.unsubscribe_preference import UnsubscribePreference
 from rockset.model.update_alias_request import UpdateAliasRequest
 from rockset.model.update_api_key_request import UpdateApiKeyRequest
 from rockset.model.update_api_key_response import UpdateApiKeyResponse
+from rockset.model.update_collection_request import UpdateCollectionRequest
 from rockset.model.update_query_lambda_request import UpdateQueryLambdaRequest
 from rockset.model.update_role_request import UpdateRoleRequest
 from rockset.model.update_unsubscribe_preferences_request import UpdateUnsubscribePreferencesRequest

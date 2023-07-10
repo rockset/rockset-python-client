@@ -109,7 +109,7 @@ class QueryParameter(ModelNormal):
 
         Args:
             name (str): Name of the field.
-            type (str): Data type of the field.
+            type (str): Deprecated. Data type of the field.
             value (str): Literal value of the field.
 
         Keyword Args:
@@ -198,7 +198,7 @@ class QueryParameter(ModelNormal):
 
         Keyword Args:
             name (str): Name of the field.
-            type (str): Data type of the field.
+            type (str): Deprecated. Data type of the field.
             value (str): Literal value of the field.
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be

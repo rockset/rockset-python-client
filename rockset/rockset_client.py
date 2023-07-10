@@ -18,6 +18,7 @@ from rockset.apis import (
     Queries,
     QueryLambdas,
     SharedLambdas,
+    Sources,
     Users,
     Views,
     VirtualInstances,
@@ -26,7 +27,6 @@ from rockset.apis import (
 from rockset.configuration import Configuration
 from rockset.exceptions import ApiTypeError, ApiValueError, InitializationException
 from rockset.models import QueryParameter, QueryRequestSql, QueryResponse
-
 
 APISERVER_PATTERN = re.compile(r"^https:\/\/(\w|-|\.)+\.rockset\.com$")
 
@@ -161,6 +161,10 @@ class SharedLambdasApiWrapper(SharedLambdas, metaclass=ApiMetaclass):
     pass
 
 
+class SourcesApiWrapper(Sources, metaclass=ApiMetaclass):
+    pass
+
+
 class UsersApiWrapper(Users, metaclass=ApiMetaclass):
     pass
 
@@ -262,6 +266,7 @@ class RocksetClient:
         self.Queries = QueriesApiWrapper(self.api_client)
         self.QueryLambdas = QueryLambdasApiWrapper(self.api_client)
         self.SharedLambdas = SharedLambdasApiWrapper(self.api_client)
+        self.Sources = SourcesApiWrapper(self.api_client)
         self.Users = UsersApiWrapper(self.api_client)
         self.Views = ViewsApiWrapper(self.api_client)
         self.VirtualInstances = VirtualInstancesApiWrapper(self.api_client)

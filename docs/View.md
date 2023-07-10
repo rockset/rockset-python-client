@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **created_at** | **str** | ISO-8601 date. | [optional] 
+**created_by_apikey_name** | **str** | Name of the API key that was used to create this object if one was used. | [optional] 
 **creator_email** | **str** | Email of the creator. | [optional] 
 **description** | **str** | View description. | [optional] 
 **entities** | **[str]** | List of entities referenced by view. An entity can be a view, alias or collection. | [optional] 

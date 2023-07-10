@@ -748,6 +748,8 @@ class VirtualInstances(object):
         name: str,
         auto_suspend_seconds: int = None,
         description: str = None,
+        enable_remount_on_resume: bool = None,
+        mount_refresh_interval_seconds: int = None,
         type: str = None,
         **kwargs
     ) -> typing.Union[CreateVirtualInstanceResponse, asyncio.Future]:
@@ -762,6 +764,8 @@ class VirtualInstances(object):
         future = rs.VirtualInstances.create(
             auto_suspend_seconds=3600,
             description="VI serving prod traffic",
+            enable_remount_on_resume=True,
+            mount_refresh_interval_seconds=3600,
             name="prod_vi",
             type="LARGE",
             async_req=True,
@@ -772,6 +776,8 @@ class VirtualInstances(object):
         Keyword Args:
             auto_suspend_seconds (int): Number of seconds without queries after which the VI is suspended. [optional]
             description (str): Description of requested virtual instance.. [optional]
+            enable_remount_on_resume (bool): When a Virtual Instance is resumed, it will remount all collections that were mounted when the Virtual Instance was suspended.. [optional]
+            mount_refresh_interval_seconds (int): Number of seconds between data refreshes for mounts on this Virtual Instance. A value of 0 means continuous refresh and a value of null means never refresh.. [optional]
             name (str): Unique identifier for virtual instance, can contain alphanumeric or dash characters.. [required]
             type (str): Requested virtual instance type.. [optional]
             _return_http_data_only (bool): response data without head status
@@ -1015,7 +1021,7 @@ class VirtualInstances(object):
     ) -> typing.Union[CollectionMountResponse, asyncio.Future]:
         """Get Collection Mount  # noqa: E501
 
-        [beta] Get a mount on this virtual instance.  # noqa: E501
+        [beta] Retrieve a mount on this virtual instance.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1350,10 +1356,9 @@ class VirtualInstances(object):
         *,
         virtual_instance_id: str,
         collection_paths: typing.Sequence[str] = None,
-        type: str = None,
         **kwargs
     ) -> typing.Union[CreateCollectionMountsResponse, asyncio.Future]:
-        """Mount Collection  # noqa: E501
+        """Mount Collections  # noqa: E501
 
         [beta] Mount a collection to this virtual instance.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -1364,7 +1369,6 @@ class VirtualInstances(object):
         future = rs.VirtualInstances.mount_collection(
             virtual_instance_id="virtualInstanceId_example",
             collection_paths=["commons.foo","commons.bar"],
-            type="STATIC",
             async_req=True,
         )
         result = await future
@@ -1373,7 +1377,6 @@ class VirtualInstances(object):
         Keyword Args:
             virtual_instance_id (str): Virtual Instance RRN. [required]
             collection_paths ([str]): Collections to mount.. [optional]
-            type (str): Mount type.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1443,7 +1446,11 @@ class VirtualInstances(object):
         *,
         virtual_instance_id: str,
         sql: QueryRequestSql,
+        _async: bool = None,
         async_options: AsyncQueryOptions = None,
+        debug_threshold_ms: int = None,
+        max_initial_results: int = None,
+        timeout_ms: int = None,
         **kwargs
     ) -> typing.Union[QueryResponse, asyncio.Future]:
         """Execute SQL Query  # noqa: E501
@@ -1456,16 +1463,18 @@ class VirtualInstances(object):
         rs = RocksetClient(api_key=APIKEY)
         future = rs.VirtualInstances.query_virtual_instance(
             virtual_instance_id="virtualInstanceId_example",
+            _async=True,
             async_options=AsyncQueryOptions(
                 client_timeout_ms=1,
                 max_initial_results=1,
                 timeout_ms=1,
             ),
+            debug_threshold_ms=1,
+            max_initial_results=1,
             sql=QueryRequestSql(
                 default_row_limit=1,
                 generate_warnings=False,
                 initial_paginate_response_doc_count=1,
-                paginate=True,
                 parameters=[
                     QueryParameter(
                         name="_id",
@@ -1475,6 +1484,7 @@ class VirtualInstances(object):
                 ],
                 query="SELECT * FROM foo where _id = :_id",
             ),
+            timeout_ms=1,
             async_req=True,
         )
         result = await future
@@ -1482,8 +1492,12 @@ class VirtualInstances(object):
 
         Keyword Args:
             virtual_instance_id (str): Virtual Instance RRN. [required]
+            _async (bool): If true, the query will run asynchronously for up to 30 minutes. The query request will immediately return with a query id that can be used to retrieve the query status and results. If false or not specified, the query will return with results once completed or timeout after 2 minutes. (To return results directly for shorter queries while still allowing a timeout of up to 30 minutes, set `async_options.client_timeout_ms`.) . [optional]
             async_options (AsyncQueryOptions): [optional]
+            debug_threshold_ms (int): If query execution takes longer than this value, debug information will be logged. If the query text includes the DEBUG hint and this parameter is also provided, only this value will be used and the DEBUG hint will be ignored.. [optional]
+            max_initial_results (int): This limits the maximum number of results in the initial response. A pagination cursor is returned if the number of results exceeds `max_initial_results`. If `max_initial_results` is not set, all results will be returned in the initial response up to 4 million. If `max_initial_results` is set, the value must be between 0 and 100,000. If the query is async and `client_timeout_ms` is exceeded, `max_initial_results` does not apply since none of the results will be returned with the initial response.. [optional]
             sql (QueryRequestSql): [required]
+            timeout_ms (int): If a query exceeds the specified timeout, the query will automatically stop and return an error. The query timeout defaults to a maximum of 2 minutes. If `async` is true, the query timeout defaults to a maximum of 30 minutes.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1812,10 +1826,12 @@ class VirtualInstances(object):
         self,
         *,
         virtual_instance_id: str,
+        auto_scaling_policy: AutoScalingPolicy = None,
         auto_suspend_enabled: bool = None,
         auto_suspend_seconds: int = None,
         description: str = None,
-        monitoring_enabled: bool = None,
+        enable_remount_on_resume: bool = None,
+        mount_refresh_interval_seconds: int = None,
         name: str = None,
         new_size: str = None,
         **kwargs
@@ -1830,10 +1846,16 @@ class VirtualInstances(object):
         rs = RocksetClient(api_key=APIKEY)
         future = rs.VirtualInstances.update(
             virtual_instance_id="virtualInstanceId_example",
+            auto_scaling_policy=AutoScalingPolicy(
+                enabled=True,
+                max_size="XLARGE2",
+                min_size="LARGE",
+            ),
             auto_suspend_enabled=True,
             auto_suspend_seconds=3600,
             description="VI for prod traffic",
-            monitoring_enabled=True,
+            enable_remount_on_resume=True,
+            mount_refresh_interval_seconds=3600,
             name="prod_vi",
             new_size="LARGE",
             async_req=True,
@@ -1843,10 +1865,12 @@ class VirtualInstances(object):
 
         Keyword Args:
             virtual_instance_id (str): Virtual Instance RRN. [required]
+            auto_scaling_policy (AutoScalingPolicy): [optional]
             auto_suspend_enabled (bool): Whether auto-suspend should be enabled for this Virtual Instance.. [optional]
             auto_suspend_seconds (int): Number of seconds without queries after which the VI is suspended. [optional]
             description (str): New virtual instance description.. [optional]
-            monitoring_enabled (bool): [optional]
+            enable_remount_on_resume (bool): When a Virtual Instance is resumed, it will remount all collections that were mounted when the Virtual Instance was suspended.. [optional]
+            mount_refresh_interval_seconds (int): Number of seconds between data refreshes for mounts on this Virtual Instance. A value of 0 means continuous refresh and a value of null means never refresh.. [optional]
             name (str): New virtual instance name.. [optional]
             new_size (str): Requested virtual instance size.. [optional]
             _return_http_data_only (bool): response data without head status

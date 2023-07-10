@@ -1382,12 +1382,16 @@ class QueryLambdas(object):
         query_lambda: str,
         version: str,
         workspace = "commons",
+        _async: bool = None,
         async_options: AsyncQueryOptions = None,
+        debug_threshold_ms: int = None,
         default_row_limit: int = None,
         generate_warnings: bool = None,
         initial_paginate_response_doc_count: int = None,
+        max_initial_results: int = None,
         paginate: bool = None,
         parameters: typing.Sequence[QueryParameter] = None,
+        timeout_ms: int = None,
         virtual_instance_id: str = None,
         **kwargs
     ) -> typing.Union[QueryResponse, asyncio.Future]:
@@ -1484,12 +1488,16 @@ class QueryLambdas(object):
         query_lambda: str,
         tag: str,
         workspace = "commons",
+        _async: bool = None,
         async_options: AsyncQueryOptions = None,
+        debug_threshold_ms: int = None,
         default_row_limit: int = None,
         generate_warnings: bool = None,
         initial_paginate_response_doc_count: int = None,
+        max_initial_results: int = None,
         paginate: bool = None,
         parameters: typing.Sequence[QueryParameter] = None,
+        timeout_ms: int = None,
         virtual_instance_id: str = None,
         **kwargs
     ) -> typing.Union[QueryResponse, asyncio.Future]:

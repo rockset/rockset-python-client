@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **azure_service_bus** | [**AzureServiceBusIntegration**](AzureServiceBusIntegration.md) |  | [optional] 
 **collections** | [**[Collection]**](Collection.md) | List of collections that use the integration. | [optional] 
 **created_at** | **str** | ISO-8601 date. | [optional] 
+**created_by_apikey_name** | **str** | Name of the API key that was used to create this object if one was used. | [optional] 
 **description** | **str** | Longer explanation for the integration. | [optional] 
 **dynamodb** | [**DynamodbIntegration**](DynamodbIntegration.md) |  | [optional] 
 **gcs** | [**GcsIntegration**](GcsIntegration.md) |  | [optional] 

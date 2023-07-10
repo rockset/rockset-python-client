@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **collections** | **[str]** | List of fully qualified collection names referenced by alias. | [optional] 
 **created_at** | **str** | ISO-8601 date. | [optional] 
+**created_by_apikey_name** | **str** | Name of the API key that was used to create this object if one was used. | [optional] 
 **creator_email** | **str** | Email of the creator. | [optional] 
 **description** | **str** | Alias description. | [optional] 
 **modified_at** | **str** | ISO-8601 date. | [optional] 

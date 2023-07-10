@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **clustering_key** | [**[FieldPartition]**](FieldPartition.md) | List of clustering fields for a collection. | [optional] 
 **created_at** | **str** | ISO-8601 date. | [optional] 
 **created_by** | **str** | Email of user who created the collection. | [optional] 
+**created_by_apikey_name** | **str** | Name of the API key that was used to create this collection if one was used. | [optional] 
 **description** | **str** | Text describing the collection. | [optional] 
 **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional] 
 **field_mappings** | [**[FieldMappingV2]**](FieldMappingV2.md) | List of mappings applied on all documents in a collection. | [optional] 

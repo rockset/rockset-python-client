@@ -48,6 +48,11 @@ components:
           description: ISO-8601 date.
           example: "2001-08-28T00:23:41Z"
           type: string
+        created_by_apikey_name:
+          description:
+            Name of the API key that was used to create this object if
+            one was used.
+          type: string
         creator_email:
           description: Email of the creator.
           example: xyz@rockset.com
@@ -89,6 +94,11 @@ components:
           description: Email of API key owner.
           example: test@rockset.com
           type: string
+        created_by_apikey_name:
+          description:
+            Name of the API key that was used to create this object if
+            one was used.
+          type: string
         expiry_time:
           description: The expiration date of this API key.
           example: "2001-08-28T00:23:41Z"
@@ -126,26 +136,80 @@ components:
       properties:
         client_timeout_ms:
           description:
-            The maximum amount of time that the client is willing to wait
-            for the query to complete. If the query is not complete by this timeout,
-            a response will be returned with a `query_id` that can be used to check
-            the status of the query and retrieve results once the query has completed.
+            "If the query completes before the client timeout, the results
+            are returned. Otherwise if the client timeout is exceeded, the query id
+            will be returned, and the query will continue to run in the background
+            for up to 30 minutes. (The 30 minute timeout can be configured lower with
+            timeout_ms.) `async_options.client_timeout_ms` only applies when `async`
+            is true. The default value of `client_timeout_ms` is 0, so async query
+            requests will immediately return with a query id by default. "
           format: int64
           type: integer
         max_initial_results:
           description:
-            The maximum number of results you will receive as a client.
-            If the query exceeds this limit, the remaining results can be requested
-            using a returned pagination cursor. In addition, there is a maximum response
-            size of 100MiB so fewer than `max_results` may be returned.
+            "[DEPRECATED] Use the query request `max_initial_results` instead.
+            The maximum number of results you will receive as a client. If the query
+            exceeds this limit, the remaining results can be requested using a returned
+            pagination cursor. In addition, there is a maximum response size of 100MiB
+            so fewer than `max_results` may be returned."
           format: int64
           type: integer
         timeout_ms:
           description:
-            The maximum amount of time that the system will attempt to
-            complete query execution before aborting the query and returning an error.
+            "[DEPRECATED] Use the query request `timeout_ms` instead. The
+            maximum amount of time that the system will attempt to complete query
+            execution before aborting the query and returning an error. This must
+            be set to a value that is greater than or equal to the client timeout,
+            and the maximum value of this timeout is 30 minutes."
           format: int64
           type: integer
+      type: object
+    AutoScalingPolicy:
+      properties:
+        enabled:
+          description: Whether auto scaling policy is enabled.
+          example: true
+          type: boolean
+        max_size:
+          description:
+            Maximum size Rockset can auto scale the Virtual Instance to.
+            This value should be one of the dedicated sizes greater than or same as
+            the min_size and lower than or same as the current size.
+          enum:
+            - FREE
+            - NANO
+            - SHARED
+            - MILLI
+            - SMALL
+            - MEDIUM
+            - LARGE
+            - XLARGE
+            - XLARGE2
+            - XLARGE4
+            - XLARGE8
+            - XLARGE16
+          example: XLARGE2
+          type: string
+        min_size:
+          description:
+            Minimum size Rockset can auto scale the Virtual Instance to.
+            This value should be one of the dedicated sizes lower than or same as
+            the max_size and greater than or same as the current size.
+          enum:
+            - FREE
+            - NANO
+            - SHARED
+            - MILLI
+            - SMALL
+            - MEDIUM
+            - LARGE
+            - XLARGE
+            - XLARGE2
+            - XLARGE4
+            - XLARGE8
+            - XLARGE16
+          example: LARGE
+          type: string
       type: object
     AwsAccessKey:
       properties:
@@ -194,12 +258,7 @@ components:
             mapping in `field_mapping_query` instead.
         field_mapping_query:
           $ref: "#/components/schemas/FieldMappingQuery"
-          description: Mapping of fields for a collection.
-        field_mappings:
-          description: Deprecated. List of mappings. Use field_mapping_query instead.
-          items:
-            $ref: "#/components/schemas/FieldMappingV2"
-          type: array
+          description: Ingest transformation query.
         name:
           description:
             Unique identifier for collection, can contain alphanumeric
@@ -219,6 +278,13 @@ components:
           items:
             $ref: "#/components/schemas/AzureBlobStorageSourceWrapper"
           type: array
+        storage_compression_type:
+          description: RocksDB storage compression type.
+          enum:
+            - LZ4
+            - ZSTD
+          example: LZ4
+          type: string
       required:
         - name
       type: object
@@ -289,12 +355,7 @@ components:
             mapping in `field_mapping_query` instead.
         field_mapping_query:
           $ref: "#/components/schemas/FieldMappingQuery"
-          description: Mapping of fields for a collection.
-        field_mappings:
-          description: Deprecated. List of mappings. Use field_mapping_query instead.
-          items:
-            $ref: "#/components/schemas/FieldMappingV2"
-          type: array
+          description: Ingest transformation query.
         name:
           description:
             Unique identifier for collection, can contain alphanumeric
@@ -314,6 +375,13 @@ components:
           items:
             $ref: "#/components/schemas/AzureEventHubsSourceWrapper"
           type: array
+        storage_compression_type:
+          description: RocksDB storage compression type.
+          enum:
+            - LZ4
+            - ZSTD
+          example: LZ4
+          type: string
       required:
         - name
       type: object
@@ -380,12 +448,7 @@ components:
             mapping in `field_mapping_query` instead.
         field_mapping_query:
           $ref: "#/components/schemas/FieldMappingQuery"
-          description: Mapping of fields for a collection.
-        field_mappings:
-          description: Deprecated. List of mappings. Use field_mapping_query instead.
-          items:
-            $ref: "#/components/schemas/FieldMappingV2"
-          type: array
+          description: Ingest transformation query.
         name:
           description:
             Unique identifier for collection, can contain alphanumeric
@@ -405,6 +468,13 @@ components:
           items:
             $ref: "#/components/schemas/AzureServiceBusSourceWrapper"
           type: array
+        storage_compression_type:
+          description: RocksDB storage compression type.
+          enum:
+            - LZ4
+            - ZSTD
+          example: LZ4
+          type: string
       required:
         - name
       type: object
@@ -589,6 +659,11 @@ components:
           description: Email of user who created the collection.
           example: hello@rockset.com
           type: string
+        created_by_apikey_name:
+          description:
+            Name of the API key that was used to create this collection
+            if one was used.
+          type: string
         description:
           description: Text describing the collection.
           example: transactions from stores worldwide
@@ -664,6 +739,13 @@ components:
           description: Mount ID.
           example: 5ac23....
           type: string
+        last_refresh_time_millis:
+          description:
+            Unix timestamp of most recent refresh. Not applicable for live
+            mounts.
+          example: 123123764
+          format: int64
+          type: integer
         rrn:
           description: Mount RRN.
           example: rrn:mnt:use1a1:123e4567-e89b-12d3-a456-556642440000
@@ -681,18 +763,14 @@ components:
             - REFRESHING
             - EXPIRED
             - DELETING
+            - SWITCHING_REFRESH_TYPE
+            - SUSPENDED
+            - SUSPENDING
           example: ACTIVE
           type: string
         stats:
           $ref: "#/components/schemas/CollectionMountStats"
           description: Stats about this Collection Mount
-        type:
-          description: Mount type.
-          enum:
-            - STATIC
-            - LIVE
-          example: STATIC
-          type: string
         virtual_instance_id:
           description: Virtual instance ID.
           example: 5ac23....
@@ -858,13 +936,6 @@ components:
           items:
             type: string
           type: array
-        type:
-          description: Mount type.
-          enum:
-            - STATIC
-            - LIVE
-          example: STATIC
-          type: string
       type: object
     CreateCollectionMountsResponse:
       properties:
@@ -894,12 +965,7 @@ components:
             mapping in `field_mapping_query` instead.
         field_mapping_query:
           $ref: "#/components/schemas/FieldMappingQuery"
-          description: Mapping of fields for a collection.
-        field_mappings:
-          description: Deprecated. List of mappings. Use field_mapping_query instead.
-          items:
-            $ref: "#/components/schemas/FieldMappingV2"
-          type: array
+          description: Ingest transformation query.
         name:
           description:
             Unique identifier for collection, can contain alphanumeric
@@ -914,6 +980,13 @@ components:
           format: int64
           minimum: 1
           type: integer
+        storage_compression_type:
+          description: RocksDB storage compression type.
+          enum:
+            - LZ4
+            - ZSTD
+          example: LZ4
+          type: string
       type: object
     CreateCollectionResponse:
       properties:
@@ -1089,6 +1162,20 @@ components:
           description: Description of requested virtual instance.
           example: VI serving prod traffic
           type: string
+        enable_remount_on_resume:
+          description:
+            When a Virtual Instance is resumed, it will remount all collections
+            that were mounted when the Virtual Instance was suspended.
+          example: true
+          type: boolean
+        mount_refresh_interval_seconds:
+          description:
+            Number of seconds between data refreshes for mounts on this
+            Virtual Instance. A value of 0 means continuous refresh and a value of
+            null means never refresh.
+          example: 3600
+          format: int32
+          type: integer
         name:
           description:
             Unique identifier for virtual instance, can contain alphanumeric
@@ -1255,6 +1342,12 @@ components:
           $ref: "#/components/schemas/QueryLambda"
           description: Query Lambda details.
       type: object
+    DeleteSourceResponse:
+      properties:
+        data:
+          $ref: "#/components/schemas/Source"
+          description: source that was deleted
+      type: object
     DeleteUserResponse:
       properties:
         data:
@@ -1327,12 +1420,7 @@ components:
             mapping in `field_mapping_query` instead.
         field_mapping_query:
           $ref: "#/components/schemas/FieldMappingQuery"
-          description: Mapping of fields for a collection.
-        field_mappings:
-          description: Deprecated. List of mappings. Use field_mapping_query instead.
-          items:
-            $ref: "#/components/schemas/FieldMappingV2"
-          type: array
+          description: Ingest transformation query.
         name:
           description:
             Unique identifier for collection, can contain alphanumeric
@@ -1352,6 +1440,13 @@ components:
           items:
             $ref: "#/components/schemas/DynamodbSourceWrapper"
           type: array
+        storage_compression_type:
+          description: RocksDB storage compression type.
+          enum:
+            - LZ4
+            - ZSTD
+          example: LZ4
+          type: string
       required:
         - name
       type: object
@@ -1496,9 +1591,26 @@ components:
       type: object
     ExecuteQueryLambdaRequest:
       properties:
+        async:
+          description:
+            "If true, the query will run asynchronously for up to 30 minutes.
+            The query request will immediately return with a query id that can be
+            used to retrieve the query status and results. If false or not specified,
+            the query will return with results once completed or timeout after 2 minutes.
+            (To return results directly for shorter queries while still allowing a
+            timeout of up to 30 minutes, set `async_options.client_timeout_ms`.) "
+          type: boolean
         async_options:
           $ref: "#/components/schemas/AsyncQueryOptions"
-          description: Options for configuring Asynchronous Query Mode (beta).
+          description: Options for configuring Asynchronous Query Mode.
+        debug_threshold_ms:
+          description:
+            If query execution takes longer than this value, debug information
+            will be logged. If the query text includes the DEBUG hint and this parameter
+            is also provided, only this value will be used and the DEBUG hint will
+            be ignored.
+          format: int64
+          type: integer
         default_row_limit:
           description: Row limit to use if no limit specified in the SQL query text.
           format: int32
@@ -1508,9 +1620,21 @@ components:
           type: boolean
         initial_paginate_response_doc_count:
           description:
-            Number of documents to return in addition to paginating for
-            this query call. Only relevant if `paginate` flag is also set.
+            "[DEPRECATED] Use `max_initial_results` instead. Number of
+            documents to return in addition to paginating for this query call. Only
+            relevant if `paginate` flag is also set."
           format: int32
+          type: integer
+        max_initial_results:
+          description:
+            This limits the maximum number of results in the initial response.
+            A pagination cursor is returned if the number of results exceeds `max_initial_results`.
+            If `max_initial_results` is not set, all results will be returned in the
+            initial response up to 4 million. If `max_initial_results` is set, the
+            value must be between 0 and 100,000. If the query is async and `client_timeout_ms`
+            is exceeded, `max_initial_results` does not apply since none of the results
+            will be returned with the initial response.
+          format: int64
           type: integer
         paginate:
           description:
@@ -1522,12 +1646,17 @@ components:
           items:
             $ref: "#/components/schemas/QueryParameter"
           type: array
+        timeout_ms:
+          description:
+            If a query exceeds the specified timeout, the query will automatically
+            stop and return an error. The query timeout defaults to a maximum of 2
+            minutes. If `async` is true, the query timeout defaults to a maximum of
+            30 minutes.
+          format: int64
+          type: integer
         virtual_instance_id:
           description: Virtual instance on which to run the query.
           type: string
-      type: object
-    FieldMapping:
-      properties: {}
       type: object
     FieldMappingQuery:
       properties:
@@ -1580,74 +1709,6 @@ components:
           example: AUTO
           type: string
       type: object
-    FileUploadCollectionCreationRequest:
-      properties:
-        clustering_key:
-          description:
-            Deprecated. List of clustering fields. Use CLUSTER BY clause
-            in `field_mapping_query` instead.
-          items:
-            $ref: "#/components/schemas/FieldPartition"
-          type: array
-        description:
-          description: Text describing the collection.
-          example: transactions from stores worldwide
-          type: string
-        event_time_info:
-          $ref: "#/components/schemas/EventTimeInfo"
-          description:
-            Deprecated. Configuration for event data. Use an _event_time
-            mapping in `field_mapping_query` instead.
-        field_mapping_query:
-          $ref: "#/components/schemas/FieldMappingQuery"
-          description: Mapping of fields for a collection.
-        field_mappings:
-          description: Deprecated. List of mappings. Use field_mapping_query instead.
-          items:
-            $ref: "#/components/schemas/FieldMappingV2"
-          type: array
-        name:
-          description:
-            Unique identifier for collection, can contain alphanumeric
-            or dash characters.
-          example: global-transactions
-          type: string
-        retention_secs:
-          description:
-            Number of seconds after which data is purged, based on event
-            time.
-          example: 1000000
-          format: int64
-          minimum: 1
-          type: integer
-        sources:
-          description: List of sources from which to ingest data
-          items:
-            $ref: "#/components/schemas/FileUploadSourceWrapper"
-          type: array
-      required:
-        - name
-      type: object
-    FileUploadSourceWrapper:
-      description: Details about the data source for the given collection.
-      properties:
-        file_upload:
-          $ref: "#/components/schemas/SourceFileUpload"
-          description: File upload details.
-        format_params:
-          $ref: "#/components/schemas/FormatParams"
-          description: Format parameters for data from this source.
-        integration_name:
-          description: Name of integration to use.
-          example: aws-integration
-          type: string
-        status:
-          allOf:
-            - $ref: "#/components/schemas/Status"
-              description: The ingest status of this source.
-          readOnly: true
-      type: object
-      x-inner-field: file_upload
     FormatParams:
       properties:
         csv:
@@ -1695,12 +1756,7 @@ components:
             mapping in `field_mapping_query` instead.
         field_mapping_query:
           $ref: "#/components/schemas/FieldMappingQuery"
-          description: Mapping of fields for a collection.
-        field_mappings:
-          description: Deprecated. List of mappings. Use field_mapping_query instead.
-          items:
-            $ref: "#/components/schemas/FieldMappingV2"
-          type: array
+          description: Ingest transformation query.
         name:
           description:
             Unique identifier for collection, can contain alphanumeric
@@ -1720,6 +1776,13 @@ components:
           items:
             $ref: "#/components/schemas/GcsSourceWrapper"
           type: array
+        storage_compression_type:
+          description: RocksDB storage compression type.
+          enum:
+            - LZ4
+            - ZSTD
+          example: LZ4
+          type: string
       required:
         - name
       type: object
@@ -1794,6 +1857,12 @@ components:
         data:
           $ref: "#/components/schemas/QueryInfo"
       type: object
+    GetSourceResponse:
+      properties:
+        data:
+          $ref: "#/components/schemas/Source"
+          description: source config for source
+      type: object
     GetViewResponse:
       properties:
         data:
@@ -1861,6 +1930,11 @@ components:
           description: Email of user who created the integration.
           example: hello@rockset.com
           type: string
+        created_by_apikey_name:
+          description:
+            Name of the API key that was used to create this object if
+            one was used.
+          type: string
         description:
           description: Longer explanation for the integration.
           example: AWS account with event data for the data science team.
@@ -1922,12 +1996,7 @@ components:
             mapping in `field_mapping_query` instead.
         field_mapping_query:
           $ref: "#/components/schemas/FieldMappingQuery"
-          description: Mapping of fields for a collection.
-        field_mappings:
-          description: Deprecated. List of mappings. Use field_mapping_query instead.
-          items:
-            $ref: "#/components/schemas/FieldMappingV2"
-          type: array
+          description: Ingest transformation query.
         name:
           description:
             Unique identifier for collection, can contain alphanumeric
@@ -1947,6 +2016,13 @@ components:
           items:
             $ref: "#/components/schemas/KafkaSourceWrapper"
           type: array
+        storage_compression_type:
+          description: RocksDB storage compression type.
+          enum:
+            - LZ4
+            - ZSTD
+          example: LZ4
+          type: string
       required:
         - name
       type: object
@@ -2054,12 +2130,7 @@ components:
             mapping in `field_mapping_query` instead.
         field_mapping_query:
           $ref: "#/components/schemas/FieldMappingQuery"
-          description: Mapping of fields for a collection.
-        field_mappings:
-          description: Deprecated. List of mappings. Use field_mapping_query instead.
-          items:
-            $ref: "#/components/schemas/FieldMappingV2"
-          type: array
+          description: Ingest transformation query.
         name:
           description:
             Unique identifier for collection, can contain alphanumeric
@@ -2079,6 +2150,13 @@ components:
           items:
             $ref: "#/components/schemas/KinesisSourceWrapper"
           type: array
+        storage_compression_type:
+          description: RocksDB storage compression type.
+          enum:
+            - LZ4
+            - ZSTD
+          example: LZ4
+          type: string
       required:
         - name
       type: object
@@ -2208,6 +2286,14 @@ components:
             $ref: "#/components/schemas/Role"
           type: array
       type: object
+    ListSourcesResponse:
+      properties:
+        data:
+          description: List of all sources in a collection
+          items:
+            $ref: "#/components/schemas/Source"
+          type: array
+      type: object
     ListUnsubscribePreferencesResponse:
       properties:
         data:
@@ -2277,12 +2363,7 @@ components:
             mapping in `field_mapping_query` instead.
         field_mapping_query:
           $ref: "#/components/schemas/FieldMappingQuery"
-          description: Mapping of fields for a collection.
-        field_mappings:
-          description: Deprecated. List of mappings. Use field_mapping_query instead.
-          items:
-            $ref: "#/components/schemas/FieldMappingV2"
-          type: array
+          description: Ingest transformation query.
         name:
           description:
             Unique identifier for collection, can contain alphanumeric
@@ -2302,6 +2383,13 @@ components:
           items:
             $ref: "#/components/schemas/MongodbSourceWrapper"
           type: array
+        storage_compression_type:
+          description: RocksDB storage compression type.
+          enum:
+            - LZ4
+            - ZSTD
+          example: LZ4
+          type: string
       required:
         - name
       type: object
@@ -2369,6 +2457,14 @@ components:
           description: Rockset's global AWS user.
           example: <id>
           type: string
+        sso_connection:
+          description: Connection name of SSO connection.
+          example: rockset
+          type: string
+        sso_only:
+          description: Whether or not SSO is the only permitted form of auth.
+          example: true
+          type: boolean
       type: object
     OrganizationResponse:
       properties:
@@ -2531,6 +2627,7 @@ components:
             - DELETE_ROLE_GLOBAL
             - LIST_ROLES_GLOBAL
             - GRANT_REVOKE_ROLE_GLOBAL
+            - CREATE_QUERY_LOGS_COLLECTION_GLOBAL
             - ALL_INTEGRATION_ACTIONS
             - CREATE_COLLECTION_INTEGRATION
             - ALL_WORKSPACE_ACTIONS
@@ -2634,6 +2731,9 @@ components:
         query_id:
           description: Unique Query ID.
           example: 5b596206-c632-4a08-8343-0c560f7ef7f1
+          type: string
+        sql:
+          description: The SQL query for this request
           type: string
         stats:
           $ref: "#/components/schemas/Stats"
@@ -2752,6 +2852,11 @@ components:
           description: User that created this Query Lambda.
           example: ..@rockset.com
           type: string
+        created_by_apikey_name:
+          description:
+            Name of the API key that was used to create this object if
+            one was used.
+          type: string
         description:
           description: Optional description.
           example: production version foo
@@ -2813,7 +2918,7 @@ components:
           example: _id
           type: string
         type:
-          description: Data type of the field.
+          description: Deprecated. Data type of the field.
           example: string
           type: string
         value:
@@ -2827,12 +2932,48 @@ components:
       type: object
     QueryRequest:
       properties:
+        async:
+          description:
+            "If true, the query will run asynchronously for up to 30 minutes.
+            The query request will immediately return with a query id that can be
+            used to retrieve the query status and results. If false or not specified,
+            the query will return with results once completed or timeout after 2 minutes.
+            (To return results directly for shorter queries while still allowing a
+            timeout of up to 30 minutes, set `async_options.client_timeout_ms`.) "
+          type: boolean
         async_options:
           $ref: "#/components/schemas/AsyncQueryOptions"
-          description: Options for configuring Asynchronous Query Mode (beta).
+          description: Options for configuring Asynchronous Query Mode.
+        debug_threshold_ms:
+          description:
+            If query execution takes longer than this value, debug information
+            will be logged. If the query text includes the DEBUG hint and this parameter
+            is also provided, only this value will be used and the DEBUG hint will
+            be ignored.
+          format: int64
+          type: integer
+        max_initial_results:
+          description:
+            This limits the maximum number of results in the initial response.
+            A pagination cursor is returned if the number of results exceeds `max_initial_results`.
+            If `max_initial_results` is not set, all results will be returned in the
+            initial response up to 4 million. If `max_initial_results` is set, the
+            value must be between 0 and 100,000. If the query is async and `client_timeout_ms`
+            is exceeded, `max_initial_results` does not apply since none of the results
+            will be returned with the initial response.
+          format: int64
+          type: integer
         sql:
           $ref: "#/components/schemas/QueryRequestSql"
           description: Main query request body.
+        timeout_ms:
+          description:
+            If a query exceeds the specified timeout, the query will automatically
+            stop and return an error. The query timeout defaults to a maximum of 2
+            minutes. If `async` is true, the query timeout defaults to a maximum of
+            30 minutes.
+          format: int64
+          type: integer
       required:
         - sql
       type: object
@@ -2852,15 +2993,11 @@ components:
           type: boolean
         initial_paginate_response_doc_count:
           description:
-            Number of documents to return in addition to paginating for
-            this query call. Only relevant if `paginate` flag is also set.
+            "[DEPRECATED] Use `max_initial_results` instead. Number of
+            documents to return in addition to paginating for this query call. Only
+            relevant if `paginate` flag is also set."
           format: int32
           type: integer
-        paginate:
-          description:
-            Flag to paginate and store the results of this query for later
-            sequential retrieval.
-          type: boolean
         parameters:
           description: List of named parameters.
           items:
@@ -2922,6 +3059,17 @@ components:
         stats:
           $ref: "#/components/schemas/QueryResponseStats"
           description: Meta information about the query including execution latencies.
+        status:
+          description:
+            "Status of query execution. Possible values: `QUEUED`, `RUNNING`,
+            `COMPLETED`, `ERROR`."
+          enum:
+            - QUEUED
+            - RUNNING
+            - COMPLETED
+            - ERROR
+          example: RUNNING
+          type: string
         warnings:
           description:
             Warnings generated by the query. Only populated if `generate_warnings`
@@ -3002,12 +3150,7 @@ components:
             mapping in `field_mapping_query` instead.
         field_mapping_query:
           $ref: "#/components/schemas/FieldMappingQuery"
-          description: Mapping of fields for a collection.
-        field_mappings:
-          description: Deprecated. List of mappings. Use field_mapping_query instead.
-          items:
-            $ref: "#/components/schemas/FieldMappingV2"
-          type: array
+          description: Ingest transformation query.
         name:
           description:
             Unique identifier for collection, can contain alphanumeric
@@ -3027,6 +3170,13 @@ components:
           items:
             $ref: "#/components/schemas/S3SourceWrapper"
           type: array
+        storage_compression_type:
+          description: RocksDB storage compression type.
+          enum:
+            - LZ4
+            - ZSTD
+          example: LZ4
+          type: string
       required:
         - name
       type: object
@@ -3107,12 +3257,7 @@ components:
             mapping in `field_mapping_query` instead.
         field_mapping_query:
           $ref: "#/components/schemas/FieldMappingQuery"
-          description: Mapping of fields for a collection.
-        field_mappings:
-          description: Deprecated. List of mappings. Use field_mapping_query instead.
-          items:
-            $ref: "#/components/schemas/FieldMappingV2"
-          type: array
+          description: Ingest transformation query.
         name:
           description:
             Unique identifier for collection, can contain alphanumeric
@@ -3132,6 +3277,13 @@ components:
           items:
             $ref: "#/components/schemas/SnowflakeSourceWrapper"
           type: array
+        storage_compression_type:
+          description: RocksDB storage compression type.
+          enum:
+            - LZ4
+            - ZSTD
+          example: LZ4
+          type: string
       required:
         - name
       type: object
@@ -3443,6 +3595,12 @@ components:
           description: MongoDB database name containing this collection.
           example: my_database
           type: string
+        retrieve_full_document:
+          description:
+            Whether to get the full document from the MongoDB change stream
+            to enable multi-field expression transformations. Selecting this option
+            will increase load on your upstream MongoDB database.
+          type: boolean
         status:
           allOf:
             - $ref: "#/components/schemas/StatusMongoDb"
@@ -3529,6 +3687,15 @@ components:
         - schema
         - table_name
       type: object
+    SourceSystem:
+      properties:
+        type:
+          description: The type of this system source.
+          enum:
+            - QUERY_LOGS
+          example: QUERY_LOGS
+          type: string
+      type: object
     SqlExpression:
       properties:
         sql:
@@ -3593,6 +3760,7 @@ components:
             - PROCESSING
             - COMPLETED
             - ERROR
+            - PAUSED
           example: INITIALIZING
           type: string
         total_processed_items:
@@ -3889,6 +4057,18 @@ components:
           $ref: "#/components/schemas/ApiKey"
           description: The API key that was updated.
       type: object
+    UpdateCollectionRequest:
+      properties:
+        description:
+          description: Updated text describing the collection.
+          example: transactions from stores worldwide
+          type: string
+        field_mapping_query:
+          $ref: "#/components/schemas/FieldMappingQuery"
+          description:
+            Updated ingest transformation query. Note that updating the
+            transformation will lead to a brief interruption in ingestion.
+      type: object
     UpdateQueryLambdaRequest:
       properties:
         description:
@@ -3970,6 +4150,10 @@ components:
       type: object
     UpdateVirtualInstanceRequest:
       properties:
+        auto_scaling_policy:
+          $ref: "#/components/schemas/AutoScalingPolicy"
+          description: Options for configuring auto scaling policy
+          example: "true"
         auto_suspend_enabled:
           description: Whether auto-suspend should be enabled for this Virtual Instance.
           example: true
@@ -3983,8 +4167,20 @@ components:
           description: New virtual instance description.
           example: VI for prod traffic
           type: string
-        monitoring_enabled:
+        enable_remount_on_resume:
+          description:
+            When a Virtual Instance is resumed, it will remount all collections
+            that were mounted when the Virtual Instance was suspended.
+          example: true
           type: boolean
+        mount_refresh_interval_seconds:
+          description:
+            Number of seconds between data refreshes for mounts on this
+            Virtual Instance. A value of 0 means continuous refresh and a value of
+            null means never refresh.
+          example: 3600
+          format: int32
+          type: integer
         name:
           description: New virtual instance name.
           example: prod_vi
@@ -4073,6 +4269,11 @@ components:
           description: ISO-8601 date.
           example: "2001-08-28T00:23:41Z"
           type: string
+        created_by_apikey_name:
+          description:
+            Name of the API key that was used to create this object if
+            one was used.
+          type: string
         creator_email:
           description: Email of the creator.
           example: xyz@rockset.com
@@ -4125,6 +4326,9 @@ components:
       type: object
     VirtualInstance:
       properties:
+        auto_scaling_policy:
+          $ref: "#/components/schemas/AutoScalingPolicy"
+          description: Options for configuring auto scaling policy
         auto_suspend_seconds:
           description: Number of seconds without queries after which the VI is suspended
           example: 3600
@@ -4183,12 +4387,25 @@ components:
           example: MEDIUM
           readOnly: true
           type: string
+        enable_remount_on_resume:
+          description:
+            When a Virtual Instance is resumed, it will remount all collections
+            that were mounted when the Virtual Instance was suspended.
+          example: true
+          type: boolean
         id:
           description: Unique identifier for virtual instance.
           example: 123e4567-e89b-12d3-a456-556642440000
           type: string
         monitoring_enabled:
           type: boolean
+        mount_refresh_interval_seconds:
+          description:
+            Number of seconds between data refreshes for mounts on this
+            Virtual Instance
+          example: 3600
+          format: int32
+          type: integer
         name:
           description: Virtual instance name.
           example: prod_vi
@@ -9066,7 +9283,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: not ready
-      summary: Mount Collection
+      summary: Mount Collections
       tags:
         - Virtual Instances
   /v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts/{collectionPath}:
@@ -9174,7 +9391,7 @@ paths:
       tags:
         - Virtual Instances
     get:
-      description: "[beta] Get a mount on this virtual instance."
+      description: "[beta] Retrieve a mount on this virtual instance."
       operationId: getCollectionMount
       parameters:
         - description: Virtual Instance RRN
@@ -10305,6 +10522,84 @@ paths:
               schema:
                 $ref: "#/components/schemas/DeleteAliasResponse"
           description: alias deleted successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
       summary: Delete Alias
       tags:
         - Aliases
@@ -10446,6 +10741,84 @@ paths:
               schema:
                 $ref: "#/components/schemas/GetAliasResponse"
           description: alias updated successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
       summary: Update Alias
       tags:
         - Aliases
@@ -10976,113 +11349,6 @@ paths:
                 $ref: "#/components/schemas/ErrorModel"
           description: not ready
       summary: Create dynamodb collection
-      tags:
-        - Collections
-  /v1/orgs/self/ws/{workspace}/collections#FileUpload:
-    post:
-      description: Create new collection in a workspace.
-      operationId: createFileUploadCollection
-      parameters:
-        - description: name of the workspace
-          in: path
-          name: workspace
-          required: true
-          schema:
-            default: commons
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/FileUploadCollectionCreationRequest"
-        description: JSON object
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/CreateCollectionResponse"
-          description: collection created successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Create file upload collection
       tags:
         - Collections
   /v1/orgs/self/ws/{workspace}/collections#Gcs:
@@ -11940,6 +12206,119 @@ paths:
       tags:
         - Collections
       x-rename: get
+    put:
+      description: Update details about a collection.
+      operationId: updateCollection
+      parameters:
+        - description: name of the workspace
+          in: path
+          name: workspace
+          required: true
+          schema:
+            default: commons
+            type: string
+        - description: name of the collection
+          in: path
+          name: collection
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateCollectionRequest"
+        description: JSON object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetCollectionResponse"
+          description: collection updated successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Update Collection
+      tags:
+        - Collections
+      x-rename: get
   /v1/orgs/self/ws/{workspace}/collections/{collection}/docs:
     delete:
       description: Delete documents from a collection.
@@ -12289,6 +12668,449 @@ paths:
       summary: Add Documents
       tags:
         - Documents
+  /v1/orgs/self/ws/{workspace}/collections/{collection}/sources:
+    get:
+      description: Retrieve all sources in a collection.
+      operationId: listCollectionSources
+      parameters:
+        - description: name of the workspace
+          in: path
+          name: workspace
+          required: true
+          schema:
+            default: commons
+            type: string
+        - description: name of the collection
+          in: path
+          name: collection
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListSourcesResponse"
+          description: collection sources retrieved successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: List sources in collection
+      tags:
+        - Sources
+    post:
+      description: Create new source in a collection.
+      operationId: createSource
+      parameters:
+        - description: name of the workspace
+          in: path
+          name: workspace
+          required: true
+          schema:
+            default: commons
+            type: string
+        - description: name of the collection
+          in: path
+          name: collection
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Source"
+        description: JSON object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetSourceResponse"
+          description: source created successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Create a source
+      tags:
+        - Sources
+  /v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source}:
+    delete:
+      description: Delete a collection source
+      operationId: deleteSource
+      parameters:
+        - description: name of the workspace
+          in: path
+          name: workspace
+          required: true
+          schema:
+            default: commons
+            type: string
+        - description: name of the collection
+          in: path
+          name: collection
+          required: true
+          schema:
+            type: string
+        - description: id of source
+          in: path
+          name: source
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteSourceResponse"
+          description: source deleted successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Delete Collection source
+      tags:
+        - Sources
+      x-rename: delete
+    get:
+      description: Get details about a collection source.
+      operationId: getSource
+      parameters:
+        - description: name of the workspace
+          in: path
+          name: workspace
+          required: true
+          schema:
+            default: commons
+            type: string
+        - description: name of the collection
+          in: path
+          name: collection
+          required: true
+          schema:
+            type: string
+        - description: id of source
+          in: path
+          name: source
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetSourceResponse"
+          description: collection retrieved successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Retrieve source
+      tags:
+        - Sources
+      x-rename: get
   /v1/orgs/self/ws/{workspace}/lambdas:
     get:
       description: List all Query Lambdas under given workspace.
@@ -13851,6 +14673,84 @@ paths:
               schema:
                 $ref: "#/components/schemas/CreateViewResponse"
           description: view created successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
       summary: Create View
       tags:
         - Views
@@ -13880,6 +14780,84 @@ paths:
               schema:
                 $ref: "#/components/schemas/DeleteViewResponse"
           description: view deleted successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
       summary: Delete View
       tags:
         - Views
@@ -14021,6 +14999,84 @@ paths:
               schema:
                 $ref: "#/components/schemas/UpdateViewResponse"
           description: view updated successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
       summary: Update View
       tags:
         - Views
@@ -14145,6 +15201,7 @@ tags:
   - name: Queries
   - name: Query Lambdas
   - name: Shared Lambdas
+  - name: Sources
   - name: Users
   - name: Views
   - name: Virtual Instances

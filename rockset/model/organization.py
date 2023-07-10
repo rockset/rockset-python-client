@@ -93,6 +93,8 @@ class Organization(ModelNormal):
             'external_id': (str, none_type),  # noqa: E501
             'id': (str, none_type),  # noqa: E501
             'rockset_user': (str, none_type),  # noqa: E501
+            'sso_connection': (str, none_type),  # noqa: E501
+            'sso_only': (bool, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -107,6 +109,8 @@ class Organization(ModelNormal):
         'external_id': 'external_id',  # noqa: E501
         'id': 'id',  # noqa: E501
         'rockset_user': 'rockset_user',  # noqa: E501
+        'sso_connection': 'sso_connection',  # noqa: E501
+        'sso_only': 'sso_only',  # noqa: E501
     }
 
     read_only_vars = {
@@ -156,6 +160,8 @@ class Organization(ModelNormal):
             external_id (str): Organization's unique external ID within Rockset.. [optional]  # noqa: E501
             id (str): Unique identifier for the organization.. [optional]  # noqa: E501
             rockset_user (str): Rockset's global AWS user.. [optional]  # noqa: E501
+            sso_connection (str): Connection name of SSO connection.. [optional]  # noqa: E501
+            sso_only (bool): Whether or not SSO is the only permitted form of auth.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -213,6 +219,8 @@ class Organization(ModelNormal):
             external_id (str): Organization's unique external ID within Rockset.. [optional]  # noqa: E501
             id (str): Unique identifier for the organization.. [optional]  # noqa: E501
             rockset_user (str): Rockset's global AWS user.. [optional]  # noqa: E501
+            sso_connection (str): Connection name of SSO connection.. [optional]  # noqa: E501
+            sso_only (bool): Whether or not SSO is the only permitted form of auth.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

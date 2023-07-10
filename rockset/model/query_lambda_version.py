@@ -96,6 +96,7 @@ class QueryLambdaVersion(ModelNormal):
             'collections': ([str], none_type),  # noqa: E501
             'created_at': (str, none_type),  # noqa: E501
             'created_by': (str, none_type),  # noqa: E501
+            'created_by_apikey_name': (str, none_type),  # noqa: E501
             'description': (str, none_type),  # noqa: E501
             'name': (str, none_type),  # noqa: E501
             'public_access_id': (str, none_type),  # noqa: E501
@@ -115,6 +116,7 @@ class QueryLambdaVersion(ModelNormal):
         'collections': 'collections',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
         'created_by': 'created_by',  # noqa: E501
+        'created_by_apikey_name': 'created_by_apikey_name',  # noqa: E501
         'description': 'description',  # noqa: E501
         'name': 'name',  # noqa: E501
         'public_access_id': 'public_access_id',  # noqa: E501
@@ -169,6 +171,7 @@ class QueryLambdaVersion(ModelNormal):
             collections ([str]): Collections queried by underlying SQL query.. [optional]  # noqa: E501
             created_at (str): ISO-8601 date of when Query Lambda was created.. [optional]  # noqa: E501
             created_by (str): User that created this Query Lambda.. [optional]  # noqa: E501
+            created_by_apikey_name (str): Name of the API key that was used to create this object if one was used.. [optional]  # noqa: E501
             description (str): Optional description.. [optional]  # noqa: E501
             name (str): Query Lambda name.. [optional]  # noqa: E501
             public_access_id (str): Public access ID associated with this QL version. [optional]  # noqa: E501
@@ -231,6 +234,7 @@ class QueryLambdaVersion(ModelNormal):
             collections ([str]): Collections queried by underlying SQL query.. [optional]  # noqa: E501
             created_at (str): ISO-8601 date of when Query Lambda was created.. [optional]  # noqa: E501
             created_by (str): User that created this Query Lambda.. [optional]  # noqa: E501
+            created_by_apikey_name (str): Name of the API key that was used to create this object if one was used.. [optional]  # noqa: E501
             description (str): Optional description.. [optional]  # noqa: E501
             name (str): Query Lambda name.. [optional]  # noqa: E501
             public_access_id (str): Public access ID associated with this QL version. [optional]  # noqa: E501

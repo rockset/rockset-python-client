@@ -21,6 +21,8 @@ def test_create(get_client, mock_request, request_validator):
             rs.VirtualInstances.create(
                 auto_suspend_seconds=3600,
                 description="VI serving prod traffic",
+                enable_remount_on_resume=True,
+                mount_refresh_interval_seconds=3600,
                 name="prod_vi",
                 type="LARGE",
             )
@@ -100,7 +102,6 @@ def test_mount_collection(get_client, mock_request, request_validator):
             rs.VirtualInstances.mount_collection(
                 virtual_instance_id="virtualInstanceId_example",
                 collection_paths=["commons.foo", "commons.bar"],
-                type="STATIC",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
@@ -112,16 +113,18 @@ def test_query_virtual_instance(get_client, mock_request, request_validator):
         try:
             rs.VirtualInstances.query_virtual_instance(
                 virtual_instance_id="virtualInstanceId_example",
+                _async=True,
                 async_options=AsyncQueryOptions(
                     client_timeout_ms=1,
                     max_initial_results=1,
                     timeout_ms=1,
                 ),
+                debug_threshold_ms=1,
+                max_initial_results=1,
                 sql=QueryRequestSql(
                     default_row_limit=1,
                     generate_warnings=False,
                     initial_paginate_response_doc_count=1,
-                    paginate=True,
                     parameters=[
                         QueryParameter(
                             name="_id",
@@ -131,6 +134,7 @@ def test_query_virtual_instance(get_client, mock_request, request_validator):
                     ],
                     query="SELECT * FROM foo where _id = :_id",
                 ),
+                timeout_ms=1,
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
@@ -176,10 +180,16 @@ def test_update(get_client, mock_request, request_validator):
         try:
             rs.VirtualInstances.update(
                 virtual_instance_id="virtualInstanceId_example",
+                auto_scaling_policy=AutoScalingPolicy(
+                    enabled=True,
+                    max_size="XLARGE2",
+                    min_size="LARGE",
+                ),
                 auto_suspend_enabled=True,
                 auto_suspend_seconds=3600,
                 description="VI for prod traffic",
-                monitoring_enabled=True,
+                enable_remount_on_resume=True,
+                mount_refresh_interval_seconds=3600,
                 name="prod_vi",
                 new_size="LARGE",
             )

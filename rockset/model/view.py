@@ -87,6 +87,7 @@ class View(ModelNormal):
         """
         return {
             'created_at': (str, none_type),  # noqa: E501
+            'created_by_apikey_name': (str, none_type),  # noqa: E501
             'creator_email': (str, none_type),  # noqa: E501
             'description': (str, none_type),  # noqa: E501
             'entities': ([str], none_type),  # noqa: E501
@@ -106,6 +107,7 @@ class View(ModelNormal):
 
     attribute_map = {
         'created_at': 'created_at',  # noqa: E501
+        'created_by_apikey_name': 'created_by_apikey_name',  # noqa: E501
         'creator_email': 'creator_email',  # noqa: E501
         'description': 'description',  # noqa: E501
         'entities': 'entities',  # noqa: E501
@@ -160,6 +162,7 @@ class View(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             created_at (str): ISO-8601 date.. [optional]  # noqa: E501
+            created_by_apikey_name (str): Name of the API key that was used to create this object if one was used.. [optional]  # noqa: E501
             creator_email (str): Email of the creator.. [optional]  # noqa: E501
             description (str): View description.. [optional]  # noqa: E501
             entities ([str]): List of entities referenced by view. An entity can be a view, alias or collection.. [optional]  # noqa: E501
@@ -222,6 +225,7 @@ class View(ModelNormal):
 
         Keyword Args:
             created_at (str): ISO-8601 date.. [optional]  # noqa: E501
+            created_by_apikey_name (str): Name of the API key that was used to create this object if one was used.. [optional]  # noqa: E501
             creator_email (str): Email of the creator.. [optional]  # noqa: E501
             description (str): View description.. [optional]  # noqa: E501
             entities ([str]): List of entities referenced by view. An entity can be a view, alias or collection.. [optional]  # noqa: E501

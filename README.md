@@ -87,7 +87,7 @@ import rockset
 
 rs = rockset.RocksetClient(host=rockset.Regions.use1a1, api_key="APIKEY")
 try:
-    res = rs.sql(query="SELECT * FROM _events WHERE kind=:event_type LIMIT 100", params={"event_type": "INGEST"})
+    res = rs.sql(query="SELECT * FROM _events WHERE kind=:event_type LIMIT 100", params={"event_type", "INGEST"})
 except rockset.ApiException as e:
     print("Exception when querying: %s\n" % e)
 ```
@@ -142,7 +142,6 @@ Class | Method | HTTP request | Description
 *Collections* | [**create_azure_event_hubs_collection**](docs/CollectionsApi.md#create_azure_event_hubs_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create azure event hubs collection
 *Collections* | [**create_azure_service_bus_collection**](docs/CollectionsApi.md#create_azure_service_bus_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create azure service bus collection
 *Collections* | [**create_dynamodb_collection**](docs/CollectionsApi.md#create_dynamodb_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create dynamodb collection
-*Collections* | [**create_file_upload_collection**](docs/CollectionsApi.md#create_file_upload_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create file upload collection
 *Collections* | [**create_gcs_collection**](docs/CollectionsApi.md#create_gcs_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create gcs collection
 *Collections* | [**create_kafka_collection**](docs/CollectionsApi.md#create_kafka_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create kafka collection
 *Collections* | [**create_kinesis_collection**](docs/CollectionsApi.md#create_kinesis_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create kinesis collection
@@ -151,6 +150,7 @@ Class | Method | HTTP request | Description
 *Collections* | [**create_snowflake_collection**](docs/CollectionsApi.md#create_snowflake_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create snowflake collection
 *Collections* | [**delete**](docs/CollectionsApi.md#delete) | **DELETE** /v1/orgs/self/ws/{workspace}/collections/{collection} | Delete Collection
 *Collections* | [**get**](docs/CollectionsApi.md#get) | **GET** /v1/orgs/self/ws/{workspace}/collections/{collection} | Retrieve Collection
+*Collections* | [**get_0**](docs/CollectionsApi.md#get_0) | **PUT** /v1/orgs/self/ws/{workspace}/collections/{collection} | Update Collection
 *Collections* | [**list**](docs/CollectionsApi.md#list) | **GET** /v1/orgs/self/collections | List Collections
 *Collections* | [**workspace_collections**](docs/CollectionsApi.md#workspace_collections) | **GET** /v1/orgs/self/ws/{workspace}/collections | List Collections in Workspace
 *CustomRoles* | [**create**](docs/CustomRolesApi.md#create) | **POST** /v1/orgs/self/roles | Create a Role
@@ -194,7 +194,11 @@ Class | Method | HTTP request | Description
 *QueryLambdas* | [**list_query_lambda_versions**](docs/QueryLambdasApi.md#list_query_lambda_versions) | **GET** /v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/versions | List Query Lambda Versions
 *QueryLambdas* | [**list_query_lambdas_in_workspace**](docs/QueryLambdasApi.md#list_query_lambdas_in_workspace) | **GET** /v1/orgs/self/ws/{workspace}/lambdas | List Query Lambdas in Workspace
 *QueryLambdas* | [**update_query_lambda**](docs/QueryLambdasApi.md#update_query_lambda) | **POST** /v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/versions | Update Query Lambda
-*SharedLambdas* | [**execute_public_query_lambda**](docs/SharedLambdasApi.md#execute_public_query_lambda) | **GET** /v1/public/shared_lambdas/{public_access_id} | Execute a Public Query Lambda
+*SharedLambdas* | [**execute_public_query_lambda_with_params**](docs/SharedLambdasApi.md#execute_public_query_lambda_with_params) | **POST** /v1/public/shared_lambdas/{public_access_id} | Execute a Public Query Lambda
+*Sources* | [**create_source**](docs/SourcesApi.md#create_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a source
+*Sources* | [**delete**](docs/SourcesApi.md#delete) | **DELETE** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source} | Delete Collection source
+*Sources* | [**get**](docs/SourcesApi.md#get) | **GET** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source} | Retrieve source
+*Sources* | [**list_collection_sources**](docs/SourcesApi.md#list_collection_sources) | **GET** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | List sources in collection
 *Users* | [**create**](docs/UsersApi.md#create) | **POST** /v1/orgs/self/users | Create User
 *Users* | [**delete**](docs/UsersApi.md#delete) | **DELETE** /v1/orgs/self/users/{user} | Delete User
 *Users* | [**get**](docs/UsersApi.md#get) | **GET** /v1/orgs/self/users/{user} | Retrieve User
@@ -216,7 +220,7 @@ Class | Method | HTTP request | Description
 *VirtualInstances* | [**get_virtual_instance_queries**](docs/VirtualInstancesApi.md#get_virtual_instance_queries) | **GET** /v1/orgs/self/virtualinstances/{virtualInstanceId}/queries | List Queries
 *VirtualInstances* | [**list**](docs/VirtualInstancesApi.md#list) | **GET** /v1/orgs/self/virtualinstances | List Virtual Instances
 *VirtualInstances* | [**list_collection_mounts**](docs/VirtualInstancesApi.md#list_collection_mounts) | **GET** /v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts | List Collection Mounts
-*VirtualInstances* | [**mount_collection**](docs/VirtualInstancesApi.md#mount_collection) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts | Mount Collection
+*VirtualInstances* | [**mount_collection**](docs/VirtualInstancesApi.md#mount_collection) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts | Mount Collections
 *VirtualInstances* | [**query_virtual_instance**](docs/VirtualInstancesApi.md#query_virtual_instance) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId}/queries | Execute SQL Query
 *VirtualInstances* | [**resume_virtual_instance**](docs/VirtualInstancesApi.md#resume_virtual_instance) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId}/resume | Resume Virtual Instance
 *VirtualInstances* | [**suspend_virtual_instance**](docs/VirtualInstancesApi.md#suspend_virtual_instance) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId}/suspend | Suspend Virtual Instance
@@ -235,6 +239,7 @@ Class | Method | HTTP request | Description
  - [Alias](docs/Alias.md)
  - [ApiKey](docs/ApiKey.md)
  - [AsyncQueryOptions](docs/AsyncQueryOptions.md)
+ - [AutoScalingPolicy](docs/AutoScalingPolicy.md)
  - [AwsAccessKey](docs/AwsAccessKey.md)
  - [AwsRole](docs/AwsRole.md)
  - [AzureBlobStorageCollectionCreationRequest](docs/AzureBlobStorageCollectionCreationRequest.md)
@@ -254,12 +259,14 @@ Class | Method | HTTP request | Description
  - [Collection](docs/Collection.md)
  - [CollectionMount](docs/CollectionMount.md)
  - [CollectionMountResponse](docs/CollectionMountResponse.md)
+ - [CollectionMountStats](docs/CollectionMountStats.md)
  - [CollectionStats](docs/CollectionStats.md)
  - [CreateAliasRequest](docs/CreateAliasRequest.md)
  - [CreateAliasResponse](docs/CreateAliasResponse.md)
  - [CreateApiKeyRequest](docs/CreateApiKeyRequest.md)
  - [CreateApiKeyResponse](docs/CreateApiKeyResponse.md)
  - [CreateCollectionMountRequest](docs/CreateCollectionMountRequest.md)
+ - [CreateCollectionMountsResponse](docs/CreateCollectionMountsResponse.md)
  - [CreateCollectionRequest](docs/CreateCollectionRequest.md)
  - [CreateCollectionResponse](docs/CreateCollectionResponse.md)
  - [CreateIntegrationRequest](docs/CreateIntegrationRequest.md)
@@ -284,6 +291,7 @@ Class | Method | HTTP request | Description
  - [DeleteDocumentsResponse](docs/DeleteDocumentsResponse.md)
  - [DeleteIntegrationResponse](docs/DeleteIntegrationResponse.md)
  - [DeleteQueryLambdaResponse](docs/DeleteQueryLambdaResponse.md)
+ - [DeleteSourceResponse](docs/DeleteSourceResponse.md)
  - [DeleteUserResponse](docs/DeleteUserResponse.md)
  - [DeleteViewResponse](docs/DeleteViewResponse.md)
  - [DeleteVirtualInstanceResponse](docs/DeleteVirtualInstanceResponse.md)
@@ -295,12 +303,11 @@ Class | Method | HTTP request | Description
  - [DynamodbSourceWrapper](docs/DynamodbSourceWrapper.md)
  - [ErrorModel](docs/ErrorModel.md)
  - [EventTimeInfo](docs/EventTimeInfo.md)
+ - [ExecutePublicQueryLambdaRequest](docs/ExecutePublicQueryLambdaRequest.md)
  - [ExecuteQueryLambdaRequest](docs/ExecuteQueryLambdaRequest.md)
  - [FieldMappingQuery](docs/FieldMappingQuery.md)
  - [FieldMappingV2](docs/FieldMappingV2.md)
  - [FieldPartition](docs/FieldPartition.md)
- - [FileUploadCollectionCreationRequest](docs/FileUploadCollectionCreationRequest.md)
- - [FileUploadSourceWrapper](docs/FileUploadSourceWrapper.md)
  - [FormatParams](docs/FormatParams.md)
  - [GcpServiceAccount](docs/GcpServiceAccount.md)
  - [GcsCollectionCreationRequest](docs/GcsCollectionCreationRequest.md)
@@ -312,6 +319,7 @@ Class | Method | HTTP request | Description
  - [GetCollectionResponse](docs/GetCollectionResponse.md)
  - [GetIntegrationResponse](docs/GetIntegrationResponse.md)
  - [GetQueryResponse](docs/GetQueryResponse.md)
+ - [GetSourceResponse](docs/GetSourceResponse.md)
  - [GetViewResponse](docs/GetViewResponse.md)
  - [GetVirtualInstanceResponse](docs/GetVirtualInstanceResponse.md)
  - [GetWorkspaceResponse](docs/GetWorkspaceResponse.md)
@@ -336,6 +344,7 @@ Class | Method | HTTP request | Description
  - [ListQueryLambdaVersionsResponse](docs/ListQueryLambdaVersionsResponse.md)
  - [ListQueryLambdasResponse](docs/ListQueryLambdasResponse.md)
  - [ListRolesResponse](docs/ListRolesResponse.md)
+ - [ListSourcesResponse](docs/ListSourcesResponse.md)
  - [ListUnsubscribePreferencesResponse](docs/ListUnsubscribePreferencesResponse.md)
  - [ListUsersResponse](docs/ListUsersResponse.md)
  - [ListViewsResponse](docs/ListViewsResponse.md)
@@ -395,6 +404,7 @@ Class | Method | HTTP request | Description
  - [SourceMongoDb](docs/SourceMongoDb.md)
  - [SourceS3](docs/SourceS3.md)
  - [SourceSnowflake](docs/SourceSnowflake.md)
+ - [SourceSystem](docs/SourceSystem.md)
  - [SqlExpression](docs/SqlExpression.md)
  - [Stats](docs/Stats.md)
  - [Status](docs/Status.md)
@@ -413,6 +423,7 @@ Class | Method | HTTP request | Description
  - [UpdateAliasRequest](docs/UpdateAliasRequest.md)
  - [UpdateApiKeyRequest](docs/UpdateApiKeyRequest.md)
  - [UpdateApiKeyResponse](docs/UpdateApiKeyResponse.md)
+ - [UpdateCollectionRequest](docs/UpdateCollectionRequest.md)
  - [UpdateQueryLambdaRequest](docs/UpdateQueryLambdaRequest.md)
  - [UpdateRoleRequest](docs/UpdateRoleRequest.md)
  - [UpdateUnsubscribePreferencesRequest](docs/UpdateUnsubscribePreferencesRequest.md)

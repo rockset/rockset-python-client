@@ -61,6 +61,7 @@ class Status(ModelNormal):
             'PROCESSING': "PROCESSING",
             'COMPLETED': "COMPLETED",
             'ERROR': "ERROR",
+            'PAUSED': "PAUSED",
         },
     }
 
