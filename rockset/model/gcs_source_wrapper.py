@@ -31,9 +31,7 @@ from rockset.exceptions import ApiAttributeError
 
 def lazy_import():
     from rockset.model.format_params import FormatParams
-    from rockset.model.status import Status
     globals()['FormatParams'] = FormatParams
-    globals()['Status'] = Status
 
 
 class GcsSourceWrapper(ModelNormal):
@@ -92,7 +90,6 @@ class GcsSourceWrapper(ModelNormal):
         return {
             'format_params': (FormatParams, none_type),  # noqa: E501
             'integration_name': (str, none_type),  # noqa: E501
-            'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
             'bucket': (str, none_type),  # noqa: E501
             'object_bytes_downloaded': (int, none_type),  # noqa: E501
             'object_bytes_total': (int, none_type),  # noqa: E501
@@ -110,7 +107,6 @@ class GcsSourceWrapper(ModelNormal):
     attribute_map = {
         'format_params': 'format_params',  # noqa: E501
         'integration_name': 'integration_name',  # noqa: E501
-        'status': 'status',  # noqa: E501
         'bucket': 'bucket',  # noqa: E501
         'object_bytes_downloaded': 'object_bytes_downloaded',  # noqa: E501
         'object_bytes_total': 'object_bytes_total',  # noqa: E501
@@ -121,7 +117,6 @@ class GcsSourceWrapper(ModelNormal):
     }
 
     read_only_vars = {
-        'status',  # noqa: E501
         'object_bytes_downloaded',  # noqa: E501
         'object_bytes_total',  # noqa: E501
         'object_count_downloaded',  # noqa: E501
@@ -168,7 +163,6 @@ class GcsSourceWrapper(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             format_params (FormatParams): [optional]  # noqa: E501
             integration_name (str): Name of integration to use.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
             bucket (str): Name of GCS bucket you want to ingest from.. [optional]  # noqa: E501
             object_bytes_downloaded (int): [optional]  # noqa: E501
             object_bytes_total (int): [optional]  # noqa: E501

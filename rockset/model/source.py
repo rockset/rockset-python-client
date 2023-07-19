@@ -128,6 +128,7 @@ class Source(ModelNormal):
             's3': (SourceS3, none_type),  # noqa: E501
             'snowflake': (SourceSnowflake, none_type),  # noqa: E501
             'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
+            'suspended_at': (str, none_type),  # noqa: E501
             'system': (SourceSystem, none_type),  # noqa: E501
         }
 
@@ -152,12 +153,15 @@ class Source(ModelNormal):
         's3': 's3',  # noqa: E501
         'snowflake': 'snowflake',  # noqa: E501
         'status': 'status',  # noqa: E501
+        'suspended_at': 'suspended_at',  # noqa: E501
         'system': 'system',  # noqa: E501
     }
 
     read_only_vars = {
         'file_upload',  # noqa: E501
+        'id',  # noqa: E501
         'status',  # noqa: E501
+        'suspended_at',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -213,6 +217,7 @@ class Source(ModelNormal):
             s3 (SourceS3): [optional]  # noqa: E501
             snowflake (SourceSnowflake): [optional]  # noqa: E501
             status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
+            suspended_at (str): ISO-8601 date when source was suspended, if suspended. [optional]  # noqa: E501
             system (SourceSystem): [optional]  # noqa: E501
         """
 
@@ -271,7 +276,6 @@ class Source(ModelNormal):
             dynamodb (SourceDynamoDb): [optional]  # noqa: E501
             format_params (FormatParams): [optional]  # noqa: E501
             gcs (SourceGcs): [optional]  # noqa: E501
-            id (str): Unique source identifier.. [optional]  # noqa: E501
             integration_name (str): Name of integration to use.. [optional]  # noqa: E501
             kafka (SourceKafka): [optional]  # noqa: E501
             kinesis (SourceKinesis): [optional]  # noqa: E501

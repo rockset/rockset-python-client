@@ -124,7 +124,7 @@ class ApiKey(ModelNormal):
         """ApiKey - a model defined in OpenAPI
 
         Args:
-            key (str): API key string of 64 alphanumeric characters.
+            key (str): This field will only be populated with the full key when creating an API key. Otherwise, it will be an API key identifier of 6 characters.
             name (str): Name of the API key.
 
         Keyword Args:
@@ -218,7 +218,7 @@ class ApiKey(ModelNormal):
         """ApiKey - a model defined in OpenAPI
 
         Keyword Args:
-            key (str): API key string of 64 alphanumeric characters.
+            key (str): This field will only be populated with the full key when creating an API key. Otherwise, it will be an API key identifier of 6 characters.
             name (str): Name of the API key.
             created_at (str): Date that API key was created (ISO-8601 format).. [optional]  # noqa: E501
             created_by (str): Email of API key owner.. [optional]  # noqa: E501

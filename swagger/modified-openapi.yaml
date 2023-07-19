@@ -104,8 +104,10 @@ components:
           example: "2001-08-28T00:23:41Z"
           type: string
         key:
-          description: API key string of 64 alphanumeric characters.
-          example: aB35kDjg*******************************
+          description:
+            This field will only be populated with the full key when creating
+            an API key. Otherwise, it will be an API key identifier of 6 characters.
+          example: aB35kD
           type: string
         last_access_time:
           description: Date that API key was most recently used (ISO-8601 format).
@@ -328,11 +330,6 @@ components:
           description: Name of integration to use.
           example: aws-integration
           type: string
-        status:
-          allOf:
-            - $ref: "#/components/schemas/Status"
-              description: The ingest status of this source.
-          readOnly: true
       type: object
       x-inner-field: azure_blob_storage
     AzureEventHubsCollectionCreationRequest:
@@ -421,63 +418,8 @@ components:
           description: Name of integration to use.
           example: aws-integration
           type: string
-        status:
-          allOf:
-            - $ref: "#/components/schemas/Status"
-              description: The ingest status of this source.
-          readOnly: true
       type: object
       x-inner-field: azure_event_hubs
-    AzureServiceBusCollectionCreationRequest:
-      properties:
-        clustering_key:
-          description:
-            Deprecated. List of clustering fields. Use CLUSTER BY clause
-            in `field_mapping_query` instead.
-          items:
-            $ref: "#/components/schemas/FieldPartition"
-          type: array
-        description:
-          description: Text describing the collection.
-          example: transactions from stores worldwide
-          type: string
-        event_time_info:
-          $ref: "#/components/schemas/EventTimeInfo"
-          description:
-            Deprecated. Configuration for event data. Use an _event_time
-            mapping in `field_mapping_query` instead.
-        field_mapping_query:
-          $ref: "#/components/schemas/FieldMappingQuery"
-          description: Ingest transformation query.
-        name:
-          description:
-            Unique identifier for collection, can contain alphanumeric
-            or dash characters.
-          example: global-transactions
-          type: string
-        retention_secs:
-          description:
-            Number of seconds after which data is purged, based on event
-            time.
-          example: 1000000
-          format: int64
-          minimum: 1
-          type: integer
-        sources:
-          description: List of sources from which to ingest data
-          items:
-            $ref: "#/components/schemas/AzureServiceBusSourceWrapper"
-          type: array
-        storage_compression_type:
-          description: RocksDB storage compression type.
-          enum:
-            - LZ4
-            - ZSTD
-          example: LZ4
-          type: string
-      required:
-        - name
-      type: object
     AzureServiceBusIntegration:
       properties:
         connection_string:
@@ -487,26 +429,6 @@ components:
       required:
         - connection_string
       type: object
-    AzureServiceBusSourceWrapper:
-      description: Details about the data source for the given collection.
-      properties:
-        azure_service_bus:
-          $ref: "#/components/schemas/SourceAzureServiceBus"
-          description: Configuration for ingestion from Azure Service Bus.
-        format_params:
-          $ref: "#/components/schemas/FormatParams"
-          description: Format parameters for data from this source.
-        integration_name:
-          description: Name of integration to use.
-          example: aws-integration
-          type: string
-        status:
-          allOf:
-            - $ref: "#/components/schemas/Status"
-              description: The ingest status of this source.
-          readOnly: true
-      type: object
-      x-inner-field: azure_service_bus
     BulkStats:
       properties:
         data_downloaded_bytes:
@@ -1493,11 +1415,6 @@ components:
           description: Name of integration to use.
           example: aws-integration
           type: string
-        status:
-          allOf:
-            - $ref: "#/components/schemas/Status"
-              description: The ingest status of this source.
-          readOnly: true
       type: object
       x-inner-field: dynamodb
     ErrorModel:
@@ -1821,11 +1738,6 @@ components:
           description: Name of integration to use.
           example: aws-integration
           type: string
-        status:
-          allOf:
-            - $ref: "#/components/schemas/Status"
-              description: The ingest status of this source.
-          readOnly: true
       type: object
       x-inner-field: gcs
     GetAliasResponse:
@@ -2096,11 +2008,6 @@ components:
         kafka:
           $ref: "#/components/schemas/SourceKafka"
           description: Kafka collection identifier.
-        status:
-          allOf:
-            - $ref: "#/components/schemas/Status"
-              description: The ingest status of this source.
-          readOnly: true
       type: object
       x-inner-field: kafka
     KafkaV3SecurityConfig:
@@ -2200,11 +2107,6 @@ components:
         kinesis:
           $ref: "#/components/schemas/SourceKinesis"
           description: Configuration for ingestion from kinesis stream.
-        status:
-          allOf:
-            - $ref: "#/components/schemas/Status"
-              description: The ingest status of this source.
-          readOnly: true
       type: object
       x-inner-field: kinesis
     ListAliasesResponse:
@@ -2422,11 +2324,6 @@ components:
         mongodb:
           $ref: "#/components/schemas/SourceMongoDb"
           description: MongoDB collection details.
-        status:
-          allOf:
-            - $ref: "#/components/schemas/Status"
-              description: The ingest status of this source.
-          readOnly: true
       type: object
       x-inner-field: mongodb
     Organization:
@@ -3218,11 +3115,6 @@ components:
         s3:
           $ref: "#/components/schemas/SourceS3"
           description: Configuration for ingestion from S3.
-        status:
-          allOf:
-            - $ref: "#/components/schemas/Status"
-              description: The ingest status of this source.
-          readOnly: true
       type: object
       x-inner-field: s3
     SchemaRegistryConfig:
@@ -3354,11 +3246,6 @@ components:
         snowflake:
           $ref: "#/components/schemas/SourceSnowflake"
           description: Configuration for ingestion from Snowflake.
-        status:
-          allOf:
-            - $ref: "#/components/schemas/Status"
-              description: The ingest status of this source.
-          readOnly: true
       type: object
       x-inner-field: snowflake
     Source:
@@ -3393,6 +3280,7 @@ components:
         id:
           description: Unique source identifier.
           example: a1df483c-734e-485b-8005-f46386ef42f6
+          readOnly: true
           type: string
         integration_name:
           description: Name of integration to use.
@@ -3418,6 +3306,11 @@ components:
             - $ref: "#/components/schemas/Status"
               description: The ingest status of this source.
           readOnly: true
+        suspended_at:
+          description: ISO-8601 date when source was suspended, if suspended
+          example: "2019-01-15T21:48:23Z"
+          readOnly: true
+          type: string
         system:
           $ref: "#/components/schemas/SourceSystem"
       type: object
@@ -3698,7 +3591,18 @@ components:
           type: string
       required:
         - bucket
-        - prefixes
+      type: object
+    SourceSnapshot:
+      properties:
+        source_collection_path:
+          description: Path of source collection to restore the snapshot from.
+          example: commons.foo
+          type: string
+        source_snapshot_id:
+          description:
+            Snapshot id of the snapshot that the new collection will be
+            created from.
+          type: string
       type: object
     SourceSnowflake:
       properties:
@@ -3801,7 +3705,7 @@ components:
             - PROCESSING
             - COMPLETED
             - ERROR
-            - PAUSED
+            - SUSPENDED
           example: INITIALIZING
           type: string
         total_processed_items:
@@ -11178,113 +11082,6 @@ paths:
       summary: Create azure event hubs collection
       tags:
         - Collections
-  /v1/orgs/self/ws/{workspace}/collections#AzureServiceBus:
-    post:
-      description: Create new collection in a workspace.
-      operationId: createAzureServiceBusCollection
-      parameters:
-        - description: name of the workspace
-          in: path
-          name: workspace
-          required: true
-          schema:
-            default: commons
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/AzureServiceBusCollectionCreationRequest"
-        description: JSON object
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/CreateCollectionResponse"
-          description: collection created successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Create azure service bus collection
-      tags:
-        - Collections
   /v1/orgs/self/ws/{workspace}/collections#Dynamodb:
     post:
       description: Create new collection in a workspace.
@@ -12815,9 +12612,11 @@ paths:
       summary: List sources in collection
       tags:
         - Sources
+      x-rename: list
+  /v1/orgs/self/ws/{workspace}/collections/{collection}/sources#AzureBlobStorage:
     post:
       description: Create new source in a collection.
-      operationId: createSource
+      operationId: createAzureBlobStorageSource
       parameters:
         - description: name of the workspace
           in: path
@@ -12836,7 +12635,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/Source"
+              $ref: "#/components/schemas/AzureBlobStorageSourceWrapper"
         description: JSON object
         required: true
       responses:
@@ -12924,7 +12723,911 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: not ready
-      summary: Create a source
+      summary: Create a new azure blob storage source in a collection
+      tags:
+        - Sources
+  /v1/orgs/self/ws/{workspace}/collections/{collection}/sources#AzureEventHubs:
+    post:
+      description: Create new source in a collection.
+      operationId: createAzureEventHubsSource
+      parameters:
+        - description: name of the workspace
+          in: path
+          name: workspace
+          required: true
+          schema:
+            default: commons
+            type: string
+        - description: name of the collection
+          in: path
+          name: collection
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AzureEventHubsSourceWrapper"
+        description: JSON object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetSourceResponse"
+          description: source created successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Create a new azure event hubs source in a collection
+      tags:
+        - Sources
+  /v1/orgs/self/ws/{workspace}/collections/{collection}/sources#Dynamodb:
+    post:
+      description: Create new source in a collection.
+      operationId: createDynamodbSource
+      parameters:
+        - description: name of the workspace
+          in: path
+          name: workspace
+          required: true
+          schema:
+            default: commons
+            type: string
+        - description: name of the collection
+          in: path
+          name: collection
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/DynamodbSourceWrapper"
+        description: JSON object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetSourceResponse"
+          description: source created successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Create a new dynamodb source in a collection
+      tags:
+        - Sources
+  /v1/orgs/self/ws/{workspace}/collections/{collection}/sources#Gcs:
+    post:
+      description: Create new source in a collection.
+      operationId: createGcsSource
+      parameters:
+        - description: name of the workspace
+          in: path
+          name: workspace
+          required: true
+          schema:
+            default: commons
+            type: string
+        - description: name of the collection
+          in: path
+          name: collection
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GcsSourceWrapper"
+        description: JSON object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetSourceResponse"
+          description: source created successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Create a new gcs source in a collection
+      tags:
+        - Sources
+  /v1/orgs/self/ws/{workspace}/collections/{collection}/sources#Kafka:
+    post:
+      description: Create new source in a collection.
+      operationId: createKafkaSource
+      parameters:
+        - description: name of the workspace
+          in: path
+          name: workspace
+          required: true
+          schema:
+            default: commons
+            type: string
+        - description: name of the collection
+          in: path
+          name: collection
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/KafkaSourceWrapper"
+        description: JSON object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetSourceResponse"
+          description: source created successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Create a new kafka source in a collection
+      tags:
+        - Sources
+  /v1/orgs/self/ws/{workspace}/collections/{collection}/sources#Kinesis:
+    post:
+      description: Create new source in a collection.
+      operationId: createKinesisSource
+      parameters:
+        - description: name of the workspace
+          in: path
+          name: workspace
+          required: true
+          schema:
+            default: commons
+            type: string
+        - description: name of the collection
+          in: path
+          name: collection
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/KinesisSourceWrapper"
+        description: JSON object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetSourceResponse"
+          description: source created successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Create a new kinesis source in a collection
+      tags:
+        - Sources
+  /v1/orgs/self/ws/{workspace}/collections/{collection}/sources#Mongodb:
+    post:
+      description: Create new source in a collection.
+      operationId: createMongodbSource
+      parameters:
+        - description: name of the workspace
+          in: path
+          name: workspace
+          required: true
+          schema:
+            default: commons
+            type: string
+        - description: name of the collection
+          in: path
+          name: collection
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MongodbSourceWrapper"
+        description: JSON object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetSourceResponse"
+          description: source created successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Create a new mongodb source in a collection
+      tags:
+        - Sources
+  /v1/orgs/self/ws/{workspace}/collections/{collection}/sources#S3:
+    post:
+      description: Create new source in a collection.
+      operationId: createS3Source
+      parameters:
+        - description: name of the workspace
+          in: path
+          name: workspace
+          required: true
+          schema:
+            default: commons
+            type: string
+        - description: name of the collection
+          in: path
+          name: collection
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/S3SourceWrapper"
+        description: JSON object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetSourceResponse"
+          description: source created successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Create a new s3 source in a collection
+      tags:
+        - Sources
+  /v1/orgs/self/ws/{workspace}/collections/{collection}/sources#Snowflake:
+    post:
+      description: Create new source in a collection.
+      operationId: createSnowflakeSource
+      parameters:
+        - description: name of the workspace
+          in: path
+          name: workspace
+          required: true
+          schema:
+            default: commons
+            type: string
+        - description: name of the collection
+          in: path
+          name: collection
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SnowflakeSourceWrapper"
+        description: JSON object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetSourceResponse"
+          description: source created successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Create a new snowflake source in a collection
       tags:
         - Sources
   /v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source}:
@@ -13152,6 +13855,232 @@ paths:
       tags:
         - Sources
       x-rename: get
+  /v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source}/resume:
+    post:
+      description: Resume source ingest
+      operationId: resumeSource
+      parameters:
+        - description: name of the workspace
+          in: path
+          name: workspace
+          required: true
+          schema:
+            default: commons
+            type: string
+        - description: name of the collection
+          in: path
+          name: collection
+          required: true
+          schema:
+            type: string
+        - description: id of source
+          in: path
+          name: source
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetSourceResponse"
+          description: source was resumed
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Resume source ingest
+      tags:
+        - Sources
+      x-rename: resume
+  /v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source}/suspend:
+    post:
+      description: Suspend source ingest
+      operationId: suspendSource
+      parameters:
+        - description: name of the workspace
+          in: path
+          name: workspace
+          required: true
+          schema:
+            default: commons
+            type: string
+        - description: name of the collection
+          in: path
+          name: collection
+          required: true
+          schema:
+            type: string
+        - description: id of source
+          in: path
+          name: source
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetSourceResponse"
+          description: source was suspended
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Suspend source ingest
+      tags:
+        - Sources
+      x-rename: suspend
   /v1/orgs/self/ws/{workspace}/lambdas:
     get:
       description: List all Query Lambdas under given workspace.

@@ -96,9 +96,9 @@ class AzureEventHubsSourceWrapper(ModelNormal):
         return {
             'format_params': (FormatParams, none_type),  # noqa: E501
             'integration_name': (str, none_type),  # noqa: E501
-            'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
             'hub_id': (str, none_type),  # noqa: E501
             'offset_reset_policy': (str, none_type),  # noqa: E501
+            'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -109,9 +109,9 @@ class AzureEventHubsSourceWrapper(ModelNormal):
     attribute_map = {
         'format_params': 'format_params',  # noqa: E501
         'integration_name': 'integration_name',  # noqa: E501
-        'status': 'status',  # noqa: E501
         'hub_id': 'hub_id',  # noqa: E501
         'offset_reset_policy': 'offset_reset_policy',  # noqa: E501
+        'status': 'status',  # noqa: E501
     }
 
     read_only_vars = {
@@ -158,9 +158,9 @@ class AzureEventHubsSourceWrapper(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             format_params (FormatParams): [optional]  # noqa: E501
             integration_name (str): Name of integration to use.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
             hub_id (str): Name of the hub which rockset should ingest from.. [optional]  # noqa: E501
             offset_reset_policy (str): The offset reset policy.. [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)

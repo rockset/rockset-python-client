@@ -95,10 +95,10 @@ class DynamodbSourceWrapper(ModelNormal):
             'table_name': (str,),  # noqa: E501
             'format_params': (FormatParams, none_type),  # noqa: E501
             'integration_name': (str, none_type),  # noqa: E501
-            'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
             'aws_region': (str, none_type),  # noqa: E501
             'current_status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
             'rcu': (int, none_type),  # noqa: E501
+            'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
             'use_scan_api': (bool, none_type),  # noqa: E501
         }
 
@@ -111,16 +111,16 @@ class DynamodbSourceWrapper(ModelNormal):
         'table_name': 'table_name',  # noqa: E501
         'format_params': 'format_params',  # noqa: E501
         'integration_name': 'integration_name',  # noqa: E501
-        'status': 'status',  # noqa: E501
         'aws_region': 'aws_region',  # noqa: E501
         'current_status': 'current_status',  # noqa: E501
         'rcu': 'rcu',  # noqa: E501
+        'status': 'status',  # noqa: E501
         'use_scan_api': 'use_scan_api',  # noqa: E501
     }
 
     read_only_vars = {
-        'status',  # noqa: E501
         'current_status',  # noqa: E501
+        'status',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -166,10 +166,10 @@ class DynamodbSourceWrapper(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             format_params (FormatParams): [optional]  # noqa: E501
             integration_name (str): Name of integration to use.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
             aws_region (str): AWS region name of DynamoDB table, by default us-west-2 is used.. [optional]  # noqa: E501
             current_status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
             rcu (int): Max RCU usage for scan.. [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
             use_scan_api (bool): Whether to use DynamoDB Scan API for the initial scan.. [optional]  # noqa: E501
         """
 

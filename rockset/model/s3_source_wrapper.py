@@ -31,9 +31,7 @@ from rockset.exceptions import ApiAttributeError
 
 def lazy_import():
     from rockset.model.format_params import FormatParams
-    from rockset.model.status import Status
     globals()['FormatParams'] = FormatParams
-    globals()['Status'] = Status
 
 
 class S3SourceWrapper(ModelNormal):
@@ -91,16 +89,15 @@ class S3SourceWrapper(ModelNormal):
         lazy_import()
         return {
             'bucket': (str,),  # noqa: E501
-            'prefixes': ([str],),  # noqa: E501
             'format_params': (FormatParams, none_type),  # noqa: E501
             'integration_name': (str, none_type),  # noqa: E501
-            'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
             'object_bytes_downloaded': (int, none_type),  # noqa: E501
             'object_bytes_total': (int, none_type),  # noqa: E501
             'object_count_downloaded': (int, none_type),  # noqa: E501
             'object_count_total': (int, none_type),  # noqa: E501
             'pattern': (str, none_type),  # noqa: E501
             'prefix': (str, none_type),  # noqa: E501
+            'prefixes': ([str], none_type),  # noqa: E501
             'region': (str, none_type),  # noqa: E501
         }
 
@@ -111,38 +108,35 @@ class S3SourceWrapper(ModelNormal):
 
     attribute_map = {
         'bucket': 'bucket',  # noqa: E501
-        'prefixes': 'prefixes',  # noqa: E501
         'format_params': 'format_params',  # noqa: E501
         'integration_name': 'integration_name',  # noqa: E501
-        'status': 'status',  # noqa: E501
         'object_bytes_downloaded': 'object_bytes_downloaded',  # noqa: E501
         'object_bytes_total': 'object_bytes_total',  # noqa: E501
         'object_count_downloaded': 'object_count_downloaded',  # noqa: E501
         'object_count_total': 'object_count_total',  # noqa: E501
         'pattern': 'pattern',  # noqa: E501
         'prefix': 'prefix',  # noqa: E501
+        'prefixes': 'prefixes',  # noqa: E501
         'region': 'region',  # noqa: E501
     }
 
     read_only_vars = {
-        'prefixes',  # noqa: E501
-        'status',  # noqa: E501
         'object_bytes_downloaded',  # noqa: E501
         'object_bytes_total',  # noqa: E501
         'object_count_downloaded',  # noqa: E501
         'object_count_total',  # noqa: E501
+        'prefixes',  # noqa: E501
     }
 
     _composed_schemas = {}
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, bucket, prefixes, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, bucket, *args, **kwargs):  # noqa: E501
         """S3SourceWrapper - a model defined in OpenAPI
 
         Args:
             bucket (str): Address of S3 bucket containing data.
-            prefixes ([str]): List of prefixes to paths from which data should be ingested.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -177,13 +171,13 @@ class S3SourceWrapper(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             format_params (FormatParams): [optional]  # noqa: E501
             integration_name (str): Name of integration to use.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
             object_bytes_downloaded (int): [optional]  # noqa: E501
             object_bytes_total (int): [optional]  # noqa: E501
             object_count_downloaded (int): [optional]  # noqa: E501
             object_count_total (int): [optional]  # noqa: E501
             pattern (str): Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified.. [optional]  # noqa: E501
             prefix (str): Prefix that selects keys to ingest.. [optional]  # noqa: E501
+            prefixes ([str]): List of prefixes to paths from which data should be ingested.. [optional]  # noqa: E501
             region (str): AWS region containing source bucket.. [optional]  # noqa: E501
         """
 
@@ -213,7 +207,6 @@ class S3SourceWrapper(ModelNormal):
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
         self.bucket = bucket
-        self.prefixes = prefixes
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

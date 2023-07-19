@@ -24,11 +24,19 @@ from rockset.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
+from rockset.model.azure_blob_storage_source_wrapper import AzureBlobStorageSourceWrapper
+from rockset.model.azure_event_hubs_source_wrapper import AzureEventHubsSourceWrapper
 from rockset.model.delete_source_response import DeleteSourceResponse
+from rockset.model.dynamodb_source_wrapper import DynamodbSourceWrapper
 from rockset.model.error_model import ErrorModel
+from rockset.model.gcs_source_wrapper import GcsSourceWrapper
 from rockset.model.get_source_response import GetSourceResponse
+from rockset.model.kafka_source_wrapper import KafkaSourceWrapper
+from rockset.model.kinesis_source_wrapper import KinesisSourceWrapper
 from rockset.model.list_sources_response import ListSourcesResponse
-from rockset.model.source import Source
+from rockset.model.mongodb_source_wrapper import MongodbSourceWrapper
+from rockset.model.s3_source_wrapper import S3SourceWrapper
+from rockset.model.snowflake_source_wrapper import SnowflakeSourceWrapper
 from rockset.models import *
 
 
@@ -43,14 +51,14 @@ class Sources(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-        self.create_source_endpoint = _Endpoint(
+        self.create_azure_blob_storage_source_endpoint = _Endpoint(
             settings={
                 'response_type': (GetSourceResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}/sources',
-                'operation_id': 'create_source',
+                'operation_id': 'create_azure_blob_storage_source',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -58,7 +66,7 @@ class Sources(object):
                 'all': [
                     'workspace',
                     'collection',
-                    'source',
+                    'azure_blob_storage_source_wrapper',
                 ],
                 'required': [
                     'workspace',
@@ -81,8 +89,8 @@ class Sources(object):
                         (str,),
                     'collection':
                         (str,),
-                    'source':
-                        (Source,),
+                    'azure_blob_storage_source_wrapper':
+                        (AzureBlobStorageSourceWrapper,),
                 },
                 'attribute_map': {
                     'workspace': 'workspace',
@@ -91,7 +99,511 @@ class Sources(object):
                 'location_map': {
                     'workspace': 'path',
                     'collection': 'path',
-                    'source': 'body',
+                    'azure_blob_storage_source_wrapper': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.create_azure_event_hubs_source_endpoint = _Endpoint(
+            settings={
+                'response_type': (GetSourceResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}/sources',
+                'operation_id': 'create_azure_event_hubs_source',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'workspace',
+                    'collection',
+                    'azure_event_hubs_source_wrapper',
+                ],
+                'required': [
+                    'workspace',
+                    'collection',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'workspace':
+                        (str,),
+                    'collection':
+                        (str,),
+                    'azure_event_hubs_source_wrapper':
+                        (AzureEventHubsSourceWrapper,),
+                },
+                'attribute_map': {
+                    'workspace': 'workspace',
+                    'collection': 'collection',
+                },
+                'location_map': {
+                    'workspace': 'path',
+                    'collection': 'path',
+                    'azure_event_hubs_source_wrapper': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.create_dynamodb_source_endpoint = _Endpoint(
+            settings={
+                'response_type': (GetSourceResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}/sources',
+                'operation_id': 'create_dynamodb_source',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'workspace',
+                    'collection',
+                    'dynamodb_source_wrapper',
+                ],
+                'required': [
+                    'workspace',
+                    'collection',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'workspace':
+                        (str,),
+                    'collection':
+                        (str,),
+                    'dynamodb_source_wrapper':
+                        (DynamodbSourceWrapper,),
+                },
+                'attribute_map': {
+                    'workspace': 'workspace',
+                    'collection': 'collection',
+                },
+                'location_map': {
+                    'workspace': 'path',
+                    'collection': 'path',
+                    'dynamodb_source_wrapper': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.create_gcs_source_endpoint = _Endpoint(
+            settings={
+                'response_type': (GetSourceResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}/sources',
+                'operation_id': 'create_gcs_source',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'workspace',
+                    'collection',
+                    'gcs_source_wrapper',
+                ],
+                'required': [
+                    'workspace',
+                    'collection',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'workspace':
+                        (str,),
+                    'collection':
+                        (str,),
+                    'gcs_source_wrapper':
+                        (GcsSourceWrapper,),
+                },
+                'attribute_map': {
+                    'workspace': 'workspace',
+                    'collection': 'collection',
+                },
+                'location_map': {
+                    'workspace': 'path',
+                    'collection': 'path',
+                    'gcs_source_wrapper': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.create_kafka_source_endpoint = _Endpoint(
+            settings={
+                'response_type': (GetSourceResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}/sources',
+                'operation_id': 'create_kafka_source',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'workspace',
+                    'collection',
+                    'kafka_source_wrapper',
+                ],
+                'required': [
+                    'workspace',
+                    'collection',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'workspace':
+                        (str,),
+                    'collection':
+                        (str,),
+                    'kafka_source_wrapper':
+                        (KafkaSourceWrapper,),
+                },
+                'attribute_map': {
+                    'workspace': 'workspace',
+                    'collection': 'collection',
+                },
+                'location_map': {
+                    'workspace': 'path',
+                    'collection': 'path',
+                    'kafka_source_wrapper': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.create_kinesis_source_endpoint = _Endpoint(
+            settings={
+                'response_type': (GetSourceResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}/sources',
+                'operation_id': 'create_kinesis_source',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'workspace',
+                    'collection',
+                    'kinesis_source_wrapper',
+                ],
+                'required': [
+                    'workspace',
+                    'collection',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'workspace':
+                        (str,),
+                    'collection':
+                        (str,),
+                    'kinesis_source_wrapper':
+                        (KinesisSourceWrapper,),
+                },
+                'attribute_map': {
+                    'workspace': 'workspace',
+                    'collection': 'collection',
+                },
+                'location_map': {
+                    'workspace': 'path',
+                    'collection': 'path',
+                    'kinesis_source_wrapper': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.create_mongodb_source_endpoint = _Endpoint(
+            settings={
+                'response_type': (GetSourceResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}/sources',
+                'operation_id': 'create_mongodb_source',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'workspace',
+                    'collection',
+                    'mongodb_source_wrapper',
+                ],
+                'required': [
+                    'workspace',
+                    'collection',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'workspace':
+                        (str,),
+                    'collection':
+                        (str,),
+                    'mongodb_source_wrapper':
+                        (MongodbSourceWrapper,),
+                },
+                'attribute_map': {
+                    'workspace': 'workspace',
+                    'collection': 'collection',
+                },
+                'location_map': {
+                    'workspace': 'path',
+                    'collection': 'path',
+                    'mongodb_source_wrapper': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.create_s3_source_endpoint = _Endpoint(
+            settings={
+                'response_type': (GetSourceResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}/sources',
+                'operation_id': 'create_s3_source',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'workspace',
+                    'collection',
+                    's3_source_wrapper',
+                ],
+                'required': [
+                    'workspace',
+                    'collection',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'workspace':
+                        (str,),
+                    'collection':
+                        (str,),
+                    's3_source_wrapper':
+                        (S3SourceWrapper,),
+                },
+                'attribute_map': {
+                    'workspace': 'workspace',
+                    'collection': 'collection',
+                },
+                'location_map': {
+                    'workspace': 'path',
+                    'collection': 'path',
+                    's3_source_wrapper': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.create_snowflake_source_endpoint = _Endpoint(
+            settings={
+                'response_type': (GetSourceResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}/sources',
+                'operation_id': 'create_snowflake_source',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'workspace',
+                    'collection',
+                    'snowflake_source_wrapper',
+                ],
+                'required': [
+                    'workspace',
+                    'collection',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'workspace':
+                        (str,),
+                    'collection':
+                        (str,),
+                    'snowflake_source_wrapper':
+                        (SnowflakeSourceWrapper,),
+                },
+                'attribute_map': {
+                    'workspace': 'workspace',
+                    'collection': 'collection',
+                },
+                'location_map': {
+                    'workspace': 'path',
+                    'collection': 'path',
+                    'snowflake_source_wrapper': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -232,14 +744,14 @@ class Sources(object):
             },
             api_client=api_client
         )
-        self.list_collection_sources_endpoint = _Endpoint(
+        self.list_endpoint = _Endpoint(
             settings={
                 'response_type': (ListSourcesResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}/sources',
-                'operation_id': 'list_collection_sources',
+                'operation_id': 'list',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -289,29 +801,146 @@ class Sources(object):
             },
             api_client=api_client
         )
+        self.resume_endpoint = _Endpoint(
+            settings={
+                'response_type': (GetSourceResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source}/resume',
+                'operation_id': 'resume',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'workspace',
+                    'collection',
+                    'source',
+                ],
+                'required': [
+                    'workspace',
+                    'collection',
+                    'source',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'workspace':
+                        (str,),
+                    'collection':
+                        (str,),
+                    'source':
+                        (str,),
+                },
+                'attribute_map': {
+                    'workspace': 'workspace',
+                    'collection': 'collection',
+                    'source': 'source',
+                },
+                'location_map': {
+                    'workspace': 'path',
+                    'collection': 'path',
+                    'source': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.suspend_endpoint = _Endpoint(
+            settings={
+                'response_type': (GetSourceResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source}/suspend',
+                'operation_id': 'suspend',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'workspace',
+                    'collection',
+                    'source',
+                ],
+                'required': [
+                    'workspace',
+                    'collection',
+                    'source',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'workspace':
+                        (str,),
+                    'collection':
+                        (str,),
+                    'source':
+                        (str,),
+                },
+                'attribute_map': {
+                    'workspace': 'workspace',
+                    'collection': 'collection',
+                    'source': 'source',
+                },
+                'location_map': {
+                    'workspace': 'path',
+                    'collection': 'path',
+                    'source': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
 
-    def create_source(
+    def create_azure_blob_storage_source(
         self,
         *,
         collection: str,
-        azure_blob_storage: SourceAzureBlobStorage = None,
-        azure_event_hubs: SourceAzureEventHubs = None,
-        azure_service_bus: SourceAzureServiceBus = None,
-        dynamodb: SourceDynamoDb = None,
         format_params: FormatParams = None,
-        gcs: SourceGcs = None,
-        id: str = None,
         integration_name: str = None,
-        kafka: SourceKafka = None,
-        kinesis: SourceKinesis = None,
-        mongodb: SourceMongoDb = None,
-        s3: SourceS3 = None,
-        snowflake: SourceSnowflake = None,
-        system: SourceSystem = None,
+        container: str = None,
+        pattern: str = None,
+        prefix: str = None,
         workspace = "commons",
         **kwargs
     ) -> typing.Union[GetSourceResponse, asyncio.Future]:
-        """Create a source  # noqa: E501
+        """Create a new azure blob storage source in a collection  # noqa: E501
 
         Create new source in a collection.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
@@ -319,27 +948,8 @@ class Sources(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Sources.create_source(
+        future = rs.Sources.create_azure_blob_storage_source(
             collection="collection_example",
-            azure_blob_storage=SourceAzureBlobStorage(
-                container="server-logs",
-                pattern="prefix/to/**/keys/*.format",
-                prefix="prefix/to/blobs",
-            ),
-            azure_event_hubs=SourceAzureEventHubs(
-                hub_id="event-hub-1",
-                offset_reset_policy="EARLIEST",
-            ),
-            azure_service_bus=SourceAzureServiceBus(
-                subscription="rockset-subscription",
-                topic="rockset-topic",
-            ),
-            dynamodb=SourceDynamoDb(
-                aws_region="us-east-2",
-                rcu=1000,
-                table_name="dynamodb_table_name",
-                use_scan_api=True,
-            ),
             format_params=FormatParams(
                 csv=CsvParams(
                     column_names=["c1","c2","c3"],
@@ -363,47 +973,10 @@ class Sources(object):
                     value_tag="value",
                 ),
             ),
-            gcs=SourceGcs(
-                bucket="server-logs",
-                pattern="prefix/to/**/keys/*.format",
-                prefix="prefix/to/keys",
-            ),
-            id="a1df483c-734e-485b-8005-f46386ef42f6",
             integration_name="aws-integration",
-            kafka=SourceKafka(
-                consumer_group_id="org-collection",
-                kafka_topic_name="example-topic",
-                offset_reset_policy="EARLIEST",
-                use_v3=True,
-            ),
-            kinesis=SourceKinesis(
-                aws_region="us-east-2",
-                dms_primary_key=[
-                    "dms_primary_key_example",
-                ],
-                offset_reset_policy="EARLIEST",
-                stream_name="click_stream",
-            ),
-            mongodb=SourceMongoDb(
-                collection_name="my_collection",
-                database_name="my_database",
-                retrieve_full_document=True,
-            ),
-            s3=SourceS3(
-                bucket="s3://customer-account-info",
-                pattern="prefix/to/**/keys/*.format",
-                prefix="prefix/to/keys",
-                region="us-west-2",
-            ),
-            snowflake=SourceSnowflake(
-                database="NASDAQ",
-                schema="PUBLIC",
-                table_name="COMPANIES",
-                warehouse="COMPUTE_XL",
-            ),
-            system=SourceSystem(
-                type="QUERY_LOGS",
-            ),
+            container="server-logs",
+            pattern="prefix/to/**/keys/*.format",
+            prefix="prefix/to/blobs",
             async_req=True,
         )
         result = await future
@@ -412,20 +985,11 @@ class Sources(object):
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
             collection (str): name of the collection. [required]
-            azure_blob_storage (SourceAzureBlobStorage): [optional]
-            azure_event_hubs (SourceAzureEventHubs): [optional]
-            azure_service_bus (SourceAzureServiceBus): [optional]
-            dynamodb (SourceDynamoDb): [optional]
             format_params (FormatParams): [optional]
-            gcs (SourceGcs): [optional]
-            id (str): Unique source identifier.. [optional]
             integration_name (str): Name of integration to use.. [optional]
-            kafka (SourceKafka): [optional]
-            kinesis (SourceKinesis): [optional]
-            mongodb (SourceMongoDb): [optional]
-            s3 (SourceS3): [optional]
-            snowflake (SourceSnowflake): [optional]
-            system (SourceSystem): [optional]
+            container (str): Name of Azure blob Storage container you want to ingest from.. [optional]
+            pattern (str): Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified.. [optional]
+            prefix (str): Prefix that selects blobs to ingest.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -488,9 +1052,1048 @@ class Sources(object):
             workspace
         kwargs['collection'] = \
             collection
-        kwargs['source'] = \
-            kwargs['source']
-        return self.create_source_endpoint.call_with_http_info(**kwargs)
+        kwargs['azure_blob_storage_source_wrapper'] = \
+            kwargs['azure_blob_storage_source_wrapper']
+        return self.create_azure_blob_storage_source_endpoint.call_with_http_info(**kwargs)
+
+    def create_azure_event_hubs_source(
+        self,
+        *,
+        collection: str,
+        format_params: FormatParams = None,
+        integration_name: str = None,
+        hub_id: str = None,
+        offset_reset_policy: str = None,
+        workspace = "commons",
+        **kwargs
+    ) -> typing.Union[GetSourceResponse, asyncio.Future]:
+        """Create a new azure event hubs source in a collection  # noqa: E501
+
+        Create new source in a collection.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Sources.create_azure_event_hubs_source(
+            collection="collection_example",
+            format_params=FormatParams(
+                csv=CsvParams(
+                    column_names=["c1","c2","c3"],
+                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                    encoding="UTF-8",
+                    escape_char="\\",
+                    first_line_as_column_names=True,
+                    quote_char="\"",
+                    separator=",",
+                ),
+                json=True,
+                mssql_dms=True,
+                mysql_dms=True,
+                oracle_dms=True,
+                postgres_dms=True,
+                xml=XmlParams(
+                    attribute_prefix="_attr",
+                    doc_tag="row",
+                    encoding="UTF-8",
+                    root_tag="root",
+                    value_tag="value",
+                ),
+            ),
+            integration_name="aws-integration",
+            hub_id="event-hub-1",
+            offset_reset_policy="EARLIEST",
+            async_req=True,
+        )
+        result = await future
+        ```
+
+        Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            collection (str): name of the collection. [required]
+            format_params (FormatParams): [optional]
+            integration_name (str): Name of integration to use.. [optional]
+            hub_id (str): Name of the hub which rockset should ingest from.. [optional]
+            offset_reset_policy (str): The offset reset policy.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GetSourceResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['workspace'] = \
+            workspace
+        kwargs['collection'] = \
+            collection
+        kwargs['azure_event_hubs_source_wrapper'] = \
+            kwargs['azure_event_hubs_source_wrapper']
+        return self.create_azure_event_hubs_source_endpoint.call_with_http_info(**kwargs)
+
+    def create_dynamodb_source(
+        self,
+        *,
+        collection: str,
+        table_name: str,
+        format_params: FormatParams = None,
+        integration_name: str = None,
+        aws_region: str = None,
+        rcu: int = None,
+        use_scan_api: bool = None,
+        workspace = "commons",
+        **kwargs
+    ) -> typing.Union[GetSourceResponse, asyncio.Future]:
+        """Create a new dynamodb source in a collection  # noqa: E501
+
+        Create new source in a collection.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Sources.create_dynamodb_source(
+            collection="collection_example",
+            format_params=FormatParams(
+                csv=CsvParams(
+                    column_names=["c1","c2","c3"],
+                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                    encoding="UTF-8",
+                    escape_char="\\",
+                    first_line_as_column_names=True,
+                    quote_char="\"",
+                    separator=",",
+                ),
+                json=True,
+                mssql_dms=True,
+                mysql_dms=True,
+                oracle_dms=True,
+                postgres_dms=True,
+                xml=XmlParams(
+                    attribute_prefix="_attr",
+                    doc_tag="row",
+                    encoding="UTF-8",
+                    root_tag="root",
+                    value_tag="value",
+                ),
+            ),
+            integration_name="aws-integration",
+            aws_region="us-east-2",
+            rcu=1000,
+            table_name="dynamodb_table_name",
+            use_scan_api=True,
+            async_req=True,
+        )
+        result = await future
+        ```
+
+        Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            collection (str): name of the collection. [required]
+            format_params (FormatParams): [optional]
+            integration_name (str): Name of integration to use.. [optional]
+            aws_region (str): AWS region name of DynamoDB table, by default us-west-2 is used.. [optional]
+            rcu (int): Max RCU usage for scan.. [optional]
+            table_name (str): Name of DynamoDB table containing data.. [required]
+            use_scan_api (bool): Whether to use DynamoDB Scan API for the initial scan.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GetSourceResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['workspace'] = \
+            workspace
+        kwargs['collection'] = \
+            collection
+        kwargs['dynamodb_source_wrapper'] = \
+            kwargs['dynamodb_source_wrapper']
+        return self.create_dynamodb_source_endpoint.call_with_http_info(**kwargs)
+
+    def create_gcs_source(
+        self,
+        *,
+        collection: str,
+        format_params: FormatParams = None,
+        integration_name: str = None,
+        bucket: str = None,
+        pattern: str = None,
+        prefix: str = None,
+        workspace = "commons",
+        **kwargs
+    ) -> typing.Union[GetSourceResponse, asyncio.Future]:
+        """Create a new gcs source in a collection  # noqa: E501
+
+        Create new source in a collection.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Sources.create_gcs_source(
+            collection="collection_example",
+            format_params=FormatParams(
+                csv=CsvParams(
+                    column_names=["c1","c2","c3"],
+                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                    encoding="UTF-8",
+                    escape_char="\\",
+                    first_line_as_column_names=True,
+                    quote_char="\"",
+                    separator=",",
+                ),
+                json=True,
+                mssql_dms=True,
+                mysql_dms=True,
+                oracle_dms=True,
+                postgres_dms=True,
+                xml=XmlParams(
+                    attribute_prefix="_attr",
+                    doc_tag="row",
+                    encoding="UTF-8",
+                    root_tag="root",
+                    value_tag="value",
+                ),
+            ),
+            integration_name="aws-integration",
+            bucket="server-logs",
+            pattern="prefix/to/**/keys/*.format",
+            prefix="prefix/to/keys",
+            async_req=True,
+        )
+        result = await future
+        ```
+
+        Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            collection (str): name of the collection. [required]
+            format_params (FormatParams): [optional]
+            integration_name (str): Name of integration to use.. [optional]
+            bucket (str): Name of GCS bucket you want to ingest from.. [optional]
+            pattern (str): Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified.. [optional]
+            prefix (str): Prefix that selects keys to ingest.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GetSourceResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['workspace'] = \
+            workspace
+        kwargs['collection'] = \
+            collection
+        kwargs['gcs_source_wrapper'] = \
+            kwargs['gcs_source_wrapper']
+        return self.create_gcs_source_endpoint.call_with_http_info(**kwargs)
+
+    def create_kafka_source(
+        self,
+        *,
+        collection: str,
+        format_params: FormatParams = None,
+        integration_name: str = None,
+        consumer_group_id: str = None,
+        kafka_topic_name: str = None,
+        offset_reset_policy: str = None,
+        use_v3: bool = None,
+        workspace = "commons",
+        **kwargs
+    ) -> typing.Union[GetSourceResponse, asyncio.Future]:
+        """Create a new kafka source in a collection  # noqa: E501
+
+        Create new source in a collection.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Sources.create_kafka_source(
+            collection="collection_example",
+            format_params=FormatParams(
+                csv=CsvParams(
+                    column_names=["c1","c2","c3"],
+                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                    encoding="UTF-8",
+                    escape_char="\\",
+                    first_line_as_column_names=True,
+                    quote_char="\"",
+                    separator=",",
+                ),
+                json=True,
+                mssql_dms=True,
+                mysql_dms=True,
+                oracle_dms=True,
+                postgres_dms=True,
+                xml=XmlParams(
+                    attribute_prefix="_attr",
+                    doc_tag="row",
+                    encoding="UTF-8",
+                    root_tag="root",
+                    value_tag="value",
+                ),
+            ),
+            integration_name="aws-integration",
+            consumer_group_id="org-collection",
+            kafka_topic_name="example-topic",
+            offset_reset_policy="EARLIEST",
+            use_v3=True,
+            async_req=True,
+        )
+        result = await future
+        ```
+
+        Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            collection (str): name of the collection. [required]
+            format_params (FormatParams): [optional]
+            integration_name (str): Name of integration to use.. [optional]
+            consumer_group_id (str): The Kafka consumer group Id being used.. [optional]
+            kafka_topic_name (str): The Kafka topic to be tailed.. [optional]
+            offset_reset_policy (str): The offset reset policy.. [optional]
+            use_v3 (bool): Whether to use v3 integration.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GetSourceResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['workspace'] = \
+            workspace
+        kwargs['collection'] = \
+            collection
+        kwargs['kafka_source_wrapper'] = \
+            kwargs['kafka_source_wrapper']
+        return self.create_kafka_source_endpoint.call_with_http_info(**kwargs)
+
+    def create_kinesis_source(
+        self,
+        *,
+        collection: str,
+        stream_name: str,
+        format_params: FormatParams = None,
+        integration_name: str = None,
+        aws_region: str = None,
+        dms_primary_key: typing.Sequence[str] = None,
+        offset_reset_policy: str = None,
+        workspace = "commons",
+        **kwargs
+    ) -> typing.Union[GetSourceResponse, asyncio.Future]:
+        """Create a new kinesis source in a collection  # noqa: E501
+
+        Create new source in a collection.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Sources.create_kinesis_source(
+            collection="collection_example",
+            format_params=FormatParams(
+                csv=CsvParams(
+                    column_names=["c1","c2","c3"],
+                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                    encoding="UTF-8",
+                    escape_char="\\",
+                    first_line_as_column_names=True,
+                    quote_char="\"",
+                    separator=",",
+                ),
+                json=True,
+                mssql_dms=True,
+                mysql_dms=True,
+                oracle_dms=True,
+                postgres_dms=True,
+                xml=XmlParams(
+                    attribute_prefix="_attr",
+                    doc_tag="row",
+                    encoding="UTF-8",
+                    root_tag="root",
+                    value_tag="value",
+                ),
+            ),
+            integration_name="aws-integration",
+            aws_region="us-east-2",
+            dms_primary_key=[
+                "string_example",
+            ],
+            offset_reset_policy="EARLIEST",
+            stream_name="click_stream",
+            async_req=True,
+        )
+        result = await future
+        ```
+
+        Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            collection (str): name of the collection. [required]
+            format_params (FormatParams): [optional]
+            integration_name (str): Name of integration to use.. [optional]
+            aws_region (str): AWS region name of Kinesis stream, by default us-west-2 is used.. [optional]
+            dms_primary_key ([str]): Set of fields that correspond to a DMS primary key.. [optional]
+            offset_reset_policy (str): For non-DMS streams, Rockset can tail from the earliest end or latest end of kinesis source.. [optional]
+            stream_name (str): Name of kinesis stream.. [required]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GetSourceResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['workspace'] = \
+            workspace
+        kwargs['collection'] = \
+            collection
+        kwargs['kinesis_source_wrapper'] = \
+            kwargs['kinesis_source_wrapper']
+        return self.create_kinesis_source_endpoint.call_with_http_info(**kwargs)
+
+    def create_mongodb_source(
+        self,
+        *,
+        collection: str,
+        collection_name: str,
+        database_name: str,
+        format_params: FormatParams = None,
+        integration_name: str = None,
+        retrieve_full_document: bool = None,
+        workspace = "commons",
+        **kwargs
+    ) -> typing.Union[GetSourceResponse, asyncio.Future]:
+        """Create a new mongodb source in a collection  # noqa: E501
+
+        Create new source in a collection.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Sources.create_mongodb_source(
+            collection="collection_example",
+            format_params=FormatParams(
+                csv=CsvParams(
+                    column_names=["c1","c2","c3"],
+                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                    encoding="UTF-8",
+                    escape_char="\\",
+                    first_line_as_column_names=True,
+                    quote_char="\"",
+                    separator=",",
+                ),
+                json=True,
+                mssql_dms=True,
+                mysql_dms=True,
+                oracle_dms=True,
+                postgres_dms=True,
+                xml=XmlParams(
+                    attribute_prefix="_attr",
+                    doc_tag="row",
+                    encoding="UTF-8",
+                    root_tag="root",
+                    value_tag="value",
+                ),
+            ),
+            integration_name="aws-integration",
+            collection_name="my_collection",
+            database_name="my_database",
+            retrieve_full_document=True,
+            async_req=True,
+        )
+        result = await future
+        ```
+
+        Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            collection (str): name of the collection. [required]
+            format_params (FormatParams): [optional]
+            integration_name (str): Name of integration to use.. [optional]
+            collection_name (str): MongoDB collection name.. [required]
+            database_name (str): MongoDB database name containing this collection.. [required]
+            retrieve_full_document (bool): Whether to get the full document from the MongoDB change stream to enable multi-field expression transformations. Selecting this option will increase load on your upstream MongoDB database.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GetSourceResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['workspace'] = \
+            workspace
+        kwargs['collection'] = \
+            collection
+        kwargs['mongodb_source_wrapper'] = \
+            kwargs['mongodb_source_wrapper']
+        return self.create_mongodb_source_endpoint.call_with_http_info(**kwargs)
+
+    def create_s3_source(
+        self,
+        *,
+        collection: str,
+        bucket: str,
+        format_params: FormatParams = None,
+        integration_name: str = None,
+        pattern: str = None,
+        prefix: str = None,
+        prefixes: typing.Sequence[str] = None,
+        region: str = None,
+        workspace = "commons",
+        **kwargs
+    ) -> typing.Union[GetSourceResponse, asyncio.Future]:
+        """Create a new s3 source in a collection  # noqa: E501
+
+        Create new source in a collection.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Sources.create_s3_source(
+            collection="collection_example",
+            format_params=FormatParams(
+                csv=CsvParams(
+                    column_names=["c1","c2","c3"],
+                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                    encoding="UTF-8",
+                    escape_char="\\",
+                    first_line_as_column_names=True,
+                    quote_char="\"",
+                    separator=",",
+                ),
+                json=True,
+                mssql_dms=True,
+                mysql_dms=True,
+                oracle_dms=True,
+                postgres_dms=True,
+                xml=XmlParams(
+                    attribute_prefix="_attr",
+                    doc_tag="row",
+                    encoding="UTF-8",
+                    root_tag="root",
+                    value_tag="value",
+                ),
+            ),
+            integration_name="aws-integration",
+            bucket="s3://customer-account-info",
+            pattern="prefix/to/**/keys/*.format",
+            prefix="prefix/to/keys",
+            region="us-west-2",
+            async_req=True,
+        )
+        result = await future
+        ```
+
+        Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            collection (str): name of the collection. [required]
+            format_params (FormatParams): [optional]
+            integration_name (str): Name of integration to use.. [optional]
+            bucket (str): Address of S3 bucket containing data.. [required]
+            pattern (str): Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified.. [optional]
+            prefix (str): Prefix that selects keys to ingest.. [optional]
+            region (str): AWS region containing source bucket.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GetSourceResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['workspace'] = \
+            workspace
+        kwargs['collection'] = \
+            collection
+        kwargs['s3_source_wrapper'] = \
+            kwargs['s3_source_wrapper']
+        return self.create_s3_source_endpoint.call_with_http_info(**kwargs)
+
+    def create_snowflake_source(
+        self,
+        *,
+        collection: str,
+        database: str,
+        schema: str,
+        table_name: str,
+        format_params: FormatParams = None,
+        integration_name: str = None,
+        warehouse: str = None,
+        workspace = "commons",
+        **kwargs
+    ) -> typing.Union[GetSourceResponse, asyncio.Future]:
+        """Create a new snowflake source in a collection  # noqa: E501
+
+        Create new source in a collection.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Sources.create_snowflake_source(
+            collection="collection_example",
+            format_params=FormatParams(
+                csv=CsvParams(
+                    column_names=["c1","c2","c3"],
+                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                    encoding="UTF-8",
+                    escape_char="\\",
+                    first_line_as_column_names=True,
+                    quote_char="\"",
+                    separator=",",
+                ),
+                json=True,
+                mssql_dms=True,
+                mysql_dms=True,
+                oracle_dms=True,
+                postgres_dms=True,
+                xml=XmlParams(
+                    attribute_prefix="_attr",
+                    doc_tag="row",
+                    encoding="UTF-8",
+                    root_tag="root",
+                    value_tag="value",
+                ),
+            ),
+            integration_name="aws-integration",
+            database="NASDAQ",
+            schema="PUBLIC",
+            table_name="COMPANIES",
+            warehouse="COMPUTE_XL",
+            async_req=True,
+        )
+        result = await future
+        ```
+
+        Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            collection (str): name of the collection. [required]
+            format_params (FormatParams): [optional]
+            integration_name (str): Name of integration to use.. [optional]
+            database (str): Name of the snowflake database.. [required]
+            schema (str): Name of the snowflake database schema.. [required]
+            table_name (str): Name of the snowflake table.. [required]
+            warehouse (str): Name of the data warehouse to be used.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GetSourceResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['workspace'] = \
+            workspace
+        kwargs['collection'] = \
+            collection
+        kwargs['snowflake_source_wrapper'] = \
+            kwargs['snowflake_source_wrapper']
+        return self.create_snowflake_source_endpoint.call_with_http_info(**kwargs)
 
     def delete(
         self,
@@ -680,7 +2283,7 @@ class Sources(object):
             source
         return self.get_endpoint.call_with_http_info(**kwargs)
 
-    def list_collection_sources(
+    def list(
         self,
         *,
         collection: str,
@@ -695,7 +2298,7 @@ class Sources(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Sources.list_collection_sources(
+        future = rs.Sources.list(
             collection="collection_example",
             async_req=True,
         )
@@ -767,10 +2370,214 @@ class Sources(object):
             workspace
         kwargs['collection'] = \
             collection
-        return self.list_collection_sources_endpoint.call_with_http_info(**kwargs)
+        return self.list_endpoint.call_with_http_info(**kwargs)
+
+    def resume(
+        self,
+        *,
+        collection: str,
+        source: str,
+        workspace = "commons",
+        **kwargs
+    ) -> typing.Union[GetSourceResponse, asyncio.Future]:
+        """Resume source ingest  # noqa: E501
+
+        Resume source ingest  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Sources.resume(
+            collection="collection_example",
+            source="source_example",
+            async_req=True,
+        )
+        result = await future
+        ```
+
+        Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            collection (str): name of the collection. [required]
+            source (str): id of source. [required]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GetSourceResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['workspace'] = \
+            workspace
+        kwargs['collection'] = \
+            collection
+        kwargs['source'] = \
+            source
+        return self.resume_endpoint.call_with_http_info(**kwargs)
+
+    def suspend(
+        self,
+        *,
+        collection: str,
+        source: str,
+        workspace = "commons",
+        **kwargs
+    ) -> typing.Union[GetSourceResponse, asyncio.Future]:
+        """Suspend source ingest  # noqa: E501
+
+        Suspend source ingest  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Sources.suspend(
+            collection="collection_example",
+            source="source_example",
+            async_req=True,
+        )
+        result = await future
+        ```
+
+        Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            collection (str): name of the collection. [required]
+            source (str): id of source. [required]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GetSourceResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['workspace'] = \
+            workspace
+        kwargs['collection'] = \
+            collection
+        kwargs['source'] = \
+            source
+        return self.suspend_endpoint.call_with_http_info(**kwargs)
 
 
     body_params_dict = dict()
     return_types_dict = dict()
-    body_params_dict['create_source'] = 'source'
-    return_types_dict['create_source'] = Source
+    body_params_dict['create_azure_blob_storage_source'] = 'azure_blob_storage_source_wrapper'
+    return_types_dict['create_azure_blob_storage_source'] = AzureBlobStorageSourceWrapper
+    body_params_dict['create_azure_event_hubs_source'] = 'azure_event_hubs_source_wrapper'
+    return_types_dict['create_azure_event_hubs_source'] = AzureEventHubsSourceWrapper
+    body_params_dict['create_dynamodb_source'] = 'dynamodb_source_wrapper'
+    return_types_dict['create_dynamodb_source'] = DynamodbSourceWrapper
+    body_params_dict['create_gcs_source'] = 'gcs_source_wrapper'
+    return_types_dict['create_gcs_source'] = GcsSourceWrapper
+    body_params_dict['create_kafka_source'] = 'kafka_source_wrapper'
+    return_types_dict['create_kafka_source'] = KafkaSourceWrapper
+    body_params_dict['create_kinesis_source'] = 'kinesis_source_wrapper'
+    return_types_dict['create_kinesis_source'] = KinesisSourceWrapper
+    body_params_dict['create_mongodb_source'] = 'mongodb_source_wrapper'
+    return_types_dict['create_mongodb_source'] = MongodbSourceWrapper
+    body_params_dict['create_s3_source'] = 's3_source_wrapper'
+    return_types_dict['create_s3_source'] = S3SourceWrapper
+    body_params_dict['create_snowflake_source'] = 'snowflake_source_wrapper'
+    return_types_dict['create_snowflake_source'] = SnowflakeSourceWrapper

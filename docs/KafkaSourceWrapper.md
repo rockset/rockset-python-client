@@ -7,10 +7,10 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **format_params** | [**FormatParams**](FormatParams.md) |  | [optional] 
 **integration_name** | **str** | Name of integration to use. | [optional] 
-**status** | **bool, date, datetime, dict, float, int, list, str, none_type** |  | [optional] [readonly] 
 **consumer_group_id** | **str** | The Kafka consumer group Id being used. | [optional] 
 **kafka_topic_name** | **str** | The Kafka topic to be tailed. | [optional] 
 **offset_reset_policy** | **str** | The offset reset policy. | [optional] 
+**status** | **bool, date, datetime, dict, float, int, list, str, none_type** |  | [optional] [readonly] 
 **use_v3** | **bool** | Whether to use v3 integration. | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 

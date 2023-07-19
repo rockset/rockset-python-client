@@ -137,67 +137,6 @@ def test_create_azure_event_hubs_collection(
             validate_call(e, request_validator)
 
 
-def test_create_azure_service_bus_collection(
-    get_client, mock_request, request_validator
-):
-    with mock_request:
-        rs = get_client
-        try:
-            rs.Collections.create_azure_service_bus_collection(
-                clustering_key=[
-                    FieldPartition(
-                        field_name="address.city.zipcode",
-                        keys=["value1", "value2"],
-                        type="AUTO",
-                    ),
-                ],
-                description="transactions from stores worldwide",
-                event_time_info=EventTimeInfo(
-                    field="timestamp",
-                    format="seconds_since_epoch",
-                    time_zone="UTC",
-                ),
-                field_mapping_query=FieldMappingQuery(
-                    sql="sql",
-                ),
-                name="global-transactions",
-                retention_secs=1000000,
-                sources=[
-                    AzureServiceBusSourceWrapper(
-                        format_params=FormatParams(
-                            csv=CsvParams(
-                                column_names=["c1", "c2", "c3"],
-                                column_types=["BOOLEAN", "INTEGER", "FLOAT", "STRING"],
-                                encoding="UTF-8",
-                                escape_char="\\",
-                                first_line_as_column_names=True,
-                                quote_char='"',
-                                separator=",",
-                            ),
-                            json=True,
-                            mssql_dms=True,
-                            mysql_dms=True,
-                            oracle_dms=True,
-                            postgres_dms=True,
-                            xml=XmlParams(
-                                attribute_prefix="_attr",
-                                doc_tag="row",
-                                encoding="UTF-8",
-                                root_tag="root",
-                                value_tag="value",
-                            ),
-                        ),
-                        integration_name="aws-integration",
-                        subscription="rockset-subscription",
-                        topic="rockset-topic",
-                    ),
-                ],
-                storage_compression_type="LZ4",
-            )
-        except EarlyExit as e:
-            validate_call(e, request_validator)
-
-
 def test_create_dynamodb_collection(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client

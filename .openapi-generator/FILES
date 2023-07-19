@@ -17,9 +17,7 @@ docs/AzureEventHubsCollectionCreationRequest.md
 docs/AzureEventHubsIntegration.md
 docs/AzureEventHubsIntegrationCreationRequest.md
 docs/AzureEventHubsSourceWrapper.md
-docs/AzureServiceBusCollectionCreationRequest.md
 docs/AzureServiceBusIntegration.md
-docs/AzureServiceBusSourceWrapper.md
 docs/BulkStats.md
 docs/CancelQueryResponse.md
 docs/Cluster.md
@@ -178,6 +176,7 @@ docs/SourceKafka.md
 docs/SourceKinesis.md
 docs/SourceMongoDb.md
 docs/SourceS3.md
+docs/SourceSnapshot.md
 docs/SourceSnowflake.md
 docs/SourceSystem.md
 docs/SourcesApi.md
@@ -258,9 +257,7 @@ rockset/model/azure_event_hubs_collection_creation_request.py
 rockset/model/azure_event_hubs_integration.py
 rockset/model/azure_event_hubs_integration_creation_request.py
 rockset/model/azure_event_hubs_source_wrapper.py
-rockset/model/azure_service_bus_collection_creation_request.py
 rockset/model/azure_service_bus_integration.py
-rockset/model/azure_service_bus_source_wrapper.py
 rockset/model/bulk_stats.py
 rockset/model/cancel_query_response.py
 rockset/model/cluster.py
@@ -409,6 +406,7 @@ rockset/model/source_kafka.py
 rockset/model/source_kinesis.py
 rockset/model/source_mongo_db.py
 rockset/model/source_s3.py
+rockset/model/source_snapshot.py
 rockset/model/source_snowflake.py
 rockset/model/source_system.py
 rockset/model/sql_expression.py
@@ -468,9 +466,7 @@ test/test_azure_event_hubs_collection_creation_request.py
 test/test_azure_event_hubs_integration.py
 test/test_azure_event_hubs_integration_creation_request.py
 test/test_azure_event_hubs_source_wrapper.py
-test/test_azure_service_bus_collection_creation_request.py
 test/test_azure_service_bus_integration.py
-test/test_azure_service_bus_source_wrapper.py
 test/test_bulk_stats.py
 test/test_cancel_query_response.py
 test/test_cluster.py
@@ -629,6 +625,7 @@ test/test_source_kafka.py
 test/test_source_kinesis.py
 test/test_source_mongo_db.py
 test/test_source_s3.py
+test/test_source_snapshot.py
 test/test_source_snowflake.py
 test/test_source_system.py
 test/test_sources_api.py

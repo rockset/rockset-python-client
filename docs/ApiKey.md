@@ -5,7 +5,7 @@ API keys are used to authenticate requests to Rockset's API. An API key is tied 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**key** | **str** | API key string of 64 alphanumeric characters. | 
+**key** | **str** | This field will only be populated with the full key when creating an API key. Otherwise, it will be an API key identifier of 6 characters. | 
 **name** | **str** | Name of the API key. | 
 **created_at** | **str** | Date that API key was created (ISO-8601 format). | [optional] 
 **created_by** | **str** | Email of API key owner. | [optional] 

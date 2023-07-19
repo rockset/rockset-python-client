@@ -14,31 +14,12 @@ from rockset.models import *
 from test.conftest import EarlyExit, validate_call
 
 
-def test_create_source(get_client, mock_request, request_validator):
+def test_create_azure_blob_storage_source(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Sources.create_source(
+            rs.Sources.create_azure_blob_storage_source(
                 collection="collection_example",
-                azure_blob_storage=SourceAzureBlobStorage(
-                    container="server-logs",
-                    pattern="prefix/to/**/keys/*.format",
-                    prefix="prefix/to/blobs",
-                ),
-                azure_event_hubs=SourceAzureEventHubs(
-                    hub_id="event-hub-1",
-                    offset_reset_policy="EARLIEST",
-                ),
-                azure_service_bus=SourceAzureServiceBus(
-                    subscription="rockset-subscription",
-                    topic="rockset-topic",
-                ),
-                dynamodb=SourceDynamoDb(
-                    aws_region="us-east-2",
-                    rcu=1000,
-                    table_name="dynamodb_table_name",
-                    use_scan_api=True,
-                ),
                 format_params=FormatParams(
                     csv=CsvParams(
                         column_names=["c1", "c2", "c3"],
@@ -62,47 +43,320 @@ def test_create_source(get_client, mock_request, request_validator):
                         value_tag="value",
                     ),
                 ),
-                gcs=SourceGcs(
-                    bucket="server-logs",
-                    pattern="prefix/to/**/keys/*.format",
-                    prefix="prefix/to/keys",
-                ),
-                id="a1df483c-734e-485b-8005-f46386ef42f6",
                 integration_name="aws-integration",
-                kafka=SourceKafka(
-                    consumer_group_id="org-collection",
-                    kafka_topic_name="example-topic",
-                    offset_reset_policy="EARLIEST",
-                    use_v3=True,
+                container="server-logs",
+                pattern="prefix/to/**/keys/*.format",
+                prefix="prefix/to/blobs",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_create_azure_event_hubs_source(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Sources.create_azure_event_hubs_source(
+                collection="collection_example",
+                format_params=FormatParams(
+                    csv=CsvParams(
+                        column_names=["c1", "c2", "c3"],
+                        column_types=["BOOLEAN", "INTEGER", "FLOAT", "STRING"],
+                        encoding="UTF-8",
+                        escape_char="\\",
+                        first_line_as_column_names=True,
+                        quote_char='"',
+                        separator=",",
+                    ),
+                    json=True,
+                    mssql_dms=True,
+                    mysql_dms=True,
+                    oracle_dms=True,
+                    postgres_dms=True,
+                    xml=XmlParams(
+                        attribute_prefix="_attr",
+                        doc_tag="row",
+                        encoding="UTF-8",
+                        root_tag="root",
+                        value_tag="value",
+                    ),
                 ),
-                kinesis=SourceKinesis(
-                    aws_region="us-east-2",
-                    dms_primary_key=[
-                        "dms_primary_key_example",
-                    ],
-                    offset_reset_policy="EARLIEST",
-                    stream_name="click_stream",
+                integration_name="aws-integration",
+                hub_id="event-hub-1",
+                offset_reset_policy="EARLIEST",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_create_dynamodb_source(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Sources.create_dynamodb_source(
+                collection="collection_example",
+                format_params=FormatParams(
+                    csv=CsvParams(
+                        column_names=["c1", "c2", "c3"],
+                        column_types=["BOOLEAN", "INTEGER", "FLOAT", "STRING"],
+                        encoding="UTF-8",
+                        escape_char="\\",
+                        first_line_as_column_names=True,
+                        quote_char='"',
+                        separator=",",
+                    ),
+                    json=True,
+                    mssql_dms=True,
+                    mysql_dms=True,
+                    oracle_dms=True,
+                    postgres_dms=True,
+                    xml=XmlParams(
+                        attribute_prefix="_attr",
+                        doc_tag="row",
+                        encoding="UTF-8",
+                        root_tag="root",
+                        value_tag="value",
+                    ),
                 ),
-                mongodb=SourceMongoDb(
-                    collection_name="my_collection",
-                    database_name="my_database",
-                    retrieve_full_document=True,
+                integration_name="aws-integration",
+                aws_region="us-east-2",
+                rcu=1000,
+                table_name="dynamodb_table_name",
+                use_scan_api=True,
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_create_gcs_source(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Sources.create_gcs_source(
+                collection="collection_example",
+                format_params=FormatParams(
+                    csv=CsvParams(
+                        column_names=["c1", "c2", "c3"],
+                        column_types=["BOOLEAN", "INTEGER", "FLOAT", "STRING"],
+                        encoding="UTF-8",
+                        escape_char="\\",
+                        first_line_as_column_names=True,
+                        quote_char='"',
+                        separator=",",
+                    ),
+                    json=True,
+                    mssql_dms=True,
+                    mysql_dms=True,
+                    oracle_dms=True,
+                    postgres_dms=True,
+                    xml=XmlParams(
+                        attribute_prefix="_attr",
+                        doc_tag="row",
+                        encoding="UTF-8",
+                        root_tag="root",
+                        value_tag="value",
+                    ),
                 ),
-                s3=SourceS3(
-                    bucket="s3://customer-account-info",
-                    pattern="prefix/to/**/keys/*.format",
-                    prefix="prefix/to/keys",
-                    region="us-west-2",
+                integration_name="aws-integration",
+                bucket="server-logs",
+                pattern="prefix/to/**/keys/*.format",
+                prefix="prefix/to/keys",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_create_kafka_source(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Sources.create_kafka_source(
+                collection="collection_example",
+                format_params=FormatParams(
+                    csv=CsvParams(
+                        column_names=["c1", "c2", "c3"],
+                        column_types=["BOOLEAN", "INTEGER", "FLOAT", "STRING"],
+                        encoding="UTF-8",
+                        escape_char="\\",
+                        first_line_as_column_names=True,
+                        quote_char='"',
+                        separator=",",
+                    ),
+                    json=True,
+                    mssql_dms=True,
+                    mysql_dms=True,
+                    oracle_dms=True,
+                    postgres_dms=True,
+                    xml=XmlParams(
+                        attribute_prefix="_attr",
+                        doc_tag="row",
+                        encoding="UTF-8",
+                        root_tag="root",
+                        value_tag="value",
+                    ),
                 ),
-                snowflake=SourceSnowflake(
-                    database="NASDAQ",
-                    schema="PUBLIC",
-                    table_name="COMPANIES",
-                    warehouse="COMPUTE_XL",
+                integration_name="aws-integration",
+                consumer_group_id="org-collection",
+                kafka_topic_name="example-topic",
+                offset_reset_policy="EARLIEST",
+                use_v3=True,
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_create_kinesis_source(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Sources.create_kinesis_source(
+                collection="collection_example",
+                format_params=FormatParams(
+                    csv=CsvParams(
+                        column_names=["c1", "c2", "c3"],
+                        column_types=["BOOLEAN", "INTEGER", "FLOAT", "STRING"],
+                        encoding="UTF-8",
+                        escape_char="\\",
+                        first_line_as_column_names=True,
+                        quote_char='"',
+                        separator=",",
+                    ),
+                    json=True,
+                    mssql_dms=True,
+                    mysql_dms=True,
+                    oracle_dms=True,
+                    postgres_dms=True,
+                    xml=XmlParams(
+                        attribute_prefix="_attr",
+                        doc_tag="row",
+                        encoding="UTF-8",
+                        root_tag="root",
+                        value_tag="value",
+                    ),
                 ),
-                system=SourceSystem(
-                    type="QUERY_LOGS",
+                integration_name="aws-integration",
+                aws_region="us-east-2",
+                dms_primary_key=[
+                    "string_example",
+                ],
+                offset_reset_policy="EARLIEST",
+                stream_name="click_stream",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_create_mongodb_source(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Sources.create_mongodb_source(
+                collection="collection_example",
+                format_params=FormatParams(
+                    csv=CsvParams(
+                        column_names=["c1", "c2", "c3"],
+                        column_types=["BOOLEAN", "INTEGER", "FLOAT", "STRING"],
+                        encoding="UTF-8",
+                        escape_char="\\",
+                        first_line_as_column_names=True,
+                        quote_char='"',
+                        separator=",",
+                    ),
+                    json=True,
+                    mssql_dms=True,
+                    mysql_dms=True,
+                    oracle_dms=True,
+                    postgres_dms=True,
+                    xml=XmlParams(
+                        attribute_prefix="_attr",
+                        doc_tag="row",
+                        encoding="UTF-8",
+                        root_tag="root",
+                        value_tag="value",
+                    ),
                 ),
+                integration_name="aws-integration",
+                collection_name="my_collection",
+                database_name="my_database",
+                retrieve_full_document=True,
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_create_s3_source(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Sources.create_s3_source(
+                collection="collection_example",
+                format_params=FormatParams(
+                    csv=CsvParams(
+                        column_names=["c1", "c2", "c3"],
+                        column_types=["BOOLEAN", "INTEGER", "FLOAT", "STRING"],
+                        encoding="UTF-8",
+                        escape_char="\\",
+                        first_line_as_column_names=True,
+                        quote_char='"',
+                        separator=",",
+                    ),
+                    json=True,
+                    mssql_dms=True,
+                    mysql_dms=True,
+                    oracle_dms=True,
+                    postgres_dms=True,
+                    xml=XmlParams(
+                        attribute_prefix="_attr",
+                        doc_tag="row",
+                        encoding="UTF-8",
+                        root_tag="root",
+                        value_tag="value",
+                    ),
+                ),
+                integration_name="aws-integration",
+                bucket="s3://customer-account-info",
+                pattern="prefix/to/**/keys/*.format",
+                prefix="prefix/to/keys",
+                region="us-west-2",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_create_snowflake_source(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Sources.create_snowflake_source(
+                collection="collection_example",
+                format_params=FormatParams(
+                    csv=CsvParams(
+                        column_names=["c1", "c2", "c3"],
+                        column_types=["BOOLEAN", "INTEGER", "FLOAT", "STRING"],
+                        encoding="UTF-8",
+                        escape_char="\\",
+                        first_line_as_column_names=True,
+                        quote_char='"',
+                        separator=",",
+                    ),
+                    json=True,
+                    mssql_dms=True,
+                    mysql_dms=True,
+                    oracle_dms=True,
+                    postgres_dms=True,
+                    xml=XmlParams(
+                        attribute_prefix="_attr",
+                        doc_tag="row",
+                        encoding="UTF-8",
+                        root_tag="root",
+                        value_tag="value",
+                    ),
+                ),
+                integration_name="aws-integration",
+                database="NASDAQ",
+                schema="PUBLIC",
+                table_name="COMPANIES",
+                warehouse="COMPUTE_XL",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
@@ -132,12 +386,36 @@ def test_get(get_client, mock_request, request_validator):
             validate_call(e, request_validator)
 
 
-def test_list_collection_sources(get_client, mock_request, request_validator):
+def test_list(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Sources.list_collection_sources(
+            rs.Sources.list(
                 collection="collection_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_resume(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Sources.resume(
+                collection="collection_example",
+                source="source_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_suspend(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Sources.suspend(
+                collection="collection_example",
+                source="source_example",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
