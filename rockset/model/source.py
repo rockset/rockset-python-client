@@ -30,6 +30,7 @@ from rockset.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from rockset.model.field_mapping_query import FieldMappingQuery
     from rockset.model.format_params import FormatParams
     from rockset.model.source_azure_blob_storage import SourceAzureBlobStorage
     from rockset.model.source_azure_event_hubs import SourceAzureEventHubs
@@ -44,6 +45,7 @@ def lazy_import():
     from rockset.model.source_snowflake import SourceSnowflake
     from rockset.model.source_system import SourceSystem
     from rockset.model.status import Status
+    globals()['FieldMappingQuery'] = FieldMappingQuery
     globals()['FormatParams'] = FormatParams
     globals()['SourceAzureBlobStorage'] = SourceAzureBlobStorage
     globals()['SourceAzureEventHubs'] = SourceAzureEventHubs
@@ -121,6 +123,7 @@ class Source(ModelNormal):
             'format_params': (FormatParams, none_type),  # noqa: E501
             'gcs': (SourceGcs, none_type),  # noqa: E501
             'id': (str, none_type),  # noqa: E501
+            'ingest_transformation': (FieldMappingQuery, none_type),  # noqa: E501
             'integration_name': (str, none_type),  # noqa: E501
             'kafka': (SourceKafka, none_type),  # noqa: E501
             'kinesis': (SourceKinesis, none_type),  # noqa: E501
@@ -128,6 +131,7 @@ class Source(ModelNormal):
             's3': (SourceS3, none_type),  # noqa: E501
             'snowflake': (SourceSnowflake, none_type),  # noqa: E501
             'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
+            'suspended_at': (str, none_type),  # noqa: E501
             'system': (SourceSystem, none_type),  # noqa: E501
         }
 
@@ -145,6 +149,7 @@ class Source(ModelNormal):
         'format_params': 'format_params',  # noqa: E501
         'gcs': 'gcs',  # noqa: E501
         'id': 'id',  # noqa: E501
+        'ingest_transformation': 'ingest_transformation',  # noqa: E501
         'integration_name': 'integration_name',  # noqa: E501
         'kafka': 'kafka',  # noqa: E501
         'kinesis': 'kinesis',  # noqa: E501
@@ -152,12 +157,15 @@ class Source(ModelNormal):
         's3': 's3',  # noqa: E501
         'snowflake': 'snowflake',  # noqa: E501
         'status': 'status',  # noqa: E501
+        'suspended_at': 'suspended_at',  # noqa: E501
         'system': 'system',  # noqa: E501
     }
 
     read_only_vars = {
         'file_upload',  # noqa: E501
+        'id',  # noqa: E501
         'status',  # noqa: E501
+        'suspended_at',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -206,6 +214,7 @@ class Source(ModelNormal):
             format_params (FormatParams): [optional]  # noqa: E501
             gcs (SourceGcs): [optional]  # noqa: E501
             id (str): Unique source identifier.. [optional]  # noqa: E501
+            ingest_transformation (FieldMappingQuery): [optional]  # noqa: E501
             integration_name (str): Name of integration to use.. [optional]  # noqa: E501
             kafka (SourceKafka): [optional]  # noqa: E501
             kinesis (SourceKinesis): [optional]  # noqa: E501
@@ -213,6 +222,7 @@ class Source(ModelNormal):
             s3 (SourceS3): [optional]  # noqa: E501
             snowflake (SourceSnowflake): [optional]  # noqa: E501
             status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
+            suspended_at (str): ISO-8601 date when source was suspended, if suspended. [optional]  # noqa: E501
             system (SourceSystem): [optional]  # noqa: E501
         """
 
@@ -271,7 +281,7 @@ class Source(ModelNormal):
             dynamodb (SourceDynamoDb): [optional]  # noqa: E501
             format_params (FormatParams): [optional]  # noqa: E501
             gcs (SourceGcs): [optional]  # noqa: E501
-            id (str): Unique source identifier.. [optional]  # noqa: E501
+            ingest_transformation (FieldMappingQuery): [optional]  # noqa: E501
             integration_name (str): Name of integration to use.. [optional]  # noqa: E501
             kafka (SourceKafka): [optional]  # noqa: E501
             kinesis (SourceKinesis): [optional]  # noqa: E501

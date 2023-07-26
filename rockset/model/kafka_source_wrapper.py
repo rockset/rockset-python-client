@@ -96,10 +96,10 @@ class KafkaSourceWrapper(ModelNormal):
         return {
             'format_params': (FormatParams, none_type),  # noqa: E501
             'integration_name': (str, none_type),  # noqa: E501
-            'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
             'consumer_group_id': (str, none_type),  # noqa: E501
             'kafka_topic_name': (str, none_type),  # noqa: E501
             'offset_reset_policy': (str, none_type),  # noqa: E501
+            'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
             'use_v3': (bool, none_type),  # noqa: E501
         }
 
@@ -111,10 +111,10 @@ class KafkaSourceWrapper(ModelNormal):
     attribute_map = {
         'format_params': 'format_params',  # noqa: E501
         'integration_name': 'integration_name',  # noqa: E501
-        'status': 'status',  # noqa: E501
         'consumer_group_id': 'consumer_group_id',  # noqa: E501
         'kafka_topic_name': 'kafka_topic_name',  # noqa: E501
         'offset_reset_policy': 'offset_reset_policy',  # noqa: E501
+        'status': 'status',  # noqa: E501
         'use_v3': 'use_v3',  # noqa: E501
     }
 
@@ -162,10 +162,10 @@ class KafkaSourceWrapper(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             format_params (FormatParams): [optional]  # noqa: E501
             integration_name (str): Name of integration to use.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
             consumer_group_id (str): The Kafka consumer group Id being used.. [optional]  # noqa: E501
             kafka_topic_name (str): The Kafka topic to be tailed.. [optional]  # noqa: E501
             offset_reset_policy (str): The offset reset policy.. [optional]  # noqa: E501
+            status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
             use_v3 (bool): Whether to use v3 integration.. [optional]  # noqa: E501
         """
 

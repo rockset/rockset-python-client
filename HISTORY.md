@@ -1,4 +1,6 @@
 ### v2.0.1
+    - New api changes
+### v2.0.1
     - Adding top level args override so that we can pass the request on in the request body
 
 ### v2.0.0

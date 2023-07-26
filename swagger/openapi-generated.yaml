@@ -6516,6 +6516,7 @@ paths:
       description: Retrieve all sources in a collection.
       operationId: listCollectionSources
       summary: List sources in collection
+      x-rename: list
     post:
       parameters:
         - description: name of the workspace
@@ -6853,6 +6854,232 @@ paths:
       operationId: getSource
       summary: Retrieve source
       x-rename: get
+  "/v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source}/resume":
+    post:
+      parameters:
+        - description: name of the workspace
+          in: path
+          name: workspace
+          required: true
+          schema:
+            default: commons
+            type: string
+        - description: name of the collection
+          in: path
+          name: collection
+          required: true
+          schema:
+            type: string
+        - description: id of source
+          in: path
+          name: source
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetSourceResponse"
+          description: source was resumed
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      tags:
+        - Sources
+      description: Resume source ingest
+      operationId: resumeSource
+      summary: Resume source ingest
+      x-rename: resume
+  "/v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source}/suspend":
+    post:
+      parameters:
+        - description: name of the workspace
+          in: path
+          name: workspace
+          required: true
+          schema:
+            default: commons
+            type: string
+        - description: name of the collection
+          in: path
+          name: collection
+          required: true
+          schema:
+            type: string
+        - description: id of source
+          in: path
+          name: source
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetSourceResponse"
+          description: source was suspended
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      tags:
+        - Sources
+      description: Suspend source ingest
+      operationId: suspendSource
+      summary: Suspend source ingest
+      x-rename: suspend
   "/v1/orgs/self/ws/{workspace}/lambdas":
     get:
       parameters:
@@ -9031,8 +9258,11 @@ components:
           example: "2001-08-28T00:23:41Z"
           type: string
         key:
-          description: API key string of 64 alphanumeric characters.
-          example: aB35kDjg*******************************
+          description: >-
+            This field will only be populated with the full key when creating an
+            API key. Otherwise, it will be an API key identifier of 6
+            characters.
+          example: aB35kD
           type: string
         last_access_time:
           description: Date that API key was most recently used (ISO-8601 format).
@@ -11449,7 +11679,6 @@ components:
           description: Configuration for ingestion from Azure Event Hubs.
         azure_service_bus:
           $ref: "#/components/schemas/SourceAzureServiceBus"
-          description: Configuration for ingestion from Azure Service Bus.
         dynamodb:
           $ref: "#/components/schemas/SourceDynamoDb"
           description: Configuration for ingestion from  a dynamodb table.
@@ -11466,7 +11695,11 @@ components:
         id:
           description: Unique source identifier.
           example: a1df483c-734e-485b-8005-f46386ef42f6
+          readOnly: true
           type: string
+        ingest_transformation:
+          $ref: "#/components/schemas/FieldMappingQuery"
+          description: Ingest transformation for a source.
         integration_name:
           description: Name of integration to use.
           example: aws-integration
@@ -11490,6 +11723,11 @@ components:
           $ref: "#/components/schemas/Status"
           description: The ingest status of this source.
           readOnly: true
+        suspended_at:
+          description: "ISO-8601 date when source was suspended, if suspended"
+          example: "2019-01-15T21:48:23Z"
+          readOnly: true
+          type: string
         system:
           $ref: "#/components/schemas/SourceSystem"
       type: object
@@ -11758,7 +11996,18 @@ components:
           type: string
       required:
         - bucket
-        - prefixes
+      type: object
+    SourceSnapshot:
+      properties:
+        source_collection_path:
+          description: Path of source collection to restore the snapshot from.
+          example: commons.foo
+          type: string
+        source_snapshot_id:
+          description: >-
+            Snapshot id of the snapshot that the new collection will be created
+            from.
+          type: string
       type: object
     SourceSnowflake:
       properties:
@@ -11860,7 +12109,7 @@ components:
             - PROCESSING
             - COMPLETED
             - ERROR
-            - PAUSED
+            - SUSPENDED
           example: INITIALIZING
           type: string
         total_processed_items:

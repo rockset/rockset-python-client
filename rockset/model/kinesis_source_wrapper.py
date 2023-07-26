@@ -31,9 +31,7 @@ from rockset.exceptions import ApiAttributeError
 
 def lazy_import():
     from rockset.model.format_params import FormatParams
-    from rockset.model.status import Status
     globals()['FormatParams'] = FormatParams
-    globals()['Status'] = Status
 
 
 class KinesisSourceWrapper(ModelNormal):
@@ -97,7 +95,6 @@ class KinesisSourceWrapper(ModelNormal):
             'stream_name': (str,),  # noqa: E501
             'format_params': (FormatParams, none_type),  # noqa: E501
             'integration_name': (str, none_type),  # noqa: E501
-            'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
             'aws_region': (str, none_type),  # noqa: E501
             'dms_primary_key': ([str], none_type),  # noqa: E501
             'offset_reset_policy': (str, none_type),  # noqa: E501
@@ -112,14 +109,12 @@ class KinesisSourceWrapper(ModelNormal):
         'stream_name': 'stream_name',  # noqa: E501
         'format_params': 'format_params',  # noqa: E501
         'integration_name': 'integration_name',  # noqa: E501
-        'status': 'status',  # noqa: E501
         'aws_region': 'aws_region',  # noqa: E501
         'dms_primary_key': 'dms_primary_key',  # noqa: E501
         'offset_reset_policy': 'offset_reset_policy',  # noqa: E501
     }
 
     read_only_vars = {
-        'status',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -165,7 +160,6 @@ class KinesisSourceWrapper(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             format_params (FormatParams): [optional]  # noqa: E501
             integration_name (str): Name of integration to use.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
             aws_region (str): AWS region name of Kinesis stream, by default us-west-2 is used.. [optional]  # noqa: E501
             dms_primary_key ([str]): Set of fields that correspond to a DMS primary key.. [optional]  # noqa: E501
             offset_reset_policy (str): For non-DMS streams, Rockset can tail from the earliest end or latest end of kinesis source.. [optional]  # noqa: E501

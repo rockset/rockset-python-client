@@ -14,6 +14,6 @@ from rockset.models import *
 
 def test_api_key_init():
     ApiKey(
-        key="aB35kDjg*******************************",
+        key="aB35kD",
         name="my-key",
     )

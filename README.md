@@ -105,9 +105,8 @@ for page in rockset.QueryPaginator(
     rs.Queries.query(
         sql=rockset.models.QueryRequestSql(
             query="SELECT * FROM _events LIMIT 500",
-            paginate=True,
-            initial_paginate_response_doc_count=100,
-        )
+        ),
+        max_initial_results=100,
     ),
 ):
     print(page)
@@ -140,7 +139,6 @@ Class | Method | HTTP request | Description
 *Aliases* | [**workspace_aliases**](docs/AliasesApi.md#workspace_aliases) | **GET** /v1/orgs/self/ws/{workspace}/aliases | List Aliases in Workspace
 *Collections* | [**create_azure_blob_storage_collection**](docs/CollectionsApi.md#create_azure_blob_storage_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create azure blob storage collection
 *Collections* | [**create_azure_event_hubs_collection**](docs/CollectionsApi.md#create_azure_event_hubs_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create azure event hubs collection
-*Collections* | [**create_azure_service_bus_collection**](docs/CollectionsApi.md#create_azure_service_bus_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create azure service bus collection
 *Collections* | [**create_dynamodb_collection**](docs/CollectionsApi.md#create_dynamodb_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create dynamodb collection
 *Collections* | [**create_gcs_collection**](docs/CollectionsApi.md#create_gcs_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create gcs collection
 *Collections* | [**create_kafka_collection**](docs/CollectionsApi.md#create_kafka_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create kafka collection
@@ -195,10 +193,20 @@ Class | Method | HTTP request | Description
 *QueryLambdas* | [**list_query_lambdas_in_workspace**](docs/QueryLambdasApi.md#list_query_lambdas_in_workspace) | **GET** /v1/orgs/self/ws/{workspace}/lambdas | List Query Lambdas in Workspace
 *QueryLambdas* | [**update_query_lambda**](docs/QueryLambdasApi.md#update_query_lambda) | **POST** /v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/versions | Update Query Lambda
 *SharedLambdas* | [**execute_public_query_lambda_with_params**](docs/SharedLambdasApi.md#execute_public_query_lambda_with_params) | **POST** /v1/public/shared_lambdas/{public_access_id} | Execute a Public Query Lambda
-*Sources* | [**create_source**](docs/SourcesApi.md#create_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a source
+*Sources* | [**create_azure_blob_storage_source**](docs/SourcesApi.md#create_azure_blob_storage_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a new azure blob storage source in a collection
+*Sources* | [**create_azure_event_hubs_source**](docs/SourcesApi.md#create_azure_event_hubs_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a new azure event hubs source in a collection
+*Sources* | [**create_dynamodb_source**](docs/SourcesApi.md#create_dynamodb_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a new dynamodb source in a collection
+*Sources* | [**create_gcs_source**](docs/SourcesApi.md#create_gcs_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a new gcs source in a collection
+*Sources* | [**create_kafka_source**](docs/SourcesApi.md#create_kafka_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a new kafka source in a collection
+*Sources* | [**create_kinesis_source**](docs/SourcesApi.md#create_kinesis_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a new kinesis source in a collection
+*Sources* | [**create_mongodb_source**](docs/SourcesApi.md#create_mongodb_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a new mongodb source in a collection
+*Sources* | [**create_s3_source**](docs/SourcesApi.md#create_s3_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a new s3 source in a collection
+*Sources* | [**create_snowflake_source**](docs/SourcesApi.md#create_snowflake_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a new snowflake source in a collection
 *Sources* | [**delete**](docs/SourcesApi.md#delete) | **DELETE** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source} | Delete Collection source
 *Sources* | [**get**](docs/SourcesApi.md#get) | **GET** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source} | Retrieve source
-*Sources* | [**list_collection_sources**](docs/SourcesApi.md#list_collection_sources) | **GET** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | List sources in collection
+*Sources* | [**list**](docs/SourcesApi.md#list) | **GET** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | List sources in collection
+*Sources* | [**resume**](docs/SourcesApi.md#resume) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source}/resume | Resume source ingest
+*Sources* | [**suspend**](docs/SourcesApi.md#suspend) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source}/suspend | Suspend source ingest
 *Users* | [**create**](docs/UsersApi.md#create) | **POST** /v1/orgs/self/users | Create User
 *Users* | [**delete**](docs/UsersApi.md#delete) | **DELETE** /v1/orgs/self/users/{user} | Delete User
 *Users* | [**get**](docs/UsersApi.md#get) | **GET** /v1/orgs/self/users/{user} | Retrieve User
@@ -250,9 +258,7 @@ Class | Method | HTTP request | Description
  - [AzureEventHubsIntegration](docs/AzureEventHubsIntegration.md)
  - [AzureEventHubsIntegrationCreationRequest](docs/AzureEventHubsIntegrationCreationRequest.md)
  - [AzureEventHubsSourceWrapper](docs/AzureEventHubsSourceWrapper.md)
- - [AzureServiceBusCollectionCreationRequest](docs/AzureServiceBusCollectionCreationRequest.md)
  - [AzureServiceBusIntegration](docs/AzureServiceBusIntegration.md)
- - [AzureServiceBusSourceWrapper](docs/AzureServiceBusSourceWrapper.md)
  - [BulkStats](docs/BulkStats.md)
  - [CancelQueryResponse](docs/CancelQueryResponse.md)
  - [Cluster](docs/Cluster.md)
@@ -403,6 +409,7 @@ Class | Method | HTTP request | Description
  - [SourceKinesis](docs/SourceKinesis.md)
  - [SourceMongoDb](docs/SourceMongoDb.md)
  - [SourceS3](docs/SourceS3.md)
+ - [SourceSnapshot](docs/SourceSnapshot.md)
  - [SourceSnowflake](docs/SourceSnowflake.md)
  - [SourceSystem](docs/SourceSystem.md)
  - [SqlExpression](docs/SqlExpression.md)

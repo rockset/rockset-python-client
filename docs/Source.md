@@ -12,7 +12,8 @@ Name | Type | Description | Notes
 **file_upload** | **bool, date, datetime, dict, float, int, list, str, none_type** |  | [optional] [readonly] 
 **format_params** | [**FormatParams**](FormatParams.md) |  | [optional] 
 **gcs** | [**SourceGcs**](SourceGcs.md) |  | [optional] 
-**id** | **str** | Unique source identifier. | [optional] 
+**id** | **str** | Unique source identifier. | [optional] [readonly] 
+**ingest_transformation** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional] 
 **integration_name** | **str** | Name of integration to use. | [optional] 
 **kafka** | [**SourceKafka**](SourceKafka.md) |  | [optional] 
 **kinesis** | [**SourceKinesis**](SourceKinesis.md) |  | [optional] 
@@ -20,6 +21,7 @@ Name | Type | Description | Notes
 **s3** | [**SourceS3**](SourceS3.md) |  | [optional] 
 **snowflake** | [**SourceSnowflake**](SourceSnowflake.md) |  | [optional] 
 **status** | **bool, date, datetime, dict, float, int, list, str, none_type** |  | [optional] [readonly] 
+**suspended_at** | **str** | ISO-8601 date when source was suspended, if suspended | [optional] [readonly] 
 **system** | [**SourceSystem**](SourceSystem.md) |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 

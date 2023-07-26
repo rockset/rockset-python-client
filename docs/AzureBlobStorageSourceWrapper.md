@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **format_params** | [**FormatParams**](FormatParams.md) |  | [optional] 
 **integration_name** | **str** | Name of integration to use. | [optional] 
-**status** | **bool, date, datetime, dict, float, int, list, str, none_type** |  | [optional] [readonly] 
 **blob_bytes_total** | **int** |  | [optional] [readonly] 
 **blob_count_downloaded** | **int** |  | [optional] [readonly] 
 **blob_count_total** | **int** |  | [optional] [readonly] 

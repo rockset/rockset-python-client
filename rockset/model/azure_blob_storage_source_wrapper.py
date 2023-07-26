@@ -31,9 +31,7 @@ from rockset.exceptions import ApiAttributeError
 
 def lazy_import():
     from rockset.model.format_params import FormatParams
-    from rockset.model.status import Status
     globals()['FormatParams'] = FormatParams
-    globals()['Status'] = Status
 
 
 class AzureBlobStorageSourceWrapper(ModelNormal):
@@ -92,7 +90,6 @@ class AzureBlobStorageSourceWrapper(ModelNormal):
         return {
             'format_params': (FormatParams, none_type),  # noqa: E501
             'integration_name': (str, none_type),  # noqa: E501
-            'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
             'blob_bytes_total': (int, none_type),  # noqa: E501
             'blob_count_downloaded': (int, none_type),  # noqa: E501
             'blob_count_total': (int, none_type),  # noqa: E501
@@ -109,7 +106,6 @@ class AzureBlobStorageSourceWrapper(ModelNormal):
     attribute_map = {
         'format_params': 'format_params',  # noqa: E501
         'integration_name': 'integration_name',  # noqa: E501
-        'status': 'status',  # noqa: E501
         'blob_bytes_total': 'blob_bytes_total',  # noqa: E501
         'blob_count_downloaded': 'blob_count_downloaded',  # noqa: E501
         'blob_count_total': 'blob_count_total',  # noqa: E501
@@ -119,7 +115,6 @@ class AzureBlobStorageSourceWrapper(ModelNormal):
     }
 
     read_only_vars = {
-        'status',  # noqa: E501
         'blob_bytes_total',  # noqa: E501
         'blob_count_downloaded',  # noqa: E501
         'blob_count_total',  # noqa: E501
@@ -165,7 +160,6 @@ class AzureBlobStorageSourceWrapper(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             format_params (FormatParams): [optional]  # noqa: E501
             integration_name (str): Name of integration to use.. [optional]  # noqa: E501
-            status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
             blob_bytes_total (int): [optional]  # noqa: E501
             blob_count_downloaded (int): [optional]  # noqa: E501
             blob_count_total (int): [optional]  # noqa: E501

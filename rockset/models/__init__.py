@@ -25,9 +25,7 @@ from rockset.model.azure_event_hubs_collection_creation_request import AzureEven
 from rockset.model.azure_event_hubs_integration import AzureEventHubsIntegration
 from rockset.model.azure_event_hubs_integration_creation_request import AzureEventHubsIntegrationCreationRequest
 from rockset.model.azure_event_hubs_source_wrapper import AzureEventHubsSourceWrapper
-from rockset.model.azure_service_bus_collection_creation_request import AzureServiceBusCollectionCreationRequest
 from rockset.model.azure_service_bus_integration import AzureServiceBusIntegration
-from rockset.model.azure_service_bus_source_wrapper import AzureServiceBusSourceWrapper
 from rockset.model.bulk_stats import BulkStats
 from rockset.model.cancel_query_response import CancelQueryResponse
 from rockset.model.cluster import Cluster
@@ -178,6 +176,7 @@ from rockset.model.source_kafka import SourceKafka
 from rockset.model.source_kinesis import SourceKinesis
 from rockset.model.source_mongo_db import SourceMongoDb
 from rockset.model.source_s3 import SourceS3
+from rockset.model.source_snapshot import SourceSnapshot
 from rockset.model.source_snowflake import SourceSnowflake
 from rockset.model.source_system import SourceSystem
 from rockset.model.sql_expression import SqlExpression
