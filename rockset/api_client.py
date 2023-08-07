@@ -97,6 +97,9 @@ class ApiClient(object):
     def user_agent(self, value):
         self.default_headers['User-Agent'] = value
 
+    def set_application(self, value):
+        self.default_headers['User-Agent'] = self.user_agent if not value else self.user_agent + ':' + value
+
     def set_default_header(self, header_name, header_value):
         self.default_headers[header_name] = header_value
 

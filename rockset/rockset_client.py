@@ -272,6 +272,9 @@ class RocksetClient:
         self.VirtualInstances = VirtualInstancesApiWrapper(self.api_client)
         self.Workspaces = WorkspacesApiWrapper(self.api_client)
 
+    def set_application(self, value):
+        self.api_client.set_application(value)
+
     def sql(self, query: str, params: Dict[str, Any] = None) -> QueryResponse:
         """Convenience method for making queries."""
         if params is not None:
