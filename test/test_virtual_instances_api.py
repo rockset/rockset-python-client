@@ -123,7 +123,6 @@ def test_query_virtual_instance(get_client, mock_request, request_validator):
                 max_initial_results=1,
                 sql=QueryRequestSql(
                     default_row_limit=1,
-                    generate_warnings=False,
                     initial_paginate_response_doc_count=1,
                     parameters=[
                         QueryParameter(

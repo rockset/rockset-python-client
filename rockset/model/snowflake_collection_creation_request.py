@@ -106,6 +106,7 @@ class SnowflakeCollectionCreationRequest(ModelNormal):
             'event_time_info': (EventTimeInfo, none_type),  # noqa: E501
             'field_mapping_query': (FieldMappingQuery, none_type),  # noqa: E501
             'retention_secs': (int, none_type),  # noqa: E501
+            'source_download_soft_limit_bytes': (int, none_type),  # noqa: E501
             'sources': ([SnowflakeSourceWrapper], none_type),  # noqa: E501
             'storage_compression_type': (str, none_type),  # noqa: E501
         }
@@ -122,6 +123,7 @@ class SnowflakeCollectionCreationRequest(ModelNormal):
         'event_time_info': 'event_time_info',  # noqa: E501
         'field_mapping_query': 'field_mapping_query',  # noqa: E501
         'retention_secs': 'retention_secs',  # noqa: E501
+        'source_download_soft_limit_bytes': 'source_download_soft_limit_bytes',  # noqa: E501
         'sources': 'sources',  # noqa: E501
         'storage_compression_type': 'storage_compression_type',  # noqa: E501
     }
@@ -175,6 +177,7 @@ class SnowflakeCollectionCreationRequest(ModelNormal):
             event_time_info (EventTimeInfo): [optional]  # noqa: E501
             field_mapping_query (FieldMappingQuery): [optional]  # noqa: E501
             retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]  # noqa: E501
+            source_download_soft_limit_bytes (int): Soft ingest limit for this collection.. [optional]  # noqa: E501
             sources ([SnowflakeSourceWrapper]): List of sources from which to ingest data. [optional]  # noqa: E501
             storage_compression_type (str): RocksDB storage compression type.. [optional]  # noqa: E501
         """
@@ -235,6 +238,7 @@ class SnowflakeCollectionCreationRequest(ModelNormal):
             event_time_info (EventTimeInfo): [optional]  # noqa: E501
             field_mapping_query (FieldMappingQuery): [optional]  # noqa: E501
             retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]  # noqa: E501
+            source_download_soft_limit_bytes (int): Soft ingest limit for this collection.. [optional]  # noqa: E501
             sources ([SnowflakeSourceWrapper]): List of sources from which to ingest data. [optional]  # noqa: E501
             storage_compression_type (str): RocksDB storage compression type.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types

@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional] 
 **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | [optional] 
 **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional] 
+**source_download_soft_limit_bytes** | **int** | Soft ingest limit for this collection. | [optional] 
 **storage_compression_type** | **str** | RocksDB storage compression type. | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 

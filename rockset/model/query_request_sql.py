@@ -89,7 +89,6 @@ class QueryRequestSql(ModelNormal):
         return {
             'query': (str,),  # noqa: E501
             'default_row_limit': (int, none_type),  # noqa: E501
-            'generate_warnings': (bool, none_type),  # noqa: E501
             'initial_paginate_response_doc_count': (int, none_type),  # noqa: E501
             'parameters': ([QueryParameter], none_type),  # noqa: E501
         }
@@ -102,7 +101,6 @@ class QueryRequestSql(ModelNormal):
     attribute_map = {
         'query': 'query',  # noqa: E501
         'default_row_limit': 'default_row_limit',  # noqa: E501
-        'generate_warnings': 'generate_warnings',  # noqa: E501
         'initial_paginate_response_doc_count': 'initial_paginate_response_doc_count',  # noqa: E501
         'parameters': 'parameters',  # noqa: E501
     }
@@ -152,7 +150,6 @@ class QueryRequestSql(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             default_row_limit (int): Row limit to use. Limits specified in the query text will override this default.. [optional]  # noqa: E501
-            generate_warnings (bool): Flag to enable warnings. Warnings can help debug query issues but negatively affect performance.. [optional]  # noqa: E501
             initial_paginate_response_doc_count (int): [DEPRECATED] Use `max_initial_results` instead. Number of documents to return in addition to paginating for this query call. Only relevant if `paginate` flag is also set.. [optional]  # noqa: E501
             parameters ([QueryParameter]): List of named parameters.. [optional]  # noqa: E501
         """
@@ -209,7 +206,6 @@ class QueryRequestSql(ModelNormal):
         Keyword Args:
             query (str): SQL query string.
             default_row_limit (int): Row limit to use. Limits specified in the query text will override this default.. [optional]  # noqa: E501
-            generate_warnings (bool): Flag to enable warnings. Warnings can help debug query issues but negatively affect performance.. [optional]  # noqa: E501
             initial_paginate_response_doc_count (int): [DEPRECATED] Use `max_initial_results` instead. Number of documents to return in addition to paginating for this query call. Only relevant if `paginate` flag is also set.. [optional]  # noqa: E501
             parameters ([QueryParameter]): List of named parameters.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types

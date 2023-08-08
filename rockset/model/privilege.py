@@ -105,6 +105,8 @@ class Privilege(ModelNormal):
             'UPDATE_VI': "UPDATE_VI",
             'SUSPEND_RESUME_VI': "SUSPEND_RESUME_VI",
             'DELETE_VI': "DELETE_VI",
+            'CREATE_SIMILARITY_INDEX_WS': "CREATE_SIMILARITY_INDEX_WS",
+            'DELETE_SIMILARITY_INDEX_WS': "DELETE_SIMILARITY_INDEX_WS",
         },
     }
 

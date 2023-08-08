@@ -89,6 +89,9 @@ from rockset.model.gcs_integration_creation_request import GcsIntegrationCreatio
 from rockset.model.gcs_source_wrapper import GcsSourceWrapper
 from rockset.model.get_alias_response import GetAliasResponse
 from rockset.model.get_api_key_response import GetApiKeyResponse
+from rockset.model.get_collection_commit import GetCollectionCommit
+from rockset.model.get_collection_commit_data import GetCollectionCommitData
+from rockset.model.get_collection_commit_request import GetCollectionCommitRequest
 from rockset.model.get_collection_response import GetCollectionResponse
 from rockset.model.get_integration_response import GetIntegrationResponse
 from rockset.model.get_query_response import GetQueryResponse
@@ -127,6 +130,7 @@ from rockset.model.mongo_db_integration import MongoDbIntegration
 from rockset.model.mongodb_collection_creation_request import MongodbCollectionCreationRequest
 from rockset.model.mongodb_integration_creation_request import MongodbIntegrationCreationRequest
 from rockset.model.mongodb_source_wrapper import MongodbSourceWrapper
+from rockset.model.offsets import Offsets
 from rockset.model.organization import Organization
 from rockset.model.organization_response import OrganizationResponse
 from rockset.model.output_field import OutputField

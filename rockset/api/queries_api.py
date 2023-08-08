@@ -740,7 +740,6 @@ class Queries(object):
             max_initial_results=1,
             sql=QueryRequestSql(
                 default_row_limit=1,
-                generate_warnings=False,
                 initial_paginate_response_doc_count=1,
                 parameters=[
                     QueryParameter(
@@ -856,7 +855,6 @@ class Queries(object):
             max_initial_results=1,
             sql=QueryRequestSql(
                 default_row_limit=1,
-                generate_warnings=False,
                 initial_paginate_response_doc_count=1,
                 parameters=[
                     QueryParameter(

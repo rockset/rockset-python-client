@@ -57,7 +57,6 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **public_access_id** | **str** | public access ID of the query lambda |
  **default_row_limit** | **int** | Row limit to use if no limit specified in the SQL query text. | [optional]
- **generate_warnings** | **bool** | Whether to generate warnings. | [optional]
  **parameters** | [**[QueryParameter]**](QueryParameter.md) | List of named parameters. | [optional]
 
 
