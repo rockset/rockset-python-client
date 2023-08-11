@@ -12,18 +12,5 @@ import sys
 from rockset.models import *
 
 
-def test_query_request_init():
-    QueryRequest(
-        sql=QueryRequestSql(
-            default_row_limit=1,
-            initial_paginate_response_doc_count=1,
-            parameters=[
-                QueryParameter(
-                    name="_id",
-                    type="string",
-                    value="85beb391",
-                ),
-            ],
-            query="SELECT * FROM foo where _id = :_id",
-        ),
-    )
+def test_get_collection_commit_data_init():
+    GetCollectionCommitData()

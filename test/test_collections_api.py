@@ -39,6 +39,7 @@ def test_create_azure_blob_storage_collection(
                 ),
                 name="global-transactions",
                 retention_secs=1000000,
+                source_download_soft_limit_bytes=1,
                 sources=[
                     AzureBlobStorageSourceWrapper(
                         format_params=FormatParams(
@@ -101,6 +102,7 @@ def test_create_azure_event_hubs_collection(
                 ),
                 name="global-transactions",
                 retention_secs=1000000,
+                source_download_soft_limit_bytes=1,
                 sources=[
                     AzureEventHubsSourceWrapper(
                         format_params=FormatParams(
@@ -160,6 +162,7 @@ def test_create_dynamodb_collection(get_client, mock_request, request_validator)
                 ),
                 name="global-transactions",
                 retention_secs=1000000,
+                source_download_soft_limit_bytes=1,
                 sources=[
                     DynamodbSourceWrapper(
                         format_params=FormatParams(
@@ -221,6 +224,7 @@ def test_create_gcs_collection(get_client, mock_request, request_validator):
                 ),
                 name="global-transactions",
                 retention_secs=1000000,
+                source_download_soft_limit_bytes=1,
                 sources=[
                     GcsSourceWrapper(
                         format_params=FormatParams(
@@ -281,6 +285,7 @@ def test_create_kafka_collection(get_client, mock_request, request_validator):
                 ),
                 name="global-transactions",
                 retention_secs=1000000,
+                source_download_soft_limit_bytes=1,
                 sources=[
                     KafkaSourceWrapper(
                         format_params=FormatParams(
@@ -342,6 +347,7 @@ def test_create_kinesis_collection(get_client, mock_request, request_validator):
                 ),
                 name="global-transactions",
                 retention_secs=1000000,
+                source_download_soft_limit_bytes=1,
                 sources=[
                     KinesisSourceWrapper(
                         format_params=FormatParams(
@@ -405,6 +411,7 @@ def test_create_mongodb_collection(get_client, mock_request, request_validator):
                 ),
                 name="global-transactions",
                 retention_secs=1000000,
+                source_download_soft_limit_bytes=1,
                 sources=[
                     MongodbSourceWrapper(
                         format_params=FormatParams(
@@ -465,6 +472,7 @@ def test_create_s3_collection(get_client, mock_request, request_validator):
                 ),
                 name="global-transactions",
                 retention_secs=1000000,
+                source_download_soft_limit_bytes=1,
                 sources=[
                     S3SourceWrapper(
                         format_params=FormatParams(
@@ -526,6 +534,7 @@ def test_create_snowflake_collection(get_client, mock_request, request_validator
                 ),
                 name="global-transactions",
                 retention_secs=1000000,
+                source_download_soft_limit_bytes=1,
                 sources=[
                     SnowflakeSourceWrapper(
                         format_params=FormatParams(
@@ -586,16 +595,13 @@ def test_get(get_client, mock_request, request_validator):
             validate_call(e, request_validator)
 
 
-def test_get_0(get_client, mock_request, request_validator):
+def test_get_collection_offsets(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Collections.get_0(
+            rs.Collections.get_collection_offsets(
                 collection="collection_example",
-                description="transactions from stores worldwide",
-                field_mapping_query=FieldMappingQuery(
-                    sql="sql",
-                ),
+                name=["f1:0:14:9:7092", "f1:0:14:9:7093"],
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
@@ -606,6 +612,21 @@ def test_list(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Collections.list()
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_update(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Collections.update(
+                collection="collection_example",
+                description="transactions from stores worldwide",
+                field_mapping_query=FieldMappingQuery(
+                    sql="sql",
+                ),
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)
 

@@ -742,7 +742,6 @@ api_response = rs.VirtualInstances.query_virtual_instance(
     virtual_instance_id="virtualInstanceId_example",
     sql=QueryRequestSql(
         default_row_limit=1,
-        generate_warnings=False,
         initial_paginate_response_doc_count=1,
         parameters=[
             QueryParameter(
@@ -774,7 +773,6 @@ api_response = await rs.VirtualInstances.query_virtual_instance(
     max_initial_results=1,
     sql=QueryRequestSql(
         default_row_limit=1,
-        generate_warnings=False,
         initial_paginate_response_doc_count=1,
         parameters=[
             QueryParameter(

@@ -88,7 +88,6 @@ class ExecutePublicQueryLambdaRequest(ModelNormal):
         lazy_import()
         return {
             'default_row_limit': (int, none_type),  # noqa: E501
-            'generate_warnings': (bool, none_type),  # noqa: E501
             'parameters': ([QueryParameter], none_type),  # noqa: E501
         }
 
@@ -99,7 +98,6 @@ class ExecutePublicQueryLambdaRequest(ModelNormal):
 
     attribute_map = {
         'default_row_limit': 'default_row_limit',  # noqa: E501
-        'generate_warnings': 'generate_warnings',  # noqa: E501
         'parameters': 'parameters',  # noqa: E501
     }
 
@@ -145,7 +143,6 @@ class ExecutePublicQueryLambdaRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             default_row_limit (int): Row limit to use if no limit specified in the SQL query text.. [optional]  # noqa: E501
-            generate_warnings (bool): Whether to generate warnings.. [optional]  # noqa: E501
             parameters ([QueryParameter]): List of named parameters.. [optional]  # noqa: E501
         """
 
@@ -199,7 +196,6 @@ class ExecutePublicQueryLambdaRequest(ModelNormal):
 
         Keyword Args:
             default_row_limit (int): Row limit to use if no limit specified in the SQL query text.. [optional]  # noqa: E501
-            generate_warnings (bool): Whether to generate warnings.. [optional]  # noqa: E501
             parameters ([QueryParameter]): List of named parameters.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be

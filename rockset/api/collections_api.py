@@ -31,6 +31,8 @@ from rockset.model.delete_collection_response import DeleteCollectionResponse
 from rockset.model.dynamodb_collection_creation_request import DynamodbCollectionCreationRequest
 from rockset.model.error_model import ErrorModel
 from rockset.model.gcs_collection_creation_request import GcsCollectionCreationRequest
+from rockset.model.get_collection_commit import GetCollectionCommit
+from rockset.model.get_collection_commit_request import GetCollectionCommitRequest
 from rockset.model.get_collection_response import GetCollectionResponse
 from rockset.model.kafka_collection_creation_request import KafkaCollectionCreationRequest
 from rockset.model.kinesis_collection_creation_request import KinesisCollectionCreationRequest
@@ -680,22 +682,22 @@ class Collections(object):
             },
             api_client=api_client
         )
-        self.get_0_endpoint = _Endpoint(
+        self.get_collection_offsets_endpoint = _Endpoint(
             settings={
-                'response_type': (GetCollectionResponse,),
+                'response_type': (GetCollectionCommit,),
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}',
-                'operation_id': 'get_0',
-                'http_method': 'PUT',
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}/offsets/commit',
+                'operation_id': 'get_collection_offsets',
+                'http_method': 'POST',
                 'servers': None,
             },
             params_map={
                 'all': [
                     'workspace',
                     'collection',
-                    'update_collection_request',
+                    'get_collection_commit_request',
                 ],
                 'required': [
                     'workspace',
@@ -718,8 +720,8 @@ class Collections(object):
                         (str,),
                     'collection':
                         (str,),
-                    'update_collection_request':
-                        (UpdateCollectionRequest,),
+                    'get_collection_commit_request':
+                        (GetCollectionCommitRequest,),
                 },
                 'attribute_map': {
                     'workspace': 'workspace',
@@ -728,7 +730,7 @@ class Collections(object):
                 'location_map': {
                     'workspace': 'path',
                     'collection': 'path',
-                    'update_collection_request': 'body',
+                    'get_collection_commit_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -784,6 +786,69 @@ class Collections(object):
                     'application/json'
                 ],
                 'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.update_endpoint = _Endpoint(
+            settings={
+                'response_type': (GetCollectionResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}',
+                'operation_id': 'update',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'workspace',
+                    'collection',
+                    'update_collection_request',
+                ],
+                'required': [
+                    'workspace',
+                    'collection',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'workspace':
+                        (str,),
+                    'collection':
+                        (str,),
+                    'update_collection_request':
+                        (UpdateCollectionRequest,),
+                },
+                'attribute_map': {
+                    'workspace': 'workspace',
+                    'collection': 'collection',
+                },
+                'location_map': {
+                    'workspace': 'path',
+                    'collection': 'path',
+                    'update_collection_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
             },
             api_client=api_client
         )
@@ -848,6 +913,7 @@ class Collections(object):
         event_time_info: EventTimeInfo = None,
         field_mapping_query: FieldMappingQuery = None,
         retention_secs: int = None,
+        source_download_soft_limit_bytes: int = None,
         sources: typing.Sequence[AzureBlobStorageSourceWrapper] = None,
         storage_compression_type: str = None,
         workspace = "commons",
@@ -880,6 +946,7 @@ class Collections(object):
             ),
             name="global-transactions",
             retention_secs=1000000,
+            source_download_soft_limit_bytes=1,
             sources=[
                 AzureBlobStorageSourceWrapper(
                     format_params=FormatParams(
@@ -925,6 +992,7 @@ class Collections(object):
             field_mapping_query (FieldMappingQuery): [optional]
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
             retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
+            source_download_soft_limit_bytes (int): Soft ingest limit for this collection.. [optional]
             sources ([AzureBlobStorageSourceWrapper]): List of sources from which to ingest data. [optional]
             storage_compression_type (str): RocksDB storage compression type.. [optional]
             _return_http_data_only (bool): response data without head status
@@ -1000,6 +1068,7 @@ class Collections(object):
         event_time_info: EventTimeInfo = None,
         field_mapping_query: FieldMappingQuery = None,
         retention_secs: int = None,
+        source_download_soft_limit_bytes: int = None,
         sources: typing.Sequence[AzureEventHubsSourceWrapper] = None,
         storage_compression_type: str = None,
         workspace = "commons",
@@ -1032,6 +1101,7 @@ class Collections(object):
             ),
             name="global-transactions",
             retention_secs=1000000,
+            source_download_soft_limit_bytes=1,
             sources=[
                 AzureEventHubsSourceWrapper(
                     format_params=FormatParams(
@@ -1076,6 +1146,7 @@ class Collections(object):
             field_mapping_query (FieldMappingQuery): [optional]
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
             retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
+            source_download_soft_limit_bytes (int): Soft ingest limit for this collection.. [optional]
             sources ([AzureEventHubsSourceWrapper]): List of sources from which to ingest data. [optional]
             storage_compression_type (str): RocksDB storage compression type.. [optional]
             _return_http_data_only (bool): response data without head status
@@ -1151,6 +1222,7 @@ class Collections(object):
         event_time_info: EventTimeInfo = None,
         field_mapping_query: FieldMappingQuery = None,
         retention_secs: int = None,
+        source_download_soft_limit_bytes: int = None,
         sources: typing.Sequence[DynamodbSourceWrapper] = None,
         storage_compression_type: str = None,
         workspace = "commons",
@@ -1183,6 +1255,7 @@ class Collections(object):
             ),
             name="global-transactions",
             retention_secs=1000000,
+            source_download_soft_limit_bytes=1,
             sources=[
                 DynamodbSourceWrapper(
                     format_params=FormatParams(
@@ -1229,6 +1302,7 @@ class Collections(object):
             field_mapping_query (FieldMappingQuery): [optional]
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
             retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
+            source_download_soft_limit_bytes (int): Soft ingest limit for this collection.. [optional]
             sources ([DynamodbSourceWrapper]): List of sources from which to ingest data. [optional]
             storage_compression_type (str): RocksDB storage compression type.. [optional]
             _return_http_data_only (bool): response data without head status
@@ -1304,6 +1378,7 @@ class Collections(object):
         event_time_info: EventTimeInfo = None,
         field_mapping_query: FieldMappingQuery = None,
         retention_secs: int = None,
+        source_download_soft_limit_bytes: int = None,
         sources: typing.Sequence[GcsSourceWrapper] = None,
         storage_compression_type: str = None,
         workspace = "commons",
@@ -1336,6 +1411,7 @@ class Collections(object):
             ),
             name="global-transactions",
             retention_secs=1000000,
+            source_download_soft_limit_bytes=1,
             sources=[
                 GcsSourceWrapper(
                     format_params=FormatParams(
@@ -1381,6 +1457,7 @@ class Collections(object):
             field_mapping_query (FieldMappingQuery): [optional]
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
             retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
+            source_download_soft_limit_bytes (int): Soft ingest limit for this collection.. [optional]
             sources ([GcsSourceWrapper]): List of sources from which to ingest data. [optional]
             storage_compression_type (str): RocksDB storage compression type.. [optional]
             _return_http_data_only (bool): response data without head status
@@ -1456,6 +1533,7 @@ class Collections(object):
         event_time_info: EventTimeInfo = None,
         field_mapping_query: FieldMappingQuery = None,
         retention_secs: int = None,
+        source_download_soft_limit_bytes: int = None,
         sources: typing.Sequence[KafkaSourceWrapper] = None,
         storage_compression_type: str = None,
         workspace = "commons",
@@ -1488,6 +1566,7 @@ class Collections(object):
             ),
             name="global-transactions",
             retention_secs=1000000,
+            source_download_soft_limit_bytes=1,
             sources=[
                 KafkaSourceWrapper(
                     format_params=FormatParams(
@@ -1534,6 +1613,7 @@ class Collections(object):
             field_mapping_query (FieldMappingQuery): [optional]
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
             retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
+            source_download_soft_limit_bytes (int): Soft ingest limit for this collection.. [optional]
             sources ([KafkaSourceWrapper]): List of sources from which to ingest data. [optional]
             storage_compression_type (str): RocksDB storage compression type.. [optional]
             _return_http_data_only (bool): response data without head status
@@ -1609,6 +1689,7 @@ class Collections(object):
         event_time_info: EventTimeInfo = None,
         field_mapping_query: FieldMappingQuery = None,
         retention_secs: int = None,
+        source_download_soft_limit_bytes: int = None,
         sources: typing.Sequence[KinesisSourceWrapper] = None,
         storage_compression_type: str = None,
         workspace = "commons",
@@ -1641,6 +1722,7 @@ class Collections(object):
             ),
             name="global-transactions",
             retention_secs=1000000,
+            source_download_soft_limit_bytes=1,
             sources=[
                 KinesisSourceWrapper(
                     format_params=FormatParams(
@@ -1689,6 +1771,7 @@ class Collections(object):
             field_mapping_query (FieldMappingQuery): [optional]
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
             retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
+            source_download_soft_limit_bytes (int): Soft ingest limit for this collection.. [optional]
             sources ([KinesisSourceWrapper]): List of sources from which to ingest data. [optional]
             storage_compression_type (str): RocksDB storage compression type.. [optional]
             _return_http_data_only (bool): response data without head status
@@ -1764,6 +1847,7 @@ class Collections(object):
         event_time_info: EventTimeInfo = None,
         field_mapping_query: FieldMappingQuery = None,
         retention_secs: int = None,
+        source_download_soft_limit_bytes: int = None,
         sources: typing.Sequence[MongodbSourceWrapper] = None,
         storage_compression_type: str = None,
         workspace = "commons",
@@ -1796,6 +1880,7 @@ class Collections(object):
             ),
             name="global-transactions",
             retention_secs=1000000,
+            source_download_soft_limit_bytes=1,
             sources=[
                 MongodbSourceWrapper(
                     format_params=FormatParams(
@@ -1841,6 +1926,7 @@ class Collections(object):
             field_mapping_query (FieldMappingQuery): [optional]
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
             retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
+            source_download_soft_limit_bytes (int): Soft ingest limit for this collection.. [optional]
             sources ([MongodbSourceWrapper]): List of sources from which to ingest data. [optional]
             storage_compression_type (str): RocksDB storage compression type.. [optional]
             _return_http_data_only (bool): response data without head status
@@ -1916,6 +2002,7 @@ class Collections(object):
         event_time_info: EventTimeInfo = None,
         field_mapping_query: FieldMappingQuery = None,
         retention_secs: int = None,
+        source_download_soft_limit_bytes: int = None,
         sources: typing.Sequence[S3SourceWrapper] = None,
         storage_compression_type: str = None,
         workspace = "commons",
@@ -1948,6 +2035,7 @@ class Collections(object):
             ),
             name="global-transactions",
             retention_secs=1000000,
+            source_download_soft_limit_bytes=1,
             sources=[
                 S3SourceWrapper(
                     format_params=FormatParams(
@@ -1994,6 +2082,7 @@ class Collections(object):
             field_mapping_query (FieldMappingQuery): [optional]
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
             retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
+            source_download_soft_limit_bytes (int): Soft ingest limit for this collection.. [optional]
             sources ([S3SourceWrapper]): List of sources from which to ingest data. [optional]
             storage_compression_type (str): RocksDB storage compression type.. [optional]
             _return_http_data_only (bool): response data without head status
@@ -2069,6 +2158,7 @@ class Collections(object):
         event_time_info: EventTimeInfo = None,
         field_mapping_query: FieldMappingQuery = None,
         retention_secs: int = None,
+        source_download_soft_limit_bytes: int = None,
         sources: typing.Sequence[SnowflakeSourceWrapper] = None,
         storage_compression_type: str = None,
         workspace = "commons",
@@ -2101,6 +2191,7 @@ class Collections(object):
             ),
             name="global-transactions",
             retention_secs=1000000,
+            source_download_soft_limit_bytes=1,
             sources=[
                 SnowflakeSourceWrapper(
                     format_params=FormatParams(
@@ -2147,6 +2238,7 @@ class Collections(object):
             field_mapping_query (FieldMappingQuery): [optional]
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
             retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
+            source_download_soft_limit_bytes (int): Soft ingest limit for this collection.. [optional]
             sources ([SnowflakeSourceWrapper]): List of sources from which to ingest data. [optional]
             storage_compression_type (str): RocksDB storage compression type.. [optional]
             _return_http_data_only (bool): response data without head status
@@ -2391,29 +2483,25 @@ class Collections(object):
             collection
         return self.get_endpoint.call_with_http_info(**kwargs)
 
-    def get_0(
+    def get_collection_offsets(
         self,
         *,
         collection: str,
-        description: str = None,
-        field_mapping_query: FieldMappingQuery = None,
+        name: typing.Sequence[str] = None,
         workspace = "commons",
         **kwargs
-    ) -> typing.Union[GetCollectionResponse, asyncio.Future]:
-        """Update Collection  # noqa: E501
+    ) -> typing.Union[GetCollectionCommit, asyncio.Future]:
+        """Get Collection Commit  # noqa: E501
 
-        Update details about a collection.  # noqa: E501
+        Determines if the collection includes data at or after the specified fence(s) for close read-after-write semantics.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Collections.get_0(
+        future = rs.Collections.get_collection_offsets(
             collection="collection_example",
-            description="transactions from stores worldwide",
-            field_mapping_query=FieldMappingQuery(
-                sql="sql",
-            ),
+            name=["f1:0:14:9:7092","f1:0:14:9:7093"],
             async_req=True,
         )
         result = await future
@@ -2422,8 +2510,7 @@ class Collections(object):
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
             collection (str): name of the collection. [required]
-            description (str): Updated text describing the collection.. [optional]
-            field_mapping_query (FieldMappingQuery): [optional]
+            name ([str]): a list of zero or more collection offset fences. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2455,7 +2542,7 @@ class Collections(object):
             async_req (bool): execute request asynchronously
 
         Returns:
-            GetCollectionResponse
+            GetCollectionCommit
                 If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
         """
         kwargs['async_req'] = kwargs.get(
@@ -2486,9 +2573,9 @@ class Collections(object):
             workspace
         kwargs['collection'] = \
             collection
-        kwargs['update_collection_request'] = \
-            kwargs['update_collection_request']
-        return self.get_0_endpoint.call_with_http_info(**kwargs)
+        kwargs['get_collection_commit_request'] = \
+            kwargs['get_collection_commit_request']
+        return self.get_collection_offsets_endpoint.call_with_http_info(**kwargs)
 
     def list(
         self,
@@ -2568,6 +2655,105 @@ class Collections(object):
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
         return self.list_endpoint.call_with_http_info(**kwargs)
+
+    def update(
+        self,
+        *,
+        collection: str,
+        description: str = None,
+        field_mapping_query: FieldMappingQuery = None,
+        workspace = "commons",
+        **kwargs
+    ) -> typing.Union[GetCollectionResponse, asyncio.Future]:
+        """Update Collection  # noqa: E501
+
+        Update details about a collection.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Collections.update(
+            collection="collection_example",
+            description="transactions from stores worldwide",
+            field_mapping_query=FieldMappingQuery(
+                sql="sql",
+            ),
+            async_req=True,
+        )
+        result = await future
+        ```
+
+        Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            collection (str): name of the collection. [required]
+            description (str): Updated text describing the collection.. [optional]
+            field_mapping_query (FieldMappingQuery): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GetCollectionResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['workspace'] = \
+            workspace
+        kwargs['collection'] = \
+            collection
+        kwargs['update_collection_request'] = \
+            kwargs['update_collection_request']
+        return self.update_endpoint.call_with_http_info(**kwargs)
 
     def workspace_collections(
         self,
@@ -2674,5 +2860,7 @@ class Collections(object):
     return_types_dict['create_s3_collection'] = S3CollectionCreationRequest
     body_params_dict['create_snowflake_collection'] = 'snowflake_collection_creation_request'
     return_types_dict['create_snowflake_collection'] = SnowflakeCollectionCreationRequest
-    body_params_dict['get_0'] = 'update_collection_request'
-    return_types_dict['get_0'] = UpdateCollectionRequest
+    body_params_dict['get_collection_offsets'] = 'get_collection_commit_request'
+    return_types_dict['get_collection_offsets'] = GetCollectionCommitRequest
+    body_params_dict['update'] = 'update_collection_request'
+    return_types_dict['update'] = UpdateCollectionRequest

@@ -33,6 +33,12 @@ components:
           items:
             $ref: "#/components/schemas/DocumentStatus"
           type: array
+        last_offset:
+          description:
+            A string representing the collection offset after completing
+            the write.
+          example: f1:0:0:0:0
+          type: string
       type: object
     Alias:
       properties:
@@ -275,6 +281,10 @@ components:
           format: int64
           minimum: 1
           type: integer
+        source_download_soft_limit_bytes:
+          description: Soft ingest limit for this collection.
+          format: int64
+          type: integer
         sources:
           description: List of sources from which to ingest data
           items:
@@ -366,6 +376,10 @@ components:
           example: 1000000
           format: int64
           minimum: 1
+          type: integer
+        source_download_soft_limit_bytes:
+          description: Soft ingest limit for this collection.
+          format: int64
           type: integer
         sources:
           description: List of sources from which to ingest data
@@ -639,6 +653,7 @@ components:
             - PREPARING_BULK
             - BULK_INGEST_MODE
             - EXITING_BULK_INGEST_MODE
+            - ENCRYPTION_KEY_ERROR
             - UNKNOWN
           example: READY
           type: string
@@ -902,6 +917,10 @@ components:
           format: int64
           minimum: 1
           type: integer
+        source_download_soft_limit_bytes:
+          description: Soft ingest limit for this collection.
+          format: int64
+          type: integer
         storage_compression_type:
           description: RocksDB storage compression type.
           enum:
@@ -958,6 +977,7 @@ components:
           description: Amazon S3 details, must have one of aws_access_key or aws_role.
         snowflake:
           $ref: "#/components/schemas/SnowflakeIntegration"
+          description: Snowflake details.
       required:
         - name
       type: object
@@ -1251,6 +1271,12 @@ components:
           items:
             $ref: "#/components/schemas/DocumentStatus"
           type: array
+        last_offset:
+          description:
+            A string representing the collection offset after completing
+            the deletes.
+          example: f1:0:0:0:0
+          type: string
       type: object
     DeleteIntegrationResponse:
       properties:
@@ -1356,6 +1382,10 @@ components:
           example: 1000000
           format: int64
           minimum: 1
+          type: integer
+        source_download_soft_limit_bytes:
+          description: Soft ingest limit for this collection.
+          format: int64
           type: integer
         sources:
           description: List of sources from which to ingest data
@@ -1497,9 +1527,6 @@ components:
           description: Row limit to use if no limit specified in the SQL query text.
           format: int32
           type: integer
-        generate_warnings:
-          description: Whether to generate warnings.
-          type: boolean
         parameters:
           description: List of named parameters.
           items:
@@ -1532,9 +1559,6 @@ components:
           description: Row limit to use if no limit specified in the SQL query text.
           format: int32
           type: integer
-        generate_warnings:
-          description: Whether to generate warnings.
-          type: boolean
         initial_paginate_response_doc_count:
           description:
             "[DEPRECATED] Use `max_initial_results` instead. Number of
@@ -1688,6 +1712,10 @@ components:
           format: int64
           minimum: 1
           type: integer
+        source_download_soft_limit_bytes:
+          description: Soft ingest limit for this collection.
+          format: int64
+          type: integer
         sources:
           description: List of sources from which to ingest data
           items:
@@ -1751,6 +1779,39 @@ components:
         data:
           $ref: "#/components/schemas/ApiKey"
           description: The requested API key object.
+      type: object
+    GetCollectionCommit:
+      properties:
+        data:
+          $ref: "#/components/schemas/GetCollectionCommitData"
+        offsets:
+          $ref: "#/components/schemas/Offsets"
+      type: object
+    GetCollectionCommitData:
+      properties:
+        fence:
+          description:
+            The max offset passed in the request which is the latest offset
+            that was compared to the commit.
+          example: f1:0:14:9:7093
+          type: string
+        passed:
+          description:
+            True if all the data in the offsets are available to be queried.
+            False if one or more of the offsets is still behind the request offsets.
+          example: true
+          type: boolean
+      type: object
+    GetCollectionCommitRequest:
+      properties:
+        name:
+          description: a list of zero or more collection offset fences
+          example:
+            - f1:0:14:9:7092
+            - f1:0:14:9:7093
+          items:
+            type: string
+          type: array
       type: object
     GetCollectionResponse:
       properties:
@@ -1923,6 +1984,10 @@ components:
           format: int64
           minimum: 1
           type: integer
+        source_download_soft_limit_bytes:
+          description: Soft ingest limit for this collection.
+          format: int64
+          type: integer
         sources:
           description: List of sources from which to ingest data
           items:
@@ -2051,6 +2116,10 @@ components:
           example: 1000000
           format: int64
           minimum: 1
+          type: integer
+        source_download_soft_limit_bytes:
+          description: Soft ingest limit for this collection.
+          format: int64
           type: integer
         sources:
           description: List of sources from which to ingest data
@@ -2280,6 +2349,10 @@ components:
           format: int64
           minimum: 1
           type: integer
+        source_download_soft_limit_bytes:
+          description: Soft ingest limit for this collection.
+          format: int64
+          type: integer
         sources:
           description: List of sources from which to ingest data
           items:
@@ -2326,6 +2399,16 @@ components:
           description: MongoDB collection details.
       type: object
       x-inner-field: mongodb
+    Offsets:
+      properties:
+        commit:
+          description:
+            An encoded value representing the most recent offsets that
+            have been committed. If the fence offset is less than or equal to the
+            commit, then passed is true.
+          example: f1:0:14:9:7093
+          type: string
+      type: object
     Organization:
       description: An organization in Rockset is a container for users and collections.
       properties:
@@ -2453,6 +2536,12 @@ components:
           items:
             $ref: "#/components/schemas/DocumentStatus"
           type: array
+        last_offset:
+          description:
+            A string representing the collection offset after completing
+            the patch.
+          example: f1:0:0:0:0
+          type: string
       required:
         - data
       type: object
@@ -2548,6 +2637,8 @@ components:
             - UPDATE_VI
             - SUSPEND_RESUME_VI
             - DELETE_VI
+            - CREATE_SIMILARITY_INDEX_WS
+            - DELETE_SIMILARITY_INDEX_WS
           example: CREATE_COLLECTION_WS
           type: string
         cluster:
@@ -2882,12 +2973,6 @@ components:
             this default.
           format: int32
           type: integer
-        generate_warnings:
-          description:
-            Flag to enable warnings. Warnings can help debug query issues
-            but negatively affect performance.
-          example: false
-          type: boolean
         initial_paginate_response_doc_count:
           description:
             "[DEPRECATED] Use `max_initial_results` instead. Number of
@@ -2968,9 +3053,6 @@ components:
           example: RUNNING
           type: string
         warnings:
-          description:
-            Warnings generated by the query. Only populated if `generate_warnings`
-            is specified in the query request.
           items:
             type: string
           type: array
@@ -3061,6 +3143,10 @@ components:
           example: 1000000
           format: int64
           minimum: 1
+          type: integer
+        source_download_soft_limit_bytes:
+          description: Soft ingest limit for this collection.
+          format: int64
           type: integer
         sources:
           description: List of sources from which to ingest data
@@ -3164,6 +3250,10 @@ components:
           format: int64
           minimum: 1
           type: integer
+        source_download_soft_limit_bytes:
+          description: Soft ingest limit for this collection.
+          format: int64
+          type: integer
         sources:
           description: List of sources from which to ingest data
           items:
@@ -3230,6 +3320,7 @@ components:
           type: string
         snowflake:
           $ref: "#/components/schemas/SnowflakeIntegration"
+          description: Snowflake details.
       required:
         - name
       type: object
@@ -4379,6 +4470,8 @@ components:
             - SUSPENDED
             - RESUMING
             - DELETED
+            - ENABLING_DEDICATED_SERVICES
+            - DISABLING_DEDICATED_SERVICES
           example: ACTIVE
           type: string
         stats:
@@ -12158,7 +12251,7 @@ paths:
       summary: Update Collection
       tags:
         - Collections
-      x-rename: get
+      x-rename: update
   /v1/orgs/self/ws/{workspace}/collections/{collection}/docs:
     delete:
       description: Delete documents from a collection.
@@ -12508,6 +12601,121 @@ paths:
       summary: Add Documents
       tags:
         - Documents
+  /v1/orgs/self/ws/{workspace}/collections/{collection}/offsets/commit:
+    post:
+      description:
+        Determines if the collection includes data at or after the specified
+        fence(s) for close read-after-write semantics.
+      operationId: getCollectionOffsets
+      parameters:
+        - description: name of the workspace
+          in: path
+          name: workspace
+          required: true
+          schema:
+            default: commons
+            type: string
+        - description: name of the collection
+          in: path
+          name: collection
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GetCollectionCommitRequest"
+        description: JSON object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetCollectionCommit"
+          description: Successfully returned collection commit
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Get Collection Commit
+      tags:
+        - Collections
   /v1/orgs/self/ws/{workspace}/collections/{collection}/sources:
     get:
       description: Retrieve all sources in a collection.
@@ -12615,8 +12823,8 @@ paths:
       tags:
         - Sources
       x-rename: list
-  /v1/orgs/self/ws/{workspace}/collections/{collection}/sources#AzureBlobStorage:
-    post:
+  ? /v1/orgs/self/ws/{workspace}/collections/{collection}/sources#AzureBlobStorage
+  : post:
       description: Create new source in a collection.
       operationId: createAzureBlobStorageSource
       parameters:
@@ -13970,8 +14178,8 @@ paths:
       tags:
         - Sources
       x-rename: resume
-  /v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source}/suspend:
-    post:
+  ? /v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source}/suspend
+  : post:
       description: Suspend source ingest
       operationId: suspendSource
       parameters:

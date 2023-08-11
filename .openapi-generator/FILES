@@ -84,6 +84,9 @@ docs/GcsIntegrationCreationRequest.md
 docs/GcsSourceWrapper.md
 docs/GetAliasResponse.md
 docs/GetApiKeyResponse.md
+docs/GetCollectionCommit.md
+docs/GetCollectionCommitData.md
+docs/GetCollectionCommitRequest.md
 docs/GetCollectionResponse.md
 docs/GetIntegrationResponse.md
 docs/GetQueryResponse.md
@@ -123,6 +126,7 @@ docs/MongoDbIntegration.md
 docs/MongodbCollectionCreationRequest.md
 docs/MongodbIntegrationCreationRequest.md
 docs/MongodbSourceWrapper.md
+docs/Offsets.md
 docs/Organization.md
 docs/OrganizationResponse.md
 docs/OrganizationsApi.md
@@ -321,6 +325,9 @@ rockset/model/gcs_integration_creation_request.py
 rockset/model/gcs_source_wrapper.py
 rockset/model/get_alias_response.py
 rockset/model/get_api_key_response.py
+rockset/model/get_collection_commit.py
+rockset/model/get_collection_commit_data.py
+rockset/model/get_collection_commit_request.py
 rockset/model/get_collection_response.py
 rockset/model/get_integration_response.py
 rockset/model/get_query_response.py
@@ -359,6 +366,7 @@ rockset/model/mongo_db_integration.py
 rockset/model/mongodb_collection_creation_request.py
 rockset/model/mongodb_integration_creation_request.py
 rockset/model/mongodb_source_wrapper.py
+rockset/model/offsets.py
 rockset/model/organization.py
 rockset/model/organization_response.py
 rockset/model/output_field.py
@@ -533,6 +541,9 @@ test/test_gcs_integration_creation_request.py
 test/test_gcs_source_wrapper.py
 test/test_get_alias_response.py
 test/test_get_api_key_response.py
+test/test_get_collection_commit.py
+test/test_get_collection_commit_data.py
+test/test_get_collection_commit_request.py
 test/test_get_collection_response.py
 test/test_get_integration_response.py
 test/test_get_query_response.py
@@ -572,6 +583,7 @@ test/test_mongo_db_integration.py
 test/test_mongodb_collection_creation_request.py
 test/test_mongodb_integration_creation_request.py
 test/test_mongodb_source_wrapper.py
+test/test_offsets.py
 test/test_organization.py
 test/test_organization_response.py
 test/test_organizations_api.py

@@ -98,6 +98,8 @@ class VirtualInstance(ModelNormal):
             'SUSPENDED': "SUSPENDED",
             'RESUMING': "RESUMING",
             'DELETED': "DELETED",
+            'ENABLING_DEDICATED_SERVICES': "ENABLING_DEDICATED_SERVICES",
+            'DISABLING_DEDICATED_SERVICES': "DISABLING_DEDICATED_SERVICES",
         },
     }
 

@@ -15,8 +15,9 @@ Method | HTTP request | Description
 [**create_snowflake_collection**](CollectionsApi.md#create_snowflake_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create snowflake collection
 [**delete**](CollectionsApi.md#delete) | **DELETE** /v1/orgs/self/ws/{workspace}/collections/{collection} | Delete Collection
 [**get**](CollectionsApi.md#get) | **GET** /v1/orgs/self/ws/{workspace}/collections/{collection} | Retrieve Collection
-[**get_0**](CollectionsApi.md#get_0) | **PUT** /v1/orgs/self/ws/{workspace}/collections/{collection} | Update Collection
+[**get_collection_offsets**](CollectionsApi.md#get_collection_offsets) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/offsets/commit | Get Collection Commit
 [**list**](CollectionsApi.md#list) | **GET** /v1/orgs/self/collections | List Collections
+[**update**](CollectionsApi.md#update) | **PUT** /v1/orgs/self/ws/{workspace}/collections/{collection} | Update Collection
 [**workspace_collections**](CollectionsApi.md#workspace_collections) | **GET** /v1/orgs/self/ws/{workspace}/collections | List Collections in Workspace
 
 
@@ -71,6 +72,7 @@ api_response = await rs.Collections.create_azure_blob_storage_collection(
     ),
     name="global-transactions",
     retention_secs=1000000,
+    source_download_soft_limit_bytes=1,
     sources=[
         AzureBlobStorageSourceWrapper(
             format_params=FormatParams(
@@ -123,6 +125,7 @@ Name | Type | Description  | Notes
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
  **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
  **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
+ **source_download_soft_limit_bytes** | **int** | Soft ingest limit for this collection. | [optional]
  **sources** | [**[AzureBlobStorageSourceWrapper]**](AzureBlobStorageSourceWrapper.md) | List of sources from which to ingest data | [optional]
  **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
@@ -214,6 +217,7 @@ api_response = await rs.Collections.create_azure_event_hubs_collection(
     ),
     name="global-transactions",
     retention_secs=1000000,
+    source_download_soft_limit_bytes=1,
     sources=[
         AzureEventHubsSourceWrapper(
             format_params=FormatParams(
@@ -265,6 +269,7 @@ Name | Type | Description  | Notes
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
  **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
  **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
+ **source_download_soft_limit_bytes** | **int** | Soft ingest limit for this collection. | [optional]
  **sources** | [**[AzureEventHubsSourceWrapper]**](AzureEventHubsSourceWrapper.md) | List of sources from which to ingest data | [optional]
  **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
@@ -356,6 +361,7 @@ api_response = await rs.Collections.create_dynamodb_collection(
     ),
     name="global-transactions",
     retention_secs=1000000,
+    source_download_soft_limit_bytes=1,
     sources=[
         DynamodbSourceWrapper(
             format_params=FormatParams(
@@ -409,6 +415,7 @@ Name | Type | Description  | Notes
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
  **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
  **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
+ **source_download_soft_limit_bytes** | **int** | Soft ingest limit for this collection. | [optional]
  **sources** | [**[DynamodbSourceWrapper]**](DynamodbSourceWrapper.md) | List of sources from which to ingest data | [optional]
  **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
@@ -500,6 +507,7 @@ api_response = await rs.Collections.create_gcs_collection(
     ),
     name="global-transactions",
     retention_secs=1000000,
+    source_download_soft_limit_bytes=1,
     sources=[
         GcsSourceWrapper(
             format_params=FormatParams(
@@ -552,6 +560,7 @@ Name | Type | Description  | Notes
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
  **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
  **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
+ **source_download_soft_limit_bytes** | **int** | Soft ingest limit for this collection. | [optional]
  **sources** | [**[GcsSourceWrapper]**](GcsSourceWrapper.md) | List of sources from which to ingest data | [optional]
  **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
@@ -643,6 +652,7 @@ api_response = await rs.Collections.create_kafka_collection(
     ),
     name="global-transactions",
     retention_secs=1000000,
+    source_download_soft_limit_bytes=1,
     sources=[
         KafkaSourceWrapper(
             format_params=FormatParams(
@@ -696,6 +706,7 @@ Name | Type | Description  | Notes
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
  **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
  **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
+ **source_download_soft_limit_bytes** | **int** | Soft ingest limit for this collection. | [optional]
  **sources** | [**[KafkaSourceWrapper]**](KafkaSourceWrapper.md) | List of sources from which to ingest data | [optional]
  **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
@@ -787,6 +798,7 @@ api_response = await rs.Collections.create_kinesis_collection(
     ),
     name="global-transactions",
     retention_secs=1000000,
+    source_download_soft_limit_bytes=1,
     sources=[
         KinesisSourceWrapper(
             format_params=FormatParams(
@@ -842,6 +854,7 @@ Name | Type | Description  | Notes
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
  **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
  **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
+ **source_download_soft_limit_bytes** | **int** | Soft ingest limit for this collection. | [optional]
  **sources** | [**[KinesisSourceWrapper]**](KinesisSourceWrapper.md) | List of sources from which to ingest data | [optional]
  **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
@@ -933,6 +946,7 @@ api_response = await rs.Collections.create_mongodb_collection(
     ),
     name="global-transactions",
     retention_secs=1000000,
+    source_download_soft_limit_bytes=1,
     sources=[
         MongodbSourceWrapper(
             format_params=FormatParams(
@@ -985,6 +999,7 @@ Name | Type | Description  | Notes
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
  **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
  **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
+ **source_download_soft_limit_bytes** | **int** | Soft ingest limit for this collection. | [optional]
  **sources** | [**[MongodbSourceWrapper]**](MongodbSourceWrapper.md) | List of sources from which to ingest data | [optional]
  **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
@@ -1076,6 +1091,7 @@ api_response = await rs.Collections.create_s3_collection(
     ),
     name="global-transactions",
     retention_secs=1000000,
+    source_download_soft_limit_bytes=1,
     sources=[
         S3SourceWrapper(
             format_params=FormatParams(
@@ -1129,6 +1145,7 @@ Name | Type | Description  | Notes
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
  **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
  **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
+ **source_download_soft_limit_bytes** | **int** | Soft ingest limit for this collection. | [optional]
  **sources** | [**[S3SourceWrapper]**](S3SourceWrapper.md) | List of sources from which to ingest data | [optional]
  **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
@@ -1220,6 +1237,7 @@ api_response = await rs.Collections.create_snowflake_collection(
     ),
     name="global-transactions",
     retention_secs=1000000,
+    source_download_soft_limit_bytes=1,
     sources=[
         SnowflakeSourceWrapper(
             format_params=FormatParams(
@@ -1273,6 +1291,7 @@ Name | Type | Description  | Notes
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
  **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
  **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
+ **source_download_soft_limit_bytes** | **int** | Soft ingest limit for this collection. | [optional]
  **sources** | [**[SnowflakeSourceWrapper]**](SnowflakeSourceWrapper.md) | List of sources from which to ingest data | [optional]
  **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
@@ -1487,12 +1506,12 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **get_0**
-> GetCollectionResponse get_0(collection, update_collection_request)
+# **get_collection_offsets**
+> GetCollectionCommit get_collection_offsets(collection, get_collection_commit_request)
 
-Update Collection
+Get Collection Commit
 
-Update details about a collection.
+Determines if the collection includes data at or after the specified fence(s) for close read-after-write semantics.
 
 ### Example
 
@@ -1507,28 +1526,25 @@ from pprint import pprint
 rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
-# Update Collection
-api_response = rs.Collections.get_0(
+# Get Collection Commit
+api_response = rs.Collections.get_collection_offsets(
     collection="collection_example",
 )
 pprint(api_response)
 # Error responses from the server will cause the client to throw an ApiException
 # except ApiException as e:
-#     print("Exception when calling Collections->get_0: %s\n" % e)
+#     print("Exception when calling Collections->get_collection_offsets: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 # assumes that execution takes place within an asynchronous context
-# Update Collection
-api_response = await rs.Collections.get_0(
+# Get Collection Commit
+api_response = await rs.Collections.get_collection_offsets(
     collection="collection_example",
-    description="transactions from stores worldwide",
-    field_mapping_query=FieldMappingQuery(
-        sql="sql",
-    ),
+    name=["f1:0:14:9:7092","f1:0:14:9:7093"],
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
-    print("Exception when calling Collections->get_0: %s\n" % e)
+    print("Exception when calling Collections->get_collection_offsets: %s\n" % e)
     return
 pprint(api_response)
 
@@ -1540,13 +1556,12 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **collection** | **str** | name of the collection |
- **description** | **str** | Updated text describing the collection. | [optional]
- **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
+ **name** | **[str]** | a list of zero or more collection offset fences | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
 
-[**GetCollectionResponse**](GetCollectionResponse.md)
+[**GetCollectionCommit**](GetCollectionCommit.md)
 
 ### Authorization
 
@@ -1563,7 +1578,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | collection updated successfully |  -  |
+**200** | Successfully returned collection commit |  -  |
 **400** | bad request |  -  |
 **401** | unauthorized |  -  |
 **403** | forbidden |  -  |
@@ -1645,6 +1660,99 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | collections retrieved successfully |  -  |
+**400** | bad request |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+**405** | not allowed |  -  |
+**406** | not acceptable |  -  |
+**408** | request timeout |  -  |
+**415** | not supported |  -  |
+**429** | resource exceeded |  -  |
+**500** | internal error |  -  |
+**501** | not implemented |  -  |
+**502** | bad gateway |  -  |
+**503** | not ready |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update**
+> GetCollectionResponse update(collection, update_collection_request)
+
+Update Collection
+
+Update details about a collection.
+
+### Example
+
+* Api Key Authentication (apikey):
+
+```python
+from rockset import *
+from rockset.models import *
+from pprint import pprint
+
+# Create an instance of the Rockset client
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
+
+# synchronous example passing only required values which don't have defaults set
+# Update Collection
+api_response = rs.Collections.update(
+    collection="collection_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Collections->update: %s\n" % e)
+
+# asynchronous example passing optional values and required values which don't have defaults set
+# assumes that execution takes place within an asynchronous context
+# Update Collection
+api_response = await rs.Collections.update(
+    collection="collection_example",
+    description="transactions from stores worldwide",
+    field_mapping_query=FieldMappingQuery(
+        sql="sql",
+    ),
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Collections->update: %s\n" % e)
+    return
+pprint(api_response)
+
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **collection** | **str** | name of the collection |
+ **description** | **str** | Updated text describing the collection. | [optional]
+ **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
+ **workspace** | **str** | name of the workspace | defaults to "commons"
+
+### Return type
+
+[**GetCollectionResponse**](GetCollectionResponse.md)
+
+### Authorization
+
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | collection updated successfully |  -  |
 **400** | bad request |  -  |
 **401** | unauthorized |  -  |
 **403** | forbidden |  -  |

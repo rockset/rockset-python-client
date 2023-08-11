@@ -104,7 +104,6 @@ class SharedLambdas(object):
         *,
         public_access_id: str,
         default_row_limit: int = None,
-        generate_warnings: bool = None,
         parameters: typing.Sequence[QueryParameter] = None,
         **kwargs
     ) -> typing.Union[QueryResponse, asyncio.Future]:

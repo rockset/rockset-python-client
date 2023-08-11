@@ -82,6 +82,7 @@ class Collection(ModelNormal):
             'PREPARING_BULK': "PREPARING_BULK",
             'BULK_INGEST_MODE': "BULK_INGEST_MODE",
             'EXITING_BULK_INGEST_MODE': "EXITING_BULK_INGEST_MODE",
+            'ENCRYPTION_KEY_ERROR': "ENCRYPTION_KEY_ERROR",
             'UNKNOWN': "UNKNOWN",
         },
     }

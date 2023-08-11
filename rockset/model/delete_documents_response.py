@@ -88,6 +88,7 @@ class DeleteDocumentsResponse(ModelNormal):
         lazy_import()
         return {
             'data': ([DocumentStatus], none_type),  # noqa: E501
+            'last_offset': (str, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -97,6 +98,7 @@ class DeleteDocumentsResponse(ModelNormal):
 
     attribute_map = {
         'data': 'data',  # noqa: E501
+        'last_offset': 'last_offset',  # noqa: E501
     }
 
     read_only_vars = {
@@ -141,6 +143,7 @@ class DeleteDocumentsResponse(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             data ([DocumentStatus]): Information about deleted documents.. [optional]  # noqa: E501
+            last_offset (str): A string representing the collection offset after completing the deletes.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -193,6 +196,7 @@ class DeleteDocumentsResponse(ModelNormal):
 
         Keyword Args:
             data ([DocumentStatus]): Information about deleted documents.. [optional]  # noqa: E501
+            last_offset (str): A string representing the collection offset after completing the deletes.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

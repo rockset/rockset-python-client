@@ -105,8 +105,9 @@ for page in rockset.QueryPaginator(
     rs.Queries.query(
         sql=rockset.models.QueryRequestSql(
             query="SELECT * FROM _events LIMIT 500",
-        ),
-        max_initial_results=100,
+            paginate=True,
+            initial_paginate_response_doc_count=100,
+        )
     ),
 ):
     print(page)
@@ -148,8 +149,9 @@ Class | Method | HTTP request | Description
 *Collections* | [**create_snowflake_collection**](docs/CollectionsApi.md#create_snowflake_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create snowflake collection
 *Collections* | [**delete**](docs/CollectionsApi.md#delete) | **DELETE** /v1/orgs/self/ws/{workspace}/collections/{collection} | Delete Collection
 *Collections* | [**get**](docs/CollectionsApi.md#get) | **GET** /v1/orgs/self/ws/{workspace}/collections/{collection} | Retrieve Collection
-*Collections* | [**get_0**](docs/CollectionsApi.md#get_0) | **PUT** /v1/orgs/self/ws/{workspace}/collections/{collection} | Update Collection
+*Collections* | [**get_collection_offsets**](docs/CollectionsApi.md#get_collection_offsets) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/offsets/commit | Get Collection Commit
 *Collections* | [**list**](docs/CollectionsApi.md#list) | **GET** /v1/orgs/self/collections | List Collections
+*Collections* | [**update**](docs/CollectionsApi.md#update) | **PUT** /v1/orgs/self/ws/{workspace}/collections/{collection} | Update Collection
 *Collections* | [**workspace_collections**](docs/CollectionsApi.md#workspace_collections) | **GET** /v1/orgs/self/ws/{workspace}/collections | List Collections in Workspace
 *CustomRoles* | [**create**](docs/CustomRolesApi.md#create) | **POST** /v1/orgs/self/roles | Create a Role
 *CustomRoles* | [**delete**](docs/CustomRolesApi.md#delete) | **DELETE** /v1/orgs/self/roles/{roleName} | Delete a Role
@@ -322,6 +324,9 @@ Class | Method | HTTP request | Description
  - [GcsSourceWrapper](docs/GcsSourceWrapper.md)
  - [GetAliasResponse](docs/GetAliasResponse.md)
  - [GetApiKeyResponse](docs/GetApiKeyResponse.md)
+ - [GetCollectionCommit](docs/GetCollectionCommit.md)
+ - [GetCollectionCommitData](docs/GetCollectionCommitData.md)
+ - [GetCollectionCommitRequest](docs/GetCollectionCommitRequest.md)
  - [GetCollectionResponse](docs/GetCollectionResponse.md)
  - [GetIntegrationResponse](docs/GetIntegrationResponse.md)
  - [GetQueryResponse](docs/GetQueryResponse.md)
@@ -360,6 +365,7 @@ Class | Method | HTTP request | Description
  - [MongodbCollectionCreationRequest](docs/MongodbCollectionCreationRequest.md)
  - [MongodbIntegrationCreationRequest](docs/MongodbIntegrationCreationRequest.md)
  - [MongodbSourceWrapper](docs/MongodbSourceWrapper.md)
+ - [Offsets](docs/Offsets.md)
  - [Organization](docs/Organization.md)
  - [OrganizationResponse](docs/OrganizationResponse.md)
  - [OutputField](docs/OutputField.md)
