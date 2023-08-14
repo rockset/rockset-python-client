@@ -1,3 +1,6 @@
+### v2.1.0
+    - Get Collection Offset APIs
+
 ### v2.0.1
     - New api changes
 ### v2.0.1
