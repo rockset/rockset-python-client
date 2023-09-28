@@ -1,11 +1,3 @@
-### v2.1.0
-    - Get Collection Offset APIs
-
-### v2.0.1
-    - New api changes
-### v2.0.1
-    - Adding top level args override so that we can pass the request on in the request body
-
 ### v2.0.0
     - QueryPaginationResponse will correctly parse datetime and date objects into python datetime objects. Timestamp objects will be left as strings.
 
