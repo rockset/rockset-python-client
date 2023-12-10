@@ -31,9 +31,11 @@ from rockset.exceptions import ApiAttributeError
 
 def lazy_import():
     from rockset.model.format_params import FormatParams
+    from rockset.model.source_dynamo_db_settings import SourceDynamoDbSettings
     from rockset.model.status_dynamo_db import StatusDynamoDb
     from rockset.model.status_dynamo_db_v2 import StatusDynamoDbV2
     globals()['FormatParams'] = FormatParams
+    globals()['SourceDynamoDbSettings'] = SourceDynamoDbSettings
     globals()['StatusDynamoDb'] = StatusDynamoDb
     globals()['StatusDynamoDbV2'] = StatusDynamoDbV2
 
@@ -62,7 +64,7 @@ class DynamodbSourceWrapper(ModelNormal):
           as additional properties values.
     """
     inner_field = "dynamodb"
-    inner_properties = ["aws_region", "current_status", "rcu", "status", "table_name", "use_scan_api"]
+    inner_properties = ["aws_region", "current_status", "rcu", "settings", "status", "table_name", "use_scan_api"]
     allowed_values = {
     }
 
@@ -98,6 +100,7 @@ class DynamodbSourceWrapper(ModelNormal):
             'aws_region': (str, none_type),  # noqa: E501
             'current_status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
             'rcu': (int, none_type),  # noqa: E501
+            'settings': (SourceDynamoDbSettings, none_type),  # noqa: E501
             'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
             'use_scan_api': (bool, none_type),  # noqa: E501
         }
@@ -114,6 +117,7 @@ class DynamodbSourceWrapper(ModelNormal):
         'aws_region': 'aws_region',  # noqa: E501
         'current_status': 'current_status',  # noqa: E501
         'rcu': 'rcu',  # noqa: E501
+        'settings': 'settings',  # noqa: E501
         'status': 'status',  # noqa: E501
         'use_scan_api': 'use_scan_api',  # noqa: E501
     }
@@ -169,6 +173,7 @@ class DynamodbSourceWrapper(ModelNormal):
             aws_region (str): AWS region name of DynamoDB table, by default us-west-2 is used.. [optional]  # noqa: E501
             current_status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
             rcu (int): Max RCU usage for scan.. [optional]  # noqa: E501
+            settings (SourceDynamoDbSettings): [optional]  # noqa: E501
             status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
             use_scan_api (bool): Whether to use DynamoDB Scan API for the initial scan.. [optional]  # noqa: E501
         """
@@ -228,6 +233,7 @@ class DynamodbSourceWrapper(ModelNormal):
             integration_name (str): Name of integration to use.. [optional]  # noqa: E501
             aws_region (str): AWS region name of DynamoDB table, by default us-west-2 is used.. [optional]  # noqa: E501
             rcu (int): Max RCU usage for scan.. [optional]  # noqa: E501
+            settings (SourceDynamoDbSettings): [optional]  # noqa: E501
             use_scan_api (bool): Whether to use DynamoDB Scan API for the initial scan.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be

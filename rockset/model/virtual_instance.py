@@ -66,6 +66,7 @@ class VirtualInstance(ModelNormal):
             'NANO': "NANO",
             'SHARED': "SHARED",
             'MILLI': "MILLI",
+            'XSMALL': "XSMALL",
             'SMALL': "SMALL",
             'MEDIUM': "MEDIUM",
             'LARGE': "LARGE",
@@ -80,6 +81,7 @@ class VirtualInstance(ModelNormal):
             'NANO': "NANO",
             'SHARED': "SHARED",
             'MILLI': "MILLI",
+            'XSMALL': "XSMALL",
             'SMALL': "SMALL",
             'MEDIUM': "MEDIUM",
             'LARGE': "LARGE",
@@ -88,6 +90,10 @@ class VirtualInstance(ModelNormal):
             'XLARGE4': "XLARGE4",
             'XLARGE8': "XLARGE8",
             'XLARGE16': "XLARGE16",
+        },
+        ('mount_type',): {
+            'LIVE': "LIVE",
+            'STATIC': "STATIC",
         },
         ('state',): {
             'INITIALIZING': "INITIALIZING",
@@ -143,6 +149,7 @@ class VirtualInstance(ModelNormal):
             'id': (str, none_type),  # noqa: E501
             'monitoring_enabled': (bool, none_type),  # noqa: E501
             'mount_refresh_interval_seconds': (int, none_type),  # noqa: E501
+            'mount_type': (str, none_type),  # noqa: E501
             'resumed_at': (str, none_type),  # noqa: E501
             'rrn': (str, none_type),  # noqa: E501
             'scaled_pod_count': (int, none_type),  # noqa: E501
@@ -170,6 +177,7 @@ class VirtualInstance(ModelNormal):
         'id': 'id',  # noqa: E501
         'monitoring_enabled': 'monitoring_enabled',  # noqa: E501
         'mount_refresh_interval_seconds': 'mount_refresh_interval_seconds',  # noqa: E501
+        'mount_type': 'mount_type',  # noqa: E501
         'resumed_at': 'resumed_at',  # noqa: E501
         'rrn': 'rrn',  # noqa: E501
         'scaled_pod_count': 'scaled_pod_count',  # noqa: E501
@@ -235,7 +243,8 @@ class VirtualInstance(ModelNormal):
             enable_remount_on_resume (bool): When a Virtual Instance is resumed, it will remount all collections that were mounted when the Virtual Instance was suspended.. [optional]  # noqa: E501
             id (str): Unique identifier for virtual instance.. [optional]  # noqa: E501
             monitoring_enabled (bool): [optional]  # noqa: E501
-            mount_refresh_interval_seconds (int): Number of seconds between data refreshes for mounts on this Virtual Instance. [optional]  # noqa: E501
+            mount_refresh_interval_seconds (int): DEPRECATED. Number of seconds between data refreshes for mounts on this Virtual Instance. [optional]  # noqa: E501
+            mount_type (str): The mount type of collections that this Virtual Instance will query. Live mounted collections stay up-to-date with the underlying collection in real-time. Static mounted collections do not stay up-to-date. See https://docs.rockset.com/documentation/docs/virtual-instances#virtual-instance-configuration. [optional]  # noqa: E501
             resumed_at (str): ISO-8601 date of when virtual instance was created.. [optional]  # noqa: E501
             rrn (str): Virtual Instance RRN.. [optional]  # noqa: E501
             scaled_pod_count (int): [optional]  # noqa: E501
@@ -304,7 +313,8 @@ class VirtualInstance(ModelNormal):
             enable_remount_on_resume (bool): When a Virtual Instance is resumed, it will remount all collections that were mounted when the Virtual Instance was suspended.. [optional]  # noqa: E501
             id (str): Unique identifier for virtual instance.. [optional]  # noqa: E501
             monitoring_enabled (bool): [optional]  # noqa: E501
-            mount_refresh_interval_seconds (int): Number of seconds between data refreshes for mounts on this Virtual Instance. [optional]  # noqa: E501
+            mount_refresh_interval_seconds (int): DEPRECATED. Number of seconds between data refreshes for mounts on this Virtual Instance. [optional]  # noqa: E501
+            mount_type (str): The mount type of collections that this Virtual Instance will query. Live mounted collections stay up-to-date with the underlying collection in real-time. Static mounted collections do not stay up-to-date. See https://docs.rockset.com/documentation/docs/virtual-instances#virtual-instance-configuration. [optional]  # noqa: E501
             resumed_at (str): ISO-8601 date of when virtual instance was created.. [optional]  # noqa: E501
             rrn (str): Virtual Instance RRN.. [optional]  # noqa: E501
             scaled_pod_count (int): [optional]  # noqa: E501

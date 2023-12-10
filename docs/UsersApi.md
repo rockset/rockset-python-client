@@ -98,6 +98,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -184,6 +185,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -270,6 +272,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -351,6 +354,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -432,6 +436,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -513,6 +518,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -605,6 +611,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -694,6 +701,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |

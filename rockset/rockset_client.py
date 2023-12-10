@@ -7,25 +7,13 @@ from types import FunctionType
 from typing import Any, Dict, Union
 
 from rockset.api_client import ApiClient
-from rockset.apis import (
-    Aliases,
-    APIKeys,
-    Collections,
-    CustomRoles,
-    Documents,
-    Integrations,
-    Organizations,
-    Queries,
-    QueryLambdas,
-    SharedLambdas,
-    Sources,
-    Users,
-    Views,
-    VirtualInstances,
-    Workspaces,
-)
+from rockset.apis import (Aliases, APIKeys, Collections, CustomRoles,
+                          Documents, Integrations, Organizations, Queries,
+                          QueryLambdas, ScheduledLambdas, SharedLambdas,
+                          Sources, Users, Views, VirtualInstances, Workspaces)
 from rockset.configuration import Configuration
-from rockset.exceptions import ApiTypeError, ApiValueError, InitializationException
+from rockset.exceptions import (ApiTypeError, ApiValueError,
+                                InitializationException)
 from rockset.models import QueryParameter, QueryRequestSql, QueryResponse
 
 APISERVER_PATTERN = re.compile(r"^https:\/\/(\w|-|\.)+\.rockset\.com$")
@@ -157,6 +145,10 @@ class QueryLambdasApiWrapper(QueryLambdas, metaclass=ApiMetaclass):
     pass
 
 
+class ScheduledLambdasApiWrapper(ScheduledLambdas, metaclass=ApiMetaclass):
+    pass
+
+
 class SharedLambdasApiWrapper(SharedLambdas, metaclass=ApiMetaclass):
     pass
 
@@ -265,6 +257,7 @@ class RocksetClient:
         self.Organizations = OrganizationsApiWrapper(self.api_client)
         self.Queries = QueriesApiWrapper(self.api_client)
         self.QueryLambdas = QueryLambdasApiWrapper(self.api_client)
+        self.ScheduledLambdas = ScheduledLambdasApiWrapper(self.api_client)
         self.SharedLambdas = SharedLambdasApiWrapper(self.api_client)
         self.Sources = SourcesApiWrapper(self.api_client)
         self.Users = UsersApiWrapper(self.api_client)

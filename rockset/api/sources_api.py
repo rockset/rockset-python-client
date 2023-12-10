@@ -37,6 +37,8 @@ from rockset.model.list_sources_response import ListSourcesResponse
 from rockset.model.mongodb_source_wrapper import MongodbSourceWrapper
 from rockset.model.s3_source_wrapper import S3SourceWrapper
 from rockset.model.snowflake_source_wrapper import SnowflakeSourceWrapper
+from rockset.model.source_base import SourceBase
+from rockset.model.suspend_source_request import SuspendSourceRequest
 from rockset.models import *
 
 
@@ -880,6 +882,7 @@ class Sources(object):
                     'workspace',
                     'collection',
                     'source',
+                    'suspend_source_request',
                 ],
                 'required': [
                     'workspace',
@@ -905,6 +908,8 @@ class Sources(object):
                         (str,),
                     'source':
                         (str,),
+                    'suspend_source_request':
+                        (SuspendSourceRequest,),
                 },
                 'attribute_map': {
                     'workspace': 'workspace',
@@ -915,6 +920,7 @@ class Sources(object):
                     'workspace': 'path',
                     'collection': 'path',
                     'source': 'path',
+                    'suspend_source_request': 'body',
                 },
                 'collection_format_map': {
                 }
@@ -923,7 +929,78 @@ class Sources(object):
                 'accept': [
                     'application/json'
                 ],
-                'content_type': [],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.update_endpoint = _Endpoint(
+            settings={
+                'response_type': (GetSourceResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source}',
+                'operation_id': 'update',
+                'http_method': 'PUT',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'workspace',
+                    'collection',
+                    'source',
+                    'source_base',
+                ],
+                'required': [
+                    'workspace',
+                    'collection',
+                    'source',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'workspace':
+                        (str,),
+                    'collection':
+                        (str,),
+                    'source':
+                        (str,),
+                    'source_base':
+                        (SourceBase,),
+                },
+                'attribute_map': {
+                    'workspace': 'workspace',
+                    'collection': 'collection',
+                    'source': 'source',
+                },
+                'location_map': {
+                    'workspace': 'path',
+                    'collection': 'path',
+                    'source': 'path',
+                    'source_base': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
             },
             api_client=api_client
         )
@@ -937,6 +1014,7 @@ class Sources(object):
         container: str = None,
         pattern: str = None,
         prefix: str = None,
+        settings: SourceAzBlobStorageSettings = None,
         workspace = "commons",
         **kwargs
     ) -> typing.Union[GetSourceResponse, asyncio.Future]:
@@ -951,6 +1029,7 @@ class Sources(object):
         future = rs.Sources.create_azure_blob_storage_source(
             collection="collection_example",
             format_params=FormatParams(
+                bson=True,
                 csv=CsvParams(
                     column_names=["c1","c2","c3"],
                     column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -977,6 +1056,9 @@ class Sources(object):
             container="server-logs",
             pattern="prefix/to/**/keys/*.format",
             prefix="prefix/to/blobs",
+            settings=SourceAzBlobStorageSettings(
+                azblob_scan_frequency="PT5M",
+            ),
             async_req=True,
         )
         result = await future
@@ -990,6 +1072,7 @@ class Sources(object):
             container (str): Name of Azure blob Storage container you want to ingest from.. [optional]
             pattern (str): Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified.. [optional]
             prefix (str): Prefix that selects blobs to ingest.. [optional]
+            settings (SourceAzBlobStorageSettings): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1078,6 +1161,7 @@ class Sources(object):
         future = rs.Sources.create_azure_event_hubs_source(
             collection="collection_example",
             format_params=FormatParams(
+                bson=True,
                 csv=CsvParams(
                     column_names=["c1","c2","c3"],
                     column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -1190,6 +1274,7 @@ class Sources(object):
         integration_name: str = None,
         aws_region: str = None,
         rcu: int = None,
+        settings: SourceDynamoDbSettings = None,
         use_scan_api: bool = None,
         workspace = "commons",
         **kwargs
@@ -1205,6 +1290,7 @@ class Sources(object):
         future = rs.Sources.create_dynamodb_source(
             collection="collection_example",
             format_params=FormatParams(
+                bson=True,
                 csv=CsvParams(
                     column_names=["c1","c2","c3"],
                     column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -1230,6 +1316,9 @@ class Sources(object):
             integration_name="aws-integration",
             aws_region="us-east-2",
             rcu=1000,
+            settings=SourceDynamoDbSettings(
+                dynamodb_stream_poll_frequency="PT1S",
+            ),
             table_name="dynamodb_table_name",
             use_scan_api=True,
             async_req=True,
@@ -1244,6 +1333,7 @@ class Sources(object):
             integration_name (str): Name of integration to use.. [optional]
             aws_region (str): AWS region name of DynamoDB table, by default us-west-2 is used.. [optional]
             rcu (int): Max RCU usage for scan.. [optional]
+            settings (SourceDynamoDbSettings): [optional]
             table_name (str): Name of DynamoDB table containing data.. [required]
             use_scan_api (bool): Whether to use DynamoDB Scan API for the initial scan.. [optional]
             _return_http_data_only (bool): response data without head status
@@ -1321,6 +1411,7 @@ class Sources(object):
         bucket: str = None,
         pattern: str = None,
         prefix: str = None,
+        settings: SourceGcsSettings = None,
         workspace = "commons",
         **kwargs
     ) -> typing.Union[GetSourceResponse, asyncio.Future]:
@@ -1335,6 +1426,7 @@ class Sources(object):
         future = rs.Sources.create_gcs_source(
             collection="collection_example",
             format_params=FormatParams(
+                bson=True,
                 csv=CsvParams(
                     column_names=["c1","c2","c3"],
                     column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -1361,6 +1453,9 @@ class Sources(object):
             bucket="server-logs",
             pattern="prefix/to/**/keys/*.format",
             prefix="prefix/to/keys",
+            settings=SourceGcsSettings(
+                gcs_scan_frequency="PT5M",
+            ),
             async_req=True,
         )
         result = await future
@@ -1374,6 +1469,7 @@ class Sources(object):
             bucket (str): Name of GCS bucket you want to ingest from.. [optional]
             pattern (str): Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified.. [optional]
             prefix (str): Prefix that selects keys to ingest.. [optional]
+            settings (SourceGcsSettings): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1446,6 +1542,7 @@ class Sources(object):
         collection: str,
         format_params: FormatParams = None,
         integration_name: str = None,
+        client_id: str = None,
         consumer_group_id: str = None,
         kafka_topic_name: str = None,
         offset_reset_policy: str = None,
@@ -1464,6 +1561,7 @@ class Sources(object):
         future = rs.Sources.create_kafka_source(
             collection="collection_example",
             format_params=FormatParams(
+                bson=True,
                 csv=CsvParams(
                     column_names=["c1","c2","c3"],
                     column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -1487,6 +1585,7 @@ class Sources(object):
                 ),
             ),
             integration_name="aws-integration",
+            client_id="cwc|0013a00001hSJ7oAAG|rockset-colln-consumer",
             consumer_group_id="org-collection",
             kafka_topic_name="example-topic",
             offset_reset_policy="EARLIEST",
@@ -1501,6 +1600,7 @@ class Sources(object):
             collection (str): name of the collection. [required]
             format_params (FormatParams): [optional]
             integration_name (str): Name of integration to use.. [optional]
+            client_id (str): The kafka client id being used.. [optional]
             consumer_group_id (str): The Kafka consumer group Id being used.. [optional]
             kafka_topic_name (str): The Kafka topic to be tailed.. [optional]
             offset_reset_policy (str): The offset reset policy.. [optional]
@@ -1595,6 +1695,7 @@ class Sources(object):
         future = rs.Sources.create_kinesis_source(
             collection="collection_example",
             format_params=FormatParams(
+                bson=True,
                 csv=CsvParams(
                     column_names=["c1","c2","c3"],
                     column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -1727,6 +1828,7 @@ class Sources(object):
         future = rs.Sources.create_mongodb_source(
             collection="collection_example",
             format_params=FormatParams(
+                bson=True,
                 csv=CsvParams(
                     column_names=["c1","c2","c3"],
                     column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -1843,6 +1945,7 @@ class Sources(object):
         prefix: str = None,
         prefixes: typing.Sequence[str] = None,
         region: str = None,
+        settings: SourceS3Settings = None,
         workspace = "commons",
         **kwargs
     ) -> typing.Union[GetSourceResponse, asyncio.Future]:
@@ -1857,6 +1960,7 @@ class Sources(object):
         future = rs.Sources.create_s3_source(
             collection="collection_example",
             format_params=FormatParams(
+                bson=True,
                 csv=CsvParams(
                     column_names=["c1","c2","c3"],
                     column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -1884,6 +1988,9 @@ class Sources(object):
             pattern="prefix/to/**/keys/*.format",
             prefix="prefix/to/keys",
             region="us-west-2",
+            settings=SourceS3Settings(
+                s3_scan_frequency="PT5M",
+            ),
             async_req=True,
         )
         result = await future
@@ -1898,6 +2005,7 @@ class Sources(object):
             pattern (str): Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified.. [optional]
             prefix (str): Prefix that selects keys to ingest.. [optional]
             region (str): AWS region containing source bucket.. [optional]
+            settings (SourceS3Settings): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -1988,6 +2096,7 @@ class Sources(object):
         future = rs.Sources.create_snowflake_source(
             collection="collection_example",
             format_params=FormatParams(
+                bson=True,
                 csv=CsvParams(
                     column_names=["c1","c2","c3"],
                     column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -2472,6 +2581,7 @@ class Sources(object):
         collection: str,
         source: str,
         workspace = "commons",
+        resume_after_duration: str = None,
         **kwargs
     ) -> typing.Union[GetSourceResponse, asyncio.Future]:
         """Suspend source ingest  # noqa: E501
@@ -2494,6 +2604,7 @@ class Sources(object):
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
             collection (str): name of the collection. [required]
             source (str): id of source. [required]
+            suspend_source_request (SuspendSourceRequest): JSON object. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -2560,6 +2671,130 @@ class Sources(object):
             source
         return self.suspend_endpoint.call_with_http_info(**kwargs)
 
+    def update(
+        self,
+        *,
+        collection: str,
+        source: str,
+        azure_blob_storage: SourceAzBlobStorageBase = None,
+        dynamodb: SourceDynamoDbBase = None,
+        gcs: SourceGcsBase = None,
+        s3: SourceS3Base = None,
+        workspace = "commons",
+        **kwargs
+    ) -> typing.Union[GetSourceResponse, asyncio.Future]:
+        """Update a collection source  # noqa: E501
+
+        Update details about a collection source.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Sources.update(
+            collection="collection_example",
+            source="source_example",
+            azure_blob_storage=SourceAzBlobStorageBase(
+                settings=SourceAzBlobStorageSettings(
+                    azblob_scan_frequency="PT5M",
+                ),
+            ),
+            dynamodb=SourceDynamoDbBase(
+                settings=SourceDynamoDbSettings(
+                    dynamodb_stream_poll_frequency="PT1S",
+                ),
+            ),
+            gcs=SourceGcsBase(
+                settings=SourceGcsSettings(
+                    gcs_scan_frequency="PT5M",
+                ),
+            ),
+            s3=SourceS3Base(
+                settings=SourceS3Settings(
+                    s3_scan_frequency="PT5M",
+                ),
+            ),
+            async_req=True,
+        )
+        result = await future
+        ```
+
+        Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            collection (str): name of the collection. [required]
+            source (str): id of source. [required]
+            azure_blob_storage (SourceAzBlobStorageBase): [optional]
+            dynamodb (SourceDynamoDbBase): [optional]
+            gcs (SourceGcsBase): [optional]
+            s3 (SourceS3Base): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GetSourceResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['workspace'] = \
+            workspace
+        kwargs['collection'] = \
+            collection
+        kwargs['source'] = \
+            source
+        kwargs['source_base'] = \
+            kwargs['source_base']
+        return self.update_endpoint.call_with_http_info(**kwargs)
+
 
     body_params_dict = dict()
     return_types_dict = dict()
@@ -2581,3 +2816,7 @@ class Sources(object):
     return_types_dict['create_s3_source'] = S3SourceWrapper
     body_params_dict['create_snowflake_source'] = 'snowflake_source_wrapper'
     return_types_dict['create_snowflake_source'] = SnowflakeSourceWrapper
+    body_params_dict['suspend'] = 'suspend_source_request'
+    return_types_dict['suspend'] = SuspendSourceRequest
+    body_params_dict['update'] = 'source_base'
+    return_types_dict['update'] = SourceBase

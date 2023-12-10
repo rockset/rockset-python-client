@@ -18,6 +18,7 @@ Method | HTTP request | Description
 [**list**](SourcesApi.md#list) | **GET** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | List sources in collection
 [**resume**](SourcesApi.md#resume) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source}/resume | Resume source ingest
 [**suspend**](SourcesApi.md#suspend) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source}/suspend | Suspend source ingest
+[**update**](SourcesApi.md#update) | **PUT** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source} | Update a collection source
 
 
 # **create_azure_blob_storage_source**
@@ -55,6 +56,7 @@ pprint(api_response)
 api_response = await rs.Sources.create_azure_blob_storage_source(
     collection="collection_example",
     format_params=FormatParams(
+        bson=True,
         csv=CsvParams(
             column_names=["c1","c2","c3"],
             column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -81,6 +83,9 @@ api_response = await rs.Sources.create_azure_blob_storage_source(
     container="server-logs",
     pattern="prefix/to/**/keys/*.format",
     prefix="prefix/to/blobs",
+    settings=SourceAzBlobStorageSettings(
+        azblob_scan_frequency="PT5M",
+    ),
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
@@ -101,6 +106,7 @@ Name | Type | Description  | Notes
  **container** | **str** | Name of Azure blob Storage container you want to ingest from. | [optional]
  **pattern** | **str** | Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified. | [optional]
  **prefix** | **str** | Prefix that selects blobs to ingest. | [optional]
+ **settings** | [**SourceAzBlobStorageSettings**](SourceAzBlobStorageSettings.md) |  | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
@@ -130,6 +136,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -174,6 +181,7 @@ pprint(api_response)
 api_response = await rs.Sources.create_azure_event_hubs_source(
     collection="collection_example",
     format_params=FormatParams(
+        bson=True,
         csv=CsvParams(
             column_names=["c1","c2","c3"],
             column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -247,6 +255,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -292,6 +301,7 @@ pprint(api_response)
 api_response = await rs.Sources.create_dynamodb_source(
     collection="collection_example",
     format_params=FormatParams(
+        bson=True,
         csv=CsvParams(
             column_names=["c1","c2","c3"],
             column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -317,6 +327,9 @@ api_response = await rs.Sources.create_dynamodb_source(
     integration_name="aws-integration",
     aws_region="us-east-2",
     rcu=1000,
+    settings=SourceDynamoDbSettings(
+        dynamodb_stream_poll_frequency="PT1S",
+    ),
     table_name="dynamodb_table_name",
     use_scan_api=True,
     async_req=True,
@@ -338,6 +351,7 @@ Name | Type | Description  | Notes
  **integration_name** | **str** | Name of integration to use. | [optional]
  **aws_region** | **str** | AWS region name of DynamoDB table, by default us-west-2 is used. | [optional]
  **rcu** | **int** | Max RCU usage for scan. | [optional]
+ **settings** | [**SourceDynamoDbSettings**](SourceDynamoDbSettings.md) |  | [optional]
  **table_name** | **str** | Name of DynamoDB table containing data. | 
  **use_scan_api** | **bool** | Whether to use DynamoDB Scan API for the initial scan. | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
@@ -369,6 +383,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -413,6 +428,7 @@ pprint(api_response)
 api_response = await rs.Sources.create_gcs_source(
     collection="collection_example",
     format_params=FormatParams(
+        bson=True,
         csv=CsvParams(
             column_names=["c1","c2","c3"],
             column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -439,6 +455,9 @@ api_response = await rs.Sources.create_gcs_source(
     bucket="server-logs",
     pattern="prefix/to/**/keys/*.format",
     prefix="prefix/to/keys",
+    settings=SourceGcsSettings(
+        gcs_scan_frequency="PT5M",
+    ),
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
@@ -459,6 +478,7 @@ Name | Type | Description  | Notes
  **bucket** | **str** | Name of GCS bucket you want to ingest from. | [optional]
  **pattern** | **str** | Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified. | [optional]
  **prefix** | **str** | Prefix that selects keys to ingest. | [optional]
+ **settings** | [**SourceGcsSettings**](SourceGcsSettings.md) |  | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
@@ -488,6 +508,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -532,6 +553,7 @@ pprint(api_response)
 api_response = await rs.Sources.create_kafka_source(
     collection="collection_example",
     format_params=FormatParams(
+        bson=True,
         csv=CsvParams(
             column_names=["c1","c2","c3"],
             column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -555,6 +577,7 @@ api_response = await rs.Sources.create_kafka_source(
         ),
     ),
     integration_name="aws-integration",
+    client_id="cwc|0013a00001hSJ7oAAG|rockset-colln-consumer",
     consumer_group_id="org-collection",
     kafka_topic_name="example-topic",
     offset_reset_policy="EARLIEST",
@@ -576,6 +599,7 @@ Name | Type | Description  | Notes
  **collection** | **str** | name of the collection |
  **format_params** | [**FormatParams**](FormatParams.md) |  | [optional]
  **integration_name** | **str** | Name of integration to use. | [optional]
+ **client_id** | **str** | The kafka client id being used. | [optional]
  **consumer_group_id** | **str** | The Kafka consumer group Id being used. | [optional]
  **kafka_topic_name** | **str** | The Kafka topic to be tailed. | [optional]
  **offset_reset_policy** | **str** | The offset reset policy. | [optional]
@@ -609,6 +633,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -654,6 +679,7 @@ pprint(api_response)
 api_response = await rs.Sources.create_kinesis_source(
     collection="collection_example",
     format_params=FormatParams(
+        bson=True,
         csv=CsvParams(
             column_names=["c1","c2","c3"],
             column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -733,6 +759,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -779,6 +806,7 @@ pprint(api_response)
 api_response = await rs.Sources.create_mongodb_source(
     collection="collection_example",
     format_params=FormatParams(
+        bson=True,
         csv=CsvParams(
             column_names=["c1","c2","c3"],
             column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -854,6 +882,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -899,6 +928,7 @@ pprint(api_response)
 api_response = await rs.Sources.create_s3_source(
     collection="collection_example",
     format_params=FormatParams(
+        bson=True,
         csv=CsvParams(
             column_names=["c1","c2","c3"],
             column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -926,6 +956,9 @@ api_response = await rs.Sources.create_s3_source(
     pattern="prefix/to/**/keys/*.format",
     prefix="prefix/to/keys",
     region="us-west-2",
+    settings=SourceS3Settings(
+        s3_scan_frequency="PT5M",
+    ),
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
@@ -947,6 +980,7 @@ Name | Type | Description  | Notes
  **pattern** | **str** | Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified. | [optional]
  **prefix** | **str** | Prefix that selects keys to ingest. | [optional]
  **region** | **str** | AWS region containing source bucket. | [optional]
+ **settings** | [**SourceS3Settings**](SourceS3Settings.md) |  | [optional]
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
@@ -976,6 +1010,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -1023,6 +1058,7 @@ pprint(api_response)
 api_response = await rs.Sources.create_snowflake_source(
     collection="collection_example",
     format_params=FormatParams(
+        bson=True,
         csv=CsvParams(
             column_names=["c1","c2","c3"],
             column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -1100,6 +1136,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -1190,6 +1227,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -1280,6 +1318,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -1367,6 +1406,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -1457,6 +1497,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -1519,6 +1560,8 @@ Name | Type | Description  | Notes
  **collection** | **str** | name of the collection |
  **source** | **str** | id of source |
  **workspace** | **str** | name of the workspace | defaults to "commons"
+ **resume_after_duration** | **str** | duration to suspend source; 1h is the default | [optional]
+
 
 ### Return type
 
@@ -1531,7 +1574,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 ### HTTP request headers
 
- - **Content-Type**: Not defined
+ - **Content-Type**: application/json
  - **Accept**: application/json
 
 
@@ -1547,6 +1590,122 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
+**415** | not supported |  -  |
+**429** | resource exceeded |  -  |
+**500** | internal error |  -  |
+**501** | not implemented |  -  |
+**502** | bad gateway |  -  |
+**503** | not ready |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update**
+> GetSourceResponse update(collection, source, source_base)
+
+Update a collection source
+
+Update details about a collection source.
+
+### Example
+
+* Api Key Authentication (apikey):
+
+```python
+from rockset import *
+from rockset.models import *
+from pprint import pprint
+
+# Create an instance of the Rockset client
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
+
+# synchronous example passing only required values which don't have defaults set
+# Update a collection source
+api_response = rs.Sources.update(
+    collection="collection_example",
+    source="source_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Sources->update: %s\n" % e)
+
+# asynchronous example passing optional values and required values which don't have defaults set
+# assumes that execution takes place within an asynchronous context
+# Update a collection source
+api_response = await rs.Sources.update(
+    collection="collection_example",
+    source="source_example",
+    azure_blob_storage=SourceAzBlobStorageBase(
+        settings=SourceAzBlobStorageSettings(
+            azblob_scan_frequency="PT5M",
+        ),
+    ),
+    dynamodb=SourceDynamoDbBase(
+        settings=SourceDynamoDbSettings(
+            dynamodb_stream_poll_frequency="PT1S",
+        ),
+    ),
+    gcs=SourceGcsBase(
+        settings=SourceGcsSettings(
+            gcs_scan_frequency="PT5M",
+        ),
+    ),
+    s3=SourceS3Base(
+        settings=SourceS3Settings(
+            s3_scan_frequency="PT5M",
+        ),
+    ),
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Sources->update: %s\n" % e)
+    return
+pprint(api_response)
+
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **collection** | **str** | name of the collection |
+ **source** | **str** | id of source |
+ **azure_blob_storage** | [**SourceAzBlobStorageBase**](SourceAzBlobStorageBase.md) |  | [optional]
+ **dynamodb** | [**SourceDynamoDbBase**](SourceDynamoDbBase.md) |  | [optional]
+ **gcs** | [**SourceGcsBase**](SourceGcsBase.md) |  | [optional]
+ **s3** | [**SourceS3Base**](SourceS3Base.md) |  | [optional]
+ **workspace** | **str** | name of the workspace | defaults to "commons"
+
+### Return type
+
+[**GetSourceResponse**](GetSourceResponse.md)
+
+### Authorization
+
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | collection updated successfully |  -  |
+**400** | bad request |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+**405** | not allowed |  -  |
+**406** | not acceptable |  -  |
+**408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |

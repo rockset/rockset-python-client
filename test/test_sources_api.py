@@ -21,6 +21,7 @@ def test_create_azure_blob_storage_source(get_client, mock_request, request_vali
             rs.Sources.create_azure_blob_storage_source(
                 collection="collection_example",
                 format_params=FormatParams(
+                    bson=True,
                     csv=CsvParams(
                         column_names=["c1", "c2", "c3"],
                         column_types=["BOOLEAN", "INTEGER", "FLOAT", "STRING"],
@@ -47,6 +48,9 @@ def test_create_azure_blob_storage_source(get_client, mock_request, request_vali
                 container="server-logs",
                 pattern="prefix/to/**/keys/*.format",
                 prefix="prefix/to/blobs",
+                settings=SourceAzBlobStorageSettings(
+                    azblob_scan_frequency="PT5M",
+                ),
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
@@ -59,6 +63,7 @@ def test_create_azure_event_hubs_source(get_client, mock_request, request_valida
             rs.Sources.create_azure_event_hubs_source(
                 collection="collection_example",
                 format_params=FormatParams(
+                    bson=True,
                     csv=CsvParams(
                         column_names=["c1", "c2", "c3"],
                         column_types=["BOOLEAN", "INTEGER", "FLOAT", "STRING"],
@@ -96,6 +101,7 @@ def test_create_dynamodb_source(get_client, mock_request, request_validator):
             rs.Sources.create_dynamodb_source(
                 collection="collection_example",
                 format_params=FormatParams(
+                    bson=True,
                     csv=CsvParams(
                         column_names=["c1", "c2", "c3"],
                         column_types=["BOOLEAN", "INTEGER", "FLOAT", "STRING"],
@@ -121,6 +127,9 @@ def test_create_dynamodb_source(get_client, mock_request, request_validator):
                 integration_name="aws-integration",
                 aws_region="us-east-2",
                 rcu=1000,
+                settings=SourceDynamoDbSettings(
+                    dynamodb_stream_poll_frequency="PT1S",
+                ),
                 table_name="dynamodb_table_name",
                 use_scan_api=True,
             )
@@ -135,6 +144,7 @@ def test_create_gcs_source(get_client, mock_request, request_validator):
             rs.Sources.create_gcs_source(
                 collection="collection_example",
                 format_params=FormatParams(
+                    bson=True,
                     csv=CsvParams(
                         column_names=["c1", "c2", "c3"],
                         column_types=["BOOLEAN", "INTEGER", "FLOAT", "STRING"],
@@ -161,6 +171,9 @@ def test_create_gcs_source(get_client, mock_request, request_validator):
                 bucket="server-logs",
                 pattern="prefix/to/**/keys/*.format",
                 prefix="prefix/to/keys",
+                settings=SourceGcsSettings(
+                    gcs_scan_frequency="PT5M",
+                ),
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
@@ -173,6 +186,7 @@ def test_create_kafka_source(get_client, mock_request, request_validator):
             rs.Sources.create_kafka_source(
                 collection="collection_example",
                 format_params=FormatParams(
+                    bson=True,
                     csv=CsvParams(
                         column_names=["c1", "c2", "c3"],
                         column_types=["BOOLEAN", "INTEGER", "FLOAT", "STRING"],
@@ -196,6 +210,7 @@ def test_create_kafka_source(get_client, mock_request, request_validator):
                     ),
                 ),
                 integration_name="aws-integration",
+                client_id="cwc|0013a00001hSJ7oAAG|rockset-colln-consumer",
                 consumer_group_id="org-collection",
                 kafka_topic_name="example-topic",
                 offset_reset_policy="EARLIEST",
@@ -212,6 +227,7 @@ def test_create_kinesis_source(get_client, mock_request, request_validator):
             rs.Sources.create_kinesis_source(
                 collection="collection_example",
                 format_params=FormatParams(
+                    bson=True,
                     csv=CsvParams(
                         column_names=["c1", "c2", "c3"],
                         column_types=["BOOLEAN", "INTEGER", "FLOAT", "STRING"],
@@ -253,6 +269,7 @@ def test_create_mongodb_source(get_client, mock_request, request_validator):
             rs.Sources.create_mongodb_source(
                 collection="collection_example",
                 format_params=FormatParams(
+                    bson=True,
                     csv=CsvParams(
                         column_names=["c1", "c2", "c3"],
                         column_types=["BOOLEAN", "INTEGER", "FLOAT", "STRING"],
@@ -291,6 +308,7 @@ def test_create_s3_source(get_client, mock_request, request_validator):
             rs.Sources.create_s3_source(
                 collection="collection_example",
                 format_params=FormatParams(
+                    bson=True,
                     csv=CsvParams(
                         column_names=["c1", "c2", "c3"],
                         column_types=["BOOLEAN", "INTEGER", "FLOAT", "STRING"],
@@ -318,6 +336,9 @@ def test_create_s3_source(get_client, mock_request, request_validator):
                 pattern="prefix/to/**/keys/*.format",
                 prefix="prefix/to/keys",
                 region="us-west-2",
+                settings=SourceS3Settings(
+                    s3_scan_frequency="PT5M",
+                ),
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
@@ -330,6 +351,7 @@ def test_create_snowflake_source(get_client, mock_request, request_validator):
             rs.Sources.create_snowflake_source(
                 collection="collection_example",
                 format_params=FormatParams(
+                    bson=True,
                     csv=CsvParams(
                         column_names=["c1", "c2", "c3"],
                         column_types=["BOOLEAN", "INTEGER", "FLOAT", "STRING"],
@@ -416,6 +438,38 @@ def test_suspend(get_client, mock_request, request_validator):
             rs.Sources.suspend(
                 collection="collection_example",
                 source="source_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_update(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Sources.update(
+                collection="collection_example",
+                source="source_example",
+                azure_blob_storage=SourceAzBlobStorageBase(
+                    settings=SourceAzBlobStorageSettings(
+                        azblob_scan_frequency="PT5M",
+                    ),
+                ),
+                dynamodb=SourceDynamoDbBase(
+                    settings=SourceDynamoDbSettings(
+                        dynamodb_stream_poll_frequency="PT1S",
+                    ),
+                ),
+                gcs=SourceGcsBase(
+                    settings=SourceGcsSettings(
+                        gcs_scan_frequency="PT5M",
+                    ),
+                ),
+                s3=SourceS3Base(
+                    settings=SourceS3Settings(
+                        s3_scan_frequency="PT5M",
+                    ),
+                ),
             )
         except EarlyExit as e:
             validate_call(e, request_validator)

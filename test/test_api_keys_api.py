@@ -20,6 +20,7 @@ def test_create(get_client, mock_request, request_validator):
         try:
             rs.APIKeys.create(
                 created_by="string_example",
+                expiry_time="2001-08-28T00:23:41Z",
                 name="my-app",
                 role="string_example",
             )
@@ -69,6 +70,8 @@ def test_update(get_client, mock_request, request_validator):
             rs.APIKeys.update(
                 name="my-key",
                 user="admin@me.com",
+                clear_expiry_time=True,
+                expiry_time="2001-08-28T00:23:41Z",
                 state="ACTIVE",
             )
         except EarlyExit as e:

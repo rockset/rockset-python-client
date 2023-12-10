@@ -31,7 +31,9 @@ from rockset.exceptions import ApiAttributeError
 
 def lazy_import():
     from rockset.model.format_params import FormatParams
+    from rockset.model.source_az_blob_storage_settings import SourceAzBlobStorageSettings
     globals()['FormatParams'] = FormatParams
+    globals()['SourceAzBlobStorageSettings'] = SourceAzBlobStorageSettings
 
 
 class AzureBlobStorageSourceWrapper(ModelNormal):
@@ -58,7 +60,7 @@ class AzureBlobStorageSourceWrapper(ModelNormal):
           as additional properties values.
     """
     inner_field = "azure_blob_storage"
-    inner_properties = ["blob_bytes_total", "blob_count_downloaded", "blob_count_total", "container", "pattern", "prefix"]
+    inner_properties = ["blob_bytes_total", "blob_count_downloaded", "blob_count_total", "container", "pattern", "prefix", "settings"]
     allowed_values = {
     }
 
@@ -96,6 +98,7 @@ class AzureBlobStorageSourceWrapper(ModelNormal):
             'container': (str, none_type),  # noqa: E501
             'pattern': (str, none_type),  # noqa: E501
             'prefix': (str, none_type),  # noqa: E501
+            'settings': (SourceAzBlobStorageSettings, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -112,6 +115,7 @@ class AzureBlobStorageSourceWrapper(ModelNormal):
         'container': 'container',  # noqa: E501
         'pattern': 'pattern',  # noqa: E501
         'prefix': 'prefix',  # noqa: E501
+        'settings': 'settings',  # noqa: E501
     }
 
     read_only_vars = {
@@ -166,6 +170,7 @@ class AzureBlobStorageSourceWrapper(ModelNormal):
             container (str): Name of Azure blob Storage container you want to ingest from.. [optional]  # noqa: E501
             pattern (str): Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified.. [optional]  # noqa: E501
             prefix (str): Prefix that selects blobs to ingest.. [optional]  # noqa: E501
+            settings (SourceAzBlobStorageSettings): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -222,6 +227,7 @@ class AzureBlobStorageSourceWrapper(ModelNormal):
             container (str): Name of Azure blob Storage container you want to ingest from.. [optional]  # noqa: E501
             pattern (str): Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified.. [optional]  # noqa: E501
             prefix (str): Prefix that selects blobs to ingest.. [optional]  # noqa: E501
+            settings (SourceAzBlobStorageSettings): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

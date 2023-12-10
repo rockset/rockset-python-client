@@ -23,6 +23,7 @@ from rockset.api.integrations_api import Integrations
 from rockset.api.organizations_api import Organizations
 from rockset.api.queries_api import Queries
 from rockset.api.query_lambdas_api import QueryLambdas
+from rockset.api.scheduled_lambdas_api import ScheduledLambdas
 from rockset.api.shared_lambdas_api import SharedLambdas
 from rockset.api.sources_api import Sources
 from rockset.api.users_api import Users

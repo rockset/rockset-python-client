@@ -173,6 +173,7 @@ Class | Method | HTTP request | Description
 *Integrations* | [**delete**](docs/IntegrationsApi.md#delete) | **DELETE** /v1/orgs/self/integrations/{integration} | Delete Integration
 *Integrations* | [**get**](docs/IntegrationsApi.md#get) | **GET** /v1/orgs/self/integrations/{integration} | Retrieve Integration
 *Integrations* | [**list**](docs/IntegrationsApi.md#list) | **GET** /v1/orgs/self/integrations | List Integrations
+*Integrations* | [**update**](docs/IntegrationsApi.md#update) | **PUT** /v1/orgs/self/integrations/{integration} | Update Integration
 *Organizations* | [**get**](docs/OrganizationsApi.md#get) | **GET** /v1/orgs/self | Get Organization
 *Queries* | [**cancel_query**](docs/QueriesApi.md#cancel_query) | **DELETE** /v1/orgs/self/queries/{queryId} | Cancel Query
 *Queries* | [**get_query**](docs/QueriesApi.md#get_query) | **GET** /v1/orgs/self/queries/{queryId} | Retrieve Query
@@ -194,6 +195,9 @@ Class | Method | HTTP request | Description
 *QueryLambdas* | [**list_query_lambda_versions**](docs/QueryLambdasApi.md#list_query_lambda_versions) | **GET** /v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/versions | List Query Lambda Versions
 *QueryLambdas* | [**list_query_lambdas_in_workspace**](docs/QueryLambdasApi.md#list_query_lambdas_in_workspace) | **GET** /v1/orgs/self/ws/{workspace}/lambdas | List Query Lambdas in Workspace
 *QueryLambdas* | [**update_query_lambda**](docs/QueryLambdasApi.md#update_query_lambda) | **POST** /v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/versions | Update Query Lambda
+*ScheduledLambdas* | [**create**](docs/ScheduledLambdasApi.md#create) | **POST** /v1/orgs/self/ws/{workspace}/scheduled_lambdas | Create a Scheduled Lambda mapping
+*ScheduledLambdas* | [**delete**](docs/ScheduledLambdasApi.md#delete) | **DELETE** /v1/orgs/self/ws/{workspace}/scheduled_lambdas/{scheduledLambdaId} | Delete a Scheduled Lambda mapping
+*ScheduledLambdas* | [**update**](docs/ScheduledLambdasApi.md#update) | **POST** /v1/orgs/self/ws/{workspace}/scheduled_lambdas/{scheduledLambdaId} | Update a Scheduled Lambda mapping
 *SharedLambdas* | [**execute_public_query_lambda_with_params**](docs/SharedLambdasApi.md#execute_public_query_lambda_with_params) | **POST** /v1/public/shared_lambdas/{public_access_id} | Execute a Public Query Lambda
 *Sources* | [**create_azure_blob_storage_source**](docs/SourcesApi.md#create_azure_blob_storage_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a new azure blob storage source in a collection
 *Sources* | [**create_azure_event_hubs_source**](docs/SourcesApi.md#create_azure_event_hubs_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a new azure event hubs source in a collection
@@ -209,6 +213,7 @@ Class | Method | HTTP request | Description
 *Sources* | [**list**](docs/SourcesApi.md#list) | **GET** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | List sources in collection
 *Sources* | [**resume**](docs/SourcesApi.md#resume) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source}/resume | Resume source ingest
 *Sources* | [**suspend**](docs/SourcesApi.md#suspend) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source}/suspend | Suspend source ingest
+*Sources* | [**update**](docs/SourcesApi.md#update) | **PUT** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source} | Update a collection source
 *Users* | [**create**](docs/UsersApi.md#create) | **POST** /v1/orgs/self/users | Create User
 *Users* | [**delete**](docs/UsersApi.md#delete) | **DELETE** /v1/orgs/self/users/{user} | Delete User
 *Users* | [**get**](docs/UsersApi.md#get) | **GET** /v1/orgs/self/users/{user} | Retrieve User
@@ -227,11 +232,12 @@ Class | Method | HTTP request | Description
 *VirtualInstances* | [**delete**](docs/VirtualInstancesApi.md#delete) | **DELETE** /v1/orgs/self/virtualinstances/{virtualInstanceId} | Delete Virtual Instance
 *VirtualInstances* | [**get**](docs/VirtualInstancesApi.md#get) | **GET** /v1/orgs/self/virtualinstances/{virtualInstanceId} | Retrieve Virtual Instance
 *VirtualInstances* | [**get_collection_mount**](docs/VirtualInstancesApi.md#get_collection_mount) | **GET** /v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts/{collectionPath} | Get Collection Mount
+*VirtualInstances* | [**get_mount_offsets**](docs/VirtualInstancesApi.md#get_mount_offsets) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts/{collectionPath}/offsets/commit | Get Collection Commit
 *VirtualInstances* | [**get_virtual_instance_queries**](docs/VirtualInstancesApi.md#get_virtual_instance_queries) | **GET** /v1/orgs/self/virtualinstances/{virtualInstanceId}/queries | List Queries
 *VirtualInstances* | [**list**](docs/VirtualInstancesApi.md#list) | **GET** /v1/orgs/self/virtualinstances | List Virtual Instances
 *VirtualInstances* | [**list_collection_mounts**](docs/VirtualInstancesApi.md#list_collection_mounts) | **GET** /v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts | List Collection Mounts
 *VirtualInstances* | [**mount_collection**](docs/VirtualInstancesApi.md#mount_collection) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts | Mount Collections
-*VirtualInstances* | [**query_virtual_instance**](docs/VirtualInstancesApi.md#query_virtual_instance) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId}/queries | Execute SQL Query
+*VirtualInstances* | [**query_virtual_instance**](docs/VirtualInstancesApi.md#query_virtual_instance) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId}/queries | Execute SQL Query on a specific Virtual Instance
 *VirtualInstances* | [**resume_virtual_instance**](docs/VirtualInstancesApi.md#resume_virtual_instance) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId}/resume | Resume Virtual Instance
 *VirtualInstances* | [**suspend_virtual_instance**](docs/VirtualInstancesApi.md#suspend_virtual_instance) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId}/suspend | Suspend Virtual Instance
 *VirtualInstances* | [**unmount_collection**](docs/VirtualInstancesApi.md#unmount_collection) | **DELETE** /v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts/{collectionPath} | Unmount Collection
@@ -282,6 +288,7 @@ Class | Method | HTTP request | Description
  - [CreateQueryLambdaRequest](docs/CreateQueryLambdaRequest.md)
  - [CreateQueryLambdaTagRequest](docs/CreateQueryLambdaTagRequest.md)
  - [CreateRoleRequest](docs/CreateRoleRequest.md)
+ - [CreateScheduledLambdaRequest](docs/CreateScheduledLambdaRequest.md)
  - [CreateUserRequest](docs/CreateUserRequest.md)
  - [CreateUserResponse](docs/CreateUserResponse.md)
  - [CreateViewRequest](docs/CreateViewRequest.md)
@@ -313,6 +320,7 @@ Class | Method | HTTP request | Description
  - [EventTimeInfo](docs/EventTimeInfo.md)
  - [ExecutePublicQueryLambdaRequest](docs/ExecutePublicQueryLambdaRequest.md)
  - [ExecuteQueryLambdaRequest](docs/ExecuteQueryLambdaRequest.md)
+ - [ExecutionStatus](docs/ExecutionStatus.md)
  - [FieldMappingQuery](docs/FieldMappingQuery.md)
  - [FieldMappingV2](docs/FieldMappingV2.md)
  - [FieldPartition](docs/FieldPartition.md)
@@ -399,22 +407,33 @@ Class | Method | HTTP request | Description
  - [S3Integration](docs/S3Integration.md)
  - [S3IntegrationCreationRequest](docs/S3IntegrationCreationRequest.md)
  - [S3SourceWrapper](docs/S3SourceWrapper.md)
+ - [ScheduledLambda](docs/ScheduledLambda.md)
+ - [ScheduledLambdaResponse](docs/ScheduledLambdaResponse.md)
  - [SchemaRegistryConfig](docs/SchemaRegistryConfig.md)
  - [SnowflakeCollectionCreationRequest](docs/SnowflakeCollectionCreationRequest.md)
  - [SnowflakeIntegration](docs/SnowflakeIntegration.md)
  - [SnowflakeIntegrationCreationRequest](docs/SnowflakeIntegrationCreationRequest.md)
  - [SnowflakeSourceWrapper](docs/SnowflakeSourceWrapper.md)
  - [Source](docs/Source.md)
+ - [SourceAzBlobStorageBase](docs/SourceAzBlobStorageBase.md)
+ - [SourceAzBlobStorageSettings](docs/SourceAzBlobStorageSettings.md)
  - [SourceAzureBlobStorage](docs/SourceAzureBlobStorage.md)
  - [SourceAzureEventHubs](docs/SourceAzureEventHubs.md)
  - [SourceAzureServiceBus](docs/SourceAzureServiceBus.md)
+ - [SourceBase](docs/SourceBase.md)
  - [SourceDynamoDb](docs/SourceDynamoDb.md)
+ - [SourceDynamoDbBase](docs/SourceDynamoDbBase.md)
+ - [SourceDynamoDbSettings](docs/SourceDynamoDbSettings.md)
  - [SourceFileUpload](docs/SourceFileUpload.md)
  - [SourceGcs](docs/SourceGcs.md)
+ - [SourceGcsBase](docs/SourceGcsBase.md)
+ - [SourceGcsSettings](docs/SourceGcsSettings.md)
  - [SourceKafka](docs/SourceKafka.md)
  - [SourceKinesis](docs/SourceKinesis.md)
  - [SourceMongoDb](docs/SourceMongoDb.md)
  - [SourceS3](docs/SourceS3.md)
+ - [SourceS3Base](docs/SourceS3Base.md)
+ - [SourceS3Settings](docs/SourceS3Settings.md)
  - [SourceSnapshot](docs/SourceSnapshot.md)
  - [SourceSnowflake](docs/SourceSnowflake.md)
  - [SourceSystem](docs/SourceSystem.md)
@@ -431,14 +450,19 @@ Class | Method | HTTP request | Description
  - [StatusKafkaPartition](docs/StatusKafkaPartition.md)
  - [StatusMongoDb](docs/StatusMongoDb.md)
  - [StatusSnowflake](docs/StatusSnowflake.md)
+ - [SuspendSourceRequest](docs/SuspendSourceRequest.md)
  - [SuspendVirtualInstanceResponse](docs/SuspendVirtualInstanceResponse.md)
+ - [TLSConfig](docs/TLSConfig.md)
  - [UnsubscribePreference](docs/UnsubscribePreference.md)
  - [UpdateAliasRequest](docs/UpdateAliasRequest.md)
  - [UpdateApiKeyRequest](docs/UpdateApiKeyRequest.md)
  - [UpdateApiKeyResponse](docs/UpdateApiKeyResponse.md)
  - [UpdateCollectionRequest](docs/UpdateCollectionRequest.md)
+ - [UpdateIntegrationRequest](docs/UpdateIntegrationRequest.md)
+ - [UpdateIntegrationResponse](docs/UpdateIntegrationResponse.md)
  - [UpdateQueryLambdaRequest](docs/UpdateQueryLambdaRequest.md)
  - [UpdateRoleRequest](docs/UpdateRoleRequest.md)
+ - [UpdateScheduledLambdaRequest](docs/UpdateScheduledLambdaRequest.md)
  - [UpdateUnsubscribePreferencesRequest](docs/UpdateUnsubscribePreferencesRequest.md)
  - [UpdateUnsubscribePreferencesResponse](docs/UpdateUnsubscribePreferencesResponse.md)
  - [UpdateUserRequest](docs/UpdateUserRequest.md)
@@ -450,6 +474,7 @@ Class | Method | HTTP request | Description
  - [ValidateQueryResponse](docs/ValidateQueryResponse.md)
  - [View](docs/View.md)
  - [VirtualInstance](docs/VirtualInstance.md)
+ - [VirtualInstanceRrn](docs/VirtualInstanceRrn.md)
  - [VirtualInstanceStats](docs/VirtualInstanceStats.md)
  - [Workspace](docs/Workspace.md)
  - [XmlParams](docs/XmlParams.md)

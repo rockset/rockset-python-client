@@ -30,8 +30,26 @@ from rockset.exceptions import ApiAttributeError
 
 
 def lazy_import():
+    from rockset.model.azure_blob_storage_integration import AzureBlobStorageIntegration
+    from rockset.model.azure_event_hubs_integration import AzureEventHubsIntegration
+    from rockset.model.azure_service_bus_integration import AzureServiceBusIntegration
+    from rockset.model.dynamodb_integration import DynamodbIntegration
+    from rockset.model.gcs_integration import GcsIntegration
     from rockset.model.kafka_integration import KafkaIntegration
+    from rockset.model.kinesis_integration import KinesisIntegration
+    from rockset.model.mongo_db_integration import MongoDbIntegration
+    from rockset.model.s3_integration import S3Integration
+    from rockset.model.snowflake_integration import SnowflakeIntegration
+    globals()['AzureBlobStorageIntegration'] = AzureBlobStorageIntegration
+    globals()['AzureEventHubsIntegration'] = AzureEventHubsIntegration
+    globals()['AzureServiceBusIntegration'] = AzureServiceBusIntegration
+    globals()['DynamodbIntegration'] = DynamodbIntegration
+    globals()['GcsIntegration'] = GcsIntegration
     globals()['KafkaIntegration'] = KafkaIntegration
+    globals()['KinesisIntegration'] = KinesisIntegration
+    globals()['MongoDbIntegration'] = MongoDbIntegration
+    globals()['S3Integration'] = S3Integration
+    globals()['SnowflakeIntegration'] = SnowflakeIntegration
 
 
 class UpdateIntegrationRequest(ModelNormal):
@@ -87,7 +105,17 @@ class UpdateIntegrationRequest(ModelNormal):
         """
         lazy_import()
         return {
+            'azure_blob_storage': (AzureBlobStorageIntegration, none_type),  # noqa: E501
+            'azure_event_hubs': (AzureEventHubsIntegration, none_type),  # noqa: E501
+            'azure_service_bus': (AzureServiceBusIntegration, none_type),  # noqa: E501
+            'description': (str, none_type),  # noqa: E501
+            'dynamodb': (DynamodbIntegration, none_type),  # noqa: E501
+            'gcs': (GcsIntegration, none_type),  # noqa: E501
             'kafka': (KafkaIntegration, none_type),  # noqa: E501
+            'kinesis': (KinesisIntegration, none_type),  # noqa: E501
+            'mongodb': (MongoDbIntegration, none_type),  # noqa: E501
+            's3': (S3Integration, none_type),  # noqa: E501
+            'snowflake': (SnowflakeIntegration, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -96,7 +124,17 @@ class UpdateIntegrationRequest(ModelNormal):
 
 
     attribute_map = {
+        'azure_blob_storage': 'azure_blob_storage',  # noqa: E501
+        'azure_event_hubs': 'azure_event_hubs',  # noqa: E501
+        'azure_service_bus': 'azure_service_bus',  # noqa: E501
+        'description': 'description',  # noqa: E501
+        'dynamodb': 'dynamodb',  # noqa: E501
+        'gcs': 'gcs',  # noqa: E501
         'kafka': 'kafka',  # noqa: E501
+        'kinesis': 'kinesis',  # noqa: E501
+        'mongodb': 'mongodb',  # noqa: E501
+        's3': 's3',  # noqa: E501
+        'snowflake': 'snowflake',  # noqa: E501
     }
 
     read_only_vars = {
@@ -140,7 +178,17 @@ class UpdateIntegrationRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            azure_blob_storage (AzureBlobStorageIntegration): [optional]  # noqa: E501
+            azure_event_hubs (AzureEventHubsIntegration): [optional]  # noqa: E501
+            azure_service_bus (AzureServiceBusIntegration): [optional]  # noqa: E501
+            description (str): Longer explanation for the integration.. [optional]  # noqa: E501
+            dynamodb (DynamodbIntegration): [optional]  # noqa: E501
+            gcs (GcsIntegration): [optional]  # noqa: E501
             kafka (KafkaIntegration): [optional]  # noqa: E501
+            kinesis (KinesisIntegration): [optional]  # noqa: E501
+            mongodb (MongoDbIntegration): [optional]  # noqa: E501
+            s3 (S3Integration): [optional]  # noqa: E501
+            snowflake (SnowflakeIntegration): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -192,7 +240,17 @@ class UpdateIntegrationRequest(ModelNormal):
         """UpdateIntegrationRequest - a model defined in OpenAPI
 
         Keyword Args:
+            azure_blob_storage (AzureBlobStorageIntegration): [optional]  # noqa: E501
+            azure_event_hubs (AzureEventHubsIntegration): [optional]  # noqa: E501
+            azure_service_bus (AzureServiceBusIntegration): [optional]  # noqa: E501
+            description (str): Longer explanation for the integration.. [optional]  # noqa: E501
+            dynamodb (DynamodbIntegration): [optional]  # noqa: E501
+            gcs (GcsIntegration): [optional]  # noqa: E501
             kafka (KafkaIntegration): [optional]  # noqa: E501
+            kinesis (KinesisIntegration): [optional]  # noqa: E501
+            mongodb (MongoDbIntegration): [optional]  # noqa: E501
+            s3 (S3Integration): [optional]  # noqa: E501
+            snowflake (SnowflakeIntegration): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

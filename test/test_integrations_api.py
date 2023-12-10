@@ -153,6 +153,17 @@ def test_create_mongodb_integration(get_client, mock_request, request_validator)
                 description="AWS account with event data for the data science team.",
                 mongodb=MongoDbIntegration(
                     connection_uri="mongodb+srv://<username>:<password>@server.example.com/",
+                    tls=TLSConfig(
+                        ca_cert="""-----BEGIN CERTIFICATE-----
+....
+-----END CERTIFICATE-----""",
+                        client_cert="""-----BEGIN CERTIFICATE-----
+....
+-----END CERTIFICATE-----""",
+                        client_key="""-----BEGIN RSA PRIVATE KEY-----
+...
+-----END RSA PRIVATE KEY-----""",
+                    ),
                 ),
                 name="event-logs",
             )
@@ -237,5 +248,115 @@ def test_list(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Integrations.list()
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_update(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Integrations.update(
+                integration="integration_example",
+                azure_blob_storage=AzureBlobStorageIntegration(
+                    connection_string="""BlobEndpoint=https://<NamespaceName>.blob.core.windows.net;
+SharedAccessSignature=<KeyValue>""",
+                ),
+                azure_event_hubs=AzureEventHubsIntegration(
+                    connection_string="Endpoint=sb://<NamespaceName>.servicebus.windows.net/;SharedAccessKeyName=<KeyName>;SharedAccessKey=<KeyValue>",
+                ),
+                azure_service_bus=AzureServiceBusIntegration(
+                    connection_string="Endpoint=sb://<NamespaceName>.servicebus.windows.net/;SharedAccessKeyName=<KeyName>;SharedAccessKey=<KeyValue>",
+                ),
+                description="AWS account with event data for the data science team.",
+                dynamodb=DynamodbIntegration(
+                    aws_access_key=AwsAccessKey(
+                        aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
+                        aws_secret_access_key="wJal....",
+                    ),
+                    aws_role=AwsRole(
+                        aws_external_id="external id of aws",
+                        aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
+                    ),
+                    s3_export_bucket_name="s3_export_bucket_name_example",
+                ),
+                gcs=GcsIntegration(
+                    gcp_service_account=GcpServiceAccount(
+                        service_account_key_file_json="service_account_key_file_json_example",
+                    ),
+                ),
+                kafka=KafkaIntegration(
+                    aws_role=AwsRole(
+                        aws_external_id="external id of aws",
+                        aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
+                    ),
+                    bootstrap_servers="localhost:9092",
+                    connection_string="connection_string_example",
+                    kafka_data_format="JSON",
+                    kafka_topic_names=[
+                        "kafka_topic_names_example",
+                    ],
+                    schema_registry_config=SchemaRegistryConfig(
+                        key="key_example",
+                        secret="secret_example",
+                        url="url_example",
+                    ),
+                    security_config=KafkaV3SecurityConfig(
+                        api_key="api_key_example",
+                        secret="secret_example",
+                    ),
+                    use_v3=True,
+                ),
+                kinesis=KinesisIntegration(
+                    aws_access_key=AwsAccessKey(
+                        aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
+                        aws_secret_access_key="wJal....",
+                    ),
+                    aws_role=AwsRole(
+                        aws_external_id="external id of aws",
+                        aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
+                    ),
+                ),
+                mongodb=MongoDbIntegration(
+                    connection_uri="mongodb+srv://<username>:<password>@server.example.com/",
+                    tls=TLSConfig(
+                        ca_cert="""-----BEGIN CERTIFICATE-----
+....
+-----END CERTIFICATE-----""",
+                        client_cert="""-----BEGIN CERTIFICATE-----
+....
+-----END CERTIFICATE-----""",
+                        client_key="""-----BEGIN RSA PRIVATE KEY-----
+...
+-----END RSA PRIVATE KEY-----""",
+                    ),
+                ),
+                s3=S3Integration(
+                    aws_access_key=AwsAccessKey(
+                        aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
+                        aws_secret_access_key="wJal....",
+                    ),
+                    aws_role=AwsRole(
+                        aws_external_id="external id of aws",
+                        aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
+                    ),
+                ),
+                snowflake=SnowflakeIntegration(
+                    aws_access_key=AwsAccessKey(
+                        aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
+                        aws_secret_access_key="wJal....",
+                    ),
+                    aws_role=AwsRole(
+                        aws_external_id="external id of aws",
+                        aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
+                    ),
+                    default_warehouse="default_warehouse_example",
+                    password="password_example",
+                    s3_export_path="s3://bucket/prefix",
+                    snowflake_url="acme-marketing-test-account.snowflakecomputing.com",
+                    user_role="user_role_example",
+                    username="username_example",
+                ),
+            )
         except EarlyExit as e:
             validate_call(e, request_validator)

@@ -9,7 +9,7 @@ Name | Type | Description | Notes
 **description** | **str** | Text describing the collection. | [optional] 
 **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional] 
 **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional] 
-**retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional] 
+**retention_secs** | **int** | Number of seconds after which data is purged, based on event time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly less than 10 years. | [optional] 
 **source_download_soft_limit_bytes** | **int** | Soft ingest limit for this collection. | [optional] 
 **sources** | [**[MongodbSourceWrapper]**](MongodbSourceWrapper.md) | List of sources from which to ingest data | [optional] 
 **storage_compression_type** | **str** | RocksDB storage compression type. | [optional] 

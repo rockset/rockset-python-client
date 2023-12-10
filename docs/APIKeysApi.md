@@ -45,6 +45,7 @@ pprint(api_response)
 # Create API Key
 api_response = await rs.APIKeys.create(
     created_by="string_example",
+    expiry_time="2001-08-28T00:23:41Z",
     name="my-app",
     role="string_example",
     async_req=True,
@@ -62,6 +63,7 @@ pprint(api_response)
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **created_by** | **str** |  | [optional]
+ **expiry_time** | **str** | If provided, the API key will automatically expire at this time (ISO-8601 format). Requires premium. | [optional]
  **name** | **str** | Name for this API key. | 
  **role** | **str** |  | [optional]
 
@@ -92,6 +94,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -181,6 +184,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -271,6 +275,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -357,6 +362,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -402,6 +408,8 @@ pprint(api_response)
 api_response = await rs.APIKeys.update(
     name="my-key",
     user="admin@me.com",
+    clear_expiry_time=True,
+    expiry_time="2001-08-28T00:23:41Z",
     state="ACTIVE",
     async_req=True,
 )
@@ -419,6 +427,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **name** | **str** | Name of the API key. |
  **user** | **str** | Email of the API key owner. Use &#x60;self&#x60; to specify the currently authenticated user. |
+ **clear_expiry_time** | **bool** | If set to true, the expiration time for this key will be cleared. | [optional]
+ **expiry_time** | **str** | If provided, the API key will automatically expire at this time (ISO-8601 format). Requires premium. | [optional]
  **state** | **str** | State that the api key should be set to. | [optional]
 
 ### Return type
@@ -448,6 +458,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |

@@ -76,6 +76,7 @@ api_response = await rs.Collections.create_azure_blob_storage_collection(
     sources=[
         AzureBlobStorageSourceWrapper(
             format_params=FormatParams(
+                bson=True,
                 csv=CsvParams(
                     column_names=["c1","c2","c3"],
                     column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -102,6 +103,9 @@ api_response = await rs.Collections.create_azure_blob_storage_collection(
             container="server-logs",
             pattern="prefix/to/**/keys/*.format",
             prefix="prefix/to/blobs",
+            settings=SourceAzBlobStorageSettings(
+                azblob_scan_frequency="PT5M",
+            ),
         ),
     ],
     storage_compression_type="LZ4",
@@ -124,7 +128,7 @@ Name | Type | Description  | Notes
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
  **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
- **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
+ **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly less than 10 years. | [optional]
  **source_download_soft_limit_bytes** | **int** | Soft ingest limit for this collection. | [optional]
  **sources** | [**[AzureBlobStorageSourceWrapper]**](AzureBlobStorageSourceWrapper.md) | List of sources from which to ingest data | [optional]
  **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
@@ -157,6 +161,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -221,6 +226,7 @@ api_response = await rs.Collections.create_azure_event_hubs_collection(
     sources=[
         AzureEventHubsSourceWrapper(
             format_params=FormatParams(
+                bson=True,
                 csv=CsvParams(
                     column_names=["c1","c2","c3"],
                     column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -268,7 +274,7 @@ Name | Type | Description  | Notes
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
  **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
- **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
+ **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly less than 10 years. | [optional]
  **source_download_soft_limit_bytes** | **int** | Soft ingest limit for this collection. | [optional]
  **sources** | [**[AzureEventHubsSourceWrapper]**](AzureEventHubsSourceWrapper.md) | List of sources from which to ingest data | [optional]
  **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
@@ -301,6 +307,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -365,6 +372,7 @@ api_response = await rs.Collections.create_dynamodb_collection(
     sources=[
         DynamodbSourceWrapper(
             format_params=FormatParams(
+                bson=True,
                 csv=CsvParams(
                     column_names=["c1","c2","c3"],
                     column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -390,6 +398,9 @@ api_response = await rs.Collections.create_dynamodb_collection(
             integration_name="aws-integration",
             aws_region="us-east-2",
             rcu=1000,
+            settings=SourceDynamoDbSettings(
+                dynamodb_stream_poll_frequency="PT1S",
+            ),
             table_name="dynamodb_table_name",
             use_scan_api=True,
         ),
@@ -414,7 +425,7 @@ Name | Type | Description  | Notes
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
  **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
- **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
+ **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly less than 10 years. | [optional]
  **source_download_soft_limit_bytes** | **int** | Soft ingest limit for this collection. | [optional]
  **sources** | [**[DynamodbSourceWrapper]**](DynamodbSourceWrapper.md) | List of sources from which to ingest data | [optional]
  **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
@@ -447,6 +458,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -511,6 +523,7 @@ api_response = await rs.Collections.create_gcs_collection(
     sources=[
         GcsSourceWrapper(
             format_params=FormatParams(
+                bson=True,
                 csv=CsvParams(
                     column_names=["c1","c2","c3"],
                     column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -537,6 +550,9 @@ api_response = await rs.Collections.create_gcs_collection(
             bucket="server-logs",
             pattern="prefix/to/**/keys/*.format",
             prefix="prefix/to/keys",
+            settings=SourceGcsSettings(
+                gcs_scan_frequency="PT5M",
+            ),
         ),
     ],
     storage_compression_type="LZ4",
@@ -559,7 +575,7 @@ Name | Type | Description  | Notes
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
  **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
- **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
+ **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly less than 10 years. | [optional]
  **source_download_soft_limit_bytes** | **int** | Soft ingest limit for this collection. | [optional]
  **sources** | [**[GcsSourceWrapper]**](GcsSourceWrapper.md) | List of sources from which to ingest data | [optional]
  **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
@@ -592,6 +608,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -656,6 +673,7 @@ api_response = await rs.Collections.create_kafka_collection(
     sources=[
         KafkaSourceWrapper(
             format_params=FormatParams(
+                bson=True,
                 csv=CsvParams(
                     column_names=["c1","c2","c3"],
                     column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -679,6 +697,7 @@ api_response = await rs.Collections.create_kafka_collection(
                 ),
             ),
             integration_name="aws-integration",
+            client_id="cwc|0013a00001hSJ7oAAG|rockset-colln-consumer",
             consumer_group_id="org-collection",
             kafka_topic_name="example-topic",
             offset_reset_policy="EARLIEST",
@@ -705,7 +724,7 @@ Name | Type | Description  | Notes
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
  **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
- **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
+ **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly less than 10 years. | [optional]
  **source_download_soft_limit_bytes** | **int** | Soft ingest limit for this collection. | [optional]
  **sources** | [**[KafkaSourceWrapper]**](KafkaSourceWrapper.md) | List of sources from which to ingest data | [optional]
  **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
@@ -738,6 +757,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -802,6 +822,7 @@ api_response = await rs.Collections.create_kinesis_collection(
     sources=[
         KinesisSourceWrapper(
             format_params=FormatParams(
+                bson=True,
                 csv=CsvParams(
                     column_names=["c1","c2","c3"],
                     column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -853,7 +874,7 @@ Name | Type | Description  | Notes
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
  **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
- **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
+ **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly less than 10 years. | [optional]
  **source_download_soft_limit_bytes** | **int** | Soft ingest limit for this collection. | [optional]
  **sources** | [**[KinesisSourceWrapper]**](KinesisSourceWrapper.md) | List of sources from which to ingest data | [optional]
  **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
@@ -886,6 +907,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -950,6 +972,7 @@ api_response = await rs.Collections.create_mongodb_collection(
     sources=[
         MongodbSourceWrapper(
             format_params=FormatParams(
+                bson=True,
                 csv=CsvParams(
                     column_names=["c1","c2","c3"],
                     column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -998,7 +1021,7 @@ Name | Type | Description  | Notes
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
  **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
- **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
+ **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly less than 10 years. | [optional]
  **source_download_soft_limit_bytes** | **int** | Soft ingest limit for this collection. | [optional]
  **sources** | [**[MongodbSourceWrapper]**](MongodbSourceWrapper.md) | List of sources from which to ingest data | [optional]
  **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
@@ -1031,6 +1054,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -1095,6 +1119,7 @@ api_response = await rs.Collections.create_s3_collection(
     sources=[
         S3SourceWrapper(
             format_params=FormatParams(
+                bson=True,
                 csv=CsvParams(
                     column_names=["c1","c2","c3"],
                     column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -1122,6 +1147,9 @@ api_response = await rs.Collections.create_s3_collection(
             pattern="prefix/to/**/keys/*.format",
             prefix="prefix/to/keys",
             region="us-west-2",
+            settings=SourceS3Settings(
+                s3_scan_frequency="PT5M",
+            ),
         ),
     ],
     storage_compression_type="LZ4",
@@ -1144,7 +1172,7 @@ Name | Type | Description  | Notes
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
  **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
- **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
+ **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly less than 10 years. | [optional]
  **source_download_soft_limit_bytes** | **int** | Soft ingest limit for this collection. | [optional]
  **sources** | [**[S3SourceWrapper]**](S3SourceWrapper.md) | List of sources from which to ingest data | [optional]
  **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
@@ -1177,6 +1205,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -1241,6 +1270,7 @@ api_response = await rs.Collections.create_snowflake_collection(
     sources=[
         SnowflakeSourceWrapper(
             format_params=FormatParams(
+                bson=True,
                 csv=CsvParams(
                     column_names=["c1","c2","c3"],
                     column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -1290,7 +1320,7 @@ Name | Type | Description  | Notes
  **event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional]
  **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
  **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
- **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. | [optional]
+ **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly less than 10 years. | [optional]
  **source_download_soft_limit_bytes** | **int** | Soft ingest limit for this collection. | [optional]
  **sources** | [**[SnowflakeSourceWrapper]**](SnowflakeSourceWrapper.md) | List of sources from which to ingest data | [optional]
  **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
@@ -1323,6 +1353,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -1410,6 +1441,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -1497,6 +1529,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -1586,6 +1619,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -1667,6 +1701,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -1760,6 +1795,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -1844,6 +1880,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |

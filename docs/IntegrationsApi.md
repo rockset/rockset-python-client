@@ -16,6 +16,7 @@ Method | HTTP request | Description
 [**delete**](IntegrationsApi.md#delete) | **DELETE** /v1/orgs/self/integrations/{integration} | Delete Integration
 [**get**](IntegrationsApi.md#get) | **GET** /v1/orgs/self/integrations/{integration} | Retrieve Integration
 [**list**](IntegrationsApi.md#list) | **GET** /v1/orgs/self/integrations | List Integrations
+[**update**](IntegrationsApi.md#update) | **PUT** /v1/orgs/self/integrations/{integration} | Update Integration
 
 
 # **create_azure_blob_storage_integration**
@@ -102,6 +103,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -194,6 +196,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -294,6 +297,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -388,6 +392,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -499,6 +504,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -598,6 +604,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -643,6 +650,17 @@ api_response = await rs.Integrations.create_mongodb_integration(
     description="AWS account with event data for the data science team.",
     mongodb=MongoDbIntegration(
         connection_uri="mongodb+srv://<username>:<password>@server.example.com/",
+        tls=TLSConfig(
+            ca_cert='''-----BEGIN CERTIFICATE-----
+....
+-----END CERTIFICATE-----''',
+            client_cert='''-----BEGIN CERTIFICATE-----
+....
+-----END CERTIFICATE-----''',
+            client_key='''-----BEGIN RSA PRIVATE KEY-----
+...
+-----END RSA PRIVATE KEY-----''',
+        ),
     ),
     name="event-logs",
     async_req=True,
@@ -690,6 +708,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -789,6 +808,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -894,6 +914,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -980,6 +1001,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -1066,6 +1088,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |
@@ -1147,6 +1170,204 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 **405** | not allowed |  -  |
 **406** | not acceptable |  -  |
 **408** | request timeout |  -  |
+**409** | conflict |  -  |
+**415** | not supported |  -  |
+**429** | resource exceeded |  -  |
+**500** | internal error |  -  |
+**501** | not implemented |  -  |
+**502** | bad gateway |  -  |
+**503** | not ready |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **update**
+> UpdateIntegrationResponse update(integration, update_integration_request)
+
+Update Integration
+
+Update an existing integration.
+
+### Example
+
+* Api Key Authentication (apikey):
+
+```python
+from rockset import *
+from rockset.models import *
+from pprint import pprint
+
+# Create an instance of the Rockset client
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
+
+# synchronous example passing only required values which don't have defaults set
+# Update Integration
+api_response = rs.Integrations.update(
+    integration="integration_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Integrations->update: %s\n" % e)
+
+# asynchronous example passing optional values and required values which don't have defaults set
+# assumes that execution takes place within an asynchronous context
+# Update Integration
+api_response = await rs.Integrations.update(
+    integration="integration_example",
+    azure_blob_storage=AzureBlobStorageIntegration(
+        connection_string='''BlobEndpoint=https://<NamespaceName>.blob.core.windows.net;
+SharedAccessSignature=<KeyValue>''',
+    ),
+    azure_event_hubs=AzureEventHubsIntegration(
+        connection_string="Endpoint=sb://<NamespaceName>.servicebus.windows.net/;SharedAccessKeyName=<KeyName>;SharedAccessKey=<KeyValue>",
+    ),
+    azure_service_bus=AzureServiceBusIntegration(
+        connection_string="Endpoint=sb://<NamespaceName>.servicebus.windows.net/;SharedAccessKeyName=<KeyName>;SharedAccessKey=<KeyValue>",
+    ),
+    description="AWS account with event data for the data science team.",
+    dynamodb=DynamodbIntegration(
+        aws_access_key=AwsAccessKey(
+            aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
+            aws_secret_access_key="wJal....",
+        ),
+        aws_role=AwsRole(
+            aws_external_id="external id of aws",
+            aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
+        ),
+        s3_export_bucket_name="s3_export_bucket_name_example",
+    ),
+    gcs=GcsIntegration(
+        gcp_service_account=GcpServiceAccount(
+            service_account_key_file_json="service_account_key_file_json_example",
+        ),
+    ),
+    kafka=KafkaIntegration(
+        aws_role=AwsRole(
+            aws_external_id="external id of aws",
+            aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
+        ),
+        bootstrap_servers="localhost:9092",
+        connection_string="connection_string_example",
+        kafka_data_format="JSON",
+        kafka_topic_names=[
+            "kafka_topic_names_example",
+        ],
+        schema_registry_config=SchemaRegistryConfig(
+            key="key_example",
+            secret="secret_example",
+            url="url_example",
+        ),
+        security_config=KafkaV3SecurityConfig(
+            api_key="api_key_example",
+            secret="secret_example",
+        ),
+        use_v3=True,
+    ),
+    kinesis=KinesisIntegration(
+        aws_access_key=AwsAccessKey(
+            aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
+            aws_secret_access_key="wJal....",
+        ),
+        aws_role=AwsRole(
+            aws_external_id="external id of aws",
+            aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
+        ),
+    ),
+    mongodb=MongoDbIntegration(
+        connection_uri="mongodb+srv://<username>:<password>@server.example.com/",
+        tls=TLSConfig(
+            ca_cert='''-----BEGIN CERTIFICATE-----
+....
+-----END CERTIFICATE-----''',
+            client_cert='''-----BEGIN CERTIFICATE-----
+....
+-----END CERTIFICATE-----''',
+            client_key='''-----BEGIN RSA PRIVATE KEY-----
+...
+-----END RSA PRIVATE KEY-----''',
+        ),
+    ),
+    s3=S3Integration(
+        aws_access_key=AwsAccessKey(
+            aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
+            aws_secret_access_key="wJal....",
+        ),
+        aws_role=AwsRole(
+            aws_external_id="external id of aws",
+            aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
+        ),
+    ),
+    snowflake=SnowflakeIntegration(
+        aws_access_key=AwsAccessKey(
+            aws_access_key_id="AKIAIOSFODNN7EXAMPLE",
+            aws_secret_access_key="wJal....",
+        ),
+        aws_role=AwsRole(
+            aws_external_id="external id of aws",
+            aws_role_arn="arn:aws:iam::2378964092:role/rockset-role",
+        ),
+        default_warehouse="default_warehouse_example",
+        password="password_example",
+        s3_export_path="s3://bucket/prefix",
+        snowflake_url="acme-marketing-test-account.snowflakecomputing.com",
+        user_role="user_role_example",
+        username="username_example",
+    ),
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Integrations->update: %s\n" % e)
+    return
+pprint(api_response)
+
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **integration** | **str** |  |
+ **azure_blob_storage** | [**AzureBlobStorageIntegration**](AzureBlobStorageIntegration.md) |  | [optional]
+ **azure_event_hubs** | [**AzureEventHubsIntegration**](AzureEventHubsIntegration.md) |  | [optional]
+ **azure_service_bus** | [**AzureServiceBusIntegration**](AzureServiceBusIntegration.md) |  | [optional]
+ **description** | **str** | Longer explanation for the integration. | [optional]
+ **dynamodb** | [**DynamodbIntegration**](DynamodbIntegration.md) |  | [optional]
+ **gcs** | [**GcsIntegration**](GcsIntegration.md) |  | [optional]
+ **kafka** | [**KafkaIntegration**](KafkaIntegration.md) |  | [optional]
+ **kinesis** | [**KinesisIntegration**](KinesisIntegration.md) |  | [optional]
+ **mongodb** | [**MongoDbIntegration**](MongoDbIntegration.md) |  | [optional]
+ **s3** | [**S3Integration**](S3Integration.md) |  | [optional]
+ **snowflake** | [**SnowflakeIntegration**](SnowflakeIntegration.md) |  | [optional]
+
+### Return type
+
+[**UpdateIntegrationResponse**](UpdateIntegrationResponse.md)
+
+### Authorization
+
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | integration updated successfully |  -  |
+**400** | bad request |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+**405** | not allowed |  -  |
+**406** | not acceptable |  -  |
+**408** | request timeout |  -  |
+**409** | conflict |  -  |
 **415** | not supported |  -  |
 **429** | resource exceeded |  -  |
 **500** | internal error |  -  |

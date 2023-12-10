@@ -6,6 +6,13 @@ components:
           schema:
             $ref: "#/components/schemas/ExecuteQueryLambdaRequest"
       description: JSON object
+    GetCollectionCommitRequest:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/GetCollectionCommitRequest"
+      description: JSON object
+      required: true
     QueryRequest:
       content:
         application/json:
@@ -188,6 +195,7 @@ components:
             - NANO
             - SHARED
             - MILLI
+            - XSMALL
             - SMALL
             - MEDIUM
             - LARGE
@@ -208,6 +216,7 @@ components:
             - NANO
             - SHARED
             - MILLI
+            - XSMALL
             - SMALL
             - MEDIUM
             - LARGE
@@ -276,10 +285,12 @@ components:
         retention_secs:
           description:
             Number of seconds after which data is purged, based on event
-            time.
+            time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly
+            less than 10 years.
           example: 1000000
           format: int64
-          minimum: 1
+          maximum: 315359999
+          minimum: 3600
           type: integer
         source_download_soft_limit_bytes:
           description: Soft ingest limit for this collection.
@@ -372,10 +383,12 @@ components:
         retention_secs:
           description:
             Number of seconds after which data is purged, based on event
-            time.
+            time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly
+            less than 10 years.
           example: 1000000
           format: int64
-          minimum: 1
+          maximum: 315359999
+          minimum: 3600
           type: integer
         source_download_soft_limit_bytes:
           description: Soft ingest limit for this collection.
@@ -632,6 +645,10 @@ components:
           example: 2592000
           format: int64
           type: integer
+        rrn:
+          description: Collection RRN.
+          example: rrn:col:use1a1:123e4567-e89b-12d3-a456-556642440000
+          type: string
         sources:
           description: List of sources from which collection ingests.
           items:
@@ -656,6 +673,13 @@ components:
             - ENCRYPTION_KEY_ERROR
             - UNKNOWN
           example: READY
+          type: string
+        storage_compression_type:
+          description: RocksDB storage compression type.
+          enum:
+            - LZ4
+            - ZSTD
+            - UNKNOWN
           type: string
         workspace:
           description: Name of the workspace that the collection is in.
@@ -848,6 +872,12 @@ components:
       properties:
         created_by:
           type: string
+        expiry_time:
+          description:
+            If provided, the API key will automatically expire at this
+            time (ISO-8601 format). Requires premium.
+          example: "2001-08-28T00:23:41Z"
+          type: string
         name:
           description: Name for this API key.
           example: my-app
@@ -912,10 +942,12 @@ components:
         retention_secs:
           description:
             Number of seconds after which data is purged, based on event
-            time.
+            time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly
+            less than 10 years.
           example: 1000000
           format: int64
-          minimum: 1
+          maximum: 315359999
+          minimum: 3600
           type: integer
         source_download_soft_limit_bytes:
           description: Soft ingest limit for this collection.
@@ -1036,6 +1068,57 @@ components:
           example: read_write
           type: string
       type: object
+    CreateScheduledLambdaRequest:
+      properties:
+        apikey:
+          description:
+            The apikey to use when triggering execution of the associated
+            query lambda.
+          example: qoiwkjndksd
+          type: string
+        cron_string:
+          description: The UNIX-formatted cron string for this scheduled query lambda.
+          example: "* * * * *"
+          type: string
+        ql_name:
+          description: The name of the QL to use for scheduled execution.
+          example: ql_name
+          type: string
+        tag:
+          description: The QL tag to use for scheduled execution.
+          example: production
+          type: string
+        total_times_to_execute:
+          description:
+            The number of times to execute this scheduled query lambda.
+            Once this scheduled query lambda has been executed this many times, it
+            will no longer be executed.
+          example: 1
+          format: int64
+          type: integer
+        version:
+          description: The version of the QL to use for scheduled execution.
+          example: abcdef1234
+          type: string
+        webhook_auth_header:
+          description:
+            The value to use as the authorization header when hitting the
+            webhook.
+          example: bearer qiowjkjkdskdskldio
+          type: string
+        webhook_payload:
+          description: The payload that should be sent to the webhook. JSON format.
+          type: string
+        webhook_url:
+          description:
+            The URL of the webhook that should be triggered after this
+            scheduled query lambda completes.
+          example: https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX
+          type: string
+      required:
+        - cron_string
+        - ql_name
+      type: object
     CreateUserRequest:
       properties:
         email:
@@ -1112,12 +1195,23 @@ components:
           type: boolean
         mount_refresh_interval_seconds:
           description:
-            Number of seconds between data refreshes for mounts on this
-            Virtual Instance. A value of 0 means continuous refresh and a value of
-            null means never refresh.
-          example: 3600
+            DEPRECATED. Use `mount_type` instead. Number of seconds between
+            data refreshes for mounts on this Virtual Instance. The only valid values
+            are 0 and null. 0 means the data will be refreshed continuously and null
+            means the data will never refresh.
+          example: 0
           format: int32
           type: integer
+        mount_type:
+          description:
+            The mount type of collections that this Virtual Instance will
+            query. Live mounted collections stay up-to-date with the underlying collection
+            in real-time. Static mounted collections do not stay up-to-date. See https://docs.rockset.com/documentation/docs/virtual-instances#virtual-instance-configuration
+          enum:
+            - LIVE
+            - STATIC
+          example: LIVE
+          type: string
         name:
           description:
             Unique identifier for virtual instance, can contain alphanumeric
@@ -1131,6 +1225,7 @@ components:
             - NANO
             - SHARED
             - MILLI
+            - XSMALL
             - SMALL
             - MEDIUM
             - LARGE
@@ -1378,10 +1473,12 @@ components:
         retention_secs:
           description:
             Number of seconds after which data is purged, based on event
-            time.
+            time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly
+            less than 10 years.
           example: 1000000
           format: int64
-          minimum: 1
+          maximum: 315359999
+          minimum: 3600
           type: integer
         source_download_soft_limit_bytes:
           description: Soft ingest limit for this collection.
@@ -1481,9 +1578,9 @@ components:
             - NOTIMPLEMENTEDYET
             - RESOURCEEXCEEDED
             - ALREADYEXISTS
-            - NOTALLOWED
+            - METHODNOTALLOWED
             - NOTACCEPTABLE
-            - NOTSUPPORTED
+            - UNSUPPORTEDMEDIATYPE
             - NOTFOUND
             - DEPENDENTRESOURCES
             - QUERY_ERROR
@@ -1599,6 +1696,19 @@ components:
           description: Virtual instance on which to run the query.
           type: string
       type: object
+    ExecutionStatus:
+      properties:
+        message:
+          description: Message describing the execution status.
+          type: string
+        state:
+          description: The scheduled query lambda execution status
+          enum:
+            - WARNING
+            - ERROR
+          example: ERROR
+          type: string
+      type: object
     FieldMappingQuery:
       properties:
         sql:
@@ -1652,6 +1762,8 @@ components:
       type: object
     FormatParams:
       properties:
+        bson:
+          type: boolean
         csv:
           $ref: "#/components/schemas/CsvParams"
         json:
@@ -1707,10 +1819,12 @@ components:
         retention_secs:
           description:
             Number of seconds after which data is purged, based on event
-            time.
+            time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly
+            less than 10 years.
           example: 1000000
           format: int64
-          minimum: 1
+          maximum: 315359999
+          minimum: 3600
           type: integer
         source_download_soft_limit_bytes:
           description: Soft ingest limit for this collection.
@@ -1979,10 +2093,12 @@ components:
         retention_secs:
           description:
             Number of seconds after which data is purged, based on event
-            time.
+            time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly
+            less than 10 years.
           example: 1000000
           format: int64
-          minimum: 1
+          maximum: 315359999
+          minimum: 3600
           type: integer
         source_download_soft_limit_bytes:
           description: Soft ingest limit for this collection.
@@ -2112,10 +2228,12 @@ components:
         retention_secs:
           description:
             Number of seconds after which data is purged, based on event
-            time.
+            time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly
+            less than 10 years.
           example: 1000000
           format: int64
-          minimum: 1
+          maximum: 315359999
+          minimum: 3600
           type: integer
         source_download_soft_limit_bytes:
           description: Soft ingest limit for this collection.
@@ -2311,6 +2429,9 @@ components:
           description: MongoDB connection URI string.
           example: mongodb+srv://<username>:<password>@server.example.com/
           type: string
+        tls:
+          $ref: "#/components/schemas/TLSConfig"
+          description: TLS configuration for mongo connection
       required:
         - connection_uri
       type: object
@@ -2344,10 +2465,12 @@ components:
         retention_secs:
           description:
             Number of seconds after which data is purged, based on event
-            time.
+            time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly
+            less than 10 years.
           example: 1000000
           format: int64
-          minimum: 1
+          maximum: 315359999
+          minimum: 3600
           type: integer
         source_download_soft_limit_bytes:
           description: Soft ingest limit for this collection.
@@ -2606,6 +2729,7 @@ components:
             - CREATE_INTEGRATION_GLOBAL
             - DELETE_INTEGRATION_GLOBAL
             - LIST_INTEGRATIONS_GLOBAL
+            - EXPORT_DATA_GLOBAL
             - UPDATE_RESOURCE_OWNER_GLOBAL
             - CREATE_API_KEY_GLOBAL
             - CREATE_ROLE_GLOBAL
@@ -2614,6 +2738,7 @@ components:
             - LIST_ROLES_GLOBAL
             - GRANT_REVOKE_ROLE_GLOBAL
             - CREATE_QUERY_LOGS_COLLECTION_GLOBAL
+            - CREATE_INGEST_LOGS_COLLECTION_GLOBAL
             - ALL_INTEGRATION_ACTIONS
             - CREATE_COLLECTION_INTEGRATION
             - ALL_WORKSPACE_ACTIONS
@@ -2622,8 +2747,10 @@ components:
             - WRITE_DATA_WS
             - CREATE_COLLECTION_WS
             - DELETE_COLLECTION_WS
+            - UPDATE_COLLECTION_WS
             - CREATE_ALIAS_WS
             - DELETE_ALIAS_WS
+            - CREATE_SNAPSHOT_WS
             - LIST_RESOURCES_WS
             - CREATE_QUERY_LAMBDA_WS
             - DELETE_QUERY_LAMBDA_WS
@@ -2639,6 +2766,10 @@ components:
             - DELETE_VI
             - CREATE_SIMILARITY_INDEX_WS
             - DELETE_SIMILARITY_INDEX_WS
+            - CREATE_NETWORK_CONFIGURATION_GLOBAL
+            - DELETE_NETWORK_CONFIGURATION_GLOBAL
+            - LIST_NETWORK_CONFIGURATIONS_GLOBAL
+            - UPDATE_ORG_QUERY_ROUTING
           example: CREATE_COLLECTION_WS
           type: string
         cluster:
@@ -3139,10 +3270,12 @@ components:
         retention_secs:
           description:
             Number of seconds after which data is purged, based on event
-            time.
+            time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly
+            less than 10 years.
           example: 1000000
           format: int64
-          minimum: 1
+          maximum: 315359999
+          minimum: 3600
           type: integer
         source_download_soft_limit_bytes:
           description: Soft ingest limit for this collection.
@@ -3203,6 +3336,96 @@ components:
           description: Configuration for ingestion from S3.
       type: object
       x-inner-field: s3
+    ScheduledLambda:
+      properties:
+        cron_string:
+          description: The UNIX-formatted cron string for this scheduled query lambda.
+          example: "* * * * *"
+          type: string
+        execution_count:
+          description: The number of times this scheduled QL has been executed.
+          example: 5
+          format: int64
+          type: integer
+        last_completion_date:
+          description: The last time this scheduled query lambda completed successfully.
+          example: "2001-08-28T00:23:41Z"
+          type: string
+        last_query_id:
+          description:
+            The ID of the query that was triggered by this scheduled lambda's
+            last run.
+          example: salkdjfsd-1jakdsjfksaj
+          type: string
+        next_execution_date:
+          description: The next time this scheduled query lambda will be executed.
+          example: "2001-08-28T00:23:41Z"
+          type: string
+        ql_name:
+          description: The name of the associated query lambda.
+          example: example_ql
+          type: string
+        query_execution_status:
+          $ref: "#/components/schemas/ExecutionStatus"
+          description:
+            Query execution status of the scheduled lambda. This field
+            will only be populated when the query execution encounters a warning or
+            error state.
+        resume_permanent_error:
+          description:
+            Boolean flag to allow a scheduled query lambda to resume execution
+            after being suspended due to execution failure. This flag will be unset
+            after scheduled lambda execution.
+          type: boolean
+        rrn:
+          description: Scheduled Lambda mapping RRN.
+          example: rrn:sl:use1a1:123e4567-e89b-12d3-a456-556642440000
+          type: string
+        tag:
+          description: The query lambda tag.
+          example: production
+          type: string
+        total_times_to_execute:
+          description:
+            The number of times to execute this scheduled query lambda.
+            Once this scheduled query lambda has been executed this many times, it
+            will no longer be executed.
+          example: 5
+          format: int64
+          type: integer
+        version:
+          description: The version of the associated query lambda.
+          example: abcde1234
+          type: string
+        vi_rrn:
+          $ref: "#/components/schemas/VirtualInstanceRrn"
+          description:
+            The RRN of the virtual instance that should be used to execute
+            this scheduled query lambda.
+          example: rrn:vi:use1a1:123e4567-e89b-12d3-a456-556642440000
+        webhook_payload:
+          description: The payload that should be sent to the webhook.
+          example:
+            '{"text": "A scheduled query lambda completed execution. Query
+            ID: {{QUERY_ID}}, Initial results: {{QUERY_RESULTS}}"'
+          type: string
+        webhook_url:
+          description:
+            The URL of the webhook that should be triggered after this
+            scheduled query lambda completes.
+          example: https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX
+          type: string
+        workspace:
+          description: Workspace of the associated query lambda.
+          example: commons
+          type: string
+      type: object
+    ScheduledLambdaResponse:
+      properties:
+        data:
+          $ref: "#/components/schemas/ScheduledLambda"
+          description: Scheduled lambda mapping
+      type: object
     SchemaRegistryConfig:
       properties:
         key:
@@ -3245,10 +3468,12 @@ components:
         retention_secs:
           description:
             Number of seconds after which data is purged, based on event
-            time.
+            time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly
+            less than 10 years.
           example: 1000000
           format: int64
-          minimum: 1
+          maximum: 315359999
+          minimum: 3600
           type: integer
         source_download_soft_limit_bytes:
           description: Soft ingest limit for this collection.
@@ -3388,9 +3613,17 @@ components:
         mongodb:
           $ref: "#/components/schemas/SourceMongoDb"
           description: MongoDB collection details.
+        resume_at:
+          description: ISO-8601 date when source would be auto resumed, if suspended
+          example: "2019-01-15T21:48:23Z"
+          readOnly: true
+          type: string
         s3:
           $ref: "#/components/schemas/SourceS3"
           description: Configuration for ingestion from S3.
+        snapshot:
+          $ref: "#/components/schemas/SourceSnapshot"
+          description: Configuration for restoring from snapshot.
         snowflake:
           $ref: "#/components/schemas/SourceSnowflake"
           description: Configuration for ingestion from Snowflake.
@@ -3406,6 +3639,26 @@ components:
           type: string
         system:
           $ref: "#/components/schemas/SourceSystem"
+      type: object
+    SourceAzBlobStorageBase:
+      properties:
+        settings:
+          $ref: "#/components/schemas/SourceAzBlobStorageSettings"
+          description: custom settings for Azure blob Storage source
+      type: object
+    SourceAzBlobStorageSettings:
+      properties:
+        azblob_scan_frequency:
+          description:
+            "Rockset scans an Azure blob Storage container based on a defined
+            time interval. The scan frequency determines the length of time between
+            a new scan and the previous scan. If the previous scan finds new objects
+            or updates to existing objects, Rockset immediately scans the bucket again
+            after processing changes from the previous scan. Duration value is of
+            type ISO 8601 (e.g. PT5H, PT4M, PT3S). It doesn't account for DST, leap
+            seconds and leap years. Minimum value: PT1S. Maximum value: PT1H."
+          example: PT5M
+          type: string
       type: object
     SourceAzureBlobStorage:
       properties:
@@ -3435,6 +3688,9 @@ components:
           description: Prefix that selects blobs to ingest.
           example: prefix/to/blobs
           type: string
+        settings:
+          $ref: "#/components/schemas/SourceAzBlobStorageSettings"
+          description: custom settings for Azure blob Storage source
       type: object
     SourceAzureEventHubs:
       properties:
@@ -3471,6 +3727,21 @@ components:
           example: rockset-topic
           type: string
       type: object
+    SourceBase:
+      properties:
+        azure_blob_storage:
+          $ref: "#/components/schemas/SourceAzBlobStorageBase"
+          description: Configuration for ingestion from Azure Blob Storage.
+        dynamodb:
+          $ref: "#/components/schemas/SourceDynamoDbBase"
+          description: Configuration for ingestion from a DynamoDb table.
+        gcs:
+          $ref: "#/components/schemas/SourceGcsBase"
+          description: Configuration for ingestion from GCS.
+        s3:
+          $ref: "#/components/schemas/SourceS3Base"
+          description: Configuration for ingestion from S3.
+      type: object
     SourceDynamoDb:
       properties:
         aws_region:
@@ -3489,6 +3760,9 @@ components:
           example: 1000
           format: int64
           type: integer
+        settings:
+          $ref: "#/components/schemas/SourceDynamoDbSettings"
+          description: custom settings for Amazon DynamoDB source
         status:
           allOf:
             - $ref: "#/components/schemas/StatusDynamoDb"
@@ -3503,6 +3777,28 @@ components:
           type: boolean
       required:
         - table_name
+      type: object
+    SourceDynamoDbBase:
+      properties:
+        settings:
+          $ref: "#/components/schemas/SourceDynamoDbSettings"
+          description: custom settings for Amazon DynamoDB source
+      type: object
+    SourceDynamoDbSettings:
+      properties:
+        dynamodb_stream_poll_frequency:
+          description:
+            "Each DynamoDB stream can have one to many shards, and Rockset
+            polls each DynamoDB shard at a fixed rate. Decreasing the duration between
+            polls helps reduce ingest latency, while increasing the duration can prevent  Rockset
+            from keeping up with the updates. If the latency exceeds 24 hours (DynamoDB
+            stream retention duration), Rockset will not be able to process all of
+            the streaming updates. Each request also has a fixed price associated
+            with it. Duration value is of type ISO 8601 (e.g. PT5H, PT4M, PT3S). It
+            doesn't account for DST, leap seconds and leap years. Minimum value:
+            PT0.25S. Maximum value: PT5M."
+          example: PT1S
+          type: string
       type: object
     SourceFileUpload:
       properties:
@@ -3556,9 +3852,36 @@ components:
           description: Prefix that selects keys to ingest.
           example: prefix/to/keys
           type: string
+        settings:
+          $ref: "#/components/schemas/SourceGcsSettings"
+          description: custom settings for Google cloud Storage source
+      type: object
+    SourceGcsBase:
+      properties:
+        settings:
+          $ref: "#/components/schemas/SourceGcsSettings"
+          description: custom settings for Google cloud Storage source
+      type: object
+    SourceGcsSettings:
+      properties:
+        gcs_scan_frequency:
+          description:
+            "Rockset scans a GCS bucket based on a defined time interval.
+            The scan frequency determines the length of time between a new scan and
+            the previous scan. If the previous scan finds new objects or updates to
+            existing objects, Rockset immediately scans the bucket again after processing
+            changes from the previous scan. Duration value is of type ISO 8601 (e.g.
+            PT5H, PT4M, PT3S). It doesn't account for DST, leap seconds and leap
+            years. Minimum value: PT1S. Maximum value: PT1H."
+          example: PT5M
+          type: string
       type: object
     SourceKafka:
       properties:
+        client_id:
+          description: The kafka client id being used.
+          example: cwc|0013a00001hSJ7oAAG|rockset-colln-consumer
+          type: string
         consumer_group_id:
           description: The Kafka consumer group Id being used.
           example: org-collection
@@ -3670,7 +3993,9 @@ components:
           example: prefix/to/keys
           type: string
         prefixes:
-          description: List of prefixes to paths from which data should be ingested.
+          description:
+            Deprecated in favor of `prefix`. List of prefixes to paths
+            from which data should be ingested.
           example:
             - /transactions
             - /stores
@@ -3682,19 +4007,45 @@ components:
           description: AWS region containing source bucket.
           example: us-west-2
           type: string
+        settings:
+          $ref: "#/components/schemas/SourceS3Settings"
+          description: custom settings for Amazon S3 source
       required:
         - bucket
+      type: object
+    SourceS3Base:
+      properties:
+        settings:
+          $ref: "#/components/schemas/SourceS3Settings"
+          description: custom settings for Amazon S3 source
+      type: object
+    SourceS3Settings:
+      properties:
+        s3_scan_frequency:
+          description:
+            "Rockset scans an S3 bucket based on a defined time interval.
+            The scan frequency determines the length of time between a new scan and
+            the previous scan. If the previous scan finds new objects or updates to
+            existing objects, Rockset immediately scans the bucket again after processing
+            changes from the previous scan. Duration value is of type ISO 8601 (e.g.
+            PT5H, PT4M, PT3S). It doesn't account for DST, leap seconds and leap
+            years. Minimum value: PT1S. Maximum value: PT1H."
+          example: PT5M
+          type: string
       type: object
     SourceSnapshot:
       properties:
         source_collection_path:
-          description: Path of source collection to restore the snapshot from.
-          example: commons.foo
-          type: string
-        source_snapshot_id:
           description:
-            Snapshot id of the snapshot that the new collection will be
-            created from.
+            A representation of the workspace and collection where the
+            source snapshot originated.
+          example: myWorkspace.myCollection
+          type: string
+        source_snapshot_rrn:
+          description:
+            RRN of the snapshot that the new collection will be created
+            from.
+          example: rrn:snap:use1a1:123e4567-e89b-12d3-a456-556642440000
           type: string
       type: object
     SourceSnowflake:
@@ -3731,7 +4082,15 @@ components:
           description: The type of this system source.
           enum:
             - QUERY_LOGS
+            - INGEST_LOGS
           example: QUERY_LOGS
+          type: string
+        workspace:
+          description:
+            The workspace for which collections will have logs created.
+            If unspecified, logs will be created for collections in all workspaces.
+            Currently only supported for the INGEST_LOGS system source.
+          example: commons
           type: string
       type: object
     SqlExpression:
@@ -4046,11 +4405,66 @@ components:
           example: EXPORTING_TO_S3
           type: string
       type: object
+    SuspendSourceRequest:
+      properties:
+        resume_after_duration:
+          description: duration to suspend source; 1h is the default
+          example: 30min
+          type: string
+      type: object
     SuspendVirtualInstanceResponse:
       properties:
         data:
           $ref: "#/components/schemas/VirtualInstance"
           description: Virtual instance that was suspended.
+      type: object
+    TLSConfig:
+      properties:
+        ca_cert:
+          description:
+            PEM-formatted certificate chain of the Certificate Authority
+            used to verify remote server. If empty, Rockset, will use publicly trusted
+            CAs
+          example: "-----BEGIN CERTIFICATE-----
+
+            ....
+
+            -----END CERTIFICATE-----"
+          type: string
+        client_cert:
+          description: PEM-formatted certificate chain to use for client authentication
+          example: "-----BEGIN CERTIFICATE-----
+
+            ....
+
+            -----END CERTIFICATE-----"
+          type: string
+        client_cert_expiry:
+          description:
+            Expiration date of the client certificate (represented as number
+            of ms since epoch)
+          example: 1695426751
+          format: int64
+          readOnly: true
+          type: integer
+        client_cert_subject:
+          description:
+            Subject of the client certificate, containing common name and
+            other attributes
+          example: CN=Sample Cert, OU=R&D, O=Company Ltd.
+          readOnly: true
+          type: string
+        client_key:
+          description: PEM-formatted private key to be used for client authentication
+          example: "-----BEGIN RSA PRIVATE KEY-----
+
+            ...
+
+            -----END RSA PRIVATE KEY-----"
+          type: string
+      required:
+        - client_cert
+        - client_key
       type: object
     UnsubscribePreference:
       description: Notification preferences for the user.
@@ -4081,6 +4495,16 @@ components:
       type: object
     UpdateApiKeyRequest:
       properties:
+        clear_expiry_time:
+          description: If set to true, the expiration time for this key will be cleared.
+          example: true
+          type: boolean
+        expiry_time:
+          description:
+            If provided, the API key will automatically expire at this
+            time (ISO-8601 format). Requires premium.
+          example: "2001-08-28T00:23:41Z"
+          type: string
         state:
           description: State that the api key should be set to.
           enum:
@@ -4107,6 +4531,52 @@ components:
             Updated ingest transformation query. Note that updating the
             transformation will lead to a brief interruption in ingestion.
       type: object
+    UpdateIntegrationRequest:
+      properties:
+        azure_blob_storage:
+          $ref: "#/components/schemas/AzureBlobStorageIntegration"
+          description: Azure Blob Storage details.
+        azure_event_hubs:
+          $ref: "#/components/schemas/AzureEventHubsIntegration"
+          description: Azure Event Hubs details.
+        azure_service_bus:
+          $ref: "#/components/schemas/AzureServiceBusIntegration"
+          description: Azure Service Bus details.
+        description:
+          description: Longer explanation for the integration.
+          example: AWS account with event data for the data science team.
+          type: string
+        dynamodb:
+          $ref: "#/components/schemas/DynamodbIntegration"
+          description:
+            Amazon DynamoDB details, must have one of aws_access_key or
+            aws_role.
+        gcs:
+          $ref: "#/components/schemas/GcsIntegration"
+          description: GCS details.
+        kafka:
+          $ref: "#/components/schemas/KafkaIntegration"
+        kinesis:
+          $ref: "#/components/schemas/KinesisIntegration"
+          description:
+            Amazon Kinesis details, must have one of aws_access_key or
+            aws_role.
+        mongodb:
+          $ref: "#/components/schemas/MongoDbIntegration"
+          description: MongoDb details.
+        s3:
+          $ref: "#/components/schemas/S3Integration"
+          description: Amazon S3 details, must have one of aws_access_key or aws_role.
+        snowflake:
+          $ref: "#/components/schemas/SnowflakeIntegration"
+          description: Snowflake details.
+      type: object
+    UpdateIntegrationResponse:
+      properties:
+        data:
+          $ref: "#/components/schemas/Integration"
+          description: Updated integration object.
+      type: object
     UpdateQueryLambdaRequest:
       properties:
         description:
@@ -4130,6 +4600,41 @@ components:
           items:
             $ref: "#/components/schemas/Privilege"
           type: array
+      type: object
+    UpdateScheduledLambdaRequest:
+      properties:
+        apikey:
+          description:
+            The apikey to use when triggering execution of the associated
+            query lambda.
+          example: qoiwkjndksd
+          type: string
+        resume_permanent_error:
+          description:
+            Boolean flag to allow a scheduled query lambda to resume execution
+            after being suspended due to execution failure. This flag will be unset
+            after scheduled lambda execution.
+          type: boolean
+        total_times_to_execute:
+          description: The number of times to execute this scheduled query lambda.
+          example: 1
+          format: int64
+          type: integer
+        webhook_auth_header:
+          description:
+            The value to use as the authorization header when hitting the
+            webhook.
+          example: bearer qiowjkjkdskdskldio
+          type: string
+        webhook_payload:
+          description: The payload that should be sent to the webhook. JSON format.
+          type: string
+        webhook_url:
+          description:
+            The URL of the webhook that should be triggered after this
+            scheduled query lambda completes.
+          example: https://hooks.slack.com/services/T00000000/B00000000/XXXXXXXXXXXXXXXXXXXXXXXX
+          type: string
       type: object
     UpdateUnsubscribePreferencesRequest:
       properties:
@@ -4193,11 +4698,15 @@ components:
           description: Options for configuring auto scaling policy
           example: "true"
         auto_suspend_enabled:
-          description: Whether auto-suspend should be enabled for this Virtual Instance.
+          description:
+            Whether Query VI auto-suspend should be enabled for this Virtual
+            Instance.
           example: true
           type: boolean
         auto_suspend_seconds:
-          description: Number of seconds without queries after which the VI is suspended
+          description:
+            Number of seconds without queries after which the Query VI
+            is suspended
           example: 3600
           format: int32
           type: integer
@@ -4213,12 +4722,23 @@ components:
           type: boolean
         mount_refresh_interval_seconds:
           description:
-            Number of seconds between data refreshes for mounts on this
-            Virtual Instance. A value of 0 means continuous refresh and a value of
-            null means never refresh.
-          example: 3600
+            DEPRECATED. Use `mount_type` instead. Number of seconds between
+            data refreshes for mounts on this Virtual Instance. The only valid values
+            are 0 and null. 0 means the data will be refreshed continuously and null
+            means the data will never refresh.
+          example: 0
           format: int32
           type: integer
+        mount_type:
+          description:
+            The mount type of collections that this Virtual Instance will
+            query. Live mounted collections stay up-to-date with the underlying collection
+            in real-time. Static mounted collections do not stay up-to-date. See https://docs.rockset.com/documentation/docs/virtual-instances#virtual-instance-configuration
+          enum:
+            - LIVE
+            - STATIC
+          example: LIVE
+          type: string
         name:
           description: New virtual instance name.
           example: prod_vi
@@ -4230,6 +4750,7 @@ components:
             - NANO
             - SHARED
             - MILLI
+            - XSMALL
             - SMALL
             - MEDIUM
             - LARGE
@@ -4387,6 +4908,7 @@ components:
             - NANO
             - SHARED
             - MILLI
+            - XSMALL
             - SMALL
             - MEDIUM
             - LARGE
@@ -4414,6 +4936,7 @@ components:
             - NANO
             - SHARED
             - MILLI
+            - XSMALL
             - SMALL
             - MEDIUM
             - LARGE
@@ -4439,11 +4962,21 @@ components:
           type: boolean
         mount_refresh_interval_seconds:
           description:
-            Number of seconds between data refreshes for mounts on this
-            Virtual Instance
+            DEPRECATED. Number of seconds between data refreshes for mounts
+            on this Virtual Instance
           example: 3600
           format: int32
           type: integer
+        mount_type:
+          description:
+            The mount type of collections that this Virtual Instance will
+            query. Live mounted collections stay up-to-date with the underlying collection
+            in real-time. Static mounted collections do not stay up-to-date. See https://docs.rockset.com/documentation/docs/virtual-instances#virtual-instance-configuration
+          enum:
+            - LIVE
+            - STATIC
+          example: LIVE
+          type: string
         name:
           description: Virtual instance name.
           example: prod_vi
@@ -4479,6 +5012,63 @@ components:
           description: Stats about this VirtualInstance
       required:
         - name
+      type: object
+    VirtualInstanceRrn:
+      properties:
+        cluster:
+          enum:
+            - APT2A1
+            - DEV
+            - DEV_USW2A1
+            - EUC1A1
+            - EUW1A1
+            - GLOBAL
+            - TEST
+            - UNIT_TEST
+            - UNKNOWN
+            - USE1A1
+            - USW2A1
+          type: string
+        resourceType:
+          enum:
+            - ALIAS
+            - CLUSTER
+            - COLLECTION
+            - COMPACTION_INFO
+            - FIELD_SCHEMA
+            - INTEGRATION
+            - IP_ALLOWLIST
+            - LEAF
+            - LEAF_GROUP
+            - MOUNT
+            - NETWORK_CONFIGURATION
+            - ORG
+            - ORG_MIGRATION
+            - PENDING_SNAPSHOTS
+            - PREVIEW_SOURCE
+            - QUERY_LAMBDA
+            - QUERY_LAMBDA_TAG
+            - QUERY_LAMBDA_VERSION
+            - ROCKSET_DEPLOYMENT
+            - ROLE
+            - ROOT
+            - SCHEDULED_QUERY_LAMBDA
+            - SHARD
+            - SHARD_BATCH
+            - SIMILARITY_INDEX
+            - SNAPSHOT
+            - SOURCE
+            - USER
+            - VIEW
+            - VIRTUAL_INSTANCE
+            - WORKSPACE
+          type: string
+        uuid:
+          format: uuid
+          type: string
+        version:
+          format: int32
+          type: integer
       type: object
     VirtualInstanceStats:
       properties:
@@ -4621,6 +5211,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -4714,6 +5310,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -4807,6 +5409,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -4900,6 +5508,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -5000,6 +5614,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -5099,6 +5719,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -5198,6 +5824,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -5297,6 +5929,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -5396,6 +6034,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -5495,6 +6139,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -5594,6 +6244,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -5693,6 +6349,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -5792,6 +6454,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -5891,6 +6559,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -5990,6 +6664,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -6030,6 +6710,117 @@ paths:
       tags:
         - Integrations
       x-rename: get
+    put:
+      description: Update an existing integration.
+      operationId: updateIntegration
+      parameters:
+        - in: path
+          name: integration
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateIntegrationRequest"
+        description: integration configuration
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpdateIntegrationResponse"
+          description: integration updated successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Update Integration
+      tags:
+        - Integrations
+      x-rename: update
   /v1/orgs/self/lambdas:
     get:
       description: List all Query Lambdas in an organization.
@@ -6083,6 +6874,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -6175,6 +6972,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -6215,7 +7018,9 @@ paths:
       tags:
         - Queries
     post:
-      description: Make a SQL query to Rockset.
+      description:
+        Make a SQL query to Rockset. If you want to issue the query to
+        a specific Virtual Instance use this https://docs.rockset.com/documentation/reference/queryvirtualinstance
       operationId: query
       requestBody:
         $ref: "#/components/requestBodies/QueryRequest"
@@ -6268,6 +7073,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -6362,6 +7173,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -6460,6 +7277,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -6557,6 +7380,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -6675,6 +7504,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -6767,6 +7602,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -6866,6 +7707,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -6965,6 +7812,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -7063,6 +7916,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -7168,6 +8027,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -7261,6 +8126,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -7360,6 +8231,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -7453,6 +8330,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -7552,6 +8435,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -7645,6 +8534,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -7743,6 +8638,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -7842,6 +8743,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -7941,6 +8848,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -8047,6 +8960,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -8150,6 +9069,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -8260,6 +9185,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -8376,6 +9307,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -8492,6 +9429,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -8585,6 +9528,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -8678,6 +9627,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -8719,7 +9674,7 @@ paths:
         - Virtual Instances
       x-rename: list
     post:
-      description: "[beta] Create virtual instance"
+      description: Create virtual instance
       operationId: createVirtualInstance
       requestBody:
         content:
@@ -8777,6 +9732,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -8819,7 +9780,7 @@ paths:
       x-rename: create
   /v1/orgs/self/virtualinstances/{virtualInstanceId}:
     delete:
-      description: "[beta] Delete a virtual instance."
+      description: Delete a virtual instance.
       operationId: deleteVirtualInstance
       parameters:
         - description: Virtual Instance RRN
@@ -8877,6 +9838,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -8976,6 +9943,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -9082,6 +10055,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -9124,7 +10103,7 @@ paths:
       x-rename: update
   /v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts:
     get:
-      description: "[beta] List collection mounts for a particular VI."
+      description: List collection mounts for a particular VI.
       operationId: listCollectionMounts
       parameters:
         - description: Virtual Instance RRN
@@ -9182,6 +10161,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -9222,7 +10207,7 @@ paths:
       tags:
         - Virtual Instances
     post:
-      description: "[beta] Mount a collection to this virtual instance."
+      description: Mount a collection to this virtual instance.
       operationId: mountCollection
       parameters:
         - description: Virtual Instance RRN
@@ -9287,6 +10272,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -9328,7 +10319,7 @@ paths:
         - Virtual Instances
   /v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts/{collectionPath}:
     delete:
-      description: "[beta] Unmount a collection from this virtual instance."
+      description: Unmount a collection from this virtual instance.
       operationId: unmountCollection
       parameters:
         - description: Virtual Instance RRN
@@ -9391,6 +10382,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -9431,7 +10428,7 @@ paths:
       tags:
         - Virtual Instances
     get:
-      description: "[beta] Retrieve a mount on this virtual instance."
+      description: Retrieve a mount on this virtual instance.
       operationId: getCollectionMount
       parameters:
         - description: Virtual Instance RRN
@@ -9494,6 +10491,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -9533,11 +10536,130 @@ paths:
       summary: Get Collection Mount
       tags:
         - Virtual Instances
+  /v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts/{collectionPath}/offsets/commit:
+    post:
+      description:
+        Determines if the collection includes data at or after the specified
+        fence(s) for close read-after-write semantics.
+      operationId: getMountOffsets
+      parameters:
+        - description: Virtual Instance RRN
+          in: path
+          name: virtualInstanceId
+          required: true
+          schema:
+            type: string
+        - in: path
+          name: collectionPath
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GetCollectionCommitRequest"
+        description: JSON object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetCollectionCommit"
+          description: Successfully returned collection commit
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Get Collection Commit
+      tags:
+        - Virtual Instances
   /v1/orgs/self/virtualinstances/{virtualInstanceId}/queries:
     get:
       description:
-        "[beta] Lists actively queued and running queries for a particular
-        Virtual Instance."
+        Lists actively queued and running queries for a particular Virtual
+        Instance.
       operationId: getVirtualInstanceQueries
       parameters:
         - description: Virtual Instance RRN
@@ -9595,6 +10717,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -9635,7 +10763,7 @@ paths:
       tags:
         - Virtual Instances
     post:
-      description: "[beta] Make a SQL query to Rockset."
+      description: Make a SQL query to Rockset.
       operationId: queryVirtualInstance
       parameters:
         - description: Virtual Instance RRN
@@ -9700,6 +10828,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -9736,12 +10870,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: not ready
-      summary: Execute SQL Query
+      summary: Execute SQL Query on a specific Virtual Instance
       tags:
         - Virtual Instances
   /v1/orgs/self/virtualinstances/{virtualInstanceId}/resume:
     post:
-      description: "[beta] Resume a virtual instance."
+      description: Resume a virtual instance.
       operationId: resumeVirtualInstance
       parameters:
         - description: Virtual Instance RRN
@@ -9799,6 +10933,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -9840,7 +10980,7 @@ paths:
         - Virtual Instances
   /v1/orgs/self/virtualinstances/{virtualInstanceId}/suspend:
     post:
-      description: "[beta] Suspend a virtual instance."
+      description: Suspend a virtual instance.
       operationId: suspendVirtualInstance
       parameters:
         - description: Virtual Instance RRN
@@ -9898,6 +11038,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -9990,6 +11136,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -10089,6 +11241,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -10190,6 +11348,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -10290,6 +11454,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -10391,6 +11561,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -10497,6 +11673,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -10604,6 +11786,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -10710,6 +11898,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -10823,6 +12017,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -10924,6 +12124,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -11031,6 +12237,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -11138,6 +12350,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -11245,6 +12463,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -11352,6 +12576,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -11459,6 +12689,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -11566,6 +12802,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -11673,6 +12915,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -11780,6 +13028,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -11887,6 +13141,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -11993,6 +13253,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -12099,6 +13365,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -12212,6 +13484,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -12677,6 +13955,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -12783,6 +14067,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -12823,8 +14113,8 @@ paths:
       tags:
         - Sources
       x-rename: list
-  ? /v1/orgs/self/ws/{workspace}/collections/{collection}/sources#AzureBlobStorage
-  : post:
+  /v1/orgs/self/ws/{workspace}/collections/{collection}/sources#AzureBlobStorage:
+    post:
       description: Create new source in a collection.
       operationId: createAzureBlobStorageSource
       parameters:
@@ -12897,6 +14187,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -13010,6 +14306,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -13123,6 +14425,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -13236,6 +14544,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -13349,6 +14663,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -13462,6 +14782,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -13575,6 +14901,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -13688,6 +15020,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -13801,6 +15139,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -13913,6 +15257,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -14025,6 +15375,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -14065,6 +15421,131 @@ paths:
       tags:
         - Sources
       x-rename: get
+    put:
+      description: Update details about a collection source.
+      operationId: updateSource
+      parameters:
+        - description: name of the workspace
+          in: path
+          name: workspace
+          required: true
+          schema:
+            default: commons
+            type: string
+        - description: name of the collection
+          in: path
+          name: collection
+          required: true
+          schema:
+            type: string
+        - description: id of source
+          in: path
+          name: source
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SourceBase"
+        description: JSON object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetSourceResponse"
+          description: collection updated successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Update a collection source
+      tags:
+        - Sources
+      x-rename: update
   /v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source}/resume:
     post:
       description: Resume source ingest
@@ -14138,6 +15619,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -14178,8 +15665,8 @@ paths:
       tags:
         - Sources
       x-rename: resume
-  ? /v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source}/suspend
-  : post:
+  /v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source}/suspend:
+    post:
       description: Suspend source ingest
       operationId: suspendSource
       parameters:
@@ -14202,6 +15689,12 @@ paths:
           required: true
           schema:
             type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/SuspendSourceRequest"
+        description: JSON object
       responses:
         "200":
           content:
@@ -14251,6 +15744,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -14352,6 +15851,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -14458,6 +15963,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -14564,6 +16075,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -14670,6 +16187,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -14784,6 +16307,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -14896,6 +16425,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -15007,6 +16542,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -15124,6 +16665,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -15236,6 +16783,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -15342,6 +16895,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -15460,6 +17019,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -15572,6 +17137,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -15689,6 +17260,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -15728,6 +17305,352 @@ paths:
       summary: Execute Query Lambda By Version
       tags:
         - Query Lambdas
+  /v1/orgs/self/ws/{workspace}/scheduled_lambdas:
+    post:
+      description: Create a scheduled lambda mapping for your organization.
+      operationId: createScheduledLambda
+      parameters:
+        - description: name of the workspace
+          in: path
+          name: workspace
+          required: true
+          schema:
+            default: commons
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateScheduledLambdaRequest"
+        description: JSON Object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScheduledLambdaResponse"
+          description: scheduled lambda mapping created successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Create a Scheduled Lambda mapping
+      tags:
+        - Scheduled Lambdas
+      x-rename: create
+  /v1/orgs/self/ws/{workspace}/scheduled_lambdas/{scheduledLambdaId}:
+    delete:
+      description: Delete a scheduled lambda mapping for your organization.
+      operationId: deleteScheduledLambda
+      parameters:
+        - description: name of the workspace
+          in: path
+          name: workspace
+          required: true
+          schema:
+            default: commons
+            type: string
+        - description: Scheduled Lambda RRN
+          in: path
+          name: scheduledLambdaId
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScheduledLambdaResponse"
+          description: scheduled lambda mapping deleted successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Delete a Scheduled Lambda mapping
+      tags:
+        - Scheduled Lambdas
+      x-rename: delete
+    post:
+      description: Update a scheduled lambda mapping for your organization.
+      operationId: updateScheduledLambda
+      parameters:
+        - description: name of the workspace
+          in: path
+          name: workspace
+          required: true
+          schema:
+            default: commons
+            type: string
+        - description: Scheduled Lambda RRN
+          in: path
+          name: scheduledLambdaId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateScheduledLambdaRequest"
+        description: JSON Object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ScheduledLambdaResponse"
+          description: scheduled lambda mapping updated successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Update a Scheduled Lambda mapping
+      tags:
+        - Scheduled Lambdas
+      x-rename: update
   /v1/orgs/self/ws/{workspace}/views:
     get:
       description: Retrieve all views in a workspace.
@@ -15789,6 +17712,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -15895,6 +17824,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -16002,6 +17937,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -16108,6 +18049,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -16221,6 +18168,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -16327,6 +18280,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
         "415":
           content:
             application/json:
@@ -16371,8 +18330,8 @@ security:
 servers:
   - url: https://api.use1a1.rockset.com/
 tags:
-  - name: API Keys
   - name: Aliases
+  - name: API Keys
   - name: Collections
   - name: Custom Roles
   - name: Documents
@@ -16380,6 +18339,7 @@ tags:
   - name: Organizations
   - name: Queries
   - name: Query Lambdas
+  - name: Scheduled Lambdas
   - name: Shared Lambdas
   - name: Sources
   - name: Users

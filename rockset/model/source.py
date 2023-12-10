@@ -42,6 +42,7 @@ def lazy_import():
     from rockset.model.source_kinesis import SourceKinesis
     from rockset.model.source_mongo_db import SourceMongoDb
     from rockset.model.source_s3 import SourceS3
+    from rockset.model.source_snapshot import SourceSnapshot
     from rockset.model.source_snowflake import SourceSnowflake
     from rockset.model.source_system import SourceSystem
     from rockset.model.status import Status
@@ -57,6 +58,7 @@ def lazy_import():
     globals()['SourceKinesis'] = SourceKinesis
     globals()['SourceMongoDb'] = SourceMongoDb
     globals()['SourceS3'] = SourceS3
+    globals()['SourceSnapshot'] = SourceSnapshot
     globals()['SourceSnowflake'] = SourceSnowflake
     globals()['SourceSystem'] = SourceSystem
     globals()['Status'] = Status
@@ -128,7 +130,9 @@ class Source(ModelNormal):
             'kafka': (SourceKafka, none_type),  # noqa: E501
             'kinesis': (SourceKinesis, none_type),  # noqa: E501
             'mongodb': (SourceMongoDb, none_type),  # noqa: E501
+            'resume_at': (str, none_type),  # noqa: E501
             's3': (SourceS3, none_type),  # noqa: E501
+            'snapshot': (SourceSnapshot, none_type),  # noqa: E501
             'snowflake': (SourceSnowflake, none_type),  # noqa: E501
             'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
             'suspended_at': (str, none_type),  # noqa: E501
@@ -154,7 +158,9 @@ class Source(ModelNormal):
         'kafka': 'kafka',  # noqa: E501
         'kinesis': 'kinesis',  # noqa: E501
         'mongodb': 'mongodb',  # noqa: E501
+        'resume_at': 'resume_at',  # noqa: E501
         's3': 's3',  # noqa: E501
+        'snapshot': 'snapshot',  # noqa: E501
         'snowflake': 'snowflake',  # noqa: E501
         'status': 'status',  # noqa: E501
         'suspended_at': 'suspended_at',  # noqa: E501
@@ -164,6 +170,7 @@ class Source(ModelNormal):
     read_only_vars = {
         'file_upload',  # noqa: E501
         'id',  # noqa: E501
+        'resume_at',  # noqa: E501
         'status',  # noqa: E501
         'suspended_at',  # noqa: E501
     }
@@ -219,7 +226,9 @@ class Source(ModelNormal):
             kafka (SourceKafka): [optional]  # noqa: E501
             kinesis (SourceKinesis): [optional]  # noqa: E501
             mongodb (SourceMongoDb): [optional]  # noqa: E501
+            resume_at (str): ISO-8601 date when source would be auto resumed, if suspended. [optional]  # noqa: E501
             s3 (SourceS3): [optional]  # noqa: E501
+            snapshot (SourceSnapshot): [optional]  # noqa: E501
             snowflake (SourceSnowflake): [optional]  # noqa: E501
             status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
             suspended_at (str): ISO-8601 date when source was suspended, if suspended. [optional]  # noqa: E501
@@ -287,6 +296,7 @@ class Source(ModelNormal):
             kinesis (SourceKinesis): [optional]  # noqa: E501
             mongodb (SourceMongoDb): [optional]  # noqa: E501
             s3 (SourceS3): [optional]  # noqa: E501
+            snapshot (SourceSnapshot): [optional]  # noqa: E501
             snowflake (SourceSnowflake): [optional]  # noqa: E501
             system (SourceSystem): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types

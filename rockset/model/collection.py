@@ -85,6 +85,11 @@ class Collection(ModelNormal):
             'ENCRYPTION_KEY_ERROR': "ENCRYPTION_KEY_ERROR",
             'UNKNOWN': "UNKNOWN",
         },
+        ('storage_compression_type',): {
+            'LZ4': "LZ4",
+            'ZSTD': "ZSTD",
+            'UNKNOWN': "UNKNOWN",
+        },
     }
 
     validations = {
@@ -131,9 +136,11 @@ class Collection(ModelNormal):
             'name': (str, none_type),  # noqa: E501
             'read_only': (bool, none_type),  # noqa: E501
             'retention_secs': (int, none_type),  # noqa: E501
+            'rrn': (str, none_type),  # noqa: E501
             'sources': ([Source], none_type),  # noqa: E501
             'stats': (CollectionStats, none_type),  # noqa: E501
             'status': (str, none_type),  # noqa: E501
+            'storage_compression_type': (str, none_type),  # noqa: E501
             'workspace': (str, none_type),  # noqa: E501
         }
 
@@ -156,9 +163,11 @@ class Collection(ModelNormal):
         'name': 'name',  # noqa: E501
         'read_only': 'read_only',  # noqa: E501
         'retention_secs': 'retention_secs',  # noqa: E501
+        'rrn': 'rrn',  # noqa: E501
         'sources': 'sources',  # noqa: E501
         'stats': 'stats',  # noqa: E501
         'status': 'status',  # noqa: E501
+        'storage_compression_type': 'storage_compression_type',  # noqa: E501
         'workspace': 'workspace',  # noqa: E501
     }
 
@@ -216,9 +225,11 @@ class Collection(ModelNormal):
             name (str): Unique identifer for collection, can contain alphanumeric or dash characters.. [optional]  # noqa: E501
             read_only (bool): Whether the collection is read-only or not.. [optional]  # noqa: E501
             retention_secs (int): Number of seconds after which data is purged based on event time.. [optional]  # noqa: E501
+            rrn (str): Collection RRN.. [optional]  # noqa: E501
             sources ([Source]): List of sources from which collection ingests.. [optional]  # noqa: E501
             stats (CollectionStats): [optional]  # noqa: E501
             status (str): Current status of collection.. [optional]  # noqa: E501
+            storage_compression_type (str): RocksDB storage compression type.. [optional]  # noqa: E501
             workspace (str): Name of the workspace that the collection is in.. [optional]  # noqa: E501
         """
 
@@ -284,9 +295,11 @@ class Collection(ModelNormal):
             name (str): Unique identifer for collection, can contain alphanumeric or dash characters.. [optional]  # noqa: E501
             read_only (bool): Whether the collection is read-only or not.. [optional]  # noqa: E501
             retention_secs (int): Number of seconds after which data is purged based on event time.. [optional]  # noqa: E501
+            rrn (str): Collection RRN.. [optional]  # noqa: E501
             sources ([Source]): List of sources from which collection ingests.. [optional]  # noqa: E501
             stats (CollectionStats): [optional]  # noqa: E501
             status (str): Current status of collection.. [optional]  # noqa: E501
+            storage_compression_type (str): RocksDB storage compression type.. [optional]  # noqa: E501
             workspace (str): Name of the workspace that the collection is in.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be

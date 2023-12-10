@@ -950,6 +950,7 @@ class Collections(object):
             sources=[
                 AzureBlobStorageSourceWrapper(
                     format_params=FormatParams(
+                        bson=True,
                         csv=CsvParams(
                             column_names=["c1","c2","c3"],
                             column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -976,6 +977,9 @@ class Collections(object):
                     container="server-logs",
                     pattern="prefix/to/**/keys/*.format",
                     prefix="prefix/to/blobs",
+                    settings=SourceAzBlobStorageSettings(
+                        azblob_scan_frequency="PT5M",
+                    ),
                 ),
             ],
             storage_compression_type="LZ4",
@@ -991,7 +995,7 @@ class Collections(object):
             event_time_info (EventTimeInfo): [optional]
             field_mapping_query (FieldMappingQuery): [optional]
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
-            retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
+            retention_secs (int): Number of seconds after which data is purged, based on event time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly less than 10 years.. [optional]
             source_download_soft_limit_bytes (int): Soft ingest limit for this collection.. [optional]
             sources ([AzureBlobStorageSourceWrapper]): List of sources from which to ingest data. [optional]
             storage_compression_type (str): RocksDB storage compression type.. [optional]
@@ -1105,6 +1109,7 @@ class Collections(object):
             sources=[
                 AzureEventHubsSourceWrapper(
                     format_params=FormatParams(
+                        bson=True,
                         csv=CsvParams(
                             column_names=["c1","c2","c3"],
                             column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -1145,7 +1150,7 @@ class Collections(object):
             event_time_info (EventTimeInfo): [optional]
             field_mapping_query (FieldMappingQuery): [optional]
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
-            retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
+            retention_secs (int): Number of seconds after which data is purged, based on event time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly less than 10 years.. [optional]
             source_download_soft_limit_bytes (int): Soft ingest limit for this collection.. [optional]
             sources ([AzureEventHubsSourceWrapper]): List of sources from which to ingest data. [optional]
             storage_compression_type (str): RocksDB storage compression type.. [optional]
@@ -1259,6 +1264,7 @@ class Collections(object):
             sources=[
                 DynamodbSourceWrapper(
                     format_params=FormatParams(
+                        bson=True,
                         csv=CsvParams(
                             column_names=["c1","c2","c3"],
                             column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -1284,6 +1290,9 @@ class Collections(object):
                     integration_name="aws-integration",
                     aws_region="us-east-2",
                     rcu=1000,
+                    settings=SourceDynamoDbSettings(
+                        dynamodb_stream_poll_frequency="PT1S",
+                    ),
                     table_name="dynamodb_table_name",
                     use_scan_api=True,
                 ),
@@ -1301,7 +1310,7 @@ class Collections(object):
             event_time_info (EventTimeInfo): [optional]
             field_mapping_query (FieldMappingQuery): [optional]
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
-            retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
+            retention_secs (int): Number of seconds after which data is purged, based on event time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly less than 10 years.. [optional]
             source_download_soft_limit_bytes (int): Soft ingest limit for this collection.. [optional]
             sources ([DynamodbSourceWrapper]): List of sources from which to ingest data. [optional]
             storage_compression_type (str): RocksDB storage compression type.. [optional]
@@ -1415,6 +1424,7 @@ class Collections(object):
             sources=[
                 GcsSourceWrapper(
                     format_params=FormatParams(
+                        bson=True,
                         csv=CsvParams(
                             column_names=["c1","c2","c3"],
                             column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -1441,6 +1451,9 @@ class Collections(object):
                     bucket="server-logs",
                     pattern="prefix/to/**/keys/*.format",
                     prefix="prefix/to/keys",
+                    settings=SourceGcsSettings(
+                        gcs_scan_frequency="PT5M",
+                    ),
                 ),
             ],
             storage_compression_type="LZ4",
@@ -1456,7 +1469,7 @@ class Collections(object):
             event_time_info (EventTimeInfo): [optional]
             field_mapping_query (FieldMappingQuery): [optional]
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
-            retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
+            retention_secs (int): Number of seconds after which data is purged, based on event time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly less than 10 years.. [optional]
             source_download_soft_limit_bytes (int): Soft ingest limit for this collection.. [optional]
             sources ([GcsSourceWrapper]): List of sources from which to ingest data. [optional]
             storage_compression_type (str): RocksDB storage compression type.. [optional]
@@ -1570,6 +1583,7 @@ class Collections(object):
             sources=[
                 KafkaSourceWrapper(
                     format_params=FormatParams(
+                        bson=True,
                         csv=CsvParams(
                             column_names=["c1","c2","c3"],
                             column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -1593,6 +1607,7 @@ class Collections(object):
                         ),
                     ),
                     integration_name="aws-integration",
+                    client_id="cwc|0013a00001hSJ7oAAG|rockset-colln-consumer",
                     consumer_group_id="org-collection",
                     kafka_topic_name="example-topic",
                     offset_reset_policy="EARLIEST",
@@ -1612,7 +1627,7 @@ class Collections(object):
             event_time_info (EventTimeInfo): [optional]
             field_mapping_query (FieldMappingQuery): [optional]
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
-            retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
+            retention_secs (int): Number of seconds after which data is purged, based on event time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly less than 10 years.. [optional]
             source_download_soft_limit_bytes (int): Soft ingest limit for this collection.. [optional]
             sources ([KafkaSourceWrapper]): List of sources from which to ingest data. [optional]
             storage_compression_type (str): RocksDB storage compression type.. [optional]
@@ -1726,6 +1741,7 @@ class Collections(object):
             sources=[
                 KinesisSourceWrapper(
                     format_params=FormatParams(
+                        bson=True,
                         csv=CsvParams(
                             column_names=["c1","c2","c3"],
                             column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -1770,7 +1786,7 @@ class Collections(object):
             event_time_info (EventTimeInfo): [optional]
             field_mapping_query (FieldMappingQuery): [optional]
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
-            retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
+            retention_secs (int): Number of seconds after which data is purged, based on event time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly less than 10 years.. [optional]
             source_download_soft_limit_bytes (int): Soft ingest limit for this collection.. [optional]
             sources ([KinesisSourceWrapper]): List of sources from which to ingest data. [optional]
             storage_compression_type (str): RocksDB storage compression type.. [optional]
@@ -1884,6 +1900,7 @@ class Collections(object):
             sources=[
                 MongodbSourceWrapper(
                     format_params=FormatParams(
+                        bson=True,
                         csv=CsvParams(
                             column_names=["c1","c2","c3"],
                             column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -1925,7 +1942,7 @@ class Collections(object):
             event_time_info (EventTimeInfo): [optional]
             field_mapping_query (FieldMappingQuery): [optional]
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
-            retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
+            retention_secs (int): Number of seconds after which data is purged, based on event time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly less than 10 years.. [optional]
             source_download_soft_limit_bytes (int): Soft ingest limit for this collection.. [optional]
             sources ([MongodbSourceWrapper]): List of sources from which to ingest data. [optional]
             storage_compression_type (str): RocksDB storage compression type.. [optional]
@@ -2039,6 +2056,7 @@ class Collections(object):
             sources=[
                 S3SourceWrapper(
                     format_params=FormatParams(
+                        bson=True,
                         csv=CsvParams(
                             column_names=["c1","c2","c3"],
                             column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -2066,6 +2084,9 @@ class Collections(object):
                     pattern="prefix/to/**/keys/*.format",
                     prefix="prefix/to/keys",
                     region="us-west-2",
+                    settings=SourceS3Settings(
+                        s3_scan_frequency="PT5M",
+                    ),
                 ),
             ],
             storage_compression_type="LZ4",
@@ -2081,7 +2102,7 @@ class Collections(object):
             event_time_info (EventTimeInfo): [optional]
             field_mapping_query (FieldMappingQuery): [optional]
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
-            retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
+            retention_secs (int): Number of seconds after which data is purged, based on event time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly less than 10 years.. [optional]
             source_download_soft_limit_bytes (int): Soft ingest limit for this collection.. [optional]
             sources ([S3SourceWrapper]): List of sources from which to ingest data. [optional]
             storage_compression_type (str): RocksDB storage compression type.. [optional]
@@ -2195,6 +2216,7 @@ class Collections(object):
             sources=[
                 SnowflakeSourceWrapper(
                     format_params=FormatParams(
+                        bson=True,
                         csv=CsvParams(
                             column_names=["c1","c2","c3"],
                             column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
@@ -2237,7 +2259,7 @@ class Collections(object):
             event_time_info (EventTimeInfo): [optional]
             field_mapping_query (FieldMappingQuery): [optional]
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [required]
-            retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]
+            retention_secs (int): Number of seconds after which data is purged, based on event time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly less than 10 years.. [optional]
             source_download_soft_limit_bytes (int): Soft ingest limit for this collection.. [optional]
             sources ([SnowflakeSourceWrapper]): List of sources from which to ingest data. [optional]
             storage_compression_type (str): RocksDB storage compression type.. [optional]

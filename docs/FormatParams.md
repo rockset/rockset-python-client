@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**bson** | **bool** |  | [optional] 
 **csv** | [**CsvParams**](CsvParams.md) |  | [optional] 
 **json** | **bool** | Source data is in json format. | [optional] 
 **mssql_dms** | **bool** |  | [optional] 

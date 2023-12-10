@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **format_params** | [**FormatParams**](FormatParams.md) |  | [optional] 
 **integration_name** | **str** | Name of integration to use. | [optional] 
+**client_id** | **str** | The kafka client id being used. | [optional] 
 **consumer_group_id** | **str** | The Kafka consumer group Id being used. | [optional] 
 **kafka_topic_name** | **str** | The Kafka topic to be tailed. | [optional] 
 **offset_reset_policy** | **str** | The offset reset policy. | [optional] 

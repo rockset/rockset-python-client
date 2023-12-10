@@ -73,7 +73,8 @@ class KafkaCollectionCreationRequest(ModelNormal):
 
     validations = {
         ('retention_secs',): {
-            'inclusive_minimum': 1,
+            'inclusive_maximum': 315359999,
+            'inclusive_minimum': 3600,
         },
     }
 
@@ -176,7 +177,7 @@ class KafkaCollectionCreationRequest(ModelNormal):
             description (str): Text describing the collection.. [optional]  # noqa: E501
             event_time_info (EventTimeInfo): [optional]  # noqa: E501
             field_mapping_query (FieldMappingQuery): [optional]  # noqa: E501
-            retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]  # noqa: E501
+            retention_secs (int): Number of seconds after which data is purged, based on event time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly less than 10 years.. [optional]  # noqa: E501
             source_download_soft_limit_bytes (int): Soft ingest limit for this collection.. [optional]  # noqa: E501
             sources ([KafkaSourceWrapper]): List of sources from which to ingest data. [optional]  # noqa: E501
             storage_compression_type (str): RocksDB storage compression type.. [optional]  # noqa: E501
@@ -237,7 +238,7 @@ class KafkaCollectionCreationRequest(ModelNormal):
             description (str): Text describing the collection.. [optional]  # noqa: E501
             event_time_info (EventTimeInfo): [optional]  # noqa: E501
             field_mapping_query (FieldMappingQuery): [optional]  # noqa: E501
-            retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]  # noqa: E501
+            retention_secs (int): Number of seconds after which data is purged, based on event time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly less than 10 years.. [optional]  # noqa: E501
             source_download_soft_limit_bytes (int): Soft ingest limit for this collection.. [optional]  # noqa: E501
             sources ([KafkaSourceWrapper]): List of sources from which to ingest data. [optional]  # noqa: E501
             storage_compression_type (str): RocksDB storage compression type.. [optional]  # noqa: E501

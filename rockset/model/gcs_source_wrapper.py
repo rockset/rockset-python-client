@@ -31,7 +31,9 @@ from rockset.exceptions import ApiAttributeError
 
 def lazy_import():
     from rockset.model.format_params import FormatParams
+    from rockset.model.source_gcs_settings import SourceGcsSettings
     globals()['FormatParams'] = FormatParams
+    globals()['SourceGcsSettings'] = SourceGcsSettings
 
 
 class GcsSourceWrapper(ModelNormal):
@@ -58,7 +60,7 @@ class GcsSourceWrapper(ModelNormal):
           as additional properties values.
     """
     inner_field = "gcs"
-    inner_properties = ["bucket", "object_bytes_downloaded", "object_bytes_total", "object_count_downloaded", "object_count_total", "pattern", "prefix"]
+    inner_properties = ["bucket", "object_bytes_downloaded", "object_bytes_total", "object_count_downloaded", "object_count_total", "pattern", "prefix", "settings"]
     allowed_values = {
     }
 
@@ -97,6 +99,7 @@ class GcsSourceWrapper(ModelNormal):
             'object_count_total': (int, none_type),  # noqa: E501
             'pattern': (str, none_type),  # noqa: E501
             'prefix': (str, none_type),  # noqa: E501
+            'settings': (SourceGcsSettings, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -114,6 +117,7 @@ class GcsSourceWrapper(ModelNormal):
         'object_count_total': 'object_count_total',  # noqa: E501
         'pattern': 'pattern',  # noqa: E501
         'prefix': 'prefix',  # noqa: E501
+        'settings': 'settings',  # noqa: E501
     }
 
     read_only_vars = {
@@ -170,6 +174,7 @@ class GcsSourceWrapper(ModelNormal):
             object_count_total (int): [optional]  # noqa: E501
             pattern (str): Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified.. [optional]  # noqa: E501
             prefix (str): Prefix that selects keys to ingest.. [optional]  # noqa: E501
+            settings (SourceGcsSettings): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -226,6 +231,7 @@ class GcsSourceWrapper(ModelNormal):
             bucket (str): Name of GCS bucket you want to ingest from.. [optional]  # noqa: E501
             pattern (str): Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified.. [optional]  # noqa: E501
             prefix (str): Prefix that selects keys to ingest.. [optional]  # noqa: E501
+            settings (SourceGcsSettings): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

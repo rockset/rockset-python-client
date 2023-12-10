@@ -59,11 +59,16 @@ class UpdateVirtualInstanceRequest(ModelNormal):
     """
     
     allowed_values = {
+        ('mount_type',): {
+            'LIVE': "LIVE",
+            'STATIC': "STATIC",
+        },
         ('new_size',): {
             'FREE': "FREE",
             'NANO': "NANO",
             'SHARED': "SHARED",
             'MILLI': "MILLI",
+            'XSMALL': "XSMALL",
             'SMALL': "SMALL",
             'MEDIUM': "MEDIUM",
             'LARGE': "LARGE",
@@ -107,6 +112,7 @@ class UpdateVirtualInstanceRequest(ModelNormal):
             'description': (str, none_type),  # noqa: E501
             'enable_remount_on_resume': (bool, none_type),  # noqa: E501
             'mount_refresh_interval_seconds': (int, none_type),  # noqa: E501
+            'mount_type': (str, none_type),  # noqa: E501
             'name': (str, none_type),  # noqa: E501
             'new_size': (str, none_type),  # noqa: E501
         }
@@ -123,6 +129,7 @@ class UpdateVirtualInstanceRequest(ModelNormal):
         'description': 'description',  # noqa: E501
         'enable_remount_on_resume': 'enable_remount_on_resume',  # noqa: E501
         'mount_refresh_interval_seconds': 'mount_refresh_interval_seconds',  # noqa: E501
+        'mount_type': 'mount_type',  # noqa: E501
         'name': 'name',  # noqa: E501
         'new_size': 'new_size',  # noqa: E501
     }
@@ -169,11 +176,12 @@ class UpdateVirtualInstanceRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             auto_scaling_policy (AutoScalingPolicy): [optional]  # noqa: E501
-            auto_suspend_enabled (bool): Whether auto-suspend should be enabled for this Virtual Instance.. [optional]  # noqa: E501
-            auto_suspend_seconds (int): Number of seconds without queries after which the VI is suspended. [optional]  # noqa: E501
+            auto_suspend_enabled (bool): Whether Query VI auto-suspend should be enabled for this Virtual Instance.. [optional]  # noqa: E501
+            auto_suspend_seconds (int): Number of seconds without queries after which the Query VI is suspended. [optional]  # noqa: E501
             description (str): New virtual instance description.. [optional]  # noqa: E501
             enable_remount_on_resume (bool): When a Virtual Instance is resumed, it will remount all collections that were mounted when the Virtual Instance was suspended.. [optional]  # noqa: E501
-            mount_refresh_interval_seconds (int): Number of seconds between data refreshes for mounts on this Virtual Instance. A value of 0 means continuous refresh and a value of null means never refresh.. [optional]  # noqa: E501
+            mount_refresh_interval_seconds (int): DEPRECATED. Use `mount_type` instead. Number of seconds between data refreshes for mounts on this Virtual Instance. The only valid values are 0 and null. 0 means the data will be refreshed continuously and null means the data will never refresh.. [optional]  # noqa: E501
+            mount_type (str): The mount type of collections that this Virtual Instance will query. Live mounted collections stay up-to-date with the underlying collection in real-time. Static mounted collections do not stay up-to-date. See https://docs.rockset.com/documentation/docs/virtual-instances#virtual-instance-configuration. [optional]  # noqa: E501
             name (str): New virtual instance name.. [optional]  # noqa: E501
             new_size (str): Requested virtual instance size.. [optional]  # noqa: E501
         """
@@ -228,11 +236,12 @@ class UpdateVirtualInstanceRequest(ModelNormal):
 
         Keyword Args:
             auto_scaling_policy (AutoScalingPolicy): [optional]  # noqa: E501
-            auto_suspend_enabled (bool): Whether auto-suspend should be enabled for this Virtual Instance.. [optional]  # noqa: E501
-            auto_suspend_seconds (int): Number of seconds without queries after which the VI is suspended. [optional]  # noqa: E501
+            auto_suspend_enabled (bool): Whether Query VI auto-suspend should be enabled for this Virtual Instance.. [optional]  # noqa: E501
+            auto_suspend_seconds (int): Number of seconds without queries after which the Query VI is suspended. [optional]  # noqa: E501
             description (str): New virtual instance description.. [optional]  # noqa: E501
             enable_remount_on_resume (bool): When a Virtual Instance is resumed, it will remount all collections that were mounted when the Virtual Instance was suspended.. [optional]  # noqa: E501
-            mount_refresh_interval_seconds (int): Number of seconds between data refreshes for mounts on this Virtual Instance. A value of 0 means continuous refresh and a value of null means never refresh.. [optional]  # noqa: E501
+            mount_refresh_interval_seconds (int): DEPRECATED. Use `mount_type` instead. Number of seconds between data refreshes for mounts on this Virtual Instance. The only valid values are 0 and null. 0 means the data will be refreshed continuously and null means the data will never refresh.. [optional]  # noqa: E501
+            mount_type (str): The mount type of collections that this Virtual Instance will query. Live mounted collections stay up-to-date with the underlying collection in real-time. Static mounted collections do not stay up-to-date. See https://docs.rockset.com/documentation/docs/virtual-instances#virtual-instance-configuration. [optional]  # noqa: E501
             name (str): New virtual instance name.. [optional]  # noqa: E501
             new_size (str): Requested virtual instance size.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types

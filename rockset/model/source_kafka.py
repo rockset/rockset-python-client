@@ -91,6 +91,7 @@ class SourceKafka(ModelNormal):
         """
         lazy_import()
         return {
+            'client_id': (str, none_type),  # noqa: E501
             'consumer_group_id': (str, none_type),  # noqa: E501
             'kafka_topic_name': (str, none_type),  # noqa: E501
             'offset_reset_policy': (str, none_type),  # noqa: E501
@@ -104,6 +105,7 @@ class SourceKafka(ModelNormal):
 
 
     attribute_map = {
+        'client_id': 'client_id',  # noqa: E501
         'consumer_group_id': 'consumer_group_id',  # noqa: E501
         'kafka_topic_name': 'kafka_topic_name',  # noqa: E501
         'offset_reset_policy': 'offset_reset_policy',  # noqa: E501
@@ -153,6 +155,7 @@ class SourceKafka(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            client_id (str): The kafka client id being used.. [optional]  # noqa: E501
             consumer_group_id (str): The Kafka consumer group Id being used.. [optional]  # noqa: E501
             kafka_topic_name (str): The Kafka topic to be tailed.. [optional]  # noqa: E501
             offset_reset_policy (str): The offset reset policy.. [optional]  # noqa: E501
@@ -209,6 +212,7 @@ class SourceKafka(ModelNormal):
         """SourceKafka - a model defined in OpenAPI
 
         Keyword Args:
+            client_id (str): The kafka client id being used.. [optional]  # noqa: E501
             consumer_group_id (str): The Kafka consumer group Id being used.. [optional]  # noqa: E501
             kafka_topic_name (str): The Kafka topic to be tailed.. [optional]  # noqa: E501
             offset_reset_policy (str): The offset reset policy.. [optional]  # noqa: E501

@@ -71,7 +71,8 @@ class CreateCollectionRequest(ModelNormal):
 
     validations = {
         ('retention_secs',): {
-            'inclusive_minimum': 1,
+            'inclusive_maximum': 315359999,
+            'inclusive_minimum': 3600,
         },
     }
 
@@ -170,7 +171,7 @@ class CreateCollectionRequest(ModelNormal):
             event_time_info (EventTimeInfo): [optional]  # noqa: E501
             field_mapping_query (FieldMappingQuery): [optional]  # noqa: E501
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [optional]  # noqa: E501
-            retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]  # noqa: E501
+            retention_secs (int): Number of seconds after which data is purged, based on event time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly less than 10 years.. [optional]  # noqa: E501
             source_download_soft_limit_bytes (int): Soft ingest limit for this collection.. [optional]  # noqa: E501
             storage_compression_type (str): RocksDB storage compression type.. [optional]  # noqa: E501
         """
@@ -229,7 +230,7 @@ class CreateCollectionRequest(ModelNormal):
             event_time_info (EventTimeInfo): [optional]  # noqa: E501
             field_mapping_query (FieldMappingQuery): [optional]  # noqa: E501
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.. [optional]  # noqa: E501
-            retention_secs (int): Number of seconds after which data is purged, based on event time.. [optional]  # noqa: E501
+            retention_secs (int): Number of seconds after which data is purged, based on event time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly less than 10 years.. [optional]  # noqa: E501
             source_download_soft_limit_bytes (int): Soft ingest limit for this collection.. [optional]  # noqa: E501
             storage_compression_type (str): RocksDB storage compression type.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types

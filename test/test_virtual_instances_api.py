@@ -22,7 +22,8 @@ def test_create(get_client, mock_request, request_validator):
                 auto_suspend_seconds=3600,
                 description="VI serving prod traffic",
                 enable_remount_on_resume=True,
-                mount_refresh_interval_seconds=3600,
+                mount_refresh_interval_seconds=0,
+                mount_type="LIVE",
                 name="prod_vi",
                 type="LARGE",
             )
@@ -59,6 +60,19 @@ def test_get_collection_mount(get_client, mock_request, request_validator):
             rs.VirtualInstances.get_collection_mount(
                 virtual_instance_id="virtualInstanceId_example",
                 collection_path="collectionPath_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_get_mount_offsets(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.VirtualInstances.get_mount_offsets(
+                virtual_instance_id="virtualInstanceId_example",
+                collection_path="collectionPath_example",
+                name=["f1:0:14:9:7092", "f1:0:14:9:7093"],
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
@@ -188,7 +202,8 @@ def test_update(get_client, mock_request, request_validator):
                 auto_suspend_seconds=3600,
                 description="VI for prod traffic",
                 enable_remount_on_resume=True,
-                mount_refresh_interval_seconds=3600,
+                mount_refresh_interval_seconds=0,
+                mount_type="LIVE",
                 name="prod_vi",
                 new_size="LARGE",
             )

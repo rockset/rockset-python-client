@@ -336,6 +336,7 @@ class APIKeys(object):
         *,
         name: str,
         created_by: str = None,
+        expiry_time: str = None,
         role: str = None,
         **kwargs
     ) -> typing.Union[CreateApiKeyResponse, asyncio.Future]:
@@ -349,6 +350,7 @@ class APIKeys(object):
         rs = RocksetClient(api_key=APIKEY)
         future = rs.APIKeys.create(
             created_by="string_example",
+            expiry_time="2001-08-28T00:23:41Z",
             name="my-app",
             role="string_example",
             async_req=True,
@@ -358,6 +360,7 @@ class APIKeys(object):
 
         Keyword Args:
             created_by (str): [optional]
+            expiry_time (str): If provided, the API key will automatically expire at this time (ISO-8601 format). Requires premium.. [optional]
             name (str): Name for this API key.. [required]
             role (str): [optional]
             _return_http_data_only (bool): response data without head status
@@ -697,6 +700,8 @@ class APIKeys(object):
         *,
         name: str,
         user: str,
+        clear_expiry_time: bool = None,
+        expiry_time: str = None,
         state: str = None,
         **kwargs
     ) -> typing.Union[UpdateApiKeyResponse, asyncio.Future]:
@@ -711,6 +716,8 @@ class APIKeys(object):
         future = rs.APIKeys.update(
             name="my-key",
             user="admin@me.com",
+            clear_expiry_time=True,
+            expiry_time="2001-08-28T00:23:41Z",
             state="ACTIVE",
             async_req=True,
         )
@@ -720,6 +727,8 @@ class APIKeys(object):
         Keyword Args:
             name (str): Name of the API key.. [required]
             user (str): Email of the API key owner. Use `self` to specify the currently authenticated user.. [required]
+            clear_expiry_time (bool): If set to true, the expiration time for this key will be cleared.. [optional]
+            expiry_time (str): If provided, the API key will automatically expire at this time (ISO-8601 format). Requires premium.. [optional]
             state (str): State that the api key should be set to.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.

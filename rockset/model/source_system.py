@@ -57,6 +57,7 @@ class SourceSystem(ModelNormal):
     allowed_values = {
         ('type',): {
             'QUERY_LOGS': "QUERY_LOGS",
+            'INGEST_LOGS': "INGEST_LOGS",
         },
     }
 
@@ -85,6 +86,7 @@ class SourceSystem(ModelNormal):
         """
         return {
             'type': (str, none_type),  # noqa: E501
+            'workspace': (str, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -94,6 +96,7 @@ class SourceSystem(ModelNormal):
 
     attribute_map = {
         'type': 'type',  # noqa: E501
+        'workspace': 'workspace',  # noqa: E501
     }
 
     read_only_vars = {
@@ -137,7 +140,8 @@ class SourceSystem(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            type (str): The type of this system source.. [optional] if omitted the server will use the default value of "QUERY_LOGS"  # noqa: E501
+            type (str): The type of this system source.. [optional]  # noqa: E501
+            workspace (str): The workspace for which collections will have logs created. If unspecified, logs will be created for collections in all workspaces. Currently only supported for the INGEST_LOGS system source.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -189,7 +193,8 @@ class SourceSystem(ModelNormal):
         """SourceSystem - a model defined in OpenAPI
 
         Keyword Args:
-            type (str): The type of this system source.. [optional] if omitted the server will use the default value of "QUERY_LOGS"  # noqa: E501
+            type (str): The type of this system source.. [optional]  # noqa: E501
+            workspace (str): The workspace for which collections will have logs created. If unspecified, logs will be created for collections in all workspaces. Currently only supported for the INGEST_LOGS system source.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

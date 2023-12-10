@@ -89,6 +89,7 @@ class FormatParams(ModelNormal):
         """
         lazy_import()
         return {
+            'bson': (bool, none_type),  # noqa: E501
             'csv': (CsvParams, none_type),  # noqa: E501
             'json': (bool, none_type),  # noqa: E501
             'mssql_dms': (bool, none_type),  # noqa: E501
@@ -104,6 +105,7 @@ class FormatParams(ModelNormal):
 
 
     attribute_map = {
+        'bson': 'bson',  # noqa: E501
         'csv': 'csv',  # noqa: E501
         'json': 'json',  # noqa: E501
         'mssql_dms': 'mssql_dms',  # noqa: E501
@@ -154,6 +156,7 @@ class FormatParams(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            bson (bool): [optional]  # noqa: E501
             csv (CsvParams): [optional]  # noqa: E501
             json (bool): Source data is in json format.. [optional]  # noqa: E501
             mssql_dms (bool): [optional]  # noqa: E501
@@ -212,6 +215,7 @@ class FormatParams(ModelNormal):
         """FormatParams - a model defined in OpenAPI
 
         Keyword Args:
+            bson (bool): [optional]  # noqa: E501
             csv (CsvParams): [optional]  # noqa: E501
             json (bool): Source data is in json format.. [optional]  # noqa: E501
             mssql_dms (bool): [optional]  # noqa: E501

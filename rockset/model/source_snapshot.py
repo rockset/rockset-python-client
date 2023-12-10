@@ -82,7 +82,7 @@ class SourceSnapshot(ModelNormal):
         """
         return {
             'source_collection_path': (str, none_type),  # noqa: E501
-            'source_snapshot_id': (str, none_type),  # noqa: E501
+            'source_snapshot_rrn': (str, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -92,7 +92,7 @@ class SourceSnapshot(ModelNormal):
 
     attribute_map = {
         'source_collection_path': 'source_collection_path',  # noqa: E501
-        'source_snapshot_id': 'source_snapshot_id',  # noqa: E501
+        'source_snapshot_rrn': 'source_snapshot_rrn',  # noqa: E501
     }
 
     read_only_vars = {
@@ -136,8 +136,8 @@ class SourceSnapshot(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            source_collection_path (str): Path of source collection to restore the snapshot from.. [optional]  # noqa: E501
-            source_snapshot_id (str): Snapshot id of the snapshot that the new collection will be created from.. [optional]  # noqa: E501
+            source_collection_path (str): A representation of the workspace and collection where the source snapshot originated.. [optional]  # noqa: E501
+            source_snapshot_rrn (str): RRN of the snapshot that the new collection will be created from.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -189,8 +189,8 @@ class SourceSnapshot(ModelNormal):
         """SourceSnapshot - a model defined in OpenAPI
 
         Keyword Args:
-            source_collection_path (str): Path of source collection to restore the snapshot from.. [optional]  # noqa: E501
-            source_snapshot_id (str): Snapshot id of the snapshot that the new collection will be created from.. [optional]  # noqa: E501
+            source_collection_path (str): A representation of the workspace and collection where the source snapshot originated.. [optional]  # noqa: E501
+            source_snapshot_rrn (str): RRN of the snapshot that the new collection will be created from.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

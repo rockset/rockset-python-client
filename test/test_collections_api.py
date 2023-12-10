@@ -43,6 +43,7 @@ def test_create_azure_blob_storage_collection(
                 sources=[
                     AzureBlobStorageSourceWrapper(
                         format_params=FormatParams(
+                            bson=True,
                             csv=CsvParams(
                                 column_names=["c1", "c2", "c3"],
                                 column_types=["BOOLEAN", "INTEGER", "FLOAT", "STRING"],
@@ -69,6 +70,9 @@ def test_create_azure_blob_storage_collection(
                         container="server-logs",
                         pattern="prefix/to/**/keys/*.format",
                         prefix="prefix/to/blobs",
+                        settings=SourceAzBlobStorageSettings(
+                            azblob_scan_frequency="PT5M",
+                        ),
                     ),
                 ],
                 storage_compression_type="LZ4",
@@ -106,6 +110,7 @@ def test_create_azure_event_hubs_collection(
                 sources=[
                     AzureEventHubsSourceWrapper(
                         format_params=FormatParams(
+                            bson=True,
                             csv=CsvParams(
                                 column_names=["c1", "c2", "c3"],
                                 column_types=["BOOLEAN", "INTEGER", "FLOAT", "STRING"],
@@ -166,6 +171,7 @@ def test_create_dynamodb_collection(get_client, mock_request, request_validator)
                 sources=[
                     DynamodbSourceWrapper(
                         format_params=FormatParams(
+                            bson=True,
                             csv=CsvParams(
                                 column_names=["c1", "c2", "c3"],
                                 column_types=["BOOLEAN", "INTEGER", "FLOAT", "STRING"],
@@ -191,6 +197,9 @@ def test_create_dynamodb_collection(get_client, mock_request, request_validator)
                         integration_name="aws-integration",
                         aws_region="us-east-2",
                         rcu=1000,
+                        settings=SourceDynamoDbSettings(
+                            dynamodb_stream_poll_frequency="PT1S",
+                        ),
                         table_name="dynamodb_table_name",
                         use_scan_api=True,
                     ),
@@ -228,6 +237,7 @@ def test_create_gcs_collection(get_client, mock_request, request_validator):
                 sources=[
                     GcsSourceWrapper(
                         format_params=FormatParams(
+                            bson=True,
                             csv=CsvParams(
                                 column_names=["c1", "c2", "c3"],
                                 column_types=["BOOLEAN", "INTEGER", "FLOAT", "STRING"],
@@ -254,6 +264,9 @@ def test_create_gcs_collection(get_client, mock_request, request_validator):
                         bucket="server-logs",
                         pattern="prefix/to/**/keys/*.format",
                         prefix="prefix/to/keys",
+                        settings=SourceGcsSettings(
+                            gcs_scan_frequency="PT5M",
+                        ),
                     ),
                 ],
                 storage_compression_type="LZ4",
@@ -289,6 +302,7 @@ def test_create_kafka_collection(get_client, mock_request, request_validator):
                 sources=[
                     KafkaSourceWrapper(
                         format_params=FormatParams(
+                            bson=True,
                             csv=CsvParams(
                                 column_names=["c1", "c2", "c3"],
                                 column_types=["BOOLEAN", "INTEGER", "FLOAT", "STRING"],
@@ -312,6 +326,7 @@ def test_create_kafka_collection(get_client, mock_request, request_validator):
                             ),
                         ),
                         integration_name="aws-integration",
+                        client_id="cwc|0013a00001hSJ7oAAG|rockset-colln-consumer",
                         consumer_group_id="org-collection",
                         kafka_topic_name="example-topic",
                         offset_reset_policy="EARLIEST",
@@ -351,6 +366,7 @@ def test_create_kinesis_collection(get_client, mock_request, request_validator):
                 sources=[
                     KinesisSourceWrapper(
                         format_params=FormatParams(
+                            bson=True,
                             csv=CsvParams(
                                 column_names=["c1", "c2", "c3"],
                                 column_types=["BOOLEAN", "INTEGER", "FLOAT", "STRING"],
@@ -415,6 +431,7 @@ def test_create_mongodb_collection(get_client, mock_request, request_validator):
                 sources=[
                     MongodbSourceWrapper(
                         format_params=FormatParams(
+                            bson=True,
                             csv=CsvParams(
                                 column_names=["c1", "c2", "c3"],
                                 column_types=["BOOLEAN", "INTEGER", "FLOAT", "STRING"],
@@ -476,6 +493,7 @@ def test_create_s3_collection(get_client, mock_request, request_validator):
                 sources=[
                     S3SourceWrapper(
                         format_params=FormatParams(
+                            bson=True,
                             csv=CsvParams(
                                 column_names=["c1", "c2", "c3"],
                                 column_types=["BOOLEAN", "INTEGER", "FLOAT", "STRING"],
@@ -503,6 +521,9 @@ def test_create_s3_collection(get_client, mock_request, request_validator):
                         pattern="prefix/to/**/keys/*.format",
                         prefix="prefix/to/keys",
                         region="us-west-2",
+                        settings=SourceS3Settings(
+                            s3_scan_frequency="PT5M",
+                        ),
                     ),
                 ],
                 storage_compression_type="LZ4",
@@ -538,6 +559,7 @@ def test_create_snowflake_collection(get_client, mock_request, request_validator
                 sources=[
                     SnowflakeSourceWrapper(
                         format_params=FormatParams(
+                            bson=True,
                             csv=CsvParams(
                                 column_names=["c1", "c2", "c3"],
                                 column_types=["BOOLEAN", "INTEGER", "FLOAT", "STRING"],

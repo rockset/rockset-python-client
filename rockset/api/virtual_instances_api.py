@@ -31,6 +31,8 @@ from rockset.model.create_virtual_instance_request import CreateVirtualInstanceR
 from rockset.model.create_virtual_instance_response import CreateVirtualInstanceResponse
 from rockset.model.delete_virtual_instance_response import DeleteVirtualInstanceResponse
 from rockset.model.error_model import ErrorModel
+from rockset.model.get_collection_commit import GetCollectionCommit
+from rockset.model.get_collection_commit_request import GetCollectionCommitRequest
 from rockset.model.get_virtual_instance_response import GetVirtualInstanceResponse
 from rockset.model.list_collection_mounts_response import ListCollectionMountsResponse
 from rockset.model.list_queries_response import ListQueriesResponse
@@ -262,6 +264,69 @@ class VirtualInstances(object):
                     'application/json'
                 ],
                 'content_type': [],
+            },
+            api_client=api_client
+        )
+        self.get_mount_offsets_endpoint = _Endpoint(
+            settings={
+                'response_type': (GetCollectionCommit,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts/{collectionPath}/offsets/commit',
+                'operation_id': 'get_mount_offsets',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'virtual_instance_id',
+                    'collection_path',
+                    'get_collection_commit_request',
+                ],
+                'required': [
+                    'virtual_instance_id',
+                    'collection_path',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'virtual_instance_id':
+                        (str,),
+                    'collection_path':
+                        (str,),
+                    'get_collection_commit_request':
+                        (GetCollectionCommitRequest,),
+                },
+                'attribute_map': {
+                    'virtual_instance_id': 'virtualInstanceId',
+                    'collection_path': 'collectionPath',
+                },
+                'location_map': {
+                    'virtual_instance_id': 'path',
+                    'collection_path': 'path',
+                    'get_collection_commit_request': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
             },
             api_client=api_client
         )
@@ -750,12 +815,13 @@ class VirtualInstances(object):
         description: str = None,
         enable_remount_on_resume: bool = None,
         mount_refresh_interval_seconds: int = None,
+        mount_type: str = None,
         type: str = None,
         **kwargs
     ) -> typing.Union[CreateVirtualInstanceResponse, asyncio.Future]:
         """Create Virtual Instance  # noqa: E501
 
-        [beta] Create virtual instance  # noqa: E501
+        Create virtual instance  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -765,7 +831,8 @@ class VirtualInstances(object):
             auto_suspend_seconds=3600,
             description="VI serving prod traffic",
             enable_remount_on_resume=True,
-            mount_refresh_interval_seconds=3600,
+            mount_refresh_interval_seconds=0,
+            mount_type="LIVE",
             name="prod_vi",
             type="LARGE",
             async_req=True,
@@ -777,7 +844,8 @@ class VirtualInstances(object):
             auto_suspend_seconds (int): Number of seconds without queries after which the VI is suspended. [optional]
             description (str): Description of requested virtual instance.. [optional]
             enable_remount_on_resume (bool): When a Virtual Instance is resumed, it will remount all collections that were mounted when the Virtual Instance was suspended.. [optional]
-            mount_refresh_interval_seconds (int): Number of seconds between data refreshes for mounts on this Virtual Instance. A value of 0 means continuous refresh and a value of null means never refresh.. [optional]
+            mount_refresh_interval_seconds (int): DEPRECATED. Use `mount_type` instead. Number of seconds between data refreshes for mounts on this Virtual Instance. The only valid values are 0 and null. 0 means the data will be refreshed continuously and null means the data will never refresh.. [optional]
+            mount_type (str): The mount type of collections that this Virtual Instance will query. Live mounted collections stay up-to-date with the underlying collection in real-time. Static mounted collections do not stay up-to-date. See https://docs.rockset.com/documentation/docs/virtual-instances#virtual-instance-configuration. [optional]
             name (str): Unique identifier for virtual instance, can contain alphanumeric or dash characters.. [required]
             type (str): Requested virtual instance type.. [optional]
             _return_http_data_only (bool): response data without head status
@@ -850,7 +918,7 @@ class VirtualInstances(object):
     ) -> typing.Union[DeleteVirtualInstanceResponse, asyncio.Future]:
         """Delete Virtual Instance  # noqa: E501
 
-        [beta] Delete a virtual instance.  # noqa: E501
+        Delete a virtual instance.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1021,7 +1089,7 @@ class VirtualInstances(object):
     ) -> typing.Union[CollectionMountResponse, asyncio.Future]:
         """Get Collection Mount  # noqa: E501
 
-        [beta] Retrieve a mount on this virtual instance.  # noqa: E501
+        Retrieve a mount on this virtual instance.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1102,6 +1170,101 @@ class VirtualInstances(object):
             collection_path
         return self.get_collection_mount_endpoint.call_with_http_info(**kwargs)
 
+    def get_mount_offsets(
+        self,
+        *,
+        virtual_instance_id: str,
+        collection_path: str,
+        name: typing.Sequence[str] = None,
+        **kwargs
+    ) -> typing.Union[GetCollectionCommit, asyncio.Future]:
+        """Get Collection Commit  # noqa: E501
+
+        Determines if the collection includes data at or after the specified fence(s) for close read-after-write semantics.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.VirtualInstances.get_mount_offsets(
+            virtual_instance_id="virtualInstanceId_example",
+            collection_path="collectionPath_example",
+            name=["f1:0:14:9:7092","f1:0:14:9:7093"],
+            async_req=True,
+        )
+        result = await future
+        ```
+
+        Keyword Args:
+            virtual_instance_id (str): Virtual Instance RRN. [required]
+            collection_path (str): [required]
+            name ([str]): a list of zero or more collection offset fences. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GetCollectionCommit
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['virtual_instance_id'] = \
+            virtual_instance_id
+        kwargs['collection_path'] = \
+            collection_path
+        kwargs['get_collection_commit_request'] = \
+            kwargs['get_collection_commit_request']
+        return self.get_mount_offsets_endpoint.call_with_http_info(**kwargs)
+
     def get_virtual_instance_queries(
         self,
         *,
@@ -1110,7 +1273,7 @@ class VirtualInstances(object):
     ) -> typing.Union[ListQueriesResponse, asyncio.Future]:
         """List Queries  # noqa: E501
 
-        [beta] Lists actively queued and running queries for a particular Virtual Instance.  # noqa: E501
+        Lists actively queued and running queries for a particular Virtual Instance.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1274,7 +1437,7 @@ class VirtualInstances(object):
     ) -> typing.Union[ListCollectionMountsResponse, asyncio.Future]:
         """List Collection Mounts  # noqa: E501
 
-        [beta] List collection mounts for a particular VI.  # noqa: E501
+        List collection mounts for a particular VI.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1360,7 +1523,7 @@ class VirtualInstances(object):
     ) -> typing.Union[CreateCollectionMountsResponse, asyncio.Future]:
         """Mount Collections  # noqa: E501
 
-        [beta] Mount a collection to this virtual instance.  # noqa: E501
+        Mount a collection to this virtual instance.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1453,9 +1616,9 @@ class VirtualInstances(object):
         timeout_ms: int = None,
         **kwargs
     ) -> typing.Union[QueryResponse, asyncio.Future]:
-        """Execute SQL Query  # noqa: E501
+        """Execute SQL Query on a specific Virtual Instance  # noqa: E501
 
-        [beta] Make a SQL query to Rockset.  # noqa: E501
+        Make a SQL query to Rockset.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1569,7 +1732,7 @@ class VirtualInstances(object):
     ) -> typing.Union[ResumeVirtualInstanceResponse, asyncio.Future]:
         """Resume Virtual Instance  # noqa: E501
 
-        [beta] Resume a virtual instance.  # noqa: E501
+        Resume a virtual instance.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1654,7 +1817,7 @@ class VirtualInstances(object):
     ) -> typing.Union[SuspendVirtualInstanceResponse, asyncio.Future]:
         """Suspend Virtual Instance  # noqa: E501
 
-        [beta] Suspend a virtual instance.  # noqa: E501
+        Suspend a virtual instance.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1740,7 +1903,7 @@ class VirtualInstances(object):
     ) -> typing.Union[CollectionMountResponse, asyncio.Future]:
         """Unmount Collection  # noqa: E501
 
-        [beta] Unmount a collection from this virtual instance.  # noqa: E501
+        Unmount a collection from this virtual instance.  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
@@ -1831,6 +1994,7 @@ class VirtualInstances(object):
         description: str = None,
         enable_remount_on_resume: bool = None,
         mount_refresh_interval_seconds: int = None,
+        mount_type: str = None,
         name: str = None,
         new_size: str = None,
         **kwargs
@@ -1854,7 +2018,8 @@ class VirtualInstances(object):
             auto_suspend_seconds=3600,
             description="VI for prod traffic",
             enable_remount_on_resume=True,
-            mount_refresh_interval_seconds=3600,
+            mount_refresh_interval_seconds=0,
+            mount_type="LIVE",
             name="prod_vi",
             new_size="LARGE",
             async_req=True,
@@ -1865,11 +2030,12 @@ class VirtualInstances(object):
         Keyword Args:
             virtual_instance_id (str): Virtual Instance RRN. [required]
             auto_scaling_policy (AutoScalingPolicy): [optional]
-            auto_suspend_enabled (bool): Whether auto-suspend should be enabled for this Virtual Instance.. [optional]
-            auto_suspend_seconds (int): Number of seconds without queries after which the VI is suspended. [optional]
+            auto_suspend_enabled (bool): Whether Query VI auto-suspend should be enabled for this Virtual Instance.. [optional]
+            auto_suspend_seconds (int): Number of seconds without queries after which the Query VI is suspended. [optional]
             description (str): New virtual instance description.. [optional]
             enable_remount_on_resume (bool): When a Virtual Instance is resumed, it will remount all collections that were mounted when the Virtual Instance was suspended.. [optional]
-            mount_refresh_interval_seconds (int): Number of seconds between data refreshes for mounts on this Virtual Instance. A value of 0 means continuous refresh and a value of null means never refresh.. [optional]
+            mount_refresh_interval_seconds (int): DEPRECATED. Use `mount_type` instead. Number of seconds between data refreshes for mounts on this Virtual Instance. The only valid values are 0 and null. 0 means the data will be refreshed continuously and null means the data will never refresh.. [optional]
+            mount_type (str): The mount type of collections that this Virtual Instance will query. Live mounted collections stay up-to-date with the underlying collection in real-time. Static mounted collections do not stay up-to-date. See https://docs.rockset.com/documentation/docs/virtual-instances#virtual-instance-configuration. [optional]
             name (str): New virtual instance name.. [optional]
             new_size (str): Requested virtual instance size.. [optional]
             _return_http_data_only (bool): response data without head status
@@ -1941,6 +2107,8 @@ class VirtualInstances(object):
     return_types_dict = dict()
     body_params_dict['create'] = 'create_virtual_instance_request'
     return_types_dict['create'] = CreateVirtualInstanceRequest
+    body_params_dict['get_mount_offsets'] = 'get_collection_commit_request'
+    return_types_dict['get_mount_offsets'] = GetCollectionCommitRequest
     body_params_dict['mount_collection'] = 'create_collection_mount_request'
     return_types_dict['mount_collection'] = CreateCollectionMountRequest
     body_params_dict['query_virtual_instance'] = 'query_request'
