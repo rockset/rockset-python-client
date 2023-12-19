@@ -8,12 +8,12 @@ from functools import wraps
 from types import FunctionType
 from typing import Any, Dict, Union
 
-import rockset.apis as apis
-from rockset.api_client import ApiClient
-from rockset.configuration import Configuration
-from rockset.exceptions import (ApiTypeError, ApiValueError,
+import {{packageName}}.apis as apis
+from {{packageName}}.api_client import ApiClient
+from {{packageName}}.configuration import Configuration
+from {{packageName}}.exceptions import (ApiTypeError, ApiValueError,
                                 InitializationException)
-from rockset.models import QueryParameter, QueryRequestSql, QueryResponse
+from {{packageName}}.models import QueryParameter, QueryRequestSql, QueryResponse
 
 APISERVER_PATTERN = re.compile(r"^https:\/\/(\w|-|\.)+\.rockset\.com$")
 
@@ -107,71 +107,11 @@ def convert_to_rockset_type(v):
         "Parameter value of type {} is not supported by Rockset".format(type(v))
     )
 
-
-class APIKeysApiWrapper(apis.APIKeys, metaclass=ApiMetaclass):
+{{#apiInfo}}{{#apis}}
+class {{classname}}ApiWrapper(apis.{{classname}}, metaclass=ApiMetaclass):
     pass
 
-
-class AliasesApiWrapper(apis.Aliases, metaclass=ApiMetaclass):
-    pass
-
-
-class CollectionsApiWrapper(apis.Collections, metaclass=ApiMetaclass):
-    pass
-
-
-class CustomRolesApiWrapper(apis.CustomRoles, metaclass=ApiMetaclass):
-    pass
-
-
-class DocumentsApiWrapper(apis.Documents, metaclass=ApiMetaclass):
-    pass
-
-
-class IntegrationsApiWrapper(apis.Integrations, metaclass=ApiMetaclass):
-    pass
-
-
-class OrganizationsApiWrapper(apis.Organizations, metaclass=ApiMetaclass):
-    pass
-
-
-class QueriesApiWrapper(apis.Queries, metaclass=ApiMetaclass):
-    pass
-
-
-class QueryLambdasApiWrapper(apis.QueryLambdas, metaclass=ApiMetaclass):
-    pass
-
-
-class ScheduledLambdasApiWrapper(apis.ScheduledLambdas, metaclass=ApiMetaclass):
-    pass
-
-
-class SharedLambdasApiWrapper(apis.SharedLambdas, metaclass=ApiMetaclass):
-    pass
-
-
-class SourcesApiWrapper(apis.Sources, metaclass=ApiMetaclass):
-    pass
-
-
-class UsersApiWrapper(apis.Users, metaclass=ApiMetaclass):
-    pass
-
-
-class ViewsApiWrapper(apis.Views, metaclass=ApiMetaclass):
-    pass
-
-
-class VirtualInstancesApiWrapper(apis.VirtualInstances, metaclass=ApiMetaclass):
-    pass
-
-
-class WorkspacesApiWrapper(apis.Workspaces, metaclass=ApiMetaclass):
-    pass
-
-
+{{/apis}}{{/apiInfo}}
 class RocksetClient:
     """
     The class that is used to make requests to the Rockset API.
@@ -247,23 +187,8 @@ class RocksetClient:
 
         self.api_client = ApiClient(config, max_workers=max_workers)
 
-        self.APIKeys = APIKeysApiWrapper(self.api_client)
-        self.Aliases = AliasesApiWrapper(self.api_client)
-        self.Collections = CollectionsApiWrapper(self.api_client)
-        self.CustomRoles = CustomRolesApiWrapper(self.api_client)
-        self.Documents = DocumentsApiWrapper(self.api_client)
-        self.Integrations = IntegrationsApiWrapper(self.api_client)
-        self.Organizations = OrganizationsApiWrapper(self.api_client)
-        self.Queries = QueriesApiWrapper(self.api_client)
-        self.QueryLambdas = QueryLambdasApiWrapper(self.api_client)
-        self.ScheduledLambdas = ScheduledLambdasApiWrapper(self.api_client)
-        self.SharedLambdas = SharedLambdasApiWrapper(self.api_client)
-        self.Sources = SourcesApiWrapper(self.api_client)
-        self.Users = UsersApiWrapper(self.api_client)
-        self.Views = ViewsApiWrapper(self.api_client)
-        self.VirtualInstances = VirtualInstancesApiWrapper(self.api_client)
-        self.Workspaces = WorkspacesApiWrapper(self.api_client)
-        
+        {{#apiInfo}}{{#apis}}self.{{classname}} = {{classname}}ApiWrapper(self.api_client)
+        {{/apis}}{{/apiInfo}}
 
     def set_application(self, value):
         self.api_client.set_application(value)

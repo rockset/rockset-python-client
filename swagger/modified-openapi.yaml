@@ -5034,7 +5034,9 @@ components:
             - ALIAS
             - CLUSTER
             - COLLECTION
+            - COLLECTION_STATS
             - COMPACTION_INFO
+            - DEPLOYMENT_STATS
             - FIELD_SCHEMA
             - INTEGRATION
             - IP_ALLOWLIST
