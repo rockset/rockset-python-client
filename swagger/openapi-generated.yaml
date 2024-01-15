@@ -11319,6 +11319,9 @@ components:
         gcs:
           $ref: "#/components/schemas/GcsIntegration"
           description: GCS details.
+        is_write_enabled:
+          description: is write access enabled for this integration.
+          type: boolean
         kafka:
           $ref: "#/components/schemas/KafkaIntegration"
         kinesis:
@@ -12179,6 +12182,9 @@ components:
         gcs:
           $ref: "#/components/schemas/GcsIntegration"
           description: GCS details.
+        is_write_enabled:
+          description: is write access enabled for this integration
+          type: boolean
         kafka:
           $ref: "#/components/schemas/KafkaIntegration"
           description: Kafka details.
@@ -13193,12 +13199,6 @@ components:
           description: The version of the associated query lambda.
           example: abcde1234
           type: string
-        vi_rrn:
-          $ref: "#/components/schemas/VirtualInstanceRrn"
-          description: >-
-            The RRN of the virtual instance that should be used to execute this
-            scheduled query lambda.
-          example: "rrn:vi:use1a1:123e4567-e89b-12d3-a456-556642440000"
         webhook_payload:
           description: The payload that should be sent to the webhook.
           example: >-
@@ -13345,6 +13345,8 @@ components:
           type: string
         system:
           $ref: "#/components/schemas/SourceSystem"
+        write_api:
+          $ref: "#/components/schemas/SourceWriteApi"
       type: object
     SourceAzBlobStorageBase:
       properties:
@@ -13787,6 +13789,8 @@ components:
           example: commons
           type: string
       type: object
+    SourceWriteApi:
+      type: object
     SqlExpression:
       properties:
         sql:
@@ -13814,6 +13818,13 @@ components:
           description: >-
             Number of documents returned by the query. Only populated if
             `status` is `COMPLETE`.
+          example: 1235
+          format: int64
+          type: integer
+        result_set_file_count:
+          description: >-
+            Number of files written by by the query. Only populated if `status`
+            is `COMPLETE` and the query is an export query.
           example: 1235
           format: int64
           type: integer
@@ -14243,6 +14254,9 @@ components:
         gcs:
           $ref: "#/components/schemas/GcsIntegration"
           description: GCS details.
+        is_write_enabled:
+          description: is write access enabled for this integration.
+          type: boolean
         kafka:
           $ref: "#/components/schemas/KafkaIntegration"
         kinesis:
@@ -14694,65 +14708,6 @@ components:
       required:
         - name
       type: object
-    VirtualInstanceRrn:
-      properties:
-        cluster:
-          enum:
-            - APT2A1
-            - DEV
-            - DEV_USW2A1
-            - EUC1A1
-            - EUW1A1
-            - GLOBAL
-            - TEST
-            - UNIT_TEST
-            - UNKNOWN
-            - USE1A1
-            - USW2A1
-          type: string
-        resourceType:
-          enum:
-            - ALIAS
-            - CLUSTER
-            - COLLECTION
-            - COLLECTION_STATS
-            - COMPACTION_INFO
-            - DEPLOYMENT_STATS
-            - FIELD_SCHEMA
-            - INTEGRATION
-            - IP_ALLOWLIST
-            - LEAF
-            - LEAF_GROUP
-            - MOUNT
-            - NETWORK_CONFIGURATION
-            - ORG
-            - ORG_MIGRATION
-            - PENDING_SNAPSHOTS
-            - PREVIEW_SOURCE
-            - QUERY_LAMBDA
-            - QUERY_LAMBDA_TAG
-            - QUERY_LAMBDA_VERSION
-            - ROCKSET_DEPLOYMENT
-            - ROLE
-            - ROOT
-            - SCHEDULED_QUERY_LAMBDA
-            - SHARD
-            - SHARD_BATCH
-            - SIMILARITY_INDEX
-            - SNAPSHOT
-            - SOURCE
-            - USER
-            - VIEW
-            - VIRTUAL_INSTANCE
-            - WORKSPACE
-          type: string
-        uuid:
-          format: uuid
-          type: string
-        version:
-          format: int32
-          type: integer
-      type: object
     VirtualInstanceStats:
       properties:
         last_queried_ms:
@@ -14818,6 +14773,7 @@ tags:
   - name: Custom Roles
   - name: Documents
   - name: Integrations
+  - name: Organization Settings
   - name: Organizations
   - name: Queries
   - name: Query Lambdas

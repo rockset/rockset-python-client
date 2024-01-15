@@ -233,7 +233,6 @@ from rockset.model.user import User
 from rockset.model.validate_query_response import ValidateQueryResponse
 from rockset.model.view import View
 from rockset.model.virtual_instance import VirtualInstance
-from rockset.model.virtual_instance_rrn import VirtualInstanceRrn
 from rockset.model.virtual_instance_stats import VirtualInstanceStats
 from rockset.model.workspace import Workspace
 from rockset.model.xml_params import XmlParams
