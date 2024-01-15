@@ -84,6 +84,7 @@ class Stats(ModelNormal):
             'elapsed_time_ms': (int, none_type),  # noqa: E501
             'result_set_bytes_size': (int, none_type),  # noqa: E501
             'result_set_document_count': (int, none_type),  # noqa: E501
+            'result_set_file_count': (int, none_type),  # noqa: E501
             'throttled_time_ms': (int, none_type),  # noqa: E501
         }
 
@@ -96,6 +97,7 @@ class Stats(ModelNormal):
         'elapsed_time_ms': 'elapsed_time_ms',  # noqa: E501
         'result_set_bytes_size': 'result_set_bytes_size',  # noqa: E501
         'result_set_document_count': 'result_set_document_count',  # noqa: E501
+        'result_set_file_count': 'result_set_file_count',  # noqa: E501
         'throttled_time_ms': 'throttled_time_ms',  # noqa: E501
     }
 
@@ -143,6 +145,7 @@ class Stats(ModelNormal):
             elapsed_time_ms (int): Total execution time (including time queued) of the query, in milliseconds.. [optional]  # noqa: E501
             result_set_bytes_size (int): Number of bytes in the query result set. Only populated if `status` is `COMPLETE`. Not populated for INSERT INTO queries.. [optional]  # noqa: E501
             result_set_document_count (int): Number of documents returned by the query. Only populated if `status` is `COMPLETE`.. [optional]  # noqa: E501
+            result_set_file_count (int): Number of files written by by the query. Only populated if `status` is `COMPLETE` and the query is an export query.. [optional]  # noqa: E501
             throttled_time_ms (int): Time query spent queued, in milliseconds.. [optional]  # noqa: E501
         """
 
@@ -198,6 +201,7 @@ class Stats(ModelNormal):
             elapsed_time_ms (int): Total execution time (including time queued) of the query, in milliseconds.. [optional]  # noqa: E501
             result_set_bytes_size (int): Number of bytes in the query result set. Only populated if `status` is `COMPLETE`. Not populated for INSERT INTO queries.. [optional]  # noqa: E501
             result_set_document_count (int): Number of documents returned by the query. Only populated if `status` is `COMPLETE`.. [optional]  # noqa: E501
+            result_set_file_count (int): Number of files written by by the query. Only populated if `status` is `COMPLETE` and the query is an export query.. [optional]  # noqa: E501
             throttled_time_ms (int): Time query spent queued, in milliseconds.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be

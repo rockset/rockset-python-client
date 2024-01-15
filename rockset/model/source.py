@@ -137,6 +137,7 @@ class Source(ModelNormal):
             'status': (bool, date, datetime, dict, float, int, list, str, none_type, none_type),  # noqa: E501
             'suspended_at': (str, none_type),  # noqa: E501
             'system': (SourceSystem, none_type),  # noqa: E501
+            'write_api': ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -165,6 +166,7 @@ class Source(ModelNormal):
         'status': 'status',  # noqa: E501
         'suspended_at': 'suspended_at',  # noqa: E501
         'system': 'system',  # noqa: E501
+        'write_api': 'write_api',  # noqa: E501
     }
 
     read_only_vars = {
@@ -233,6 +235,7 @@ class Source(ModelNormal):
             status (bool, date, datetime, dict, float, int, list, str, none_type): [optional]  # noqa: E501
             suspended_at (str): ISO-8601 date when source was suspended, if suspended. [optional]  # noqa: E501
             system (SourceSystem): [optional]  # noqa: E501
+            write_api ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -299,6 +302,7 @@ class Source(ModelNormal):
             snapshot (SourceSnapshot): [optional]  # noqa: E501
             snowflake (SourceSnowflake): [optional]  # noqa: E501
             system (SourceSystem): [optional]  # noqa: E501
+            write_api ({str: (bool, date, datetime, dict, float, int, list, str, none_type)}): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

@@ -1241,6 +1241,7 @@ SharedAccessSignature=<KeyValue>''',
             service_account_key_file_json="service_account_key_file_json_example",
         ),
     ),
+    is_write_enabled=True,
     kafka=KafkaIntegration(
         aws_role=AwsRole(
             aws_external_id="external id of aws",
@@ -1334,6 +1335,7 @@ Name | Type | Description  | Notes
  **description** | **str** | Longer explanation for the integration. | [optional]
  **dynamodb** | [**DynamodbIntegration**](DynamodbIntegration.md) |  | [optional]
  **gcs** | [**GcsIntegration**](GcsIntegration.md) |  | [optional]
+ **is_write_enabled** | **bool** | is write access enabled for this integration. | [optional]
  **kafka** | [**KafkaIntegration**](KafkaIntegration.md) |  | [optional]
  **kinesis** | [**KinesisIntegration**](KinesisIntegration.md) |  | [optional]
  **mongodb** | [**MongoDbIntegration**](MongoDbIntegration.md) |  | [optional]

@@ -112,6 +112,7 @@ class CreateIntegrationRequest(ModelNormal):
             'description': (str, none_type),  # noqa: E501
             'dynamodb': (DynamodbIntegration, none_type),  # noqa: E501
             'gcs': (GcsIntegration, none_type),  # noqa: E501
+            'is_write_enabled': (bool, none_type),  # noqa: E501
             'kafka': (KafkaIntegration, none_type),  # noqa: E501
             'kinesis': (KinesisIntegration, none_type),  # noqa: E501
             'mongodb': (MongoDbIntegration, none_type),  # noqa: E501
@@ -132,6 +133,7 @@ class CreateIntegrationRequest(ModelNormal):
         'description': 'description',  # noqa: E501
         'dynamodb': 'dynamodb',  # noqa: E501
         'gcs': 'gcs',  # noqa: E501
+        'is_write_enabled': 'is_write_enabled',  # noqa: E501
         'kafka': 'kafka',  # noqa: E501
         'kinesis': 'kinesis',  # noqa: E501
         'mongodb': 'mongodb',  # noqa: E501
@@ -189,6 +191,7 @@ class CreateIntegrationRequest(ModelNormal):
             description (str): Longer explanation for the integration.. [optional]  # noqa: E501
             dynamodb (DynamodbIntegration): [optional]  # noqa: E501
             gcs (GcsIntegration): [optional]  # noqa: E501
+            is_write_enabled (bool): is write access enabled for this integration.. [optional]  # noqa: E501
             kafka (KafkaIntegration): [optional]  # noqa: E501
             kinesis (KinesisIntegration): [optional]  # noqa: E501
             mongodb (MongoDbIntegration): [optional]  # noqa: E501
@@ -253,6 +256,7 @@ class CreateIntegrationRequest(ModelNormal):
             description (str): Longer explanation for the integration.. [optional]  # noqa: E501
             dynamodb (DynamodbIntegration): [optional]  # noqa: E501
             gcs (GcsIntegration): [optional]  # noqa: E501
+            is_write_enabled (bool): is write access enabled for this integration.. [optional]  # noqa: E501
             kafka (KafkaIntegration): [optional]  # noqa: E501
             kinesis (KinesisIntegration): [optional]  # noqa: E501
             mongodb (MongoDbIntegration): [optional]  # noqa: E501
