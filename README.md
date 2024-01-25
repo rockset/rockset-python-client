@@ -474,7 +474,6 @@ Class | Method | HTTP request | Description
  - [ValidateQueryResponse](docs/ValidateQueryResponse.md)
  - [View](docs/View.md)
  - [VirtualInstance](docs/VirtualInstance.md)
- - [VirtualInstanceRrn](docs/VirtualInstanceRrn.md)
  - [VirtualInstanceStats](docs/VirtualInstanceStats.md)
  - [Workspace](docs/Workspace.md)
  - [XmlParams](docs/XmlParams.md)
