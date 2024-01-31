@@ -1881,6 +1881,7 @@ class Integrations(object):
         description: str = None,
         dynamodb: DynamodbIntegration = None,
         gcs: GcsIntegration = None,
+        is_write_enabled: bool = None,
         kafka: KafkaIntegration = None,
         kinesis: KinesisIntegration = None,
         mongodb: MongoDbIntegration = None,
@@ -1925,6 +1926,7 @@ class Integrations(object):
                     service_account_key_file_json="service_account_key_file_json_example",
                 ),
             ),
+            is_write_enabled=True,
             kafka=KafkaIntegration(
                 aws_role=AwsRole(
                     aws_external_id="external id of aws",
@@ -2010,6 +2012,7 @@ class Integrations(object):
             description (str): Longer explanation for the integration.. [optional]
             dynamodb (DynamodbIntegration): [optional]
             gcs (GcsIntegration): [optional]
+            is_write_enabled (bool): is write access enabled for this integration.. [optional]
             kafka (KafkaIntegration): [optional]
             kinesis (KinesisIntegration): [optional]
             mongodb (MongoDbIntegration): [optional]
