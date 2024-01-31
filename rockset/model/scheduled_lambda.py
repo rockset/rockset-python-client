@@ -31,9 +31,7 @@ from rockset.exceptions import ApiAttributeError
 
 def lazy_import():
     from rockset.model.execution_status import ExecutionStatus
-    from rockset.model.virtual_instance_rrn import VirtualInstanceRrn
     globals()['ExecutionStatus'] = ExecutionStatus
-    globals()['VirtualInstanceRrn'] = VirtualInstanceRrn
 
 
 class ScheduledLambda(ModelNormal):
@@ -101,7 +99,6 @@ class ScheduledLambda(ModelNormal):
             'tag': (str, none_type),  # noqa: E501
             'total_times_to_execute': (int, none_type),  # noqa: E501
             'version': (str, none_type),  # noqa: E501
-            'vi_rrn': (VirtualInstanceRrn, none_type),  # noqa: E501
             'webhook_payload': (str, none_type),  # noqa: E501
             'webhook_url': (str, none_type),  # noqa: E501
             'workspace': (str, none_type),  # noqa: E501
@@ -125,7 +122,6 @@ class ScheduledLambda(ModelNormal):
         'tag': 'tag',  # noqa: E501
         'total_times_to_execute': 'total_times_to_execute',  # noqa: E501
         'version': 'version',  # noqa: E501
-        'vi_rrn': 'vi_rrn',  # noqa: E501
         'webhook_payload': 'webhook_payload',  # noqa: E501
         'webhook_url': 'webhook_url',  # noqa: E501
         'workspace': 'workspace',  # noqa: E501
@@ -184,7 +180,6 @@ class ScheduledLambda(ModelNormal):
             tag (str): The query lambda tag.. [optional]  # noqa: E501
             total_times_to_execute (int): The number of times to execute this scheduled query lambda. Once this scheduled query lambda has been executed this many times, it will no longer be executed.. [optional]  # noqa: E501
             version (str): The version of the associated query lambda.. [optional]  # noqa: E501
-            vi_rrn (VirtualInstanceRrn): [optional]  # noqa: E501
             webhook_payload (str): The payload that should be sent to the webhook.. [optional]  # noqa: E501
             webhook_url (str): The URL of the webhook that should be triggered after this scheduled query lambda completes.. [optional]  # noqa: E501
             workspace (str): Workspace of the associated query lambda.. [optional]  # noqa: E501
@@ -251,7 +246,6 @@ class ScheduledLambda(ModelNormal):
             tag (str): The query lambda tag.. [optional]  # noqa: E501
             total_times_to_execute (int): The number of times to execute this scheduled query lambda. Once this scheduled query lambda has been executed this many times, it will no longer be executed.. [optional]  # noqa: E501
             version (str): The version of the associated query lambda.. [optional]  # noqa: E501
-            vi_rrn (VirtualInstanceRrn): [optional]  # noqa: E501
             webhook_payload (str): The payload that should be sent to the webhook.. [optional]  # noqa: E501
             webhook_url (str): The URL of the webhook that should be triggered after this scheduled query lambda completes.. [optional]  # noqa: E501
             workspace (str): Workspace of the associated query lambda.. [optional]  # noqa: E501

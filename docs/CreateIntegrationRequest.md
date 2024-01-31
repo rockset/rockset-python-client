@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **description** | **str** | Longer explanation for the integration. | [optional] 
 **dynamodb** | [**DynamodbIntegration**](DynamodbIntegration.md) |  | [optional] 
 **gcs** | [**GcsIntegration**](GcsIntegration.md) |  | [optional] 
+**is_write_enabled** | **bool** | is write access enabled for this integration. | [optional] 
 **kafka** | [**KafkaIntegration**](KafkaIntegration.md) |  | [optional] 
 **kinesis** | [**KinesisIntegration**](KinesisIntegration.md) |  | [optional] 
 **mongodb** | [**MongoDbIntegration**](MongoDbIntegration.md) |  | [optional] 

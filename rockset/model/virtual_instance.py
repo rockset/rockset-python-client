@@ -61,6 +61,11 @@ class VirtualInstance(ModelNormal):
     """
     
     allowed_values = {
+        ('current_instance_class',): {
+            'MO_BR': "MO_BR",
+            'MO_IL': "MO_IL",
+            'GP_IL': "GP_IL",
+        },
         ('current_size',): {
             'FREE': "FREE",
             'NANO': "NANO",
@@ -75,6 +80,11 @@ class VirtualInstance(ModelNormal):
             'XLARGE4': "XLARGE4",
             'XLARGE8': "XLARGE8",
             'XLARGE16': "XLARGE16",
+        },
+        ('desired_instance_class',): {
+            'MO_BR': "MO_BR",
+            'MO_IL': "MO_IL",
+            'GP_IL': "GP_IL",
         },
         ('desired_size',): {
             'FREE': "FREE",
@@ -140,10 +150,12 @@ class VirtualInstance(ModelNormal):
             'auto_suspend_seconds': (int, none_type),  # noqa: E501
             'created_at': (str, none_type),  # noqa: E501
             'created_by': (str, none_type),  # noqa: E501
+            'current_instance_class': (str, none_type),  # noqa: E501
             'current_size': (str, none_type),  # noqa: E501
             'default_pod_count': (int, none_type),  # noqa: E501
             'default_vi': (bool, none_type),  # noqa: E501
             'description': (str, none_type),  # noqa: E501
+            'desired_instance_class': (str, none_type),  # noqa: E501
             'desired_size': (str, none_type),  # noqa: E501
             'enable_remount_on_resume': (bool, none_type),  # noqa: E501
             'id': (str, none_type),  # noqa: E501
@@ -168,10 +180,12 @@ class VirtualInstance(ModelNormal):
         'auto_suspend_seconds': 'auto_suspend_seconds',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
         'created_by': 'created_by',  # noqa: E501
+        'current_instance_class': 'current_instance_class',  # noqa: E501
         'current_size': 'current_size',  # noqa: E501
         'default_pod_count': 'default_pod_count',  # noqa: E501
         'default_vi': 'default_vi',  # noqa: E501
         'description': 'description',  # noqa: E501
+        'desired_instance_class': 'desired_instance_class',  # noqa: E501
         'desired_size': 'desired_size',  # noqa: E501
         'enable_remount_on_resume': 'enable_remount_on_resume',  # noqa: E501
         'id': 'id',  # noqa: E501
@@ -235,10 +249,12 @@ class VirtualInstance(ModelNormal):
             auto_suspend_seconds (int): Number of seconds without queries after which the VI is suspended. [optional]  # noqa: E501
             created_at (str): ISO-8601 date of when virtual instance was created.. [optional]  # noqa: E501
             created_by (str): Creator of requested virtual instance.. [optional]  # noqa: E501
+            current_instance_class (str): Virtual Instance Class. `MO_IL` represents Memory Optimized and `GP_IL` represents General Purpose instance class.. [optional]  # noqa: E501
             current_size (str): Virtual instance current size.. [optional]  # noqa: E501
             default_pod_count (int): [optional]  # noqa: E501
             default_vi (bool): [optional]  # noqa: E501
             description (str): Virtual instance description.. [optional]  # noqa: E501
+            desired_instance_class (str): Virtual Instance Class.. [optional]  # noqa: E501
             desired_size (str): Virtual instance desired size.. [optional]  # noqa: E501
             enable_remount_on_resume (bool): When a Virtual Instance is resumed, it will remount all collections that were mounted when the Virtual Instance was suspended.. [optional]  # noqa: E501
             id (str): Unique identifier for virtual instance.. [optional]  # noqa: E501
@@ -307,9 +323,11 @@ class VirtualInstance(ModelNormal):
             auto_suspend_seconds (int): Number of seconds without queries after which the VI is suspended. [optional]  # noqa: E501
             created_at (str): ISO-8601 date of when virtual instance was created.. [optional]  # noqa: E501
             created_by (str): Creator of requested virtual instance.. [optional]  # noqa: E501
+            current_instance_class (str): Virtual Instance Class. `MO_IL` represents Memory Optimized and `GP_IL` represents General Purpose instance class.. [optional]  # noqa: E501
             default_pod_count (int): [optional]  # noqa: E501
             default_vi (bool): [optional]  # noqa: E501
             description (str): Virtual instance description.. [optional]  # noqa: E501
+            desired_instance_class (str): Virtual Instance Class.. [optional]  # noqa: E501
             enable_remount_on_resume (bool): When a Virtual Instance is resumed, it will remount all collections that were mounted when the Virtual Instance was suspended.. [optional]  # noqa: E501
             id (str): Unique identifier for virtual instance.. [optional]  # noqa: E501
             monitoring_enabled (bool): [optional]  # noqa: E501

@@ -11319,6 +11319,9 @@ components:
         gcs:
           $ref: "#/components/schemas/GcsIntegration"
           description: GCS details.
+        is_write_enabled:
+          description: is write access enabled for this integration.
+          type: boolean
         kafka:
           $ref: "#/components/schemas/KafkaIntegration"
         kinesis:
@@ -11518,6 +11521,15 @@ components:
             that were mounted when the Virtual Instance was suspended.
           example: true
           type: boolean
+        instance_class:
+          description: >-
+            Virtual Instance Class. Use `MO_IL` for Memory Optimized and `GP_IL`
+            for General Purpose instance class.
+          enum:
+            - MO_IL
+            - GP_IL
+          example: MO_IL
+          type: string
         mount_refresh_interval_seconds:
           description: >-
             DEPRECATED. Use `mount_type` instead. Number of seconds between data
@@ -12179,6 +12191,9 @@ components:
         gcs:
           $ref: "#/components/schemas/GcsIntegration"
           description: GCS details.
+        is_write_enabled:
+          description: is write access enabled for this integration
+          type: boolean
         kafka:
           $ref: "#/components/schemas/KafkaIntegration"
           description: Kafka details.
@@ -12650,7 +12665,7 @@ components:
             - CREATE_NETWORK_CONFIGURATION_GLOBAL
             - DELETE_NETWORK_CONFIGURATION_GLOBAL
             - LIST_NETWORK_CONFIGURATIONS_GLOBAL
-            - UPDATE_ORG_QUERY_ROUTING
+            - UPDATE_DEPLOYMENT_DEFAULT_QUERY_VI
           example: CREATE_COLLECTION_WS
           type: string
         cluster:
@@ -13193,12 +13208,6 @@ components:
           description: The version of the associated query lambda.
           example: abcde1234
           type: string
-        vi_rrn:
-          $ref: "#/components/schemas/VirtualInstanceRrn"
-          description: >-
-            The RRN of the virtual instance that should be used to execute this
-            scheduled query lambda.
-          example: "rrn:vi:use1a1:123e4567-e89b-12d3-a456-556642440000"
         webhook_payload:
           description: The payload that should be sent to the webhook.
           example: >-
@@ -13345,6 +13354,8 @@ components:
           type: string
         system:
           $ref: "#/components/schemas/SourceSystem"
+        write_api:
+          $ref: "#/components/schemas/SourceWriteApi"
       type: object
     SourceAzBlobStorageBase:
       properties:
@@ -13787,6 +13798,8 @@ components:
           example: commons
           type: string
       type: object
+    SourceWriteApi:
+      type: object
     SqlExpression:
       properties:
         sql:
@@ -13814,6 +13827,13 @@ components:
           description: >-
             Number of documents returned by the query. Only populated if
             `status` is `COMPLETE`.
+          example: 1235
+          format: int64
+          type: integer
+        result_set_file_count:
+          description: >-
+            Number of files written by by the query. Only populated if `status`
+            is `COMPLETE` and the query is an export query.
           example: 1235
           format: int64
           type: integer
@@ -14243,6 +14263,9 @@ components:
         gcs:
           $ref: "#/components/schemas/GcsIntegration"
           description: GCS details.
+        is_write_enabled:
+          description: is write access enabled for this integration.
+          type: boolean
         kafka:
           $ref: "#/components/schemas/KafkaIntegration"
         kinesis:
@@ -14405,6 +14428,15 @@ components:
             that were mounted when the Virtual Instance was suspended.
           example: true
           type: boolean
+        instance_class:
+          description: >-
+            Virtual Instance Class. Use `MO_IL` for Memory Optimized and `GP_IL`
+            for General Purpose instance class.
+          enum:
+            - MO_IL
+            - GP_IL
+          example: MO_IL
+          type: string
         mount_refresh_interval_seconds:
           description: >-
             DEPRECATED. Use `mount_type` instead. Number of seconds between data
@@ -14580,6 +14612,16 @@ components:
           description: Creator of requested virtual instance.
           example: hello@rockset.com
           type: string
+        current_instance_class:
+          description: >-
+            Virtual Instance Class. `MO_IL` represents Memory Optimized and
+            `GP_IL` represents General Purpose instance class.
+          enum:
+            - MO_BR
+            - MO_IL
+            - GP_IL
+          example: MO_IL
+          type: string
         current_size:
           description: Virtual instance current size.
           enum:
@@ -14607,6 +14649,14 @@ components:
         description:
           description: Virtual instance description.
           example: VI for prod traffic
+          type: string
+        desired_instance_class:
+          description: Virtual Instance Class.
+          enum:
+            - MO_BR
+            - MO_IL
+            - GP_IL
+          example: MO_IL
           type: string
         desired_size:
           description: Virtual instance desired size.
@@ -14694,65 +14744,6 @@ components:
       required:
         - name
       type: object
-    VirtualInstanceRrn:
-      properties:
-        cluster:
-          enum:
-            - APT2A1
-            - DEV
-            - DEV_USW2A1
-            - EUC1A1
-            - EUW1A1
-            - GLOBAL
-            - TEST
-            - UNIT_TEST
-            - UNKNOWN
-            - USE1A1
-            - USW2A1
-          type: string
-        resourceType:
-          enum:
-            - ALIAS
-            - CLUSTER
-            - COLLECTION
-            - COLLECTION_STATS
-            - COMPACTION_INFO
-            - DEPLOYMENT_STATS
-            - FIELD_SCHEMA
-            - INTEGRATION
-            - IP_ALLOWLIST
-            - LEAF
-            - LEAF_GROUP
-            - MOUNT
-            - NETWORK_CONFIGURATION
-            - ORG
-            - ORG_MIGRATION
-            - PENDING_SNAPSHOTS
-            - PREVIEW_SOURCE
-            - QUERY_LAMBDA
-            - QUERY_LAMBDA_TAG
-            - QUERY_LAMBDA_VERSION
-            - ROCKSET_DEPLOYMENT
-            - ROLE
-            - ROOT
-            - SCHEDULED_QUERY_LAMBDA
-            - SHARD
-            - SHARD_BATCH
-            - SIMILARITY_INDEX
-            - SNAPSHOT
-            - SOURCE
-            - USER
-            - VIEW
-            - VIRTUAL_INSTANCE
-            - WORKSPACE
-          type: string
-        uuid:
-          format: uuid
-          type: string
-        version:
-          format: int32
-          type: integer
-      type: object
     VirtualInstanceStats:
       properties:
         last_queried_ms:
@@ -14816,6 +14807,7 @@ tags:
   - name: API Keys
   - name: Collections
   - name: Custom Roles
+  - name: Deployment Settings
   - name: Documents
   - name: Integrations
   - name: Organizations
