@@ -990,6 +990,9 @@ components:
         gcs:
           $ref: "#/components/schemas/GcsIntegration"
           description: GCS details.
+        is_write_enabled:
+          description: is write access enabled for this integration.
+          type: boolean
         kafka:
           $ref: "#/components/schemas/KafkaIntegration"
         kinesis:
@@ -1193,6 +1196,15 @@ components:
             that were mounted when the Virtual Instance was suspended.
           example: true
           type: boolean
+        instance_class:
+          description:
+            Virtual Instance Class. Use `MO_IL` for Memory Optimized and
+            `GP_IL` for General Purpose instance class.
+          enum:
+            - MO_IL
+            - GP_IL
+          example: MO_IL
+          type: string
         mount_refresh_interval_seconds:
           description:
             DEPRECATED. Use `mount_type` instead. Number of seconds between
@@ -1206,7 +1218,7 @@ components:
           description:
             The mount type of collections that this Virtual Instance will
             query. Live mounted collections stay up-to-date with the underlying collection
-            in real-time. Static mounted collections do not stay up-to-date. See https://docs.rockset.com/documentation/docs/virtual-instances#virtual-instance-configuration
+            in real-time. Static mounted collections do not stay up-to-date. See https://docs.rockset.com/documentation/docs/using-virtual-instances#virtual-instance-configuration
           enum:
             - LIVE
             - STATIC
@@ -1414,6 +1426,21 @@ components:
         data:
           $ref: "#/components/schemas/Workspace"
           description: The workspace that was deleted.
+      type: object
+    DeploymentSettings:
+      properties:
+        default_query_vi:
+          $ref: "#/components/schemas/VirtualInstanceRrn"
+          description:
+            RRN of the Virtual Instance that all queries will be routed
+            to by default
+          example: rrn:vi:use1a1:123e4567-e89b-12d3-a456-556642440000
+      type: object
+    DeploymentSettingsResponse:
+      properties:
+        data:
+          $ref: "#/components/schemas/DeploymentSettings"
+          description: Deployment settings
       type: object
     DocumentStatus:
       properties:
@@ -2034,6 +2061,9 @@ components:
         gcs:
           $ref: "#/components/schemas/GcsIntegration"
           description: GCS details.
+        is_write_enabled:
+          description: is write access enabled for this integration
+          type: boolean
         kafka:
           $ref: "#/components/schemas/KafkaIntegration"
           description: Kafka details.
@@ -2769,7 +2799,7 @@ components:
             - CREATE_NETWORK_CONFIGURATION_GLOBAL
             - DELETE_NETWORK_CONFIGURATION_GLOBAL
             - LIST_NETWORK_CONFIGURATIONS_GLOBAL
-            - UPDATE_ORG_QUERY_ROUTING
+            - UPDATE_DEPLOYMENT_DEFAULT_QUERY_VI
           example: CREATE_COLLECTION_WS
           type: string
         cluster:
@@ -3397,12 +3427,6 @@ components:
           description: The version of the associated query lambda.
           example: abcde1234
           type: string
-        vi_rrn:
-          $ref: "#/components/schemas/VirtualInstanceRrn"
-          description:
-            The RRN of the virtual instance that should be used to execute
-            this scheduled query lambda.
-          example: rrn:vi:use1a1:123e4567-e89b-12d3-a456-556642440000
         webhook_payload:
           description: The payload that should be sent to the webhook.
           example:
@@ -3639,6 +3663,8 @@ components:
           type: string
         system:
           $ref: "#/components/schemas/SourceSystem"
+        write_api:
+          $ref: "#/components/schemas/SourceWriteApi"
       type: object
     SourceAzBlobStorageBase:
       properties:
@@ -4093,6 +4119,8 @@ components:
           example: commons
           type: string
       type: object
+    SourceWriteApi:
+      type: object
     SqlExpression:
       properties:
         sql:
@@ -4120,6 +4148,13 @@ components:
           description:
             Number of documents returned by the query. Only populated if
             `status` is `COMPLETE`.
+          example: 1235
+          format: int64
+          type: integer
+        result_set_file_count:
+          description:
+            Number of files written by by the query. Only populated if
+            `status` is `COMPLETE` and the query is an export query.
           example: 1235
           format: int64
           type: integer
@@ -4531,6 +4566,15 @@ components:
             Updated ingest transformation query. Note that updating the
             transformation will lead to a brief interruption in ingestion.
       type: object
+    UpdateDeploymentSettingsRequest:
+      properties:
+        default_query_vi:
+          description:
+            RRN of the Virtual Instance that all queries will be routed
+            to by default
+          example: rrn:vi:use1a1:123e4567-e89b-12d3-a456-556642440000
+          type: string
+      type: object
     UpdateIntegrationRequest:
       properties:
         azure_blob_storage:
@@ -4554,6 +4598,9 @@ components:
         gcs:
           $ref: "#/components/schemas/GcsIntegration"
           description: GCS details.
+        is_write_enabled:
+          description: is write access enabled for this integration.
+          type: boolean
         kafka:
           $ref: "#/components/schemas/KafkaIntegration"
         kinesis:
@@ -4720,6 +4767,15 @@ components:
             that were mounted when the Virtual Instance was suspended.
           example: true
           type: boolean
+        instance_class:
+          description:
+            Virtual Instance Class. Use `MO_IL` for Memory Optimized and
+            `GP_IL` for General Purpose instance class.
+          enum:
+            - MO_IL
+            - GP_IL
+          example: MO_IL
+          type: string
         mount_refresh_interval_seconds:
           description:
             DEPRECATED. Use `mount_type` instead. Number of seconds between
@@ -4733,7 +4789,7 @@ components:
           description:
             The mount type of collections that this Virtual Instance will
             query. Live mounted collections stay up-to-date with the underlying collection
-            in real-time. Static mounted collections do not stay up-to-date. See https://docs.rockset.com/documentation/docs/virtual-instances#virtual-instance-configuration
+            in real-time. Static mounted collections do not stay up-to-date. See https://docs.rockset.com/documentation/docs/using-virtual-instances#virtual-instance-configuration
           enum:
             - LIVE
             - STATIC
@@ -4901,6 +4957,16 @@ components:
           description: Creator of requested virtual instance.
           example: hello@rockset.com
           type: string
+        current_instance_class:
+          description:
+            Virtual Instance Class. `MO_IL` represents Memory Optimized
+            and `GP_IL` represents General Purpose instance class.
+          enum:
+            - MO_BR
+            - MO_IL
+            - GP_IL
+          example: MO_IL
+          type: string
         current_size:
           description: Virtual instance current size.
           enum:
@@ -4928,6 +4994,14 @@ components:
         description:
           description: Virtual instance description.
           example: VI for prod traffic
+          type: string
+        desired_instance_class:
+          description: Virtual Instance Class.
+          enum:
+            - MO_BR
+            - MO_IL
+            - GP_IL
+          example: MO_IL
           type: string
         desired_size:
           description: Virtual instance desired size.
@@ -4971,7 +5045,7 @@ components:
           description:
             The mount type of collections that this Virtual Instance will
             query. Live mounted collections stay up-to-date with the underlying collection
-            in real-time. Static mounted collections do not stay up-to-date. See https://docs.rockset.com/documentation/docs/virtual-instances#virtual-instance-configuration
+            in real-time. Static mounted collections do not stay up-to-date. See https://docs.rockset.com/documentation/docs/using-virtual-instances#virtual-instance-configuration
           enum:
             - LIVE
             - STATIC
@@ -5024,7 +5098,6 @@ components:
             - EUW1A1
             - GLOBAL
             - TEST
-            - UNIT_TEST
             - UNKNOWN
             - USE1A1
             - USW2A1
@@ -5045,7 +5118,6 @@ components:
             - MOUNT
             - NETWORK_CONFIGURATION
             - ORG
-            - ORG_MIGRATION
             - PENDING_SNAPSHOTS
             - PREVIEW_SOURCE
             - QUERY_LAMBDA
@@ -5060,6 +5132,7 @@ components:
             - SIMILARITY_INDEX
             - SNAPSHOT
             - SOURCE
+            - SOURCE_STATE
             - USER
             - VIEW
             - VIRTUAL_INSTANCE
@@ -5457,6 +5530,210 @@ paths:
       tags:
         - Collections
       x-rename: list
+  /v1/orgs/self/deploymentsettings:
+    get:
+      description: Retrieve settings for the current deployment.
+      operationId: getDeploymentSettings
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeploymentSettingsResponse"
+          description: Deployment settings retrieved successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Retrieve Deployment Settings
+      tags:
+        - Deployment Settings
+    put:
+      description: Update settings for the current deployment.
+      operationId: updateDeploymentSettings
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateDeploymentSettingsRequest"
+        description: JSON object
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeploymentSettingsResponse"
+          description:
+            Deployment settings updated successfully. Settings may take
+            up to 1 minute to take effect
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Update Deployment Settings
+      tags:
+        - Deployment Settings
   /v1/orgs/self/integrations:
     get:
       description: List all integrations in an organization.
@@ -18336,6 +18613,7 @@ tags:
   - name: API Keys
   - name: Collections
   - name: Custom Roles
+  - name: Deployment Settings
   - name: Documents
   - name: Integrations
   - name: Organizations

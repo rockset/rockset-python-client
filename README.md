@@ -158,6 +158,8 @@ Class | Method | HTTP request | Description
 *CustomRoles* | [**get**](docs/CustomRolesApi.md#get) | **GET** /v1/orgs/self/roles/{roleName} | Retrieve role
 *CustomRoles* | [**list**](docs/CustomRolesApi.md#list) | **GET** /v1/orgs/self/roles | List Roles
 *CustomRoles* | [**update**](docs/CustomRolesApi.md#update) | **POST** /v1/orgs/self/roles/{roleName} | Update a Role
+*DeploymentSettings* | [**get_deployment_settings**](docs/DeploymentSettingsApi.md#get_deployment_settings) | **GET** /v1/orgs/self/deploymentsettings | Retrieve Deployment Settings
+*DeploymentSettings* | [**update_deployment_settings**](docs/DeploymentSettingsApi.md#update_deployment_settings) | **PUT** /v1/orgs/self/deploymentsettings | Update Deployment Settings
 *Documents* | [**add_documents**](docs/DocumentsApi.md#add_documents) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/docs | Add Documents
 *Documents* | [**delete_documents**](docs/DocumentsApi.md#delete_documents) | **DELETE** /v1/orgs/self/ws/{workspace}/collections/{collection}/docs | Delete Documents
 *Documents* | [**patch_documents**](docs/DocumentsApi.md#patch_documents) | **PATCH** /v1/orgs/self/ws/{workspace}/collections/{collection}/docs | Patch Documents
@@ -311,6 +313,8 @@ Class | Method | HTTP request | Description
  - [DeleteViewResponse](docs/DeleteViewResponse.md)
  - [DeleteVirtualInstanceResponse](docs/DeleteVirtualInstanceResponse.md)
  - [DeleteWorkspaceResponse](docs/DeleteWorkspaceResponse.md)
+ - [DeploymentSettings](docs/DeploymentSettings.md)
+ - [DeploymentSettingsResponse](docs/DeploymentSettingsResponse.md)
  - [DocumentStatus](docs/DocumentStatus.md)
  - [DynamodbCollectionCreationRequest](docs/DynamodbCollectionCreationRequest.md)
  - [DynamodbIntegration](docs/DynamodbIntegration.md)
@@ -458,6 +462,7 @@ Class | Method | HTTP request | Description
  - [UpdateApiKeyRequest](docs/UpdateApiKeyRequest.md)
  - [UpdateApiKeyResponse](docs/UpdateApiKeyResponse.md)
  - [UpdateCollectionRequest](docs/UpdateCollectionRequest.md)
+ - [UpdateDeploymentSettingsRequest](docs/UpdateDeploymentSettingsRequest.md)
  - [UpdateIntegrationRequest](docs/UpdateIntegrationRequest.md)
  - [UpdateIntegrationResponse](docs/UpdateIntegrationResponse.md)
  - [UpdateQueryLambdaRequest](docs/UpdateQueryLambdaRequest.md)

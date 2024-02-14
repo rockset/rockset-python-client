@@ -64,6 +64,9 @@ docs/DeleteUserResponse.md
 docs/DeleteViewResponse.md
 docs/DeleteVirtualInstanceResponse.md
 docs/DeleteWorkspaceResponse.md
+docs/DeploymentSettings.md
+docs/DeploymentSettingsApi.md
+docs/DeploymentSettingsResponse.md
 docs/DocumentStatus.md
 docs/DocumentsApi.md
 docs/DynamodbCollectionCreationRequest.md
@@ -219,6 +222,7 @@ docs/UpdateAliasRequest.md
 docs/UpdateApiKeyRequest.md
 docs/UpdateApiKeyResponse.md
 docs/UpdateCollectionRequest.md
+docs/UpdateDeploymentSettingsRequest.md
 docs/UpdateIntegrationRequest.md
 docs/UpdateIntegrationResponse.md
 docs/UpdateQueryLambdaRequest.md
@@ -249,6 +253,7 @@ rockset/api/aliases_api.py
 rockset/api/api_keys_api.py
 rockset/api/collections_api.py
 rockset/api/custom_roles_api.py
+rockset/api/deployment_settings_api.py
 rockset/api/documents_api.py
 rockset/api/integrations_api.py
 rockset/api/organizations_api.py
@@ -327,6 +332,8 @@ rockset/model/delete_user_response.py
 rockset/model/delete_view_response.py
 rockset/model/delete_virtual_instance_response.py
 rockset/model/delete_workspace_response.py
+rockset/model/deployment_settings.py
+rockset/model/deployment_settings_response.py
 rockset/model/document_status.py
 rockset/model/dynamodb_collection_creation_request.py
 rockset/model/dynamodb_integration.py
@@ -472,6 +479,7 @@ rockset/model/update_alias_request.py
 rockset/model/update_api_key_request.py
 rockset/model/update_api_key_response.py
 rockset/model/update_collection_request.py
+rockset/model/update_deployment_settings_request.py
 rockset/model/update_integration_request.py
 rockset/model/update_integration_response.py
 rockset/model/update_query_lambda_request.py
@@ -562,6 +570,9 @@ test/test_delete_user_response.py
 test/test_delete_view_response.py
 test/test_delete_virtual_instance_response.py
 test/test_delete_workspace_response.py
+test/test_deployment_settings.py
+test/test_deployment_settings_api.py
+test/test_deployment_settings_response.py
 test/test_document_status.py
 test/test_documents_api.py
 test/test_dynamodb_collection_creation_request.py
@@ -717,6 +728,7 @@ test/test_update_alias_request.py
 test/test_update_api_key_request.py
 test/test_update_api_key_response.py
 test/test_update_collection_request.py
+test/test_update_deployment_settings_request.py
 test/test_update_integration_request.py
 test/test_update_integration_response.py
 test/test_update_query_lambda_request.py

@@ -70,6 +70,8 @@ from rockset.model.delete_user_response import DeleteUserResponse
 from rockset.model.delete_view_response import DeleteViewResponse
 from rockset.model.delete_virtual_instance_response import DeleteVirtualInstanceResponse
 from rockset.model.delete_workspace_response import DeleteWorkspaceResponse
+from rockset.model.deployment_settings import DeploymentSettings
+from rockset.model.deployment_settings_response import DeploymentSettingsResponse
 from rockset.model.document_status import DocumentStatus
 from rockset.model.dynamodb_collection_creation_request import DynamodbCollectionCreationRequest
 from rockset.model.dynamodb_integration import DynamodbIntegration
@@ -217,6 +219,7 @@ from rockset.model.update_alias_request import UpdateAliasRequest
 from rockset.model.update_api_key_request import UpdateApiKeyRequest
 from rockset.model.update_api_key_response import UpdateApiKeyResponse
 from rockset.model.update_collection_request import UpdateCollectionRequest
+from rockset.model.update_deployment_settings_request import UpdateDeploymentSettingsRequest
 from rockset.model.update_integration_request import UpdateIntegrationRequest
 from rockset.model.update_integration_response import UpdateIntegrationResponse
 from rockset.model.update_query_lambda_request import UpdateQueryLambdaRequest
