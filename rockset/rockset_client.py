@@ -124,6 +124,10 @@ class CustomRolesApiWrapper(apis.CustomRoles, metaclass=ApiMetaclass):
     pass
 
 
+class DeploymentSettingsApiWrapper(apis.DeploymentSettings, metaclass=ApiMetaclass):
+    pass
+
+
 class DocumentsApiWrapper(apis.Documents, metaclass=ApiMetaclass):
     pass
 
@@ -251,6 +255,7 @@ class RocksetClient:
         self.Aliases = AliasesApiWrapper(self.api_client)
         self.Collections = CollectionsApiWrapper(self.api_client)
         self.CustomRoles = CustomRolesApiWrapper(self.api_client)
+        self.DeploymentSettings = DeploymentSettingsApiWrapper(self.api_client)
         self.Documents = DocumentsApiWrapper(self.api_client)
         self.Integrations = IntegrationsApiWrapper(self.api_client)
         self.Organizations = OrganizationsApiWrapper(self.api_client)
