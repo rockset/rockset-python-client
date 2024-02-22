@@ -1,3 +1,6 @@
+### v2.1.1
+    - New API changes (including scheduled lambdas)
+
 ### v2.1.0
     - Get Collection Offset APIs
 
