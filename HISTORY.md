@@ -1,3 +1,6 @@
+### v2.1.2
+    - New API changes (including deployment settings and list org scheduled lambdas)
+
 ### v2.1.1
     - New API changes (including scheduled lambdas)
 
@@ -6,7 +9,6 @@
 
 ### v2.0.1
     - New api changes
-### v2.0.1
     - Adding top level args override so that we can pass the request on in the request body
 
 ### v2.0.0
