@@ -98,6 +98,7 @@ class QueryInfo(ModelNormal):
         """
         lazy_import()
         return {
+            'destination_uri': (str, none_type),  # noqa: E501
             'executed_by': (str, none_type),  # noqa: E501
             'expires_at': (str, none_type),  # noqa: E501
             'last_offset': (str, none_type),  # noqa: E501
@@ -116,6 +117,7 @@ class QueryInfo(ModelNormal):
 
 
     attribute_map = {
+        'destination_uri': 'destination_uri',  # noqa: E501
         'executed_by': 'executed_by',  # noqa: E501
         'expires_at': 'expires_at',  # noqa: E501
         'last_offset': 'last_offset',  # noqa: E501
@@ -169,6 +171,7 @@ class QueryInfo(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            destination_uri (str): destination for query results. Only populated for Insert INTO s3 queries.. [optional]  # noqa: E501
             executed_by (str): User ID who executed the query.. [optional]  # noqa: E501
             expires_at (str): Time (UTC) that query results expire. Only populated if `status` is `COMPLETE`.. [optional]  # noqa: E501
             last_offset (str): The log offset that query results were written to in the destination collection. Only populated for INSERT INTO queries.. [optional]  # noqa: E501
@@ -230,6 +233,7 @@ class QueryInfo(ModelNormal):
         """QueryInfo - a model defined in OpenAPI
 
         Keyword Args:
+            destination_uri (str): destination for query results. Only populated for Insert INTO s3 queries.. [optional]  # noqa: E501
             executed_by (str): User ID who executed the query.. [optional]  # noqa: E501
             expires_at (str): Time (UTC) that query results expire. Only populated if `status` is `COMPLETE`.. [optional]  # noqa: E501
             last_offset (str): The log offset that query results were written to in the destination collection. Only populated for INSERT INTO queries.. [optional]  # noqa: E501

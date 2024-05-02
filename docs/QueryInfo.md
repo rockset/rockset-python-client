@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**destination_uri** | **str** | destination for query results. Only populated for Insert INTO s3 queries. | [optional] 
 **executed_by** | **str** | User ID who executed the query. | [optional] 
 **expires_at** | **str** | Time (UTC) that query results expire. Only populated if &#x60;status&#x60; is &#x60;COMPLETE&#x60;. | [optional] 
 **last_offset** | **str** | The log offset that query results were written to in the destination collection. Only populated for INSERT INTO queries. | [optional] 

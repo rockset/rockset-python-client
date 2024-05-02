@@ -70,6 +70,8 @@ from rockset.model.delete_user_response import DeleteUserResponse
 from rockset.model.delete_view_response import DeleteViewResponse
 from rockset.model.delete_virtual_instance_response import DeleteVirtualInstanceResponse
 from rockset.model.delete_workspace_response import DeleteWorkspaceResponse
+from rockset.model.deployment_settings import DeploymentSettings
+from rockset.model.deployment_settings_response import DeploymentSettingsResponse
 from rockset.model.document_status import DocumentStatus
 from rockset.model.dynamodb_collection_creation_request import DynamodbCollectionCreationRequest
 from rockset.model.dynamodb_integration import DynamodbIntegration
@@ -122,12 +124,14 @@ from rockset.model.list_query_lambda_tags_response import ListQueryLambdaTagsRes
 from rockset.model.list_query_lambda_versions_response import ListQueryLambdaVersionsResponse
 from rockset.model.list_query_lambdas_response import ListQueryLambdasResponse
 from rockset.model.list_roles_response import ListRolesResponse
+from rockset.model.list_scheduled_lambdas_response import ListScheduledLambdasResponse
 from rockset.model.list_sources_response import ListSourcesResponse
 from rockset.model.list_unsubscribe_preferences_response import ListUnsubscribePreferencesResponse
 from rockset.model.list_users_response import ListUsersResponse
 from rockset.model.list_views_response import ListViewsResponse
 from rockset.model.list_virtual_instances_response import ListVirtualInstancesResponse
 from rockset.model.list_workspaces_response import ListWorkspacesResponse
+from rockset.model.microbatch_policy import MicrobatchPolicy
 from rockset.model.mongo_db_integration import MongoDbIntegration
 from rockset.model.mongodb_collection_creation_request import MongodbCollectionCreationRequest
 from rockset.model.mongodb_integration_creation_request import MongodbIntegrationCreationRequest
@@ -217,6 +221,7 @@ from rockset.model.update_alias_request import UpdateAliasRequest
 from rockset.model.update_api_key_request import UpdateApiKeyRequest
 from rockset.model.update_api_key_response import UpdateApiKeyResponse
 from rockset.model.update_collection_request import UpdateCollectionRequest
+from rockset.model.update_deployment_settings_request import UpdateDeploymentSettingsRequest
 from rockset.model.update_integration_request import UpdateIntegrationRequest
 from rockset.model.update_integration_response import UpdateIntegrationResponse
 from rockset.model.update_query_lambda_request import UpdateQueryLambdaRequest
@@ -233,7 +238,6 @@ from rockset.model.user import User
 from rockset.model.validate_query_response import ValidateQueryResponse
 from rockset.model.view import View
 from rockset.model.virtual_instance import VirtualInstance
-from rockset.model.virtual_instance_rrn import VirtualInstanceRrn
 from rockset.model.virtual_instance_stats import VirtualInstanceStats
 from rockset.model.workspace import Workspace
 from rockset.model.xml_params import XmlParams

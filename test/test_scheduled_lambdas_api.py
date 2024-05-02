@@ -44,6 +44,26 @@ def test_delete(get_client, mock_request, request_validator):
             validate_call(e, request_validator)
 
 
+def test_get(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.ScheduledLambdas.get(
+                scheduled_lambda_id="scheduledLambdaId_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_list_org_scheduled_lambdas(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.ScheduledLambdas.list_org_scheduled_lambdas()
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
 def test_update(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client

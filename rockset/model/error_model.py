@@ -115,6 +115,7 @@ class ErrorModel(ModelNormal):
             'query_id': (str, none_type),  # noqa: E501
             'trace_id': (str, none_type),  # noqa: E501
             'type': (str, none_type),  # noqa: E501
+            'virtual_instance_rrn': (str, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -130,6 +131,7 @@ class ErrorModel(ModelNormal):
         'query_id': 'query_id',  # noqa: E501
         'trace_id': 'trace_id',  # noqa: E501
         'type': 'type',  # noqa: E501
+        'virtual_instance_rrn': 'virtual_instance_rrn',  # noqa: E501
     }
 
     read_only_vars = {
@@ -180,6 +182,7 @@ class ErrorModel(ModelNormal):
             query_id (str): ID of the query (if applicable).. [optional]  # noqa: E501
             trace_id (str): Internal trace ID to help with debugging.. [optional]  # noqa: E501
             type (str): Category of the error.. [optional]  # noqa: E501
+            virtual_instance_rrn (str): Virtual Instance RRN for the Virtual Instance that the query was run on (if applicable).. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -238,6 +241,7 @@ class ErrorModel(ModelNormal):
             query_id (str): ID of the query (if applicable).. [optional]  # noqa: E501
             trace_id (str): Internal trace ID to help with debugging.. [optional]  # noqa: E501
             type (str): Category of the error.. [optional]  # noqa: E501
+            virtual_instance_rrn (str): Virtual Instance RRN for the Virtual Instance that the query was run on (if applicable).. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

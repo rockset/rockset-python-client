@@ -26,6 +26,7 @@ def test_patch_documents_response_init():
                     query_id="query_id_example",
                     trace_id="trace_id_example",
                     type="INVALIDINPUT",
+                    virtual_instance_rrn="rrn:vi:use1a1:123e4567-e89b-12d3-a456-556642440000",
                 ),
                 patch_id="486gsg8",
                 status="ADDED",

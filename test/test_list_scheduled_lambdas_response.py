@@ -12,5 +12,5 @@ import sys
 from rockset.models import *
 
 
-def test_virtual_instance_rrn_init():
-    VirtualInstanceRrn()
+def test_list_scheduled_lambdas_response_init():
+    ListScheduledLambdasResponse()

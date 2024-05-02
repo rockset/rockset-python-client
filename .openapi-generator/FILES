@@ -64,6 +64,9 @@ docs/DeleteUserResponse.md
 docs/DeleteViewResponse.md
 docs/DeleteVirtualInstanceResponse.md
 docs/DeleteWorkspaceResponse.md
+docs/DeploymentSettings.md
+docs/DeploymentSettingsApi.md
+docs/DeploymentSettingsResponse.md
 docs/DocumentStatus.md
 docs/DocumentsApi.md
 docs/DynamodbCollectionCreationRequest.md
@@ -118,12 +121,14 @@ docs/ListQueryLambdaTagsResponse.md
 docs/ListQueryLambdaVersionsResponse.md
 docs/ListQueryLambdasResponse.md
 docs/ListRolesResponse.md
+docs/ListScheduledLambdasResponse.md
 docs/ListSourcesResponse.md
 docs/ListUnsubscribePreferencesResponse.md
 docs/ListUsersResponse.md
 docs/ListViewsResponse.md
 docs/ListVirtualInstancesResponse.md
 docs/ListWorkspacesResponse.md
+docs/MicrobatchPolicy.md
 docs/MongoDbIntegration.md
 docs/MongodbCollectionCreationRequest.md
 docs/MongodbIntegrationCreationRequest.md
@@ -219,6 +224,7 @@ docs/UpdateAliasRequest.md
 docs/UpdateApiKeyRequest.md
 docs/UpdateApiKeyResponse.md
 docs/UpdateCollectionRequest.md
+docs/UpdateDeploymentSettingsRequest.md
 docs/UpdateIntegrationRequest.md
 docs/UpdateIntegrationResponse.md
 docs/UpdateQueryLambdaRequest.md
@@ -237,7 +243,6 @@ docs/ValidateQueryResponse.md
 docs/View.md
 docs/ViewsApi.md
 docs/VirtualInstance.md
-docs/VirtualInstanceRrn.md
 docs/VirtualInstanceStats.md
 docs/VirtualInstancesApi.md
 docs/Workspace.md
@@ -249,6 +254,7 @@ rockset/api/aliases_api.py
 rockset/api/api_keys_api.py
 rockset/api/collections_api.py
 rockset/api/custom_roles_api.py
+rockset/api/deployment_settings_api.py
 rockset/api/documents_api.py
 rockset/api/integrations_api.py
 rockset/api/organizations_api.py
@@ -327,6 +333,8 @@ rockset/model/delete_user_response.py
 rockset/model/delete_view_response.py
 rockset/model/delete_virtual_instance_response.py
 rockset/model/delete_workspace_response.py
+rockset/model/deployment_settings.py
+rockset/model/deployment_settings_response.py
 rockset/model/document_status.py
 rockset/model/dynamodb_collection_creation_request.py
 rockset/model/dynamodb_integration.py
@@ -379,12 +387,14 @@ rockset/model/list_query_lambda_tags_response.py
 rockset/model/list_query_lambda_versions_response.py
 rockset/model/list_query_lambdas_response.py
 rockset/model/list_roles_response.py
+rockset/model/list_scheduled_lambdas_response.py
 rockset/model/list_sources_response.py
 rockset/model/list_unsubscribe_preferences_response.py
 rockset/model/list_users_response.py
 rockset/model/list_views_response.py
 rockset/model/list_virtual_instances_response.py
 rockset/model/list_workspaces_response.py
+rockset/model/microbatch_policy.py
 rockset/model/mongo_db_integration.py
 rockset/model/mongodb_collection_creation_request.py
 rockset/model/mongodb_integration_creation_request.py
@@ -472,6 +482,7 @@ rockset/model/update_alias_request.py
 rockset/model/update_api_key_request.py
 rockset/model/update_api_key_response.py
 rockset/model/update_collection_request.py
+rockset/model/update_deployment_settings_request.py
 rockset/model/update_integration_request.py
 rockset/model/update_integration_response.py
 rockset/model/update_query_lambda_request.py
@@ -488,7 +499,6 @@ rockset/model/user.py
 rockset/model/validate_query_response.py
 rockset/model/view.py
 rockset/model/virtual_instance.py
-rockset/model/virtual_instance_rrn.py
 rockset/model/virtual_instance_stats.py
 rockset/model/workspace.py
 rockset/model/xml_params.py
@@ -562,6 +572,9 @@ test/test_delete_user_response.py
 test/test_delete_view_response.py
 test/test_delete_virtual_instance_response.py
 test/test_delete_workspace_response.py
+test/test_deployment_settings.py
+test/test_deployment_settings_api.py
+test/test_deployment_settings_response.py
 test/test_document_status.py
 test/test_documents_api.py
 test/test_dynamodb_collection_creation_request.py
@@ -616,12 +629,14 @@ test/test_list_query_lambda_tags_response.py
 test/test_list_query_lambda_versions_response.py
 test/test_list_query_lambdas_response.py
 test/test_list_roles_response.py
+test/test_list_scheduled_lambdas_response.py
 test/test_list_sources_response.py
 test/test_list_unsubscribe_preferences_response.py
 test/test_list_users_response.py
 test/test_list_views_response.py
 test/test_list_virtual_instances_response.py
 test/test_list_workspaces_response.py
+test/test_microbatch_policy.py
 test/test_mongo_db_integration.py
 test/test_mongodb_collection_creation_request.py
 test/test_mongodb_integration_creation_request.py
@@ -717,6 +732,7 @@ test/test_update_alias_request.py
 test/test_update_api_key_request.py
 test/test_update_api_key_response.py
 test/test_update_collection_request.py
+test/test_update_deployment_settings_request.py
 test/test_update_integration_request.py
 test/test_update_integration_response.py
 test/test_update_query_lambda_request.py
@@ -735,7 +751,6 @@ test/test_validate_query_response.py
 test/test_view.py
 test/test_views_api.py
 test/test_virtual_instance.py
-test/test_virtual_instance_rrn.py
 test/test_virtual_instance_stats.py
 test/test_virtual_instances_api.py
 test/test_workspace.py

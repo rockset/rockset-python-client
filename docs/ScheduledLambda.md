@@ -16,7 +16,7 @@ Name | Type | Description | Notes
 **tag** | **str** | The query lambda tag. | [optional] 
 **total_times_to_execute** | **int** | The number of times to execute this scheduled query lambda. Once this scheduled query lambda has been executed this many times, it will no longer be executed. | [optional] 
 **version** | **str** | The version of the associated query lambda. | [optional] 
-**vi_rrn** | [**VirtualInstanceRrn**](VirtualInstanceRrn.md) |  | [optional] 
+**webhook_execution_status** | [**ExecutionStatus**](ExecutionStatus.md) |  | [optional] 
 **webhook_payload** | **str** | The payload that should be sent to the webhook. | [optional] 
 **webhook_url** | **str** | The URL of the webhook that should be triggered after this scheduled query lambda completes. | [optional] 
 **workspace** | **str** | Workspace of the associated query lambda. | [optional] 

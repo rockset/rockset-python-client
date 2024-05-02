@@ -12,9 +12,5 @@ import sys
 from rockset.models import *
 
 
-def test_create_scheduled_lambda_request_init():
-    CreateScheduledLambdaRequest(
-        apikey="qoiwkjndksd",
-        cron_string="* * * * *",
-        ql_name="ql_name",
-    )
+def test_deployment_settings_response_init():
+    DeploymentSettingsResponse()

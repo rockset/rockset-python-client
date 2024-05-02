@@ -285,6 +285,7 @@ SharedAccessSignature=<KeyValue>""",
                         service_account_key_file_json="service_account_key_file_json_example",
                     ),
                 ),
+                is_write_enabled=True,
                 kafka=KafkaIntegration(
                     aws_role=AwsRole(
                         aws_external_id="external id of aws",

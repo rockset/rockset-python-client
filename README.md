@@ -158,6 +158,8 @@ Class | Method | HTTP request | Description
 *CustomRoles* | [**get**](docs/CustomRolesApi.md#get) | **GET** /v1/orgs/self/roles/{roleName} | Retrieve role
 *CustomRoles* | [**list**](docs/CustomRolesApi.md#list) | **GET** /v1/orgs/self/roles | List Roles
 *CustomRoles* | [**update**](docs/CustomRolesApi.md#update) | **POST** /v1/orgs/self/roles/{roleName} | Update a Role
+*DeploymentSettings* | [**get_deployment_settings**](docs/DeploymentSettingsApi.md#get_deployment_settings) | **GET** /v1/orgs/self/deploymentsettings | Retrieve Deployment Settings
+*DeploymentSettings* | [**update_deployment_settings**](docs/DeploymentSettingsApi.md#update_deployment_settings) | **PUT** /v1/orgs/self/deploymentsettings | Update Deployment Settings
 *Documents* | [**add_documents**](docs/DocumentsApi.md#add_documents) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/docs | Add Documents
 *Documents* | [**delete_documents**](docs/DocumentsApi.md#delete_documents) | **DELETE** /v1/orgs/self/ws/{workspace}/collections/{collection}/docs | Delete Documents
 *Documents* | [**patch_documents**](docs/DocumentsApi.md#patch_documents) | **PATCH** /v1/orgs/self/ws/{workspace}/collections/{collection}/docs | Patch Documents
@@ -197,6 +199,8 @@ Class | Method | HTTP request | Description
 *QueryLambdas* | [**update_query_lambda**](docs/QueryLambdasApi.md#update_query_lambda) | **POST** /v1/orgs/self/ws/{workspace}/lambdas/{queryLambda}/versions | Update Query Lambda
 *ScheduledLambdas* | [**create**](docs/ScheduledLambdasApi.md#create) | **POST** /v1/orgs/self/ws/{workspace}/scheduled_lambdas | Create a Scheduled Lambda mapping
 *ScheduledLambdas* | [**delete**](docs/ScheduledLambdasApi.md#delete) | **DELETE** /v1/orgs/self/ws/{workspace}/scheduled_lambdas/{scheduledLambdaId} | Delete a Scheduled Lambda mapping
+*ScheduledLambdas* | [**get**](docs/ScheduledLambdasApi.md#get) | **GET** /v1/orgs/self/ws/{workspace}/scheduled_lambdas/{scheduledLambdaId} | Retrieve a Scheduled Lambda mapping
+*ScheduledLambdas* | [**list_org_scheduled_lambdas**](docs/ScheduledLambdasApi.md#list_org_scheduled_lambdas) | **GET** /v1/orgs/self/lambdas/scheduled_lambdas | List Scheduled Lambdas
 *ScheduledLambdas* | [**update**](docs/ScheduledLambdasApi.md#update) | **POST** /v1/orgs/self/ws/{workspace}/scheduled_lambdas/{scheduledLambdaId} | Update a Scheduled Lambda mapping
 *SharedLambdas* | [**execute_public_query_lambda_with_params**](docs/SharedLambdasApi.md#execute_public_query_lambda_with_params) | **POST** /v1/public/shared_lambdas/{public_access_id} | Execute a Public Query Lambda
 *Sources* | [**create_azure_blob_storage_source**](docs/SourcesApi.md#create_azure_blob_storage_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a new azure blob storage source in a collection
@@ -311,6 +315,8 @@ Class | Method | HTTP request | Description
  - [DeleteViewResponse](docs/DeleteViewResponse.md)
  - [DeleteVirtualInstanceResponse](docs/DeleteVirtualInstanceResponse.md)
  - [DeleteWorkspaceResponse](docs/DeleteWorkspaceResponse.md)
+ - [DeploymentSettings](docs/DeploymentSettings.md)
+ - [DeploymentSettingsResponse](docs/DeploymentSettingsResponse.md)
  - [DocumentStatus](docs/DocumentStatus.md)
  - [DynamodbCollectionCreationRequest](docs/DynamodbCollectionCreationRequest.md)
  - [DynamodbIntegration](docs/DynamodbIntegration.md)
@@ -363,12 +369,14 @@ Class | Method | HTTP request | Description
  - [ListQueryLambdaVersionsResponse](docs/ListQueryLambdaVersionsResponse.md)
  - [ListQueryLambdasResponse](docs/ListQueryLambdasResponse.md)
  - [ListRolesResponse](docs/ListRolesResponse.md)
+ - [ListScheduledLambdasResponse](docs/ListScheduledLambdasResponse.md)
  - [ListSourcesResponse](docs/ListSourcesResponse.md)
  - [ListUnsubscribePreferencesResponse](docs/ListUnsubscribePreferencesResponse.md)
  - [ListUsersResponse](docs/ListUsersResponse.md)
  - [ListViewsResponse](docs/ListViewsResponse.md)
  - [ListVirtualInstancesResponse](docs/ListVirtualInstancesResponse.md)
  - [ListWorkspacesResponse](docs/ListWorkspacesResponse.md)
+ - [MicrobatchPolicy](docs/MicrobatchPolicy.md)
  - [MongoDbIntegration](docs/MongoDbIntegration.md)
  - [MongodbCollectionCreationRequest](docs/MongodbCollectionCreationRequest.md)
  - [MongodbIntegrationCreationRequest](docs/MongodbIntegrationCreationRequest.md)
@@ -458,6 +466,7 @@ Class | Method | HTTP request | Description
  - [UpdateApiKeyRequest](docs/UpdateApiKeyRequest.md)
  - [UpdateApiKeyResponse](docs/UpdateApiKeyResponse.md)
  - [UpdateCollectionRequest](docs/UpdateCollectionRequest.md)
+ - [UpdateDeploymentSettingsRequest](docs/UpdateDeploymentSettingsRequest.md)
  - [UpdateIntegrationRequest](docs/UpdateIntegrationRequest.md)
  - [UpdateIntegrationResponse](docs/UpdateIntegrationResponse.md)
  - [UpdateQueryLambdaRequest](docs/UpdateQueryLambdaRequest.md)
@@ -474,7 +483,6 @@ Class | Method | HTTP request | Description
  - [ValidateQueryResponse](docs/ValidateQueryResponse.md)
  - [View](docs/View.md)
  - [VirtualInstance](docs/VirtualInstance.md)
- - [VirtualInstanceRrn](docs/VirtualInstanceRrn.md)
  - [VirtualInstanceStats](docs/VirtualInstanceStats.md)
  - [Workspace](docs/Workspace.md)
  - [XmlParams](docs/XmlParams.md)
