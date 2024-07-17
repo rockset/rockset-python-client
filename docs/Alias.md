@@ -10,9 +10,9 @@ Name | Type | Description | Notes
 **creator_email** | **str** | Email of the creator. | [optional] 
 **description** | **str** | Alias description. | [optional] 
 **modified_at** | **str** | ISO-8601 date. | [optional] 
-**name** | **str** | Name of the alias. | [optional] 
-**state** | **str** | State of the alias. | [optional] 
-**workspace** | **str** | Name of the workspace. | [optional] 
+**name** | **str** | Name of the alias. | [optional] [readonly] 
+**rrn** | **str** | RRN of the alias. | [optional] [readonly] 
+**workspace** | **str** | Name of the workspace. | [optional] [readonly] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

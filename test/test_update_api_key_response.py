@@ -13,4 +13,16 @@ from rockset.models import *
 
 
 def test_update_api_key_response_init():
-    UpdateApiKeyResponse()
+    UpdateApiKeyResponse(
+        data=ApiKey(
+            created_at="2001-08-28T00:23:41Z",
+            created_by="admin@openai.com",
+            created_by_apikey_name="default",
+            expiry_time="2001-08-28T00:23:41Z",
+            key="aB35kD",
+            name="my-key",
+            role="read-only",
+            rrn="rrn:cluster:key:abc123",
+            state="ACTIVE",
+        ),
+    )

@@ -55,11 +55,6 @@ class View(ModelNormal):
     """
     
     allowed_values = {
-        ('state',): {
-            'CREATED': "CREATED",
-            'SYNCING': "SYNCING",
-            'DELETED': "DELETED",
-        },
     }
 
     validations = {
@@ -87,16 +82,14 @@ class View(ModelNormal):
         """
         return {
             'created_at': (str, none_type),  # noqa: E501
+            'created_by': (str, none_type),  # noqa: E501
             'created_by_apikey_name': (str, none_type),  # noqa: E501
-            'creator_email': (str, none_type),  # noqa: E501
             'description': (str, none_type),  # noqa: E501
             'entities': ([str], none_type),  # noqa: E501
             'modified_at': (str, none_type),  # noqa: E501
             'name': (str, none_type),  # noqa: E501
-            'owner_email': (str, none_type),  # noqa: E501
             'path': (str, none_type),  # noqa: E501
             'query_sql': (str, none_type),  # noqa: E501
-            'state': (str, none_type),  # noqa: E501
             'workspace': (str, none_type),  # noqa: E501
         }
 
@@ -107,16 +100,14 @@ class View(ModelNormal):
 
     attribute_map = {
         'created_at': 'created_at',  # noqa: E501
+        'created_by': 'created_by',  # noqa: E501
         'created_by_apikey_name': 'created_by_apikey_name',  # noqa: E501
-        'creator_email': 'creator_email',  # noqa: E501
         'description': 'description',  # noqa: E501
         'entities': 'entities',  # noqa: E501
         'modified_at': 'modified_at',  # noqa: E501
         'name': 'name',  # noqa: E501
-        'owner_email': 'owner_email',  # noqa: E501
         'path': 'path',  # noqa: E501
         'query_sql': 'query_sql',  # noqa: E501
-        'state': 'state',  # noqa: E501
         'workspace': 'workspace',  # noqa: E501
     }
 
@@ -162,16 +153,14 @@ class View(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             created_at (str): ISO-8601 date.. [optional]  # noqa: E501
+            created_by (str): email of the user who created this object.. [optional]  # noqa: E501
             created_by_apikey_name (str): Name of the API key that was used to create this object if one was used.. [optional]  # noqa: E501
-            creator_email (str): Email of the creator.. [optional]  # noqa: E501
             description (str): View description.. [optional]  # noqa: E501
             entities ([str]): List of entities referenced by view. An entity can be a view, alias or collection.. [optional]  # noqa: E501
             modified_at (str): ISO-8601 date.. [optional]  # noqa: E501
             name (str): Name of the view.. [optional]  # noqa: E501
-            owner_email (str): Email of the owner, note: deprecated and will always be null.. [optional]  # noqa: E501
             path (str): [optional]  # noqa: E501
             query_sql (str): SQL query of the view.. [optional]  # noqa: E501
-            state (str): State of the view.. [optional]  # noqa: E501
             workspace (str): Name of the workspace.. [optional]  # noqa: E501
         """
 
@@ -225,16 +214,14 @@ class View(ModelNormal):
 
         Keyword Args:
             created_at (str): ISO-8601 date.. [optional]  # noqa: E501
+            created_by (str): email of the user who created this object.. [optional]  # noqa: E501
             created_by_apikey_name (str): Name of the API key that was used to create this object if one was used.. [optional]  # noqa: E501
-            creator_email (str): Email of the creator.. [optional]  # noqa: E501
             description (str): View description.. [optional]  # noqa: E501
             entities ([str]): List of entities referenced by view. An entity can be a view, alias or collection.. [optional]  # noqa: E501
             modified_at (str): ISO-8601 date.. [optional]  # noqa: E501
             name (str): Name of the view.. [optional]  # noqa: E501
-            owner_email (str): Email of the owner, note: deprecated and will always be null.. [optional]  # noqa: E501
             path (str): [optional]  # noqa: E501
             query_sql (str): SQL query of the view.. [optional]  # noqa: E501
-            state (str): State of the view.. [optional]  # noqa: E501
             workspace (str): Name of the workspace.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be

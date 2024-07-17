@@ -14,6 +14,11 @@ from rockset.models import *
 
 def test_api_key_init():
     ApiKey(
+        created_at="2001-08-28T00:23:41Z",
+        created_by="admin@openai.com",
         key="aB35kD",
         name="my-key",
+        role="read-only",
+        rrn="rrn:cluster:key:abc123",
+        state="ACTIVE",
     )

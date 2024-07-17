@@ -22,6 +22,8 @@ Name | Type | Description | Notes
 **mount_type** | **str** | The mount type of collections that this Virtual Instance will query. Live mounted collections stay up-to-date with the underlying collection in real-time. Static mounted collections do not stay up-to-date. See https://docs.rockset.com/documentation/docs/using-virtual-instances#virtual-instance-configuration | [optional] 
 **resumed_at** | **str** | ISO-8601 date of when virtual instance was created. | [optional] 
 **rrn** | **str** | Virtual Instance RRN. | [optional] 
+**settings** | [**VirtualInstanceSettings**](VirtualInstanceSettings.md) |  | [optional] 
+**shard_count** | **int** | Number of collection shards on this Virtual Instance. | [optional] 
 **state** | **str** | Virtual instance state. | [optional] 
 **stats** | [**VirtualInstanceStats**](VirtualInstanceStats.md) |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]

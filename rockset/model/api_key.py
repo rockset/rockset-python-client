@@ -85,15 +85,15 @@ class ApiKey(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'created_at': (str,),  # noqa: E501
+            'created_by': (str,),  # noqa: E501
             'key': (str,),  # noqa: E501
             'name': (str,),  # noqa: E501
-            'created_at': (str, none_type),  # noqa: E501
-            'created_by': (str, none_type),  # noqa: E501
+            'role': (str,),  # noqa: E501
+            'rrn': (str,),  # noqa: E501
+            'state': (str,),  # noqa: E501
             'created_by_apikey_name': (str, none_type),  # noqa: E501
             'expiry_time': (str, none_type),  # noqa: E501
-            'last_access_time': (str, none_type),  # noqa: E501
-            'role': (str, none_type),  # noqa: E501
-            'state': (str, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -102,15 +102,15 @@ class ApiKey(ModelNormal):
 
 
     attribute_map = {
-        'key': 'key',  # noqa: E501
-        'name': 'name',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
         'created_by': 'created_by',  # noqa: E501
+        'key': 'key',  # noqa: E501
+        'name': 'name',  # noqa: E501
+        'role': 'role',  # noqa: E501
+        'rrn': 'rrn',  # noqa: E501
+        'state': 'state',  # noqa: E501
         'created_by_apikey_name': 'created_by_apikey_name',  # noqa: E501
         'expiry_time': 'expiry_time',  # noqa: E501
-        'last_access_time': 'last_access_time',  # noqa: E501
-        'role': 'role',  # noqa: E501
-        'state': 'state',  # noqa: E501
     }
 
     read_only_vars = {
@@ -120,12 +120,17 @@ class ApiKey(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, key, name, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, created_at, created_by, key, name, role, rrn, state, *args, **kwargs):  # noqa: E501
         """ApiKey - a model defined in OpenAPI
 
         Args:
+            created_at (str): Date that API key was created (ISO-8601 format).
+            created_by (str): Email of the user that created this api key
             key (str): This field will only be populated with the full key when creating an API key. Otherwise, it will be an API key identifier of 6 characters.
             name (str): Name of the API key.
+            role (str): Role specifying access control. If not specified, API key will have access to all of the associated user's roles.
+            rrn (str): RRN of the API Key
+            state (str): Current state of this key.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -158,13 +163,8 @@ class ApiKey(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            created_at (str): Date that API key was created (ISO-8601 format).. [optional]  # noqa: E501
-            created_by (str): Email of API key owner.. [optional]  # noqa: E501
-            created_by_apikey_name (str): Name of the API key that was used to create this object if one was used.. [optional]  # noqa: E501
+            created_by_apikey_name (str): Name of the API key that created this api key (if applicable). [optional]  # noqa: E501
             expiry_time (str): The expiration date of this API key.. [optional]  # noqa: E501
-            last_access_time (str): Date that API key was most recently used (ISO-8601 format).. [optional]  # noqa: E501
-            role (str): Role specifying access control. If not specified, API key will have access to all of the associated user's roles.. [optional]  # noqa: E501
-            state (str): Current state of this key.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -192,8 +192,13 @@ class ApiKey(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.created_at = created_at
+        self.created_by = created_by
         self.key = key
         self.name = name
+        self.role = role
+        self.rrn = rrn
+        self.state = state
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -214,19 +219,19 @@ class ApiKey(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *, key, name, **kwargs):  # noqa: E501
+    def __init__(self, *, created_at, created_by, key, name, role, rrn, state, **kwargs):  # noqa: E501
         """ApiKey - a model defined in OpenAPI
 
         Keyword Args:
+            created_at (str): Date that API key was created (ISO-8601 format).
+            created_by (str): Email of the user that created this api key
             key (str): This field will only be populated with the full key when creating an API key. Otherwise, it will be an API key identifier of 6 characters.
             name (str): Name of the API key.
-            created_at (str): Date that API key was created (ISO-8601 format).. [optional]  # noqa: E501
-            created_by (str): Email of API key owner.. [optional]  # noqa: E501
-            created_by_apikey_name (str): Name of the API key that was used to create this object if one was used.. [optional]  # noqa: E501
+            role (str): Role specifying access control. If not specified, API key will have access to all of the associated user's roles.
+            rrn (str): RRN of the API Key
+            state (str): Current state of this key.
+            created_by_apikey_name (str): Name of the API key that created this api key (if applicable). [optional]  # noqa: E501
             expiry_time (str): The expiration date of this API key.. [optional]  # noqa: E501
-            last_access_time (str): Date that API key was most recently used (ISO-8601 format).. [optional]  # noqa: E501
-            role (str): Role specifying access control. If not specified, API key will have access to all of the associated user's roles.. [optional]  # noqa: E501
-            state (str): Current state of this key.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -283,8 +288,13 @@ class ApiKey(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.created_at = created_at
+        self.created_by = created_by
         self.key = key
         self.name = name
+        self.role = role
+        self.rrn = rrn
+        self.state = state
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -108,7 +108,7 @@ class Aliases(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/aliases/{alias}',
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/aliases/{alias_rrn}',
                 'operation_id': 'delete',
                 'http_method': 'DELETE',
                 'servers': None,
@@ -116,11 +116,11 @@ class Aliases(object):
             params_map={
                 'all': [
                     'workspace',
-                    'alias',
+                    'alias_rrn',
                 ],
                 'required': [
                     'workspace',
-                    'alias',
+                    'alias_rrn',
                 ],
                 'nullable': [
                 ],
@@ -137,16 +137,16 @@ class Aliases(object):
                 'openapi_types': {
                     'workspace':
                         (str,),
-                    'alias':
+                    'alias_rrn':
                         (str,),
                 },
                 'attribute_map': {
                     'workspace': 'workspace',
-                    'alias': 'alias',
+                    'alias_rrn': 'alias_rrn',
                 },
                 'location_map': {
                     'workspace': 'path',
-                    'alias': 'path',
+                    'alias_rrn': 'path',
                 },
                 'collection_format_map': {
                 }
@@ -165,7 +165,7 @@ class Aliases(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/aliases/{alias}',
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/aliases/{alias_rrn}',
                 'operation_id': 'get',
                 'http_method': 'GET',
                 'servers': None,
@@ -173,11 +173,11 @@ class Aliases(object):
             params_map={
                 'all': [
                     'workspace',
-                    'alias',
+                    'alias_rrn',
                 ],
                 'required': [
                     'workspace',
-                    'alias',
+                    'alias_rrn',
                 ],
                 'nullable': [
                 ],
@@ -194,16 +194,16 @@ class Aliases(object):
                 'openapi_types': {
                     'workspace':
                         (str,),
-                    'alias':
+                    'alias_rrn':
                         (str,),
                 },
                 'attribute_map': {
                     'workspace': 'workspace',
-                    'alias': 'alias',
+                    'alias_rrn': 'alias_rrn',
                 },
                 'location_map': {
                     'workspace': 'path',
-                    'alias': 'path',
+                    'alias_rrn': 'path',
                 },
                 'collection_format_map': {
                 }
@@ -266,7 +266,7 @@ class Aliases(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/ws/{workspace}/aliases/{alias}',
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/aliases/{alias_rrn}',
                 'operation_id': 'update',
                 'http_method': 'POST',
                 'servers': None,
@@ -274,12 +274,12 @@ class Aliases(object):
             params_map={
                 'all': [
                     'workspace',
-                    'alias',
+                    'alias_rrn',
                     'update_alias_request',
                 ],
                 'required': [
                     'workspace',
-                    'alias',
+                    'alias_rrn',
                 ],
                 'nullable': [
                 ],
@@ -296,18 +296,18 @@ class Aliases(object):
                 'openapi_types': {
                     'workspace':
                         (str,),
-                    'alias':
+                    'alias_rrn':
                         (str,),
                     'update_alias_request':
                         (UpdateAliasRequest,),
                 },
                 'attribute_map': {
                     'workspace': 'workspace',
-                    'alias': 'alias',
+                    'alias_rrn': 'alias_rrn',
                 },
                 'location_map': {
                     'workspace': 'path',
-                    'alias': 'path',
+                    'alias_rrn': 'path',
                     'update_alias_request': 'body',
                 },
                 'collection_format_map': {
@@ -378,8 +378,8 @@ class Aliases(object):
     def create(
         self,
         *,
-        collections: typing.Sequence[str],
         name: str,
+        target: str,
         description: str = None,
         workspace = "commons",
         **kwargs
@@ -393,9 +393,9 @@ class Aliases(object):
         ```python
         rs = RocksetClient(api_key=APIKEY)
         future = rs.Aliases.create(
-            collections=["commons.foo","prod.demo"],
             description="version alias",
             name="aliasName",
+            target="commons.foo",
             async_req=True,
         )
         result = await future
@@ -403,9 +403,9 @@ class Aliases(object):
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
-            collections ([str]): List of fully qualified collection names referenced by alias.. [required]
             description (str): Optional description.. [optional]
             name (str): Alias name.. [required]
+            target (str): Fully qualified collection name referenced by alias.. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -473,7 +473,7 @@ class Aliases(object):
     def delete(
         self,
         *,
-        alias: str,
+        alias_rrn: str,
         workspace = "commons",
         **kwargs
     ) -> typing.Union[DeleteAliasResponse, asyncio.Future]:
@@ -486,7 +486,7 @@ class Aliases(object):
         ```python
         rs = RocksetClient(api_key=APIKEY)
         future = rs.Aliases.delete(
-            alias="alias_example",
+            alias_rrn="alias_rrn_example",
             async_req=True,
         )
         result = await future
@@ -494,7 +494,7 @@ class Aliases(object):
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
-            alias (str): name of the alias. [required]
+            alias_rrn (str): rrn of the alias. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -555,14 +555,14 @@ class Aliases(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['workspace'] = \
             workspace
-        kwargs['alias'] = \
-            alias
+        kwargs['alias_rrn'] = \
+            alias_rrn
         return self.delete_endpoint.call_with_http_info(**kwargs)
 
     def get(
         self,
         *,
-        alias: str,
+        alias_rrn: str,
         workspace = "commons",
         **kwargs
     ) -> typing.Union[GetAliasResponse, asyncio.Future]:
@@ -575,7 +575,7 @@ class Aliases(object):
         ```python
         rs = RocksetClient(api_key=APIKEY)
         future = rs.Aliases.get(
-            alias="alias_example",
+            alias_rrn="alias_rrn_example",
             async_req=True,
         )
         result = await future
@@ -583,7 +583,7 @@ class Aliases(object):
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
-            alias (str): name of the alias. [required]
+            alias_rrn (str): rrn of the alias. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -644,8 +644,8 @@ class Aliases(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['workspace'] = \
             workspace
-        kwargs['alias'] = \
-            alias
+        kwargs['alias_rrn'] = \
+            alias_rrn
         return self.get_endpoint.call_with_http_info(**kwargs)
 
     def list(
@@ -730,8 +730,8 @@ class Aliases(object):
     def update(
         self,
         *,
-        alias: str,
-        collections: typing.Sequence[str],
+        alias_rrn: str,
+        target: str,
         description: str = None,
         workspace = "commons",
         **kwargs
@@ -745,9 +745,9 @@ class Aliases(object):
         ```python
         rs = RocksetClient(api_key=APIKEY)
         future = rs.Aliases.update(
-            alias="alias_example",
-            collections=["commons.foo","prod.demo"],
+            alias_rrn="alias_rrn_example",
             description="version alias",
+            target="commons.foo",
             async_req=True,
         )
         result = await future
@@ -755,9 +755,9 @@ class Aliases(object):
 
         Keyword Args:
             workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
-            alias (str): name of the alias. [required]
-            collections ([str]): List of fully qualified collection names referenced by alias.. [required]
+            alias_rrn (str): rrn of the alias. [required]
             description (str): Optional description.. [optional]
+            target (str): Fully qualified collection name referenced by alias.. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -818,8 +818,8 @@ class Aliases(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['workspace'] = \
             workspace
-        kwargs['alias'] = \
-            alias
+        kwargs['alias_rrn'] = \
+            alias_rrn
         kwargs['update_alias_request'] = \
             kwargs['update_alias_request']
         return self.update_endpoint.call_with_http_info(**kwargs)

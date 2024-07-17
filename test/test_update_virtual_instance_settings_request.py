@@ -12,7 +12,5 @@ import sys
 from rockset.models import *
 
 
-def test_dynamodb_collection_creation_request_init():
-    DynamodbCollectionCreationRequest(
-        name="global-transactions",
-    )
+def test_update_virtual_instance_settings_request_init():
+    UpdateVirtualInstanceSettingsRequest()

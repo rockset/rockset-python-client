@@ -87,7 +87,7 @@ class DeleteIntegrationResponse(ModelNormal):
         """
         lazy_import()
         return {
-            'data': (Integration, none_type),  # noqa: E501
+            'data': (Integration,),  # noqa: E501
         }
 
     @cached_property
@@ -106,8 +106,11 @@ class DeleteIntegrationResponse(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, data, *args, **kwargs):  # noqa: E501
         """DeleteIntegrationResponse - a model defined in OpenAPI
+
+        Args:
+            data (Integration):
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -140,7 +143,6 @@ class DeleteIntegrationResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            data (Integration): [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -168,6 +170,7 @@ class DeleteIntegrationResponse(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.data = data
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -188,11 +191,11 @@ class DeleteIntegrationResponse(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, **kwargs):  # noqa: E501
+    def __init__(self, *, data, **kwargs):  # noqa: E501
         """DeleteIntegrationResponse - a model defined in OpenAPI
 
         Keyword Args:
-            data (Integration): [optional]  # noqa: E501
+            data (Integration):
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -249,6 +252,7 @@ class DeleteIntegrationResponse(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.data = data
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

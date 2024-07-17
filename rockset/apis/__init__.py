@@ -19,6 +19,7 @@ from rockset.api.aliases_api import Aliases
 from rockset.api.collections_api import Collections
 from rockset.api.custom_roles_api import CustomRoles
 from rockset.api.deployment_settings_api import DeploymentSettings
+from rockset.api.deployments_api import Deployments
 from rockset.api.documents_api import Documents
 from rockset.api.integrations_api import Integrations
 from rockset.api.organizations_api import Organizations

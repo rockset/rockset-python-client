@@ -18,17 +18,8 @@ from rockset.models import QueryParameter, QueryRequestSql, QueryResponse
 APISERVER_PATTERN = re.compile(r"^https:\/\/(\w|-|\.)+\.rockset\.com$")
 
 
-class Regions(str, Enum):
-    rs2 = "https://api.rs2.usw2.rockset.com"
-    use1a1 = "https://api.use1a1.rockset.com"
-    euc1a1 = "https://api.euc1a1.rockset.com"
-    usw2a1 = "https://api.usw2a1.rockset.com"
-
-
-class DevRegions(str, Enum):
-    dev = "https://master-api.dev.rockset.com"
-    use1a1 = "https://staging-api.use1a1.dev.rockset.com"
-    usw2a1 = "https://staging-api.usw2a1.dev.rockset.com"
+class Clusters(str, Enum):
+    STAGING = "https://staging-api.rockset-0s.internal.api.openai.org"
 
 
 def wrapper(method):
@@ -128,6 +119,10 @@ class DeploymentSettingsApiWrapper(apis.DeploymentSettings, metaclass=ApiMetacla
     pass
 
 
+class DeploymentsApiWrapper(apis.Deployments, metaclass=ApiMetaclass):
+    pass
+
+
 class DocumentsApiWrapper(apis.Documents, metaclass=ApiMetaclass):
     pass
 
@@ -201,7 +196,7 @@ class RocksetClient:
 
     def __init__(
         self,
-        host: Union[str, Regions, DevRegions] = None,
+        host: Union[str, Clusters] = None,
         api_key: str = None,
         max_workers: int = 4,
         config: Configuration = None,
@@ -225,19 +220,6 @@ class RocksetClient:
 
         if isinstance(host, Enum):
             host = host.value
-        elif host:
-            if host.startswith("http://"):
-                host = f"https://{host[7:]}"
-            elif not host.startswith("https://"):
-                host = f"https://{host}"
-
-            if host.endswith("/"):
-                host = host[:-1]
-
-            if not re.match(APISERVER_PATTERN, host):
-                raise InitializationException(
-                    "The provided host was invalid and could not be parsed into a valid host."
-                )
 
         if not config:
             config = Configuration(host=host, api_key=api_key)
@@ -256,6 +238,7 @@ class RocksetClient:
         self.Collections = CollectionsApiWrapper(self.api_client)
         self.CustomRoles = CustomRolesApiWrapper(self.api_client)
         self.DeploymentSettings = DeploymentSettingsApiWrapper(self.api_client)
+        self.Deployments = DeploymentsApiWrapper(self.api_client)
         self.Documents = DocumentsApiWrapper(self.api_client)
         self.Integrations = IntegrationsApiWrapper(self.api_client)
         self.Organizations = OrganizationsApiWrapper(self.api_client)

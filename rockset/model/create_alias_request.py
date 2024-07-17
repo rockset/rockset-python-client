@@ -81,8 +81,8 @@ class CreateAliasRequest(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'collections': ([str],),  # noqa: E501
             'name': (str,),  # noqa: E501
+            'target': (str,),  # noqa: E501
             'description': (str, none_type),  # noqa: E501
         }
 
@@ -92,8 +92,8 @@ class CreateAliasRequest(ModelNormal):
 
 
     attribute_map = {
-        'collections': 'collections',  # noqa: E501
         'name': 'name',  # noqa: E501
+        'target': 'target',  # noqa: E501
         'description': 'description',  # noqa: E501
     }
 
@@ -104,12 +104,12 @@ class CreateAliasRequest(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, collections, name, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, name, target, *args, **kwargs):  # noqa: E501
         """CreateAliasRequest - a model defined in OpenAPI
 
         Args:
-            collections ([str]): List of fully qualified collection names referenced by alias.
             name (str): Alias name.
+            target (str): Fully qualified collection name referenced by alias.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -170,8 +170,8 @@ class CreateAliasRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.collections = collections
         self.name = name
+        self.target = target
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -192,12 +192,12 @@ class CreateAliasRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *, collections, name, **kwargs):  # noqa: E501
+    def __init__(self, *, name, target, **kwargs):  # noqa: E501
         """CreateAliasRequest - a model defined in OpenAPI
 
         Keyword Args:
-            collections ([str]): List of fully qualified collection names referenced by alias.
             name (str): Alias name.
+            target (str): Fully qualified collection name referenced by alias.
             description (str): Optional description.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
@@ -255,8 +255,8 @@ class CreateAliasRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
-        self.collections = collections
         self.name = name
+        self.target = target
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

@@ -14,11 +14,11 @@ from rockset.models import *
 from test.conftest import EarlyExit, validate_call
 
 
-def test_create(get_client, mock_request, request_validator):
+def test_create_api_key(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.APIKeys.create(
+            rs.APIKeys.create_api_key(
                 created_by="string_example",
                 expiry_time="2001-08-28T00:23:41Z",
                 name="my-app",
@@ -33,8 +33,7 @@ def test_delete(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.APIKeys.delete(
-                name="my-key",
-                user="admin@me.com",
+                rrn="my-key",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
@@ -45,8 +44,7 @@ def test_get(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.APIKeys.get(
-                user="admin@me.com",
-                name="my-key",
+                rrn="my-key",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
@@ -56,9 +54,7 @@ def test_list(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.APIKeys.list(
-                user="admin@me.com",
-            )
+            rs.APIKeys.list()
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -68,10 +64,9 @@ def test_update(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.APIKeys.update(
-                name="my-key",
-                user="admin@me.com",
+                rrn="my-key",
                 clear_expiry_time=True,
-                expiry_time="2001-08-28T00:23:41Z",
+                expiry_time=1,
                 state="ACTIVE",
             )
         except EarlyExit as e:

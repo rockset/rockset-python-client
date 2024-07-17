@@ -102,6 +102,7 @@ class CollectionMount(ModelNormal):
             'id': (str, none_type),  # noqa: E501
             'last_refresh_time_millis': (int, none_type),  # noqa: E501
             'rrn': (str, none_type),  # noqa: E501
+            'shard_count': (int, none_type),  # noqa: E501
             'snapshot_expiration_time_millis': (int, none_type),  # noqa: E501
             'state': (str, none_type),  # noqa: E501
             'stats': (CollectionMountStats, none_type),  # noqa: E501
@@ -120,6 +121,7 @@ class CollectionMount(ModelNormal):
         'id': 'id',  # noqa: E501
         'last_refresh_time_millis': 'last_refresh_time_millis',  # noqa: E501
         'rrn': 'rrn',  # noqa: E501
+        'shard_count': 'shard_count',  # noqa: E501
         'snapshot_expiration_time_millis': 'snapshot_expiration_time_millis',  # noqa: E501
         'state': 'state',  # noqa: E501
         'stats': 'stats',  # noqa: E501
@@ -173,6 +175,7 @@ class CollectionMount(ModelNormal):
             id (str): Mount ID.. [optional]  # noqa: E501
             last_refresh_time_millis (int): Unix timestamp of most recent refresh. Not applicable for live mounts.. [optional]  # noqa: E501
             rrn (str): Mount RRN.. [optional]  # noqa: E501
+            shard_count (int): Shard count of the collection.. [optional]  # noqa: E501
             snapshot_expiration_time_millis (int): Time in millis at which the snapshot expires.. [optional]  # noqa: E501
             state (str): Mount type.. [optional]  # noqa: E501
             stats (CollectionMountStats): [optional]  # noqa: E501
@@ -234,6 +237,7 @@ class CollectionMount(ModelNormal):
             id (str): Mount ID.. [optional]  # noqa: E501
             last_refresh_time_millis (int): Unix timestamp of most recent refresh. Not applicable for live mounts.. [optional]  # noqa: E501
             rrn (str): Mount RRN.. [optional]  # noqa: E501
+            shard_count (int): Shard count of the collection.. [optional]  # noqa: E501
             snapshot_expiration_time_millis (int): Time in millis at which the snapshot expires.. [optional]  # noqa: E501
             state (str): Mount type.. [optional]  # noqa: E501
             stats (CollectionMountStats): [optional]  # noqa: E501

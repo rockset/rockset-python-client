@@ -85,16 +85,12 @@ class CollectionStats(ModelNormal):
             'bulk_bytes_overwritten': (int, none_type),  # noqa: E501
             'bytes_inserted': (int, none_type),  # noqa: E501
             'bytes_overwritten': (int, none_type),  # noqa: E501
-            'column_index_size': (int, none_type),  # noqa: E501
             'doc_count': (int, none_type),  # noqa: E501
             'fill_progress': (float, none_type),  # noqa: E501
-            'inverted_index_size': (int, none_type),  # noqa: E501
             'last_queried_ms': (int, none_type),  # noqa: E501
             'last_updated_ms': (int, none_type),  # noqa: E501
             'purged_doc_count': (int, none_type),  # noqa: E501
             'purged_doc_size': (int, none_type),  # noqa: E501
-            'range_index_size': (int, none_type),  # noqa: E501
-            'row_index_size': (int, none_type),  # noqa: E501
             'total_index_size': (int, none_type),  # noqa: E501
             'total_size': (int, none_type),  # noqa: E501
         }
@@ -109,16 +105,12 @@ class CollectionStats(ModelNormal):
         'bulk_bytes_overwritten': 'bulk_bytes_overwritten',  # noqa: E501
         'bytes_inserted': 'bytes_inserted',  # noqa: E501
         'bytes_overwritten': 'bytes_overwritten',  # noqa: E501
-        'column_index_size': 'column_index_size',  # noqa: E501
         'doc_count': 'doc_count',  # noqa: E501
         'fill_progress': 'fill_progress',  # noqa: E501
-        'inverted_index_size': 'inverted_index_size',  # noqa: E501
         'last_queried_ms': 'last_queried_ms',  # noqa: E501
         'last_updated_ms': 'last_updated_ms',  # noqa: E501
         'purged_doc_count': 'purged_doc_count',  # noqa: E501
         'purged_doc_size': 'purged_doc_size',  # noqa: E501
-        'range_index_size': 'range_index_size',  # noqa: E501
-        'row_index_size': 'row_index_size',  # noqa: E501
         'total_index_size': 'total_index_size',  # noqa: E501
         'total_size': 'total_size',  # noqa: E501
     }
@@ -168,16 +160,12 @@ class CollectionStats(ModelNormal):
             bulk_bytes_overwritten (int): Total number of bytes overwritten in writing into the collection during bulk.. [optional]  # noqa: E501
             bytes_inserted (int): Total number of bytes inserted into the collection.. [optional]  # noqa: E501
             bytes_overwritten (int): Total number of bytes overwritten in writing into the collection.. [optional]  # noqa: E501
-            column_index_size (int): DEPRECATED: Total collection column index size in bytes.. [optional]  # noqa: E501
             doc_count (int): Number of documents in the collection.. [optional]  # noqa: E501
             fill_progress (float): Number between 0 and 1 that indicates progress of collection creation.. [optional]  # noqa: E501
-            inverted_index_size (int): DEPRECATED: Total collection inverted index size in bytes.. [optional]  # noqa: E501
             last_queried_ms (int): Milliseconds since Unix epoch Jan 1, 1970.. [optional]  # noqa: E501
             last_updated_ms (int): Milliseconds since Unix epoch Jan 1, 1970.. [optional]  # noqa: E501
             purged_doc_count (int): Number of documents purged from the collection.. [optional]  # noqa: E501
             purged_doc_size (int): Total size of bytes purged in bytes.. [optional]  # noqa: E501
-            range_index_size (int): DEPRECATED: Total collection range index size in bytes.. [optional]  # noqa: E501
-            row_index_size (int): DEPRECATED: Total collection row index size in bytes.. [optional]  # noqa: E501
             total_index_size (int): Total collection index size in bytes.. [optional]  # noqa: E501
             total_size (int): Total collection size in bytes.. [optional]  # noqa: E501
         """
@@ -235,16 +223,12 @@ class CollectionStats(ModelNormal):
             bulk_bytes_overwritten (int): Total number of bytes overwritten in writing into the collection during bulk.. [optional]  # noqa: E501
             bytes_inserted (int): Total number of bytes inserted into the collection.. [optional]  # noqa: E501
             bytes_overwritten (int): Total number of bytes overwritten in writing into the collection.. [optional]  # noqa: E501
-            column_index_size (int): DEPRECATED: Total collection column index size in bytes.. [optional]  # noqa: E501
             doc_count (int): Number of documents in the collection.. [optional]  # noqa: E501
             fill_progress (float): Number between 0 and 1 that indicates progress of collection creation.. [optional]  # noqa: E501
-            inverted_index_size (int): DEPRECATED: Total collection inverted index size in bytes.. [optional]  # noqa: E501
             last_queried_ms (int): Milliseconds since Unix epoch Jan 1, 1970.. [optional]  # noqa: E501
             last_updated_ms (int): Milliseconds since Unix epoch Jan 1, 1970.. [optional]  # noqa: E501
             purged_doc_count (int): Number of documents purged from the collection.. [optional]  # noqa: E501
             purged_doc_size (int): Total size of bytes purged in bytes.. [optional]  # noqa: E501
-            range_index_size (int): DEPRECATED: Total collection range index size in bytes.. [optional]  # noqa: E501
-            row_index_size (int): DEPRECATED: Total collection row index size in bytes.. [optional]  # noqa: E501
             total_index_size (int): Total collection index size in bytes.. [optional]  # noqa: E501
             total_size (int): Total collection size in bytes.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types

@@ -4,19 +4,19 @@ All URIs are relative to *https://api.use1a1.rockset.com* or the apiserver provi
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**create**](APIKeysApi.md#create) | **POST** /v1/orgs/self/users/self/apikeys | Create API Key
-[**delete**](APIKeysApi.md#delete) | **DELETE** /v1/orgs/self/users/{user}/apikeys/{name} | Delete API Key
-[**get**](APIKeysApi.md#get) | **GET** /v1/orgs/self/users/{user}/apikeys/{name} | Retrieve API Key
-[**list**](APIKeysApi.md#list) | **GET** /v1/orgs/self/users/{user}/apikeys | List API Keys
-[**update**](APIKeysApi.md#update) | **POST** /v1/orgs/self/users/{user}/apikeys/{name} | Update API Key State
+[**create_api_key**](APIKeysApi.md#create_api_key) | **POST** /v1/orgs/self/apikeys | Create API Key
+[**delete**](APIKeysApi.md#delete) | **DELETE** /v1/orgs/self/apikeys/{rrn} | Delete API Key
+[**get**](APIKeysApi.md#get) | **GET** /v1/orgs/self/apikeys/{rrn} | Retrieve API Key
+[**list**](APIKeysApi.md#list) | **GET** /v1/orgs/self/apikeys | List API Keys
+[**update**](APIKeysApi.md#update) | **POST** /v1/orgs/self/apikeys/{rrn} | Update API Key State
 
 
-# **create**
-> CreateApiKeyResponse create(create_api_key_request)
+# **create_api_key**
+> CreateApiKeyResponse create_api_key(create_api_key_request)
 
 Create API Key
 
-Create a new API key for the authenticated user.
+Create an apikey in this organization
 
 ### Example
 
@@ -32,18 +32,18 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 
 # synchronous example passing only required values which don't have defaults set
 # Create API Key
-api_response = rs.APIKeys.create(
+api_response = rs.APIKeys.create_api_key(
     name="my-app",
 )
 pprint(api_response)
 # Error responses from the server will cause the client to throw an ApiException
 # except ApiException as e:
-#     print("Exception when calling APIKeys->create: %s\n" % e)
+#     print("Exception when calling APIKeys->create_api_key: %s\n" % e)
 
 # asynchronous example passing optional values and required values which don't have defaults set
 # assumes that execution takes place within an asynchronous context
 # Create API Key
-api_response = await rs.APIKeys.create(
+api_response = await rs.APIKeys.create_api_key(
     created_by="string_example",
     expiry_time="2001-08-28T00:23:41Z",
     name="my-app",
@@ -51,7 +51,7 @@ api_response = await rs.APIKeys.create(
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
-    print("Exception when calling APIKeys->create: %s\n" % e)
+    print("Exception when calling APIKeys->create_api_key: %s\n" % e)
     return
 pprint(api_response)
 
@@ -86,7 +86,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-**200** | API key created successfully |  -  |
+**200** | API keys retrieved successfully |  -  |
 **400** | bad request |  -  |
 **401** | unauthorized |  -  |
 **403** | forbidden |  -  |
@@ -105,7 +105,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete**
-> DeleteApiKeyResponse delete(name, user)
+> DeleteApiKeyResponse delete(rrn)
 
 Delete API Key
 
@@ -126,8 +126,7 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 # synchronous example passing only required values which don't have defaults set
 # Delete API Key
 api_response = rs.APIKeys.delete(
-    name="my-key",
-    user="admin@me.com",
+    rrn="my-key",
 )
 pprint(api_response)
 # Error responses from the server will cause the client to throw an ApiException
@@ -138,8 +137,7 @@ pprint(api_response)
 # assumes that execution takes place within an asynchronous context
 # Delete API Key
 api_response = await rs.APIKeys.delete(
-    name="my-key",
-    user="admin@me.com",
+    rrn="my-key",
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
@@ -154,8 +152,7 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str** | Name of the API key. |
- **user** | **str** | Email of the API key owner. Use &#x60;self&#x60; to specify the currently authenticated user. |
+ **rrn** | **str** | RRN of the API key. |
 
 ### Return type
 
@@ -195,7 +192,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get**
-> GetApiKeyResponse get(user, name)
+> GetApiKeyResponse get(rrn)
 
 Retrieve API Key
 
@@ -216,8 +213,7 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 # synchronous example passing only required values which don't have defaults set
 # Retrieve API Key
 api_response = rs.APIKeys.get(
-    user="admin@me.com",
-    name="my-key",
+    rrn="my-key",
 )
 pprint(api_response)
 # Error responses from the server will cause the client to throw an ApiException
@@ -228,8 +224,7 @@ pprint(api_response)
 # assumes that execution takes place within an asynchronous context
 # Retrieve API Key
 api_response = await rs.APIKeys.get(
-    user="admin@me.com",
-    name="my-key",
+    rrn="my-key",
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
@@ -244,9 +239,7 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **user** | **str** | Email of the API key owner. Use &#x60;self&#x60; to specify the currently authenticated user. |
- **name** | **str** | Name of the API key. |
- **reveal** | **bool** | Reveal full key. | [optional]
+ **rrn** | **str** | RRN of the API key. |
 
 ### Return type
 
@@ -286,7 +279,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **list**
-> ListApiKeysResponse list(user)
+> ListApiKeysResponse list()
 
 List API Keys
 
@@ -307,7 +300,6 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 # synchronous example passing only required values which don't have defaults set
 # List API Keys
 api_response = rs.APIKeys.list(
-    user="admin@me.com",
 )
 pprint(api_response)
 # Error responses from the server will cause the client to throw an ApiException
@@ -318,7 +310,6 @@ pprint(api_response)
 # assumes that execution takes place within an asynchronous context
 # List API Keys
 api_response = await rs.APIKeys.list(
-    user="admin@me.com",
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
@@ -330,10 +321,7 @@ pprint(api_response)
 
 
 ### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **user** | **str** | Email of the API key owner. Use &#x60;self&#x60; to specify the currently authenticated user. |
+This endpoint does not need any parameter.
 
 ### Return type
 
@@ -373,7 +361,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update**
-> UpdateApiKeyResponse update(name, user, update_api_key_request)
+> UpdateApiKeyResponse update(rrn, update_api_key_request)
 
 Update API Key State
 
@@ -394,8 +382,7 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 # synchronous example passing only required values which don't have defaults set
 # Update API Key State
 api_response = rs.APIKeys.update(
-    name="my-key",
-    user="admin@me.com",
+    rrn="my-key",
 )
 pprint(api_response)
 # Error responses from the server will cause the client to throw an ApiException
@@ -406,10 +393,9 @@ pprint(api_response)
 # assumes that execution takes place within an asynchronous context
 # Update API Key State
 api_response = await rs.APIKeys.update(
-    name="my-key",
-    user="admin@me.com",
+    rrn="my-key",
     clear_expiry_time=True,
-    expiry_time="2001-08-28T00:23:41Z",
+    expiry_time=1,
     state="ACTIVE",
     async_req=True,
 )
@@ -425,10 +411,9 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **name** | **str** | Name of the API key. |
- **user** | **str** | Email of the API key owner. Use &#x60;self&#x60; to specify the currently authenticated user. |
+ **rrn** | **str** | RRN of the API key. |
  **clear_expiry_time** | **bool** | If set to true, the expiration time for this key will be cleared. | [optional]
- **expiry_time** | **str** | If provided, the API key will automatically expire at this time (ISO-8601 format). Requires premium. | [optional]
+ **expiry_time** | **int** | If provided, the API key will automatically expire at this time (ISO-8601 format). Requires premium. | [optional]
  **state** | **str** | State that the api key should be set to. | [optional]
 
 ### Return type

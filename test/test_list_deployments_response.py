@@ -12,7 +12,9 @@ import sys
 from rockset.models import *
 
 
-def test_kafka_collection_creation_request_init():
-    KafkaCollectionCreationRequest(
-        name="global-transactions",
+def test_list_deployments_response_init():
+    ListDeploymentsResponse(
+        deployments=[
+            "rrn:rsd:use1a1:123e4567-e89b-12d3-a456-556642440000",
+        ],
     )

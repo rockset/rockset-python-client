@@ -94,7 +94,6 @@ class SourceS3(ModelNormal):
             'object_count_total': (int, none_type),  # noqa: E501
             'pattern': (str, none_type),  # noqa: E501
             'prefix': (str, none_type),  # noqa: E501
-            'prefixes': ([str], none_type),  # noqa: E501
             'region': (str, none_type),  # noqa: E501
             'settings': (SourceS3Settings, none_type),  # noqa: E501
         }
@@ -112,7 +111,6 @@ class SourceS3(ModelNormal):
         'object_count_total': 'object_count_total',  # noqa: E501
         'pattern': 'pattern',  # noqa: E501
         'prefix': 'prefix',  # noqa: E501
-        'prefixes': 'prefixes',  # noqa: E501
         'region': 'region',  # noqa: E501
         'settings': 'settings',  # noqa: E501
     }
@@ -122,7 +120,6 @@ class SourceS3(ModelNormal):
         'object_bytes_total',  # noqa: E501
         'object_count_downloaded',  # noqa: E501
         'object_count_total',  # noqa: E501
-        'prefixes',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -172,7 +169,6 @@ class SourceS3(ModelNormal):
             object_count_total (int): [optional]  # noqa: E501
             pattern (str): Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified.. [optional]  # noqa: E501
             prefix (str): Prefix that selects keys to ingest.. [optional]  # noqa: E501
-            prefixes ([str]): Deprecated in favor of `prefix`. List of prefixes to paths from which data should be ingested.. [optional]  # noqa: E501
             region (str): AWS region containing source bucket.. [optional]  # noqa: E501
             settings (SourceS3Settings): [optional]  # noqa: E501
         """

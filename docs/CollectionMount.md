@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **id** | **str** | Mount ID. | [optional] 
 **last_refresh_time_millis** | **int** | Unix timestamp of most recent refresh. Not applicable for live mounts. | [optional] 
 **rrn** | **str** | Mount RRN. | [optional] 
+**shard_count** | **int** | Shard count of the collection. | [optional] 
 **snapshot_expiration_time_millis** | **int** | Time in millis at which the snapshot expires. | [optional] 
 **state** | **str** | Mount type. | [optional] 
 **stats** | [**CollectionMountStats**](CollectionMountStats.md) |  | [optional] 

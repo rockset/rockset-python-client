@@ -210,63 +210,6 @@ class VirtualInstances(object):
             },
             api_client=api_client
         )
-        self.get_collection_mount_endpoint = _Endpoint(
-            settings={
-                'response_type': (CollectionMountResponse,),
-                'auth': [
-                    'apikey'
-                ],
-                'endpoint_path': '/v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts/{collectionPath}',
-                'operation_id': 'get_collection_mount',
-                'http_method': 'GET',
-                'servers': None,
-            },
-            params_map={
-                'all': [
-                    'virtual_instance_id',
-                    'collection_path',
-                ],
-                'required': [
-                    'virtual_instance_id',
-                    'collection_path',
-                ],
-                'nullable': [
-                ],
-                'enum': [
-                ],
-                'validation': [
-                ]
-            },
-            root_map={
-                'validations': {
-                },
-                'allowed_values': {
-                },
-                'openapi_types': {
-                    'virtual_instance_id':
-                        (str,),
-                    'collection_path':
-                        (str,),
-                },
-                'attribute_map': {
-                    'virtual_instance_id': 'virtualInstanceId',
-                    'collection_path': 'collectionPath',
-                },
-                'location_map': {
-                    'virtual_instance_id': 'path',
-                    'collection_path': 'path',
-                },
-                'collection_format_map': {
-                }
-            },
-            headers_map={
-                'accept': [
-                    'application/json'
-                ],
-                'content_type': [],
-            },
-            api_client=api_client
-        )
         self.get_mount_offsets_endpoint = _Endpoint(
             settings={
                 'response_type': (GetCollectionCommit,),
@@ -815,7 +758,6 @@ class VirtualInstances(object):
         description: str = None,
         enable_remount_on_resume: bool = None,
         instance_class: str = None,
-        mount_refresh_interval_seconds: int = None,
         mount_type: str = None,
         type: str = None,
         **kwargs
@@ -833,7 +775,6 @@ class VirtualInstances(object):
             description="VI serving prod traffic",
             enable_remount_on_resume=True,
             instance_class="MO_IL",
-            mount_refresh_interval_seconds=0,
             mount_type="LIVE",
             name="prod_vi",
             type="LARGE",
@@ -847,7 +788,6 @@ class VirtualInstances(object):
             description (str): Description of requested virtual instance.. [optional]
             enable_remount_on_resume (bool): When a Virtual Instance is resumed, it will remount all collections that were mounted when the Virtual Instance was suspended. Defaults to true.. [optional]
             instance_class (str): Virtual Instance Class. Use `MO_IL` for Memory Optimized and `GP_IL` for General Purpose instance class.. [optional]
-            mount_refresh_interval_seconds (int): DEPRECATED. Use `mount_type` instead. Number of seconds between data refreshes for mounts on this Virtual Instance. The only valid values are 0 and null. 0 means the data will be refreshed continuously and null means the data will never refresh.. [optional]
             mount_type (str): The mount type of collections that this Virtual Instance will query. Live mounted collections stay up-to-date with the underlying collection in real-time. Static mounted collections do not stay up-to-date. See https://docs.rockset.com/documentation/docs/using-virtual-instances#virtual-instance-configuration. [optional]
             name (str): Unique identifier for virtual instance, can contain alphanumeric or dash characters.. [required]
             type (str): Requested virtual instance type.. [optional]
@@ -1082,96 +1022,6 @@ class VirtualInstances(object):
         kwargs['virtual_instance_id'] = \
             virtual_instance_id
         return self.get_endpoint.call_with_http_info(**kwargs)
-
-    def get_collection_mount(
-        self,
-        *,
-        virtual_instance_id: str,
-        collection_path: str,
-        **kwargs
-    ) -> typing.Union[CollectionMountResponse, asyncio.Future]:
-        """Get Collection Mount  # noqa: E501
-
-        Retrieve a mount on this virtual instance.  # noqa: E501
-        This method makes a synchronous HTTP request by default. To make an
-        asynchronous HTTP request, please pass async_req=True
-
-        ```python
-        rs = RocksetClient(api_key=APIKEY)
-        future = rs.VirtualInstances.get_collection_mount(
-            virtual_instance_id="virtualInstanceId_example",
-            collection_path="collectionPath_example",
-            async_req=True,
-        )
-        result = await future
-        ```
-
-        Keyword Args:
-            virtual_instance_id (str): Virtual Instance RRN. [required]
-            collection_path (str): [required]
-            _return_http_data_only (bool): response data without head status
-                code and headers. Default is True.
-            _preload_content (bool): if False, the urllib3.HTTPResponse object
-                will be returned without reading/decoding response data.
-                Default is True.
-            _request_timeout (int/float/tuple): timeout setting for this request. If
-                one number provided, it will be total request timeout. It can also
-                be a pair (tuple) of (connection, read) timeouts.
-                Default is None.
-            _check_input_type (bool): specifies if type checking
-                should be done one the data sent to the server.
-                Default is True.
-            _check_return_type (bool): specifies if type checking
-                should be done on the data received from the server.
-                If False, the client will also not convert nested inner objects
-                into the respective model types (the outermost object
-                is still converted to the model).
-                Default is True.
-            _spec_property_naming (bool): True if the variable names in the input data
-                are serialized names, as specified in the OpenAPI document.
-                False if the variable names in the input data
-                are pythonic names, e.g. snake case (default)
-            _content_type (str/None): force body content-type.
-                Default is None and content-type will be predicted by allowed
-                content-types and body.
-            _host_index (int/None): specifies the index of the server
-                that we want to use.
-                Default is read from the configuration.
-            async_req (bool): execute request asynchronously
-
-        Returns:
-            CollectionMountResponse
-                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
-        """
-        kwargs['async_req'] = kwargs.get(
-            'async_req', False
-        )
-        kwargs['_return_http_data_only'] = kwargs.get(
-            '_return_http_data_only', True
-        )
-        kwargs['_preload_content'] = kwargs.get(
-            '_preload_content', True
-        )
-        kwargs['_request_timeout'] = kwargs.get(
-            '_request_timeout', None
-        )
-        kwargs['_check_input_type'] = kwargs.get(
-            '_check_input_type', True
-        )
-        kwargs['_check_return_type'] = kwargs.get(
-            '_check_return_type', True
-        )
-        kwargs['_spec_property_naming'] = kwargs.get(
-            '_spec_property_naming', False
-        )
-        kwargs['_content_type'] = kwargs.get(
-            '_content_type')
-        kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['virtual_instance_id'] = \
-            virtual_instance_id
-        kwargs['collection_path'] = \
-            collection_path
-        return self.get_collection_mount_endpoint.call_with_http_info(**kwargs)
 
     def get_mount_offsets(
         self,
@@ -2002,6 +1852,7 @@ class VirtualInstances(object):
         mount_type: str = None,
         name: str = None,
         new_size: str = None,
+        settings: UpdateVirtualInstanceSettingsRequest = None,
         **kwargs
     ) -> typing.Union[UpdateVirtualInstanceResponse, asyncio.Future]:
         """Update Virtual Instance  # noqa: E501
@@ -2032,6 +1883,95 @@ class VirtualInstances(object):
             mount_type="LIVE",
             name="prod_vi",
             new_size="LARGE",
+            settings=UpdateVirtualInstanceSettingsRequest(
+                gp_il=UpdateVirtualInstanceClassSettingsRequest(
+                    large=UpdateVirtualInstanceSizeSettingsRequest(
+                        cqel=10,
+                    ),
+                    medium=UpdateVirtualInstanceSizeSettingsRequest(
+                        cqel=10,
+                    ),
+                    small=UpdateVirtualInstanceSizeSettingsRequest(
+                        cqel=10,
+                    ),
+                    xlarge=UpdateVirtualInstanceSizeSettingsRequest(
+                        cqel=10,
+                    ),
+                    xlarge16=UpdateVirtualInstanceSizeSettingsRequest(
+                        cqel=10,
+                    ),
+                    xlarge2=UpdateVirtualInstanceSizeSettingsRequest(
+                        cqel=10,
+                    ),
+                    xlarge4=UpdateVirtualInstanceSizeSettingsRequest(
+                        cqel=10,
+                    ),
+                    xlarge8=UpdateVirtualInstanceSizeSettingsRequest(
+                        cqel=10,
+                    ),
+                    xsmall=UpdateVirtualInstanceSizeSettingsRequest(
+                        cqel=10,
+                    ),
+                ),
+                mo_br=UpdateVirtualInstanceClassSettingsRequest(
+                    large=UpdateVirtualInstanceSizeSettingsRequest(
+                        cqel=10,
+                    ),
+                    medium=UpdateVirtualInstanceSizeSettingsRequest(
+                        cqel=10,
+                    ),
+                    small=UpdateVirtualInstanceSizeSettingsRequest(
+                        cqel=10,
+                    ),
+                    xlarge=UpdateVirtualInstanceSizeSettingsRequest(
+                        cqel=10,
+                    ),
+                    xlarge16=UpdateVirtualInstanceSizeSettingsRequest(
+                        cqel=10,
+                    ),
+                    xlarge2=UpdateVirtualInstanceSizeSettingsRequest(
+                        cqel=10,
+                    ),
+                    xlarge4=UpdateVirtualInstanceSizeSettingsRequest(
+                        cqel=10,
+                    ),
+                    xlarge8=UpdateVirtualInstanceSizeSettingsRequest(
+                        cqel=10,
+                    ),
+                    xsmall=UpdateVirtualInstanceSizeSettingsRequest(
+                        cqel=10,
+                    ),
+                ),
+                mo_il=UpdateVirtualInstanceClassSettingsRequest(
+                    large=UpdateVirtualInstanceSizeSettingsRequest(
+                        cqel=10,
+                    ),
+                    medium=UpdateVirtualInstanceSizeSettingsRequest(
+                        cqel=10,
+                    ),
+                    small=UpdateVirtualInstanceSizeSettingsRequest(
+                        cqel=10,
+                    ),
+                    xlarge=UpdateVirtualInstanceSizeSettingsRequest(
+                        cqel=10,
+                    ),
+                    xlarge16=UpdateVirtualInstanceSizeSettingsRequest(
+                        cqel=10,
+                    ),
+                    xlarge2=UpdateVirtualInstanceSizeSettingsRequest(
+                        cqel=10,
+                    ),
+                    xlarge4=UpdateVirtualInstanceSizeSettingsRequest(
+                        cqel=10,
+                    ),
+                    xlarge8=UpdateVirtualInstanceSizeSettingsRequest(
+                        cqel=10,
+                    ),
+                    xsmall=UpdateVirtualInstanceSizeSettingsRequest(
+                        cqel=10,
+                    ),
+                ),
+            ),
             async_req=True,
         )
         result = await future
@@ -2050,6 +1990,7 @@ class VirtualInstances(object):
             mount_type (str): The mount type of collections that this Virtual Instance will query. Live mounted collections stay up-to-date with the underlying collection in real-time. Static mounted collections do not stay up-to-date. See https://docs.rockset.com/documentation/docs/using-virtual-instances#virtual-instance-configuration. [optional]
             name (str): New virtual instance name.. [optional]
             new_size (str): Requested virtual instance size.. [optional]
+            settings (UpdateVirtualInstanceSettingsRequest): [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object

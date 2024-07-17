@@ -15,6 +15,7 @@ Name | Type | Description | Notes
 **mount_type** | **str** | The mount type of collections that this Virtual Instance will query. Live mounted collections stay up-to-date with the underlying collection in real-time. Static mounted collections do not stay up-to-date. See https://docs.rockset.com/documentation/docs/using-virtual-instances#virtual-instance-configuration | [optional] 
 **name** | **str** | New virtual instance name. | [optional] 
 **new_size** | **str** | Requested virtual instance size. | [optional] 
+**settings** | [**UpdateVirtualInstanceSettingsRequest**](UpdateVirtualInstanceSettingsRequest.md) |  | [optional] 
 **any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

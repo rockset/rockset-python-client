@@ -30,11 +30,9 @@ from rockset.exceptions import ApiAttributeError
 
 
 def lazy_import():
-    from rockset.model.event_time_info import EventTimeInfo
     from rockset.model.field_mapping_query import FieldMappingQuery
     from rockset.model.field_partition import FieldPartition
     from rockset.model.s3_source_wrapper import S3SourceWrapper
-    globals()['EventTimeInfo'] = EventTimeInfo
     globals()['FieldMappingQuery'] = FieldMappingQuery
     globals()['FieldPartition'] = FieldPartition
     globals()['S3SourceWrapper'] = S3SourceWrapper
@@ -104,7 +102,6 @@ class S3CollectionCreationRequest(ModelNormal):
             'name': (str,),  # noqa: E501
             'clustering_key': ([FieldPartition], none_type),  # noqa: E501
             'description': (str, none_type),  # noqa: E501
-            'event_time_info': (EventTimeInfo, none_type),  # noqa: E501
             'field_mapping_query': (FieldMappingQuery, none_type),  # noqa: E501
             'retention_secs': (int, none_type),  # noqa: E501
             'source_download_soft_limit_bytes': (int, none_type),  # noqa: E501
@@ -121,7 +118,6 @@ class S3CollectionCreationRequest(ModelNormal):
         'name': 'name',  # noqa: E501
         'clustering_key': 'clustering_key',  # noqa: E501
         'description': 'description',  # noqa: E501
-        'event_time_info': 'event_time_info',  # noqa: E501
         'field_mapping_query': 'field_mapping_query',  # noqa: E501
         'retention_secs': 'retention_secs',  # noqa: E501
         'source_download_soft_limit_bytes': 'source_download_soft_limit_bytes',  # noqa: E501
@@ -175,7 +171,6 @@ class S3CollectionCreationRequest(ModelNormal):
                                 _visited_composed_classes = (Animal,)
             clustering_key ([FieldPartition]): Deprecated. List of clustering fields. Use CLUSTER BY clause in `field_mapping_query` instead.. [optional]  # noqa: E501
             description (str): Text describing the collection.. [optional]  # noqa: E501
-            event_time_info (EventTimeInfo): [optional]  # noqa: E501
             field_mapping_query (FieldMappingQuery): [optional]  # noqa: E501
             retention_secs (int): Number of seconds after which data is purged, based on event time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly less than 10 years.. [optional]  # noqa: E501
             source_download_soft_limit_bytes (int): Soft ingest limit for this collection.. [optional]  # noqa: E501
@@ -236,7 +231,6 @@ class S3CollectionCreationRequest(ModelNormal):
             name (str): Unique identifier for collection, can contain alphanumeric or dash characters.
             clustering_key ([FieldPartition]): Deprecated. List of clustering fields. Use CLUSTER BY clause in `field_mapping_query` instead.. [optional]  # noqa: E501
             description (str): Text describing the collection.. [optional]  # noqa: E501
-            event_time_info (EventTimeInfo): [optional]  # noqa: E501
             field_mapping_query (FieldMappingQuery): [optional]  # noqa: E501
             retention_secs (int): Number of seconds after which data is purged, based on event time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly less than 10 years.. [optional]  # noqa: E501
             source_download_soft_limit_bytes (int): Soft ingest limit for this collection.. [optional]  # noqa: E501

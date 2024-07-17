@@ -13,4 +13,7 @@ from rockset.models import *
 
 
 def test_get_collection_commit_data_init():
-    GetCollectionCommitData()
+    GetCollectionCommitData(
+        fence="f1:0:14:9:7093",
+        passed=True,
+    )

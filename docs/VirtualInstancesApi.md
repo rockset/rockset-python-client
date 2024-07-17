@@ -7,7 +7,6 @@ Method | HTTP request | Description
 [**create**](VirtualInstancesApi.md#create) | **POST** /v1/orgs/self/virtualinstances | Create Virtual Instance
 [**delete**](VirtualInstancesApi.md#delete) | **DELETE** /v1/orgs/self/virtualinstances/{virtualInstanceId} | Delete Virtual Instance
 [**get**](VirtualInstancesApi.md#get) | **GET** /v1/orgs/self/virtualinstances/{virtualInstanceId} | Retrieve Virtual Instance
-[**get_collection_mount**](VirtualInstancesApi.md#get_collection_mount) | **GET** /v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts/{collectionPath} | Get Collection Mount
 [**get_mount_offsets**](VirtualInstancesApi.md#get_mount_offsets) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts/{collectionPath}/offsets/commit | Get Collection Commit
 [**get_virtual_instance_queries**](VirtualInstancesApi.md#get_virtual_instance_queries) | **GET** /v1/orgs/self/virtualinstances/{virtualInstanceId}/queries | List Queries
 [**list**](VirtualInstancesApi.md#list) | **GET** /v1/orgs/self/virtualinstances | List Virtual Instances
@@ -57,7 +56,6 @@ api_response = await rs.VirtualInstances.create(
     description="VI serving prod traffic",
     enable_remount_on_resume=True,
     instance_class="MO_IL",
-    mount_refresh_interval_seconds=0,
     mount_type="LIVE",
     name="prod_vi",
     type="LARGE",
@@ -79,7 +77,6 @@ Name | Type | Description  | Notes
  **description** | **str** | Description of requested virtual instance. | [optional]
  **enable_remount_on_resume** | **bool** | When a Virtual Instance is resumed, it will remount all collections that were mounted when the Virtual Instance was suspended. Defaults to true. | [optional]
  **instance_class** | **str** | Virtual Instance Class. Use &#x60;MO_IL&#x60; for Memory Optimized and &#x60;GP_IL&#x60; for General Purpose instance class. | [optional]
- **mount_refresh_interval_seconds** | **int** | DEPRECATED. Use &#x60;mount_type&#x60; instead. Number of seconds between data refreshes for mounts on this Virtual Instance. The only valid values are 0 and null. 0 means the data will be refreshed continuously and null means the data will never refresh. | [optional]
  **mount_type** | **str** | The mount type of collections that this Virtual Instance will query. Live mounted collections stay up-to-date with the underlying collection in real-time. Static mounted collections do not stay up-to-date. See https://docs.rockset.com/documentation/docs/using-virtual-instances#virtual-instance-configuration | [optional]
  **name** | **str** | Unique identifier for virtual instance, can contain alphanumeric or dash characters. | 
  **type** | **str** | Requested virtual instance type. | [optional]
@@ -278,96 +275,6 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 **200** | virtual instance retrieved successfully |  -  |
-**400** | bad request |  -  |
-**401** | unauthorized |  -  |
-**403** | forbidden |  -  |
-**404** | not found |  -  |
-**405** | not allowed |  -  |
-**406** | not acceptable |  -  |
-**408** | request timeout |  -  |
-**409** | conflict |  -  |
-**415** | not supported |  -  |
-**429** | resource exceeded |  -  |
-**500** | internal error |  -  |
-**501** | not implemented |  -  |
-**502** | bad gateway |  -  |
-**503** | not ready |  -  |
-
-[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
-
-# **get_collection_mount**
-> CollectionMountResponse get_collection_mount(virtual_instance_id, collection_path)
-
-Get Collection Mount
-
-Retrieve a mount on this virtual instance.
-
-### Example
-
-* Api Key Authentication (apikey):
-
-```python
-from rockset import *
-from rockset.models import *
-from pprint import pprint
-
-# Create an instance of the Rockset client
-rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
-
-# synchronous example passing only required values which don't have defaults set
-# Get Collection Mount
-api_response = rs.VirtualInstances.get_collection_mount(
-    virtual_instance_id="virtualInstanceId_example",
-    collection_path="collectionPath_example",
-)
-pprint(api_response)
-# Error responses from the server will cause the client to throw an ApiException
-# except ApiException as e:
-#     print("Exception when calling VirtualInstances->get_collection_mount: %s\n" % e)
-
-# asynchronous example passing optional values and required values which don't have defaults set
-# assumes that execution takes place within an asynchronous context
-# Get Collection Mount
-api_response = await rs.VirtualInstances.get_collection_mount(
-    virtual_instance_id="virtualInstanceId_example",
-    collection_path="collectionPath_example",
-    async_req=True,
-)
-if isinstance(api_response, rockset.ApiException):
-    print("Exception when calling VirtualInstances->get_collection_mount: %s\n" % e)
-    return
-pprint(api_response)
-
-```
-
-
-### Parameters
-
-Name | Type | Description  | Notes
-------------- | ------------- | ------------- | -------------
- **virtual_instance_id** | **str** | Virtual Instance RRN |
- **collection_path** | **str** |  |
-
-### Return type
-
-[**CollectionMountResponse**](CollectionMountResponse.md)
-
-### Authorization
-
-All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
-
-
-### HTTP request headers
-
- - **Content-Type**: Not defined
- - **Accept**: application/json
-
-
-### HTTP response details
-
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-**200** | collection unmounted |  -  |
 **400** | bad request |  -  |
 **401** | unauthorized |  -  |
 **403** | forbidden |  -  |
@@ -1264,6 +1171,95 @@ api_response = await rs.VirtualInstances.update(
     mount_type="LIVE",
     name="prod_vi",
     new_size="LARGE",
+    settings=UpdateVirtualInstanceSettingsRequest(
+        gp_il=UpdateVirtualInstanceClassSettingsRequest(
+            large=UpdateVirtualInstanceSizeSettingsRequest(
+                cqel=10,
+            ),
+            medium=UpdateVirtualInstanceSizeSettingsRequest(
+                cqel=10,
+            ),
+            small=UpdateVirtualInstanceSizeSettingsRequest(
+                cqel=10,
+            ),
+            xlarge=UpdateVirtualInstanceSizeSettingsRequest(
+                cqel=10,
+            ),
+            xlarge16=UpdateVirtualInstanceSizeSettingsRequest(
+                cqel=10,
+            ),
+            xlarge2=UpdateVirtualInstanceSizeSettingsRequest(
+                cqel=10,
+            ),
+            xlarge4=UpdateVirtualInstanceSizeSettingsRequest(
+                cqel=10,
+            ),
+            xlarge8=UpdateVirtualInstanceSizeSettingsRequest(
+                cqel=10,
+            ),
+            xsmall=UpdateVirtualInstanceSizeSettingsRequest(
+                cqel=10,
+            ),
+        ),
+        mo_br=UpdateVirtualInstanceClassSettingsRequest(
+            large=UpdateVirtualInstanceSizeSettingsRequest(
+                cqel=10,
+            ),
+            medium=UpdateVirtualInstanceSizeSettingsRequest(
+                cqel=10,
+            ),
+            small=UpdateVirtualInstanceSizeSettingsRequest(
+                cqel=10,
+            ),
+            xlarge=UpdateVirtualInstanceSizeSettingsRequest(
+                cqel=10,
+            ),
+            xlarge16=UpdateVirtualInstanceSizeSettingsRequest(
+                cqel=10,
+            ),
+            xlarge2=UpdateVirtualInstanceSizeSettingsRequest(
+                cqel=10,
+            ),
+            xlarge4=UpdateVirtualInstanceSizeSettingsRequest(
+                cqel=10,
+            ),
+            xlarge8=UpdateVirtualInstanceSizeSettingsRequest(
+                cqel=10,
+            ),
+            xsmall=UpdateVirtualInstanceSizeSettingsRequest(
+                cqel=10,
+            ),
+        ),
+        mo_il=UpdateVirtualInstanceClassSettingsRequest(
+            large=UpdateVirtualInstanceSizeSettingsRequest(
+                cqel=10,
+            ),
+            medium=UpdateVirtualInstanceSizeSettingsRequest(
+                cqel=10,
+            ),
+            small=UpdateVirtualInstanceSizeSettingsRequest(
+                cqel=10,
+            ),
+            xlarge=UpdateVirtualInstanceSizeSettingsRequest(
+                cqel=10,
+            ),
+            xlarge16=UpdateVirtualInstanceSizeSettingsRequest(
+                cqel=10,
+            ),
+            xlarge2=UpdateVirtualInstanceSizeSettingsRequest(
+                cqel=10,
+            ),
+            xlarge4=UpdateVirtualInstanceSizeSettingsRequest(
+                cqel=10,
+            ),
+            xlarge8=UpdateVirtualInstanceSizeSettingsRequest(
+                cqel=10,
+            ),
+            xsmall=UpdateVirtualInstanceSizeSettingsRequest(
+                cqel=10,
+            ),
+        ),
+    ),
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
@@ -1290,6 +1286,7 @@ Name | Type | Description  | Notes
  **mount_type** | **str** | The mount type of collections that this Virtual Instance will query. Live mounted collections stay up-to-date with the underlying collection in real-time. Static mounted collections do not stay up-to-date. See https://docs.rockset.com/documentation/docs/using-virtual-instances#virtual-instance-configuration | [optional]
  **name** | **str** | New virtual instance name. | [optional]
  **new_size** | **str** | Requested virtual instance size. | [optional]
+ **settings** | [**UpdateVirtualInstanceSettingsRequest**](UpdateVirtualInstanceSettingsRequest.md) |  | [optional]
 
 ### Return type
 

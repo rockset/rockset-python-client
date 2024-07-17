@@ -12,7 +12,8 @@ import sys
 from rockset.models import *
 
 
-def test_dynamodb_source_wrapper_init():
-    DynamodbSourceWrapper(
-        table_name="dynamodb_table_name",
+def test_get_deployment_response_init():
+    GetDeploymentResponse(
+        display_name="string_example",
+        rrn="rrn:rsd:use1a1:123e4567-e89b-12d3-a456-556642440000",
     )

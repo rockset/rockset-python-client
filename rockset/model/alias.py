@@ -55,10 +55,6 @@ class Alias(ModelNormal):
     """
     
     allowed_values = {
-        ('state',): {
-            'CREATED': "CREATED",
-            'DELETED': "DELETED",
-        },
     }
 
     validations = {
@@ -92,7 +88,7 @@ class Alias(ModelNormal):
             'description': (str, none_type),  # noqa: E501
             'modified_at': (str, none_type),  # noqa: E501
             'name': (str, none_type),  # noqa: E501
-            'state': (str, none_type),  # noqa: E501
+            'rrn': (str, none_type),  # noqa: E501
             'workspace': (str, none_type),  # noqa: E501
         }
 
@@ -109,11 +105,14 @@ class Alias(ModelNormal):
         'description': 'description',  # noqa: E501
         'modified_at': 'modified_at',  # noqa: E501
         'name': 'name',  # noqa: E501
-        'state': 'state',  # noqa: E501
+        'rrn': 'rrn',  # noqa: E501
         'workspace': 'workspace',  # noqa: E501
     }
 
     read_only_vars = {
+        'name',  # noqa: E501
+        'rrn',  # noqa: E501
+        'workspace',  # noqa: E501
     }
 
     _composed_schemas = {}
@@ -161,7 +160,7 @@ class Alias(ModelNormal):
             description (str): Alias description.. [optional]  # noqa: E501
             modified_at (str): ISO-8601 date.. [optional]  # noqa: E501
             name (str): Name of the alias.. [optional]  # noqa: E501
-            state (str): State of the alias.. [optional]  # noqa: E501
+            rrn (str): RRN of the alias.. [optional]  # noqa: E501
             workspace (str): Name of the workspace.. [optional]  # noqa: E501
         """
 
@@ -220,9 +219,6 @@ class Alias(ModelNormal):
             creator_email (str): Email of the creator.. [optional]  # noqa: E501
             description (str): Alias description.. [optional]  # noqa: E501
             modified_at (str): ISO-8601 date.. [optional]  # noqa: E501
-            name (str): Name of the alias.. [optional]  # noqa: E501
-            state (str): State of the alias.. [optional]  # noqa: E501
-            workspace (str): Name of the workspace.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.

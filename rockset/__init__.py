@@ -27,6 +27,6 @@ from rockset.exceptions import ApiKeyError
 from rockset.exceptions import ApiException
 from rockset.exceptions import BadRequestException
 
-from rockset.rockset_client import DevRegions, Regions, RocksetClient
+from rockset.rockset_client import Clusters, RocksetClient
 from rockset.document import Document
 from rockset.query_paginator import QueryPaginator

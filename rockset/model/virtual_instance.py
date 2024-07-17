@@ -31,8 +31,10 @@ from rockset.exceptions import ApiAttributeError
 
 def lazy_import():
     from rockset.model.auto_scaling_policy import AutoScalingPolicy
+    from rockset.model.virtual_instance_settings import VirtualInstanceSettings
     from rockset.model.virtual_instance_stats import VirtualInstanceStats
     globals()['AutoScalingPolicy'] = AutoScalingPolicy
+    globals()['VirtualInstanceSettings'] = VirtualInstanceSettings
     globals()['VirtualInstanceStats'] = VirtualInstanceStats
 
 
@@ -163,6 +165,8 @@ class VirtualInstance(ModelNormal):
             'mount_type': (str, none_type),  # noqa: E501
             'resumed_at': (str, none_type),  # noqa: E501
             'rrn': (str, none_type),  # noqa: E501
+            'settings': (VirtualInstanceSettings, none_type),  # noqa: E501
+            'shard_count': (int, none_type),  # noqa: E501
             'state': (str, none_type),  # noqa: E501
             'stats': (VirtualInstanceStats, none_type),  # noqa: E501
         }
@@ -191,6 +195,8 @@ class VirtualInstance(ModelNormal):
         'mount_type': 'mount_type',  # noqa: E501
         'resumed_at': 'resumed_at',  # noqa: E501
         'rrn': 'rrn',  # noqa: E501
+        'settings': 'settings',  # noqa: E501
+        'shard_count': 'shard_count',  # noqa: E501
         'state': 'state',  # noqa: E501
         'stats': 'stats',  # noqa: E501
     }
@@ -258,6 +264,8 @@ class VirtualInstance(ModelNormal):
             mount_type (str): The mount type of collections that this Virtual Instance will query. Live mounted collections stay up-to-date with the underlying collection in real-time. Static mounted collections do not stay up-to-date. See https://docs.rockset.com/documentation/docs/using-virtual-instances#virtual-instance-configuration. [optional]  # noqa: E501
             resumed_at (str): ISO-8601 date of when virtual instance was created.. [optional]  # noqa: E501
             rrn (str): Virtual Instance RRN.. [optional]  # noqa: E501
+            settings (VirtualInstanceSettings): [optional]  # noqa: E501
+            shard_count (int): Number of collection shards on this Virtual Instance.. [optional]  # noqa: E501
             state (str): Virtual instance state.. [optional]  # noqa: E501
             stats (VirtualInstanceStats): [optional]  # noqa: E501
         """
@@ -328,6 +336,8 @@ class VirtualInstance(ModelNormal):
             mount_type (str): The mount type of collections that this Virtual Instance will query. Live mounted collections stay up-to-date with the underlying collection in real-time. Static mounted collections do not stay up-to-date. See https://docs.rockset.com/documentation/docs/using-virtual-instances#virtual-instance-configuration. [optional]  # noqa: E501
             resumed_at (str): ISO-8601 date of when virtual instance was created.. [optional]  # noqa: E501
             rrn (str): Virtual Instance RRN.. [optional]  # noqa: E501
+            settings (VirtualInstanceSettings): [optional]  # noqa: E501
+            shard_count (int): Number of collection shards on this Virtual Instance.. [optional]  # noqa: E501
             state (str): Virtual instance state.. [optional]  # noqa: E501
             stats (VirtualInstanceStats): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types

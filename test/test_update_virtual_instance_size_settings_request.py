@@ -12,7 +12,5 @@ import sys
 from rockset.models import *
 
 
-def test_mongodb_collection_creation_request_init():
-    MongodbCollectionCreationRequest(
-        name="global-transactions",
-    )
+def test_update_virtual_instance_size_settings_request_init():
+    UpdateVirtualInstanceSizeSettingsRequest()

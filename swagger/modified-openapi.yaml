@@ -81,17 +81,17 @@ components:
         name:
           description: Name of the alias.
           example: demo
+          readOnly: true
           type: string
-        state:
-          description: State of the alias.
-          enum:
-            - CREATED
-            - DELETED
-          example: CREATED
+        rrn:
+          description: RRN of the alias.
+          example: rrn:ail:test:a37bc-
+          readOnly: true
           type: string
         workspace:
           description: Name of the workspace.
           example: commons
+          readOnly: true
           type: string
       type: object
     ApiKey:
@@ -104,13 +104,12 @@ components:
           example: "2001-08-28T00:23:41Z"
           type: string
         created_by:
-          description: Email of API key owner.
-          example: test@rockset.com
+          description: Email of the user that created this api key
+          example: admin@openai.com
           type: string
         created_by_apikey_name:
-          description:
-            Name of the API key that was used to create this object if
-            one was used.
+          description: Name of the API key that created this api key (if applicable)
+          example: default
           type: string
         expiry_time:
           description: The expiration date of this API key.
@@ -122,10 +121,6 @@ components:
             an API key. Otherwise, it will be an API key identifier of 6 characters.
           example: aB35kD
           type: string
-        last_access_time:
-          description: Date that API key was most recently used (ISO-8601 format).
-          example: "2001-08-28T00:23:41Z"
-          type: string
         name:
           description: Name of the API key.
           example: my-key
@@ -136,6 +131,10 @@ components:
             have access to all of the associated user's roles.
           example: read-only
           type: string
+        rrn:
+          description: RRN of the API Key
+          example: rrn:cluster:key:abc123
+          type: string
         state:
           description: Current state of this key.
           enum:
@@ -144,8 +143,13 @@ components:
           example: ACTIVE
           type: string
       required:
+        - created_at
+        - created_by
         - key
         - name
+        - role
+        - rrn
+        - state
       type: object
     AsyncQueryOptions:
       properties:
@@ -255,62 +259,6 @@ components:
       required:
         - aws_role_arn
       type: object
-    AzureBlobStorageCollectionCreationRequest:
-      properties:
-        clustering_key:
-          description:
-            Deprecated. List of clustering fields. Use CLUSTER BY clause
-            in `field_mapping_query` instead.
-          items:
-            $ref: "#/components/schemas/FieldPartition"
-          type: array
-        description:
-          description: Text describing the collection.
-          example: transactions from stores worldwide
-          type: string
-        event_time_info:
-          $ref: "#/components/schemas/EventTimeInfo"
-          description:
-            Deprecated. Configuration for event data. Use an _event_time
-            mapping in `field_mapping_query` instead.
-        field_mapping_query:
-          $ref: "#/components/schemas/FieldMappingQuery"
-          description: Ingest transformation query.
-        name:
-          description:
-            Unique identifier for collection, can contain alphanumeric
-            or dash characters.
-          example: global-transactions
-          type: string
-        retention_secs:
-          description:
-            Number of seconds after which data is purged, based on event
-            time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly
-            less than 10 years.
-          example: 1000000
-          format: int64
-          maximum: 315359999
-          minimum: 3600
-          type: integer
-        source_download_soft_limit_bytes:
-          description: Soft ingest limit for this collection.
-          format: int64
-          type: integer
-        sources:
-          description: List of sources from which to ingest data
-          items:
-            $ref: "#/components/schemas/AzureBlobStorageSourceWrapper"
-          type: array
-        storage_compression_type:
-          description: RocksDB storage compression type.
-          enum:
-            - LZ4
-            - ZSTD
-          example: LZ4
-          type: string
-      required:
-        - name
-      type: object
     AzureBlobStorageIntegration:
       properties:
         connection_string:
@@ -322,93 +270,6 @@ components:
       required:
         - connection_string
       type: object
-    AzureBlobStorageIntegrationCreationRequest:
-      properties:
-        azure_blob_storage:
-          $ref: "#/components/schemas/AzureBlobStorageIntegration"
-          description: Azure Blob Storage details.
-        description:
-          description: Longer explanation for the integration.
-          example: AWS account with event data for the data science team.
-          type: string
-        name:
-          description: Descriptive label.
-          example: event-logs
-          type: string
-      required:
-        - name
-      type: object
-    AzureBlobStorageSourceWrapper:
-      description: Details about the data source for the given collection.
-      properties:
-        azure_blob_storage:
-          $ref: "#/components/schemas/SourceAzureBlobStorage"
-          description: Configuration for ingestion from Azure Blob Storage.
-        format_params:
-          $ref: "#/components/schemas/FormatParams"
-          description: Format parameters for data from this source.
-        integration_name:
-          description: Name of integration to use.
-          example: aws-integration
-          type: string
-      type: object
-      x-inner-field: azure_blob_storage
-    AzureEventHubsCollectionCreationRequest:
-      properties:
-        clustering_key:
-          description:
-            Deprecated. List of clustering fields. Use CLUSTER BY clause
-            in `field_mapping_query` instead.
-          items:
-            $ref: "#/components/schemas/FieldPartition"
-          type: array
-        description:
-          description: Text describing the collection.
-          example: transactions from stores worldwide
-          type: string
-        event_time_info:
-          $ref: "#/components/schemas/EventTimeInfo"
-          description:
-            Deprecated. Configuration for event data. Use an _event_time
-            mapping in `field_mapping_query` instead.
-        field_mapping_query:
-          $ref: "#/components/schemas/FieldMappingQuery"
-          description: Ingest transformation query.
-        name:
-          description:
-            Unique identifier for collection, can contain alphanumeric
-            or dash characters.
-          example: global-transactions
-          type: string
-        retention_secs:
-          description:
-            Number of seconds after which data is purged, based on event
-            time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly
-            less than 10 years.
-          example: 1000000
-          format: int64
-          maximum: 315359999
-          minimum: 3600
-          type: integer
-        source_download_soft_limit_bytes:
-          description: Soft ingest limit for this collection.
-          format: int64
-          type: integer
-        sources:
-          description: List of sources from which to ingest data
-          items:
-            $ref: "#/components/schemas/AzureEventHubsSourceWrapper"
-          type: array
-        storage_compression_type:
-          description: RocksDB storage compression type.
-          enum:
-            - LZ4
-            - ZSTD
-          example: LZ4
-          type: string
-      required:
-        - name
-      type: object
     AzureEventHubsIntegration:
       properties:
         connection_string:
@@ -416,37 +277,6 @@ components:
           example: Endpoint=sb://<NamespaceName>.servicebus.windows.net/;SharedAccessKeyName=<KeyName>;SharedAccessKey=<KeyValue>
           type: string
       type: object
-    AzureEventHubsIntegrationCreationRequest:
-      properties:
-        azure_event_hubs:
-          $ref: "#/components/schemas/AzureEventHubsIntegration"
-          description: Azure Event Hubs details.
-        description:
-          description: Longer explanation for the integration.
-          example: AWS account with event data for the data science team.
-          type: string
-        name:
-          description: Descriptive label.
-          example: event-logs
-          type: string
-      required:
-        - name
-      type: object
-    AzureEventHubsSourceWrapper:
-      description: Details about the data source for the given collection.
-      properties:
-        azure_event_hubs:
-          $ref: "#/components/schemas/SourceAzureEventHubs"
-          description: Configuration for ingestion from Azure Event Hubs.
-        format_params:
-          $ref: "#/components/schemas/FormatParams"
-          description: Format parameters for data from this source.
-        integration_name:
-          description: Name of integration to use.
-          example: aws-integration
-          type: string
-      type: object
-      x-inner-field: azure_event_hubs
     AzureServiceBusIntegration:
       properties:
         connection_string:
@@ -649,6 +479,10 @@ components:
           description: Collection RRN.
           example: rrn:col:use1a1:123e4567-e89b-12d3-a456-556642440000
           type: string
+        shard_count:
+          description: Shard count of this collection.
+          format: int32
+          type: integer
         sources:
           description: List of sources from which collection ingests.
           items:
@@ -685,6 +519,16 @@ components:
           description: Name of the workspace that the collection is in.
           example: commons
           type: string
+      required:
+        - created_by
+        - created_by_apikey_name
+        - description
+        - name
+        - rrn
+        - sources
+        - stats
+        - status
+        - workspace
       type: object
     CollectionMount:
       properties:
@@ -711,6 +555,11 @@ components:
           description: Mount RRN.
           example: rrn:mnt:use1a1:123e4567-e89b-12d3-a456-556642440000
           type: string
+        shard_count:
+          description: Shard count of the collection.
+          example: 16
+          format: int32
+          type: integer
         snapshot_expiration_time_millis:
           description: Time in millis at which the snapshot expires.
           example: 864000000
@@ -777,11 +626,6 @@ components:
           example: 123456
           format: int64
           type: integer
-        column_index_size:
-          description: "DEPRECATED: Total collection column index size in bytes."
-          example: 123456
-          format: int64
-          type: integer
         doc_count:
           description: Number of documents in the collection.
           example: 2145
@@ -794,11 +638,6 @@ components:
           example: 0.6
           format: double
           type: number
-        inverted_index_size:
-          description: "DEPRECATED: Total collection inverted index size in bytes."
-          example: 123456
-          format: int64
-          type: integer
         last_queried_ms:
           description: Milliseconds since Unix epoch Jan 1, 1970.
           example: 1535101119334
@@ -819,16 +658,6 @@ components:
           example: 123456
           format: int64
           type: integer
-        range_index_size:
-          description: "DEPRECATED: Total collection range index size in bytes."
-          example: 123456
-          format: int64
-          type: integer
-        row_index_size:
-          description: "DEPRECATED: Total collection row index size in bytes."
-          example: 123456
-          format: int64
-          type: integer
         total_index_size:
           description: Total collection index size in bytes.
           example: 123456
@@ -842,14 +671,6 @@ components:
       type: object
     CreateAliasRequest:
       properties:
-        collections:
-          description: List of fully qualified collection names referenced by alias.
-          example:
-            - commons.foo
-            - prod.demo
-          items:
-            type: string
-          type: array
         description:
           description: Optional description.
           example: version alias
@@ -858,9 +679,13 @@ components:
           description: Alias name.
           example: aliasName
           type: string
+        target:
+          description: Fully qualified collection name referenced by alias.
+          example: commons.foo
+          type: string
       required:
-        - collections
         - name
+        - target
       type: object
     CreateAliasResponse:
       properties:
@@ -892,6 +717,8 @@ components:
         data:
           $ref: "#/components/schemas/ApiKey"
           description: The API key that was created.
+      required:
+        - data
       type: object
     CreateCollectionMountRequest:
       properties:
@@ -925,11 +752,6 @@ components:
           description: Text describing the collection.
           example: transactions from stores worldwide
           type: string
-        event_time_info:
-          $ref: "#/components/schemas/EventTimeInfo"
-          description:
-            Deprecated. Configuration for event data. Use an _event_time
-            mapping in `field_mapping_query` instead.
         field_mapping_query:
           $ref: "#/components/schemas/FieldMappingQuery"
           description: Ingest transformation query.
@@ -966,6 +788,35 @@ components:
         data:
           $ref: "#/components/schemas/Collection"
           description: Collection that was created.
+      required:
+        - data
+      type: object
+    CreateDeploymentRequest:
+      properties:
+        display_name:
+          description: The display name of the deployment
+          type: string
+      type: object
+    CreateDeploymentResponse:
+      properties:
+        commons_workspace_rrn:
+          description: RRN of the commons workspace
+          type: string
+        ingest_virtual_instance_rrn:
+          description: RRN of the ingest virtual instance
+          type: string
+        key:
+          description: An API key that can be used to access the deployment
+          type: string
+        rrn:
+          description: RRN of the deployment
+          example: rrn:rsd:use1a1:123e4567-e89b-12d3-a456-556642440000
+          type: string
+      required:
+        - commons_workspace_rrn
+        - ingest_virtual_instance_rrn
+        - key
+        - rrn
       type: object
     CreateIntegrationRequest:
       properties:
@@ -975,34 +826,15 @@ components:
         azure_event_hubs:
           $ref: "#/components/schemas/AzureEventHubsIntegration"
           description: Azure Event Hubs details.
-        azure_service_bus:
-          $ref: "#/components/schemas/AzureServiceBusIntegration"
-          description: Azure Service Bus details.
         description:
           description: Longer explanation for the integration.
           example: AWS account with event data for the data science team.
           type: string
-        dynamodb:
-          $ref: "#/components/schemas/DynamodbIntegration"
-          description:
-            Amazon DynamoDB details, must have one of aws_access_key or
-            aws_role.
-        gcs:
-          $ref: "#/components/schemas/GcsIntegration"
-          description: GCS details.
         is_write_enabled:
           description: is write access enabled for this integration.
           type: boolean
         kafka:
           $ref: "#/components/schemas/KafkaIntegration"
-        kinesis:
-          $ref: "#/components/schemas/KinesisIntegration"
-          description:
-            Amazon Kinesis details, must have one of aws_access_key or
-            aws_role.
-        mongodb:
-          $ref: "#/components/schemas/MongoDbIntegration"
-          description: MongoDb details.
         name:
           description: Descriptive label.
           example: event-logs
@@ -1010,9 +842,6 @@ components:
         s3:
           $ref: "#/components/schemas/S3Integration"
           description: Amazon S3 details, must have one of aws_access_key or aws_role.
-        snowflake:
-          $ref: "#/components/schemas/SnowflakeIntegration"
-          description: Snowflake details.
       required:
         - name
       type: object
@@ -1021,6 +850,8 @@ components:
         data:
           $ref: "#/components/schemas/Integration"
           description: Integration object that was created.
+      required:
+        - data
       type: object
     CreateQueryLambdaRequest:
       properties:
@@ -1211,15 +1042,6 @@ components:
             - GP_IL
           example: MO_IL
           type: string
-        mount_refresh_interval_seconds:
-          description:
-            DEPRECATED. Use `mount_type` instead. Number of seconds between
-            data refreshes for mounts on this Virtual Instance. The only valid values
-            are 0 and null. 0 means the data will be refreshed continuously and null
-            means the data will never refresh.
-          example: 0
-          format: int32
-          type: integer
         mount_type:
           description:
             The mount type of collections that this Virtual Instance will
@@ -1281,6 +1103,8 @@ components:
         data:
           $ref: "#/components/schemas/Workspace"
           description: The workspace that was created.
+      required:
+        - data
       type: object
     CsvParams:
       properties:
@@ -1351,12 +1175,16 @@ components:
         data:
           $ref: "#/components/schemas/ApiKey"
           description: The API key that was deleted.
+      required:
+        - data
       type: object
     DeleteCollectionResponse:
       properties:
         data:
           $ref: "#/components/schemas/Collection"
           description: Collection that was deleted.
+      required:
+        - data
       type: object
     DeleteDocumentsRequest:
       properties:
@@ -1396,6 +1224,8 @@ components:
         data:
           $ref: "#/components/schemas/Integration"
           description: Integration object that was deleted.
+      required:
+        - data
       type: object
     DeleteQueryLambdaResponse:
       properties:
@@ -1432,6 +1262,8 @@ components:
         data:
           $ref: "#/components/schemas/Workspace"
           description: The workspace that was deleted.
+      required:
+        - data
       type: object
     DeploymentSettings:
       properties:
@@ -1476,62 +1308,6 @@ components:
           example: ADDED
           type: string
       type: object
-    DynamodbCollectionCreationRequest:
-      properties:
-        clustering_key:
-          description:
-            Deprecated. List of clustering fields. Use CLUSTER BY clause
-            in `field_mapping_query` instead.
-          items:
-            $ref: "#/components/schemas/FieldPartition"
-          type: array
-        description:
-          description: Text describing the collection.
-          example: transactions from stores worldwide
-          type: string
-        event_time_info:
-          $ref: "#/components/schemas/EventTimeInfo"
-          description:
-            Deprecated. Configuration for event data. Use an _event_time
-            mapping in `field_mapping_query` instead.
-        field_mapping_query:
-          $ref: "#/components/schemas/FieldMappingQuery"
-          description: Ingest transformation query.
-        name:
-          description:
-            Unique identifier for collection, can contain alphanumeric
-            or dash characters.
-          example: global-transactions
-          type: string
-        retention_secs:
-          description:
-            Number of seconds after which data is purged, based on event
-            time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly
-            less than 10 years.
-          example: 1000000
-          format: int64
-          maximum: 315359999
-          minimum: 3600
-          type: integer
-        source_download_soft_limit_bytes:
-          description: Soft ingest limit for this collection.
-          format: int64
-          type: integer
-        sources:
-          description: List of sources from which to ingest data
-          items:
-            $ref: "#/components/schemas/DynamodbSourceWrapper"
-          type: array
-        storage_compression_type:
-          description: RocksDB storage compression type.
-          enum:
-            - LZ4
-            - ZSTD
-          example: LZ4
-          type: string
-      required:
-        - name
-      type: object
     DynamodbIntegration:
       properties:
         aws_access_key:
@@ -1544,39 +1320,6 @@ components:
           description: S3 bucket used for export during collection initial dump.
           type: string
       type: object
-    DynamodbIntegrationCreationRequest:
-      properties:
-        description:
-          description: Longer explanation for the integration.
-          example: AWS account with event data for the data science team.
-          type: string
-        dynamodb:
-          $ref: "#/components/schemas/DynamodbIntegration"
-          description:
-            Amazon DynamoDB details, must have one of aws_access_key or
-            aws_role.
-        name:
-          description: Descriptive label.
-          example: event-logs
-          type: string
-      required:
-        - name
-      type: object
-    DynamodbSourceWrapper:
-      description: Details about the data source for the given collection.
-      properties:
-        dynamodb:
-          $ref: "#/components/schemas/SourceDynamoDb"
-          description: Configuration for ingestion from  a dynamodb table.
-        format_params:
-          $ref: "#/components/schemas/FormatParams"
-          description: Format parameters for data from this source.
-        integration_name:
-          description: Name of integration to use.
-          example: aws-integration
-          type: string
-      type: object
-      x-inner-field: dynamodb
     ErrorModel:
       description: Describes details about an error
       properties:
@@ -1637,25 +1380,6 @@ components:
             was run on (if applicable).
           example: rrn:vi:use1a1:123e4567-e89b-12d3-a456-556642440000
           type: string
-      type: object
-    EventTimeInfo:
-      properties:
-        field:
-          description: Name of the field containing event time.
-          example: timestamp
-          type: string
-        format:
-          description:
-            "Format of time field, can be one of: milliseconds_since_epoch,
-            seconds_since_epoch."
-          example: seconds_since_epoch
-          type: string
-        time_zone:
-          description: Default time zone, in standard IANA format.
-          example: UTC
-          type: string
-      required:
-        - field
       type: object
     ExecutePublicQueryLambdaRequest:
       properties:
@@ -1828,99 +1552,12 @@ components:
       required:
         - service_account_key_file_json
       type: object
-    GcsCollectionCreationRequest:
-      properties:
-        clustering_key:
-          description:
-            Deprecated. List of clustering fields. Use CLUSTER BY clause
-            in `field_mapping_query` instead.
-          items:
-            $ref: "#/components/schemas/FieldPartition"
-          type: array
-        description:
-          description: Text describing the collection.
-          example: transactions from stores worldwide
-          type: string
-        event_time_info:
-          $ref: "#/components/schemas/EventTimeInfo"
-          description:
-            Deprecated. Configuration for event data. Use an _event_time
-            mapping in `field_mapping_query` instead.
-        field_mapping_query:
-          $ref: "#/components/schemas/FieldMappingQuery"
-          description: Ingest transformation query.
-        name:
-          description:
-            Unique identifier for collection, can contain alphanumeric
-            or dash characters.
-          example: global-transactions
-          type: string
-        retention_secs:
-          description:
-            Number of seconds after which data is purged, based on event
-            time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly
-            less than 10 years.
-          example: 1000000
-          format: int64
-          maximum: 315359999
-          minimum: 3600
-          type: integer
-        source_download_soft_limit_bytes:
-          description: Soft ingest limit for this collection.
-          format: int64
-          type: integer
-        sources:
-          description: List of sources from which to ingest data
-          items:
-            $ref: "#/components/schemas/GcsSourceWrapper"
-          type: array
-        storage_compression_type:
-          description: RocksDB storage compression type.
-          enum:
-            - LZ4
-            - ZSTD
-          example: LZ4
-          type: string
-      required:
-        - name
-      type: object
     GcsIntegration:
       properties:
         gcp_service_account:
           $ref: "#/components/schemas/GcpServiceAccount"
           description: Credentials for an GCP key integration.
       type: object
-    GcsIntegrationCreationRequest:
-      properties:
-        description:
-          description: Longer explanation for the integration.
-          example: AWS account with event data for the data science team.
-          type: string
-        gcs:
-          $ref: "#/components/schemas/GcsIntegration"
-          description: GCS details.
-        name:
-          description: Descriptive label.
-          example: event-logs
-          type: string
-      required:
-        - name
-      type: object
-    GcsSourceWrapper:
-      description: Details about the data source for the given collection.
-      properties:
-        format_params:
-          $ref: "#/components/schemas/FormatParams"
-          description: Format parameters for data from this source.
-        gcs:
-          $ref: "#/components/schemas/SourceGcs"
-          description: Configuration for ingestion from GCS.
-        integration_name:
-          description: Name of integration to use.
-          example: aws-integration
-          type: string
-      type: object
-      x-inner-field: gcs
     GetAliasResponse:
       properties:
         data:
@@ -1932,6 +1569,8 @@ components:
         data:
           $ref: "#/components/schemas/ApiKey"
           description: The requested API key object.
+      required:
+        - data
       type: object
     GetCollectionCommit:
       properties:
@@ -1954,6 +1593,9 @@ components:
             False if one or more of the offsets is still behind the request offsets.
           example: true
           type: boolean
+      required:
+        - fence
+        - passed
       type: object
     GetCollectionCommitRequest:
       properties:
@@ -1971,12 +1613,29 @@ components:
         data:
           $ref: "#/components/schemas/Collection"
           description: Collection that was requested.
+      required:
+        - data
+      type: object
+    GetDeploymentResponse:
+      properties:
+        display_name:
+          description: The display name of the deployment
+          type: string
+        rrn:
+          description: Deployment RRNs
+          example: rrn:rsd:use1a1:123e4567-e89b-12d3-a456-556642440000
+          type: string
+      required:
+        - display_name
+        - rrn
       type: object
     GetIntegrationResponse:
       properties:
         data:
           $ref: "#/components/schemas/Integration"
           description: Integration object.
+      required:
+        - data
       type: object
     GetQueryResponse:
       properties:
@@ -2006,6 +1665,8 @@ components:
         data:
           $ref: "#/components/schemas/Workspace"
           description: The workspace that was requested.
+      required:
+        - data
       type: object
     InputField:
       properties:
@@ -2095,6 +1756,10 @@ components:
           description: User that owns this integration.
           example: abc@rockset.com
           type: string
+        rrn:
+          description: Unique identifier for this integration
+          example: rrn:int:use1a1:123e4567-e89b-12d3-a456-556642440000
+          type: string
         s3:
           $ref: "#/components/schemas/S3Integration"
           description: Amazon S3 details, must have one of aws_access_key or aws_role.
@@ -2104,62 +1769,7 @@ components:
       required:
         - created_by
         - name
-      type: object
-    KafkaCollectionCreationRequest:
-      properties:
-        clustering_key:
-          description:
-            Deprecated. List of clustering fields. Use CLUSTER BY clause
-            in `field_mapping_query` instead.
-          items:
-            $ref: "#/components/schemas/FieldPartition"
-          type: array
-        description:
-          description: Text describing the collection.
-          example: transactions from stores worldwide
-          type: string
-        event_time_info:
-          $ref: "#/components/schemas/EventTimeInfo"
-          description:
-            Deprecated. Configuration for event data. Use an _event_time
-            mapping in `field_mapping_query` instead.
-        field_mapping_query:
-          $ref: "#/components/schemas/FieldMappingQuery"
-          description: Ingest transformation query.
-        name:
-          description:
-            Unique identifier for collection, can contain alphanumeric
-            or dash characters.
-          example: global-transactions
-          type: string
-        retention_secs:
-          description:
-            Number of seconds after which data is purged, based on event
-            time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly
-            less than 10 years.
-          example: 1000000
-          format: int64
-          maximum: 315359999
-          minimum: 3600
-          type: integer
-        source_download_soft_limit_bytes:
-          description: Soft ingest limit for this collection.
-          format: int64
-          type: integer
-        sources:
-          description: List of sources from which to ingest data
-          items:
-            $ref: "#/components/schemas/KafkaSourceWrapper"
-          type: array
-        storage_compression_type:
-          description: RocksDB storage compression type.
-          enum:
-            - LZ4
-            - ZSTD
-          example: LZ4
-          type: string
-      required:
-        - name
+        - rrn
       type: object
     KafkaIntegration:
       properties:
@@ -2203,98 +1813,12 @@ components:
         use_v3:
           type: boolean
       type: object
-    KafkaIntegrationCreationRequest:
-      properties:
-        description:
-          description: Longer explanation for the integration.
-          example: AWS account with event data for the data science team.
-          type: string
-        kafka:
-          $ref: "#/components/schemas/KafkaIntegration"
-        name:
-          description: Descriptive label.
-          example: event-logs
-          type: string
-      required:
-        - name
-      type: object
-    KafkaSourceWrapper:
-      description: Details about the data source for the given collection.
-      properties:
-        format_params:
-          $ref: "#/components/schemas/FormatParams"
-          description: Format parameters for data from this source.
-        integration_name:
-          description: Name of integration to use.
-          example: aws-integration
-          type: string
-        kafka:
-          $ref: "#/components/schemas/SourceKafka"
-          description: Kafka collection identifier.
-      type: object
-      x-inner-field: kafka
     KafkaV3SecurityConfig:
       properties:
         api_key:
           type: string
         secret:
           type: string
-      type: object
-    KinesisCollectionCreationRequest:
-      properties:
-        clustering_key:
-          description:
-            Deprecated. List of clustering fields. Use CLUSTER BY clause
-            in `field_mapping_query` instead.
-          items:
-            $ref: "#/components/schemas/FieldPartition"
-          type: array
-        description:
-          description: Text describing the collection.
-          example: transactions from stores worldwide
-          type: string
-        event_time_info:
-          $ref: "#/components/schemas/EventTimeInfo"
-          description:
-            Deprecated. Configuration for event data. Use an _event_time
-            mapping in `field_mapping_query` instead.
-        field_mapping_query:
-          $ref: "#/components/schemas/FieldMappingQuery"
-          description: Ingest transformation query.
-        name:
-          description:
-            Unique identifier for collection, can contain alphanumeric
-            or dash characters.
-          example: global-transactions
-          type: string
-        retention_secs:
-          description:
-            Number of seconds after which data is purged, based on event
-            time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly
-            less than 10 years.
-          example: 1000000
-          format: int64
-          maximum: 315359999
-          minimum: 3600
-          type: integer
-        source_download_soft_limit_bytes:
-          description: Soft ingest limit for this collection.
-          format: int64
-          type: integer
-        sources:
-          description: List of sources from which to ingest data
-          items:
-            $ref: "#/components/schemas/KinesisSourceWrapper"
-          type: array
-        storage_compression_type:
-          description: RocksDB storage compression type.
-          enum:
-            - LZ4
-            - ZSTD
-          example: LZ4
-          type: string
-      required:
-        - name
       type: object
     KinesisIntegration:
       properties:
@@ -2305,39 +1829,6 @@ components:
           $ref: "#/components/schemas/AwsRole"
           description: Details of an AWS cross-account role integration.
       type: object
-    KinesisIntegrationCreationRequest:
-      properties:
-        description:
-          description: Longer explanation for the integration.
-          example: AWS account with event data for the data science team.
-          type: string
-        kinesis:
-          $ref: "#/components/schemas/KinesisIntegration"
-          description:
-            Amazon Kinesis details, must have one of aws_access_key or
-            aws_role.
-        name:
-          description: Descriptive label.
-          example: event-logs
-          type: string
-      required:
-        - name
-      type: object
-    KinesisSourceWrapper:
-      description: Details about the data source for the given collection.
-      properties:
-        format_params:
-          $ref: "#/components/schemas/FormatParams"
-          description: Format parameters for data from this source.
-        integration_name:
-          description: Name of integration to use.
-          example: aws-integration
-          type: string
-        kinesis:
-          $ref: "#/components/schemas/SourceKinesis"
-          description: Configuration for ingestion from kinesis stream.
-      type: object
-      x-inner-field: kinesis
     ListAliasesResponse:
       properties:
         data:
@@ -2353,6 +1844,8 @@ components:
           items:
             $ref: "#/components/schemas/ApiKey"
           type: array
+      required:
+        - data
       type: object
     ListCollectionMountsResponse:
       properties:
@@ -2369,6 +1862,19 @@ components:
           items:
             $ref: "#/components/schemas/Collection"
           type: array
+      required:
+        - data
+      type: object
+    ListDeploymentsResponse:
+      properties:
+        deployments:
+          description: List of deployment RRNs
+          example: rrn:rsd:use1a1:123e4567-e89b-12d3-a456-556642440000
+          items:
+            type: string
+          type: array
+      required:
+        - deployments
       type: object
     ListIntegrationsResponse:
       properties:
@@ -2377,6 +1883,8 @@ components:
           items:
             $ref: "#/components/schemas/Integration"
           type: array
+      required:
+        - data
       type: object
     ListQueriesResponse:
       properties:
@@ -2472,6 +1980,8 @@ components:
           items:
             $ref: "#/components/schemas/Workspace"
           type: array
+      required:
+        - data
       type: object
     MicrobatchPolicy:
       properties:
@@ -2503,93 +2013,6 @@ components:
       required:
         - connection_uri
       type: object
-    MongodbCollectionCreationRequest:
-      properties:
-        clustering_key:
-          description:
-            Deprecated. List of clustering fields. Use CLUSTER BY clause
-            in `field_mapping_query` instead.
-          items:
-            $ref: "#/components/schemas/FieldPartition"
-          type: array
-        description:
-          description: Text describing the collection.
-          example: transactions from stores worldwide
-          type: string
-        event_time_info:
-          $ref: "#/components/schemas/EventTimeInfo"
-          description:
-            Deprecated. Configuration for event data. Use an _event_time
-            mapping in `field_mapping_query` instead.
-        field_mapping_query:
-          $ref: "#/components/schemas/FieldMappingQuery"
-          description: Ingest transformation query.
-        name:
-          description:
-            Unique identifier for collection, can contain alphanumeric
-            or dash characters.
-          example: global-transactions
-          type: string
-        retention_secs:
-          description:
-            Number of seconds after which data is purged, based on event
-            time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly
-            less than 10 years.
-          example: 1000000
-          format: int64
-          maximum: 315359999
-          minimum: 3600
-          type: integer
-        source_download_soft_limit_bytes:
-          description: Soft ingest limit for this collection.
-          format: int64
-          type: integer
-        sources:
-          description: List of sources from which to ingest data
-          items:
-            $ref: "#/components/schemas/MongodbSourceWrapper"
-          type: array
-        storage_compression_type:
-          description: RocksDB storage compression type.
-          enum:
-            - LZ4
-            - ZSTD
-          example: LZ4
-          type: string
-      required:
-        - name
-      type: object
-    MongodbIntegrationCreationRequest:
-      properties:
-        description:
-          description: Longer explanation for the integration.
-          example: AWS account with event data for the data science team.
-          type: string
-        mongodb:
-          $ref: "#/components/schemas/MongoDbIntegration"
-          description: MongoDb details.
-        name:
-          description: Descriptive label.
-          example: event-logs
-          type: string
-      required:
-        - name
-      type: object
-    MongodbSourceWrapper:
-      description: Details about the data source for the given collection.
-      properties:
-        format_params:
-          $ref: "#/components/schemas/FormatParams"
-          description: Format parameters for data from this source.
-        integration_name:
-          description: Name of integration to use.
-          example: aws-integration
-          type: string
-        mongodb:
-          $ref: "#/components/schemas/SourceMongoDb"
-          description: MongoDB collection details.
-      type: object
-      x-inner-field: mongodb
     Offsets:
       properties:
         commit:
@@ -2639,6 +2062,9 @@ components:
       type: object
     OrganizationResponse:
       properties:
+        apikey:
+          description: Admin apikey
+          type: string
         data:
           $ref: "#/components/schemas/Organization"
           description: Organization object.
@@ -2834,9 +2260,6 @@ components:
             - DELETE_VI
             - CREATE_SIMILARITY_INDEX_WS
             - DELETE_SIMILARITY_INDEX_WS
-            - CREATE_NETWORK_CONFIGURATION_GLOBAL
-            - DELETE_NETWORK_CONFIGURATION_GLOBAL
-            - LIST_NETWORK_CONFIGURATIONS_GLOBAL
             - UPDATE_DEPLOYMENT_DEFAULT_QUERY_VI
           example: CREATE_COLLECTION_WS
           type: string
@@ -2924,6 +2347,11 @@ components:
           description: Unique Query ID.
           example: 5b596206-c632-4a08-8343-0c560f7ef7f1
           type: string
+        select_command_completed:
+          description:
+            Whether this query has completed the SELECT command. Only populated
+            for INSERT INTO queries.
+          type: boolean
         sql:
           description: The SQL query for this request
           type: string
@@ -3326,11 +2754,6 @@ components:
           description: Text describing the collection.
           example: transactions from stores worldwide
           type: string
-        event_time_info:
-          $ref: "#/components/schemas/EventTimeInfo"
-          description:
-            Deprecated. Configuration for event data. Use an _event_time
-            mapping in `field_mapping_query` instead.
         field_mapping_query:
           $ref: "#/components/schemas/FieldMappingQuery"
           description: Ingest transformation query.
@@ -3511,62 +2934,6 @@ components:
           description: Schema registry URL.
           type: string
       type: object
-    SnowflakeCollectionCreationRequest:
-      properties:
-        clustering_key:
-          description:
-            Deprecated. List of clustering fields. Use CLUSTER BY clause
-            in `field_mapping_query` instead.
-          items:
-            $ref: "#/components/schemas/FieldPartition"
-          type: array
-        description:
-          description: Text describing the collection.
-          example: transactions from stores worldwide
-          type: string
-        event_time_info:
-          $ref: "#/components/schemas/EventTimeInfo"
-          description:
-            Deprecated. Configuration for event data. Use an _event_time
-            mapping in `field_mapping_query` instead.
-        field_mapping_query:
-          $ref: "#/components/schemas/FieldMappingQuery"
-          description: Ingest transformation query.
-        name:
-          description:
-            Unique identifier for collection, can contain alphanumeric
-            or dash characters.
-          example: global-transactions
-          type: string
-        retention_secs:
-          description:
-            Number of seconds after which data is purged, based on event
-            time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly
-            less than 10 years.
-          example: 1000000
-          format: int64
-          maximum: 315359999
-          minimum: 3600
-          type: integer
-        source_download_soft_limit_bytes:
-          description: Soft ingest limit for this collection.
-          format: int64
-          type: integer
-        sources:
-          description: List of sources from which to ingest data
-          items:
-            $ref: "#/components/schemas/SnowflakeSourceWrapper"
-          type: array
-        storage_compression_type:
-          description: RocksDB storage compression type.
-          enum:
-            - LZ4
-            - ZSTD
-          example: LZ4
-          type: string
-      required:
-        - name
-      type: object
     SnowflakeIntegration:
       properties:
         aws_access_key:
@@ -3606,37 +2973,6 @@ components:
         - snowflake_url
         - username
       type: object
-    SnowflakeIntegrationCreationRequest:
-      properties:
-        description:
-          description: Longer explanation for the integration.
-          example: AWS account with event data for the data science team.
-          type: string
-        name:
-          description: Descriptive label.
-          example: event-logs
-          type: string
-        snowflake:
-          $ref: "#/components/schemas/SnowflakeIntegration"
-          description: Snowflake details.
-      required:
-        - name
-      type: object
-    SnowflakeSourceWrapper:
-      description: Details about the data source for the given collection.
-      properties:
-        format_params:
-          $ref: "#/components/schemas/FormatParams"
-          description: Format parameters for data from this source.
-        integration_name:
-          description: Name of integration to use.
-          example: aws-integration
-          type: string
-        snowflake:
-          $ref: "#/components/schemas/SourceSnowflake"
-          description: Configuration for ingestion from Snowflake.
-      type: object
-      x-inner-field: snowflake
     Source:
       description:
         "Details about the data source for the given collection. Only one
@@ -3690,6 +3026,10 @@ components:
           description: ISO-8601 date when source would be auto resumed, if suspended
           example: "2019-01-15T21:48:23Z"
           readOnly: true
+          type: string
+        rrn:
+          description: Source RRN.
+          example: rrn:source:use1a1:123e4567-e89b-12d3-a456-556642440000
           type: string
         s3:
           $ref: "#/components/schemas/SourceS3"
@@ -4067,17 +3407,6 @@ components:
           description: Prefix that selects keys to ingest.
           example: prefix/to/keys
           type: string
-        prefixes:
-          description:
-            Deprecated in favor of `prefix`. List of prefixes to paths
-            from which data should be ingested.
-          example:
-            - /transactions
-            - /stores
-          items:
-            type: string
-          readOnly: true
-          type: array
         region:
           description: AWS region containing source bucket.
           example: us-west-2
@@ -4562,20 +3891,16 @@ components:
       type: object
     UpdateAliasRequest:
       properties:
-        collections:
-          description: List of fully qualified collection names referenced by alias.
-          example:
-            - commons.foo
-            - prod.demo
-          items:
-            type: string
-          type: array
         description:
           description: Optional description.
           example: version alias
           type: string
+        target:
+          description: Fully qualified collection name referenced by alias.
+          example: commons.foo
+          type: string
       required:
-        - collections
+        - target
       type: object
     UpdateApiKeyRequest:
       properties:
@@ -4588,7 +3913,8 @@ components:
             If provided, the API key will automatically expire at this
             time (ISO-8601 format). Requires premium.
           example: "2001-08-28T00:23:41Z"
-          type: string
+          format: int64
+          type: integer
         state:
           description: State that the api key should be set to.
           enum:
@@ -4602,18 +3928,8 @@ components:
         data:
           $ref: "#/components/schemas/ApiKey"
           description: The API key that was updated.
-      type: object
-    UpdateCollectionRequest:
-      properties:
-        description:
-          description: Updated text describing the collection.
-          example: transactions from stores worldwide
-          type: string
-        field_mapping_query:
-          $ref: "#/components/schemas/FieldMappingQuery"
-          description:
-            Updated ingest transformation query. Note that updating the
-            transformation will lead to a brief interruption in ingestion.
+      required:
+        - data
       type: object
     UpdateDeploymentSettingsRequest:
       properties:
@@ -4632,46 +3948,26 @@ components:
         azure_event_hubs:
           $ref: "#/components/schemas/AzureEventHubsIntegration"
           description: Azure Event Hubs details.
-        azure_service_bus:
-          $ref: "#/components/schemas/AzureServiceBusIntegration"
-          description: Azure Service Bus details.
         description:
           description: Longer explanation for the integration.
           example: AWS account with event data for the data science team.
           type: string
-        dynamodb:
-          $ref: "#/components/schemas/DynamodbIntegration"
-          description:
-            Amazon DynamoDB details, must have one of aws_access_key or
-            aws_role.
-        gcs:
-          $ref: "#/components/schemas/GcsIntegration"
-          description: GCS details.
         is_write_enabled:
           description: is write access enabled for this integration.
           type: boolean
         kafka:
           $ref: "#/components/schemas/KafkaIntegration"
-        kinesis:
-          $ref: "#/components/schemas/KinesisIntegration"
-          description:
-            Amazon Kinesis details, must have one of aws_access_key or
-            aws_role.
-        mongodb:
-          $ref: "#/components/schemas/MongoDbIntegration"
-          description: MongoDb details.
         s3:
           $ref: "#/components/schemas/S3Integration"
           description: Amazon S3 details, must have one of aws_access_key or aws_role.
-        snowflake:
-          $ref: "#/components/schemas/SnowflakeIntegration"
-          description: Snowflake details.
       type: object
     UpdateIntegrationResponse:
       properties:
         data:
           $ref: "#/components/schemas/Integration"
           description: Updated integration object.
+      required:
+        - data
       type: object
     UpdateQueryLambdaRequest:
       properties:
@@ -4787,6 +4083,36 @@ components:
           $ref: "#/components/schemas/View"
           description: View that was updated.
       type: object
+    UpdateVirtualInstanceClassSettingsRequest:
+      properties:
+        large:
+          $ref: "#/components/schemas/UpdateVirtualInstanceSizeSettingsRequest"
+          description: The settings for this Virtual Instance when it is set to LARGE
+        medium:
+          $ref: "#/components/schemas/UpdateVirtualInstanceSizeSettingsRequest"
+          description: The settings for this Virtual Instance when it is set to MEDIUM
+        small:
+          $ref: "#/components/schemas/UpdateVirtualInstanceSizeSettingsRequest"
+          description: The settings for this Virtual Instance when it is set to SMALL
+        xlarge:
+          $ref: "#/components/schemas/UpdateVirtualInstanceSizeSettingsRequest"
+          description: The settings for this Virtual Instance when it is set to XLARGE
+        xlarge16:
+          $ref: "#/components/schemas/UpdateVirtualInstanceSizeSettingsRequest"
+          description: The settings for this Virtual Instance when it is set to XLARGE16
+        xlarge2:
+          $ref: "#/components/schemas/UpdateVirtualInstanceSizeSettingsRequest"
+          description: The settings for this Virtual Instance when it is set to XLARGE2
+        xlarge4:
+          $ref: "#/components/schemas/UpdateVirtualInstanceSizeSettingsRequest"
+          description: The settings for this Virtual Instance when it is set to XLARGE4
+        xlarge8:
+          $ref: "#/components/schemas/UpdateVirtualInstanceSizeSettingsRequest"
+          description: The settings for this Virtual Instance when it is set to XLARGE8
+        xsmall:
+          $ref: "#/components/schemas/UpdateVirtualInstanceSizeSettingsRequest"
+          description: The settings for this Virtual Instance when it is set to XSMALL
+      type: object
     UpdateVirtualInstanceRequest:
       properties:
         auto_scaling_policy:
@@ -4869,12 +4195,35 @@ components:
             - XLARGE16
           example: LARGE
           type: string
+        settings:
+          $ref: "#/components/schemas/UpdateVirtualInstanceSettingsRequest"
+          description: Various settings attached to this Virtual Instance.
       type: object
     UpdateVirtualInstanceResponse:
       properties:
         data:
           $ref: "#/components/schemas/VirtualInstance"
           description: Virtual instance that was switched.
+      type: object
+    UpdateVirtualInstanceSettingsRequest:
+      properties:
+        gp_il:
+          $ref: "#/components/schemas/UpdateVirtualInstanceClassSettingsRequest"
+          description: The settings for this Virtual Instance when it's class is GP.IL
+        mo_br:
+          $ref: "#/components/schemas/UpdateVirtualInstanceClassSettingsRequest"
+          description: The settings for this Virtual Instance when it's class is MO.BR
+        mo_il:
+          $ref: "#/components/schemas/UpdateVirtualInstanceClassSettingsRequest"
+          description: The settings for this Virtual Instance when it's class is MO.IL
+      type: object
+    UpdateVirtualInstanceSizeSettingsRequest:
+      properties:
+        cqel:
+          description: The CQEL for this Virtual Instance
+          example: 10
+          format: int32
+          type: integer
       type: object
     User:
       properties:
@@ -4936,14 +4285,14 @@ components:
           description: ISO-8601 date.
           example: "2001-08-28T00:23:41Z"
           type: string
+        created_by:
+          description: email of the user who created this object.
+          example: example@rockset.com
+          type: string
         created_by_apikey_name:
           description:
             Name of the API key that was used to create this object if
             one was used.
-          type: string
-        creator_email:
-          description: Email of the creator.
-          example: xyz@rockset.com
           type: string
         description:
           description: View description.
@@ -4968,23 +4317,11 @@ components:
           description: Name of the view.
           example: demo
           type: string
-        owner_email:
-          description: "Email of the owner, note: deprecated and will always be null."
-          example: abc@rockset.com
-          type: string
         path:
           type: string
         query_sql:
           description: SQL query of the view.
           example: SELECT * FROM commons.foo
-          type: string
-        state:
-          description: State of the view.
-          enum:
-            - CREATED
-            - SYNCING
-            - DELETED
-          example: CREATED
           type: string
         workspace:
           description: Name of the workspace.
@@ -5112,6 +4449,13 @@ components:
           description: Virtual Instance RRN.
           example: rrn:vi:use1a1:123e4567-e89b-12d3-a456-556642440000
           type: string
+        settings:
+          $ref: "#/components/schemas/VirtualInstanceSettings"
+          description: Various settings attached to this Virtual Instance.
+        shard_count:
+          description: Number of collection shards on this Virtual Instance.
+          format: int64
+          type: integer
         state:
           description: Virtual instance state.
           enum:
@@ -5132,6 +4476,73 @@ components:
           description: Stats about this VirtualInstance
       required:
         - name
+      type: object
+    VirtualInstanceClassSettings:
+      properties:
+        free:
+          $ref: "#/components/schemas/VirtualInstanceSizeSettings"
+          description: The settings for this Virtual Instance when it is set to FREE
+        large:
+          $ref: "#/components/schemas/VirtualInstanceSizeSettings"
+          description: The settings for this Virtual Instance when it is set to LARGE
+        medium:
+          $ref: "#/components/schemas/VirtualInstanceSizeSettings"
+          description: The settings for this Virtual Instance when it is set to MEDIUM
+        milli:
+          $ref: "#/components/schemas/VirtualInstanceSizeSettings"
+          description: The settings for this Virtual Instance when it is set to MILLI
+        nano:
+          $ref: "#/components/schemas/VirtualInstanceSizeSettings"
+          description: The settings for this Virtual Instance when it is set to NANO
+        shared:
+          $ref: "#/components/schemas/VirtualInstanceSizeSettings"
+          description: The settings for this Virtual Instance when it is set to SHARED
+        small:
+          $ref: "#/components/schemas/VirtualInstanceSizeSettings"
+          description: The settings for this Virtual Instance when it is set to SMALL
+        xlarge:
+          $ref: "#/components/schemas/VirtualInstanceSizeSettings"
+          description: The settings for this Virtual Instance when it is set to XLARGE
+        xlarge16:
+          $ref: "#/components/schemas/VirtualInstanceSizeSettings"
+          description: The settings for this Virtual Instance when it is set to XLARGE16
+        xlarge2:
+          $ref: "#/components/schemas/VirtualInstanceSizeSettings"
+          description: The settings for this Virtual Instance when it is set to XLARGE2
+        xlarge4:
+          $ref: "#/components/schemas/VirtualInstanceSizeSettings"
+          description: The settings for this Virtual Instance when it is set to XLARGE4
+        xlarge8:
+          $ref: "#/components/schemas/VirtualInstanceSizeSettings"
+          description: The settings for this Virtual Instance when it is set to XLARGE8
+        xsmall:
+          $ref: "#/components/schemas/VirtualInstanceSizeSettings"
+          description: The settings for this Virtual Instance when it is set to XSMALL
+      type: object
+    VirtualInstanceSettings:
+      properties:
+        gp_il:
+          $ref: "#/components/schemas/VirtualInstanceClassSettings"
+          description: The settings for this Virtual Instance when it's class is GP.IL
+        mo_br:
+          $ref: "#/components/schemas/VirtualInstanceClassSettings"
+          description: The settings for this Virtual Instance when it's class is MO.BR
+        mo_il:
+          $ref: "#/components/schemas/VirtualInstanceClassSettings"
+          description: The settings for this Virtual Instance when it's class is MO.IL
+      type: object
+    VirtualInstanceSizeSettings:
+      properties:
+        cqel:
+          description: The CQEL for this Virtual Instance
+          example: 10
+          format: int32
+          type: integer
+        shard_limit:
+          description: The shard limit for this Virtual Instance
+          example: 640
+          format: int64
+          type: integer
       type: object
     VirtualInstanceStats:
       properties:
@@ -5165,6 +4576,13 @@ components:
           description: Descriptive label and unique identifier.
           example: event_logs
           type: string
+        rrn:
+          description: Unique identifier for this workspace
+          example: rrn:ws:use1a1:123e4567-e89b-12d3-a456-556642440000
+          type: string
+      required:
+        - name
+        - rrn
       type: object
     XmlParams:
       properties:
@@ -5221,6 +4639,75 @@ info:
   version: v1
 openapi: 3.0.0
 paths:
+  /v1/deployments:
+    get:
+      description: ""
+      operationId: listDeployments
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListDeploymentsResponse"
+          description: Deployment list
+      summary: List all deployments
+      tags:
+        - Deployments
+    post:
+      description: ""
+      operationId: provisionDeployment
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateDeploymentRequest"
+        description: JSON object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateDeploymentResponse"
+          description: deployment provisioned successfully
+      summary: Provision a deployment
+      tags:
+        - Deployments
+  /v1/deployments/self:
+    get:
+      description: ""
+      operationId: getOwnDeployment
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetDeploymentResponse"
+          description: Deployment info
+      summary: Get info about your own deployment
+      tags:
+        - Deployments
+  /v1/deployments/{rrn}:
+    get:
+      description: ""
+      operationId: getDeployment
+      parameters:
+        - description: The deployment RRN
+          in: path
+          name: rrn
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetDeploymentResponse"
+          description: Deployment info
+      summary: Get info about a deployment
+      tags:
+        - Deployments
   /v1/orgs/self:
     get:
       description: Retrieve information about current organization.
@@ -5419,10 +4906,539 @@ paths:
       tags:
         - Aliases
       x-rename: list
+  /v1/orgs/self/apikeys:
+    get:
+      description: List API key metadata for any user in your organization.
+      operationId: listApiKeys
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListApiKeysResponse"
+          description: API keys retrieved successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: List API Keys
+      tags:
+        - API Keys
+      x-rename: list
+    post:
+      description: Create an apikey in this organization
+      operationId: createApiKey
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateApiKeyRequest"
+        description: JSON object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateApiKeyResponse"
+          description: API keys retrieved successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Create API Key
+      tags:
+        - API Keys
+  /v1/orgs/self/apikeys/{rrn}:
+    delete:
+      description: Delete an API key for any user in your organization.
+      operationId: deleteApiKey
+      parameters:
+        - description: RRN of the API key.
+          example: my-key
+          in: path
+          name: rrn
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteApiKeyResponse"
+          description: API key deleted successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Delete API Key
+      tags:
+        - API Keys
+      x-rename: delete
+    get:
+      description: Retrieve a particular API key for any user in your organization.
+      operationId: getApiKey
+      parameters:
+        - description: RRN of the API key.
+          example: my-key
+          in: path
+          name: rrn
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetApiKeyResponse"
+          description: API key retrieved successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Retrieve API Key
+      tags:
+        - API Keys
+      x-rename: get
+    post:
+      description: Update the state of an API key for any user in your organization.
+      operationId: updateApiKey
+      parameters:
+        - description: RRN of the API key.
+          example: my-key
+          in: path
+          name: rrn
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateApiKeyRequest"
+        description: JSON object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpdateApiKeyResponse"
+          description: API key successfully updated
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Update API Key State
+      tags:
+        - API Keys
+      x-rename: update
   /v1/orgs/self/collections:
     get:
-      description: Retrieve all collections in an organization.
-      operationId: listCollections
+      description: Retrieve all collections in a deployment.
+      operationId: listCollectionsDeployment
       responses:
         "200":
           content:
@@ -5821,741 +5837,6 @@ paths:
       tags:
         - Integrations
       x-rename: list
-  /v1/orgs/self/integrations#AzureBlobStorage:
-    post:
-      description: Create a new integration.
-      operationId: createAzureBlobStorageIntegration
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/AzureBlobStorageIntegrationCreationRequest"
-        description: integration credentials
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/CreateIntegrationResponse"
-          description: integration created successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: conflict
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Create azure blob storage integration
-      tags:
-        - Integrations
-  /v1/orgs/self/integrations#AzureEventHubs:
-    post:
-      description: Create a new integration.
-      operationId: createAzureEventHubsIntegration
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/AzureEventHubsIntegrationCreationRequest"
-        description: integration credentials
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/CreateIntegrationResponse"
-          description: integration created successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: conflict
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Create azure event hubs integration
-      tags:
-        - Integrations
-  /v1/orgs/self/integrations#Dynamodb:
-    post:
-      description: Create a new integration.
-      operationId: createDynamodbIntegration
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/DynamodbIntegrationCreationRequest"
-        description: integration credentials
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/CreateIntegrationResponse"
-          description: integration created successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: conflict
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Create dynamodb integration
-      tags:
-        - Integrations
-  /v1/orgs/self/integrations#Gcs:
-    post:
-      description: Create a new integration.
-      operationId: createGcsIntegration
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/GcsIntegrationCreationRequest"
-        description: integration credentials
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/CreateIntegrationResponse"
-          description: integration created successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: conflict
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Create gcs integration
-      tags:
-        - Integrations
-  /v1/orgs/self/integrations#Kafka:
-    post:
-      description: Create a new integration.
-      operationId: createKafkaIntegration
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/KafkaIntegrationCreationRequest"
-        description: integration credentials
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/CreateIntegrationResponse"
-          description: integration created successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: conflict
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Create kafka integration
-      tags:
-        - Integrations
-  /v1/orgs/self/integrations#Kinesis:
-    post:
-      description: Create a new integration.
-      operationId: createKinesisIntegration
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/KinesisIntegrationCreationRequest"
-        description: integration credentials
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/CreateIntegrationResponse"
-          description: integration created successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: conflict
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Create kinesis integration
-      tags:
-        - Integrations
-  /v1/orgs/self/integrations#Mongodb:
-    post:
-      description: Create a new integration.
-      operationId: createMongodbIntegration
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/MongodbIntegrationCreationRequest"
-        description: integration credentials
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/CreateIntegrationResponse"
-          description: integration created successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: conflict
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Create mongodb integration
-      tags:
-        - Integrations
   /v1/orgs/self/integrations#S3:
     post:
       description: Create a new integration.
@@ -6659,111 +5940,6 @@ paths:
                 $ref: "#/components/schemas/ErrorModel"
           description: not ready
       summary: Create s3 integration
-      tags:
-        - Integrations
-  /v1/orgs/self/integrations#Snowflake:
-    post:
-      description: Create a new integration.
-      operationId: createSnowflakeIntegration
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/SnowflakeIntegrationCreationRequest"
-        description: integration credentials
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/CreateIntegrationResponse"
-          description: integration created successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: conflict
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Create snowflake integration
       tags:
         - Integrations
   /v1/orgs/self/integrations/{integration}:
@@ -8740,112 +7916,6 @@ paths:
       summary: Retrieve Current User
       tags:
         - Users
-  /v1/orgs/self/users/self/apikeys:
-    post:
-      description: Create a new API key for the authenticated user.
-      operationId: createApiKey
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/CreateApiKeyRequest"
-        description: JSON object
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/CreateApiKeyResponse"
-          description: API key created successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: conflict
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Create API Key
-      tags:
-        - API Keys
-      x-rename: create
   /v1/orgs/self/users/self/preferences:
     get:
       description: Get all notification preferences.
@@ -9370,475 +8440,6 @@ paths:
       summary: Update User
       tags:
         - Users
-      x-rename: update
-  /v1/orgs/self/users/{user}/apikeys:
-    get:
-      description: List API key metadata for any user in your organization.
-      operationId: listApiKeys
-      parameters:
-        - description:
-            Email of the API key owner. Use `self` to specify the currently
-            authenticated user.
-          example: admin@me.com
-          in: path
-          name: user
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ListApiKeysResponse"
-          description: API keys retrieved successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: conflict
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: List API Keys
-      tags:
-        - API Keys
-      x-rename: list
-  /v1/orgs/self/users/{user}/apikeys/{name}:
-    delete:
-      description: Delete an API key for any user in your organization.
-      operationId: deleteApiKey
-      parameters:
-        - description: Name of the API key.
-          example: my-key
-          in: path
-          name: name
-          required: true
-          schema:
-            type: string
-        - description:
-            Email of the API key owner. Use `self` to specify the currently
-            authenticated user.
-          example: admin@me.com
-          in: path
-          name: user
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/DeleteApiKeyResponse"
-          description: API key deleted successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: conflict
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Delete API Key
-      tags:
-        - API Keys
-      x-rename: delete
-    get:
-      description: Retrieve a particular API key for any user in your organization.
-      operationId: getApiKey
-      parameters:
-        - description:
-            Email of the API key owner. Use `self` to specify the currently
-            authenticated user.
-          example: admin@me.com
-          in: path
-          name: user
-          required: true
-          schema:
-            type: string
-        - description: Name of the API key.
-          example: my-key
-          in: path
-          name: name
-          required: true
-          schema:
-            type: string
-        - description: Reveal full key.
-          example: true
-          in: query
-          name: reveal
-          required: false
-          schema:
-            type: boolean
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GetApiKeyResponse"
-          description: API key retrieved successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: conflict
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Retrieve API Key
-      tags:
-        - API Keys
-      x-rename: get
-    post:
-      description: Update the state of an API key for any user in your organization.
-      operationId: updateApiKey
-      parameters:
-        - description: Name of the API key.
-          example: my-key
-          in: path
-          name: name
-          required: true
-          schema:
-            type: string
-        - description:
-            Email of the API key owner. Use `self` to specify the currently
-            authenticated user.
-          example: admin@me.com
-          in: path
-          name: user
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/UpdateApiKeyRequest"
-        description: JSON object
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/UpdateApiKeyResponse"
-          description: API key successfully updated
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: conflict
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Update API Key State
-      tags:
-        - API Keys
       x-rename: update
   /v1/orgs/self/views:
     get:
@@ -10790,115 +9391,6 @@ paths:
                 $ref: "#/components/schemas/ErrorModel"
           description: not ready
       summary: Unmount Collection
-      tags:
-        - Virtual Instances
-    get:
-      description: Retrieve a mount on this virtual instance.
-      operationId: getCollectionMount
-      parameters:
-        - description: Virtual Instance RRN
-          in: path
-          name: virtualInstanceId
-          required: true
-          schema:
-            type: string
-        - in: path
-          name: collectionPath
-          required: true
-          schema:
-            type: string
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/CollectionMountResponse"
-          description: collection unmounted
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: conflict
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Get Collection Mount
       tags:
         - Virtual Instances
   /v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts/{collectionPath}/offsets/commit:
@@ -12084,7 +10576,7 @@ paths:
       tags:
         - Aliases
       x-rename: create
-  /v1/orgs/self/ws/{workspace}/aliases/{alias}:
+  /v1/orgs/self/ws/{workspace}/aliases/{alias_rrn}:
     delete:
       description: Delete an alias.
       operationId: deleteAlias
@@ -12096,9 +10588,9 @@ paths:
           schema:
             default: commons
             type: string
-        - description: name of the alias
+        - description: rrn of the alias
           in: path
-          name: alias
+          name: alias_rrn
           required: true
           schema:
             type: string
@@ -12208,9 +10700,9 @@ paths:
           schema:
             default: commons
             type: string
-        - description: name of the alias
+        - description: rrn of the alias
           in: path
-          name: alias
+          name: alias_rrn
           required: true
           schema:
             type: string
@@ -12320,9 +10812,9 @@ paths:
           schema:
             default: commons
             type: string
-        - description: name of the alias
+        - description: rrn of the alias
           in: path
-          name: alias
+          name: alias_rrn
           required: true
           schema:
             type: string
@@ -12430,8 +10922,8 @@ paths:
       x-rename: update
   /v1/orgs/self/ws/{workspace}/collections:
     get:
-      description: Retrieve all collections in a workspace.
-      operationId: workspaceCollections
+      description: List collections in this workspace.
+      operationId: listCollections
       parameters:
         - description: name of the workspace
           in: path
@@ -12446,7 +10938,7 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ListCollectionsResponse"
-          description: collections retrieved successfully
+          description: collection list
         "400":
           content:
             application/json:
@@ -12531,798 +11023,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorModel"
           description: not ready
-      summary: List Collections in Workspace
-      tags:
-        - Collections
-  /v1/orgs/self/ws/{workspace}/collections#AzureBlobStorage:
-    post:
-      description: Create new collection in a workspace.
-      operationId: createAzureBlobStorageCollection
-      parameters:
-        - description: name of the workspace
-          in: path
-          name: workspace
-          required: true
-          schema:
-            default: commons
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/AzureBlobStorageCollectionCreationRequest"
-        description: JSON object
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/CreateCollectionResponse"
-          description: collection created successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: conflict
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Create azure blob storage collection
-      tags:
-        - Collections
-  /v1/orgs/self/ws/{workspace}/collections#AzureEventHubs:
-    post:
-      description: Create new collection in a workspace.
-      operationId: createAzureEventHubsCollection
-      parameters:
-        - description: name of the workspace
-          in: path
-          name: workspace
-          required: true
-          schema:
-            default: commons
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/AzureEventHubsCollectionCreationRequest"
-        description: JSON object
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/CreateCollectionResponse"
-          description: collection created successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: conflict
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Create azure event hubs collection
-      tags:
-        - Collections
-  /v1/orgs/self/ws/{workspace}/collections#Dynamodb:
-    post:
-      description: Create new collection in a workspace.
-      operationId: createDynamodbCollection
-      parameters:
-        - description: name of the workspace
-          in: path
-          name: workspace
-          required: true
-          schema:
-            default: commons
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/DynamodbCollectionCreationRequest"
-        description: JSON object
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/CreateCollectionResponse"
-          description: collection created successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: conflict
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Create dynamodb collection
-      tags:
-        - Collections
-  /v1/orgs/self/ws/{workspace}/collections#Gcs:
-    post:
-      description: Create new collection in a workspace.
-      operationId: createGcsCollection
-      parameters:
-        - description: name of the workspace
-          in: path
-          name: workspace
-          required: true
-          schema:
-            default: commons
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/GcsCollectionCreationRequest"
-        description: JSON object
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/CreateCollectionResponse"
-          description: collection created successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: conflict
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Create gcs collection
-      tags:
-        - Collections
-  /v1/orgs/self/ws/{workspace}/collections#Kafka:
-    post:
-      description: Create new collection in a workspace.
-      operationId: createKafkaCollection
-      parameters:
-        - description: name of the workspace
-          in: path
-          name: workspace
-          required: true
-          schema:
-            default: commons
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/KafkaCollectionCreationRequest"
-        description: JSON object
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/CreateCollectionResponse"
-          description: collection created successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: conflict
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Create kafka collection
-      tags:
-        - Collections
-  /v1/orgs/self/ws/{workspace}/collections#Kinesis:
-    post:
-      description: Create new collection in a workspace.
-      operationId: createKinesisCollection
-      parameters:
-        - description: name of the workspace
-          in: path
-          name: workspace
-          required: true
-          schema:
-            default: commons
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/KinesisCollectionCreationRequest"
-        description: JSON object
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/CreateCollectionResponse"
-          description: collection created successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: conflict
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Create kinesis collection
-      tags:
-        - Collections
-  /v1/orgs/self/ws/{workspace}/collections#Mongodb:
-    post:
-      description: Create new collection in a workspace.
-      operationId: createMongodbCollection
-      parameters:
-        - description: name of the workspace
-          in: path
-          name: workspace
-          required: true
-          schema:
-            default: commons
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/MongodbCollectionCreationRequest"
-        description: JSON object
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/CreateCollectionResponse"
-          description: collection created successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: conflict
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Create mongodb collection
+      summary: List Collection
       tags:
         - Collections
   /v1/orgs/self/ws/{workspace}/collections#S3:
@@ -13436,119 +11137,6 @@ paths:
                 $ref: "#/components/schemas/ErrorModel"
           description: not ready
       summary: Create s3 collection
-      tags:
-        - Collections
-  /v1/orgs/self/ws/{workspace}/collections#Snowflake:
-    post:
-      description: Create new collection in a workspace.
-      operationId: createSnowflakeCollection
-      parameters:
-        - description: name of the workspace
-          in: path
-          name: workspace
-          required: true
-          schema:
-            default: commons
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/SnowflakeCollectionCreationRequest"
-        description: JSON object
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/CreateCollectionResponse"
-          description: collection created successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: conflict
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Create snowflake collection
       tags:
         - Collections
   /v1/orgs/self/ws/{workspace}/collections/{collection}:
@@ -13776,125 +11364,6 @@ paths:
       tags:
         - Collections
       x-rename: get
-    put:
-      description: Update details about a collection.
-      operationId: updateCollection
-      parameters:
-        - description: name of the workspace
-          in: path
-          name: workspace
-          required: true
-          schema:
-            default: commons
-            type: string
-        - description: name of the collection
-          in: path
-          name: collection
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/UpdateCollectionRequest"
-        description: JSON object
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GetCollectionResponse"
-          description: collection updated successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: conflict
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Update Collection
-      tags:
-        - Collections
-      x-rename: update
   /v1/orgs/self/ws/{workspace}/collections/{collection}/docs:
     delete:
       description: Delete documents from a collection.
@@ -14478,839 +11947,6 @@ paths:
       tags:
         - Sources
       x-rename: list
-  /v1/orgs/self/ws/{workspace}/collections/{collection}/sources#AzureBlobStorage:
-    post:
-      description: Create new source in a collection.
-      operationId: createAzureBlobStorageSource
-      parameters:
-        - description: name of the workspace
-          in: path
-          name: workspace
-          required: true
-          schema:
-            default: commons
-            type: string
-        - description: name of the collection
-          in: path
-          name: collection
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/AzureBlobStorageSourceWrapper"
-        description: JSON object
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GetSourceResponse"
-          description: source created successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: conflict
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Create a new azure blob storage source in a collection
-      tags:
-        - Sources
-  /v1/orgs/self/ws/{workspace}/collections/{collection}/sources#AzureEventHubs:
-    post:
-      description: Create new source in a collection.
-      operationId: createAzureEventHubsSource
-      parameters:
-        - description: name of the workspace
-          in: path
-          name: workspace
-          required: true
-          schema:
-            default: commons
-            type: string
-        - description: name of the collection
-          in: path
-          name: collection
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/AzureEventHubsSourceWrapper"
-        description: JSON object
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GetSourceResponse"
-          description: source created successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: conflict
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Create a new azure event hubs source in a collection
-      tags:
-        - Sources
-  /v1/orgs/self/ws/{workspace}/collections/{collection}/sources#Dynamodb:
-    post:
-      description: Create new source in a collection.
-      operationId: createDynamodbSource
-      parameters:
-        - description: name of the workspace
-          in: path
-          name: workspace
-          required: true
-          schema:
-            default: commons
-            type: string
-        - description: name of the collection
-          in: path
-          name: collection
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/DynamodbSourceWrapper"
-        description: JSON object
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GetSourceResponse"
-          description: source created successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: conflict
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Create a new dynamodb source in a collection
-      tags:
-        - Sources
-  /v1/orgs/self/ws/{workspace}/collections/{collection}/sources#Gcs:
-    post:
-      description: Create new source in a collection.
-      operationId: createGcsSource
-      parameters:
-        - description: name of the workspace
-          in: path
-          name: workspace
-          required: true
-          schema:
-            default: commons
-            type: string
-        - description: name of the collection
-          in: path
-          name: collection
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/GcsSourceWrapper"
-        description: JSON object
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GetSourceResponse"
-          description: source created successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: conflict
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Create a new gcs source in a collection
-      tags:
-        - Sources
-  /v1/orgs/self/ws/{workspace}/collections/{collection}/sources#Kafka:
-    post:
-      description: Create new source in a collection.
-      operationId: createKafkaSource
-      parameters:
-        - description: name of the workspace
-          in: path
-          name: workspace
-          required: true
-          schema:
-            default: commons
-            type: string
-        - description: name of the collection
-          in: path
-          name: collection
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/KafkaSourceWrapper"
-        description: JSON object
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GetSourceResponse"
-          description: source created successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: conflict
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Create a new kafka source in a collection
-      tags:
-        - Sources
-  /v1/orgs/self/ws/{workspace}/collections/{collection}/sources#Kinesis:
-    post:
-      description: Create new source in a collection.
-      operationId: createKinesisSource
-      parameters:
-        - description: name of the workspace
-          in: path
-          name: workspace
-          required: true
-          schema:
-            default: commons
-            type: string
-        - description: name of the collection
-          in: path
-          name: collection
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/KinesisSourceWrapper"
-        description: JSON object
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GetSourceResponse"
-          description: source created successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: conflict
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Create a new kinesis source in a collection
-      tags:
-        - Sources
-  /v1/orgs/self/ws/{workspace}/collections/{collection}/sources#Mongodb:
-    post:
-      description: Create new source in a collection.
-      operationId: createMongodbSource
-      parameters:
-        - description: name of the workspace
-          in: path
-          name: workspace
-          required: true
-          schema:
-            default: commons
-            type: string
-        - description: name of the collection
-          in: path
-          name: collection
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/MongodbSourceWrapper"
-        description: JSON object
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GetSourceResponse"
-          description: source created successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: conflict
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Create a new mongodb source in a collection
-      tags:
-        - Sources
   /v1/orgs/self/ws/{workspace}/collections/{collection}/sources#S3:
     post:
       description: Create new source in a collection.
@@ -15428,125 +12064,6 @@ paths:
                 $ref: "#/components/schemas/ErrorModel"
           description: not ready
       summary: Create a new s3 source in a collection
-      tags:
-        - Sources
-  /v1/orgs/self/ws/{workspace}/collections/{collection}/sources#Snowflake:
-    post:
-      description: Create new source in a collection.
-      operationId: createSnowflakeSource
-      parameters:
-        - description: name of the workspace
-          in: path
-          name: workspace
-          required: true
-          schema:
-            default: commons
-            type: string
-        - description: name of the collection
-          in: path
-          name: collection
-          required: true
-          schema:
-            type: string
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/SnowflakeSourceWrapper"
-        description: JSON object
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/GetSourceResponse"
-          description: source created successfully
-        "400":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad request
-        "401":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: unauthorized
-        "403":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: forbidden
-        "404":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not found
-        "405":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not allowed
-        "406":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not acceptable
-        "408":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: request timeout
-        "409":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: conflict
-        "415":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not supported
-        "429":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: resource exceeded
-        "500":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: internal error
-        "501":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not implemented
-        "502":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: bad gateway
-        "503":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorModel"
-          description: not ready
-      summary: Create a new snowflake source in a collection
       tags:
         - Sources
   /v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source}:
@@ -18812,6 +15329,7 @@ tags:
   - name: Collections
   - name: Custom Roles
   - name: Deployment Settings
+  - name: Deployments
   - name: Documents
   - name: Integrations
   - name: Organizations

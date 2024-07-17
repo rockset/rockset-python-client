@@ -81,8 +81,8 @@ class GetCollectionCommitData(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'fence': (str, none_type),  # noqa: E501
-            'passed': (bool, none_type),  # noqa: E501
+            'fence': (str,),  # noqa: E501
+            'passed': (bool,),  # noqa: E501
         }
 
     @cached_property
@@ -102,8 +102,12 @@ class GetCollectionCommitData(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, fence, passed, *args, **kwargs):  # noqa: E501
         """GetCollectionCommitData - a model defined in OpenAPI
+
+        Args:
+            fence (str): The max offset passed in the request which is the latest offset that was compared to the commit.
+            passed (bool): True if all the data in the offsets are available to be queried. False if one or more of the offsets is still behind the request offsets.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -136,8 +140,6 @@ class GetCollectionCommitData(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            fence (str): The max offset passed in the request which is the latest offset that was compared to the commit.. [optional]  # noqa: E501
-            passed (bool): True if all the data in the offsets are available to be queried. False if one or more of the offsets is still behind the request offsets.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -165,6 +167,8 @@ class GetCollectionCommitData(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.fence = fence
+        self.passed = passed
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -185,12 +189,12 @@ class GetCollectionCommitData(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, **kwargs):  # noqa: E501
+    def __init__(self, *, fence, passed, **kwargs):  # noqa: E501
         """GetCollectionCommitData - a model defined in OpenAPI
 
         Keyword Args:
-            fence (str): The max offset passed in the request which is the latest offset that was compared to the commit.. [optional]  # noqa: E501
-            passed (bool): True if all the data in the offsets are available to be queried. False if one or more of the offsets is still behind the request offsets.. [optional]  # noqa: E501
+            fence (str): The max offset passed in the request which is the latest offset that was compared to the commit.
+            passed (bool): True if all the data in the offsets are available to be queried. False if one or more of the offsets is still behind the request offsets.
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -247,6 +251,8 @@ class GetCollectionCommitData(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.fence = fence
+        self.passed = passed
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

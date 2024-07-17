@@ -12,5 +12,5 @@ import sys
 from rockset.models import *
 
 
-def test_update_collection_request_init():
-    UpdateCollectionRequest()
+def test_create_deployment_request_init():
+    CreateDeploymentRequest()

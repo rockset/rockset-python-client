@@ -19,6 +19,7 @@ Name | Type | Description | Notes
 **kinesis** | [**SourceKinesis**](SourceKinesis.md) |  | [optional] 
 **mongodb** | [**SourceMongoDb**](SourceMongoDb.md) |  | [optional] 
 **resume_at** | **str** | ISO-8601 date when source would be auto resumed, if suspended | [optional] [readonly] 
+**rrn** | **str** | Source RRN. | [optional] 
 **s3** | [**SourceS3**](SourceS3.md) |  | [optional] 
 **snapshot** | [**SourceSnapshot**](SourceSnapshot.md) |  | [optional] 
 **snowflake** | [**SourceSnowflake**](SourceSnowflake.md) |  | [optional] 

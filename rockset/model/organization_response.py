@@ -87,6 +87,7 @@ class OrganizationResponse(ModelNormal):
         """
         lazy_import()
         return {
+            'apikey': (str, none_type),  # noqa: E501
             'data': (Organization, none_type),  # noqa: E501
         }
 
@@ -96,6 +97,7 @@ class OrganizationResponse(ModelNormal):
 
 
     attribute_map = {
+        'apikey': 'apikey',  # noqa: E501
         'data': 'data',  # noqa: E501
     }
 
@@ -140,6 +142,7 @@ class OrganizationResponse(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
+            apikey (str): Admin apikey. [optional]  # noqa: E501
             data (Organization): [optional]  # noqa: E501
         """
 
@@ -192,6 +195,7 @@ class OrganizationResponse(ModelNormal):
         """OrganizationResponse - a model defined in OpenAPI
 
         Keyword Args:
+            apikey (str): Admin apikey. [optional]  # noqa: E501
             data (Organization): [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be

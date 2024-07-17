@@ -5,10 +5,10 @@ All URIs are relative to *https://api.use1a1.rockset.com* or the apiserver provi
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**create**](AliasesApi.md#create) | **POST** /v1/orgs/self/ws/{workspace}/aliases | Create Alias
-[**delete**](AliasesApi.md#delete) | **DELETE** /v1/orgs/self/ws/{workspace}/aliases/{alias} | Delete Alias
-[**get**](AliasesApi.md#get) | **GET** /v1/orgs/self/ws/{workspace}/aliases/{alias} | Retrieve Alias
+[**delete**](AliasesApi.md#delete) | **DELETE** /v1/orgs/self/ws/{workspace}/aliases/{alias_rrn} | Delete Alias
+[**get**](AliasesApi.md#get) | **GET** /v1/orgs/self/ws/{workspace}/aliases/{alias_rrn} | Retrieve Alias
 [**list**](AliasesApi.md#list) | **GET** /v1/orgs/self/aliases | List Aliases
-[**update**](AliasesApi.md#update) | **POST** /v1/orgs/self/ws/{workspace}/aliases/{alias} | Update Alias
+[**update**](AliasesApi.md#update) | **POST** /v1/orgs/self/ws/{workspace}/aliases/{alias_rrn} | Update Alias
 [**workspace_aliases**](AliasesApi.md#workspace_aliases) | **GET** /v1/orgs/self/ws/{workspace}/aliases | List Aliases in Workspace
 
 
@@ -34,8 +34,8 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 # synchronous example passing only required values which don't have defaults set
 # Create Alias
 api_response = rs.Aliases.create(
-    collections=["commons.foo","prod.demo"],
     name="aliasName",
+    target="commons.foo",
 )
 pprint(api_response)
 # Error responses from the server will cause the client to throw an ApiException
@@ -46,9 +46,9 @@ pprint(api_response)
 # assumes that execution takes place within an asynchronous context
 # Create Alias
 api_response = await rs.Aliases.create(
-    collections=["commons.foo","prod.demo"],
     description="version alias",
     name="aliasName",
+    target="commons.foo",
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
@@ -63,9 +63,9 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **collections** | **[str]** | List of fully qualified collection names referenced by alias. | 
  **description** | **str** | Optional description. | [optional]
  **name** | **str** | Alias name. | 
+ **target** | **str** | Fully qualified collection name referenced by alias. | 
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
@@ -106,7 +106,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **delete**
-> DeleteAliasResponse delete(alias)
+> DeleteAliasResponse delete(alias_rrn)
 
 Delete Alias
 
@@ -127,7 +127,7 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 # synchronous example passing only required values which don't have defaults set
 # Delete Alias
 api_response = rs.Aliases.delete(
-    alias="alias_example",
+    alias_rrn="alias_rrn_example",
 )
 pprint(api_response)
 # Error responses from the server will cause the client to throw an ApiException
@@ -138,7 +138,7 @@ pprint(api_response)
 # assumes that execution takes place within an asynchronous context
 # Delete Alias
 api_response = await rs.Aliases.delete(
-    alias="alias_example",
+    alias_rrn="alias_rrn_example",
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
@@ -153,7 +153,7 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **alias** | **str** | name of the alias |
+ **alias_rrn** | **str** | rrn of the alias |
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
@@ -194,7 +194,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **get**
-> GetAliasResponse get(alias)
+> GetAliasResponse get(alias_rrn)
 
 Retrieve Alias
 
@@ -215,7 +215,7 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 # synchronous example passing only required values which don't have defaults set
 # Retrieve Alias
 api_response = rs.Aliases.get(
-    alias="alias_example",
+    alias_rrn="alias_rrn_example",
 )
 pprint(api_response)
 # Error responses from the server will cause the client to throw an ApiException
@@ -226,7 +226,7 @@ pprint(api_response)
 # assumes that execution takes place within an asynchronous context
 # Retrieve Alias
 api_response = await rs.Aliases.get(
-    alias="alias_example",
+    alias_rrn="alias_rrn_example",
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
@@ -241,7 +241,7 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **alias** | **str** | name of the alias |
+ **alias_rrn** | **str** | rrn of the alias |
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type
@@ -364,7 +364,7 @@ All requests must use apikeys for [authorization](../README.md#Documentation-For
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **update**
-> GetAliasResponse update(alias, update_alias_request)
+> GetAliasResponse update(alias_rrn, update_alias_request)
 
 Update Alias
 
@@ -385,8 +385,8 @@ rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
 # synchronous example passing only required values which don't have defaults set
 # Update Alias
 api_response = rs.Aliases.update(
-    alias="alias_example",
-    collections=["commons.foo","prod.demo"],
+    alias_rrn="alias_rrn_example",
+    target="commons.foo",
 )
 pprint(api_response)
 # Error responses from the server will cause the client to throw an ApiException
@@ -397,9 +397,9 @@ pprint(api_response)
 # assumes that execution takes place within an asynchronous context
 # Update Alias
 api_response = await rs.Aliases.update(
-    alias="alias_example",
-    collections=["commons.foo","prod.demo"],
+    alias_rrn="alias_rrn_example",
     description="version alias",
+    target="commons.foo",
     async_req=True,
 )
 if isinstance(api_response, rockset.ApiException):
@@ -414,9 +414,9 @@ pprint(api_response)
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **alias** | **str** | name of the alias |
- **collections** | **[str]** | List of fully qualified collection names referenced by alias. | 
+ **alias_rrn** | **str** | rrn of the alias |
  **description** | **str** | Optional description. | [optional]
+ **target** | **str** | Fully qualified collection name referenced by alias. | 
  **workspace** | **str** | name of the workspace | defaults to "commons"
 
 ### Return type

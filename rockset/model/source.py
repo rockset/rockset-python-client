@@ -131,6 +131,7 @@ class Source(ModelNormal):
             'kinesis': (SourceKinesis, none_type),  # noqa: E501
             'mongodb': (SourceMongoDb, none_type),  # noqa: E501
             'resume_at': (str, none_type),  # noqa: E501
+            'rrn': (str, none_type),  # noqa: E501
             's3': (SourceS3, none_type),  # noqa: E501
             'snapshot': (SourceSnapshot, none_type),  # noqa: E501
             'snowflake': (SourceSnowflake, none_type),  # noqa: E501
@@ -160,6 +161,7 @@ class Source(ModelNormal):
         'kinesis': 'kinesis',  # noqa: E501
         'mongodb': 'mongodb',  # noqa: E501
         'resume_at': 'resume_at',  # noqa: E501
+        'rrn': 'rrn',  # noqa: E501
         's3': 's3',  # noqa: E501
         'snapshot': 'snapshot',  # noqa: E501
         'snowflake': 'snowflake',  # noqa: E501
@@ -229,6 +231,7 @@ class Source(ModelNormal):
             kinesis (SourceKinesis): [optional]  # noqa: E501
             mongodb (SourceMongoDb): [optional]  # noqa: E501
             resume_at (str): ISO-8601 date when source would be auto resumed, if suspended. [optional]  # noqa: E501
+            rrn (str): Source RRN.. [optional]  # noqa: E501
             s3 (SourceS3): [optional]  # noqa: E501
             snapshot (SourceSnapshot): [optional]  # noqa: E501
             snowflake (SourceSnowflake): [optional]  # noqa: E501
@@ -298,6 +301,7 @@ class Source(ModelNormal):
             kafka (SourceKafka): [optional]  # noqa: E501
             kinesis (SourceKinesis): [optional]  # noqa: E501
             mongodb (SourceMongoDb): [optional]  # noqa: E501
+            rrn (str): Source RRN.. [optional]  # noqa: E501
             s3 (SourceS3): [optional]  # noqa: E501
             snapshot (SourceSnapshot): [optional]  # noqa: E501
             snowflake (SourceSnowflake): [optional]  # noqa: E501

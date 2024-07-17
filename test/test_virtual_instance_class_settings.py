@@ -12,7 +12,5 @@ import sys
 from rockset.models import *
 
 
-def test_snowflake_integration_creation_request_init():
-    SnowflakeIntegrationCreationRequest(
-        name="event-logs",
-    )
+def test_virtual_instance_class_settings_init():
+    VirtualInstanceClassSettings()

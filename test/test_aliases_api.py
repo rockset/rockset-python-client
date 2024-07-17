@@ -19,9 +19,9 @@ def test_create(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Aliases.create(
-                collections=["commons.foo", "prod.demo"],
                 description="version alias",
                 name="aliasName",
+                target="commons.foo",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
@@ -32,7 +32,7 @@ def test_delete(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Aliases.delete(
-                alias="alias_example",
+                alias_rrn="alias_rrn_example",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
@@ -43,7 +43,7 @@ def test_get(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Aliases.get(
-                alias="alias_example",
+                alias_rrn="alias_rrn_example",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
@@ -63,9 +63,9 @@ def test_update(get_client, mock_request, request_validator):
         rs = get_client
         try:
             rs.Aliases.update(
-                alias="alias_example",
-                collections=["commons.foo", "prod.demo"],
+                alias_rrn="alias_rrn_example",
                 description="version alias",
+                target="commons.foo",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)

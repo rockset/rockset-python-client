@@ -46,14 +46,14 @@ class APIKeys(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
-        self.create_endpoint = _Endpoint(
+        self.create_api_key_endpoint = _Endpoint(
             settings={
                 'response_type': (CreateApiKeyResponse,),
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/users/self/apikeys',
-                'operation_id': 'create',
+                'endpoint_path': '/v1/orgs/self/apikeys',
+                'operation_id': 'create_api_key',
                 'http_method': 'POST',
                 'servers': None,
             },
@@ -103,19 +103,17 @@ class APIKeys(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/users/{user}/apikeys/{name}',
+                'endpoint_path': '/v1/orgs/self/apikeys/{rrn}',
                 'operation_id': 'delete',
                 'http_method': 'DELETE',
                 'servers': None,
             },
             params_map={
                 'all': [
-                    'name',
-                    'user',
+                    'rrn',
                 ],
                 'required': [
-                    'name',
-                    'user',
+                    'rrn',
                 ],
                 'nullable': [
                 ],
@@ -130,18 +128,14 @@ class APIKeys(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'name':
-                        (str,),
-                    'user':
+                    'rrn':
                         (str,),
                 },
                 'attribute_map': {
-                    'name': 'name',
-                    'user': 'user',
+                    'rrn': 'rrn',
                 },
                 'location_map': {
-                    'name': 'path',
-                    'user': 'path',
+                    'rrn': 'path',
                 },
                 'collection_format_map': {
                 }
@@ -160,20 +154,17 @@ class APIKeys(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/users/{user}/apikeys/{name}',
+                'endpoint_path': '/v1/orgs/self/apikeys/{rrn}',
                 'operation_id': 'get',
                 'http_method': 'GET',
                 'servers': None,
             },
             params_map={
                 'all': [
-                    'user',
-                    'name',
-                    'reveal',
+                    'rrn',
                 ],
                 'required': [
-                    'user',
-                    'name',
+                    'rrn',
                 ],
                 'nullable': [
                 ],
@@ -188,22 +179,14 @@ class APIKeys(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'user':
+                    'rrn':
                         (str,),
-                    'name':
-                        (str,),
-                    'reveal':
-                        (bool,),
                 },
                 'attribute_map': {
-                    'user': 'user',
-                    'name': 'name',
-                    'reveal': 'reveal',
+                    'rrn': 'rrn',
                 },
                 'location_map': {
-                    'user': 'path',
-                    'name': 'path',
-                    'reveal': 'query',
+                    'rrn': 'path',
                 },
                 'collection_format_map': {
                 }
@@ -222,18 +205,15 @@ class APIKeys(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/users/{user}/apikeys',
+                'endpoint_path': '/v1/orgs/self/apikeys',
                 'operation_id': 'list',
                 'http_method': 'GET',
                 'servers': None,
             },
             params_map={
                 'all': [
-                    'user',
                 ],
-                'required': [
-                    'user',
-                ],
+                'required': [],
                 'nullable': [
                 ],
                 'enum': [
@@ -247,14 +227,10 @@ class APIKeys(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'user':
-                        (str,),
                 },
                 'attribute_map': {
-                    'user': 'user',
                 },
                 'location_map': {
-                    'user': 'path',
                 },
                 'collection_format_map': {
                 }
@@ -273,20 +249,18 @@ class APIKeys(object):
                 'auth': [
                     'apikey'
                 ],
-                'endpoint_path': '/v1/orgs/self/users/{user}/apikeys/{name}',
+                'endpoint_path': '/v1/orgs/self/apikeys/{rrn}',
                 'operation_id': 'update',
                 'http_method': 'POST',
                 'servers': None,
             },
             params_map={
                 'all': [
-                    'name',
-                    'user',
+                    'rrn',
                     'update_api_key_request',
                 ],
                 'required': [
-                    'name',
-                    'user',
+                    'rrn',
                 ],
                 'nullable': [
                 ],
@@ -301,20 +275,16 @@ class APIKeys(object):
                 'allowed_values': {
                 },
                 'openapi_types': {
-                    'name':
-                        (str,),
-                    'user':
+                    'rrn':
                         (str,),
                     'update_api_key_request':
                         (UpdateApiKeyRequest,),
                 },
                 'attribute_map': {
-                    'name': 'name',
-                    'user': 'user',
+                    'rrn': 'rrn',
                 },
                 'location_map': {
-                    'name': 'path',
-                    'user': 'path',
+                    'rrn': 'path',
                     'update_api_key_request': 'body',
                 },
                 'collection_format_map': {
@@ -331,7 +301,7 @@ class APIKeys(object):
             api_client=api_client
         )
 
-    def create(
+    def create_api_key(
         self,
         *,
         name: str,
@@ -342,13 +312,13 @@ class APIKeys(object):
     ) -> typing.Union[CreateApiKeyResponse, asyncio.Future]:
         """Create API Key  # noqa: E501
 
-        Create a new API key for the authenticated user.  # noqa: E501
+        Create an apikey in this organization  # noqa: E501
         This method makes a synchronous HTTP request by default. To make an
         asynchronous HTTP request, please pass async_req=True
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.APIKeys.create(
+        future = rs.APIKeys.create_api_key(
             created_by="string_example",
             expiry_time="2001-08-28T00:23:41Z",
             name="my-app",
@@ -423,13 +393,12 @@ class APIKeys(object):
         kwargs['_host_index'] = kwargs.get('_host_index')
         kwargs['create_api_key_request'] = \
             kwargs['create_api_key_request']
-        return self.create_endpoint.call_with_http_info(**kwargs)
+        return self.create_api_key_endpoint.call_with_http_info(**kwargs)
 
     def delete(
         self,
         *,
-        name: str,
-        user: str,
+        rrn: str,
         **kwargs
     ) -> typing.Union[DeleteApiKeyResponse, asyncio.Future]:
         """Delete API Key  # noqa: E501
@@ -441,16 +410,14 @@ class APIKeys(object):
         ```python
         rs = RocksetClient(api_key=APIKEY)
         future = rs.APIKeys.delete(
-            name="my-key",
-            user="admin@me.com",
+            rrn="my-key",
             async_req=True,
         )
         result = await future
         ```
 
         Keyword Args:
-            name (str): Name of the API key.. [required]
-            user (str): Email of the API key owner. Use `self` to specify the currently authenticated user.. [required]
+            rrn (str): RRN of the API key.. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -509,18 +476,14 @@ class APIKeys(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['name'] = \
-            name
-        kwargs['user'] = \
-            user
+        kwargs['rrn'] = \
+            rrn
         return self.delete_endpoint.call_with_http_info(**kwargs)
 
     def get(
         self,
         *,
-        user: str,
-        name: str,
-        reveal: bool = None,
+        rrn: str,
         **kwargs
     ) -> typing.Union[GetApiKeyResponse, asyncio.Future]:
         """Retrieve API Key  # noqa: E501
@@ -532,17 +495,14 @@ class APIKeys(object):
         ```python
         rs = RocksetClient(api_key=APIKEY)
         future = rs.APIKeys.get(
-            user="admin@me.com",
-            name="my-key",
+            rrn="my-key",
             async_req=True,
         )
         result = await future
         ```
 
         Keyword Args:
-            user (str): Email of the API key owner. Use `self` to specify the currently authenticated user.. [required]
-            name (str): Name of the API key.. [required]
-            reveal (bool): Reveal full key.. [optional]
+            rrn (str): RRN of the API key.. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -601,19 +561,12 @@ class APIKeys(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['user'] = \
-            user
-        kwargs['name'] = \
-            name
-        if reveal is not None:
-            kwargs['reveal'] = \
-                reveal
+        kwargs['rrn'] = \
+            rrn
         return self.get_endpoint.call_with_http_info(**kwargs)
 
     def list(
         self,
-        *,
-        user: str,
         **kwargs
     ) -> typing.Union[ListApiKeysResponse, asyncio.Future]:
         """List API Keys  # noqa: E501
@@ -625,14 +578,12 @@ class APIKeys(object):
         ```python
         rs = RocksetClient(api_key=APIKEY)
         future = rs.APIKeys.list(
-            user="admin@me.com",
             async_req=True,
         )
         result = await future
         ```
 
         Keyword Args:
-            user (str): Email of the API key owner. Use `self` to specify the currently authenticated user.. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
@@ -691,17 +642,14 @@ class APIKeys(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['user'] = \
-            user
         return self.list_endpoint.call_with_http_info(**kwargs)
 
     def update(
         self,
         *,
-        name: str,
-        user: str,
+        rrn: str,
         clear_expiry_time: bool = None,
-        expiry_time: str = None,
+        expiry_time: int = None,
         state: str = None,
         **kwargs
     ) -> typing.Union[UpdateApiKeyResponse, asyncio.Future]:
@@ -714,10 +662,9 @@ class APIKeys(object):
         ```python
         rs = RocksetClient(api_key=APIKEY)
         future = rs.APIKeys.update(
-            name="my-key",
-            user="admin@me.com",
+            rrn="my-key",
             clear_expiry_time=True,
-            expiry_time="2001-08-28T00:23:41Z",
+            expiry_time=1,
             state="ACTIVE",
             async_req=True,
         )
@@ -725,10 +672,9 @@ class APIKeys(object):
         ```
 
         Keyword Args:
-            name (str): Name of the API key.. [required]
-            user (str): Email of the API key owner. Use `self` to specify the currently authenticated user.. [required]
+            rrn (str): RRN of the API key.. [required]
             clear_expiry_time (bool): If set to true, the expiration time for this key will be cleared.. [optional]
-            expiry_time (str): If provided, the API key will automatically expire at this time (ISO-8601 format). Requires premium.. [optional]
+            expiry_time (int): If provided, the API key will automatically expire at this time (ISO-8601 format). Requires premium.. [optional]
             state (str): State that the api key should be set to.. [optional]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
@@ -788,10 +734,8 @@ class APIKeys(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        kwargs['name'] = \
-            name
-        kwargs['user'] = \
-            user
+        kwargs['rrn'] = \
+            rrn
         kwargs['update_api_key_request'] = \
             kwargs['update_api_key_request']
         return self.update_endpoint.call_with_http_info(**kwargs)
@@ -799,7 +743,7 @@ class APIKeys(object):
 
     body_params_dict = dict()
     return_types_dict = dict()
-    body_params_dict['create'] = 'create_api_key_request'
-    return_types_dict['create'] = CreateApiKeyRequest
+    body_params_dict['create_api_key'] = 'create_api_key_request'
+    return_types_dict['create_api_key'] = CreateApiKeyRequest
     body_params_dict['update'] = 'update_api_key_request'
     return_types_dict['update'] = UpdateApiKeyRequest

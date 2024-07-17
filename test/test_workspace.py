@@ -13,4 +13,7 @@ from rockset.models import *
 
 
 def test_workspace_init():
-    Workspace()
+    Workspace(
+        name="event_logs",
+        rrn="rrn:ws:use1a1:123e4567-e89b-12d3-a456-556642440000",
+    )

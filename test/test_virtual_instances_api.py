@@ -23,7 +23,6 @@ def test_create(get_client, mock_request, request_validator):
                 description="VI serving prod traffic",
                 enable_remount_on_resume=True,
                 instance_class="MO_IL",
-                mount_refresh_interval_seconds=0,
                 mount_type="LIVE",
                 name="prod_vi",
                 type="LARGE",
@@ -49,18 +48,6 @@ def test_get(get_client, mock_request, request_validator):
         try:
             rs.VirtualInstances.get(
                 virtual_instance_id="virtualInstanceId_example",
-            )
-        except EarlyExit as e:
-            validate_call(e, request_validator)
-
-
-def test_get_collection_mount(get_client, mock_request, request_validator):
-    with mock_request:
-        rs = get_client
-        try:
-            rs.VirtualInstances.get_collection_mount(
-                virtual_instance_id="virtualInstanceId_example",
-                collection_path="collectionPath_example",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)
@@ -212,6 +199,95 @@ def test_update(get_client, mock_request, request_validator):
                 mount_type="LIVE",
                 name="prod_vi",
                 new_size="LARGE",
+                settings=UpdateVirtualInstanceSettingsRequest(
+                    gp_il=UpdateVirtualInstanceClassSettingsRequest(
+                        large=UpdateVirtualInstanceSizeSettingsRequest(
+                            cqel=10,
+                        ),
+                        medium=UpdateVirtualInstanceSizeSettingsRequest(
+                            cqel=10,
+                        ),
+                        small=UpdateVirtualInstanceSizeSettingsRequest(
+                            cqel=10,
+                        ),
+                        xlarge=UpdateVirtualInstanceSizeSettingsRequest(
+                            cqel=10,
+                        ),
+                        xlarge16=UpdateVirtualInstanceSizeSettingsRequest(
+                            cqel=10,
+                        ),
+                        xlarge2=UpdateVirtualInstanceSizeSettingsRequest(
+                            cqel=10,
+                        ),
+                        xlarge4=UpdateVirtualInstanceSizeSettingsRequest(
+                            cqel=10,
+                        ),
+                        xlarge8=UpdateVirtualInstanceSizeSettingsRequest(
+                            cqel=10,
+                        ),
+                        xsmall=UpdateVirtualInstanceSizeSettingsRequest(
+                            cqel=10,
+                        ),
+                    ),
+                    mo_br=UpdateVirtualInstanceClassSettingsRequest(
+                        large=UpdateVirtualInstanceSizeSettingsRequest(
+                            cqel=10,
+                        ),
+                        medium=UpdateVirtualInstanceSizeSettingsRequest(
+                            cqel=10,
+                        ),
+                        small=UpdateVirtualInstanceSizeSettingsRequest(
+                            cqel=10,
+                        ),
+                        xlarge=UpdateVirtualInstanceSizeSettingsRequest(
+                            cqel=10,
+                        ),
+                        xlarge16=UpdateVirtualInstanceSizeSettingsRequest(
+                            cqel=10,
+                        ),
+                        xlarge2=UpdateVirtualInstanceSizeSettingsRequest(
+                            cqel=10,
+                        ),
+                        xlarge4=UpdateVirtualInstanceSizeSettingsRequest(
+                            cqel=10,
+                        ),
+                        xlarge8=UpdateVirtualInstanceSizeSettingsRequest(
+                            cqel=10,
+                        ),
+                        xsmall=UpdateVirtualInstanceSizeSettingsRequest(
+                            cqel=10,
+                        ),
+                    ),
+                    mo_il=UpdateVirtualInstanceClassSettingsRequest(
+                        large=UpdateVirtualInstanceSizeSettingsRequest(
+                            cqel=10,
+                        ),
+                        medium=UpdateVirtualInstanceSizeSettingsRequest(
+                            cqel=10,
+                        ),
+                        small=UpdateVirtualInstanceSizeSettingsRequest(
+                            cqel=10,
+                        ),
+                        xlarge=UpdateVirtualInstanceSizeSettingsRequest(
+                            cqel=10,
+                        ),
+                        xlarge16=UpdateVirtualInstanceSizeSettingsRequest(
+                            cqel=10,
+                        ),
+                        xlarge2=UpdateVirtualInstanceSizeSettingsRequest(
+                            cqel=10,
+                        ),
+                        xlarge4=UpdateVirtualInstanceSizeSettingsRequest(
+                            cqel=10,
+                        ),
+                        xlarge8=UpdateVirtualInstanceSizeSettingsRequest(
+                            cqel=10,
+                        ),
+                        xsmall=UpdateVirtualInstanceSizeSettingsRequest(
+                            cqel=10,
+                        ),
+                    ),
+                ),
             )
         except EarlyExit as e:
             validate_call(e, request_validator)

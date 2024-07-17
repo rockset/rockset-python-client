@@ -123,25 +123,26 @@ class Collection(ModelNormal):
         """
         lazy_import()
         return {
+            'created_by': (str,),  # noqa: E501
+            'created_by_apikey_name': (str,),  # noqa: E501
+            'description': (str,),  # noqa: E501
+            'name': (str,),  # noqa: E501
+            'rrn': (str,),  # noqa: E501
+            'sources': ([Source],),  # noqa: E501
+            'stats': (CollectionStats,),  # noqa: E501
+            'status': (str,),  # noqa: E501
+            'workspace': (str,),  # noqa: E501
             'aliases': ([Alias], none_type),  # noqa: E501
             'bulk_stats': ([BulkStats], none_type),  # noqa: E501
             'clustering_key': ([FieldPartition], none_type),  # noqa: E501
             'created_at': (str, none_type),  # noqa: E501
-            'created_by': (str, none_type),  # noqa: E501
-            'created_by_apikey_name': (str, none_type),  # noqa: E501
-            'description': (str, none_type),  # noqa: E501
             'field_mapping_query': (FieldMappingQuery, none_type),  # noqa: E501
             'field_mappings': ([FieldMappingV2], none_type),  # noqa: E501
             'insert_only': (bool, none_type),  # noqa: E501
-            'name': (str, none_type),  # noqa: E501
             'read_only': (bool, none_type),  # noqa: E501
             'retention_secs': (int, none_type),  # noqa: E501
-            'rrn': (str, none_type),  # noqa: E501
-            'sources': ([Source], none_type),  # noqa: E501
-            'stats': (CollectionStats, none_type),  # noqa: E501
-            'status': (str, none_type),  # noqa: E501
+            'shard_count': (int, none_type),  # noqa: E501
             'storage_compression_type': (str, none_type),  # noqa: E501
-            'workspace': (str, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -150,25 +151,26 @@ class Collection(ModelNormal):
 
 
     attribute_map = {
-        'aliases': 'aliases',  # noqa: E501
-        'bulk_stats': 'bulk_stats',  # noqa: E501
-        'clustering_key': 'clustering_key',  # noqa: E501
-        'created_at': 'created_at',  # noqa: E501
         'created_by': 'created_by',  # noqa: E501
         'created_by_apikey_name': 'created_by_apikey_name',  # noqa: E501
         'description': 'description',  # noqa: E501
-        'field_mapping_query': 'field_mapping_query',  # noqa: E501
-        'field_mappings': 'field_mappings',  # noqa: E501
-        'insert_only': 'insert_only',  # noqa: E501
         'name': 'name',  # noqa: E501
-        'read_only': 'read_only',  # noqa: E501
-        'retention_secs': 'retention_secs',  # noqa: E501
         'rrn': 'rrn',  # noqa: E501
         'sources': 'sources',  # noqa: E501
         'stats': 'stats',  # noqa: E501
         'status': 'status',  # noqa: E501
-        'storage_compression_type': 'storage_compression_type',  # noqa: E501
         'workspace': 'workspace',  # noqa: E501
+        'aliases': 'aliases',  # noqa: E501
+        'bulk_stats': 'bulk_stats',  # noqa: E501
+        'clustering_key': 'clustering_key',  # noqa: E501
+        'created_at': 'created_at',  # noqa: E501
+        'field_mapping_query': 'field_mapping_query',  # noqa: E501
+        'field_mappings': 'field_mappings',  # noqa: E501
+        'insert_only': 'insert_only',  # noqa: E501
+        'read_only': 'read_only',  # noqa: E501
+        'retention_secs': 'retention_secs',  # noqa: E501
+        'shard_count': 'shard_count',  # noqa: E501
+        'storage_compression_type': 'storage_compression_type',  # noqa: E501
     }
 
     read_only_vars = {
@@ -178,8 +180,19 @@ class Collection(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, created_by, created_by_apikey_name, description, name, rrn, sources, stats, status, workspace, *args, **kwargs):  # noqa: E501
         """Collection - a model defined in OpenAPI
+
+        Args:
+            created_by (str): Email of user who created the collection.
+            created_by_apikey_name (str): Name of the API key that was used to create this collection if one was used.
+            description (str): Text describing the collection.
+            name (str): Unique identifer for collection, can contain alphanumeric or dash characters.
+            rrn (str): Collection RRN.
+            sources ([Source]): List of sources from which collection ingests.
+            stats (CollectionStats):
+            status (str): Current status of collection.
+            workspace (str): Name of the workspace that the collection is in.
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -216,21 +229,13 @@ class Collection(ModelNormal):
             bulk_stats ([BulkStats]): [optional]  # noqa: E501
             clustering_key ([FieldPartition]): List of clustering fields for a collection.. [optional]  # noqa: E501
             created_at (str): ISO-8601 date.. [optional]  # noqa: E501
-            created_by (str): Email of user who created the collection.. [optional]  # noqa: E501
-            created_by_apikey_name (str): Name of the API key that was used to create this collection if one was used.. [optional]  # noqa: E501
-            description (str): Text describing the collection.. [optional]  # noqa: E501
             field_mapping_query (FieldMappingQuery): [optional]  # noqa: E501
             field_mappings ([FieldMappingV2]): List of mappings applied on all documents in a collection.. [optional]  # noqa: E501
             insert_only (bool): Whether the collection is insert only or not.. [optional]  # noqa: E501
-            name (str): Unique identifer for collection, can contain alphanumeric or dash characters.. [optional]  # noqa: E501
             read_only (bool): Whether the collection is read-only or not.. [optional]  # noqa: E501
             retention_secs (int): Number of seconds after which data is purged based on event time.. [optional]  # noqa: E501
-            rrn (str): Collection RRN.. [optional]  # noqa: E501
-            sources ([Source]): List of sources from which collection ingests.. [optional]  # noqa: E501
-            stats (CollectionStats): [optional]  # noqa: E501
-            status (str): Current status of collection.. [optional]  # noqa: E501
+            shard_count (int): Shard count of this collection.. [optional]  # noqa: E501
             storage_compression_type (str): RocksDB storage compression type.. [optional]  # noqa: E501
-            workspace (str): Name of the workspace that the collection is in.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -258,6 +263,15 @@ class Collection(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.created_by = created_by
+        self.created_by_apikey_name = created_by_apikey_name
+        self.description = description
+        self.name = name
+        self.rrn = rrn
+        self.sources = sources
+        self.stats = stats
+        self.status = status
+        self.workspace = workspace
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -278,29 +292,30 @@ class Collection(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, **kwargs):  # noqa: E501
+    def __init__(self, *, created_by, created_by_apikey_name, description, name, rrn, sources, stats, status, workspace, **kwargs):  # noqa: E501
         """Collection - a model defined in OpenAPI
 
         Keyword Args:
+            created_by (str): Email of user who created the collection.
+            created_by_apikey_name (str): Name of the API key that was used to create this collection if one was used.
+            description (str): Text describing the collection.
+            name (str): Unique identifer for collection, can contain alphanumeric or dash characters.
+            rrn (str): Collection RRN.
+            sources ([Source]): List of sources from which collection ingests.
+            stats (CollectionStats):
+            status (str): Current status of collection.
+            workspace (str): Name of the workspace that the collection is in.
             aliases ([Alias]): List of aliases for a collection.. [optional]  # noqa: E501
             bulk_stats ([BulkStats]): [optional]  # noqa: E501
             clustering_key ([FieldPartition]): List of clustering fields for a collection.. [optional]  # noqa: E501
             created_at (str): ISO-8601 date.. [optional]  # noqa: E501
-            created_by (str): Email of user who created the collection.. [optional]  # noqa: E501
-            created_by_apikey_name (str): Name of the API key that was used to create this collection if one was used.. [optional]  # noqa: E501
-            description (str): Text describing the collection.. [optional]  # noqa: E501
             field_mapping_query (FieldMappingQuery): [optional]  # noqa: E501
             field_mappings ([FieldMappingV2]): List of mappings applied on all documents in a collection.. [optional]  # noqa: E501
             insert_only (bool): Whether the collection is insert only or not.. [optional]  # noqa: E501
-            name (str): Unique identifer for collection, can contain alphanumeric or dash characters.. [optional]  # noqa: E501
             read_only (bool): Whether the collection is read-only or not.. [optional]  # noqa: E501
             retention_secs (int): Number of seconds after which data is purged based on event time.. [optional]  # noqa: E501
-            rrn (str): Collection RRN.. [optional]  # noqa: E501
-            sources ([Source]): List of sources from which collection ingests.. [optional]  # noqa: E501
-            stats (CollectionStats): [optional]  # noqa: E501
-            status (str): Current status of collection.. [optional]  # noqa: E501
+            shard_count (int): Shard count of this collection.. [optional]  # noqa: E501
             storage_compression_type (str): RocksDB storage compression type.. [optional]  # noqa: E501
-            workspace (str): Name of the workspace that the collection is in.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -357,6 +372,15 @@ class Collection(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.created_by = created_by
+        self.created_by_apikey_name = created_by_apikey_name
+        self.description = description
+        self.name = name
+        self.rrn = rrn
+        self.sources = sources
+        self.stats = stats
+        self.status = status
+        self.workspace = workspace
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

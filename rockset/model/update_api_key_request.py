@@ -86,7 +86,7 @@ class UpdateApiKeyRequest(ModelNormal):
         """
         return {
             'clear_expiry_time': (bool, none_type),  # noqa: E501
-            'expiry_time': (str, none_type),  # noqa: E501
+            'expiry_time': (int, none_type),  # noqa: E501
             'state': (str, none_type),  # noqa: E501
         }
 
@@ -143,7 +143,7 @@ class UpdateApiKeyRequest(ModelNormal):
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
             clear_expiry_time (bool): If set to true, the expiration time for this key will be cleared.. [optional]  # noqa: E501
-            expiry_time (str): If provided, the API key will automatically expire at this time (ISO-8601 format). Requires premium.. [optional]  # noqa: E501
+            expiry_time (int): If provided, the API key will automatically expire at this time (ISO-8601 format). Requires premium.. [optional]  # noqa: E501
             state (str): State that the api key should be set to.. [optional]  # noqa: E501
         """
 
@@ -197,7 +197,7 @@ class UpdateApiKeyRequest(ModelNormal):
 
         Keyword Args:
             clear_expiry_time (bool): If set to true, the expiration time for this key will be cleared.. [optional]  # noqa: E501
-            expiry_time (str): If provided, the API key will automatically expire at this time (ISO-8601 format). Requires premium.. [optional]  # noqa: E501
+            expiry_time (int): If provided, the API key will automatically expire at this time (ISO-8601 format). Requires premium.. [optional]  # noqa: E501
             state (str): State that the api key should be set to.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be

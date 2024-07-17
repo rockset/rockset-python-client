@@ -12,7 +12,10 @@ import sys
 from rockset.models import *
 
 
-def test_kafka_integration_creation_request_init():
-    KafkaIntegrationCreationRequest(
-        name="event-logs",
+def test_create_deployment_response_init():
+    CreateDeploymentResponse(
+        commons_workspace_rrn="string_example",
+        ingest_virtual_instance_rrn="string_example",
+        key="string_example",
+        rrn="rrn:rsd:use1a1:123e4567-e89b-12d3-a456-556642440000",
     )

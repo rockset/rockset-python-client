@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **pagination** | [**Pagination**](Pagination.md) |  | [optional] 
 **query_errors** | [**[QueryError]**](QueryError.md) | Errors encountered while executing the query. | [optional] 
 **query_id** | **str** | Unique Query ID. | [optional] 
+**select_command_completed** | **bool** | Whether this query has completed the SELECT command. Only populated for INSERT INTO queries. | [optional] 
 **sql** | **str** | The SQL query for this request | [optional] 
 **stats** | [**Stats**](Stats.md) |  | [optional] 
 **status** | **str** | Status of the query. | [optional] 

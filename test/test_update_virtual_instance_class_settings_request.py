@@ -12,7 +12,5 @@ import sys
 from rockset.models import *
 
 
-def test_gcs_collection_creation_request_init():
-    GcsCollectionCreationRequest(
-        name="global-transactions",
-    )
+def test_update_virtual_instance_class_settings_request_init():
+    UpdateVirtualInstanceClassSettingsRequest()

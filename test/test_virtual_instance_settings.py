@@ -12,7 +12,5 @@ import sys
 from rockset.models import *
 
 
-def test_azure_event_hubs_integration_creation_request_init():
-    AzureEventHubsIntegrationCreationRequest(
-        name="event-logs",
-    )
+def test_virtual_instance_settings_init():
+    VirtualInstanceSettings()

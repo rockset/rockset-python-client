@@ -127,32 +127,23 @@ Most of the other differences between this client and the older version are smal
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*APIKeys* | [**create**](docs/APIKeysApi.md#create) | **POST** /v1/orgs/self/users/self/apikeys | Create API Key
-*APIKeys* | [**delete**](docs/APIKeysApi.md#delete) | **DELETE** /v1/orgs/self/users/{user}/apikeys/{name} | Delete API Key
-*APIKeys* | [**get**](docs/APIKeysApi.md#get) | **GET** /v1/orgs/self/users/{user}/apikeys/{name} | Retrieve API Key
-*APIKeys* | [**list**](docs/APIKeysApi.md#list) | **GET** /v1/orgs/self/users/{user}/apikeys | List API Keys
-*APIKeys* | [**update**](docs/APIKeysApi.md#update) | **POST** /v1/orgs/self/users/{user}/apikeys/{name} | Update API Key State
+*APIKeys* | [**create_api_key**](docs/APIKeysApi.md#create_api_key) | **POST** /v1/orgs/self/apikeys | Create API Key
+*APIKeys* | [**delete**](docs/APIKeysApi.md#delete) | **DELETE** /v1/orgs/self/apikeys/{rrn} | Delete API Key
+*APIKeys* | [**get**](docs/APIKeysApi.md#get) | **GET** /v1/orgs/self/apikeys/{rrn} | Retrieve API Key
+*APIKeys* | [**list**](docs/APIKeysApi.md#list) | **GET** /v1/orgs/self/apikeys | List API Keys
+*APIKeys* | [**update**](docs/APIKeysApi.md#update) | **POST** /v1/orgs/self/apikeys/{rrn} | Update API Key State
 *Aliases* | [**create**](docs/AliasesApi.md#create) | **POST** /v1/orgs/self/ws/{workspace}/aliases | Create Alias
-*Aliases* | [**delete**](docs/AliasesApi.md#delete) | **DELETE** /v1/orgs/self/ws/{workspace}/aliases/{alias} | Delete Alias
-*Aliases* | [**get**](docs/AliasesApi.md#get) | **GET** /v1/orgs/self/ws/{workspace}/aliases/{alias} | Retrieve Alias
+*Aliases* | [**delete**](docs/AliasesApi.md#delete) | **DELETE** /v1/orgs/self/ws/{workspace}/aliases/{alias_rrn} | Delete Alias
+*Aliases* | [**get**](docs/AliasesApi.md#get) | **GET** /v1/orgs/self/ws/{workspace}/aliases/{alias_rrn} | Retrieve Alias
 *Aliases* | [**list**](docs/AliasesApi.md#list) | **GET** /v1/orgs/self/aliases | List Aliases
-*Aliases* | [**update**](docs/AliasesApi.md#update) | **POST** /v1/orgs/self/ws/{workspace}/aliases/{alias} | Update Alias
+*Aliases* | [**update**](docs/AliasesApi.md#update) | **POST** /v1/orgs/self/ws/{workspace}/aliases/{alias_rrn} | Update Alias
 *Aliases* | [**workspace_aliases**](docs/AliasesApi.md#workspace_aliases) | **GET** /v1/orgs/self/ws/{workspace}/aliases | List Aliases in Workspace
-*Collections* | [**create_azure_blob_storage_collection**](docs/CollectionsApi.md#create_azure_blob_storage_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create azure blob storage collection
-*Collections* | [**create_azure_event_hubs_collection**](docs/CollectionsApi.md#create_azure_event_hubs_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create azure event hubs collection
-*Collections* | [**create_dynamodb_collection**](docs/CollectionsApi.md#create_dynamodb_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create dynamodb collection
-*Collections* | [**create_gcs_collection**](docs/CollectionsApi.md#create_gcs_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create gcs collection
-*Collections* | [**create_kafka_collection**](docs/CollectionsApi.md#create_kafka_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create kafka collection
-*Collections* | [**create_kinesis_collection**](docs/CollectionsApi.md#create_kinesis_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create kinesis collection
-*Collections* | [**create_mongodb_collection**](docs/CollectionsApi.md#create_mongodb_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create mongodb collection
 *Collections* | [**create_s3_collection**](docs/CollectionsApi.md#create_s3_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create s3 collection
-*Collections* | [**create_snowflake_collection**](docs/CollectionsApi.md#create_snowflake_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create snowflake collection
 *Collections* | [**delete**](docs/CollectionsApi.md#delete) | **DELETE** /v1/orgs/self/ws/{workspace}/collections/{collection} | Delete Collection
 *Collections* | [**get**](docs/CollectionsApi.md#get) | **GET** /v1/orgs/self/ws/{workspace}/collections/{collection} | Retrieve Collection
 *Collections* | [**get_collection_offsets**](docs/CollectionsApi.md#get_collection_offsets) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/offsets/commit | Get Collection Commit
 *Collections* | [**list**](docs/CollectionsApi.md#list) | **GET** /v1/orgs/self/collections | List Collections
-*Collections* | [**update**](docs/CollectionsApi.md#update) | **PUT** /v1/orgs/self/ws/{workspace}/collections/{collection} | Update Collection
-*Collections* | [**workspace_collections**](docs/CollectionsApi.md#workspace_collections) | **GET** /v1/orgs/self/ws/{workspace}/collections | List Collections in Workspace
+*Collections* | [**list_collections**](docs/CollectionsApi.md#list_collections) | **GET** /v1/orgs/self/ws/{workspace}/collections | List Collection
 *CustomRoles* | [**create**](docs/CustomRolesApi.md#create) | **POST** /v1/orgs/self/roles | Create a Role
 *CustomRoles* | [**delete**](docs/CustomRolesApi.md#delete) | **DELETE** /v1/orgs/self/roles/{roleName} | Delete a Role
 *CustomRoles* | [**get**](docs/CustomRolesApi.md#get) | **GET** /v1/orgs/self/roles/{roleName} | Retrieve role
@@ -160,18 +151,14 @@ Class | Method | HTTP request | Description
 *CustomRoles* | [**update**](docs/CustomRolesApi.md#update) | **POST** /v1/orgs/self/roles/{roleName} | Update a Role
 *DeploymentSettings* | [**get_deployment_settings**](docs/DeploymentSettingsApi.md#get_deployment_settings) | **GET** /v1/orgs/self/deploymentsettings | Retrieve Deployment Settings
 *DeploymentSettings* | [**update_deployment_settings**](docs/DeploymentSettingsApi.md#update_deployment_settings) | **PUT** /v1/orgs/self/deploymentsettings | Update Deployment Settings
+*Deployments* | [**get_deployment**](docs/DeploymentsApi.md#get_deployment) | **GET** /v1/deployments/{rrn} | Get info about a deployment
+*Deployments* | [**get_own_deployment**](docs/DeploymentsApi.md#get_own_deployment) | **GET** /v1/deployments/self | Get info about your own deployment
+*Deployments* | [**list_deployments**](docs/DeploymentsApi.md#list_deployments) | **GET** /v1/deployments | List all deployments
+*Deployments* | [**provision_deployment**](docs/DeploymentsApi.md#provision_deployment) | **POST** /v1/deployments | Provision a deployment
 *Documents* | [**add_documents**](docs/DocumentsApi.md#add_documents) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/docs | Add Documents
 *Documents* | [**delete_documents**](docs/DocumentsApi.md#delete_documents) | **DELETE** /v1/orgs/self/ws/{workspace}/collections/{collection}/docs | Delete Documents
 *Documents* | [**patch_documents**](docs/DocumentsApi.md#patch_documents) | **PATCH** /v1/orgs/self/ws/{workspace}/collections/{collection}/docs | Patch Documents
-*Integrations* | [**create_azure_blob_storage_integration**](docs/IntegrationsApi.md#create_azure_blob_storage_integration) | **POST** /v1/orgs/self/integrations | Create azure blob storage integration
-*Integrations* | [**create_azure_event_hubs_integration**](docs/IntegrationsApi.md#create_azure_event_hubs_integration) | **POST** /v1/orgs/self/integrations | Create azure event hubs integration
-*Integrations* | [**create_dynamodb_integration**](docs/IntegrationsApi.md#create_dynamodb_integration) | **POST** /v1/orgs/self/integrations | Create dynamodb integration
-*Integrations* | [**create_gcs_integration**](docs/IntegrationsApi.md#create_gcs_integration) | **POST** /v1/orgs/self/integrations | Create gcs integration
-*Integrations* | [**create_kafka_integration**](docs/IntegrationsApi.md#create_kafka_integration) | **POST** /v1/orgs/self/integrations | Create kafka integration
-*Integrations* | [**create_kinesis_integration**](docs/IntegrationsApi.md#create_kinesis_integration) | **POST** /v1/orgs/self/integrations | Create kinesis integration
-*Integrations* | [**create_mongodb_integration**](docs/IntegrationsApi.md#create_mongodb_integration) | **POST** /v1/orgs/self/integrations | Create mongodb integration
 *Integrations* | [**create_s3_integration**](docs/IntegrationsApi.md#create_s3_integration) | **POST** /v1/orgs/self/integrations | Create s3 integration
-*Integrations* | [**create_snowflake_integration**](docs/IntegrationsApi.md#create_snowflake_integration) | **POST** /v1/orgs/self/integrations | Create snowflake integration
 *Integrations* | [**delete**](docs/IntegrationsApi.md#delete) | **DELETE** /v1/orgs/self/integrations/{integration} | Delete Integration
 *Integrations* | [**get**](docs/IntegrationsApi.md#get) | **GET** /v1/orgs/self/integrations/{integration} | Retrieve Integration
 *Integrations* | [**list**](docs/IntegrationsApi.md#list) | **GET** /v1/orgs/self/integrations | List Integrations
@@ -203,15 +190,7 @@ Class | Method | HTTP request | Description
 *ScheduledLambdas* | [**list_org_scheduled_lambdas**](docs/ScheduledLambdasApi.md#list_org_scheduled_lambdas) | **GET** /v1/orgs/self/lambdas/scheduled_lambdas | List Scheduled Lambdas
 *ScheduledLambdas* | [**update**](docs/ScheduledLambdasApi.md#update) | **POST** /v1/orgs/self/ws/{workspace}/scheduled_lambdas/{scheduledLambdaId} | Update a Scheduled Lambda mapping
 *SharedLambdas* | [**execute_public_query_lambda_with_params**](docs/SharedLambdasApi.md#execute_public_query_lambda_with_params) | **POST** /v1/public/shared_lambdas/{public_access_id} | Execute a Public Query Lambda
-*Sources* | [**create_azure_blob_storage_source**](docs/SourcesApi.md#create_azure_blob_storage_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a new azure blob storage source in a collection
-*Sources* | [**create_azure_event_hubs_source**](docs/SourcesApi.md#create_azure_event_hubs_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a new azure event hubs source in a collection
-*Sources* | [**create_dynamodb_source**](docs/SourcesApi.md#create_dynamodb_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a new dynamodb source in a collection
-*Sources* | [**create_gcs_source**](docs/SourcesApi.md#create_gcs_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a new gcs source in a collection
-*Sources* | [**create_kafka_source**](docs/SourcesApi.md#create_kafka_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a new kafka source in a collection
-*Sources* | [**create_kinesis_source**](docs/SourcesApi.md#create_kinesis_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a new kinesis source in a collection
-*Sources* | [**create_mongodb_source**](docs/SourcesApi.md#create_mongodb_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a new mongodb source in a collection
 *Sources* | [**create_s3_source**](docs/SourcesApi.md#create_s3_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a new s3 source in a collection
-*Sources* | [**create_snowflake_source**](docs/SourcesApi.md#create_snowflake_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a new snowflake source in a collection
 *Sources* | [**delete**](docs/SourcesApi.md#delete) | **DELETE** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source} | Delete Collection source
 *Sources* | [**get**](docs/SourcesApi.md#get) | **GET** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source} | Retrieve source
 *Sources* | [**list**](docs/SourcesApi.md#list) | **GET** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | List sources in collection
@@ -235,7 +214,6 @@ Class | Method | HTTP request | Description
 *VirtualInstances* | [**create**](docs/VirtualInstancesApi.md#create) | **POST** /v1/orgs/self/virtualinstances | Create Virtual Instance
 *VirtualInstances* | [**delete**](docs/VirtualInstancesApi.md#delete) | **DELETE** /v1/orgs/self/virtualinstances/{virtualInstanceId} | Delete Virtual Instance
 *VirtualInstances* | [**get**](docs/VirtualInstancesApi.md#get) | **GET** /v1/orgs/self/virtualinstances/{virtualInstanceId} | Retrieve Virtual Instance
-*VirtualInstances* | [**get_collection_mount**](docs/VirtualInstancesApi.md#get_collection_mount) | **GET** /v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts/{collectionPath} | Get Collection Mount
 *VirtualInstances* | [**get_mount_offsets**](docs/VirtualInstancesApi.md#get_mount_offsets) | **POST** /v1/orgs/self/virtualinstances/{virtualInstanceId}/mounts/{collectionPath}/offsets/commit | Get Collection Commit
 *VirtualInstances* | [**get_virtual_instance_queries**](docs/VirtualInstancesApi.md#get_virtual_instance_queries) | **GET** /v1/orgs/self/virtualinstances/{virtualInstanceId}/queries | List Queries
 *VirtualInstances* | [**list**](docs/VirtualInstancesApi.md#list) | **GET** /v1/orgs/self/virtualinstances | List Virtual Instances
@@ -262,14 +240,8 @@ Class | Method | HTTP request | Description
  - [AutoScalingPolicy](docs/AutoScalingPolicy.md)
  - [AwsAccessKey](docs/AwsAccessKey.md)
  - [AwsRole](docs/AwsRole.md)
- - [AzureBlobStorageCollectionCreationRequest](docs/AzureBlobStorageCollectionCreationRequest.md)
  - [AzureBlobStorageIntegration](docs/AzureBlobStorageIntegration.md)
- - [AzureBlobStorageIntegrationCreationRequest](docs/AzureBlobStorageIntegrationCreationRequest.md)
- - [AzureBlobStorageSourceWrapper](docs/AzureBlobStorageSourceWrapper.md)
- - [AzureEventHubsCollectionCreationRequest](docs/AzureEventHubsCollectionCreationRequest.md)
  - [AzureEventHubsIntegration](docs/AzureEventHubsIntegration.md)
- - [AzureEventHubsIntegrationCreationRequest](docs/AzureEventHubsIntegrationCreationRequest.md)
- - [AzureEventHubsSourceWrapper](docs/AzureEventHubsSourceWrapper.md)
  - [AzureServiceBusIntegration](docs/AzureServiceBusIntegration.md)
  - [BulkStats](docs/BulkStats.md)
  - [CancelQueryResponse](docs/CancelQueryResponse.md)
@@ -287,6 +259,8 @@ Class | Method | HTTP request | Description
  - [CreateCollectionMountsResponse](docs/CreateCollectionMountsResponse.md)
  - [CreateCollectionRequest](docs/CreateCollectionRequest.md)
  - [CreateCollectionResponse](docs/CreateCollectionResponse.md)
+ - [CreateDeploymentRequest](docs/CreateDeploymentRequest.md)
+ - [CreateDeploymentResponse](docs/CreateDeploymentResponse.md)
  - [CreateIntegrationRequest](docs/CreateIntegrationRequest.md)
  - [CreateIntegrationResponse](docs/CreateIntegrationResponse.md)
  - [CreateQueryLambdaRequest](docs/CreateQueryLambdaRequest.md)
@@ -318,12 +292,8 @@ Class | Method | HTTP request | Description
  - [DeploymentSettings](docs/DeploymentSettings.md)
  - [DeploymentSettingsResponse](docs/DeploymentSettingsResponse.md)
  - [DocumentStatus](docs/DocumentStatus.md)
- - [DynamodbCollectionCreationRequest](docs/DynamodbCollectionCreationRequest.md)
  - [DynamodbIntegration](docs/DynamodbIntegration.md)
- - [DynamodbIntegrationCreationRequest](docs/DynamodbIntegrationCreationRequest.md)
- - [DynamodbSourceWrapper](docs/DynamodbSourceWrapper.md)
  - [ErrorModel](docs/ErrorModel.md)
- - [EventTimeInfo](docs/EventTimeInfo.md)
  - [ExecutePublicQueryLambdaRequest](docs/ExecutePublicQueryLambdaRequest.md)
  - [ExecuteQueryLambdaRequest](docs/ExecuteQueryLambdaRequest.md)
  - [ExecutionStatus](docs/ExecutionStatus.md)
@@ -332,16 +302,14 @@ Class | Method | HTTP request | Description
  - [FieldPartition](docs/FieldPartition.md)
  - [FormatParams](docs/FormatParams.md)
  - [GcpServiceAccount](docs/GcpServiceAccount.md)
- - [GcsCollectionCreationRequest](docs/GcsCollectionCreationRequest.md)
  - [GcsIntegration](docs/GcsIntegration.md)
- - [GcsIntegrationCreationRequest](docs/GcsIntegrationCreationRequest.md)
- - [GcsSourceWrapper](docs/GcsSourceWrapper.md)
  - [GetAliasResponse](docs/GetAliasResponse.md)
  - [GetApiKeyResponse](docs/GetApiKeyResponse.md)
  - [GetCollectionCommit](docs/GetCollectionCommit.md)
  - [GetCollectionCommitData](docs/GetCollectionCommitData.md)
  - [GetCollectionCommitRequest](docs/GetCollectionCommitRequest.md)
  - [GetCollectionResponse](docs/GetCollectionResponse.md)
+ - [GetDeploymentResponse](docs/GetDeploymentResponse.md)
  - [GetIntegrationResponse](docs/GetIntegrationResponse.md)
  - [GetQueryResponse](docs/GetQueryResponse.md)
  - [GetSourceResponse](docs/GetSourceResponse.md)
@@ -350,19 +318,14 @@ Class | Method | HTTP request | Description
  - [GetWorkspaceResponse](docs/GetWorkspaceResponse.md)
  - [InputField](docs/InputField.md)
  - [Integration](docs/Integration.md)
- - [KafkaCollectionCreationRequest](docs/KafkaCollectionCreationRequest.md)
  - [KafkaIntegration](docs/KafkaIntegration.md)
- - [KafkaIntegrationCreationRequest](docs/KafkaIntegrationCreationRequest.md)
- - [KafkaSourceWrapper](docs/KafkaSourceWrapper.md)
  - [KafkaV3SecurityConfig](docs/KafkaV3SecurityConfig.md)
- - [KinesisCollectionCreationRequest](docs/KinesisCollectionCreationRequest.md)
  - [KinesisIntegration](docs/KinesisIntegration.md)
- - [KinesisIntegrationCreationRequest](docs/KinesisIntegrationCreationRequest.md)
- - [KinesisSourceWrapper](docs/KinesisSourceWrapper.md)
  - [ListAliasesResponse](docs/ListAliasesResponse.md)
  - [ListApiKeysResponse](docs/ListApiKeysResponse.md)
  - [ListCollectionMountsResponse](docs/ListCollectionMountsResponse.md)
  - [ListCollectionsResponse](docs/ListCollectionsResponse.md)
+ - [ListDeploymentsResponse](docs/ListDeploymentsResponse.md)
  - [ListIntegrationsResponse](docs/ListIntegrationsResponse.md)
  - [ListQueriesResponse](docs/ListQueriesResponse.md)
  - [ListQueryLambdaTagsResponse](docs/ListQueryLambdaTagsResponse.md)
@@ -378,9 +341,6 @@ Class | Method | HTTP request | Description
  - [ListWorkspacesResponse](docs/ListWorkspacesResponse.md)
  - [MicrobatchPolicy](docs/MicrobatchPolicy.md)
  - [MongoDbIntegration](docs/MongoDbIntegration.md)
- - [MongodbCollectionCreationRequest](docs/MongodbCollectionCreationRequest.md)
- - [MongodbIntegrationCreationRequest](docs/MongodbIntegrationCreationRequest.md)
- - [MongodbSourceWrapper](docs/MongodbSourceWrapper.md)
  - [Offsets](docs/Offsets.md)
  - [Organization](docs/Organization.md)
  - [OrganizationResponse](docs/OrganizationResponse.md)
@@ -418,10 +378,7 @@ Class | Method | HTTP request | Description
  - [ScheduledLambda](docs/ScheduledLambda.md)
  - [ScheduledLambdaResponse](docs/ScheduledLambdaResponse.md)
  - [SchemaRegistryConfig](docs/SchemaRegistryConfig.md)
- - [SnowflakeCollectionCreationRequest](docs/SnowflakeCollectionCreationRequest.md)
  - [SnowflakeIntegration](docs/SnowflakeIntegration.md)
- - [SnowflakeIntegrationCreationRequest](docs/SnowflakeIntegrationCreationRequest.md)
- - [SnowflakeSourceWrapper](docs/SnowflakeSourceWrapper.md)
  - [Source](docs/Source.md)
  - [SourceAzBlobStorageBase](docs/SourceAzBlobStorageBase.md)
  - [SourceAzBlobStorageSettings](docs/SourceAzBlobStorageSettings.md)
@@ -465,7 +422,6 @@ Class | Method | HTTP request | Description
  - [UpdateAliasRequest](docs/UpdateAliasRequest.md)
  - [UpdateApiKeyRequest](docs/UpdateApiKeyRequest.md)
  - [UpdateApiKeyResponse](docs/UpdateApiKeyResponse.md)
- - [UpdateCollectionRequest](docs/UpdateCollectionRequest.md)
  - [UpdateDeploymentSettingsRequest](docs/UpdateDeploymentSettingsRequest.md)
  - [UpdateIntegrationRequest](docs/UpdateIntegrationRequest.md)
  - [UpdateIntegrationResponse](docs/UpdateIntegrationResponse.md)
@@ -477,12 +433,18 @@ Class | Method | HTTP request | Description
  - [UpdateUserRequest](docs/UpdateUserRequest.md)
  - [UpdateViewRequest](docs/UpdateViewRequest.md)
  - [UpdateViewResponse](docs/UpdateViewResponse.md)
+ - [UpdateVirtualInstanceClassSettingsRequest](docs/UpdateVirtualInstanceClassSettingsRequest.md)
  - [UpdateVirtualInstanceRequest](docs/UpdateVirtualInstanceRequest.md)
  - [UpdateVirtualInstanceResponse](docs/UpdateVirtualInstanceResponse.md)
+ - [UpdateVirtualInstanceSettingsRequest](docs/UpdateVirtualInstanceSettingsRequest.md)
+ - [UpdateVirtualInstanceSizeSettingsRequest](docs/UpdateVirtualInstanceSizeSettingsRequest.md)
  - [User](docs/User.md)
  - [ValidateQueryResponse](docs/ValidateQueryResponse.md)
  - [View](docs/View.md)
  - [VirtualInstance](docs/VirtualInstance.md)
+ - [VirtualInstanceClassSettings](docs/VirtualInstanceClassSettings.md)
+ - [VirtualInstanceSettings](docs/VirtualInstanceSettings.md)
+ - [VirtualInstanceSizeSettings](docs/VirtualInstanceSizeSettings.md)
  - [VirtualInstanceStats](docs/VirtualInstanceStats.md)
  - [Workspace](docs/Workspace.md)
  - [XmlParams](docs/XmlParams.md)

@@ -109,6 +109,7 @@ class Integration(ModelNormal):
         return {
             'created_by': (str,),  # noqa: E501
             'name': (str,),  # noqa: E501
+            'rrn': (str,),  # noqa: E501
             'azure_blob_storage': (AzureBlobStorageIntegration, none_type),  # noqa: E501
             'azure_event_hubs': (AzureEventHubsIntegration, none_type),  # noqa: E501
             'azure_service_bus': (AzureServiceBusIntegration, none_type),  # noqa: E501
@@ -135,6 +136,7 @@ class Integration(ModelNormal):
     attribute_map = {
         'created_by': 'created_by',  # noqa: E501
         'name': 'name',  # noqa: E501
+        'rrn': 'rrn',  # noqa: E501
         'azure_blob_storage': 'azure_blob_storage',  # noqa: E501
         'azure_event_hubs': 'azure_event_hubs',  # noqa: E501
         'azure_service_bus': 'azure_service_bus',  # noqa: E501
@@ -160,12 +162,13 @@ class Integration(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, created_by, name, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, created_by, name, rrn, *args, **kwargs):  # noqa: E501
         """Integration - a model defined in OpenAPI
 
         Args:
             created_by (str): Email of user who created the integration.
             name (str): Descriptive label and unique identifier.
+            rrn (str): Unique identifier for this integration
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -243,6 +246,7 @@ class Integration(ModelNormal):
 
         self.created_by = created_by
         self.name = name
+        self.rrn = rrn
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -263,12 +267,13 @@ class Integration(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, *, created_by, name, **kwargs):  # noqa: E501
+    def __init__(self, *, created_by, name, rrn, **kwargs):  # noqa: E501
         """Integration - a model defined in OpenAPI
 
         Keyword Args:
             created_by (str): Email of user who created the integration.
             name (str): Descriptive label and unique identifier.
+            rrn (str): Unique identifier for this integration
             azure_blob_storage (AzureBlobStorageIntegration): [optional]  # noqa: E501
             azure_event_hubs (AzureEventHubsIntegration): [optional]  # noqa: E501
             azure_service_bus (AzureServiceBusIntegration): [optional]  # noqa: E501
@@ -343,6 +348,7 @@ class Integration(ModelNormal):
 
         self.created_by = created_by
         self.name = name
+        self.rrn = rrn
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

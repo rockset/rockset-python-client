@@ -12,7 +12,5 @@ import sys
 from rockset.models import *
 
 
-def test_azure_event_hubs_collection_creation_request_init():
-    AzureEventHubsCollectionCreationRequest(
-        name="global-transactions",
-    )
+def test_virtual_instance_size_settings_init():
+    VirtualInstanceSizeSettings()

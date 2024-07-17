@@ -81,11 +81,12 @@ class Workspace(ModelNormal):
                 and the value is attribute type.
         """
         return {
+            'name': (str,),  # noqa: E501
+            'rrn': (str,),  # noqa: E501
             'collection_count': (int, none_type),  # noqa: E501
             'created_at': (str, none_type),  # noqa: E501
             'created_by': (str, none_type),  # noqa: E501
             'description': (str, none_type),  # noqa: E501
-            'name': (str, none_type),  # noqa: E501
         }
 
     @cached_property
@@ -94,11 +95,12 @@ class Workspace(ModelNormal):
 
 
     attribute_map = {
+        'name': 'name',  # noqa: E501
+        'rrn': 'rrn',  # noqa: E501
         'collection_count': 'collection_count',  # noqa: E501
         'created_at': 'created_at',  # noqa: E501
         'created_by': 'created_by',  # noqa: E501
         'description': 'description',  # noqa: E501
-        'name': 'name',  # noqa: E501
     }
 
     read_only_vars = {
@@ -108,8 +110,12 @@ class Workspace(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, name, rrn, *args, **kwargs):  # noqa: E501
         """Workspace - a model defined in OpenAPI
+
+        Args:
+            name (str): Descriptive label and unique identifier.
+            rrn (str): Unique identifier for this workspace
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -146,7 +152,6 @@ class Workspace(ModelNormal):
             created_at (str): ISO-8601 date of when workspace was created.. [optional]  # noqa: E501
             created_by (str): Email of user who created the workspace.. [optional]  # noqa: E501
             description (str): Longer explanation for the workspace.. [optional]  # noqa: E501
-            name (str): Descriptive label and unique identifier.. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -174,6 +179,8 @@ class Workspace(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.name = name
+        self.rrn = rrn
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -194,15 +201,16 @@ class Workspace(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, **kwargs):  # noqa: E501
+    def __init__(self, *, name, rrn, **kwargs):  # noqa: E501
         """Workspace - a model defined in OpenAPI
 
         Keyword Args:
+            name (str): Descriptive label and unique identifier.
+            rrn (str): Unique identifier for this workspace
             collection_count (int): Number of collections that are immediate children of workspace.. [optional]  # noqa: E501
             created_at (str): ISO-8601 date of when workspace was created.. [optional]  # noqa: E501
             created_by (str): Email of user who created the workspace.. [optional]  # noqa: E501
             description (str): Longer explanation for the workspace.. [optional]  # noqa: E501
-            name (str): Descriptive label and unique identifier.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -259,6 +267,8 @@ class Workspace(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.name = name
+        self.rrn = rrn
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
