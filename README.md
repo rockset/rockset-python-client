@@ -138,6 +138,9 @@ Class | Method | HTTP request | Description
 *Aliases* | [**list**](docs/AliasesApi.md#list) | **GET** /v1/orgs/self/aliases | List Aliases
 *Aliases* | [**update**](docs/AliasesApi.md#update) | **POST** /v1/orgs/self/ws/{workspace}/aliases/{alias_rrn} | Update Alias
 *Aliases* | [**workspace_aliases**](docs/AliasesApi.md#workspace_aliases) | **GET** /v1/orgs/self/ws/{workspace}/aliases | List Aliases in Workspace
+*Collections* | [**create_azure_blob_storage_collection**](docs/CollectionsApi.md#create_azure_blob_storage_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create azure blob storage collection
+*Collections* | [**create_azure_event_hubs_collection**](docs/CollectionsApi.md#create_azure_event_hubs_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create azure event hubs collection
+*Collections* | [**create_kafka_collection**](docs/CollectionsApi.md#create_kafka_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create kafka collection
 *Collections* | [**create_s3_collection**](docs/CollectionsApi.md#create_s3_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create s3 collection
 *Collections* | [**delete**](docs/CollectionsApi.md#delete) | **DELETE** /v1/orgs/self/ws/{workspace}/collections/{collection} | Delete Collection
 *Collections* | [**get**](docs/CollectionsApi.md#get) | **GET** /v1/orgs/self/ws/{workspace}/collections/{collection} | Retrieve Collection
@@ -158,6 +161,9 @@ Class | Method | HTTP request | Description
 *Documents* | [**add_documents**](docs/DocumentsApi.md#add_documents) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/docs | Add Documents
 *Documents* | [**delete_documents**](docs/DocumentsApi.md#delete_documents) | **DELETE** /v1/orgs/self/ws/{workspace}/collections/{collection}/docs | Delete Documents
 *Documents* | [**patch_documents**](docs/DocumentsApi.md#patch_documents) | **PATCH** /v1/orgs/self/ws/{workspace}/collections/{collection}/docs | Patch Documents
+*Integrations* | [**create_azure_blob_storage_integration**](docs/IntegrationsApi.md#create_azure_blob_storage_integration) | **POST** /v1/orgs/self/integrations | Create azure blob storage integration
+*Integrations* | [**create_azure_event_hubs_integration**](docs/IntegrationsApi.md#create_azure_event_hubs_integration) | **POST** /v1/orgs/self/integrations | Create azure event hubs integration
+*Integrations* | [**create_kafka_integration**](docs/IntegrationsApi.md#create_kafka_integration) | **POST** /v1/orgs/self/integrations | Create kafka integration
 *Integrations* | [**create_s3_integration**](docs/IntegrationsApi.md#create_s3_integration) | **POST** /v1/orgs/self/integrations | Create s3 integration
 *Integrations* | [**delete**](docs/IntegrationsApi.md#delete) | **DELETE** /v1/orgs/self/integrations/{integration} | Delete Integration
 *Integrations* | [**get**](docs/IntegrationsApi.md#get) | **GET** /v1/orgs/self/integrations/{integration} | Retrieve Integration
@@ -190,6 +196,9 @@ Class | Method | HTTP request | Description
 *ScheduledLambdas* | [**list_org_scheduled_lambdas**](docs/ScheduledLambdasApi.md#list_org_scheduled_lambdas) | **GET** /v1/orgs/self/lambdas/scheduled_lambdas | List Scheduled Lambdas
 *ScheduledLambdas* | [**update**](docs/ScheduledLambdasApi.md#update) | **POST** /v1/orgs/self/ws/{workspace}/scheduled_lambdas/{scheduledLambdaId} | Update a Scheduled Lambda mapping
 *SharedLambdas* | [**execute_public_query_lambda_with_params**](docs/SharedLambdasApi.md#execute_public_query_lambda_with_params) | **POST** /v1/public/shared_lambdas/{public_access_id} | Execute a Public Query Lambda
+*Sources* | [**create_azure_blob_storage_source**](docs/SourcesApi.md#create_azure_blob_storage_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a new azure blob storage source in a collection
+*Sources* | [**create_azure_event_hubs_source**](docs/SourcesApi.md#create_azure_event_hubs_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a new azure event hubs source in a collection
+*Sources* | [**create_kafka_source**](docs/SourcesApi.md#create_kafka_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a new kafka source in a collection
 *Sources* | [**create_s3_source**](docs/SourcesApi.md#create_s3_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a new s3 source in a collection
 *Sources* | [**delete**](docs/SourcesApi.md#delete) | **DELETE** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source} | Delete Collection source
 *Sources* | [**get**](docs/SourcesApi.md#get) | **GET** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source} | Retrieve source
@@ -240,8 +249,14 @@ Class | Method | HTTP request | Description
  - [AutoScalingPolicy](docs/AutoScalingPolicy.md)
  - [AwsAccessKey](docs/AwsAccessKey.md)
  - [AwsRole](docs/AwsRole.md)
+ - [AzureBlobStorageCollectionCreationRequest](docs/AzureBlobStorageCollectionCreationRequest.md)
  - [AzureBlobStorageIntegration](docs/AzureBlobStorageIntegration.md)
+ - [AzureBlobStorageIntegrationCreationRequest](docs/AzureBlobStorageIntegrationCreationRequest.md)
+ - [AzureBlobStorageSourceWrapper](docs/AzureBlobStorageSourceWrapper.md)
+ - [AzureEventHubsCollectionCreationRequest](docs/AzureEventHubsCollectionCreationRequest.md)
  - [AzureEventHubsIntegration](docs/AzureEventHubsIntegration.md)
+ - [AzureEventHubsIntegrationCreationRequest](docs/AzureEventHubsIntegrationCreationRequest.md)
+ - [AzureEventHubsSourceWrapper](docs/AzureEventHubsSourceWrapper.md)
  - [AzureServiceBusIntegration](docs/AzureServiceBusIntegration.md)
  - [BulkStats](docs/BulkStats.md)
  - [CancelQueryResponse](docs/CancelQueryResponse.md)
@@ -318,7 +333,10 @@ Class | Method | HTTP request | Description
  - [GetWorkspaceResponse](docs/GetWorkspaceResponse.md)
  - [InputField](docs/InputField.md)
  - [Integration](docs/Integration.md)
+ - [KafkaCollectionCreationRequest](docs/KafkaCollectionCreationRequest.md)
  - [KafkaIntegration](docs/KafkaIntegration.md)
+ - [KafkaIntegrationCreationRequest](docs/KafkaIntegrationCreationRequest.md)
+ - [KafkaSourceWrapper](docs/KafkaSourceWrapper.md)
  - [KafkaV3SecurityConfig](docs/KafkaV3SecurityConfig.md)
  - [KinesisIntegration](docs/KinesisIntegration.md)
  - [ListAliasesResponse](docs/ListAliasesResponse.md)

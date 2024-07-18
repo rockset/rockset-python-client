@@ -259,6 +259,57 @@ components:
       required:
         - aws_role_arn
       type: object
+    AzureBlobStorageCollectionCreationRequest:
+      properties:
+        clustering_key:
+          description:
+            Deprecated. List of clustering fields. Use CLUSTER BY clause
+            in `field_mapping_query` instead.
+          items:
+            $ref: "#/components/schemas/FieldPartition"
+          type: array
+        description:
+          description: Text describing the collection.
+          example: transactions from stores worldwide
+          type: string
+        field_mapping_query:
+          $ref: "#/components/schemas/FieldMappingQuery"
+          description: Ingest transformation query.
+        name:
+          description:
+            Unique identifier for collection, can contain alphanumeric
+            or dash characters.
+          example: global-transactions
+          type: string
+        retention_secs:
+          description:
+            Number of seconds after which data is purged, based on event
+            time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly
+            less than 10 years.
+          example: 1000000
+          format: int64
+          maximum: 315359999
+          minimum: 3600
+          type: integer
+        source_download_soft_limit_bytes:
+          description: Soft ingest limit for this collection.
+          format: int64
+          type: integer
+        sources:
+          description: List of sources from which to ingest data
+          items:
+            $ref: "#/components/schemas/AzureBlobStorageSourceWrapper"
+          type: array
+        storage_compression_type:
+          description: RocksDB storage compression type.
+          enum:
+            - LZ4
+            - ZSTD
+          example: LZ4
+          type: string
+      required:
+        - name
+      type: object
     AzureBlobStorageIntegration:
       properties:
         connection_string:
@@ -270,6 +321,88 @@ components:
       required:
         - connection_string
       type: object
+    AzureBlobStorageIntegrationCreationRequest:
+      properties:
+        azure_blob_storage:
+          $ref: "#/components/schemas/AzureBlobStorageIntegration"
+          description: Azure Blob Storage details.
+        description:
+          description: Longer explanation for the integration.
+          example: AWS account with event data for the data science team.
+          type: string
+        name:
+          description: Descriptive label.
+          example: event-logs
+          type: string
+      required:
+        - name
+      type: object
+    AzureBlobStorageSourceWrapper:
+      description: Details about the data source for the given collection.
+      properties:
+        azure_blob_storage:
+          $ref: "#/components/schemas/SourceAzureBlobStorage"
+          description: Configuration for ingestion from Azure Blob Storage.
+        format_params:
+          $ref: "#/components/schemas/FormatParams"
+          description: Format parameters for data from this source.
+        integration_name:
+          description: Name of integration to use.
+          example: aws-integration
+          type: string
+      type: object
+      x-inner-field: azure_blob_storage
+    AzureEventHubsCollectionCreationRequest:
+      properties:
+        clustering_key:
+          description:
+            Deprecated. List of clustering fields. Use CLUSTER BY clause
+            in `field_mapping_query` instead.
+          items:
+            $ref: "#/components/schemas/FieldPartition"
+          type: array
+        description:
+          description: Text describing the collection.
+          example: transactions from stores worldwide
+          type: string
+        field_mapping_query:
+          $ref: "#/components/schemas/FieldMappingQuery"
+          description: Ingest transformation query.
+        name:
+          description:
+            Unique identifier for collection, can contain alphanumeric
+            or dash characters.
+          example: global-transactions
+          type: string
+        retention_secs:
+          description:
+            Number of seconds after which data is purged, based on event
+            time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly
+            less than 10 years.
+          example: 1000000
+          format: int64
+          maximum: 315359999
+          minimum: 3600
+          type: integer
+        source_download_soft_limit_bytes:
+          description: Soft ingest limit for this collection.
+          format: int64
+          type: integer
+        sources:
+          description: List of sources from which to ingest data
+          items:
+            $ref: "#/components/schemas/AzureEventHubsSourceWrapper"
+          type: array
+        storage_compression_type:
+          description: RocksDB storage compression type.
+          enum:
+            - LZ4
+            - ZSTD
+          example: LZ4
+          type: string
+      required:
+        - name
+      type: object
     AzureEventHubsIntegration:
       properties:
         connection_string:
@@ -277,6 +410,37 @@ components:
           example: Endpoint=sb://<NamespaceName>.servicebus.windows.net/;SharedAccessKeyName=<KeyName>;SharedAccessKey=<KeyValue>
           type: string
       type: object
+    AzureEventHubsIntegrationCreationRequest:
+      properties:
+        azure_event_hubs:
+          $ref: "#/components/schemas/AzureEventHubsIntegration"
+          description: Azure Event Hubs details.
+        description:
+          description: Longer explanation for the integration.
+          example: AWS account with event data for the data science team.
+          type: string
+        name:
+          description: Descriptive label.
+          example: event-logs
+          type: string
+      required:
+        - name
+      type: object
+    AzureEventHubsSourceWrapper:
+      description: Details about the data source for the given collection.
+      properties:
+        azure_event_hubs:
+          $ref: "#/components/schemas/SourceAzureEventHubs"
+          description: Configuration for ingestion from Azure Event Hubs.
+        format_params:
+          $ref: "#/components/schemas/FormatParams"
+          description: Format parameters for data from this source.
+        integration_name:
+          description: Name of integration to use.
+          example: aws-integration
+          type: string
+      type: object
+      x-inner-field: azure_event_hubs
     AzureServiceBusIntegration:
       properties:
         connection_string:
@@ -1771,6 +1935,57 @@ components:
         - name
         - rrn
       type: object
+    KafkaCollectionCreationRequest:
+      properties:
+        clustering_key:
+          description:
+            Deprecated. List of clustering fields. Use CLUSTER BY clause
+            in `field_mapping_query` instead.
+          items:
+            $ref: "#/components/schemas/FieldPartition"
+          type: array
+        description:
+          description: Text describing the collection.
+          example: transactions from stores worldwide
+          type: string
+        field_mapping_query:
+          $ref: "#/components/schemas/FieldMappingQuery"
+          description: Ingest transformation query.
+        name:
+          description:
+            Unique identifier for collection, can contain alphanumeric
+            or dash characters.
+          example: global-transactions
+          type: string
+        retention_secs:
+          description:
+            Number of seconds after which data is purged, based on event
+            time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly
+            less than 10 years.
+          example: 1000000
+          format: int64
+          maximum: 315359999
+          minimum: 3600
+          type: integer
+        source_download_soft_limit_bytes:
+          description: Soft ingest limit for this collection.
+          format: int64
+          type: integer
+        sources:
+          description: List of sources from which to ingest data
+          items:
+            $ref: "#/components/schemas/KafkaSourceWrapper"
+          type: array
+        storage_compression_type:
+          description: RocksDB storage compression type.
+          enum:
+            - LZ4
+            - ZSTD
+          example: LZ4
+          type: string
+      required:
+        - name
+      type: object
     KafkaIntegration:
       properties:
         aws_role:
@@ -1813,6 +2028,36 @@ components:
         use_v3:
           type: boolean
       type: object
+    KafkaIntegrationCreationRequest:
+      properties:
+        description:
+          description: Longer explanation for the integration.
+          example: AWS account with event data for the data science team.
+          type: string
+        kafka:
+          $ref: "#/components/schemas/KafkaIntegration"
+        name:
+          description: Descriptive label.
+          example: event-logs
+          type: string
+      required:
+        - name
+      type: object
+    KafkaSourceWrapper:
+      description: Details about the data source for the given collection.
+      properties:
+        format_params:
+          $ref: "#/components/schemas/FormatParams"
+          description: Format parameters for data from this source.
+        integration_name:
+          description: Name of integration to use.
+          example: aws-integration
+          type: string
+        kafka:
+          $ref: "#/components/schemas/SourceKafka"
+          description: Kafka collection identifier.
+      type: object
+      x-inner-field: kafka
     KafkaV3SecurityConfig:
       properties:
         api_key:
@@ -5837,6 +6082,321 @@ paths:
       tags:
         - Integrations
       x-rename: list
+  /v1/orgs/self/integrations#AzureBlobStorage:
+    post:
+      description: Create a new integration.
+      operationId: createAzureBlobStorageIntegration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AzureBlobStorageIntegrationCreationRequest"
+        description: integration credentials
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateIntegrationResponse"
+          description: integration created successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Create azure blob storage integration
+      tags:
+        - Integrations
+  /v1/orgs/self/integrations#AzureEventHubs:
+    post:
+      description: Create a new integration.
+      operationId: createAzureEventHubsIntegration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AzureEventHubsIntegrationCreationRequest"
+        description: integration credentials
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateIntegrationResponse"
+          description: integration created successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Create azure event hubs integration
+      tags:
+        - Integrations
+  /v1/orgs/self/integrations#Kafka:
+    post:
+      description: Create a new integration.
+      operationId: createKafkaIntegration
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/KafkaIntegrationCreationRequest"
+        description: integration credentials
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateIntegrationResponse"
+          description: integration created successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Create kafka integration
+      tags:
+        - Integrations
   /v1/orgs/self/integrations#S3:
     post:
       description: Create a new integration.
@@ -11026,6 +11586,345 @@ paths:
       summary: List Collection
       tags:
         - Collections
+  /v1/orgs/self/ws/{workspace}/collections#AzureBlobStorage:
+    post:
+      description: Create new collection in a workspace.
+      operationId: createAzureBlobStorageCollection
+      parameters:
+        - description: name of the workspace
+          in: path
+          name: workspace
+          required: true
+          schema:
+            default: commons
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AzureBlobStorageCollectionCreationRequest"
+        description: JSON object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateCollectionResponse"
+          description: collection created successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Create azure blob storage collection
+      tags:
+        - Collections
+  /v1/orgs/self/ws/{workspace}/collections#AzureEventHubs:
+    post:
+      description: Create new collection in a workspace.
+      operationId: createAzureEventHubsCollection
+      parameters:
+        - description: name of the workspace
+          in: path
+          name: workspace
+          required: true
+          schema:
+            default: commons
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AzureEventHubsCollectionCreationRequest"
+        description: JSON object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateCollectionResponse"
+          description: collection created successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Create azure event hubs collection
+      tags:
+        - Collections
+  /v1/orgs/self/ws/{workspace}/collections#Kafka:
+    post:
+      description: Create new collection in a workspace.
+      operationId: createKafkaCollection
+      parameters:
+        - description: name of the workspace
+          in: path
+          name: workspace
+          required: true
+          schema:
+            default: commons
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/KafkaCollectionCreationRequest"
+        description: JSON object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateCollectionResponse"
+          description: collection created successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Create kafka collection
+      tags:
+        - Collections
   /v1/orgs/self/ws/{workspace}/collections#S3:
     post:
       description: Create new collection in a workspace.
@@ -11947,6 +12846,363 @@ paths:
       tags:
         - Sources
       x-rename: list
+  /v1/orgs/self/ws/{workspace}/collections/{collection}/sources#AzureBlobStorage:
+    post:
+      description: Create new source in a collection.
+      operationId: createAzureBlobStorageSource
+      parameters:
+        - description: name of the workspace
+          in: path
+          name: workspace
+          required: true
+          schema:
+            default: commons
+            type: string
+        - description: name of the collection
+          in: path
+          name: collection
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AzureBlobStorageSourceWrapper"
+        description: JSON object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetSourceResponse"
+          description: source created successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Create a new azure blob storage source in a collection
+      tags:
+        - Sources
+  /v1/orgs/self/ws/{workspace}/collections/{collection}/sources#AzureEventHubs:
+    post:
+      description: Create new source in a collection.
+      operationId: createAzureEventHubsSource
+      parameters:
+        - description: name of the workspace
+          in: path
+          name: workspace
+          required: true
+          schema:
+            default: commons
+            type: string
+        - description: name of the collection
+          in: path
+          name: collection
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AzureEventHubsSourceWrapper"
+        description: JSON object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetSourceResponse"
+          description: source created successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Create a new azure event hubs source in a collection
+      tags:
+        - Sources
+  /v1/orgs/self/ws/{workspace}/collections/{collection}/sources#Kafka:
+    post:
+      description: Create new source in a collection.
+      operationId: createKafkaSource
+      parameters:
+        - description: name of the workspace
+          in: path
+          name: workspace
+          required: true
+          schema:
+            default: commons
+            type: string
+        - description: name of the collection
+          in: path
+          name: collection
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/KafkaSourceWrapper"
+        description: JSON object
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetSourceResponse"
+          description: source created successfully
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Create a new kafka source in a collection
+      tags:
+        - Sources
   /v1/orgs/self/ws/{workspace}/collections/{collection}/sources#S3:
     post:
       description: Create new source in a collection.

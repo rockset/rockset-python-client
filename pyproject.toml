@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "rockset-openai"
-version = "0.0.3"
+version = "0.0.4"
 description = "The python client for the Rockset API."
 authors = ["Rockset <support@rockset.com>"]
 packages = [
@@ -34,7 +34,7 @@ classifiers = [
 ]
 
 [tool.poetry.dependencies]
-python = "^3.6"
+python = "^3.7"
 urllib3 = "^2.2.1"
 python_dateutil = "^2.5.3"
 geojson = "^2.5.0"

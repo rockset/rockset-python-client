@@ -4,6 +4,9 @@ All URIs are relative to *https://api.use1a1.rockset.com* or the apiserver provi
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**create_azure_blob_storage_source**](SourcesApi.md#create_azure_blob_storage_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a new azure blob storage source in a collection
+[**create_azure_event_hubs_source**](SourcesApi.md#create_azure_event_hubs_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a new azure event hubs source in a collection
+[**create_kafka_source**](SourcesApi.md#create_kafka_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a new kafka source in a collection
 [**create_s3_source**](SourcesApi.md#create_s3_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a new s3 source in a collection
 [**delete**](SourcesApi.md#delete) | **DELETE** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source} | Delete Collection source
 [**get**](SourcesApi.md#get) | **GET** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source} | Retrieve source
@@ -12,6 +15,375 @@ Method | HTTP request | Description
 [**suspend**](SourcesApi.md#suspend) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source}/suspend | Suspend source ingest
 [**update**](SourcesApi.md#update) | **PUT** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources/{source} | Update a collection source
 
+
+# **create_azure_blob_storage_source**
+> GetSourceResponse create_azure_blob_storage_source(collection, azure_blob_storage_source_wrapper)
+
+Create a new azure blob storage source in a collection
+
+Create new source in a collection.
+
+### Example
+
+* Api Key Authentication (apikey):
+
+```python
+from rockset import *
+from rockset.models import *
+from pprint import pprint
+
+# Create an instance of the Rockset client
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
+
+# synchronous example passing only required values which don't have defaults set
+# Create a new azure blob storage source in a collection
+api_response = rs.Sources.create_azure_blob_storage_source(
+    collection="collection_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Sources->create_azure_blob_storage_source: %s\n" % e)
+
+# asynchronous example passing optional values and required values which don't have defaults set
+# assumes that execution takes place within an asynchronous context
+# Create a new azure blob storage source in a collection
+api_response = await rs.Sources.create_azure_blob_storage_source(
+    collection="collection_example",
+    format_params=FormatParams(
+        bson=True,
+        csv=CsvParams(
+            column_names=["c1","c2","c3"],
+            column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+            encoding="UTF-8",
+            escape_char="\\",
+            first_line_as_column_names=True,
+            quote_char="\"",
+            separator=",",
+        ),
+        json=True,
+        mssql_dms=True,
+        mysql_dms=True,
+        oracle_dms=True,
+        postgres_dms=True,
+        xml=XmlParams(
+            attribute_prefix="_attr",
+            doc_tag="row",
+            encoding="UTF-8",
+            root_tag="root",
+            value_tag="value",
+        ),
+    ),
+    integration_name="aws-integration",
+    container="server-logs",
+    pattern="prefix/to/**/keys/*.format",
+    prefix="prefix/to/blobs",
+    settings=SourceAzBlobStorageSettings(
+        azblob_scan_frequency="PT5M",
+    ),
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Sources->create_azure_blob_storage_source: %s\n" % e)
+    return
+pprint(api_response)
+
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **collection** | **str** | name of the collection |
+ **format_params** | [**FormatParams**](FormatParams.md) |  | [optional]
+ **integration_name** | **str** | Name of integration to use. | [optional]
+ **container** | **str** | Name of Azure blob Storage container you want to ingest from. | [optional]
+ **pattern** | **str** | Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified. | [optional]
+ **prefix** | **str** | Prefix that selects blobs to ingest. | [optional]
+ **settings** | [**SourceAzBlobStorageSettings**](SourceAzBlobStorageSettings.md) |  | [optional]
+ **workspace** | **str** | name of the workspace | defaults to "commons"
+
+### Return type
+
+[**GetSourceResponse**](GetSourceResponse.md)
+
+### Authorization
+
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | source created successfully |  -  |
+**400** | bad request |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+**405** | not allowed |  -  |
+**406** | not acceptable |  -  |
+**408** | request timeout |  -  |
+**409** | conflict |  -  |
+**415** | not supported |  -  |
+**429** | resource exceeded |  -  |
+**500** | internal error |  -  |
+**501** | not implemented |  -  |
+**502** | bad gateway |  -  |
+**503** | not ready |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_azure_event_hubs_source**
+> GetSourceResponse create_azure_event_hubs_source(collection, azure_event_hubs_source_wrapper)
+
+Create a new azure event hubs source in a collection
+
+Create new source in a collection.
+
+### Example
+
+* Api Key Authentication (apikey):
+
+```python
+from rockset import *
+from rockset.models import *
+from pprint import pprint
+
+# Create an instance of the Rockset client
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
+
+# synchronous example passing only required values which don't have defaults set
+# Create a new azure event hubs source in a collection
+api_response = rs.Sources.create_azure_event_hubs_source(
+    collection="collection_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Sources->create_azure_event_hubs_source: %s\n" % e)
+
+# asynchronous example passing optional values and required values which don't have defaults set
+# assumes that execution takes place within an asynchronous context
+# Create a new azure event hubs source in a collection
+api_response = await rs.Sources.create_azure_event_hubs_source(
+    collection="collection_example",
+    format_params=FormatParams(
+        bson=True,
+        csv=CsvParams(
+            column_names=["c1","c2","c3"],
+            column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+            encoding="UTF-8",
+            escape_char="\\",
+            first_line_as_column_names=True,
+            quote_char="\"",
+            separator=",",
+        ),
+        json=True,
+        mssql_dms=True,
+        mysql_dms=True,
+        oracle_dms=True,
+        postgres_dms=True,
+        xml=XmlParams(
+            attribute_prefix="_attr",
+            doc_tag="row",
+            encoding="UTF-8",
+            root_tag="root",
+            value_tag="value",
+        ),
+    ),
+    integration_name="aws-integration",
+    hub_id="event-hub-1",
+    offset_reset_policy="EARLIEST",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Sources->create_azure_event_hubs_source: %s\n" % e)
+    return
+pprint(api_response)
+
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **collection** | **str** | name of the collection |
+ **format_params** | [**FormatParams**](FormatParams.md) |  | [optional]
+ **integration_name** | **str** | Name of integration to use. | [optional]
+ **hub_id** | **str** | Name of the hub which rockset should ingest from. | [optional]
+ **offset_reset_policy** | **str** | The offset reset policy. | [optional]
+ **workspace** | **str** | name of the workspace | defaults to "commons"
+
+### Return type
+
+[**GetSourceResponse**](GetSourceResponse.md)
+
+### Authorization
+
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | source created successfully |  -  |
+**400** | bad request |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+**405** | not allowed |  -  |
+**406** | not acceptable |  -  |
+**408** | request timeout |  -  |
+**409** | conflict |  -  |
+**415** | not supported |  -  |
+**429** | resource exceeded |  -  |
+**500** | internal error |  -  |
+**501** | not implemented |  -  |
+**502** | bad gateway |  -  |
+**503** | not ready |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_kafka_source**
+> GetSourceResponse create_kafka_source(collection, kafka_source_wrapper)
+
+Create a new kafka source in a collection
+
+Create new source in a collection.
+
+### Example
+
+* Api Key Authentication (apikey):
+
+```python
+from rockset import *
+from rockset.models import *
+from pprint import pprint
+
+# Create an instance of the Rockset client
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
+
+# synchronous example passing only required values which don't have defaults set
+# Create a new kafka source in a collection
+api_response = rs.Sources.create_kafka_source(
+    collection="collection_example",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Sources->create_kafka_source: %s\n" % e)
+
+# asynchronous example passing optional values and required values which don't have defaults set
+# assumes that execution takes place within an asynchronous context
+# Create a new kafka source in a collection
+api_response = await rs.Sources.create_kafka_source(
+    collection="collection_example",
+    format_params=FormatParams(
+        bson=True,
+        csv=CsvParams(
+            column_names=["c1","c2","c3"],
+            column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+            encoding="UTF-8",
+            escape_char="\\",
+            first_line_as_column_names=True,
+            quote_char="\"",
+            separator=",",
+        ),
+        json=True,
+        mssql_dms=True,
+        mysql_dms=True,
+        oracle_dms=True,
+        postgres_dms=True,
+        xml=XmlParams(
+            attribute_prefix="_attr",
+            doc_tag="row",
+            encoding="UTF-8",
+            root_tag="root",
+            value_tag="value",
+        ),
+    ),
+    integration_name="aws-integration",
+    client_id="cwc|0013a00001hSJ7oAAG|rockset-colln-consumer",
+    consumer_group_id="org-collection",
+    kafka_topic_name="example-topic",
+    offset_reset_policy="EARLIEST",
+    use_v3=True,
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Sources->create_kafka_source: %s\n" % e)
+    return
+pprint(api_response)
+
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **collection** | **str** | name of the collection |
+ **format_params** | [**FormatParams**](FormatParams.md) |  | [optional]
+ **integration_name** | **str** | Name of integration to use. | [optional]
+ **client_id** | **str** | The kafka client id being used. | [optional]
+ **consumer_group_id** | **str** | The Kafka consumer group Id being used. | [optional]
+ **kafka_topic_name** | **str** | The Kafka topic to be tailed. | [optional]
+ **offset_reset_policy** | **str** | The offset reset policy. | [optional]
+ **use_v3** | **bool** | Whether to use v3 integration. | [optional]
+ **workspace** | **str** | name of the workspace | defaults to "commons"
+
+### Return type
+
+[**GetSourceResponse**](GetSourceResponse.md)
+
+### Authorization
+
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | source created successfully |  -  |
+**400** | bad request |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+**405** | not allowed |  -  |
+**406** | not acceptable |  -  |
+**408** | request timeout |  -  |
+**409** | conflict |  -  |
+**415** | not supported |  -  |
+**429** | resource exceeded |  -  |
+**500** | internal error |  -  |
+**501** | not implemented |  -  |
+**502** | bad gateway |  -  |
+**503** | not ready |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_s3_source**
 > GetSourceResponse create_s3_source(collection, s3_source_wrapper)

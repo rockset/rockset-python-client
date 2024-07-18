@@ -24,9 +24,12 @@ from rockset.model_utils import (  # noqa: F401
     none_type,
     validate_and_convert_types
 )
+from rockset.model.azure_blob_storage_source_wrapper import AzureBlobStorageSourceWrapper
+from rockset.model.azure_event_hubs_source_wrapper import AzureEventHubsSourceWrapper
 from rockset.model.delete_source_response import DeleteSourceResponse
 from rockset.model.error_model import ErrorModel
 from rockset.model.get_source_response import GetSourceResponse
+from rockset.model.kafka_source_wrapper import KafkaSourceWrapper
 from rockset.model.list_sources_response import ListSourcesResponse
 from rockset.model.s3_source_wrapper import S3SourceWrapper
 from rockset.model.source_base import SourceBase
@@ -45,6 +48,195 @@ class Sources(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
+        self.create_azure_blob_storage_source_endpoint = _Endpoint(
+            settings={
+                'response_type': (GetSourceResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}/sources',
+                'operation_id': 'create_azure_blob_storage_source',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'workspace',
+                    'collection',
+                    'azure_blob_storage_source_wrapper',
+                ],
+                'required': [
+                    'workspace',
+                    'collection',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'workspace':
+                        (str,),
+                    'collection':
+                        (str,),
+                    'azure_blob_storage_source_wrapper':
+                        (AzureBlobStorageSourceWrapper,),
+                },
+                'attribute_map': {
+                    'workspace': 'workspace',
+                    'collection': 'collection',
+                },
+                'location_map': {
+                    'workspace': 'path',
+                    'collection': 'path',
+                    'azure_blob_storage_source_wrapper': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.create_azure_event_hubs_source_endpoint = _Endpoint(
+            settings={
+                'response_type': (GetSourceResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}/sources',
+                'operation_id': 'create_azure_event_hubs_source',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'workspace',
+                    'collection',
+                    'azure_event_hubs_source_wrapper',
+                ],
+                'required': [
+                    'workspace',
+                    'collection',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'workspace':
+                        (str,),
+                    'collection':
+                        (str,),
+                    'azure_event_hubs_source_wrapper':
+                        (AzureEventHubsSourceWrapper,),
+                },
+                'attribute_map': {
+                    'workspace': 'workspace',
+                    'collection': 'collection',
+                },
+                'location_map': {
+                    'workspace': 'path',
+                    'collection': 'path',
+                    'azure_event_hubs_source_wrapper': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
+        self.create_kafka_source_endpoint = _Endpoint(
+            settings={
+                'response_type': (GetSourceResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/orgs/self/ws/{workspace}/collections/{collection}/sources',
+                'operation_id': 'create_kafka_source',
+                'http_method': 'POST',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'workspace',
+                    'collection',
+                    'kafka_source_wrapper',
+                ],
+                'required': [
+                    'workspace',
+                    'collection',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'workspace':
+                        (str,),
+                    'collection':
+                        (str,),
+                    'kafka_source_wrapper':
+                        (KafkaSourceWrapper,),
+                },
+                'attribute_map': {
+                    'workspace': 'workspace',
+                    'collection': 'collection',
+                },
+                'location_map': {
+                    'workspace': 'path',
+                    'collection': 'path',
+                    'kafka_source_wrapper': 'body',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [
+                    'application/json'
+                ]
+            },
+            api_client=api_client
+        )
         self.create_s3_source_endpoint = _Endpoint(
             settings={
                 'response_type': (GetSourceResponse,),
@@ -492,6 +684,401 @@ class Sources(object):
             },
             api_client=api_client
         )
+
+    def create_azure_blob_storage_source(
+        self,
+        *,
+        collection: str,
+        format_params: FormatParams = None,
+        integration_name: str = None,
+        container: str = None,
+        pattern: str = None,
+        prefix: str = None,
+        settings: SourceAzBlobStorageSettings = None,
+        workspace = "commons",
+        **kwargs
+    ) -> typing.Union[GetSourceResponse, asyncio.Future]:
+        """Create a new azure blob storage source in a collection  # noqa: E501
+
+        Create new source in a collection.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Sources.create_azure_blob_storage_source(
+            collection="collection_example",
+            format_params=FormatParams(
+                bson=True,
+                csv=CsvParams(
+                    column_names=["c1","c2","c3"],
+                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                    encoding="UTF-8",
+                    escape_char="\\",
+                    first_line_as_column_names=True,
+                    quote_char="\"",
+                    separator=",",
+                ),
+                json=True,
+                mssql_dms=True,
+                mysql_dms=True,
+                oracle_dms=True,
+                postgres_dms=True,
+                xml=XmlParams(
+                    attribute_prefix="_attr",
+                    doc_tag="row",
+                    encoding="UTF-8",
+                    root_tag="root",
+                    value_tag="value",
+                ),
+            ),
+            integration_name="aws-integration",
+            container="server-logs",
+            pattern="prefix/to/**/keys/*.format",
+            prefix="prefix/to/blobs",
+            settings=SourceAzBlobStorageSettings(
+                azblob_scan_frequency="PT5M",
+            ),
+            async_req=True,
+        )
+        result = await future
+        ```
+
+        Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            collection (str): name of the collection. [required]
+            format_params (FormatParams): [optional]
+            integration_name (str): Name of integration to use.. [optional]
+            container (str): Name of Azure blob Storage container you want to ingest from.. [optional]
+            pattern (str): Glob-style pattern that selects keys to ingest. Only either prefix or pattern can be specified.. [optional]
+            prefix (str): Prefix that selects blobs to ingest.. [optional]
+            settings (SourceAzBlobStorageSettings): [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GetSourceResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['workspace'] = \
+            workspace
+        kwargs['collection'] = \
+            collection
+        kwargs['azure_blob_storage_source_wrapper'] = \
+            kwargs['azure_blob_storage_source_wrapper']
+        return self.create_azure_blob_storage_source_endpoint.call_with_http_info(**kwargs)
+
+    def create_azure_event_hubs_source(
+        self,
+        *,
+        collection: str,
+        format_params: FormatParams = None,
+        integration_name: str = None,
+        hub_id: str = None,
+        offset_reset_policy: str = None,
+        workspace = "commons",
+        **kwargs
+    ) -> typing.Union[GetSourceResponse, asyncio.Future]:
+        """Create a new azure event hubs source in a collection  # noqa: E501
+
+        Create new source in a collection.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Sources.create_azure_event_hubs_source(
+            collection="collection_example",
+            format_params=FormatParams(
+                bson=True,
+                csv=CsvParams(
+                    column_names=["c1","c2","c3"],
+                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                    encoding="UTF-8",
+                    escape_char="\\",
+                    first_line_as_column_names=True,
+                    quote_char="\"",
+                    separator=",",
+                ),
+                json=True,
+                mssql_dms=True,
+                mysql_dms=True,
+                oracle_dms=True,
+                postgres_dms=True,
+                xml=XmlParams(
+                    attribute_prefix="_attr",
+                    doc_tag="row",
+                    encoding="UTF-8",
+                    root_tag="root",
+                    value_tag="value",
+                ),
+            ),
+            integration_name="aws-integration",
+            hub_id="event-hub-1",
+            offset_reset_policy="EARLIEST",
+            async_req=True,
+        )
+        result = await future
+        ```
+
+        Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            collection (str): name of the collection. [required]
+            format_params (FormatParams): [optional]
+            integration_name (str): Name of integration to use.. [optional]
+            hub_id (str): Name of the hub which rockset should ingest from.. [optional]
+            offset_reset_policy (str): The offset reset policy.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GetSourceResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['workspace'] = \
+            workspace
+        kwargs['collection'] = \
+            collection
+        kwargs['azure_event_hubs_source_wrapper'] = \
+            kwargs['azure_event_hubs_source_wrapper']
+        return self.create_azure_event_hubs_source_endpoint.call_with_http_info(**kwargs)
+
+    def create_kafka_source(
+        self,
+        *,
+        collection: str,
+        format_params: FormatParams = None,
+        integration_name: str = None,
+        client_id: str = None,
+        consumer_group_id: str = None,
+        kafka_topic_name: str = None,
+        offset_reset_policy: str = None,
+        use_v3: bool = None,
+        workspace = "commons",
+        **kwargs
+    ) -> typing.Union[GetSourceResponse, asyncio.Future]:
+        """Create a new kafka source in a collection  # noqa: E501
+
+        Create new source in a collection.  # noqa: E501
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Sources.create_kafka_source(
+            collection="collection_example",
+            format_params=FormatParams(
+                bson=True,
+                csv=CsvParams(
+                    column_names=["c1","c2","c3"],
+                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                    encoding="UTF-8",
+                    escape_char="\\",
+                    first_line_as_column_names=True,
+                    quote_char="\"",
+                    separator=",",
+                ),
+                json=True,
+                mssql_dms=True,
+                mysql_dms=True,
+                oracle_dms=True,
+                postgres_dms=True,
+                xml=XmlParams(
+                    attribute_prefix="_attr",
+                    doc_tag="row",
+                    encoding="UTF-8",
+                    root_tag="root",
+                    value_tag="value",
+                ),
+            ),
+            integration_name="aws-integration",
+            client_id="cwc|0013a00001hSJ7oAAG|rockset-colln-consumer",
+            consumer_group_id="org-collection",
+            kafka_topic_name="example-topic",
+            offset_reset_policy="EARLIEST",
+            use_v3=True,
+            async_req=True,
+        )
+        result = await future
+        ```
+
+        Keyword Args:
+            workspace (str): name of the workspace. [required] if omitted the server will use the default value of "commons"
+            collection (str): name of the collection. [required]
+            format_params (FormatParams): [optional]
+            integration_name (str): Name of integration to use.. [optional]
+            client_id (str): The kafka client id being used.. [optional]
+            consumer_group_id (str): The Kafka consumer group Id being used.. [optional]
+            kafka_topic_name (str): The Kafka topic to be tailed.. [optional]
+            offset_reset_policy (str): The offset reset policy.. [optional]
+            use_v3 (bool): Whether to use v3 integration.. [optional]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            GetSourceResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['workspace'] = \
+            workspace
+        kwargs['collection'] = \
+            collection
+        kwargs['kafka_source_wrapper'] = \
+            kwargs['kafka_source_wrapper']
+        return self.create_kafka_source_endpoint.call_with_http_info(**kwargs)
 
     def create_s3_source(
         self,
@@ -1224,6 +1811,12 @@ class Sources(object):
 
     body_params_dict = dict()
     return_types_dict = dict()
+    body_params_dict['create_azure_blob_storage_source'] = 'azure_blob_storage_source_wrapper'
+    return_types_dict['create_azure_blob_storage_source'] = AzureBlobStorageSourceWrapper
+    body_params_dict['create_azure_event_hubs_source'] = 'azure_event_hubs_source_wrapper'
+    return_types_dict['create_azure_event_hubs_source'] = AzureEventHubsSourceWrapper
+    body_params_dict['create_kafka_source'] = 'kafka_source_wrapper'
+    return_types_dict['create_kafka_source'] = KafkaSourceWrapper
     body_params_dict['create_s3_source'] = 's3_source_wrapper'
     return_types_dict['create_s3_source'] = S3SourceWrapper
     body_params_dict['suspend'] = 'suspend_source_request'

@@ -14,6 +14,127 @@ from rockset.models import *
 from test.conftest import EarlyExit, validate_call
 
 
+def test_create_azure_blob_storage_source(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Sources.create_azure_blob_storage_source(
+                collection="collection_example",
+                format_params=FormatParams(
+                    bson=True,
+                    csv=CsvParams(
+                        column_names=["c1", "c2", "c3"],
+                        column_types=["BOOLEAN", "INTEGER", "FLOAT", "STRING"],
+                        encoding="UTF-8",
+                        escape_char="\\",
+                        first_line_as_column_names=True,
+                        quote_char='"',
+                        separator=",",
+                    ),
+                    json=True,
+                    mssql_dms=True,
+                    mysql_dms=True,
+                    oracle_dms=True,
+                    postgres_dms=True,
+                    xml=XmlParams(
+                        attribute_prefix="_attr",
+                        doc_tag="row",
+                        encoding="UTF-8",
+                        root_tag="root",
+                        value_tag="value",
+                    ),
+                ),
+                integration_name="aws-integration",
+                container="server-logs",
+                pattern="prefix/to/**/keys/*.format",
+                prefix="prefix/to/blobs",
+                settings=SourceAzBlobStorageSettings(
+                    azblob_scan_frequency="PT5M",
+                ),
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_create_azure_event_hubs_source(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Sources.create_azure_event_hubs_source(
+                collection="collection_example",
+                format_params=FormatParams(
+                    bson=True,
+                    csv=CsvParams(
+                        column_names=["c1", "c2", "c3"],
+                        column_types=["BOOLEAN", "INTEGER", "FLOAT", "STRING"],
+                        encoding="UTF-8",
+                        escape_char="\\",
+                        first_line_as_column_names=True,
+                        quote_char='"',
+                        separator=",",
+                    ),
+                    json=True,
+                    mssql_dms=True,
+                    mysql_dms=True,
+                    oracle_dms=True,
+                    postgres_dms=True,
+                    xml=XmlParams(
+                        attribute_prefix="_attr",
+                        doc_tag="row",
+                        encoding="UTF-8",
+                        root_tag="root",
+                        value_tag="value",
+                    ),
+                ),
+                integration_name="aws-integration",
+                hub_id="event-hub-1",
+                offset_reset_policy="EARLIEST",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
+def test_create_kafka_source(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Sources.create_kafka_source(
+                collection="collection_example",
+                format_params=FormatParams(
+                    bson=True,
+                    csv=CsvParams(
+                        column_names=["c1", "c2", "c3"],
+                        column_types=["BOOLEAN", "INTEGER", "FLOAT", "STRING"],
+                        encoding="UTF-8",
+                        escape_char="\\",
+                        first_line_as_column_names=True,
+                        quote_char='"',
+                        separator=",",
+                    ),
+                    json=True,
+                    mssql_dms=True,
+                    mysql_dms=True,
+                    oracle_dms=True,
+                    postgres_dms=True,
+                    xml=XmlParams(
+                        attribute_prefix="_attr",
+                        doc_tag="row",
+                        encoding="UTF-8",
+                        root_tag="root",
+                        value_tag="value",
+                    ),
+                ),
+                integration_name="aws-integration",
+                client_id="cwc|0013a00001hSJ7oAAG|rockset-colln-consumer",
+                consumer_group_id="org-collection",
+                kafka_topic_name="example-topic",
+                offset_reset_policy="EARLIEST",
+                use_v3=True,
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
 def test_create_s3_source(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client

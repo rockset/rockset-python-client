@@ -7,7 +7,6 @@ Name | Type | Description | Notes
 **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
 **clustering_key** | [**[FieldPartition]**](FieldPartition.md) | Deprecated. List of clustering fields. Use CLUSTER BY clause in &#x60;field_mapping_query&#x60; instead. | [optional] 
 **description** | **str** | Text describing the collection. | [optional] 
-**event_time_info** | [**EventTimeInfo**](EventTimeInfo.md) |  | [optional] 
 **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional] 
 **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly less than 10 years. | [optional] 
 **source_download_soft_limit_bytes** | **int** | Soft ingest limit for this collection. | [optional] 

@@ -4,6 +4,9 @@ All URIs are relative to *https://api.use1a1.rockset.com* or the apiserver provi
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
+[**create_azure_blob_storage_collection**](CollectionsApi.md#create_azure_blob_storage_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create azure blob storage collection
+[**create_azure_event_hubs_collection**](CollectionsApi.md#create_azure_event_hubs_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create azure event hubs collection
+[**create_kafka_collection**](CollectionsApi.md#create_kafka_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create kafka collection
 [**create_s3_collection**](CollectionsApi.md#create_s3_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create s3 collection
 [**delete**](CollectionsApi.md#delete) | **DELETE** /v1/orgs/self/ws/{workspace}/collections/{collection} | Delete Collection
 [**get**](CollectionsApi.md#get) | **GET** /v1/orgs/self/ws/{workspace}/collections/{collection} | Retrieve Collection
@@ -11,6 +14,433 @@ Method | HTTP request | Description
 [**list**](CollectionsApi.md#list) | **GET** /v1/orgs/self/collections | List Collections
 [**list_collections**](CollectionsApi.md#list_collections) | **GET** /v1/orgs/self/ws/{workspace}/collections | List Collection
 
+
+# **create_azure_blob_storage_collection**
+> CreateCollectionResponse create_azure_blob_storage_collection(azure_blob_storage_collection_creation_request)
+
+Create azure blob storage collection
+
+Create new collection in a workspace.
+
+### Example
+
+* Api Key Authentication (apikey):
+
+```python
+from rockset import *
+from rockset.models import *
+from pprint import pprint
+
+# Create an instance of the Rockset client
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
+
+# synchronous example passing only required values which don't have defaults set
+# Create azure blob storage collection
+api_response = rs.Collections.create_azure_blob_storage_collection(
+    name="global-transactions",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Collections->create_azure_blob_storage_collection: %s\n" % e)
+
+# asynchronous example passing optional values and required values which don't have defaults set
+# assumes that execution takes place within an asynchronous context
+# Create azure blob storage collection
+api_response = await rs.Collections.create_azure_blob_storage_collection(
+    clustering_key=[
+        FieldPartition(
+            field_name="address.city.zipcode",
+            keys=["value1","value2"],
+            type="AUTO",
+        ),
+    ],
+    description="transactions from stores worldwide",
+    field_mapping_query=FieldMappingQuery(
+        sql="sql",
+    ),
+    name="global-transactions",
+    retention_secs=1000000,
+    source_download_soft_limit_bytes=1,
+    sources=[
+        AzureBlobStorageSourceWrapper(
+            format_params=FormatParams(
+                bson=True,
+                csv=CsvParams(
+                    column_names=["c1","c2","c3"],
+                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                    encoding="UTF-8",
+                    escape_char="\\",
+                    first_line_as_column_names=True,
+                    quote_char="\"",
+                    separator=",",
+                ),
+                json=True,
+                mssql_dms=True,
+                mysql_dms=True,
+                oracle_dms=True,
+                postgres_dms=True,
+                xml=XmlParams(
+                    attribute_prefix="_attr",
+                    doc_tag="row",
+                    encoding="UTF-8",
+                    root_tag="root",
+                    value_tag="value",
+                ),
+            ),
+            integration_name="aws-integration",
+            container="server-logs",
+            pattern="prefix/to/**/keys/*.format",
+            prefix="prefix/to/blobs",
+            settings=SourceAzBlobStorageSettings(
+                azblob_scan_frequency="PT5M",
+            ),
+        ),
+    ],
+    storage_compression_type="LZ4",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Collections->create_azure_blob_storage_collection: %s\n" % e)
+    return
+pprint(api_response)
+
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **clustering_key** | [**[FieldPartition]**](FieldPartition.md) | Deprecated. List of clustering fields. Use CLUSTER BY clause in &#x60;field_mapping_query&#x60; instead. | [optional]
+ **description** | **str** | Text describing the collection. | [optional]
+ **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
+ **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
+ **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly less than 10 years. | [optional]
+ **source_download_soft_limit_bytes** | **int** | Soft ingest limit for this collection. | [optional]
+ **sources** | [**[AzureBlobStorageSourceWrapper]**](AzureBlobStorageSourceWrapper.md) | List of sources from which to ingest data | [optional]
+ **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
+ **workspace** | **str** | name of the workspace | defaults to "commons"
+
+### Return type
+
+[**CreateCollectionResponse**](CreateCollectionResponse.md)
+
+### Authorization
+
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | collection created successfully |  -  |
+**400** | bad request |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+**405** | not allowed |  -  |
+**406** | not acceptable |  -  |
+**408** | request timeout |  -  |
+**409** | conflict |  -  |
+**415** | not supported |  -  |
+**429** | resource exceeded |  -  |
+**500** | internal error |  -  |
+**501** | not implemented |  -  |
+**502** | bad gateway |  -  |
+**503** | not ready |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_azure_event_hubs_collection**
+> CreateCollectionResponse create_azure_event_hubs_collection(azure_event_hubs_collection_creation_request)
+
+Create azure event hubs collection
+
+Create new collection in a workspace.
+
+### Example
+
+* Api Key Authentication (apikey):
+
+```python
+from rockset import *
+from rockset.models import *
+from pprint import pprint
+
+# Create an instance of the Rockset client
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
+
+# synchronous example passing only required values which don't have defaults set
+# Create azure event hubs collection
+api_response = rs.Collections.create_azure_event_hubs_collection(
+    name="global-transactions",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Collections->create_azure_event_hubs_collection: %s\n" % e)
+
+# asynchronous example passing optional values and required values which don't have defaults set
+# assumes that execution takes place within an asynchronous context
+# Create azure event hubs collection
+api_response = await rs.Collections.create_azure_event_hubs_collection(
+    clustering_key=[
+        FieldPartition(
+            field_name="address.city.zipcode",
+            keys=["value1","value2"],
+            type="AUTO",
+        ),
+    ],
+    description="transactions from stores worldwide",
+    field_mapping_query=FieldMappingQuery(
+        sql="sql",
+    ),
+    name="global-transactions",
+    retention_secs=1000000,
+    source_download_soft_limit_bytes=1,
+    sources=[
+        AzureEventHubsSourceWrapper(
+            format_params=FormatParams(
+                bson=True,
+                csv=CsvParams(
+                    column_names=["c1","c2","c3"],
+                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                    encoding="UTF-8",
+                    escape_char="\\",
+                    first_line_as_column_names=True,
+                    quote_char="\"",
+                    separator=",",
+                ),
+                json=True,
+                mssql_dms=True,
+                mysql_dms=True,
+                oracle_dms=True,
+                postgres_dms=True,
+                xml=XmlParams(
+                    attribute_prefix="_attr",
+                    doc_tag="row",
+                    encoding="UTF-8",
+                    root_tag="root",
+                    value_tag="value",
+                ),
+            ),
+            integration_name="aws-integration",
+            hub_id="event-hub-1",
+            offset_reset_policy="EARLIEST",
+        ),
+    ],
+    storage_compression_type="LZ4",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Collections->create_azure_event_hubs_collection: %s\n" % e)
+    return
+pprint(api_response)
+
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **clustering_key** | [**[FieldPartition]**](FieldPartition.md) | Deprecated. List of clustering fields. Use CLUSTER BY clause in &#x60;field_mapping_query&#x60; instead. | [optional]
+ **description** | **str** | Text describing the collection. | [optional]
+ **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
+ **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
+ **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly less than 10 years. | [optional]
+ **source_download_soft_limit_bytes** | **int** | Soft ingest limit for this collection. | [optional]
+ **sources** | [**[AzureEventHubsSourceWrapper]**](AzureEventHubsSourceWrapper.md) | List of sources from which to ingest data | [optional]
+ **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
+ **workspace** | **str** | name of the workspace | defaults to "commons"
+
+### Return type
+
+[**CreateCollectionResponse**](CreateCollectionResponse.md)
+
+### Authorization
+
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | collection created successfully |  -  |
+**400** | bad request |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+**405** | not allowed |  -  |
+**406** | not acceptable |  -  |
+**408** | request timeout |  -  |
+**409** | conflict |  -  |
+**415** | not supported |  -  |
+**429** | resource exceeded |  -  |
+**500** | internal error |  -  |
+**501** | not implemented |  -  |
+**502** | bad gateway |  -  |
+**503** | not ready |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+# **create_kafka_collection**
+> CreateCollectionResponse create_kafka_collection(kafka_collection_creation_request)
+
+Create kafka collection
+
+Create new collection in a workspace.
+
+### Example
+
+* Api Key Authentication (apikey):
+
+```python
+from rockset import *
+from rockset.models import *
+from pprint import pprint
+
+# Create an instance of the Rockset client
+rs = RocksetClient(api_key="abc123", host=Regions.use1a1)
+
+# synchronous example passing only required values which don't have defaults set
+# Create kafka collection
+api_response = rs.Collections.create_kafka_collection(
+    name="global-transactions",
+)
+pprint(api_response)
+# Error responses from the server will cause the client to throw an ApiException
+# except ApiException as e:
+#     print("Exception when calling Collections->create_kafka_collection: %s\n" % e)
+
+# asynchronous example passing optional values and required values which don't have defaults set
+# assumes that execution takes place within an asynchronous context
+# Create kafka collection
+api_response = await rs.Collections.create_kafka_collection(
+    clustering_key=[
+        FieldPartition(
+            field_name="address.city.zipcode",
+            keys=["value1","value2"],
+            type="AUTO",
+        ),
+    ],
+    description="transactions from stores worldwide",
+    field_mapping_query=FieldMappingQuery(
+        sql="sql",
+    ),
+    name="global-transactions",
+    retention_secs=1000000,
+    source_download_soft_limit_bytes=1,
+    sources=[
+        KafkaSourceWrapper(
+            format_params=FormatParams(
+                bson=True,
+                csv=CsvParams(
+                    column_names=["c1","c2","c3"],
+                    column_types=["BOOLEAN","INTEGER","FLOAT","STRING"],
+                    encoding="UTF-8",
+                    escape_char="\\",
+                    first_line_as_column_names=True,
+                    quote_char="\"",
+                    separator=",",
+                ),
+                json=True,
+                mssql_dms=True,
+                mysql_dms=True,
+                oracle_dms=True,
+                postgres_dms=True,
+                xml=XmlParams(
+                    attribute_prefix="_attr",
+                    doc_tag="row",
+                    encoding="UTF-8",
+                    root_tag="root",
+                    value_tag="value",
+                ),
+            ),
+            integration_name="aws-integration",
+            client_id="cwc|0013a00001hSJ7oAAG|rockset-colln-consumer",
+            consumer_group_id="org-collection",
+            kafka_topic_name="example-topic",
+            offset_reset_policy="EARLIEST",
+            use_v3=True,
+        ),
+    ],
+    storage_compression_type="LZ4",
+    async_req=True,
+)
+if isinstance(api_response, rockset.ApiException):
+    print("Exception when calling Collections->create_kafka_collection: %s\n" % e)
+    return
+pprint(api_response)
+
+```
+
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **clustering_key** | [**[FieldPartition]**](FieldPartition.md) | Deprecated. List of clustering fields. Use CLUSTER BY clause in &#x60;field_mapping_query&#x60; instead. | [optional]
+ **description** | **str** | Text describing the collection. | [optional]
+ **field_mapping_query** | [**FieldMappingQuery**](FieldMappingQuery.md) |  | [optional]
+ **name** | **str** | Unique identifier for collection, can contain alphanumeric or dash characters. | 
+ **retention_secs** | **int** | Number of seconds after which data is purged, based on event time. Minimum allowable value is 3600s/1 hour. The maximum value is strictly less than 10 years. | [optional]
+ **source_download_soft_limit_bytes** | **int** | Soft ingest limit for this collection. | [optional]
+ **sources** | [**[KafkaSourceWrapper]**](KafkaSourceWrapper.md) | List of sources from which to ingest data | [optional]
+ **storage_compression_type** | **str** | RocksDB storage compression type. | [optional]
+ **workspace** | **str** | name of the workspace | defaults to "commons"
+
+### Return type
+
+[**CreateCollectionResponse**](CreateCollectionResponse.md)
+
+### Authorization
+
+All requests must use apikeys for [authorization](../README.md#Documentation-For-Authorization).
+
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+
+### HTTP response details
+
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | collection created successfully |  -  |
+**400** | bad request |  -  |
+**401** | unauthorized |  -  |
+**403** | forbidden |  -  |
+**404** | not found |  -  |
+**405** | not allowed |  -  |
+**406** | not acceptable |  -  |
+**408** | request timeout |  -  |
+**409** | conflict |  -  |
+**415** | not supported |  -  |
+**429** | resource exceeded |  -  |
+**500** | internal error |  -  |
+**501** | not implemented |  -  |
+**502** | bad gateway |  -  |
+**503** | not ready |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
 # **create_s3_collection**
 > CreateCollectionResponse create_s3_collection(s3_collection_creation_request)
