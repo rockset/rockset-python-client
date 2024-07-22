@@ -2,6 +2,7 @@ README.md
 docs/APIKeysApi.md
 docs/AddDocumentsRequest.md
 docs/AddDocumentsResponse.md
+docs/AlgorithmConfiguration.md
 docs/Alias.md
 docs/AliasesApi.md
 docs/ApiKey.md
@@ -18,6 +19,20 @@ docs/AzureEventHubsIntegration.md
 docs/AzureEventHubsIntegrationCreationRequest.md
 docs/AzureEventHubsSourceWrapper.md
 docs/AzureServiceBusIntegration.md
+docs/Box.md
+docs/BoxApi.md
+docs/BoxCreateRequest.md
+docs/BoxCreateResponse.md
+docs/BoxField.md
+docs/BoxFullTextQuery.md
+docs/BoxInsertDocumentsResponse.md
+docs/BoxQueryRequest.md
+docs/BoxQueryResponse.md
+docs/BoxResizeRequest.md
+docs/BoxResizeResponse.md
+docs/BoxRrn.md
+docs/BoxSearchConfiguration.md
+docs/BoxVectorQuery.md
 docs/BulkStats.md
 docs/CancelQueryResponse.md
 docs/Cluster.md
@@ -27,6 +42,7 @@ docs/CollectionMountResponse.md
 docs/CollectionMountStats.md
 docs/CollectionStats.md
 docs/CollectionsApi.md
+docs/ConfigurationProfile.md
 docs/CreateAliasRequest.md
 docs/CreateAliasResponse.md
 docs/CreateApiKeyRequest.md
@@ -56,6 +72,7 @@ docs/CustomRolesApi.md
 docs/DeleteAliasResponse.md
 docs/DeleteApiKeyResponse.md
 docs/DeleteCollectionResponse.md
+docs/DeleteDeploymentResponse.md
 docs/DeleteDocumentsRequest.md
 docs/DeleteDocumentsRequestData.md
 docs/DeleteDocumentsResponse.md
@@ -77,6 +94,7 @@ docs/ErrorModel.md
 docs/ExecutePublicQueryLambdaRequest.md
 docs/ExecuteQueryLambdaRequest.md
 docs/ExecutionStatus.md
+docs/FaissConfiguration.md
 docs/FieldMappingQuery.md
 docs/FieldMappingV2.md
 docs/FieldPartition.md
@@ -132,6 +150,7 @@ docs/OrganizationsApi.md
 docs/OutputField.md
 docs/Pagination.md
 docs/PaginationInfo.md
+docs/PalletListBoxesResponse.md
 docs/PatchDocument.md
 docs/PatchDocumentsRequest.md
 docs/PatchDocumentsResponse.md
@@ -166,6 +185,7 @@ docs/ScheduledLambda.md
 docs/ScheduledLambdaResponse.md
 docs/ScheduledLambdasApi.md
 docs/SchemaRegistryConfig.md
+docs/SearchApi.md
 docs/SharedLambdasApi.md
 docs/SnowflakeIntegration.md
 docs/Source.md
@@ -231,6 +251,7 @@ docs/UpdateVirtualInstanceSizeSettingsRequest.md
 docs/User.md
 docs/UsersApi.md
 docs/ValidateQueryResponse.md
+docs/VectorFieldOptions.md
 docs/View.md
 docs/ViewsApi.md
 docs/VirtualInstance.md
@@ -246,6 +267,7 @@ rockset/__init__.py
 rockset/api/__init__.py
 rockset/api/aliases_api.py
 rockset/api/api_keys_api.py
+rockset/api/box_api.py
 rockset/api/collections_api.py
 rockset/api/custom_roles_api.py
 rockset/api/deployment_settings_api.py
@@ -256,6 +278,7 @@ rockset/api/organizations_api.py
 rockset/api/queries_api.py
 rockset/api/query_lambdas_api.py
 rockset/api/scheduled_lambdas_api.py
+rockset/api/search_api.py
 rockset/api/shared_lambdas_api.py
 rockset/api/sources_api.py
 rockset/api/users_api.py
@@ -269,6 +292,7 @@ rockset/exceptions.py
 rockset/model/__init__.py
 rockset/model/add_documents_request.py
 rockset/model/add_documents_response.py
+rockset/model/algorithm_configuration.py
 rockset/model/alias.py
 rockset/model/api_key.py
 rockset/model/async_query_options.py
@@ -284,6 +308,19 @@ rockset/model/azure_event_hubs_integration.py
 rockset/model/azure_event_hubs_integration_creation_request.py
 rockset/model/azure_event_hubs_source_wrapper.py
 rockset/model/azure_service_bus_integration.py
+rockset/model/box.py
+rockset/model/box_create_request.py
+rockset/model/box_create_response.py
+rockset/model/box_field.py
+rockset/model/box_full_text_query.py
+rockset/model/box_insert_documents_response.py
+rockset/model/box_query_request.py
+rockset/model/box_query_response.py
+rockset/model/box_resize_request.py
+rockset/model/box_resize_response.py
+rockset/model/box_rrn.py
+rockset/model/box_search_configuration.py
+rockset/model/box_vector_query.py
 rockset/model/bulk_stats.py
 rockset/model/cancel_query_response.py
 rockset/model/cluster.py
@@ -292,6 +329,7 @@ rockset/model/collection_mount.py
 rockset/model/collection_mount_response.py
 rockset/model/collection_mount_stats.py
 rockset/model/collection_stats.py
+rockset/model/configuration_profile.py
 rockset/model/create_alias_request.py
 rockset/model/create_alias_response.py
 rockset/model/create_api_key_request.py
@@ -320,6 +358,7 @@ rockset/model/csv_params.py
 rockset/model/delete_alias_response.py
 rockset/model/delete_api_key_response.py
 rockset/model/delete_collection_response.py
+rockset/model/delete_deployment_response.py
 rockset/model/delete_documents_request.py
 rockset/model/delete_documents_request_data.py
 rockset/model/delete_documents_response.py
@@ -338,6 +377,7 @@ rockset/model/error_model.py
 rockset/model/execute_public_query_lambda_request.py
 rockset/model/execute_query_lambda_request.py
 rockset/model/execution_status.py
+rockset/model/faiss_configuration.py
 rockset/model/field_mapping_query.py
 rockset/model/field_mapping_v2.py
 rockset/model/field_partition.py
@@ -391,6 +431,7 @@ rockset/model/organization_response.py
 rockset/model/output_field.py
 rockset/model/pagination.py
 rockset/model/pagination_info.py
+rockset/model/pallet_list_boxes_response.py
 rockset/model/patch_document.py
 rockset/model/patch_documents_request.py
 rockset/model/patch_documents_response.py
@@ -482,6 +523,7 @@ rockset/model/update_virtual_instance_settings_request.py
 rockset/model/update_virtual_instance_size_settings_request.py
 rockset/model/user.py
 rockset/model/validate_query_response.py
+rockset/model/vector_field_options.py
 rockset/model/view.py
 rockset/model/virtual_instance.py
 rockset/model/virtual_instance_class_settings.py
@@ -497,6 +539,7 @@ rockset/rockset_client.py
 test/__init__.py
 test/test_add_documents_request.py
 test/test_add_documents_response.py
+test/test_algorithm_configuration.py
 test/test_alias.py
 test/test_aliases_api.py
 test/test_api_key.py
@@ -514,6 +557,20 @@ test/test_azure_event_hubs_integration.py
 test/test_azure_event_hubs_integration_creation_request.py
 test/test_azure_event_hubs_source_wrapper.py
 test/test_azure_service_bus_integration.py
+test/test_box.py
+test/test_box_api.py
+test/test_box_create_request.py
+test/test_box_create_response.py
+test/test_box_field.py
+test/test_box_full_text_query.py
+test/test_box_insert_documents_response.py
+test/test_box_query_request.py
+test/test_box_query_response.py
+test/test_box_resize_request.py
+test/test_box_resize_response.py
+test/test_box_rrn.py
+test/test_box_search_configuration.py
+test/test_box_vector_query.py
 test/test_bulk_stats.py
 test/test_cancel_query_response.py
 test/test_cluster.py
@@ -523,6 +580,7 @@ test/test_collection_mount_response.py
 test/test_collection_mount_stats.py
 test/test_collection_stats.py
 test/test_collections_api.py
+test/test_configuration_profile.py
 test/test_create_alias_request.py
 test/test_create_alias_response.py
 test/test_create_api_key_request.py
@@ -552,6 +610,7 @@ test/test_custom_roles_api.py
 test/test_delete_alias_response.py
 test/test_delete_api_key_response.py
 test/test_delete_collection_response.py
+test/test_delete_deployment_response.py
 test/test_delete_documents_request.py
 test/test_delete_documents_request_data.py
 test/test_delete_documents_response.py
@@ -573,6 +632,7 @@ test/test_error_model.py
 test/test_execute_public_query_lambda_request.py
 test/test_execute_query_lambda_request.py
 test/test_execution_status.py
+test/test_faiss_configuration.py
 test/test_field_mapping_query.py
 test/test_field_mapping_v2.py
 test/test_field_partition.py
@@ -628,6 +688,7 @@ test/test_organizations_api.py
 test/test_output_field.py
 test/test_pagination.py
 test/test_pagination_info.py
+test/test_pallet_list_boxes_response.py
 test/test_patch_document.py
 test/test_patch_documents_request.py
 test/test_patch_documents_response.py
@@ -662,6 +723,7 @@ test/test_scheduled_lambda.py
 test/test_scheduled_lambda_response.py
 test/test_scheduled_lambdas_api.py
 test/test_schema_registry_config.py
+test/test_search_api.py
 test/test_shared_lambdas_api.py
 test/test_snowflake_integration.py
 test/test_source.py
@@ -727,6 +789,7 @@ test/test_update_virtual_instance_size_settings_request.py
 test/test_user.py
 test/test_users_api.py
 test/test_validate_query_response.py
+test/test_vector_field_options.py
 test/test_view.py
 test/test_views_api.py
 test/test_virtual_instance.py

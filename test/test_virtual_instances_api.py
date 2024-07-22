@@ -23,7 +23,6 @@ def test_create(get_client, mock_request, request_validator):
                 description="VI serving prod traffic",
                 enable_remount_on_resume=True,
                 instance_class="MO_IL",
-                mount_type="LIVE",
                 name="prod_vi",
                 type="LARGE",
             )
@@ -195,8 +194,6 @@ def test_update(get_client, mock_request, request_validator):
                     enabled=True,
                     resume_interval="PT2H30M5S",
                 ),
-                mount_refresh_interval_seconds=0,
-                mount_type="LIVE",
                 name="prod_vi",
                 new_size="LARGE",
                 settings=UpdateVirtualInstanceSettingsRequest(

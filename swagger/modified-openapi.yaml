@@ -47,6 +47,15 @@ components:
           example: f1:0:0:0:0
           type: string
       type: object
+    AlgorithmConfiguration:
+      properties:
+        bm25:
+          $ref: "#/components/schemas/Bm25Configuration"
+        faiss:
+          $ref: "#/components/schemas/FaissConfiguration"
+        name:
+          type: string
+      type: object
     Alias:
       properties:
         collections:
@@ -450,6 +459,314 @@ components:
       required:
         - connection_string
       type: object
+    Bm25Configuration:
+      type: object
+    Box:
+      description: A logical representation of a vector store
+      properties:
+        box_rrn:
+          $ref: "#/components/schemas/BoxRrn"
+          description: rrn of this box
+        box_size:
+          description: The current size of this box
+          enum:
+            - TINY
+            - REGULAR
+          type: string
+        last_accessed_ms:
+          description: The last time this box was accessed (unix ms timestamp)
+          format: int64
+          type: integer
+        pallet_id:
+          description: optional opaque id of a pallet to associate this box with
+          type: string
+        schema:
+          description: the set of fields that will be ingested.
+          items:
+            $ref: "#/components/schemas/BoxField"
+          type: array
+        search_configuration:
+          $ref: "#/components/schemas/BoxSearchConfiguration"
+          description: Configure how Rockset indexes and searches this Box
+        state:
+          description: The current state of this box
+          enum:
+            - CREATED
+            - READY
+            - UPGRADE_REQUESTED
+            - UPGRADING
+            - DELETE_REQUESTED
+            - DELETING
+            - READY_TO_CLEAN_UP
+          type: string
+      type: object
+    BoxCreateRequest:
+      properties:
+        initial_box_size:
+          description: The initial size of this box
+          enum:
+            - TINY
+            - REGULAR
+          type: string
+        pallet_id:
+          description: optional opaque id of a pallet to associate this box with
+          type: string
+        schema:
+          description: the set of fields that will be ingested.
+          items:
+            $ref: "#/components/schemas/BoxField"
+          type: array
+        search_configuration:
+          $ref: "#/components/schemas/BoxSearchConfiguration"
+          description: Configure how Rockset indexes and searches this Box
+      type: object
+    BoxCreateResponse:
+      properties:
+        box_rrn:
+          $ref: "#/components/schemas/BoxRrn"
+          description: rrn of this box
+        box_size:
+          description: The current size of this box
+          enum:
+            - TINY
+            - REGULAR
+          type: string
+        last_accessed_ms:
+          description: The last time this box was accessed (unix ms timestamp)
+          format: int64
+          type: integer
+        pallet_id:
+          description: optional opaque id of a pallet to associate this box with
+          type: string
+        schema:
+          description: the set of fields that will be ingested.
+          items:
+            $ref: "#/components/schemas/BoxField"
+          type: array
+        search_configuration:
+          $ref: "#/components/schemas/BoxSearchConfiguration"
+          description: Configure how Rockset indexes and searches this Box
+        state:
+          description: The current state of this box
+          enum:
+            - CREATED
+            - READY
+            - UPGRADE_REQUESTED
+            - UPGRADING
+            - DELETE_REQUESTED
+            - DELETING
+            - READY_TO_CLEAN_UP
+          type: string
+      type: object
+    BoxDeleteResponse:
+      type: object
+    BoxField:
+      properties:
+        description:
+          description: Description of what the field is for
+          type: string
+        name:
+          description: The name of the field
+          type: string
+        vector_field_options:
+          $ref: "#/components/schemas/VectorFieldOptions"
+          description:
+            "Vector field options \u2013 if set, we will enforce that this\
+            \ field has the given vector properties"
+      required:
+        - name
+      type: object
+    BoxFullTextQuery:
+      properties:
+        fields:
+          description: The fields to search
+          items:
+            type: string
+          type: array
+        query:
+          description: The query text
+          type: string
+        query_type:
+          description: How to interpret the query text
+          enum:
+            - DIRECT
+          type: string
+        search_mode:
+          description: Whether to match any or all terms
+          enum:
+            - ANY
+            - ALL
+          type: string
+      type: object
+    BoxInsertDocumentsResponse:
+      properties:
+        count:
+          description: Number of documents inserted
+          format: int32
+          type: integer
+        fence:
+          description:
+            Fence string that can be used to determine when these documents
+            are readable
+          type: string
+      type: object
+    BoxQueryRequest:
+      properties:
+        count:
+          description: Whether to return the total count of documents in the response
+          type: boolean
+        limit:
+          description: The max results to return
+          format: int32
+          type: integer
+        offset:
+          description: Skip over these many many top results
+          format: int32
+          type: integer
+        select:
+          description: The fields to return from matched documents
+          items:
+            type: string
+          type: array
+        text_search:
+          $ref: "#/components/schemas/BoxFullTextQuery"
+          description: Full text search query
+        vector_queries:
+          description: The vector queries to make against this dataset
+          items:
+            $ref: "#/components/schemas/BoxVectorQuery"
+          type: array
+      type: object
+    BoxQueryResponse:
+      properties:
+        box_rrn:
+          $ref: "#/components/schemas/BoxRrn"
+          description: the RRN of the queried box
+        column_fields:
+          description:
+            Meta information about each column in the result set. Not populated
+            in `SELECT *` queries.
+          items:
+            $ref: "#/components/schemas/QueryFieldType"
+          type: array
+        query_errors:
+          description: Errors encountered while executing the query.
+          items:
+            $ref: "#/components/schemas/QueryError"
+          type: array
+        query_id:
+          description: Unique ID for this query.
+          type: string
+        results:
+          description: Results from the query.
+          items:
+            type: object
+          type: array
+        stats:
+          $ref: "#/components/schemas/QueryResponseStats"
+          description: Meta information about the query including execution latencies.
+      type: object
+    BoxResizeRequest:
+      properties:
+        new_size:
+          description: desired new size
+          enum:
+            - TINY
+            - REGULAR
+          type: string
+      type: object
+    BoxResizeResponse:
+      properties:
+        box:
+          $ref: "#/components/schemas/Box"
+          description: The box that initiated its upgrade
+      type: object
+    BoxRrn:
+      properties:
+        cluster:
+          type: string
+        resourceType:
+          enum:
+            - ALIAS
+            - API_KEY
+            - BOX
+            - CLUSTER
+            - COLLECTION
+            - COLLECTION_ASSIGNMENT
+            - COLLECTION_STATS
+            - COMPACTION_INFO
+            - DEPLOYMENT_STATS
+            - FIELD_SCHEMA
+            - INTEGRATION
+            - LEADER_STATE
+            - LEAF
+            - LEAF_GROUP
+            - MOUNT
+            - MOUNT_STATS
+            - ORG
+            - PALLET
+            - PENDING_SNAPSHOTS
+            - PREVIEW_SOURCE
+            - QUERY_LAMBDA
+            - QUERY_LAMBDA_TAG
+            - QUERY_LAMBDA_VERSION
+            - ROCKSET_DEPLOYMENT
+            - ROLE
+            - ROOT
+            - SCHEDULED_QUERY_LAMBDA
+            - SHARD
+            - SHARD_ASSIGNMENT
+            - SHARD_BATCH
+            - SIMILARITY_INDEX
+            - SNAPSHOT
+            - SOURCE
+            - SOURCE_STATE
+            - USER
+            - VIEW
+            - VIRTUAL_INSTANCE
+            - VIRTUAL_INSTANCE_STATS
+            - WORKSPACE
+          type: string
+        uuid:
+          format: uuid
+          type: string
+        version:
+          format: int32
+          type: integer
+      type: object
+    BoxSearchConfiguration:
+      properties:
+        algorithms:
+          description: algorithm configurations
+          items:
+            $ref: "#/components/schemas/AlgorithmConfiguration"
+          type: array
+        profiles:
+          description: search profiles
+          items:
+            $ref: "#/components/schemas/ConfigurationProfile"
+          type: array
+      type: object
+    BoxVectorQuery:
+      properties:
+        exhaustive:
+          description: If true, forces KNN
+          type: boolean
+        fields:
+          description: Fields to search
+          items:
+            type: string
+          type: array
+        k:
+          description: Number of top hits to return
+          format: int32
+          type: integer
+        vector:
+          description: The search vector
+          items:
+            type: number
+          type: array
+      type: object
     BulkStats:
       properties:
         data_downloaded_bytes:
@@ -833,6 +1150,18 @@ components:
           format: int64
           type: integer
       type: object
+    ConfigurationProfile:
+      properties:
+        algorithm:
+          description: Name of the algorithm this configuration profile references
+          type: string
+        name:
+          description: Name of the configuration profile
+          type: string
+      required:
+        - algorithm
+        - name
+      type: object
     CreateAliasRequest:
       properties:
         description:
@@ -960,6 +1289,12 @@ components:
         display_name:
           description: The display name of the deployment
           type: string
+        email:
+          description: The email of the user creating the deployment
+          type: string
+      required:
+        - display_name
+        - email
       type: object
     CreateDeploymentResponse:
       properties:
@@ -1206,16 +1541,6 @@ components:
             - GP_IL
           example: MO_IL
           type: string
-        mount_type:
-          description:
-            The mount type of collections that this Virtual Instance will
-            query. Live mounted collections stay up-to-date with the underlying collection
-            in real-time. Static mounted collections do not stay up-to-date. See https://docs.rockset.com/documentation/docs/using-virtual-instances#virtual-instance-configuration
-          enum:
-            - LIVE
-            - STATIC
-          example: LIVE
-          type: string
         name:
           description:
             Unique identifier for virtual instance, can contain alphanumeric
@@ -1349,6 +1674,19 @@ components:
           description: Collection that was deleted.
       required:
         - data
+      type: object
+    DeleteDeploymentResponse:
+      properties:
+        display_name:
+          description: The display name of the deployment
+          type: string
+        rrn:
+          description: Deployment RRNs
+          example: rrn:rsd:use1a1:123e4567-e89b-12d3-a456-556642440000
+          type: string
+      required:
+        - display_name
+        - rrn
       type: object
     DeleteDocumentsRequest:
       properties:
@@ -1635,6 +1973,20 @@ components:
             - ERROR
           example: ERROR
           type: string
+      type: object
+    FaissConfiguration:
+      properties:
+        factory_string:
+          description: The FAISS factory string
+          type: string
+        metric:
+          description: The FAISS metric to use
+          enum:
+            - EUCLIDEAN
+            - COSINE
+          type: string
+      required:
+        - factory_string
       type: object
     FieldMappingQuery:
       properties:
@@ -2258,6 +2610,8 @@ components:
       required:
         - connection_uri
       type: object
+    Number:
+      type: object
     Offsets:
       properties:
         commit:
@@ -2366,6 +2720,14 @@ components:
           description: Cursor used to retrieve the first set of documents.
           example: startcursor
           type: string
+      type: object
+    PalletListBoxesResponse:
+      properties:
+        boxes:
+          description: The boxes that are inside this pallet within this cluster
+          items:
+            $ref: "#/components/schemas/Box"
+          type: array
       type: object
     PatchDocument:
       properties:
@@ -2506,6 +2868,11 @@ components:
             - CREATE_SIMILARITY_INDEX_WS
             - DELETE_SIMILARITY_INDEX_WS
             - UPDATE_DEPLOYMENT_DEFAULT_QUERY_VI
+            - QUERY_BOX
+            - WRITE_BOX
+            - ADMINISTRATE_BOX
+            - QUERY_EPHEMERAL_BOX
+            - WRITE_EPHEMERAL_BOX
           example: CREATE_COLLECTION_WS
           type: string
         cluster:
@@ -4399,25 +4766,6 @@ components:
         microbatch_policy:
           $ref: "#/components/schemas/MicrobatchPolicy"
           description: Options for configuring Ingest VI microbatch policy
-        mount_refresh_interval_seconds:
-          description:
-            DEPRECATED. Use `mount_type` instead. Number of seconds between
-            data refreshes for mounts on this Virtual Instance. The only valid values
-            are 0 and null. 0 means the data will be refreshed continuously and null
-            means the data will never refresh.
-          example: 0
-          format: int32
-          type: integer
-        mount_type:
-          description:
-            The mount type of collections that this Virtual Instance will
-            query. Live mounted collections stay up-to-date with the underlying collection
-            in real-time. Static mounted collections do not stay up-to-date. See https://docs.rockset.com/documentation/docs/using-virtual-instances#virtual-instance-configuration
-          enum:
-            - LIVE
-            - STATIC
-          example: LIVE
-          type: string
         name:
           description: New virtual instance name.
           example: prod_vi
@@ -4523,6 +4871,19 @@ components:
       required:
         - collections
         - parameters
+      type: object
+    VectorFieldOptions:
+      properties:
+        data_type:
+          description: Data type of the field
+          type: string
+        embedding_length:
+          description: Length of the field's embedding
+          format: int32
+          type: integer
+      required:
+        - data_type
+        - embedding_length
       type: object
     View:
       properties:
@@ -4921,7 +5282,7 @@ paths:
   /v1/deployments/self:
     get:
       description: ""
-      operationId: getOwnDeployment
+      operationId: getSelfDeployment
       responses:
         "200":
           content:
@@ -4933,6 +5294,26 @@ paths:
       tags:
         - Deployments
   /v1/deployments/{rrn}:
+    delete:
+      description: ""
+      operationId: deleteDeployment
+      parameters:
+        - description: The deployment RRN
+          in: path
+          name: rrn
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteDeploymentResponse"
+          description: Deployment deletion initiated
+      summary: Delete deployment
+      tags:
+        - Deployments
     get:
       description: ""
       operationId: getDeployment
@@ -16575,6 +16956,755 @@ paths:
       summary: Execute a Public Query Lambda
       tags:
         - Shared Lambdas
+  /v1/search/boxes:
+    post:
+      description: ""
+      operationId: createBox
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BoxCreateRequest"
+        description: JSON object
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BoxCreateResponse"
+          description: box info
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Create a box
+      tags:
+        - Search
+        - Box
+  /v1/search/boxes/{box_rrn}:
+    delete:
+      description: ""
+      operationId: deleteBox
+      parameters:
+        - description: rrn of the box
+          in: path
+          name: box_rrn
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BoxDeleteResponse"
+          description: box info
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Delete a box
+      tags:
+        - Box
+        - Search
+  /v1/search/boxes/{box_rrn}/documents:
+    post:
+      description: ""
+      operationId: insertDocs
+      parameters:
+        - description: rrn of the box
+          in: path
+          name: box_rrn
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BoxInsertDocumentsResponse"
+          description: insertion details
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Insert documents into a box
+      tags:
+        - Box
+        - Search
+  /v1/search/boxes/{box_rrn}/query:
+    post:
+      description: ""
+      operationId: queryBox
+      parameters:
+        - description: rrn of the box
+          in: path
+          name: box_rrn
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BoxQueryRequest"
+        description: JSON object
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BoxQueryResponse"
+          description: query results
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Query a box
+      tags:
+        - Box
+        - Search
+  /v1/search/boxes/{box_rrn}/resize:
+    post:
+      description: ""
+      operationId: upgradeBox
+      parameters:
+        - description: rrn of the box
+          in: path
+          name: box_rrn
+          required: true
+          schema:
+            type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BoxResizeRequest"
+        description: JSON object
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BoxResizeResponse"
+          description: box upgrade results
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Resize a box
+      tags:
+        - Box
+        - Search
+  /v1/search/pallets/{pallet_id}:
+    delete:
+      description: ""
+      operationId: deletePallet
+      parameters:
+        - description: opaque unique pallet id
+          in: path
+          name: pallet_id
+          required: true
+          schema:
+            type: string
+      responses:
+        "204":
+          description: pallet deleted
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Delete a pallet
+      tags:
+        - Search
+        - Box
+  /v1/search/pallets/{pallet_id}/boxes:
+    get:
+      description: ""
+      operationId: listPalletBoxes
+      parameters:
+        - description: opaque unique pallet id
+          in: path
+          name: pallet_id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PalletListBoxesResponse"
+          description: list of boxes on this pallet in this cluster
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad request
+        "401":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: unauthorized
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: forbidden
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not found
+        "405":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not allowed
+        "406":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not acceptable
+        "408":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: request timeout
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: conflict
+        "415":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not supported
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: resource exceeded
+        "500":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: internal error
+        "501":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not implemented
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: bad gateway
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorModel"
+          description: not ready
+      summary: Get the boxes associated with a pallet ID within this cluster
+      tags:
+        - Search
+        - Box
 security:
   - apikey: []
 servers:
@@ -16582,6 +17712,7 @@ servers:
 tags:
   - name: Aliases
   - name: API Keys
+  - name: Box
   - name: Collections
   - name: Custom Roles
   - name: Deployment Settings
@@ -16592,6 +17723,7 @@ tags:
   - name: Queries
   - name: Query Lambdas
   - name: Scheduled Lambdas
+  - name: Search
   - name: Shared Lambdas
   - name: Sources
   - name: Users

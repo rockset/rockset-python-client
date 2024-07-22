@@ -138,6 +138,13 @@ Class | Method | HTTP request | Description
 *Aliases* | [**list**](docs/AliasesApi.md#list) | **GET** /v1/orgs/self/aliases | List Aliases
 *Aliases* | [**update**](docs/AliasesApi.md#update) | **POST** /v1/orgs/self/ws/{workspace}/aliases/{alias_rrn} | Update Alias
 *Aliases* | [**workspace_aliases**](docs/AliasesApi.md#workspace_aliases) | **GET** /v1/orgs/self/ws/{workspace}/aliases | List Aliases in Workspace
+*Box* | [**create_box**](docs/BoxApi.md#create_box) | **POST** /v1/search/boxes | Create a box
+*Box* | [**delete_box**](docs/BoxApi.md#delete_box) | **DELETE** /v1/search/boxes/{box_rrn} | Delete a box
+*Box* | [**delete_pallet**](docs/BoxApi.md#delete_pallet) | **DELETE** /v1/search/pallets/{pallet_id} | Delete a pallet
+*Box* | [**insert_docs**](docs/BoxApi.md#insert_docs) | **POST** /v1/search/boxes/{box_rrn}/documents | Insert documents into a box
+*Box* | [**list_pallet_boxes**](docs/BoxApi.md#list_pallet_boxes) | **GET** /v1/search/pallets/{pallet_id}/boxes | Get the boxes associated with a pallet ID within this cluster
+*Box* | [**query_box**](docs/BoxApi.md#query_box) | **POST** /v1/search/boxes/{box_rrn}/query | Query a box
+*Box* | [**upgrade_box**](docs/BoxApi.md#upgrade_box) | **POST** /v1/search/boxes/{box_rrn}/resize | Resize a box
 *Collections* | [**create_azure_blob_storage_collection**](docs/CollectionsApi.md#create_azure_blob_storage_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create azure blob storage collection
 *Collections* | [**create_azure_event_hubs_collection**](docs/CollectionsApi.md#create_azure_event_hubs_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create azure event hubs collection
 *Collections* | [**create_kafka_collection**](docs/CollectionsApi.md#create_kafka_collection) | **POST** /v1/orgs/self/ws/{workspace}/collections | Create kafka collection
@@ -154,8 +161,9 @@ Class | Method | HTTP request | Description
 *CustomRoles* | [**update**](docs/CustomRolesApi.md#update) | **POST** /v1/orgs/self/roles/{roleName} | Update a Role
 *DeploymentSettings* | [**get_deployment_settings**](docs/DeploymentSettingsApi.md#get_deployment_settings) | **GET** /v1/orgs/self/deploymentsettings | Retrieve Deployment Settings
 *DeploymentSettings* | [**update_deployment_settings**](docs/DeploymentSettingsApi.md#update_deployment_settings) | **PUT** /v1/orgs/self/deploymentsettings | Update Deployment Settings
+*Deployments* | [**delete_deployment**](docs/DeploymentsApi.md#delete_deployment) | **DELETE** /v1/deployments/{rrn} | Delete deployment
 *Deployments* | [**get_deployment**](docs/DeploymentsApi.md#get_deployment) | **GET** /v1/deployments/{rrn} | Get info about a deployment
-*Deployments* | [**get_own_deployment**](docs/DeploymentsApi.md#get_own_deployment) | **GET** /v1/deployments/self | Get info about your own deployment
+*Deployments* | [**get_self_deployment**](docs/DeploymentsApi.md#get_self_deployment) | **GET** /v1/deployments/self | Get info about your own deployment
 *Deployments* | [**list_deployments**](docs/DeploymentsApi.md#list_deployments) | **GET** /v1/deployments | List all deployments
 *Deployments* | [**provision_deployment**](docs/DeploymentsApi.md#provision_deployment) | **POST** /v1/deployments | Provision a deployment
 *Documents* | [**add_documents**](docs/DocumentsApi.md#add_documents) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/docs | Add Documents
@@ -195,6 +203,13 @@ Class | Method | HTTP request | Description
 *ScheduledLambdas* | [**get**](docs/ScheduledLambdasApi.md#get) | **GET** /v1/orgs/self/ws/{workspace}/scheduled_lambdas/{scheduledLambdaId} | Retrieve a Scheduled Lambda mapping
 *ScheduledLambdas* | [**list_org_scheduled_lambdas**](docs/ScheduledLambdasApi.md#list_org_scheduled_lambdas) | **GET** /v1/orgs/self/lambdas/scheduled_lambdas | List Scheduled Lambdas
 *ScheduledLambdas* | [**update**](docs/ScheduledLambdasApi.md#update) | **POST** /v1/orgs/self/ws/{workspace}/scheduled_lambdas/{scheduledLambdaId} | Update a Scheduled Lambda mapping
+*Search* | [**create_box**](docs/SearchApi.md#create_box) | **POST** /v1/search/boxes | Create a box
+*Search* | [**delete_box**](docs/SearchApi.md#delete_box) | **DELETE** /v1/search/boxes/{box_rrn} | Delete a box
+*Search* | [**delete_pallet**](docs/SearchApi.md#delete_pallet) | **DELETE** /v1/search/pallets/{pallet_id} | Delete a pallet
+*Search* | [**insert_docs**](docs/SearchApi.md#insert_docs) | **POST** /v1/search/boxes/{box_rrn}/documents | Insert documents into a box
+*Search* | [**list_pallet_boxes**](docs/SearchApi.md#list_pallet_boxes) | **GET** /v1/search/pallets/{pallet_id}/boxes | Get the boxes associated with a pallet ID within this cluster
+*Search* | [**query_box**](docs/SearchApi.md#query_box) | **POST** /v1/search/boxes/{box_rrn}/query | Query a box
+*Search* | [**upgrade_box**](docs/SearchApi.md#upgrade_box) | **POST** /v1/search/boxes/{box_rrn}/resize | Resize a box
 *SharedLambdas* | [**execute_public_query_lambda_with_params**](docs/SharedLambdasApi.md#execute_public_query_lambda_with_params) | **POST** /v1/public/shared_lambdas/{public_access_id} | Execute a Public Query Lambda
 *Sources* | [**create_azure_blob_storage_source**](docs/SourcesApi.md#create_azure_blob_storage_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a new azure blob storage source in a collection
 *Sources* | [**create_azure_event_hubs_source**](docs/SourcesApi.md#create_azure_event_hubs_source) | **POST** /v1/orgs/self/ws/{workspace}/collections/{collection}/sources | Create a new azure event hubs source in a collection
@@ -243,6 +258,7 @@ Class | Method | HTTP request | Description
 
  - [AddDocumentsRequest](docs/AddDocumentsRequest.md)
  - [AddDocumentsResponse](docs/AddDocumentsResponse.md)
+ - [AlgorithmConfiguration](docs/AlgorithmConfiguration.md)
  - [Alias](docs/Alias.md)
  - [ApiKey](docs/ApiKey.md)
  - [AsyncQueryOptions](docs/AsyncQueryOptions.md)
@@ -258,6 +274,19 @@ Class | Method | HTTP request | Description
  - [AzureEventHubsIntegrationCreationRequest](docs/AzureEventHubsIntegrationCreationRequest.md)
  - [AzureEventHubsSourceWrapper](docs/AzureEventHubsSourceWrapper.md)
  - [AzureServiceBusIntegration](docs/AzureServiceBusIntegration.md)
+ - [Box](docs/Box.md)
+ - [BoxCreateRequest](docs/BoxCreateRequest.md)
+ - [BoxCreateResponse](docs/BoxCreateResponse.md)
+ - [BoxField](docs/BoxField.md)
+ - [BoxFullTextQuery](docs/BoxFullTextQuery.md)
+ - [BoxInsertDocumentsResponse](docs/BoxInsertDocumentsResponse.md)
+ - [BoxQueryRequest](docs/BoxQueryRequest.md)
+ - [BoxQueryResponse](docs/BoxQueryResponse.md)
+ - [BoxResizeRequest](docs/BoxResizeRequest.md)
+ - [BoxResizeResponse](docs/BoxResizeResponse.md)
+ - [BoxRrn](docs/BoxRrn.md)
+ - [BoxSearchConfiguration](docs/BoxSearchConfiguration.md)
+ - [BoxVectorQuery](docs/BoxVectorQuery.md)
  - [BulkStats](docs/BulkStats.md)
  - [CancelQueryResponse](docs/CancelQueryResponse.md)
  - [Cluster](docs/Cluster.md)
@@ -266,6 +295,7 @@ Class | Method | HTTP request | Description
  - [CollectionMountResponse](docs/CollectionMountResponse.md)
  - [CollectionMountStats](docs/CollectionMountStats.md)
  - [CollectionStats](docs/CollectionStats.md)
+ - [ConfigurationProfile](docs/ConfigurationProfile.md)
  - [CreateAliasRequest](docs/CreateAliasRequest.md)
  - [CreateAliasResponse](docs/CreateAliasResponse.md)
  - [CreateApiKeyRequest](docs/CreateApiKeyRequest.md)
@@ -294,6 +324,7 @@ Class | Method | HTTP request | Description
  - [DeleteAliasResponse](docs/DeleteAliasResponse.md)
  - [DeleteApiKeyResponse](docs/DeleteApiKeyResponse.md)
  - [DeleteCollectionResponse](docs/DeleteCollectionResponse.md)
+ - [DeleteDeploymentResponse](docs/DeleteDeploymentResponse.md)
  - [DeleteDocumentsRequest](docs/DeleteDocumentsRequest.md)
  - [DeleteDocumentsRequestData](docs/DeleteDocumentsRequestData.md)
  - [DeleteDocumentsResponse](docs/DeleteDocumentsResponse.md)
@@ -312,6 +343,7 @@ Class | Method | HTTP request | Description
  - [ExecutePublicQueryLambdaRequest](docs/ExecutePublicQueryLambdaRequest.md)
  - [ExecuteQueryLambdaRequest](docs/ExecuteQueryLambdaRequest.md)
  - [ExecutionStatus](docs/ExecutionStatus.md)
+ - [FaissConfiguration](docs/FaissConfiguration.md)
  - [FieldMappingQuery](docs/FieldMappingQuery.md)
  - [FieldMappingV2](docs/FieldMappingV2.md)
  - [FieldPartition](docs/FieldPartition.md)
@@ -365,6 +397,7 @@ Class | Method | HTTP request | Description
  - [OutputField](docs/OutputField.md)
  - [Pagination](docs/Pagination.md)
  - [PaginationInfo](docs/PaginationInfo.md)
+ - [PalletListBoxesResponse](docs/PalletListBoxesResponse.md)
  - [PatchDocument](docs/PatchDocument.md)
  - [PatchDocumentsRequest](docs/PatchDocumentsRequest.md)
  - [PatchDocumentsResponse](docs/PatchDocumentsResponse.md)
@@ -458,6 +491,7 @@ Class | Method | HTTP request | Description
  - [UpdateVirtualInstanceSizeSettingsRequest](docs/UpdateVirtualInstanceSizeSettingsRequest.md)
  - [User](docs/User.md)
  - [ValidateQueryResponse](docs/ValidateQueryResponse.md)
+ - [VectorFieldOptions](docs/VectorFieldOptions.md)
  - [View](docs/View.md)
  - [VirtualInstance](docs/VirtualInstance.md)
  - [VirtualInstanceClassSettings](docs/VirtualInstanceClassSettings.md)

@@ -16,6 +16,7 @@
 # Import APIs into API package:
 from rockset.api.api_keys_api import APIKeys
 from rockset.api.aliases_api import Aliases
+from rockset.api.box_api import Box
 from rockset.api.collections_api import Collections
 from rockset.api.custom_roles_api import CustomRoles
 from rockset.api.deployment_settings_api import DeploymentSettings
@@ -26,6 +27,7 @@ from rockset.api.organizations_api import Organizations
 from rockset.api.queries_api import Queries
 from rockset.api.query_lambdas_api import QueryLambdas
 from rockset.api.scheduled_lambdas_api import ScheduledLambdas
+from rockset.api.search_api import Search
 from rockset.api.shared_lambdas_api import SharedLambdas
 from rockset.api.sources_api import Sources
 from rockset.api.users_api import Users

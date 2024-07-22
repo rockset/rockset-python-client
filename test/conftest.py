@@ -7,8 +7,7 @@ from unittest import mock
 import pytest
 import yaml
 from openapi_core import create_spec
-from openapi_core.validation.request.datatypes import (OpenAPIRequest,
-                                                       RequestParameters)
+from openapi_core.validation.request.datatypes import OpenAPIRequest, RequestParameters
 from openapi_core.validation.request.validators import RequestValidator
 
 from rockset import Clusters, RocksetClient

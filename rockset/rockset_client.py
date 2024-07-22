@@ -107,6 +107,10 @@ class AliasesApiWrapper(apis.Aliases, metaclass=ApiMetaclass):
     pass
 
 
+class BoxApiWrapper(apis.Box, metaclass=ApiMetaclass):
+    pass
+
+
 class CollectionsApiWrapper(apis.Collections, metaclass=ApiMetaclass):
     pass
 
@@ -144,6 +148,10 @@ class QueryLambdasApiWrapper(apis.QueryLambdas, metaclass=ApiMetaclass):
 
 
 class ScheduledLambdasApiWrapper(apis.ScheduledLambdas, metaclass=ApiMetaclass):
+    pass
+
+
+class SearchApiWrapper(apis.Search, metaclass=ApiMetaclass):
     pass
 
 
@@ -235,6 +243,7 @@ class RocksetClient:
 
         self.APIKeys = APIKeysApiWrapper(self.api_client)
         self.Aliases = AliasesApiWrapper(self.api_client)
+        self.Box = BoxApiWrapper(self.api_client)
         self.Collections = CollectionsApiWrapper(self.api_client)
         self.CustomRoles = CustomRolesApiWrapper(self.api_client)
         self.DeploymentSettings = DeploymentSettingsApiWrapper(self.api_client)
@@ -245,6 +254,7 @@ class RocksetClient:
         self.Queries = QueriesApiWrapper(self.api_client)
         self.QueryLambdas = QueryLambdasApiWrapper(self.api_client)
         self.ScheduledLambdas = ScheduledLambdasApiWrapper(self.api_client)
+        self.Search = SearchApiWrapper(self.api_client)
         self.SharedLambdas = SharedLambdasApiWrapper(self.api_client)
         self.Sources = SourcesApiWrapper(self.api_client)
         self.Users = UsersApiWrapper(self.api_client)

@@ -13,4 +13,7 @@ from rockset.models import *
 
 
 def test_create_deployment_request_init():
-    CreateDeploymentRequest()
+    CreateDeploymentRequest(
+        display_name="string_example",
+        email="string_example",
+    )

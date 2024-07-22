@@ -59,10 +59,6 @@ class CreateVirtualInstanceRequest(ModelNormal):
             'MO_IL': "MO_IL",
             'GP_IL': "GP_IL",
         },
-        ('mount_type',): {
-            'LIVE': "LIVE",
-            'STATIC': "STATIC",
-        },
         ('type',): {
             'FREE': "FREE",
             'NANO': "NANO",
@@ -109,7 +105,6 @@ class CreateVirtualInstanceRequest(ModelNormal):
             'description': (str, none_type),  # noqa: E501
             'enable_remount_on_resume': (bool, none_type),  # noqa: E501
             'instance_class': (str, none_type),  # noqa: E501
-            'mount_type': (str, none_type),  # noqa: E501
             'type': (str, none_type),  # noqa: E501
         }
 
@@ -124,7 +119,6 @@ class CreateVirtualInstanceRequest(ModelNormal):
         'description': 'description',  # noqa: E501
         'enable_remount_on_resume': 'enable_remount_on_resume',  # noqa: E501
         'instance_class': 'instance_class',  # noqa: E501
-        'mount_type': 'mount_type',  # noqa: E501
         'type': 'type',  # noqa: E501
     }
 
@@ -176,7 +170,6 @@ class CreateVirtualInstanceRequest(ModelNormal):
             description (str): Description of requested virtual instance.. [optional]  # noqa: E501
             enable_remount_on_resume (bool): When a Virtual Instance is resumed, it will remount all collections that were mounted when the Virtual Instance was suspended. Defaults to true.. [optional]  # noqa: E501
             instance_class (str): Virtual Instance Class. Use `MO_IL` for Memory Optimized and `GP_IL` for General Purpose instance class.. [optional]  # noqa: E501
-            mount_type (str): The mount type of collections that this Virtual Instance will query. Live mounted collections stay up-to-date with the underlying collection in real-time. Static mounted collections do not stay up-to-date. See https://docs.rockset.com/documentation/docs/using-virtual-instances#virtual-instance-configuration. [optional]  # noqa: E501
             type (str): Requested virtual instance type.. [optional]  # noqa: E501
         """
 
@@ -235,7 +228,6 @@ class CreateVirtualInstanceRequest(ModelNormal):
             description (str): Description of requested virtual instance.. [optional]  # noqa: E501
             enable_remount_on_resume (bool): When a Virtual Instance is resumed, it will remount all collections that were mounted when the Virtual Instance was suspended. Defaults to true.. [optional]  # noqa: E501
             instance_class (str): Virtual Instance Class. Use `MO_IL` for Memory Optimized and `GP_IL` for General Purpose instance class.. [optional]  # noqa: E501
-            mount_type (str): The mount type of collections that this Virtual Instance will query. Live mounted collections stay up-to-date with the underlying collection in real-time. Static mounted collections do not stay up-to-date. See https://docs.rockset.com/documentation/docs/using-virtual-instances#virtual-instance-configuration. [optional]  # noqa: E501
             type (str): Requested virtual instance type.. [optional]  # noqa: E501
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be

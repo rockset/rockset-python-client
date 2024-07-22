@@ -11,6 +11,7 @@
 
 from rockset.model.add_documents_request import AddDocumentsRequest
 from rockset.model.add_documents_response import AddDocumentsResponse
+from rockset.model.algorithm_configuration import AlgorithmConfiguration
 from rockset.model.alias import Alias
 from rockset.model.api_key import ApiKey
 from rockset.model.async_query_options import AsyncQueryOptions
@@ -26,6 +27,19 @@ from rockset.model.azure_event_hubs_integration import AzureEventHubsIntegration
 from rockset.model.azure_event_hubs_integration_creation_request import AzureEventHubsIntegrationCreationRequest
 from rockset.model.azure_event_hubs_source_wrapper import AzureEventHubsSourceWrapper
 from rockset.model.azure_service_bus_integration import AzureServiceBusIntegration
+from rockset.model.box import Box
+from rockset.model.box_create_request import BoxCreateRequest
+from rockset.model.box_create_response import BoxCreateResponse
+from rockset.model.box_field import BoxField
+from rockset.model.box_full_text_query import BoxFullTextQuery
+from rockset.model.box_insert_documents_response import BoxInsertDocumentsResponse
+from rockset.model.box_query_request import BoxQueryRequest
+from rockset.model.box_query_response import BoxQueryResponse
+from rockset.model.box_resize_request import BoxResizeRequest
+from rockset.model.box_resize_response import BoxResizeResponse
+from rockset.model.box_rrn import BoxRrn
+from rockset.model.box_search_configuration import BoxSearchConfiguration
+from rockset.model.box_vector_query import BoxVectorQuery
 from rockset.model.bulk_stats import BulkStats
 from rockset.model.cancel_query_response import CancelQueryResponse
 from rockset.model.cluster import Cluster
@@ -34,6 +48,7 @@ from rockset.model.collection_mount import CollectionMount
 from rockset.model.collection_mount_response import CollectionMountResponse
 from rockset.model.collection_mount_stats import CollectionMountStats
 from rockset.model.collection_stats import CollectionStats
+from rockset.model.configuration_profile import ConfigurationProfile
 from rockset.model.create_alias_request import CreateAliasRequest
 from rockset.model.create_alias_response import CreateAliasResponse
 from rockset.model.create_api_key_request import CreateApiKeyRequest
@@ -62,6 +77,7 @@ from rockset.model.csv_params import CsvParams
 from rockset.model.delete_alias_response import DeleteAliasResponse
 from rockset.model.delete_api_key_response import DeleteApiKeyResponse
 from rockset.model.delete_collection_response import DeleteCollectionResponse
+from rockset.model.delete_deployment_response import DeleteDeploymentResponse
 from rockset.model.delete_documents_request import DeleteDocumentsRequest
 from rockset.model.delete_documents_request_data import DeleteDocumentsRequestData
 from rockset.model.delete_documents_response import DeleteDocumentsResponse
@@ -80,6 +96,7 @@ from rockset.model.error_model import ErrorModel
 from rockset.model.execute_public_query_lambda_request import ExecutePublicQueryLambdaRequest
 from rockset.model.execute_query_lambda_request import ExecuteQueryLambdaRequest
 from rockset.model.execution_status import ExecutionStatus
+from rockset.model.faiss_configuration import FaissConfiguration
 from rockset.model.field_mapping_query import FieldMappingQuery
 from rockset.model.field_mapping_v2 import FieldMappingV2
 from rockset.model.field_partition import FieldPartition
@@ -133,6 +150,7 @@ from rockset.model.organization_response import OrganizationResponse
 from rockset.model.output_field import OutputField
 from rockset.model.pagination import Pagination
 from rockset.model.pagination_info import PaginationInfo
+from rockset.model.pallet_list_boxes_response import PalletListBoxesResponse
 from rockset.model.patch_document import PatchDocument
 from rockset.model.patch_documents_request import PatchDocumentsRequest
 from rockset.model.patch_documents_response import PatchDocumentsResponse
@@ -226,6 +244,7 @@ from rockset.model.update_virtual_instance_settings_request import UpdateVirtual
 from rockset.model.update_virtual_instance_size_settings_request import UpdateVirtualInstanceSizeSettingsRequest
 from rockset.model.user import User
 from rockset.model.validate_query_response import ValidateQueryResponse
+from rockset.model.vector_field_options import VectorFieldOptions
 from rockset.model.view import View
 from rockset.model.virtual_instance import VirtualInstance
 from rockset.model.virtual_instance_class_settings import VirtualInstanceClassSettings

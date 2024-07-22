@@ -81,7 +81,8 @@ class CreateDeploymentRequest(ModelNormal):
                 and the value is attribute type.
         """
         return {
-            'display_name': (str, none_type),  # noqa: E501
+            'display_name': (str,),  # noqa: E501
+            'email': (str,),  # noqa: E501
         }
 
     @cached_property
@@ -91,6 +92,7 @@ class CreateDeploymentRequest(ModelNormal):
 
     attribute_map = {
         'display_name': 'display_name',  # noqa: E501
+        'email': 'email',  # noqa: E501
     }
 
     read_only_vars = {
@@ -100,8 +102,12 @@ class CreateDeploymentRequest(ModelNormal):
 
     @classmethod
     @convert_js_args_to_python_args
-    def _from_openapi_data(cls, *args, **kwargs):  # noqa: E501
+    def _from_openapi_data(cls, display_name, email, *args, **kwargs):  # noqa: E501
         """CreateDeploymentRequest - a model defined in OpenAPI
+
+        Args:
+            display_name (str): The display name of the deployment
+            email (str): The email of the user creating the deployment
 
         Keyword Args:
             _check_type (bool): if True, values for parameters in openapi_types
@@ -134,7 +140,6 @@ class CreateDeploymentRequest(ModelNormal):
                                 Animal class but this time we won't travel
                                 through its discriminator because we passed in
                                 _visited_composed_classes = (Animal,)
-            display_name (str): The display name of the deployment. [optional]  # noqa: E501
         """
 
         _check_type = kwargs.pop('_check_type', True)
@@ -162,6 +167,8 @@ class CreateDeploymentRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.display_name = display_name
+        self.email = email
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \
@@ -182,11 +189,12 @@ class CreateDeploymentRequest(ModelNormal):
     ])
 
     @convert_js_args_to_python_args
-    def __init__(self, **kwargs):  # noqa: E501
+    def __init__(self, *, display_name, email, **kwargs):  # noqa: E501
         """CreateDeploymentRequest - a model defined in OpenAPI
 
         Keyword Args:
-            display_name (str): The display name of the deployment. [optional]  # noqa: E501
+            display_name (str): The display name of the deployment
+            email (str): The email of the user creating the deployment
             _check_type (bool): if True, values for parameters in openapi_types
                                 will be type checked and a TypeError will be
                                 raised if the wrong type is input.
@@ -243,6 +251,8 @@ class CreateDeploymentRequest(ModelNormal):
         self._configuration = _configuration
         self._visited_composed_classes = _visited_composed_classes + (self.__class__,)
 
+        self.display_name = display_name
+        self.email = email
         for var_name, var_value in kwargs.items():
             if var_name not in self.attribute_map and \
                         self._configuration is not None and \

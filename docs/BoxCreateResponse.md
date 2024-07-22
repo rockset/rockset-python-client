@@ -1,0 +1,18 @@
+# BoxCreateResponse
+
+
+## Properties
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**box_rrn** | [**BoxRrn**](BoxRrn.md) |  | [optional] 
+**box_size** | **str** | The current size of this box | [optional] 
+**last_accessed_ms** | **int** | The last time this box was accessed (unix ms timestamp) | [optional] 
+**pallet_id** | **str** | optional opaque id of a pallet to associate this box with | [optional] 
+**schema** | [**[BoxField]**](BoxField.md) | the set of fields that will be ingested. | [optional] 
+**search_configuration** | [**BoxSearchConfiguration**](BoxSearchConfiguration.md) |  | [optional] 
+**state** | **str** | The current state of this box | [optional] 
+**any string name** | **bool, date, datetime, dict, float, int, list, str, none_type** | any string name can be used but the value must be the correct type | [optional]
+
+[[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
+
+

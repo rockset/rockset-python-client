@@ -67,10 +67,6 @@ class UpdateVirtualInstanceRequest(ModelNormal):
             'MO_IL': "MO_IL",
             'GP_IL': "GP_IL",
         },
-        ('mount_type',): {
-            'LIVE': "LIVE",
-            'STATIC': "STATIC",
-        },
         ('new_size',): {
             'FREE': "FREE",
             'NANO': "NANO",
@@ -121,8 +117,6 @@ class UpdateVirtualInstanceRequest(ModelNormal):
             'enable_remount_on_resume': (bool, none_type),  # noqa: E501
             'instance_class': (str, none_type),  # noqa: E501
             'microbatch_policy': (MicrobatchPolicy, none_type),  # noqa: E501
-            'mount_refresh_interval_seconds': (int, none_type),  # noqa: E501
-            'mount_type': (str, none_type),  # noqa: E501
             'name': (str, none_type),  # noqa: E501
             'new_size': (str, none_type),  # noqa: E501
             'settings': (UpdateVirtualInstanceSettingsRequest, none_type),  # noqa: E501
@@ -141,8 +135,6 @@ class UpdateVirtualInstanceRequest(ModelNormal):
         'enable_remount_on_resume': 'enable_remount_on_resume',  # noqa: E501
         'instance_class': 'instance_class',  # noqa: E501
         'microbatch_policy': 'microbatch_policy',  # noqa: E501
-        'mount_refresh_interval_seconds': 'mount_refresh_interval_seconds',  # noqa: E501
-        'mount_type': 'mount_type',  # noqa: E501
         'name': 'name',  # noqa: E501
         'new_size': 'new_size',  # noqa: E501
         'settings': 'settings',  # noqa: E501
@@ -196,8 +188,6 @@ class UpdateVirtualInstanceRequest(ModelNormal):
             enable_remount_on_resume (bool): When a Virtual Instance is resumed, it will remount all collections that were mounted when the Virtual Instance was suspended.. [optional]  # noqa: E501
             instance_class (str): Virtual Instance Class. Use `MO_IL` for Memory Optimized and `GP_IL` for General Purpose instance class.. [optional]  # noqa: E501
             microbatch_policy (MicrobatchPolicy): [optional]  # noqa: E501
-            mount_refresh_interval_seconds (int): DEPRECATED. Use `mount_type` instead. Number of seconds between data refreshes for mounts on this Virtual Instance. The only valid values are 0 and null. 0 means the data will be refreshed continuously and null means the data will never refresh.. [optional]  # noqa: E501
-            mount_type (str): The mount type of collections that this Virtual Instance will query. Live mounted collections stay up-to-date with the underlying collection in real-time. Static mounted collections do not stay up-to-date. See https://docs.rockset.com/documentation/docs/using-virtual-instances#virtual-instance-configuration. [optional]  # noqa: E501
             name (str): New virtual instance name.. [optional]  # noqa: E501
             new_size (str): Requested virtual instance size.. [optional]  # noqa: E501
             settings (UpdateVirtualInstanceSettingsRequest): [optional]  # noqa: E501
@@ -259,8 +249,6 @@ class UpdateVirtualInstanceRequest(ModelNormal):
             enable_remount_on_resume (bool): When a Virtual Instance is resumed, it will remount all collections that were mounted when the Virtual Instance was suspended.. [optional]  # noqa: E501
             instance_class (str): Virtual Instance Class. Use `MO_IL` for Memory Optimized and `GP_IL` for General Purpose instance class.. [optional]  # noqa: E501
             microbatch_policy (MicrobatchPolicy): [optional]  # noqa: E501
-            mount_refresh_interval_seconds (int): DEPRECATED. Use `mount_type` instead. Number of seconds between data refreshes for mounts on this Virtual Instance. The only valid values are 0 and null. 0 means the data will be refreshed continuously and null means the data will never refresh.. [optional]  # noqa: E501
-            mount_type (str): The mount type of collections that this Virtual Instance will query. Live mounted collections stay up-to-date with the underlying collection in real-time. Static mounted collections do not stay up-to-date. See https://docs.rockset.com/documentation/docs/using-virtual-instances#virtual-instance-configuration. [optional]  # noqa: E501
             name (str): New virtual instance name.. [optional]  # noqa: E501
             new_size (str): Requested virtual instance size.. [optional]  # noqa: E501
             settings (UpdateVirtualInstanceSettingsRequest): [optional]  # noqa: E501

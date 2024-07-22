@@ -14,6 +14,17 @@ from rockset.models import *
 from test.conftest import EarlyExit, validate_call
 
 
+def test_delete_deployment(get_client, mock_request, request_validator):
+    with mock_request:
+        rs = get_client
+        try:
+            rs.Deployments.delete_deployment(
+                rrn="rrn_example",
+            )
+        except EarlyExit as e:
+            validate_call(e, request_validator)
+
+
 def test_get_deployment(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
@@ -25,11 +36,11 @@ def test_get_deployment(get_client, mock_request, request_validator):
             validate_call(e, request_validator)
 
 
-def test_get_own_deployment(get_client, mock_request, request_validator):
+def test_get_self_deployment(get_client, mock_request, request_validator):
     with mock_request:
         rs = get_client
         try:
-            rs.Deployments.get_own_deployment()
+            rs.Deployments.get_self_deployment()
         except EarlyExit as e:
             validate_call(e, request_validator)
 
@@ -49,6 +60,7 @@ def test_provision_deployment(get_client, mock_request, request_validator):
         try:
             rs.Deployments.provision_deployment(
                 display_name="string_example",
+                email="string_example",
             )
         except EarlyExit as e:
             validate_call(e, request_validator)

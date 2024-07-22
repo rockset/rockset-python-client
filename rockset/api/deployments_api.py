@@ -26,6 +26,7 @@ from rockset.model_utils import (  # noqa: F401
 )
 from rockset.model.create_deployment_request import CreateDeploymentRequest
 from rockset.model.create_deployment_response import CreateDeploymentResponse
+from rockset.model.delete_deployment_response import DeleteDeploymentResponse
 from rockset.model.get_deployment_response import GetDeploymentResponse
 from rockset.model.list_deployments_response import ListDeploymentsResponse
 from rockset.models import *
@@ -42,6 +43,57 @@ class Deployments(object):
         if api_client is None:
             api_client = ApiClient()
         self.api_client = api_client
+        self.delete_deployment_endpoint = _Endpoint(
+            settings={
+                'response_type': (DeleteDeploymentResponse,),
+                'auth': [
+                    'apikey'
+                ],
+                'endpoint_path': '/v1/deployments/{rrn}',
+                'operation_id': 'delete_deployment',
+                'http_method': 'DELETE',
+                'servers': None,
+            },
+            params_map={
+                'all': [
+                    'rrn',
+                ],
+                'required': [
+                    'rrn',
+                ],
+                'nullable': [
+                ],
+                'enum': [
+                ],
+                'validation': [
+                ]
+            },
+            root_map={
+                'validations': {
+                },
+                'allowed_values': {
+                },
+                'openapi_types': {
+                    'rrn':
+                        (str,),
+                },
+                'attribute_map': {
+                    'rrn': 'rrn',
+                },
+                'location_map': {
+                    'rrn': 'path',
+                },
+                'collection_format_map': {
+                }
+            },
+            headers_map={
+                'accept': [
+                    'application/json'
+                ],
+                'content_type': [],
+            },
+            api_client=api_client
+        )
         self.get_deployment_endpoint = _Endpoint(
             settings={
                 'response_type': (GetDeploymentResponse,),
@@ -93,14 +145,14 @@ class Deployments(object):
             },
             api_client=api_client
         )
-        self.get_own_deployment_endpoint = _Endpoint(
+        self.get_self_deployment_endpoint = _Endpoint(
             settings={
                 'response_type': (GetDeploymentResponse,),
                 'auth': [
                     'apikey'
                 ],
                 'endpoint_path': '/v1/deployments/self',
-                'operation_id': 'get_own_deployment',
+                'operation_id': 'get_self_deployment',
                 'http_method': 'GET',
                 'servers': None,
             },
@@ -233,6 +285,90 @@ class Deployments(object):
             api_client=api_client
         )
 
+    def delete_deployment(
+        self,
+        *,
+        rrn: str,
+        **kwargs
+    ) -> typing.Union[DeleteDeploymentResponse, asyncio.Future]:
+        """Delete deployment  # noqa: E501
+
+        This method makes a synchronous HTTP request by default. To make an
+        asynchronous HTTP request, please pass async_req=True
+
+        ```python
+        rs = RocksetClient(api_key=APIKEY)
+        future = rs.Deployments.delete_deployment(
+            rrn="rrn_example",
+            async_req=True,
+        )
+        result = await future
+        ```
+
+        Keyword Args:
+            rrn (str): The deployment RRN. [required]
+            _return_http_data_only (bool): response data without head status
+                code and headers. Default is True.
+            _preload_content (bool): if False, the urllib3.HTTPResponse object
+                will be returned without reading/decoding response data.
+                Default is True.
+            _request_timeout (int/float/tuple): timeout setting for this request. If
+                one number provided, it will be total request timeout. It can also
+                be a pair (tuple) of (connection, read) timeouts.
+                Default is None.
+            _check_input_type (bool): specifies if type checking
+                should be done one the data sent to the server.
+                Default is True.
+            _check_return_type (bool): specifies if type checking
+                should be done on the data received from the server.
+                If False, the client will also not convert nested inner objects
+                into the respective model types (the outermost object
+                is still converted to the model).
+                Default is True.
+            _spec_property_naming (bool): True if the variable names in the input data
+                are serialized names, as specified in the OpenAPI document.
+                False if the variable names in the input data
+                are pythonic names, e.g. snake case (default)
+            _content_type (str/None): force body content-type.
+                Default is None and content-type will be predicted by allowed
+                content-types and body.
+            _host_index (int/None): specifies the index of the server
+                that we want to use.
+                Default is read from the configuration.
+            async_req (bool): execute request asynchronously
+
+        Returns:
+            DeleteDeploymentResponse
+                If the method is called asynchronously, returns an asyncio.Future which resolves to the response.
+        """
+        kwargs['async_req'] = kwargs.get(
+            'async_req', False
+        )
+        kwargs['_return_http_data_only'] = kwargs.get(
+            '_return_http_data_only', True
+        )
+        kwargs['_preload_content'] = kwargs.get(
+            '_preload_content', True
+        )
+        kwargs['_request_timeout'] = kwargs.get(
+            '_request_timeout', None
+        )
+        kwargs['_check_input_type'] = kwargs.get(
+            '_check_input_type', True
+        )
+        kwargs['_check_return_type'] = kwargs.get(
+            '_check_return_type', True
+        )
+        kwargs['_spec_property_naming'] = kwargs.get(
+            '_spec_property_naming', False
+        )
+        kwargs['_content_type'] = kwargs.get(
+            '_content_type')
+        kwargs['_host_index'] = kwargs.get('_host_index')
+        kwargs['rrn'] = \
+            rrn
+        return self.delete_deployment_endpoint.call_with_http_info(**kwargs)
+
     def get_deployment(
         self,
         *,
@@ -317,7 +453,7 @@ class Deployments(object):
             rrn
         return self.get_deployment_endpoint.call_with_http_info(**kwargs)
 
-    def get_own_deployment(
+    def get_self_deployment(
         self,
         **kwargs
     ) -> typing.Union[GetDeploymentResponse, asyncio.Future]:
@@ -328,7 +464,7 @@ class Deployments(object):
 
         ```python
         rs = RocksetClient(api_key=APIKEY)
-        future = rs.Deployments.get_own_deployment(
+        future = rs.Deployments.get_self_deployment(
             async_req=True,
         )
         result = await future
@@ -393,7 +529,7 @@ class Deployments(object):
         kwargs['_content_type'] = kwargs.get(
             '_content_type')
         kwargs['_host_index'] = kwargs.get('_host_index')
-        return self.get_own_deployment_endpoint.call_with_http_info(**kwargs)
+        return self.get_self_deployment_endpoint.call_with_http_info(**kwargs)
 
     def list_deployments(
         self,
@@ -477,6 +613,7 @@ class Deployments(object):
         self,
         *,
         display_name: str,
+        email: str,
         **kwargs
     ) -> typing.Union[CreateDeploymentResponse, asyncio.Future]:
         """Provision a deployment  # noqa: E501
@@ -488,6 +625,7 @@ class Deployments(object):
         rs = RocksetClient(api_key=APIKEY)
         future = rs.Deployments.provision_deployment(
             display_name="string_example",
+            email="string_example",
             async_req=True,
         )
         result = await future
@@ -495,6 +633,7 @@ class Deployments(object):
 
         Keyword Args:
             display_name (str): The display name of the deployment. [required]
+            email (str): The email of the user creating the deployment. [required]
             _return_http_data_only (bool): response data without head status
                 code and headers. Default is True.
             _preload_content (bool): if False, the urllib3.HTTPResponse object
