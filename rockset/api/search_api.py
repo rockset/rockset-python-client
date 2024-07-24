@@ -8,31 +8,26 @@
 """
 
 
+import asyncio
 import re  # noqa: F401
 import sys  # noqa: F401
 import typing  # noqa: F401
 
-import asyncio
-
-from rockset.api_client import ApiClient, Endpoint as _Endpoint
-from rockset.model_utils import (  # noqa: F401
-    check_allowed_values,
-    check_validations,
-    date,
-    datetime,
-    file_type,
-    none_type,
-    validate_and_convert_types
-)
+from rockset.api_client import ApiClient
+from rockset.api_client import Endpoint as _Endpoint
 from rockset.model.box_create_request import BoxCreateRequest
 from rockset.model.box_create_response import BoxCreateResponse
-from rockset.model.box_insert_documents_response import BoxInsertDocumentsResponse
+from rockset.model.box_insert_documents_response import \
+    BoxInsertDocumentsResponse
 from rockset.model.box_query_request import BoxQueryRequest
 from rockset.model.box_query_response import BoxQueryResponse
 from rockset.model.box_resize_request import BoxResizeRequest
 from rockset.model.box_resize_response import BoxResizeResponse
 from rockset.model.error_model import ErrorModel
 from rockset.model.pallet_list_boxes_response import PalletListBoxesResponse
+from rockset.model_utils import (check_allowed_values,  # noqa: F401
+                                 check_validations, date, datetime, file_type,
+                                 none_type, validate_and_convert_types)
 from rockset.models import *
 
 
@@ -505,7 +500,7 @@ class Search(object):
         *,
         box_rrn: str,
         **kwargs
-    ) -> typing.Union[{str: (bool, date, datetime, dict, float, int, list, str, none_type)}, asyncio.Future]:
+    ) -> typing.Union[dict, asyncio.Future]:
         """Delete a box  # noqa: E501
 
         This method makes a synchronous HTTP request by default. To make an
